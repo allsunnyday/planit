@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Jiin.jsp</title>
+<title>branch.jsp</title>
 </head>
 <body>
-	지인 팀원 입장하였습니다.
-	branch생성후! 또 수정합니다 !
+	연습파일
 </body>
 </html>
