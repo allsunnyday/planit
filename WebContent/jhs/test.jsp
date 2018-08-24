@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>readme.jsp</title>
+<title>test.jsp</title>
 </head>
 <body>
-	<h1>PLAN:IT</h1>
-	hello
+	이...파일은.....정현선의 파일입니다. ..... 
 </body>
 </html>
