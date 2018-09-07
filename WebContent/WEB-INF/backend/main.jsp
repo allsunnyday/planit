@@ -14,18 +14,13 @@
 
     <title>SB Admin - Dashboard</title>
 
-    <!-- Bootstrap core CSS-->
-    <link href="<c:url value='/backBoot/vendor/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
-
-    <!-- Custom fonts for this template-->
-    <link href="<c:url value='/backBoot/vendor/fontawesome-free/css/all.min.css'/>"  rel="stylesheet" type="text/css">
-
-    <!-- Page level plugin CSS-->
-    <link href="<c:url value='/backBoot/vendor/datatables/dataTables.bootstrap4.css'/>"  rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="<c:url value='/backBoot/css/sb-admin.css'/>"  rel="stylesheet">
-
+<link href="<c:url value='/BootStrap/css/bootstrap.min.css'/>" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="<c:url value='/BootStrap/js/bootstrap.min.js'/>"></script>
   </head>
 
   <body id="page-top">

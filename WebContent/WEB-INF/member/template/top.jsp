@@ -83,7 +83,7 @@
 				</c:if>
 				
 				</li>
-				<li class="active"><a href="<c:url value='/ReplyBBS/BBS/List.bbs'/>">게시판</a></li>
+				<li class="active"><a href="#">게시판</a></li>
 				<li><a href="#">QnA</a></li>
 			</ul>
 		</div>

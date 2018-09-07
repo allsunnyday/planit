@@ -6,10 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MemberController {
 
-	
 	@RequestMapping("/member/login/login.it")
 	public String gotoLogin()throws Exception{
-		return "login/login";
+		return "login/login.tiles";
+	}
+	
+	@RequestMapping("/Plait/Planit.it")
+	public String gotoMain()throws Exception{
+		return "main/main.tiles";
 	}
 }
 

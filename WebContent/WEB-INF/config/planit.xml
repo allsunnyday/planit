@@ -31,7 +31,7 @@
 	<!-- 접두어 및 접미어 처리 -->
 	<bean class ="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="2"></property>
-		<property name="prefix" value="/WEB-INF/member/"></property>
+		<property name="prefix" value="/WEB-INF/member"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 	
