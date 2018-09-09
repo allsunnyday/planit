@@ -14,8 +14,8 @@
 	href="<c:url value='/images/planit_logo.png'/>">
 
 <!-- CSS -->
-<link rel="stylesheet"
-	href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/> ">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400|Roboto:300,400,500">
 <link rel="stylesheet"
@@ -49,6 +49,7 @@
 	<script src="<c:url value='/assets/js/retina-1.1.0.min.js'/> "></script>
 	<script src="<c:url value='/assets/js/waypoints.min.js'/> "></script>
 	<script src="<c:url value='/assets/js/scripts.js'/> "></script>
+	
 </body>
 </html>
 

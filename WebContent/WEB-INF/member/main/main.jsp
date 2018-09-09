@@ -11,10 +11,18 @@
 			console.log($('html,body').css('position'));
 			
 		}); */
-		
+		$(window).resize(function(){
+			if($( window ).width() <=991){
+				$('.navbar').css('background', '#444');
+			}else{
+				$('.navbar').css('background', 'none');
+			}
+		});
 		var nav=$('.nav-container');
 		$(window).scroll(function(){
-			if($(this).scrollTop()> 50){
+			var windowWidth = $( window ).width();
+			console.log(windowWidth);
+			if($(this).scrollTop()> 50 || windowWidth<=991){
 				$('.navbar').css('background', '#444');
 			}
 			else{
@@ -51,6 +59,7 @@
 	            </div>
 	            
 	            <div class="row">
+	                <!-- search 링크 걸기  -->
 	                <div class="col-sm-4 features-box wow fadeInLeft">
 	                	<div class="row">
 	                		<div class="col-sm-3 features-box-icon">
@@ -65,6 +74,7 @@
 	                		</div>
 	                	</div>
 	                </div>
+	                <!-- planner링크걸기 -->
 	                <div class="col-sm-4 features-box wow fadeInLeft">
 	                	<div class="row">
 	                		<div class="col-sm-3 features-box-icon">
@@ -79,6 +89,7 @@
 	                		</div>
 	                	</div>
 	                </div>
+	                <!-- review 링크 걸기 -->
 	                <div class="col-sm-4 features-box wow fadeInLeft">
 	                	<div class="row">
 	                		<div class="col-sm-3 features-box-icon">
