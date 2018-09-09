@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+
 <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="#"> MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 footer-copyright">
+				&copy; 국내 여행을 플랜잇하다! <a href="#">PLAN:IT</a>
+			</div>
+		</div>
+	</div>
 </footer>
-<!-- Footer -->
