@@ -1,7 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<script type="text/javascript">
+	$('.navbar').css('background', 'none');
+	$(function(){
+		/* 
+		//화면에서 마우스 휠을 내릴 때  발생하는 이벤트 
+		$('html, body').on('mousewheel DOMMouseScroll', function(e){
+			//$('.navbar-no-bg').css('background', '#444');
+			console.log($('html,body').css('position'));
+			
+		}); */
+		
+		var nav=$('.nav-container');
+		$(window).scroll(function(){
+			if($(this).scrollTop()> 50){
+				$('.navbar').css('background', '#444');
+			}
+			else{
+				$('.navbar').css('background', 'none');
+			}
+		});
+	});
+</script>
 <!-- Top content -->
         <div class="top-content">
         	<div class="container">

@@ -7,7 +7,13 @@
 	role="navigation">
 	<div class="container">
 		<div class="navbar-header">
-			<!-- 화면이 작아지면 아래의 button이 보인다.  -->
+			<!-- 
+				※
+				오류 해 결 문 제 (미해결) 해결시에는 주석 삭제 요망 
+				화면이 작아지면 아래의 button이 보여야 하는데 
+				BUTTON은 보이나 아래의 메뉴들이 보이지 않는다.  
+				
+				-->
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#collapseMenu">
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -19,11 +25,14 @@
 		<div class="collapse navbar-collapse" id="collapseMenu">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<c:url value='/'/> ">Home</a></li>
-				<li><a href="<c:url value='/member/login/login.it'/> ">Clients</a></li>
-				<li><a href="#">Planner</a></li>
+				<!-- 지인, 길형 -->
 				<li><a href="#">search</a></li>
+				<!-- 선기 -->
+				<li><a href="#">Planner</a></li>
+				<!-- 현선 -->
 				<li><a href="#">reviews</a></li>
-				<li><a class="btn btn-link-3" href="#">Button</a></li>
+				<!-- 예원 -->
+				<li><a class="btn btn-link-3 img-circle" href="<c:url value='/member/login/login.it'/> ">LOGIN</a></li>
 			</ul>
 		</div>
 	</div>

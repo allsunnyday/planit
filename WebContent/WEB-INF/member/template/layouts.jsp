@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PLAN:IT</title>
 <link rel="shortcut icon"
-	href="<c:url value='/images/logo_for_title2.png'/>">
+	href="<c:url value='/images/planit_logo.png'/>">
 
 <!-- CSS -->
 <link rel="stylesheet"

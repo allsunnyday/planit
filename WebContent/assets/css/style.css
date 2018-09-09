@@ -108,8 +108,10 @@ img {
 
 .navbar-no-bg {
 	padding-top: 10px;
-	background: none;
+	background: #444;/*none*/
 }
+
+
 
 ul.navbar-nav {
 	font-family: 'Josefin Sans', sans-serif;
@@ -120,7 +122,7 @@ ul.navbar-nav {
 }
 
 .navbar-inverse ul.navbar-nav li a {
-	color: black;
+	color: white;
 	border: 0;
 }
 
@@ -130,7 +132,7 @@ ul.navbar-nav {
 }
 
 .navbar-inverse ul.navbar-nav li a:focus {
-	color: black;
+	color: white;
 	outline: 0;
 	border: 0;
 }
@@ -144,7 +146,7 @@ ul.navbar-nav {
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 14px;
 	font-weight: 300;
-	color: black;
+	color: white;
 	opacity: 1; /*1*/
 	text-transform: uppercase;
 	-moz-border-radius: 6px;
@@ -164,7 +166,7 @@ ul.navbar-nav {
 	width: 102px;
 	/*background: url(../img/log1.png) left center no-repeat;
 	text-indent: -99999px;*/
-	background: url(../img/logo.png) left center no-repeat;
+	background: url(../img/planit_logo.png) left center no-repeat;
 	text-indent: -99999px;
 }
 
