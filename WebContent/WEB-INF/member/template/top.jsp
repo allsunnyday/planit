@@ -14,7 +14,6 @@
 			    
 			 }
 		}
-
 		@media all and (min-width: 992px) {
 		  .navbar-fixed-width {
 		    width: 992px;
@@ -84,6 +83,9 @@
 				
 				</li>
 				<li class="active"><a href="#">게시판</a></li>
+				<li><a href="#">planner</a></li>
+				<li><a href="#">search</a></li>
+				<li><a href="#">review</a></li>
 				<li><a href="#">QnA</a></li>
 			</ul>
 		</div>
