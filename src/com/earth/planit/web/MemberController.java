@@ -15,5 +15,10 @@ public class MemberController {
 	public String gotoMain()throws Exception{
 		return "main/main.tiles";
 	}
+	
+	@RequestMapping("/TourInfo/chooselist.it")
+	public String gotoList()throws Exception{
+		return "tourinfo/infoMain.tiles";
+	}
 }
 

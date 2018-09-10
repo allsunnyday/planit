@@ -31,7 +31,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<c:url value='/'/> ">Home</a></li>
 				<!-- 지인, 길형 -->
-				<li><a href="#">search</a></li>
+				<li><a href="<c:url value='/TourInfo/chooselist.it'/>">search</a></li>
 				<!-- 선기 -->
 				<li><a href="#">Planner</a></li>
 				<!-- 현선 -->
