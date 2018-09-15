@@ -29,6 +29,54 @@
 				$('.navbar').css('background', 'none');
 			}
 		});
+		
+		
+		// **************** planit *********************//
+		var $randomNumber = $('.nbr');
+		var $timer = 30;
+		var $it;
+		var $data = 0;
+		var index;
+		var change;
+		var letters = [ "P", "L", "A", "N", ":", "I", "T" ];
+
+		$randomNumber.each(function() {
+			change = Math.round(Math.random() * 100);
+			$(this).attr('data-change', change);
+		});
+
+		function random() {
+			return Math.round(Math.random() * 9);
+		}
+		;
+
+		function select() {
+			return Math.round(Math.random()
+					* $randomNumber.length + 1);
+		}
+		;
+
+		function value() {
+			$('.nbr:nth-child(' + select() + ')').html(
+					'' + random() + '');
+			$('.nbr:nth-child(' + select() + ')').attr(
+					'data-number', $data);
+			$data++;
+
+			$randomNumber
+					.each(function() {
+						if (parseInt($(this)
+								.attr('data-number')) > parseInt($(
+								this).attr('data-change'))) {
+							index = $('.ltr').index(this);
+							$(this).html(letters[index]);
+							$(this).removeClass('nbr');
+						}
+					});
+		}
+		;
+		$it = setInterval(value, $timer);
+		
 	});
 </script>
 <!-- Top content -->
@@ -36,7 +84,14 @@
         	<div class="container">
 				<div class="row">
 					<div class="col-sm-12 text wow fadeInLeft">
-						<h1>You Only Live Once</h1>
+						<div class="random">
+							<h1>
+								<span class="span nbr ltr">0</span> <span class="span nbr ltr">0</span>
+								<span class="span nbr ltr">0</span> <span class="span nbr ltr">0</span>
+								<span class="span nbr ltr">0</span> <span class="span nbr ltr">0</span>
+								<span class="span nbr ltr">0</span>
+							</h1>
+						</div>
 						<div class="description">
 							<p class="medium-paragraph">
 								플랜잇으로 간편하게 여행계획을 짜고 국내 여행을 떠나보세요, 지금 바로 <a href="http://azmind.com">PLAN:IT</a>!
