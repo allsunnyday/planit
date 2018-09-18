@@ -35,12 +35,12 @@
 				<!-- 선기 -->
 				<li><a href="#">Planner</a></li>
 				<!-- 현선 -->
-				<li><a href="#">reviews</a></li>
+				<li><a href="<c:url value='/Review/MyReview/write.it'/> ">reviews</a></li>
 				<!-- 예원 -->
 				<li class="dropdown">
 					<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">USER<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<c:url value='/member/login/login.it'/> ">JOIN</a></li>
+						<li><a href="<c:url value='/member/login/login.it'/> " >JOIN</a></li>
 						<li><a href="<c:url value='/member/login/login.it'/> ">LOGIN</a></li>
 					</ul>
 				</li>
