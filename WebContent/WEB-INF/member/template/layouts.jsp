@@ -10,12 +10,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PLAN:IT</title>
-<link rel="shortcut icon"
-	href="<c:url value='/images/planit_logo.png'/>">
-
+<link rel="shortcut icon" href="<c:url value='/images/planit_logo.png'/>">
 <!-- CSS -->
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400|Roboto:300,400,500">
 <link rel="stylesheet"
@@ -31,7 +28,7 @@
 <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+<![endif]-->
 </head>
 <body>
 		<!-- navbar 시작 -->
