@@ -170,10 +170,10 @@ Features: 플랜잇의 서비스 요약
 				<!-- <div class="row"> -->
 					<div class=" features-box-icon">
 						<!-- <i class="fa fa-twitter"></i> -->
-						<img alt="" src="<c:url value='/images/main/satellite.png'/> ">
+						<a href="<c:url value='/tourinfo/ListNMapPick.it'/>"><img alt="" src="<c:url value='/images/main/satellite.png'/>"></a>
 					</div>
 					<!-- <div class="col-sm-9"> -->
-						<h3>Search</h3>
+						<a href="<c:url value='/tourinfo/ListNMapPick.it'/>"><h3>Search</h3></a>
 						<p>국내 여행의 정보를 한눈에 보여드릴게요, 마음에 드는 관광지는 즐겨찾기하세요!</p>
 					<!-- </div> -->
 				<!-- /div> -->

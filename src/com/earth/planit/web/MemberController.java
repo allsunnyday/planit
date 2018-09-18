@@ -16,14 +16,19 @@ public class MemberController {
 		return "main/main.tiles";
 	}
 	
-	@RequestMapping("/tourinfo/infoMain.it")
+	@RequestMapping("/tourinfo/ListNMapPick.it")
 	public String gotoList()throws Exception{
-		return "tourinfo/infoMain.tiles";
+		return "tourinfo/ListNMapPick.tiles";
 	}
 	
-	@RequestMapping("/member/tourinfo/mappick/mapMain.it")
+	@RequestMapping("/tourinfo/mappick/mapMain.it")
 	public String gotoMapPick()throws Exception{
 		return "tourinfo/mappick/mapMain.tiles";
+	}
+	
+	@RequestMapping("/tourinfo/reviewpick/reviewpick.it")
+	public String gotoReviewPick()throws Exception{
+		return "tourinfo/reviewpick/reviewpick.tiles";
 	}
 }
 

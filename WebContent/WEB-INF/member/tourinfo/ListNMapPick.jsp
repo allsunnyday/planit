@@ -74,7 +74,7 @@
 			<div class="side side-left">
 				<div class="intro-content">
 					<div class="profile">
-						<img src="<c:url value='/images/list.png'/>">
+						<img src="<c:url value='/images/ListNMappick/list.png'/>">
 					</div>
 					<h1>
 						<span><a href="#">List</a></span>
@@ -85,10 +85,10 @@
 			<div class="side side-right">
 				<div class="intro-content">
 					<div class="profile">
-						<a href="<c:url value='/member/tourinfo/mappick/mapMain.it'/>"><img src="<c:url value='/images/map.png'/>"></a>
+						<a href="<c:url value='/tourinfo/mappick/mapMain.it'/>"><img src="<c:url value='/images/ListNMappick/map.png'/>"></a>
 					</div>
 					<h1>
-						<span><a href="<c:url value='/member/tourinfo/mappick/mapMain.it'/>">Map</a></span>
+						<span><a href="<c:url value='/tourinfo/reviewpick/reviewpick.it'/>">Map</a></span>
 					</h1>
 				</div>
 				<div class="overlay"></div>
