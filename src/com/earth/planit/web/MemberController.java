@@ -35,5 +35,12 @@ public class MemberController {
 	public String gotoReservation_P()throws Exception{
 		return "mypage/Partner/Reservation_P.tiles";
 	}
+	
+//	planner 컨트롤러
+	@RequestMapping("/Planit/Before/Location.it")
+	public String gotoLocation() throws Exception{
+		
+		return "planner/before/Location.tiles";
+	}
 }
 

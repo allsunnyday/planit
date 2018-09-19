@@ -1,128 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript">
-	$('.navbar').css('background', 'none');
-	$(function() {
-		/* 
-		//화면에서 마우스 휠을 내릴 때  발생하는 이벤트 
-		$('html, body').on('mousewheel DOMMouseScroll', function(e){
-			//$('.navbar-no-bg').css('background', '#444');
-			console.log($('html,body').css('position'));
-			
-		}); */
-		$(window).resize(function() {
-			if ($(window).width() <= 991) {
-				$('.navbar').css('background', '#444');
-			} else {
-				$('.navbar').css('background', 'none');
-			}
-		});
-		var nav = $('.nav-container');
-		$(window).scroll(function() {
-			var windowWidth = $(window).width();
-			console.log(windowWidth);
-			if ($(this).scrollTop() > 50 || windowWidth <= 991) {
-				$('.navbar').css('background', '#444');
-			} else {
-				$('.navbar').css('background', 'none');
-			}
-		});
 
-		// **************** planit *********************//
-		var $randomNumber = $('.nbr');
-		var $timer = 30;
-		var $it;
-		var $data = 0;
-		var index;
-		var change;
-		var letters = [ "P", "L", "A", "N", ":", "I", "T" ];
-
-		$randomNumber.each(function() {
-			change = Math.round(Math.random() * 100);
-			$(this).attr('data-change', change);
-		});
-
-		function random() {
-			return Math.round(Math.random() * 9);
-		}
-		;
-
-		function select() {
-			return Math.round(Math.random() * $randomNumber.length + 1);
-		}
-		;
-
-		function value() {
-			$('.nbr:nth-child(' + select() + ')').html('' + random() + '');
-			$('.nbr:nth-child(' + select() + ')').attr('data-number', $data);
-			$data++;
-
-			$randomNumber.each(function() {
-				if (parseInt($(this).attr('data-number')) > parseInt($(this)
-						.attr('data-change'))) {
-					index = $('.ltr').index(this);
-					$(this).html(letters[index]);
-					$(this).removeClass('nbr');
-				}
-			});
-		}
-		;
-		$it = setInterval(value, $timer);
-
-		
-		  
-		
-		
-	});
-</script>
-<script>
-jQuery(window).load(function() {
-	
-	/*
-		Loader
-	*/
-	$(".loader-img").fadeOut();
-	$(".loader").delay(1000).fadeOut("slow");
-	
-	/*
-	    Portfolio
-	*/
-	$('.portfolio-masonry').masonry({
-		columnWidth: '.portfolio-box', 
-		itemSelector: '.portfolio-box',
-		transitionDuration: '0.5s'
-	});
-	
-
-	
-	$(window).on('resize', function(){ $('.portfolio-masonry').masonry(); });
-	
-	// image popup	
-	$('.portfolio-box-text').magnificPopup({
-		type: 'image',
-		gallery: {
-			enabled: true,
-			navigateByImgClick: true,
-			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-		},
-		image: {
-			tError: 'The image could not be loaded.',
-			titleSrc: function(item) {
-				return item.el.find('p').text();
-			}
-		},
-		callbacks: {
-			elementParse: function(item) {
-				item.src = item.el.parent('.portfolio-box-text-container').siblings('img').attr('src');
-			}
-		}
-	});
-	
-});
-
-
-</script>
 <!-- Top content -->
 <div class="top-content">
 	<div class="container">
@@ -315,39 +194,49 @@ real story: 인기있는 리뷰 모아보기
 		                		</div>
 		                	</div>
 		                </div>
-		                <div class="col-sm-3 portfolio-box ">
-		                	<img src="<c:url value='/images/main/slide2.jpg'/>" alt="" data-at2x="<c:url value='/images/main/slide2.jpg'/>">
-		                	<div class="portfolio-box-text-container">
-		                		<div class="portfolio-box-text">
-		                			<p><a href="#">차.도.녀</a></p>
-		                		</div>
-		                	</div>
-		                </div>
-		                <div class="col-sm-3 portfolio-box ">
-		                	<img src="<c:url value='/images/main/slide3.jpg'/>" alt="" data-at2x="<c:url value='/images/main/slide3.jpg'/>">
-		                	<div class="portfolio-box-text-container">
-		                		<div class="portfolio-box-text">
-		                			<p><a href="#">먹방여행</a></p>
-		                		</div>
-		                	</div>
-		                </div>
-		                <div class="col-sm-3 portfolio-box ">
-		                	<img src="<c:url value='/images/main/slide5.jpg'/>" alt="" data-at2x="<c:url value='/images/main/slide5.jpg'/>">
-		                	<div class="portfolio-box-text-container">
-		                		<div class="portfolio-box-text">
-		                			<p><a href="#">힐링여행</a></p>
-		                		</div>
-		                	</div>
-		                </div>
-		                <!-- 플랜잇과 함께한 순간 더 보기  --> 
-		                <div class="col-sm-3 portfolio-box ">
-		                	<img src="<c:url value='/images/main/007-astronaut.png'/>" alt="" data-at2x="<c:url value='/images/main/007-astronaut.png'/>">
-		                	<div class="portfolio-box-text-container">
-		                		<div class="portfolio-box-text">
-		                			<p><a href="#">힐링여행</a></p>
-		                		</div>
-		                	</div>
-		                </div>
+		                <div class="col-sm-6" style="">
+		                	<div class="col-sm-3 ">
+				                <div class="portfolio-box ">
+				                	<img src="<c:url value='/images/main/slide2.jpg'/>" alt="" data-at2x="<c:url value='/images/main/slide2.jpg'/>">
+				                	<div class="portfolio-box-text-container">
+				                		<div class="portfolio-box-text">
+				                			<p><a href="#">차.도.녀</a></p>
+				                		</div>
+				                	</div>
+				                </div>
+			                </div>
+			                <div class="col-sm-3 ">
+				                <div class="portfolio-box ">
+				                	<img src="<c:url value='/images/main/slide3.jpg'/>" alt="" data-at2x="<c:url value='/images/main/slide3.jpg'/>">
+				                	<div class="portfolio-box-text-container">
+				                		<div class="portfolio-box-text">
+				                			<p><a href="#">먹방여행</a></p>
+				                		</div>
+				                	</div>
+				                </div>
+				            </div>
+				            <div class="col-sm-3 ">
+				                <div class="portfolio-box ">
+				                	<img src="<c:url value='/images/main/slide5.jpg'/>" alt="" data-at2x="<c:url value='/images/main/slide5.jpg'/>">
+				                	<div class="portfolio-box-text-container">
+				                		<div class="portfolio-box-text">
+				                			<p><a href="#">힐링여행</a></p>
+				                		</div>
+				                	</div>
+				                </div>
+				            </div>
+				            <div class="col-sm-3 ">
+				                <!-- 플랜잇과 함께한 순간 더 보기  --> 
+				                <div class=" portfolio-box ">
+				                	<img src="<c:url value='/images/main/007-astronaut.png'/>" alt="" data-at2x="<c:url value='/images/main/007-astronaut.png'/>">
+				                	<div class="portfolio-box-text-container">
+				                		<div class="portfolio-box-text">
+				                			<p><a href="#">힐링여행</a></p>
+				                		</div>
+				                	</div>
+				                </div>
+				           	</div>
+		                <div>
 	                </div>
 	            </div>
 	        </div>
@@ -359,8 +248,6 @@ planner : 평점이 높은 리뷰를 모아보기
  -->
  <section class="content-section" id="portfolio">
       <div class="container">
-        
-       
          <div class="row">
               <div class="col-sm-12 portfolio section-description wow fadeIn">
               	<h2>Planner</h2>
@@ -420,3 +307,125 @@ planner : 평점이 높은 리뷰를 모아보기
       </div>
     </section>
  
+ <script type="text/javascript">
+	$('.navbar').css('background', 'none');
+	$(function() {
+		/* 
+		//화면에서 마우스 휠을 내릴 때  발생하는 이벤트 
+		$('html, body').on('mousewheel DOMMouseScroll', function(e){
+			//$('.navbar-no-bg').css('background', '#444');
+			console.log($('html,body').css('position'));
+			
+		}); */
+		$(window).resize(function() {
+			if ($(window).width() <= 991) {
+				$('.navbar').css('background', '#444');
+			} else {
+				$('.navbar').css('background', 'none');
+			}
+		});
+		var nav = $('.nav-container');
+		$(window).scroll(function() {
+			var windowWidth = $(window).width();
+			console.log(windowWidth);
+			if ($(this).scrollTop() > 50 || windowWidth <= 991) {
+				$('.navbar').css('background', '#444');
+			} else {
+				$('.navbar').css('background', 'none');
+			}
+		});
+
+		// **************** planit *********************//
+		var $randomNumber = $('.nbr');
+		var $timer = 30;
+		var $it;
+		var $data = 0;
+		var index;
+		var change;
+		var letters = [ "P", "L", "A", "N", ":", "I", "T" ];
+
+		$randomNumber.each(function() {
+			change = Math.round(Math.random() * 100);
+			$(this).attr('data-change', change);
+		});
+
+		function random() {
+			return Math.round(Math.random() * 9);
+		}
+		;
+
+		function select() {
+			return Math.round(Math.random() * $randomNumber.length + 1);
+		}
+		;
+
+		function value() {
+			$('.nbr:nth-child(' + select() + ')').html('' + random() + '');
+			$('.nbr:nth-child(' + select() + ')').attr('data-number', $data);
+			$data++;
+
+			$randomNumber.each(function() {
+				if (parseInt($(this).attr('data-number')) > parseInt($(this)
+						.attr('data-change'))) {
+					index = $('.ltr').index(this);
+					$(this).html(letters[index]);
+					$(this).removeClass('nbr');
+				}
+			});
+		}
+		;
+		$it = setInterval(value, $timer);
+
+		
+		  
+		
+		
+	});
+</script>
+<script>
+jQuery(window).load(function() {
+	
+	/*
+		Loader
+	*/
+	$(".loader-img").fadeOut();
+	$(".loader").delay(1000).fadeOut("slow");
+	
+	/*
+	    Portfolio
+	*/
+	$('.portfolio-masonry').masonry({
+		columnWidth: '.portfolio-box', 
+		itemSelector: '.portfolio-box',
+		transitionDuration: '0.5s'
+	});
+	
+
+	
+	$(window).on('resize', function(){ $('.portfolio-masonry').masonry(); });
+	
+	// image popup	
+	$('.portfolio-box-text').magnificPopup({
+		type: 'image',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: 'The image could not be loaded.',
+			titleSrc: function(item) {
+				return item.el.find('p').text();
+			}
+		},
+		callbacks: {
+			elementParse: function(item) {
+				item.src = item.el.parent('.portfolio-box-text-container').siblings('img').attr('src');
+			}
+		}
+	});
+	
+});
+
+
+</script>

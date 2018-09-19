@@ -8,6 +8,6 @@ public class ReviewController {
 
 	@RequestMapping("/Review/MyReview/write.it")
 	public String reviewForm()throws Exception{
-		return "blog/myreview/Write.tiles";
+		return "blog/myreview/WriteReview.tiles";
 	}
 }
