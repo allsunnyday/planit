@@ -382,6 +382,7 @@ body {
 <!-- 캐러셀 -->
 <!-- 주석추가  -->
 <!-- 여행지추천/숙박/리뷰/맛집 -->
+<!-- master 추가 -->
 <div class="panel panel-info">
 	<div class="panel-heading"></div>
 	<div class="panel-body">
