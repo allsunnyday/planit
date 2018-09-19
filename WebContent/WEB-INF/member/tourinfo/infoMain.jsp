@@ -6,6 +6,6 @@
 <div class="" style="padding-top: 70px">
 	<ul>
 		<li><a href="#">지인</a></li>
-		<li><a href="#">길형</a></li>
+		<li><a href="<c:url value='/member/tourinfo/listpick/list/listMain.it'/>" >길형</a></li>
 	</ul> 
 </div>
