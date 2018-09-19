@@ -118,6 +118,7 @@ body{
 					</div>
 						<h1>
 							<span><a href="<c:url value='/mypage/Partner/Reservation_P.it'/>">List</a></span>
+							<span><a href="<c:url value='/member/tourinfo/listpick/list/listMain.it'/>">길형</a></span>
 							<!-- <span class="tooltip-content">관광정보를 목록형으로 볼수있어요!</span> -->
 						</h1>
 				</div>
