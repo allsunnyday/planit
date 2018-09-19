@@ -16,9 +16,31 @@ public class MemberController {
 		return "main/main.tiles";
 	}
 	
-	@RequestMapping("/TourInfo/chooselist.it")
+	@RequestMapping("/tourinfo/ListNMapPick.it")
 	public String gotoList()throws Exception{
-		return "tourinfo/infoMain.tiles";
+		return "tourinfo/ListNMapPick.tiles";
+	}
+	
+	@RequestMapping("/tourinfo/mappick/mapMain.it")
+	public String gotoMapPick()throws Exception{
+		return "tourinfo/mappick/mapMain.tiles";
+	}
+	
+	@RequestMapping("/tourinfo/reviewpick/reviewpick.it")
+	public String gotoReviewPick()throws Exception{
+		return "tourinfo/reviewpick/reviewpick.tiles";
+	}
+	
+	@RequestMapping("/mypage/Partner/Reservation_P.it")
+	public String gotoReservation_P()throws Exception{
+		return "mypage/Partner/Reservation_P.tiles";
+	}
+	
+//	planner 컨트롤러
+	@RequestMapping("/Planit/Before/Location.it")
+	public String gotoLocation() throws Exception{
+		
+		return "planner/before/Location.tiles";
 	}
 }
 
