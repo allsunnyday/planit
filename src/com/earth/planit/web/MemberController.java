@@ -20,5 +20,12 @@ public class MemberController {
 	public String gotoList()throws Exception{
 		return "tourinfo/infoMain.tiles";
 	}
+	
+//	planner 컨트롤러
+	@RequestMapping("/Planit/Before/Location.it")
+	public String gotoLocation() throws Exception{
+		
+		return "planner/before/Location.tiles";
+	}
 }
 

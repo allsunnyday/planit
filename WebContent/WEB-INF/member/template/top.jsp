@@ -33,7 +33,7 @@
 				<!-- 지인, 길형 -->
 				<li><a href="<c:url value='/TourInfo/chooselist.it'/>">search</a></li>
 				<!-- 선기 -->
-				<li><a href="#">Planner</a></li>
+				<li><a href="<c:url value='/Planit/Before/Location.it'/>">Planner</a></li>
 				<!-- 현선 -->
 				<li><a href="#">reviews</a></li>
 				<!-- 예원 -->
