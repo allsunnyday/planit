@@ -29,6 +29,9 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+
 </head>
 <body>
 		<!-- navbar 시작 -->
@@ -46,7 +49,8 @@
 	<script src="<c:url value='/assets/js/retina-1.1.0.min.js'/> "></script>
 	<script src="<c:url value='/assets/js/waypoints.min.js'/> "></script>
 	<script src="<c:url value='/assets/js/scripts.js'/> "></script>
-	
+	<script src="<c:url value='/assets/js/jquery-masonry-min.js'/> "></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 </body>
 </html>
 
