@@ -30,5 +30,10 @@ public class MemberController {
 	public String gotoReviewPick()throws Exception{
 		return "tourinfo/reviewpick/reviewpick.tiles";
 	}
+	
+	@RequestMapping("/mypage/Partner/Reservation_P.it")
+	public String gotoReservation_P()throws Exception{
+		return "mypage/Partner/Reservation_P.tiles";
+	}
 }
 

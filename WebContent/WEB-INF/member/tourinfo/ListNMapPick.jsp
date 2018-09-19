@@ -29,7 +29,7 @@
 
 .side-left {
 	left: 0;
-	background: #47a3da;
+	background-image: url("../images/ListNMappick/background.jpg");
 	color: #fff;
 	outline: 1px solid #47a3da; /* avoid gap */
 }
@@ -53,12 +53,12 @@
 	margin-top: 50px;
 }
 
-.profile {
+.profile {/* 행성 크기 */
 	margin: 0 auto;
-	width: 140px;
-	height: 140px;
+	width: 200px;
+	height: 200px;
 	border-radius: 50%;
-	background: #47a3da;
+/* 	background: #47a3da; */
 }
 
 .profile img {
@@ -66,19 +66,39 @@
 	border-radius: 50%;
 	opacity: 0.6;
 }
-</style>
 
+#firefly {
+	height: 100%;
+	width: 100%;
+}
+
+</style>
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+<script type="text/javascript" src="jquery.firefly-0.7.js"></script>
+<script>
+	$.firefly({
+		color : '#fafafa',
+		minPixel : 3,
+		on: 'document.body',
+		maxPixel : 10,
+		total : 100,
+		on : '#firefly'
+	});
+</script>
 <div id="container1" class="container" >
 	<div id="splitlayout" class="splitlayout">
 		<div class="intro">
 			<div class="side side-left">
-				<div class="intro-content">
+				<div class="intro-content" class="tooltip tooltip-west">
 					<div class="profile">
 						<img src="<c:url value='/images/ListNMappick/list.png'/>">
 					</div>
-					<h1>
-						<span><a href="#">List</a></span>
-					</h1>
+						<h1>
+							<span class="tooltip-item"><a href="<c:url value='/mypage/Partner/Reservation_P.it'/>">List</a></span>
+							<!-- <span class="tooltip-content">관광정보를 목록형으로 볼수있어요!</span> -->
+						</h1>
 				</div>
 				<div class="overlay"></div>
 			</div>
