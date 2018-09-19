@@ -19,16 +19,12 @@
 	href="<c:url value='/assets/font-awesome/css/font-awesome.min.css'/> ">
 <link rel="stylesheet" href="<c:url value='/assets/css/animate.css'/> ">
 <link rel="stylesheet" href="<c:url value='/assets/css/style.css'/> ">
-<<<<<<< HEAD
+
 <!-- top-end -->
 
 
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-=======
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
->>>>>>> refs/remotes/origin/development
+
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,10 +37,10 @@
 <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 
-=======
+
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+
         
     <!-- planer -->
     <!-- planner location -->
@@ -58,7 +54,7 @@
 	
 	<!-- planner route -->   
 	
->>>>>>> refs/remotes/origin/sunki
+
 </head>
 <body>
 		<!-- navbar 시작 -->
@@ -76,14 +72,14 @@
 	<script src="<c:url value='/assets/js/retina-1.1.0.min.js'/> "></script>
 	<script src="<c:url value='/assets/js/waypoints.min.js'/> "></script>
 	<script src="<c:url value='/assets/js/scripts.js'/> "></script>
-<<<<<<< HEAD
+
 	<script src="<c:url value='/assets/js/jquery-masonry-min.js'/> "></script>
 	 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-=======
+
 	
 	
     
->>>>>>> refs/remotes/origin/sunki
+
 </body>
 </html>
 
