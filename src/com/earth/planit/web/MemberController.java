@@ -48,6 +48,18 @@ public class MemberController {
 		return "login/join.tiles";
 	}
 	
-	
+	@RequestMapping("/member/login/companyJoin.it")
+	   public String gotoCompanyJoin()throws Exception{
+	      return "login/companyJoin.tiles";
+	   }
+	   
+	   @RequestMapping("/member/mypage/MyPageHome.it")
+	   public String gotoMyPageHome()throws Exception{
+	      return "mypage/MyPageHome.tiles";
+	   }
+	   @RequestMapping("/member/login/companyLogin.it")
+	   public String gotoCompanyLogin()throws Exception{
+	      return "login/companyLogin.tiles";
+	   }
 }
 
