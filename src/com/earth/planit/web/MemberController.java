@@ -42,5 +42,12 @@ public class MemberController {
 		
 		return "planner/before/Location.tiles";
 	}
+	
+	@RequestMapping("/member/login/Join.it")
+	public String gotoJoin()throws Exception{
+		return "login/join.tiles";
+	}
+	
+	
 }
 

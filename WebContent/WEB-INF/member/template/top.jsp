@@ -7,9 +7,10 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<!-- Top menu -->
-<nav class="navbar navbar-inverse navbar-fixed-top navbar-no-bg"
+		<!--  navbar에 있는 border속성이 다른 곳이랑 겹쳐서 반드시 이곳에서 border속성을 줘야 한다 -->
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-no-bg" style="border: none;"
 	role="navigation">
-	<div class="container">
+	<div class="container" >
 		<div class="navbar-header">
 			<!-- 
 				※
@@ -40,8 +41,8 @@
 				<li class="dropdown">
 					<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">USER<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<c:url value='/member/login/login.it'/> " >JOIN</a></li>
 						<li><a href="<c:url value='/member/login/login.it'/> ">LOGIN</a></li>
+						<li><a href="<c:url value='/member/login/Join.it'/> " >JOIN</a></li>
 					</ul>
 				</li>
 			</ul>

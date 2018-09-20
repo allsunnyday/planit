@@ -95,7 +95,7 @@ img {
 	margin-bottom: 0;
 	padding-top: 0;
 	background: #444;
-	border: 0;
+	border: none;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	border-radius: 0;
@@ -109,6 +109,7 @@ img {
 .navbar-no-bg {
 	padding-top: 10px;
 	background: #444; /*none*/
+	border: none;
 }
 
 ul.navbar-nav {
@@ -117,6 +118,8 @@ ul.navbar-nav {
 	color: #fff;
 	font-weight: 400;
 	text-transform: uppercase;
+	/* 새롭게 추가 */
+	/* border: none; */
 }
 
 .navbar-inverse ul.navbar-nav li a {
@@ -125,7 +128,7 @@ ul.navbar-nav {
 }
 
 .navbar-inverse ul.navbar-nav li a:hover {
-	color: violet;
+	color: #02f7d8;
 	border: 0;
 }
 
