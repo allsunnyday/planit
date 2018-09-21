@@ -19,14 +19,7 @@
 	color: #b0adad;
 }
 </style>
-	<link href="https://fonts.googleapis.com/css?family=Overpass+Mono:400,700" rel="stylesheet">
-		
-	<link rel="stylesheet" href="<c:url value='/assets/css/demo.css'/> ">
-	<link rel="stylesheet" href="<c:url value='/assets/css/normalize.css'/> ">
 	
-	<script src="<c:url value='/assets/js/anime.min.js'/> "></script>
-	<script src="<c:url value='/assets/js/main.js'/> "></script>
-
 <!-- body end  -->
 	<script>document.documentElement.className = 'js';</script>
 		<div style="padding-top: 100px">
@@ -108,6 +101,7 @@
 					</a>
 				</div>
 			</section>
+			
 			<section class="content">
 				<h2 class="content__title">최 신 리 뷰</h2>
 				<div class="grid grid--effect-hamal">
@@ -185,6 +179,7 @@
 					</a>
 				</div>
 			</section>
+			
 			<section class="content">
 				<h2 class="content__title">_003</h2>
 				<div class="grid grid--effect-hamal">
