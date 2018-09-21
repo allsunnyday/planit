@@ -46,45 +46,35 @@ Features: 플랜잇의 서비스 요약
 		<div class="row">
 			<!-- search 링크 걸기  -->
 			<div class="col-sm-4 features-box wow fadeInLeft">
-				<!-- <div class="row"> -->
 					<div class=" features-box-icon">
-						<!-- <i class="fa fa-twitter"></i> -->
+						<!-- 그림을 누르면 정보 페이지로 이동  -->
 						<a href="<c:url value='/tourinfo/ListNMapPick.it'/>"><img alt="" src="<c:url value='/images/main/satellite.png'/>"></a>
 					</div>
-					<!-- <div class="col-sm-9"> -->
-						<a href="<c:url value='/tourinfo/ListNMapPick.it'/>"><h3>Search</h3></a>
+					<!-- 글씨를 누라면 정보 페이지로 이동-->
+						 <h3><a href="<c:url value='/tourinfo/ListNMapPick.it'/>"> Search</a></h3>
 						<p>국내 여행의 정보를 한눈에 보여드릴게요, 마음에 드는 관광지는 즐겨찾기하세요!</p>
-					<!-- </div> -->
-				<!-- /div> -->
 			</div>
 			<!-- planner링크걸기 -->
 			<div class="col-sm-4 features-box wow fadeInLeft">
-				<!-- <div class="row"> -->
 					<div class="features-box-icon">
-						<!-- <i class="fa fa-instagram"></i> -->
-						<img alt="" src="<c:url value='/images/main/map-folded.png'/> ">
+						<!-- 그림을 누르면 플래너 페이지로 이동  -->
+						<a href="<c:url value='/Planit/Before/Location.it'/> "><img alt="" src="<c:url value='/images/main/map-folded.png'/> "></a>
 					</div>
-					<!-- <div class="col-sm-9"> -->
-						<h3>Planner</h3>
+					<!-- 글씨를 누르면 플래너 페이지로 이동  -->
+						<h3><a href="<c:url value='/Planit/Before/Location.it'/> ">Planner</a></h3>
 						<p>노트 , 엑셀로만 정리하는 시대는 갔다! 이제 여행 계획은 플랜잇으로 쉽고 간편하게 완성하세요</p>
-					<!-- </div> -->
-				<!-- </div> -->
 			</div>
 			<!-- review 링크 걸기 -->
 			<div class="col-sm-4 features-box wow fadeInLeft">
-				<!-- <div class="row"> -->
 					<div class=" features-box-icon">
-						<!-- <i class="fa fa-magic"  ></i> -->
-						<img alt="" src="<c:url value='/images/main/astronaut.png'/> ">
+						<!-- 그림을 누르면 리뷰 페이지(리뷰 리스트)로 이동 -->
+						<a href="<c:url value='/tourinfo/reviewpick/reviewpick.it'/> "><img alt="" src="<c:url value='/images/main/astronaut.png'/> " ></a>
 					</div>
-					<!-- <div class="col-sm-9"> -->
-						<h3>Blog</h3>
-						<p>여행 순간, 순간을 기록하세요. 여행 후에는 자동으로 포보북을 만들 수 있습니다.</p>
-					<!-- </div> -->
-				<!-- </div> -->
+					<!-- 그림을 누르면 리뷰 페이지(리뷰 리스트)로 이동 -->
+					<h3><a href="<c:url value='/tourinfo/reviewpick/reviewpick.it'/> ">Blog</a></h3>
+					<p>여행 순간, 순간을 기록하세요. 여행 후에는 자동으로 포보북을 만들 수 있습니다.</p>
 			</div>
 		</div>
-
 	</div>
 </div>
 <!--
@@ -100,16 +90,13 @@ hot place: 즐겨찾기에 가장 많이 저장되어 있는 관광지를 보여
 				<h2>hot place</h2>
 				<div class="divider-1">
 					<div class="line"></div>
-				 <p>
-	                    	대한민국 구석구석의 아름다움을 소개합니다.
-	                    </p>
+				 <p>대한민국 구석구석의 아름다움을 소개합니다. </p>
 				</div>
 			</div>
 		</div>
 		<!-- 내용 시작   -->
 		<div class="row">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel"> 
-				
 				<!--페이지-->
 				<ol class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -177,13 +164,14 @@ real story: 인기있는 리뷰 모아보기
 	                <div class="col-sm-12 portfolio section-description wow fadeIn">
 	                	<h2>real story</h2>
 	                    <div class="divider-1 wow fadeInUp"><span></span></div>
-	                    					<div class="line"></div>
+	                    <div class="line"></div>
 	                    <p>
 	                    	플랜잇과 함께한 여행의 소중한 순간들, 전국의플래너들의 여행이야기 지금 시작합니다 
 	                    </p>
 	                </div>
 	            </div>
-	            
+	            <!--  -->
+	            <div style="clear:both;"></div>
 	            <div class="row">
 	            	<div class="col-sm-12 portfolio-masonry">
 		                <div class=" col-sm-6  review-main ">
@@ -194,8 +182,7 @@ real story: 인기있는 리뷰 모아보기
 		                		</div>
 		                	</div>
 		                </div>
-		                <div class="col-sm-6" style="">
-		                	<div class="col-sm-3 ">
+		                	<div class="col-sm-3 review-best">
 				                <div class="portfolio-box ">
 				                	<img src="<c:url value='/images/main/slide2.jpg'/>" alt="" data-at2x="<c:url value='/images/main/slide2.jpg'/>">
 				                	<div class="portfolio-box-text-container">
@@ -236,11 +223,17 @@ real story: 인기있는 리뷰 모아보기
 				                	</div>
 				                </div>
 				           	</div>
-		                <div>
+				           	<!--  -->
+		               
+		               <!--  -->
 	                </div>
+	                <!--  -->
 	            </div>
+	            <!-- row -->
 	        </div>
+	        <!-- container -->
         </div>
+        <!-- portfolio-container section-container -->
 <!-- 
 **************************************************************
 planner : 평점이 높은 리뷰를 모아보기 
@@ -382,6 +375,7 @@ planner : 평점이 높은 리뷰를 모아보기
 		
 	});
 </script>
+
 <script>
 jQuery(window).load(function() {
 	
@@ -426,6 +420,4 @@ jQuery(window).load(function() {
 	});
 	
 });
-
-
 </script>

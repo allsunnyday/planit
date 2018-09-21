@@ -18,32 +18,21 @@
 		<put-attribute name="Footer" value="/WEB-INF/member/template/footer.jsp" />
 	</definition>
 	
+	<definition name="layouts_main_theme" template="/WEB-INF/member/template/layouts_main_theme.jsp">
+		<put-attribute name="Top" value="/WEB-INF/member/template/top_main_theme.jsp"/>
+		<put-attribute name="Body" value="" />
+		<put-attribute name="Footer" value="/WEB-INF/member/template/footer.jsp" />
+	</definition>
+	
 	<!-- 
 		위의 definition name=layouts을 상속받았다.
 	 -->
 	<definition name="*.tiles" extends="layouts">
-		<!-- 와일드 카드 * 이 {1}에 대입됨 -->
-		<!-- 즉 컨트롤러에서 index.tiles로 리턴하면 index가 {1}로 치환되서 index.jsp가 보여짐 -->
-		<!-- *.tiles는 임의로 설정 가능 즉 *.daum로 가능 혹은 *.spring등 단 jsp는 제외 -->
 		<put-attribute name="Body" value="/WEB-INF/member/{1}.jsp" />
-		<!--
-			만약 /WEB-INF/밑에 jsp가 있다면 <put-attribute name="Body" value="/WEB-INF/{1}.jsp"/> 
-			컨틀로러 클래스에서는 return "/WEB-INF/Board/List.tiles"인경우 /WEB-INF생략 
-			예] 
-				view.tiles를 반환하면 view.jsp를 보여주겠다는 의미
-				*의 인덱스는 1부터 시작한다. 
-			-->
 	</definition>
 	
-	<!-- /*/*.tiles 는 불가 즉 *앞에 /를 붙이지 않는다 -->
-	<!--  list.tiles(WEB-INF/replyBbs/views/bbs/list.jsp) -->
 	<definition name="*/*.tiles" extends="layouts">
 		<put-attribute name="Body" value="/WEB-INF/member/{1}/{2}.jsp" />
-		<!-- 
-			예] 
-				반환  /dir/a.tiles 형식으로 반환할때 
-				/WEB-INF/replyBbs/views/dir/a.jsp 파일을 보여주겠다는 의미
-		 -->
 	</definition>
 
 	<definition name="*/*/*.tiles" extends="layouts">
@@ -53,5 +42,22 @@
 	 <definition name="*/*/*/*.tiles" extends="layouts">
       <put-attribute name="Body" value="/WEB-INF/member/{1}/{2}/{3}/{4}.jsp" />
    </definition>
+<!--**********************************************************************
+		 새로운 타일즈 
+  *************************************************************************-->
+	<definition name="*.theme" extends="layouts_main_theme">
+		<put-attribute name="Body" value="/WEB-INF/member/{1}.jsp" />
+	</definition>
+	
+	<definition name="*/*.theme" extends="layouts_main_theme">
+		<put-attribute name="Body" value="/WEB-INF/member/{1}/{2}.jsp" />
+	</definition>
 
+	<definition name="*/*/*.theme" extends="layouts_main_theme">
+		<put-attribute name="Body" value="/WEB-INF/member/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	 <definition name="*/*/*/*.theme" extends="layouts_main_theme">
+      <put-attribute name="Body" value="/WEB-INF/member/{1}/{2}/{3}/{4}.jsp" />
+   </definition>
 </tiles-definitions>

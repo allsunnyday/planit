@@ -198,10 +198,7 @@
 			<h1>마이페이지</h1>
 			<h1>마이페이지</h1>
 			<h1>마이페이지</h1>
-			<button type="button" id="button" class="btn btn-default"
-		aria-label="Left Align">
-		<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-	</button>
+			
 			<h1>마이페이지</h1>
 			<h1>마이페이지</h1>
 			<h1>마이페이지</h1>

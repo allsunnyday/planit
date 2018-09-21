@@ -4,7 +4,7 @@
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
+/* 
 body {
 	font-family: 'Overpass Mono', monospace;
 	color: #edecf2;
@@ -24,7 +24,7 @@ a:hover,
 a:focus {
 	color: #fff;
 }
-
+ */
 .hidden {
 	position: absolute;
 	overflow: hidden;
@@ -274,7 +274,7 @@ a:focus {
 .column__text {
 	font-size: 0.85em;
 	display: block;
-	color: #fff;
+	color: #888;
 }
 
 .column--left .column__text {

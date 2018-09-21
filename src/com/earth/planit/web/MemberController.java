@@ -5,10 +5,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MemberController {
-
+	/*
+		MemberController 
+		1] 로그인 페이지
+		2] 메인으로 이동
+		3] 회윈가입 페이지
+		4] 일반 회원 마이페이지 
+		
+	
+	*/
 	@RequestMapping("/member/login/login.it")
 	public String gotoLogin()throws Exception{
-		return "login/login.tiles";
+		return "login/login.theme";
 	}
 	
 	@RequestMapping("/Plait/Planit.it")
@@ -16,38 +24,25 @@ public class MemberController {
 		return "main/main.tiles";
 	}
 	
-	@RequestMapping("/tourinfo/ListNMapPick.it")
-	public String gotoList()throws Exception{
-		return "tourinfo/ListNMapPick.tiles";
-	}
-	
-	@RequestMapping("/tourinfo/mappick/MapMain.it")
-	public String gotoMapPick()throws Exception{
-		return "tourinfo/mappick/MapMain.tiles";
-	}
-	
-	@RequestMapping("/tourinfo/reviewpick/reviewpick.it")
-	public String gotoReviewPick()throws Exception{
-		return "tourinfo/reviewpick/reviewpick.tiles";
-	}
-	
-	@RequestMapping("/mypage/Partner/Reservation_P.it")
-	public String gotoReservation_P()throws Exception{
-		return "mypage/Partner/Reservation_P.tiles";
-	}
-	
-//	planner 컨트롤러
-	@RequestMapping("/Planit/Before/Location.it")
-	public String gotoLocation() throws Exception{
-		
-		return "planner/before/Location.tiles";
-	}
-	
+
 	@RequestMapping("/member/login/Join.it")
 	public String gotoJoin()throws Exception{
-		return "login/join.tiles";
+		return "login/join.theme";
 	}
 	
-	
+	@RequestMapping("/member/login/companyJoin.it")
+   public String gotoCompanyJoin()throws Exception{
+      return "login/companyJoin.theme";
+   }
+   
+   @RequestMapping("/member/mypage/MyPageHome.it")
+   public String gotoMyPageHome()throws Exception{
+      return "mypage/MyPageHome.theme";
+   }
+   
+   @RequestMapping("/member/login/companyLogin.it")
+   public String gotoCompanyLogin()throws Exception{
+      return "login/companyLogin.theme";
+	   }
 }
 

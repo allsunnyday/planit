@@ -167,8 +167,10 @@ ul.navbar-nav {
 	width: 102px;
 	/*background: url(../img/log1.png) left center no-repeat;
 	text-indent: -99999px;*/
-	background: url(../img/planit_logo.png) left center no-repeat;
+	background: url(../img/planit_logo.png) center no-repeat;
 	text-indent: -99999px;
+	font-size: 2.0em;
+	
 }
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand
@@ -283,16 +285,20 @@ h1.carousel-h1 {
 }
 
 .portfolio-box {
-	position: relative;
-	position:absolute;
-	width: 255px;
+	float:left;
+	/* width: 255px; */
 	margin: 30px 15px 0 15px;
+	/* overflow: hidden; */
+}
+.review-best{
+	float: left;
 	overflow: hidden;
 }
 
 .review-main {
-	position: relative;
-	width: 500px;
+	/* position: relative; */
+	float:left; /*  */
+	/* width: 500px; */
 	margin: 30px 15px 0 15px;
 	overflow: hidden;
 }
@@ -461,23 +467,75 @@ h1.carousel-h1 {
 
 
 /***** Footer *****/
-footer {
-	padding: 40px 0 45px 0;
-	background: #f8f8f8;
+.footer {
+  background: #2B2E31;
+  padding: 25px 0 0;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  z-index: 1;
+  box-shadow: 0px -10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.footer-copyright {
-	padding-top: 15px;
+.footer ul {
+  margin-left: 0;
 }
 
-.footer-copyright a {
-	color: #888;
-	border-bottom: 1px dotted #888;
+.footer .title {
+  border-bottom: 1px solid #696E74;
 }
 
-.footer-copyright a:hover, .footer-copyright a:focus {
-	color: #888;
-	border: 0;
+.copyrights p {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.footer-menu {
+  margin: 10px 0;
+}
+
+.footer-left p {
+  display: inline-block;
+  color: #fff;
+}
+
+.credits {
+  display: inline-block;
+}
+
+.footer-menu a {
+}
+
+.footer-menu ul {
+  list-style: none;
+  list-style-position: outside;
+  float: right;
+  display: inline;
+  margin: 5px;
+}
+
+.footer-menu li {
+  line-height: 12px;
+  float: left;
+  padding: 0 7px;
+}
+
+.footer .widget h4 {
+  color: #ffffff;
+}
+
+.copyrights {
+  background: #3E4246;
+  padding: 0;
+  font-size: 12px;
+  border-top: 1px solid #3E4246;
+  margin-top: 15px;
+  color: #fff;
+}
+
+.copyrights a {
+  color: #fff;
 }
 
 /***** MEDIA QUERIES *****/
@@ -696,3 +754,7 @@ section {
 				display: inline-block;
 				width: 48%;
 			}
+			
+			
+			
+			

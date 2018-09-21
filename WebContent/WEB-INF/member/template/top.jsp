@@ -25,12 +25,13 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
+			
 			<a class="navbar-brand" href="<c:url value='/'/>">PLAN:IT</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="collapseMenu">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<c:url value='/'/> ">Home</a></li>
+				<%-- <li><a href="<c:url value='/'/> ">Home</a></li> --%>
 				<!-- 지인, 길형 -->
 				<li><a href="<c:url value='/tourinfo/ListNMapPick.it'/>">search</a></li>
 				<!-- 선기 -->
@@ -39,13 +40,24 @@
 				<li><a href="<c:url value='/Review/MyReview/write.it'/> ">reviews</a></li>
 				<!-- 예원 -->
 				<li class="dropdown">
-					<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">USER<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="<c:url value='/member/login/login.it'/> ">LOGIN</a></li>
-						<li><a href="<c:url value='/member/login/Join.it'/> " >JOIN</a></li>
+					<c:if test="${empty sessionScope.user_id}" var="isNotLogin">
+					<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">시작하기<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu" >
+						<li><a href="<c:url value='/member/login/login.it'/> " style="color:#888;">LOGIN</a></li>
+						<li><a href="<c:url value='/member/login/Join.it'/> " style="color:#888;">JOIN</a></li>
 					</ul>
+					</c:if>
+					<c:if test="${not isNotLogin}">
+					<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">플랫잇 님<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu" >
+						<li><a href="<c:url value='/member/login/login.it'/> " style="color:#888;">마이페이지</a></li>
+						<li><a href="<c:url value='/member/login/Join.it'/> " style="color:#888;">문의</a></li>
+					</ul>
+					</c:if>
 				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
+
+
