@@ -21,9 +21,9 @@ public class MemberController {
 		return "tourinfo/ListNMapPick.tiles";
 	}
 	
-	@RequestMapping("/tourinfo/mappick/mapMain.it")
+	@RequestMapping("/tourinfo/mappick/MapMain.it")
 	public String gotoMapPick()throws Exception{
-		return "tourinfo/mappick/mapMain.tiles";
+		return "tourinfo/mappick/MapMain.tiles";
 	}
 	
 	@RequestMapping("/tourinfo/reviewpick/reviewpick.it")
