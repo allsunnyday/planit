@@ -582,7 +582,7 @@ function goRead(cid) {
 		}());
 		</script>
 	</div>
-
+<!-- ㅇㅇ -->
 	<div class="whereWrap">
 
 		<ul>
