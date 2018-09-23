@@ -591,6 +591,7 @@ body.nobg .section1 {
   margin: 20px 0 0;
 }
 
+/*이미지*/
 #intro {
   background: url(../img/intro-bg.jpg) center center no-repeat fixed;
   background-size: cover;
