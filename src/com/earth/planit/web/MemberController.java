@@ -14,9 +14,9 @@ public class MemberController {
 		
 	
 	*/
-	@RequestMapping("/member/login/login.it")
+	@RequestMapping("/planit/login/Login.it")
 	public String gotoLogin()throws Exception{
-		return "login/Login.theme";
+		return "login/LoginForm.theme";
 	}
 	
 	@RequestMapping("/Plait/Planit.it")
