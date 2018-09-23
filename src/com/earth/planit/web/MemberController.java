@@ -14,24 +14,24 @@ public class MemberController {
 		
 	
 	*/
-	@RequestMapping("/member/login/login.it")
+	@RequestMapping("/planit/login/Login.it")
 	public String gotoLogin()throws Exception{
-		return "login/login.theme";
+		return "login/LoginForm.theme";
 	}
 	
 	@RequestMapping("/Plait/Planit.it")
 	public String gotoMain()throws Exception{
-		return "main/main.tiles";
+		return "main/main.tiles";//main은 반드시 tiles로 이동해야 함 
 	}
 	
 	@RequestMapping("/member/login/Join.it")
 	public String gotoJoin()throws Exception{
-		return "login/join.theme";
+		return "login/JoinMain.theme";
 	}
 	
-	@RequestMapping("/member/login/companyJoin.it")
+	@RequestMapping("/member/login/CompanyJoin.it")
    public String gotoCompanyJoin()throws Exception{
-      return "login/companyJoin.theme";
+      return "login/JoinPartnerProgress.theme";
    }
    
    @RequestMapping("/member/mypage/MyPageHome.it")
@@ -39,9 +39,9 @@ public class MemberController {
       return "mypage/MyPageHome.theme";
    }
    
-   @RequestMapping("/member/login/companyLogin.it")
+   @RequestMapping("/member/login/UserJoin.it")
    public String gotoCompanyLogin()throws Exception{
-      return "login/companyLogin.theme";
+      return "login/JoinUserProgress.theme";
 	   }
 }
 

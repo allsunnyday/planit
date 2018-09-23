@@ -38,4 +38,17 @@ public class SearchListController {
 	public String goQna()throws Exception{
 		return "tourinfo/tdview/qna.theme";
 	}
+	
+	//////////////////////////////////////////////////////////////정현선 추가 부분
+	@RequestMapping("/planit/search/tourinfo/TourList.it")
+	public String tourList()throws Exception{
+		return "tourinfo/listpick/list/TourList.theme";
+	}
+	
+	@RequestMapping("/planit/search/list/TourView.it")
+	public String tourView() throws Exception{
+		return "tourinfo/listpick/list/TourView.theme";
+	}
+	
+	
 }
