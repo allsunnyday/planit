@@ -10,4 +10,7 @@ public class ReviewController {
 	public String reviewForm()throws Exception{
 		return "blog/myreview/WriteReview.theme";
 	}
+	
+	
+
 }
