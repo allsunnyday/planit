@@ -23,8 +23,8 @@
 		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 
 			<div class="general-title text-center">
-				<h3>Flat Pack Heritage</h3>
-				<p>ÜBER PREMIUM VEGETABLE TANNED ITALIAN LEATHER</p>
+				<h3>국립양평치유의 숲</h3>
+				<p></p>
 				<hr>
 			</div>
 
@@ -32,62 +32,40 @@
 
 			<div class="item_details">
 
-				<div class="col-lg-3 col-md-3 col-sm-12">
+				<div class="col-lg-8 col-md-8 col-sm-12">
 					<div class="theme_details">
 						<div class="details_section">
-							<h3>Item Details</h3>
+							<h3>개요</h3>
 							<ul>
-								<li class="version">Size: <span>11.8” X 7.87” X 1.57</span></li>
-								<li class="release">Release Date: <span>28 February,
-										2014</span></li>
-								<li class="designer">Designer: <span>Matt Stinson</span></li>
-								<li class="designer">Material: <span>Tanned Italian
-										Leather</li>
+								<li class="version"><span>위치: 경기도 양평군 양동면 황거길</span></li>
+
+								<li class="release"><span>문의: 031-8097-4581</span></li>
+
+								<li class="designer"><span>이용시간: [당일방문] 09:30~12:00,
+										13:30~16:00 <br> * 시설 상황 등에 따라 변동 가능(사전 문의 권장)
+								</span></li>
+								<li class="designer"><span>쉬는날:연중무휴</span></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<!-- col-lg-3 -->
 
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<div class="theme_details">
-						<div class="item-description">
-							<p>Our über premium vegetable tanned Italian leather is
-								hand-stained hide by hide. Skilled workmen apply natural
-								colouring made from tree bark, etc. by hand onto the leather.
-								This traditional technique needs a lot of time but ensures an
-								amazing quality.</p>
-							<p>Each hide has its own special touch and is unique in tone
-								and texture. This is a very honest and hands-on process and
-								sometimes colouring can be found on the back which is proof of
-								this age-old way of crafting leather.</p>
-							<p>This is ‘real’ leather and the natural skin structure
-								shows through. Sometimes you can see small marks or scratches
-								which are evidence of the über premium and untouched quality.
-								Because of the natural character of the leather, it needs to be
-								taken care of in order to last. Just like applying cream on dry
-								hands - if the leather feels dry, apply a small amount of
-								leather balm or wax.</p>
-						</div>
-						<!-- item-description -->
-					</div>
-					<!-- theme_details -->
-				</div>
-				<!-- col-lg-6 -->
-
-				<div class="col-lg-3 col-md-3 col-sm-12">
+				<div class="col-lg-4 col-md-4 col-sm-12">
 					<div class="theme_details">
 						<div class="item_price">
-							<h3>
+							<!-- <h3>
 								<span><small>$</small>450.00</span>
-							</h3>
+							</h3> -->
 						</div>
 						<!-- item_price -->
 						<hr>
 						<div class="buttons">
-							<a class="button btn-block large" href="#">SEE GALLERY</a> <a
+							<a class="button btn-block large" href="#">지자체 홈페이지</a> <a
 								class="button btn-block large" href="#"><i
-								class="fa fa-download"></i> BUY NOW</a>
+								class="fa fa-pencil"></i>정보 수정</a> <a class="button btn-block large"
+								href="#"> <i class="fa fa-download"></i> 즐겨찾기 추가
+							</a>
 						</div>
 						<!-- buttons -->
 						<hr>
@@ -102,6 +80,34 @@
 					<!-- theme_details -->
 				</div>
 				<!-- col-lg-3 -->
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<br>
+				</div>
+
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="theme_details">
+						<div class="item-description">
+
+							<p>개요 : 립양평치유의숲은 경기도 양평군 양동면 황거길 262-10 삼각산(538m) 남쪽자락에 위치하여,
+								수도권에서 한시간 이내의 뛰어난 접근성을 가지고 있으며, 온열치유실, 명상움막, 무인건강관리시스템 등의 다양한
+								치유시설 및 대상별 전문적인 치유프로그램을 제공합니다.</p>
+							<hr>
+							<p>개장일:</p>
+							<hr>
+							<p>소요시간:</p>
+							<hr>
+							<p>등산로:</p>
+							<hr>
+							<p>야간산행 제한안내:</p>
+							<hr>
+						</div>
+						<!-- item-description -->
+					</div>
+					<!-- theme_details -->
+				</div>
+				<!-- col-lg-6 -->
+
+
 
 			</div>
 			<!-- item_details -->
@@ -109,8 +115,8 @@
 			<div class="clearfix"></div>
 
 			<div class="general-title text-center">
-				<h3>Product Features</h3>
-				<p>More information about your product</p>
+				<h3>시설안내</h3>
+				<p>시설을 안내하는 곳입니다.</p>
 				<hr>
 			</div>
 
@@ -215,3 +221,49 @@
 	<!-- end container -->
 </section>
 <!-- end section -->
+
+<section class="section1">
+	<div class="container clearfix">
+		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
+
+			<div class="clearfix"></div>
+			<hr>
+
+			<div class="portfolio-wrapper related_items">
+				<h4 class="title">관련 리뷰 </h4>
+
+				<div id="owl-related" class="owl-carousel">
+
+					<div class="item">
+						<a href="#"> 
+						<img class="lazyOwl" src="<c:url value='/main_theme/img/portfolio_02.jpg'/> "
+							data-src="<c:url value='/main_theme/img/portfolio_01.jpg'/>" alt="이미지">
+							
+						</a>
+					</div>
+
+					<div class="item">
+						<a href="#"> <img class="lazyOwl" src="<c:url value='/main_theme/img/portfolio_05.jpg'/> "
+							data-src="<c:url value='/main_theme/img/portfolio_01.jpg'/>" alt="이미지">
+							
+						</a>
+					</div>
+
+					<div class="item">
+						<a href="#"> <img class="lazyOwl" src="<c:url value='/main_theme/img/portfolio_08.jpg'/> "
+							data-src="<c:url value='/main_theme/img/portfolio_01.jpg'/>" alt="이미지">
+							
+						</a>
+					</div>
+
+				</div>
+				<!-- end related_items -->
+			</div>
+			<!-- owl-related -->
+		</div>
+		<!-- end content -->
+	</div>
+	<!-- end container -->
+</section>
+<!-- end section -->
+

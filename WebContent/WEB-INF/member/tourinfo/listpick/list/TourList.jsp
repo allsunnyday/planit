@@ -35,10 +35,9 @@
 							<div class="he-view">
 								<div class="bg a0" data-animate="fadeIn">
 									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="prettyPhoto" href="img/portfolio_01.jpg"
-										class="dmbutton a2" data-animate="bounceInLeft"><i
-										class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
-										data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+									<a data-rel="prettyPhoto" href="<c:url value='/planit/search/list/TourView.it'/> "
+										class="dmbutton a2" data-animate="bounceInLeft">
+										<i class="fa fa-search"></i></a>
 									<div class="portfolio_category text-center a2"
 										data-animate="fadeIn"></div>
 									<!-- portfolio_category -->
@@ -57,7 +56,7 @@
 					<div
 						class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 web-design graphic-design">
 						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/main_theme/img/portfolio_02.jpg'/> " alt="">
+							<img src="<c:url value='/main_theme/img/portfolio_02.jpg'/> " alt="" >
 							<div class="he-view">
 								<div class="bg a0" data-animate="fadeIn">
 									<h3 class="big a1" data-animate="fadeInDown">Project Name
