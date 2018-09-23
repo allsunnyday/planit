@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <footer class="footer">
     
     <div class="copyrights">
@@ -23,7 +23,7 @@
             <ul class="menu">
               <li><a href="index.html">Home</a></li>
               <li><a href="about.html">About</a></li>
-              <li><a href="#">Sitemap</a></li>
+              <li><a href="<c:url value='/planit/search/tourinfo/TourList.it'/> ">관광리스트</a></li>
               <li><a href="#">Site Terms</a></li>
               <li><a href="contact">Contact</a></li>
             </ul>

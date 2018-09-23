@@ -40,7 +40,7 @@
   <link href="<c:url value='/main_theme/css/style.css'/> " rel="stylesheet">
   <link rel="stylesheet" href="<c:url value='/main_theme/css/colors/blue.css'/> ">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 </head>
 <body>
 		<!-- navbar 시작 -->
@@ -53,7 +53,7 @@
 		<tiles:insertAttribute name="Footer" />
 		<!-- footer end -->
 	
-	 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
 	
 	  <!-- JavaScript Libraries -->
   <script src="<c:url value='/main_theme/lib/jquery/jquery.min.js'/> "></script>

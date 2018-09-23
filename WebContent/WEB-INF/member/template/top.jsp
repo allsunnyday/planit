@@ -37,20 +37,20 @@
 				<!-- 선기 -->
 				<li><a href="<c:url value='/Planit/Before/Location.it'/>">Planner</a></li>
 				<!-- 현선 -->
-				<li><a href="<c:url value='/Review/MyReview/write.it'/> ">reviews</a></li>
+				<li><a href="<c:url value='/planit/review/ReviewList.it'/> ">reviews</a></li>
 				<!-- 예원 -->
 				<li class="dropdown">
 					<c:if test="${empty sessionScope.user_id}" var="isNotLogin">
 					<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">시작하기<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu" >
-						<li><a href="<c:url value='/member/login/login.it'/> " style="color:#888;">LOGIN</a></li>
+						<li><a href="<c:url value='/planit/login/Login.it'/> " style="color:#888;">LOGIN</a></li>
 						<li><a href="<c:url value='/member/login/Join.it'/> " style="color:#888;">JOIN</a></li>
 					</ul>
 					</c:if>
 					<c:if test="${not isNotLogin}">
 					<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">플랫잇 님<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu" >
-						<li><a href="<c:url value='/member/login/login.it'/> " style="color:#888;">마이페이지</a></li>
+						<li><a href="<c:url value='/member/login/Login.it'/> " style="color:#888;">마이페이지</a></li>
 						<li><a href="<c:url value='/member/login/Join.it'/> " style="color:#888;">문의</a></li>
 					</ul>
 					</c:if>
