@@ -31,7 +31,7 @@
 				<!-- 선기 -->
 				<li><a href="<c:url value='/Planit/Before/Location.it'/>">Planner</a></li>
 				<!-- 현선 -->
-				<li><a href="<c:url value='/Review/MyReview/write.it'/> ">reviews</a></li>
+				<li><a href="<c:url value='/planit/review/ReviewList.it'/> ">reviews</a></li>
 				<!-- 예원 -->
 				<li class="dropdown">
 					<c:if test="${empty sessionScope.user_id}" var="isNotLogin">
