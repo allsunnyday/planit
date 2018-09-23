@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -23,10 +17,6 @@
   <link href="css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="css/colors/blue.css">
 
-
-</head>
-
-<body>
  
   <section class="section1">
     <div class="container clearfix">
@@ -262,7 +252,7 @@
     <div class="copyrights">
       <div class="container">
         <div class="col-lg-6 col-md-6 col-sm-12 columns footer-left">
-          <p>Copyright Â© 2014 - All rights reserved.</p>
+          <p>Copyright © 2014 - All rights reserved.</p>
           <div class="credits">
             <!--
               You are NOT allowed to delete the credit link to TemplateMag with free version.
@@ -296,7 +286,6 @@
 
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   <script src="lib/php-mail-form/validate.js"></script>
   <script src="lib/prettyphoto/js/prettyphoto.js"></script>
   <script src="lib/isotope/isotope.min.js"></script>
@@ -312,5 +301,3 @@
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
 
-</body>
-</html>
