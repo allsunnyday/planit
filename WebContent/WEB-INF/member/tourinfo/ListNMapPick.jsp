@@ -7,7 +7,7 @@
           <div class="dmbox">
             <div class="service-icon">
               <div class="dm-icon-effect-1" data-effect="slide-bottom">
-                <a class="" href="<c:url value='/tourinfo/listpick/list/ListMain.it'/>">
+                <a class="" href="<c:url value='/member/tourinfo/listpick/list/listMain.it'/>">
                 <img alt="listicon" src="<c:url value='/images/ListNMappick/listicon.png'/>">
                 </a>
               </div>
