@@ -1,5 +1,6 @@
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -21,7 +22,12 @@
   <link href="css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="css/colors/blue.css">
 
-
+  <!-- =======================================================
+    Template Name: MaxiBiz
+    Template URL: https://templatemag.com/maxibiz-bootstrap-business-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
 
 <body>
   <div class="topbar clearfix">
@@ -45,8 +51,8 @@
       <div class="site-header clearfix">
         <div class="col-lg-3 col-md-3 col-sm-12 title-area">
           <div class="site-title" id="title">
-            <a href="index.html" title="">
-              <h4>MAXI<span>BIZ</span></h4>
+            <a href="#" title="">
+              <h4>PLAN-<span>IT</span></h4>
             </a>
           </div>
         </div>
@@ -55,48 +61,39 @@
           <div id="nav" class="right">
             <div class="container clearfix">
               <ul id="jetmenu" class="jetmenu blue">
-                <li><a href="index.html">Home</a>
+                <li ><a href="<c:url value='/member/tourinfo/listpick/list/listMain.it'/>">Home</a>
                 </li>
-                <li class="active"><a href="#">Pages</a>
+                <li><a href="#">구석구석 떠나볼까</a>
                   <ul class="dropdown">
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="team-members.html">Team Members</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="404.html">404 Error</a></li>
-                    <li><a href="faq.html">FAQ Page</a></li>
-                    <li><a href="left-sidebar.html">Left Sidebar</a></li>
-                    <li><a href="right-sidebar.html">Right Sidebar</a></li>
-                    <li><a href="fullwidth.html">Full Width</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">서울</a></li>
+                    <li><a href="#">인천/경기도</a></li>
+                    <li><a href="#">강원도</a></li>
+                    <li><a href="#">경상도</a></li>
+                    <li><a href="#">전라도</a></li>
+                    <li><a href="#">충청도</a></li>
+                    <li><a href="#">제주도</a></li>
                   </ul>
                 </li>
-                <li><a href="#">Shop</a>
+                <li><a href="#">어디로 갈까</a>
                   <ul class="dropdown">
-                    <li><a href="digital-download.html">Products Page</a></li>
-                    <li><a href="single-product.html">Single Product</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
-                    <li><a href="account.html">Account Page</a></li>
-                    <li><a href="support.html">Support Center</a></li>
+                    <li><a href="<c:url value='/tourinfo/tdview/tourDetail.it'/>">관광지 정보</a></li>
+                    <li><a href="#">축제ο행사</a></li>
+                    <li><a href="#">한국관광 100선</a></li>
+                    <li><a href="#">웰니스 관광 25선</a></li>
+                    <li><a href="#">방방곡곡 시티투어</a></li>
                   </ul>
                 </li>
-                <li><a href="#">Portfolio</a>
+                <li><a href="#">무엇을 먹을까</a>
                   <ul class="dropdown">
-                    <li><a href="single-portfolio-1.html">Single Portfolio 1</a></li>
-                    <li><a href="single-portfolio-2.html">Single Portfolio 2</a></li>
-                    <li><a href="portfolio-2.html">Portfolio (2 Columns)</a></li>
-                    <li><a href="portfolio-3.html">Portfolio (3 Columns)</a></li>
-                    <li><a href="gallery-portfolio.html">Gallery</a></li>
-                    <li><a href="masonry-grid-portfolio.html">Masonry Grid Style</a></li>
+                    <li><a href="<c:url value='/tourinfo/tdview/foodDetail.it'/>">음식점 정보</a></li>
+                    <li><a href="#">맛집 랭킹!</a></li>
+                    <li><a href="#">구석구석 맛골목</a></li>
                   </ul>
                 </li>
-                <li><a href="#">Blog</a>
+                <li><a href="#">어디서 잘까</a>
                   <ul class="dropdown">
-                    <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                    <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                    <li><a href="single-with-sidebar.html">Single with Sidebar</a></li>
+                    <li><a href="<c:url value='/tourinfo/tdview/sleepDetail.it'/>">숙박업소 정보</a></li>
+                    <li><a href="#">숙박업소 랭킹!</a></li>
                   </ul>
                 </li>
               </ul>
@@ -112,14 +109,15 @@
   </header>
   <!-- end header -->
 
+  
+  
   <section class="post-wrapper-top">
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
-          <li><a href="index.html">Home</a></li>
-          <li>About</li>
+        <li>한번자는곳 좋은곳에서!</li>
         </ul>
-        <h2>ABOUT</h2>
+        <h2>PLAN-IT에 등록되어 있는 숙소들</h2>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <!-- search -->
@@ -139,240 +137,320 @@
 
   <section class="section1">
     <div class="container clearfix">
-      <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
-        <div class="general-title text-center">
-          <h3>ABOUT OUR COMPANY</h3>
-          <p>Learn more about us</p>
-          <hr>
-        </div>
+      <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
+
         <div class="divider"></div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <div class="he-wrap tpl2">
-            <img src="img/office.png" alt="" class="img-responsive">
-            <div class="he-view">
-              <div class="bg a0" data-animate="fadeIn">
-                <div class="center-bar">
-                  <a href="#" class="twitter a0" data-animate="elasticInDown"></a>
-                  <a href="#" class="facebook a1" data-animate="elasticInDown"></a>
-                  <a href="#" class="google a2" data-animate="elasticInDown"></a>
+
+        <nav class="portfolio-filter clearfix">
+          <ul>
+            <li><a href="#" class="dmbutton2" data-filter="*">모두보기(몇개인지 뿌려주기)</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".hotel">호텔</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".motel">여관/모텔</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".pension">펜션</a></li>
+          </ul>
+        </nav>
+
+        <div class="portfolio-centered">
+          <div class="recentitems portfolio">
+
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/hotel.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">서울 호텔</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_01.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
                 </div>
+                <!-- he view -->
               </div>
+              <!-- he wrap -->
+              <h3 class="title">서울 ㅇㅇ호텔</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
             </div>
+            <!-- end col-4 -->
+
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 web-design motel">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/motel.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">부산 ㅇㅇ모텔</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_02.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">부산 ㅇㅇ모텔</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-4 -->
+
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/pen.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">인천 ㅇㅇ펜션</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_03.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">인천 ㅇㅇ펜션</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-4 -->
+
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/hotel.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">광주 ㅇㅇ호텔</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_04.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">광주 ㅇㅇ호텔</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-12 -->
+
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 motel">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/motel.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">대구 ㅇㅇ모텔</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_05.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">대구 ㅇㅇ모텔</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-12 -->
+
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/hotel.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">제주도 ㅇㅇ모텔</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">제주도 ㅇㅇ모텔</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-12 -->
+
+
+			<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 motel">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/motel2.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">강릉 ㅇㅇ모텔</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">강릉 ㅇㅇ모텔</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-12 -->
+            
+            
+            
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/pen.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">속초 ㅇㅇ펜션</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">속초 ㅇㅇ펜션</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-12 -->
+            
+            
+            
+            
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/pen.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">목포 ㅇㅇ펜션</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">목포 ㅇㅇ펜션</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-12 -->
+            
+            
+            
+            
+            
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 web-design">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/hotel.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">Project Name Here</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">Project Name - 6</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-12 -->
+            
+            
+             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/pen.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">인천 ㅇㅇ펜션</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_03.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">인천 ㅇㅇ펜션</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-4 -->
+            
+            
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 motel">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/motel2.PNG'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">제주도 ㅇㅇ모텔</h3>
+                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">제주도 ㅇㅇ모텔</h3>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+            </div>
+            <!-- end col-12 -->
+
+
+
+
+
+
           </div>
-          <!-- he wrap -->
+          <!-- portfolio -->
         </div>
-        <!-- end col-6 -->
-
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
-          <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-
-          <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-
-          <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-        </div>
-        <!-- end col-6 -->
+        <!-- portfolio container -->
+        <div class="divider"></div>
       </div>
-    </div>
-    <!-- end container -->
-  </section>
-  <!-- end section 1 -->
-
-  <div class="clearfix"></div>
-  <div class="divider"></div>
-
-  <div class="container">
-    <div class="general-title text-center">
-      <h3>WHAT WE DO</h3>
-      <p>Our skills information</p>
-      <hr>
-    </div>
-
-    <div class="skills text-center">
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <span class="chart" data-percent="90">
-                        <span class="percent"></span>
-        </span>
-        <h4 class="title">HTML5 & CSS3</h4>
-      </div>
-
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <span class="chart" data-percent="75">
-                        <span class="percent"></span>
-        </span>
-        <h4 class="title">WordPress</h4>
-      </div>
-
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <span class="chart" data-percent="65">
-                        <span class="percent"></span>
-        </span>
-        <h4 class="title">Graphic Design</h4>
-      </div>
-
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <span class="chart" data-percent="80">
-                        <span class="percent"></span>
-        </span>
-        <h4 class="title">Mobile Applications</h4>
-      </div>
-    </div>
-    <!-- end skills -->
-  </div>
-  <!-- end container -->
-
-  <div class="clearfix"></div>
-  <div class="divider"></div>
-
-  <section class="section1">
-    <div class="container">
-      <div class="general-title text-center">
-        <h3>SOME STATS</h3>
-        <p>Important information about us</p>
-        <hr>
-      </div>
-
-      <div class="stat f-container">
-        <div class="f-element col-lg-3 col-md-3 col-sm-6 col-xs-12">
-          <i class="fa fa-film fa-4x"></i>
-          <div class="milestone-counter">
-            <span class="stat-count highlight">42</span>
-            <div class="milestone-details">Films Produced</div>
-          </div>
-        </div>
-        <div class="f-element col-lg-3 col-md-3 col-sm-6 col-xs-12">
-          <i class="fa fa-laptop fa-4x"></i>
-          <div class="milestone-counter">
-            <span class="stat-count highlight">105</span>
-            <div class="milestone-details">Completed Projects</div>
-          </div>
-        </div>
-        <div class="f-element col-lg-3 col-md-3 col-sm-6 col-xs-12">
-          <i class="fa fa-comments-o fa-4x"></i>
-          <div class="milestone-counter">
-            <span class="stat-count highlight">492</span>
-            <div class="milestone-details">Questions Answered</div>
-          </div>
-        </div>
-        <div class="f-element col-lg-3 col-md-3 col-sm-6 col-xs-12">
-          <i class="fa fa-smile-o fa-4x"></i>
-          <div class="milestone-counter">
-            <span class="stat-count highlight">790</span>
-            <div class="milestone-details">Happy Clients</div>
-          </div>
-        </div>
-      </div>
-      <!-- end stat -->
-
-    </div>
-    <!-- end container -->
+      <!-- end container -->
   </section>
   <!-- end section -->
 
-  <section class="section3 withpadding">
-    <div class="container">
-      <div class="message">
-        <div class="col-lg-9 col-md-9 col-sm-9">
-          <h3>Grab the attention of your customers!</h3>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s..</p>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12">
-          <a class="dmbutton button large pull-right" href="#"><i class="fa fa-download"></i> GET A QUOTE</a>
-        </div>
-      </div>
-      <!-- end message -->
-    </div>
-    <!-- end container -->
-  </section>
-  <!-- end section3 -->
+  <div>
+  
+  페이징
+  </div>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="widget col-lg-3 col-md-3 col-sm-12">
-        <h4 class="title">About us</h4>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s..</p>
-        <a class="button small" href="#">read more</a>
-      </div>
-      <!-- end widget -->
-      <div class="widget col-lg-3 col-md-3 col-sm-12">
-        <h4 class="title">Recent Posts</h4>
-        <ul class="recent_posts">
-          <li>
-            <a href="home1.html#">
-						<img src="img/recent_post_01.png" alt="" />Our New Dashboard Is Here</a>
-            <a class="readmore" href="#">read more</a>
-          </li>
-          <li>
-            <a href="home1.html#">
-						<img src="img/recent_post_02.png" alt="" />Design Is In The Air</a>
-            <a class="readmore" href="#">read more</a>
-          </li>
-        </ul>
-        <!-- recent posts -->
-      </div>
-      <!-- end widget -->
-      <div class="widget col-lg-3 col-md-3 col-sm-12">
-        <h4 class="title">Get In Touch</h4>
-        <ul class="contact_details">
-          <li><i class="fa fa-envelope-o"></i> info@yoursite.com</li>
-          <li><i class="fa fa-phone-square"></i> +34 5565 6555</li>
-          <li><i class="fa fa-home"></i> Some Fine Address, 887, Madrid, Spain.</li>
-          <li><a href="#"><i class="fa fa-map-marker"></i> View large map</a></li>
-        </ul>
-        <!-- contact_details -->
-      </div>
-      <!-- end widget -->
-      <div class="widget col-lg-3 col-md-3 col-sm-12">
-        <h4 class="title">Flickr Stream</h4>
-        <ul class="flickr">
-          <li><a href="#"><img alt="" src="img/flickr_01.jpg"></a></li>
-          <li><a href="#"><img alt="" src="img/flickr_02.jpg"></a></li>
-          <li><a href="#"><img alt="" src="img/flickr_03.jpg"></a></li>
-          <li><a href="#"><img alt="" src="img/flickr_04.jpg"></a></li>
-          <li><a href="#"><img alt="" src="img/flickr_05.jpg"></a></li>
-          <li><a href="#"><img alt="" src="img/flickr_06.jpg"></a></li>
-          <li><a href="#"><img alt="" src="img/flickr_07.jpg"></a></li>
-          <li><a href="#"><img alt="" src="img/flickr_08.jpg"></a></li>
-        </ul>
-      </div>
-      <!-- end widget -->
-    </div>
-    <!-- end container -->
 
-    <div class="copyrights">
-      <div class="container">
-        <div class="col-lg-6 col-md-6 col-sm-12 columns footer-left">
-          <p>Copyright � 2014 - All rights reserved.</p>
-          <div class="credits">
-            <!--
-              You are NOT allowed to delete the credit link to TemplateMag with free version.
-              You can delete the credit link only if you bought the pro version.
-              Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/maxibiz-bootstrap-business-template/
-              Licensing information: https://templatemag.com/license/
-            -->
-            Created with MaxiBiz template by <a href="https://templatemag.com/">TemplateMag</a>
-          </div>
-        </div>
-        <!-- end widget -->
-        <div class="col-lg-6 col-md-6 col-sm-12 columns text-right">
-          <div class="footer-menu right">
-            <ul class="menu">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="#">Sitemap</a></li>
-              <li><a href="#">Site Terms</a></li>
-              <li><a href="contact">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-        <!-- end large-6 -->
-      </div>
-      <!-- end container -->
-    </div>
-    <!-- end copyrights -->
-  </footer>
-  <!-- end footer -->
+  
   <div class="dmtop">Scroll to Top</div>
 
   <!-- JavaScript Libraries -->
@@ -394,4 +472,4 @@
   <script src="js/main.js"></script>
 
 </body>
-
+  
