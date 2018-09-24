@@ -23,12 +23,12 @@ public class SearchMapController {
 	
 	@RequestMapping("/tourinfo/mappick/MapMain.it")
 	public String gotoMapPick()throws Exception{
-		return "tourinfo/mappick/mapMain.theme";
+		return "tourinfo/mappick/MapMain.theme";
 	}
 	
 	@RequestMapping("/tourinfo/reviewpick/Reviewpick.it")
 	public String gotoReviewPick()throws Exception{
-		return "tourinfo/reviewpick/reviewpick.theme";
+		return "tourinfo/reviewpick/Reviewpick.theme";
 	}
 	
 	@RequestMapping("/tourinfo/mappick/MapIllust.it")

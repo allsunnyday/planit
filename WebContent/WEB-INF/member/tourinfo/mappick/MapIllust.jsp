@@ -6,18 +6,20 @@
 	#map-illust{
 	height: 800px;
 	width:  1000px;
-	
 	}
-	
-	
 </style>
 
 <div class="container" style="padding-top: 100px">
 	<div class="row">
+	<!--*****************************************
+	일러스트 그림
+*********************************************  -->
 		<div class="col-md-6">
 			<img id="map-illust" alt="illustration" src="<c:url value='/images/MapPage/MapIllusBackground.jpg'/>">
 		</div>
-		<!-- content -->
+	<!--*****************************************
+	추천 콘텐츠
+*********************************************  -->
 		<div class="col-md-6" id="portfolio-centered">
 			 <div class="portfolio-centered">
           <div class="recentitems portfolio">
