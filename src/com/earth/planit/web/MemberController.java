@@ -24,6 +24,7 @@ public class MemberController {
 		return "main/main.tiles";//main은 반드시 tiles로 이동해야 함 
 	}
 	
+
 	@RequestMapping("/member/login/Join.it")
 	public String gotoJoin()throws Exception{
 		return "login/JoinMain.theme";
