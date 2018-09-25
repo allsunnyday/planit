@@ -293,7 +293,6 @@
             </div>
             <!-- end carousel -->
           </div>
-
           <header class="page-header blog-title">
             <div class="author-wrap">
               <span class="inside">

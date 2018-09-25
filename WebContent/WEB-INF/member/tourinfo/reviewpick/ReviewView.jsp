@@ -14,18 +14,20 @@
 				<h1>사진작가의 서울 유랑기</h1>
 				<p>2018.05.09 - 2018.11.15</p>
 				 <h2 class="big-title"><i class="fa fa-star "></i>
-           <i class="fa fa-star"></i>
-           <i class="fa fa-star"></i>
-           <i class="fa fa-star-o"></i>
-           <i class="fa fa-star-o"></i></h2>
+		           <i class="fa fa-star"></i>
+		           <i class="fa fa-star"></i>
+		           <i class="fa fa-star-o"></i>
+		           <i class="fa fa-star-o"></i></h2>
+		           <p>#서울여행 #감성적 #치맥 #힙한여행</p>
 			</div>
 		</div>
 		<div class="col-md-2">
 			<nav class="portfolio-filter clearfix">
 				<ul>
 					<li><a href="#" class="dmbutton" data-filter="*">일정보기</a></li>
-					<li><a href="#" class="dmbutton" data-filter=".mockups">즐겨찾기</a></li>
-					<li><a href="#" class="dmbutton" data-filter=".mockups">시리즈보기</a></li>
+					<li><a href="#" class="dmbutton" data-filter="">즐겨찾기</a></li>
+					<li><a href="#" class="dmbutton" data-filter="">시리즈보기</a></li>
+					<li><a href="<c:url value='/review/myreview/Write.it'/> " class="dmbutton" data-filter="">수정하기</a></li>
 				</ul>
 			</nav>
 
@@ -129,14 +131,11 @@
 					
 				</div>
 				<!-- end wrapper for slides -->
-				<a class="left carousel-control" href="#mycarousel1"
-					data-slide="prev"> <span
-					class="glyphicon glyphicon-chevron-left"></span> <span
-					class="sr-only">Previous</span>
-				</a> <a class="right carousel-control" href="#mycarousel1"
-					data-slide="next"> <span
-					class="glyphicon glyphicon-chevron-right"></span> <span
-					class="sr-only">Next</span>
+				<a class="left carousel-control" href="#mycarousel1" data-slide="prev"> 
+					<span class="icon-prev"></span>
+				</a> 
+				<a class="right carousel-control" href="#mycarousel1" data-slide="next"> 
+				<span class="icon-next"></span> 
 				</a>
 			</div>
 			<!-- end carousel container-->
@@ -244,14 +243,11 @@
 					
 				</div>
 				<!-- end wrapper for slides -->
-				<a class="left carousel-control" href="#mycarousel"
-					data-slide="prev"> <span
-					class="glyphicon glyphicon-chevron-left"></span> <span
-					class="sr-only">Previous</span>
-				</a> <a class="right carousel-control" href="#mycarousel"
-					data-slide="next"> <span
-					class="glyphicon glyphicon-chevron-right"></span> <span
-					class="sr-only">Next</span>
+				<a class="left carousel-control" href="#mycarousel" data-slide="prev"> 
+					<span class="icon-prev"></span>
+				</a> 
+				<a class="right carousel-control" href="#mycarousel" data-slide="next"> 
+				<span class="icon-next"></span> 
 				</a>
 			</div>
 			<!-- end carousel container-->

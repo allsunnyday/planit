@@ -852,9 +852,9 @@ body.nobg .section1 {
 .footer {
   background: #2B2E31;
   padding: 25px 0 0;
-  /* position: relative; */
-  position: absolute;
-  width:100%;
+  position: relative;
+/*   position: absolute; */
+  /* width:100%; */
   overflow: hidden;
   display: block;
   z-index: 1;

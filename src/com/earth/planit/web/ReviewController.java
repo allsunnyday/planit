@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ReviewController {
 
-	@RequestMapping("/Review/MyReview/write.it")
+	@RequestMapping("/review/myreview/Write.it")
 	public String reviewForm()throws Exception{
 		return "review/myreview/WriteReview.theme";
 	}
