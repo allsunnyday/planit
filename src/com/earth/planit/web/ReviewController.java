@@ -8,7 +8,7 @@ public class ReviewController {
 
 	@RequestMapping("/Review/MyReview/write.it")
 	public String reviewForm()throws Exception{
-		return "blog/myreview/WriteReview.theme";
+		return "review/myreview/WriteReview.theme";
 	}
 	
 	@RequestMapping("/planit/review/ReviewList.it")
