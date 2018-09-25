@@ -14,7 +14,7 @@
               Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/maxibiz-bootstrap-business-template/
               Licensing information: https://templatemag.com/license/
             -->
-            Created with MaxiBiz template by <a href="https://templatemag.com/">TemplateMag</a>
+            Created with MaxiBiz template by <a href="https://templatemag.com/">PLANIT</a>
           </div>
         </div>
         <!-- end widget -->
