@@ -11,6 +11,17 @@ public class ReviewController {
 		return "blog/myreview/WriteReview.theme";
 	}
 	
+	@RequestMapping("/planit/review/ReviewList.it")
+	public String reviewList()throws Exception{
+		return "tourinfo/reviewpick/ReviewList.theme";
+	}
+	
+	@RequestMapping("/planit/review/reviewView.it")
+	public String reviewView()throws Exception{
+		return "tourinfo/reviewpick/ReviewView.theme";
+	}
+	
+	
 	
 
 }

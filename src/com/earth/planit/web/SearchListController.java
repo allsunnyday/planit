@@ -45,4 +45,10 @@ public class SearchListController {
 		return "tourinfo/listpick/list/TourList.theme";
 	}
 	
+	@RequestMapping("/planit/search/list/TourView.it")
+	public String tourView() throws Exception{
+		return "tourinfo/listpick/list/TourView.theme";
+	}
+	
+	
 }
