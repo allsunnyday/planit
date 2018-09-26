@@ -115,25 +115,25 @@
             <div id="myCarousel" class="carousel slide">
               <div class="carousel-inner">
                 <div class="item active">
-                  <img src="<c:url value='/main_theme/img/slides_01.jpg'/> " alt="">
+                  <img src=https://images.unsplash.com/photo-1532649097480-b67d52743b69?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8bc9e7a65c3e8e9049d621c3e88ffc9a&auto=format&fit=crop&w=1189&q=80 " alt="">
                 </div>
                 <!-- end item -->
                 <div class="item">
-                  <img src="<c:url value='/main_theme/img/slides_02.jpg'/> " alt="">
+                  <img src="https://images.unsplash.com/photo-1521022887356-1db35c7bbf1f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1a82096f5863af5285990f03390bd1cf&auto=format&fit=crop&w=1189&q=80" alt="">
                 </div>
                 <!-- end item -->
                 <div class="item">
-                  <img src="<c:url value='/main_theme/img/slides_03.jpg'/> " alt="">
+                  <img src="https://images.unsplash.com/photo-1525762867061-21c9fb70b15a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=05462dc62dbe001966f95da08772b211&auto=format&fit=crop&w=1050&q=80" alt="">
                 </div>
                 <!-- end item -->
               </div>
               <!-- carousel inner -->
               <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-								<span class="icon-prev"></span>
+					<span class="icon-prev"></span>
 				</a>
               <a class="right carousel-control" href="#myCarousel" data-slide="next">
-								<span class="icon-next"></span>
-							</a>
+					<span class="icon-next"></span>
+				</a>
             </div>
             <!-- end carousel -->
           </div>
