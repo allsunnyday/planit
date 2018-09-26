@@ -3,12 +3,6 @@
 <!-- 아이콘을 위한 css -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
 .table-wrapper {
 	background: #fff;
@@ -385,6 +379,15 @@ table.table .avatar {
 				$("#selectAll").prop("checked", false);
 			}
 		});
+		
+		if($("#form-control option:selected").val() != 'ALL'){
+			var select = $('table tr[data-status="' + $("#form-control option:selected").val() + '"]');
+			$("table tbody tr").not(target).hide();
+			target.fadeIn();
+		}else{
+			$("table tbody tr").fadeIn();
+		}
+		
 	});
 </script>
 </head>
@@ -420,7 +423,6 @@ table.table .avatar {
 								<option>ALL</option>
 								<option>Replied</option>
 								<option>Waited</option>
-								<option>NOW !!</option>
 							</select>
 						</div>
 						<span class="filter-icon"><i class="fa fa-filter"></i></span>
@@ -442,7 +444,7 @@ table.table .avatar {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<tr data-status="Replied">
 						<td><span class="custom-checkbox"> <input
 								type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
@@ -460,7 +462,7 @@ table.table .avatar {
 								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
-					<tr>
+					<tr data-status="Waited">
 						<td><span class="custom-checkbox"> <input
 								type="checkbox" id="checkbox2" name="options[]" value="1">
 								<label for="checkbox2"></label>
@@ -470,7 +472,7 @@ table.table .avatar {
 								class="avatar" alt="Avatar"> Paula Wilson</a></td>
 						<td>Madrid</td>
 						<td>Jun 21, 2017</td>
-						<td><span class="status text-warning">&bull;</span> Waited</td>
+						<td><span class="status text-danger">&bull;</span> Waited</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
 								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
@@ -478,7 +480,7 @@ table.table .avatar {
 								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
-					<tr>
+					<tr data-status="Waited">
 						<td><span class="custom-checkbox"> <input
 								type="checkbox" id="checkbox3" name="options[]" value="1">
 								<label for="checkbox3"></label>
@@ -488,7 +490,7 @@ table.table .avatar {
 								class="avatar" alt="Avatar"> Antonio Moreno</a></td>
 						<td>Berlin</td>
 						<td>Jul 04, 2017</td>
-						<td><span class="status text-danger">&bull;</span> NOW !!</td>
+						<td><span class="status text-danger">&bull;</span> Waited</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
 								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
@@ -496,7 +498,7 @@ table.table .avatar {
 								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
-					<tr>
+					<tr data-status="Waited">
 						<td><span class="custom-checkbox"> <input
 								type="checkbox" id="checkbox4" name="options[]" value="1">
 								<label for="checkbox4"></label>
@@ -506,7 +508,7 @@ table.table .avatar {
 								class="avatar" alt="Avatar"> Mary Saveley</a></td>
 						<td>New York</td>
 						<td>Jul 16, 2017</td>
-						<td><span class="status text-warning">&bull;</span> Waited</td>
+						<td><span class="status text-danger">&bull;</span> Waited</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
 								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
@@ -514,7 +516,7 @@ table.table .avatar {
 								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
-					<tr>
+					<tr data-status="Replied">
 						<td><span class="custom-checkbox"> <input
 								type="checkbox" id="checkbox5" name="options[]" value="1">
 								<label for="checkbox5"></label>
