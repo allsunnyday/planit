@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<!-- 아이콘을 위한 css -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -346,8 +345,8 @@ table.table .avatar {
 }
 
 .custom-checkbox input[type="checkbox"]:checked+label:before {
-	border-color: #03A9F4;
-	background: #03A9F4;
+	border-color: #02f7d8;
+	background: #02f7d8; /* 체크후 색상 */
 }
 
 .custom-checkbox input[type="checkbox"]:checked+label:after {
@@ -388,7 +387,7 @@ table.table .avatar {
 </script>
 </head>
 <body>
-	<div class="container" style="padding-top: 100px">
+	<div class="container" style="padding-top: 50px">
 		<div class="table-wrapper">
 			<div class="table-title">
 				<div class="row">
