@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-	#map-illust{
+#map-illust {
 	height: 800px;
-	width:  1000px;
-	}
+	width: 1000px;
+}
 </style>
 
 <div class="container" style="padding-top: 100px">
@@ -42,7 +42,7 @@
                 <!-- he view -->
               </div>
               <!-- he wrap -->
-              <h3 class="title">Project Name - 1</h3>
+              <h3 class="title"><a href="<c:url value='/mypage/partner/Reservation_P.it'/>">Reservation</a></h3>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
             </div>
             <!-- end col-12 -->
@@ -65,7 +65,7 @@
                 <!-- he view -->
               </div>
               <!-- he wrap -->
-              <h3 class="title">Project Name - 2</h3>
+              <h3 class="title"><a href="<c:url value='/mypage/partner/Request_P.it'/>">Request</a></h3>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
             </div>
             <!-- end col-12 -->
