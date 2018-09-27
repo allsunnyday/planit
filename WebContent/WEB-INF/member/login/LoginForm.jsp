@@ -58,8 +58,10 @@
 			               </div>
 			               <div class="form-group">
 			                  <button type="submit" class="button">Sign in</button>
+						 <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">회원 마이페이지 임시 이동</a>
 			               </div>
 			            </form>
+			            
 		              </div>
 	                <!-- 일반회원 가입-->
 	                <!--기업회원 가입-->
@@ -89,6 +91,7 @@
 		               </div>
 		               <div class="form-group">
 		                  <button type="submit" class="button">Sign in</button>
+		                  <a href="<c:url value='/planit/mypage/partner/PartnerMyPageHome.it'></c:url>">기업 마이페이지 임시 이동</a>
 		               </div>
 		            </form>
 		              </div>
