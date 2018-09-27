@@ -164,7 +164,6 @@
         <div class="general-title text-center">
           <h3>인기 여행지를 한눈에!</h3>
           <p>best</p>
-          <hr>
         </div>
 
         <div class="divider"></div>
@@ -175,7 +174,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/tourinfo/tdview/tourDetail.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>

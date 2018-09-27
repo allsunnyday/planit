@@ -28,17 +28,18 @@ public class SearchListController {
 	}
 	
 	////
-	@RequestMapping("/tourinfo/tdview/notice.it")
+	@RequestMapping("/planit/search/tourinfo/Qna.it")
 	public String goNotice()throws Exception{
-		return "tourinfo/tdview/notice.theme";
-	}
-	
-	///
-	@RequestMapping("/tourinfo/tdview/qna.it")
-	public String goQna()throws Exception{
 		return "tourinfo/tdview/qna.theme";
 	}
 	
+	///
+	@RequestMapping("/planit/search/tourinfo/Notice.it")
+	public String goQna()throws Exception{
+		return "tourinfo/tdview/notice.theme";
+	}
+	
+
 	//////////////////////////////////////////////////////////////정현선 추가 부분
 	@RequestMapping("/planit/search/tourinfo/TourList.it")
 	public String tourList()throws Exception{
