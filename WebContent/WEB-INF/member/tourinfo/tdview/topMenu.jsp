@@ -12,6 +12,7 @@
             <a href="#" title="">
             </a>
           </div>
+          
         </div>
         <!-- title area -->
         <div class="col-lg-9 col-md-12 col-sm-12">
@@ -20,7 +21,7 @@
               <ul id="jetmenu" class="jetmenu blue">
                 <li ><a href="<c:url value='/member/tourinfo/listpick/list/listMain.it'/>">Home</a>
                 </li>
-                <li><a href="#">구석구석 떠나볼까</a>
+                <!-- <li><a href="#">구석구석 떠나볼까</a>
                   <ul class="dropdown">
                     <li><a href="#">서울</a></li>
                     <li><a href="#">인천/경기도</a></li>
@@ -30,7 +31,7 @@
                     <li><a href="#">충청도</a></li>
                     <li><a href="#">제주도</a></li>
                   </ul>
-                </li>
+                </li> -->
                 <li><a href="#">어디로 갈까</a>
                   <ul class="dropdown">
                     <li><a href="<c:url value='/tourinfo/tdview/tourDetail.it'/>">관광지 정보</a></li>
