@@ -55,9 +55,12 @@
 .availability-calendar {
 	width: 100%;
 	background: #FFF;
-	background-color: #FFE08C;
 	table-layout: fixed;
 	border-collapse: collapse;
+}
+
+tr:first-child{
+	background-color: #64DCAA;
 }
 
 .availability-calendar th, .availability-calendar td {
