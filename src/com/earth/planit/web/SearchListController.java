@@ -8,7 +8,7 @@ public class SearchListController {
 	
 	@RequestMapping("/member/tourinfo/listpick/list/listMain.it")
 	public String gotoListMain()throws Exception{
-		return "tourinfo/listpick/list/ListHome.theme";
+		return "tourinfo/listpick/list/listMain.theme";
 	}
 
 	@RequestMapping("/tourinfo/tdview/tourDetail.it")
