@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6" style="height: 100%; background-color: red"></div>
-		<div class="col-md-6" style="height: 100%; background-color: blue"></div>
+		<div class="col-md-6" style="height: 10%; background-color: blue"></div>
 	</div>
 
 </div>
