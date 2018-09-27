@@ -39,6 +39,9 @@
   <!-- Main Stylesheet File -->
   <link href="<c:url value='/main_theme/css/style.css'/> " rel="stylesheet">
   <link rel="stylesheet" href="<c:url value='/main_theme/css/colors/blue.css'/> ">
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	
 </head>
 <body>
@@ -53,8 +56,7 @@
 		<!-- footer end -->
 	
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	
 	  <!-- JavaScript Libraries -->
   <script src="<c:url value='/main_theme/lib/jquery/jquery.min.js'/> "></script>
   <script src="<c:url value='/main_theme/lib/bootstrap/js/bootstrap.min.js'/> "></script>
