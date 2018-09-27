@@ -41,6 +41,7 @@
             <a href="#">다음일정 →</a>
           </li>
         </ul>
+        
         <div class="col-lg-4 col-md-4 col-sm-4">
         <div style="padding-bottom: 50px;"></div>
           <div class="portfolio_details">
@@ -53,12 +54,19 @@
                 <li class="update">이동수단: <span><a href="#">버스1회</a>, <a href="#">지하철1회</a></span></li>
                 <li class="release">추가사항: <span>28 February, 2014</span></li>
               </ul>
+              <ul>
+					<li><a href="<c:url value='/photobook/step1/selectdesign.it'/> " class="dmbutton2" data-filter="*">포토북만들기</a></li>
+				</ul>
             </div>
             <!-- details section -->
           </div>
           <!-- theme details -->
         </div>
         <!-- end col-lg 8 -->
+		
+		
+		
+		
 		
 		<!-- 테이블 넣기  -->
 	    <div class="col-lg-8 col-md-8 col-sm-12">
@@ -69,7 +77,7 @@
 	              <article class="comment">
 	                <div class="comment-content">
 	                  <h4 class="comment-author">한강 <small class="comment-meta"></small>
-	                       <span class="comment-reply"><a href="#" class="comment-reply button small">리뷰작성</a></span>
+	                       <span class="comment-reply"><a href="<c:url value='/riveiw/write/OneSpot.it'/> " class="comment-reply button small" >리뷰작성</a></span>
 	                   </h4> 주소 / 관람시간 / 비용   
 	                </div>
 	              </article>
