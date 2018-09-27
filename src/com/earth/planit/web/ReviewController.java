@@ -21,7 +21,20 @@ public class ReviewController {
 		return "tourinfo/reviewpick/ReviewView.theme";
 	}
 	
+	@RequestMapping("/riveiw/write/OneSpot.it")
+	public String writeOneReview()throws Exception{
+		return "review/myreview/WriteOneSpot.theme";
+	}
 	
+	//////////////////////////////////포토북
+	@RequestMapping("/photobook/step1/selectdesign.it")
+	public String selectbook()throws Exception{
+		return "review/photobook/SelectBook.theme";
+	}
 	
+	@RequestMapping("/photobook/step2/Preview.it")
+	public String previewBook()throws Exception{
+		return "review/photobook/PreviewBook.theme";
+	}
 
 }
