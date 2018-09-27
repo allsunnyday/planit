@@ -5,11 +5,14 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	
 }
+
 </style>
 
-<div class="container" style="padding-top: 100px">
+<div class="container-fluid" style="padding-top: 100px; " >
     <div class="container clearfix">
+    
       <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
       <!--
 ***************************************************************************************
@@ -19,7 +22,7 @@ List 메뉴
         <div class="col-lg-6 col-md-6 col-sm-12">
           <div class="dmbox"  style="width: 500px; height: 435px"> 
             <div id="listicon-align" class="service-icon" style="width: 350px; height: 350px;">
-              <div class="dm-icon-effect-1" data-effect="slide-bottom">
+              <div class="dm-icon-effect-1" data-effect="slide-bottom" >
                 <a class="" href="<c:url value='/member/tourinfo/listpick/list/listMain.it'/>">
                 <img alt="listicon" src="<c:url value='/images/ListNMappick/listicon.png'/>">
                 </a>
