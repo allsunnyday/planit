@@ -22,7 +22,7 @@
 		__createToolbar: function () {
 			var $toolbar = $('<div></div>').appendTo(this.container);
 			$toolbar.addClass('availability-calendar-toolbar');
-
+			
 			this.$monthLabel = $('<span id="monthfontsize"></span>').appendTo($toolbar);
 			var $inputContainer = $('<span></span>').appendTo($toolbar);
 

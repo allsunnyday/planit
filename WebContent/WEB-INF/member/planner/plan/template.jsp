@@ -34,3 +34,5 @@
 	<jsp:include page="/WEB-INF/member/template/footer.jsp"></jsp:include>
   </body>
 </html>
+
+
