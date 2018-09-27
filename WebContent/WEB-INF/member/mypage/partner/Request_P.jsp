@@ -1,10 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 아이콘을 위한 css -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
 
 <style type="text/css">
 .table-wrapper {
@@ -298,6 +295,7 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }
+
 /* Custom checkbox */
 .custom-checkbox {
 	position: relative;
@@ -344,6 +342,7 @@ table.table .avatar {
 .custom-checkbox input[type="checkbox"]:checked+label:before {
 	border-color: #02f7d8;
 	background: #02f7d8; /* 체크후 색상 */
+	
 }
 
 .custom-checkbox input[type="checkbox"]:checked+label:after {
@@ -380,6 +379,15 @@ table.table .avatar {
 				$("#selectAll").prop("checked", false);
 			}
 		});
+		
+		if($("#form-control option:selected").val() != 'ALL'){
+			var select = $('table tr[data-status="' + $("#form-control option:selected").val() + '"]');
+			$("table tbody tr").not(target).hide();
+			target.fadeIn();
+		}else{
+			$("table tbody tr").fadeIn();
+		}
+		
 	});
 </script>
 </head>
@@ -390,15 +398,12 @@ table.table .avatar {
 				<div class="row">
 					<div class="col-sm-4">
 						<h2>
-							Reservation <b>Details</b>
+							Managing <b>Questions</b>
 						</h2>
 					</div>
 					<div class="col-sm-6" style="float: right;">
-						<a href="#addEmployeeModal" class="btn btn-success"
-							data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add
-								New Employee</span></a> <a href="#deleteEmployeeModal"
-							class="btn btn-danger" data-toggle="modal"><i
-							class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
+							<i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
 					</div>
 				</div>
 			</div>
@@ -415,11 +420,9 @@ table.table .avatar {
 
 						<div class="filter-group">
 							<label>Status</label> <select class="form-control">
-								<option>Any</option>
-								<option>Delivered</option>
-								<option>Shipped</option>
-								<option>Pending</option>
-								<option>Cancelled</option>
+								<option>ALL</option>
+								<option>Replied</option>
+								<option>Waited</option>
 							</select>
 						</div>
 						<span class="filter-icon"><i class="fa fa-filter"></i></span>
@@ -434,14 +437,14 @@ table.table .avatar {
 						</span></th>
 						<th>#</th>
 						<th>Customer</th>
-						<th>Room</th>
-						<th>Order Date</th>
+						<th>Topic</th>
+						<th>PostDate</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<tr data-status="Replied">
 						<td><span class="custom-checkbox"> <input
 								type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
@@ -449,17 +452,17 @@ table.table .avatar {
 						<td>1</td>
 						<td><a href="#"><img src="/examples/images/avatar/1.jpg"
 								class="avatar" alt="Avatar"> Michael Holz</a></td>
-						<td>London</td>
+						<td>Room Service Question</td>
 						<td>Jun 15, 2017</td>
-						<td><span class="status text-success">&bull;</span> Delivered</td>
+						<td><span class="status text-success">&bull;</span> Replied</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
+								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
 							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
 								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
-					<tr>
+					<tr data-status="Waited">
 						<td><span class="custom-checkbox"> <input
 								type="checkbox" id="checkbox2" name="options[]" value="1">
 								<label for="checkbox2"></label>
@@ -469,15 +472,15 @@ table.table .avatar {
 								class="avatar" alt="Avatar"> Paula Wilson</a></td>
 						<td>Madrid</td>
 						<td>Jun 21, 2017</td>
-						<td><span class="status text-info">&bull;</span> Shipped</td>
+						<td><span class="status text-danger">&bull;</span> Waited</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
+								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
 							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
 								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
-					<tr>
+					<tr data-status="Waited">
 						<td><span class="custom-checkbox"> <input
 								type="checkbox" id="checkbox3" name="options[]" value="1">
 								<label for="checkbox3"></label>
@@ -487,15 +490,15 @@ table.table .avatar {
 								class="avatar" alt="Avatar"> Antonio Moreno</a></td>
 						<td>Berlin</td>
 						<td>Jul 04, 2017</td>
-						<td><span class="status text-danger">&bull;</span> Cancelled</td>
+						<td><span class="status text-danger">&bull;</span> Waited</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
+								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
 							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
 								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
-					<tr>
+					<tr data-status="Waited">
 						<td><span class="custom-checkbox"> <input
 								type="checkbox" id="checkbox4" name="options[]" value="1">
 								<label for="checkbox4"></label>
@@ -505,15 +508,15 @@ table.table .avatar {
 								class="avatar" alt="Avatar"> Mary Saveley</a></td>
 						<td>New York</td>
 						<td>Jul 16, 2017</td>
-						<td><span class="status text-warning">&bull;</span> Pending</td>
+						<td><span class="status text-danger">&bull;</span> Waited</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
+								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
 							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
 								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
-					<tr>
+					<tr data-status="Replied">
 						<td><span class="custom-checkbox"> <input
 								type="checkbox" id="checkbox5" name="options[]" value="1">
 								<label for="checkbox5"></label>
@@ -523,10 +526,10 @@ table.table .avatar {
 								class="avatar" alt="Avatar"> Martin Sommer</a></td>
 						<td>Paris</td>
 						<td>Aug 04, 2017</td>
-						<td><span class="status text-success">&bull;</span> Delivered</td>
+						<td><span class="status text-success">&bull;</span> Replied</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
+								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
 							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
 								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
@@ -624,48 +627,8 @@ Edit Modal
 					</div>
 				</div>
 			</div>
-			<!--
-***************************************************************************************
-add Edit
-***************************************************************************************
-  -->
-			<!-- Edit Modal HTML -->
-			<div id="addEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Add Employee</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label>Name</label> <input type="text" class="form-control"
-										required>
-								</div>
-								<div class="form-group">
-									<label>Email</label> <input type="email" class="form-control"
-										required>
-								</div>
-								<div class="form-group">
-									<label>Address</label>
-									<textarea class="form-control" required></textarea>
-								</div>
-								<div class="form-group">
-									<label>Phone</label> <input type="text" class="form-control"
-										required>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-success" value="Add">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+
+		
 		</div>
 	</div>
 </body>
