@@ -20,7 +20,7 @@ List 메뉴
           <div class="dmbox"  style="width: 500px; height: 435px"> 
             <div id="listicon-align" class="service-icon" style="width: 350px; height: 350px;">
               <div class="dm-icon-effect-1" data-effect="slide-bottom">
-                <a class="" href="<c:url value='/tourinfo/listpick/list/ListMain.it'/>">
+                <a class="" href="<c:url value='/member/tourinfo/listpick/list/listMain.it'/>">
                 <img alt="listicon" src="<c:url value='/images/ListNMappick/listicon.png'/>">
                 </a>
               </div>

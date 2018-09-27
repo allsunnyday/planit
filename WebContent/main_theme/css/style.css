@@ -853,6 +853,8 @@ body.nobg .section1 {
   background: #2B2E31;
   padding: 25px 0 0;
   position: relative;
+/*   position: absolute; */
+  /* width:100%; */
   overflow: hidden;
   display: block;
   z-index: 1;
@@ -1395,7 +1397,6 @@ body.nobg .section1 {
   display: block;
   position: relative;
 }
-
 .owl-carousel .item a {
   overflow: hidden;
   color: #ffffff;
