@@ -42,7 +42,8 @@
   <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-	
+	  <script src="<c:url value='/main_theme/lib/jquery/jquery.min.js'/> "></script>
+  <script src="<c:url value='/main_theme/lib/bootstrap/js/bootstrap.min.js'/> "></script>
 </head>
 <body>
 		<!-- navbar 시작 -->
@@ -58,8 +59,8 @@
 
 	
 	  <!-- JavaScript Libraries -->
-  <script src="<c:url value='/main_theme/lib/jquery/jquery.min.js'/> "></script>
-  <script src="<c:url value='/main_theme/lib/bootstrap/js/bootstrap.min.js'/> "></script>
+<%--   <script src="<c:url value='/main_theme/lib/jquery/jquery.min.js'/> "></script>
+  <script src="<c:url value='/main_theme/lib/bootstrap/js/bootstrap.min.js'/> "></script> --%>
   <script src="<c:url value='/main_theme/lib/php-mail-form/validate.js'/> "></script>
   <script src="<c:url value='/main_theme/lib/prettyphoto/js/prettyphoto.js'/>"></script>
   <script src="<c:url value='/main_theme/lib/isotope/isotope.min.js'/>"></script>
