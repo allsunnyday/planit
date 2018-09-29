@@ -135,9 +135,84 @@ height: 100%;
 	height: 170px;
 }
 </style>
+<section class="post-wrapper-top">
+    <div class="container">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <ul class="breadcrumb">
+        <li>akdlvpdlwl</li>
+        </ul>
+        <h2>PLAN-IT에 등록되어 있는 식당들</h2>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <!-- search -->
+        <div class="search-bar">
+          <form action="" method="get">
+            <fieldset>
+              <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
+              <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
+            </fieldset>
+          </form>
+        </div>
+        <!-- / end div .search-bar -->
+      </div>
+    </div>
+  </section>
+  <!-- end post-wrapper-top -->
+  <!--***********************************************************
+  오른쪽 (사이드바) 
+  ***************************************************************  -->
+<section class="section1" >
+    <div class="container-fluid clearfix">
+      <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
+        
+        
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 full-left">
+          <div class="teammembers">
+            <div class="he-wrap tpl2">
+              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <div class="center-bar">
+                    <a href="#" class="twitter a0" data-animate="elasticInDown"></a>
+                    <a href="#" class="facebook a1" data-animate="elasticInDown"></a>
+                    <a href="#" class="google a2" data-animate="elasticInDown"></a>
+                  </div>
+                  <!-- center  bar -->
+                </div>
+              </div>
+            </div>
+            <!-- he wrap -->
+            <div class="teammembers-meta">
+              <h4>사용자 이름</h4>
+            </div>
+            <p>자기소개 아ㅓㄹ아ㅓ 알 ㅇ런 ㅇ란 일나 ㄹ</p>
+            <small>등급?</small>
+            <div class="teamskills">
+              <div class="progress">
+                <div data-effect="slide-left" "><span>나의 플래너</span></div>
+              </div>
+              <div class="progress">
+                <div data-effect="slide-left" ><span>나의 리뷰</span></div>
+              </div>
+              <div class="progress">
+                <div data-effect="slide-left"><span>좋아요</span></div>
+              </div>
+              <div class="progress">
+                <div data-effect="slide-left"><span></span></div>
+              </div>
+              <div class="progress">
+                <div data-effect="slide-left"><span>좋아요</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- end teammembers -->
+        </div>
+        <!-- end col 4 -->
+ <!--***********************************************************
+ 위를 jsp include 로 변경해야 한다. 
+  ***************************************************************  -->
 
-<div class="container">
-
+	<div class="col-sm-8 " >
 	<div class="mypage-content">
 		<div class="mypagemenu">
 			<div id="mypage">
@@ -258,6 +333,13 @@ height: 100%;
 		<!-- ---------------------- -->
 		<!--       end first        -->
 		<!-- ---------------------- -->
+		
+		
+		
+		
+		
+		
+		
 		<!-- ------------------------- -->
 		<!--        start second       -->
 		<!-- ------------------------- -->
@@ -430,6 +512,9 @@ height: 100%;
 
 	</div>
 	<!--  end mypage-content -->
+	</div>
 
 </div>
 <!--  end container -->
+</div>
+</section>

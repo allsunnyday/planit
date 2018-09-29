@@ -87,19 +87,19 @@
 					<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
 					<div class="item active">
 						<div id="popularitems" class="">
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/97/2030897_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/09/1580109_image2_1.jpg"
 									alt="">
@@ -109,19 +109,19 @@
 					<!-- end carousel slide 1   -->
 					<div class="item ">
 						<div id="popularitems" class="">
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/14/1580114_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
@@ -199,19 +199,19 @@
 					<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
 					<div class="item active">
 						<div id="popularitems" class="">
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/97/2030897_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/09/1580109_image2_1.jpg"
 									alt="">
@@ -221,19 +221,19 @@
 					<!-- end carousel slide 1   -->
 					<div class="item ">
 						<div id="popularitems" class="">
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/14/1580114_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">

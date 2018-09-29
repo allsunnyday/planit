@@ -312,7 +312,7 @@ planner : 평점이 높은 리뷰를 모아보기
 		}); */
 		$(window).resize(function() {
 			if ($(window).width() <= 991) {
-				$('.navbar').css('background', '#444');
+				$('.navbar').css('background', '#000000');
 			} else {
 				$('.navbar').css('background', 'none');
 			}
@@ -322,7 +322,7 @@ planner : 평점이 높은 리뷰를 모아보기
 			var windowWidth = $(window).width();
 			console.log(windowWidth);
 			if ($(this).scrollTop() > 50 || windowWidth <= 991) {
-				$('.navbar').css('background', '#444');
+				$('.navbar').css('background', '#000000');
 			} else {
 				$('.navbar').css('background', 'none');
 			}
