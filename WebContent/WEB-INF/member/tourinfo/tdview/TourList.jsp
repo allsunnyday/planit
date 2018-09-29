@@ -4,39 +4,67 @@
 <!--************************************
 네비게이터가 필요
 *************************************** -->
-<div style="padding-top: 70px;"></div>
+<jsp:include page="topMenu.jsp" flush="false" />
 <!--************************************
  아래 리스트 
 *************************************** -->
-<section class="section1">
+    <section class="post-wrapper-top">
+    <div class="container">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <ul class="breadcrumb">
+        <li>재밌게 여행을!</li>
+        </ul>
+        <h2>PLAN-IT에 등록되어 있는 관광지</h2>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <!-- search -->
+        <div class="search-bar">
+          <form action="" method="get">
+            <fieldset>
+              <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
+              <input type="text" class="search_text showtextback" name="s" id="s" value="잘 찾아보세요..." />
+            </fieldset>
+          </form>
+        </div>
+        <!-- / end div .search-bar -->
+      </div>
+    </div>
+  </section>
+  <!-- end post-wrapper-top -->
 	<div class="container clearfix">
 		<div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
 
 			<div class="divider"></div>
 
-			<nav class="portfolio-filter clearfix">
-				<ul>
-					<li><a href="#" class="dmbutton2" data-filter="*">All
-							Works (6)</a></li>
-					<li><a href="#" class="dmbutton2" data-filter=".mockups">Mockups</a></li>
-					<li><a href="#" class="dmbutton2"
-						data-filter=".graphic-design">Graphics</a></li>
-					<li><a href="#" class="dmbutton2" data-filter=".web-design">Web
-							Projects</a></li>
-				</ul>
-			</nav>
+ <nav class="portfolio-filter clearfix">
+          <ul>
+            <li><a href="#" class="dmbutton2" data-filter="*">모두보기(몇개인지 뿌려주기)</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".s">서울</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".i">인천/경기도</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".g">강원도</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".k">경상도</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".c">충청도</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".j">전라도</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".je">제주도</a></li>
+            <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" >최신순</button>
+            <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-danger" >인기순</button>
+          </ul>
+        
 
+</nav>
 			<div class="portfolio-centered">
 				<div class="recentitems portfolio">
 					<div
-						class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
+						class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 korea">
 						<div class="he-wrap tpl6 market-item">
 							<img src="<c:url value='/main_theme/img/portfolio_01.jpg'/> " alt="">
 							<div class="he-view">
 								<div class="bg a0" data-animate="fadeIn">
 									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="prettyPhoto" href="<c:url value='/planit/search/list/TourView.it'/> "
+									<a data-rel="" 
+									href="<c:url value='/planit/search/list/TourView.it'/> "
 										class="dmbutton a2" data-animate="bounceInLeft">
+										
 										<i class="fa fa-search"></i></a>
 									<div class="portfolio_category text-center a2"
 										data-animate="fadeIn"></div>
@@ -196,5 +224,4 @@
 		</div>
 		<!-- end container -->
 	</div>
-</section>
 <!-- end section -->

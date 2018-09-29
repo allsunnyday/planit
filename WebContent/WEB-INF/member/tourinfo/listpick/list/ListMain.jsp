@@ -2,6 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
+ <style>
+ 	.item{
+ 	position:relative;
+ 	}
+ 	.item .text{
+ 	position:absolute;
+ 	top:50px;
+ 	margin-left:50px;
+ 	color:#FFF;
+ 	}
+ </style>
 <jsp:include page="../../tdview/topMenu.jsp" flush="false" />
   <section class="marketplace-top">
 	<div class="row">
@@ -15,17 +26,18 @@
 					<div class="carousel-inner">
 						<!--슬라이드1-->
 						<div class="item active"> 
-							<img src="<c:url value='/images/par03.jpg'/> " style="width:100%;height: 550px" height="300px" alt="First slide">
+							<img src="<c:url value='/images/list/222.jpg'/> " style="width:100%;height: 550px" height="300px" alt="First slide">
 							<div class="container">
-								<div class="carousel-caption">
-								</div>
+							<div class="text">
+							<p><span style="font-size:5.0em;color:white;">경복궁입니다</span></p>
+							</div>
 							</div>
 						</div>
 						<!--슬라이드1-->
 				
 						<!--슬라이드2-->
 						<div class="item"> 
-							<img src="<c:url value='/images/par02.jpg'/>" style="width:100%;height: 550px" data-src="" alt="Second slide">
+							<img src="<c:url value='/images/list/andong.jpg'/>" style="width:100%;height: 550px" data-src="" alt="Second slide">
 							<div class="container">
 								<div class="carousel-caption">
 								</div>
@@ -35,7 +47,7 @@
 						
 						<!--슬라이드3-->
 						<div class="item"> 
-							<img src="<c:url value='/images/par01.jpg'/>" style="width:100%;height: 550px" data-src="sssss"  alt="Third slide">
+							<img src="<c:url value='/images/list/andong.jpg'/>" style="width:100%;height: 550px" data-src="sssss"  alt="Third slide">
 							<div class="container">
 								<div class="carousel-caption">
 								</div>
@@ -64,11 +76,11 @@
         <div id="popularitems" class="owl-carousel">
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/par02.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름</h3>
-                  <a href="<c:url value='/tourinfo/tdview/tourDetail.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/tourinfo/tdview/TourList.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -89,7 +101,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/par09.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -114,7 +126,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/par08.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -139,7 +151,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/par07.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -164,7 +176,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/par06.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -189,7 +201,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/par05.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -227,7 +239,7 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-left">
-              <a href="<c:url value='/tourinfo/tdview/tourDetail.it'/>" class=""> <i class="dm-icon fa fa-money fa-3x"></i> </a>
+              <a href="<c:url value='/tourinfo/tdview/TourList.it'/>" class=""> <i class="dm-icon fa fa-money fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>관광지</h4>
@@ -245,7 +257,7 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-bottom">
-              <a href="<c:url value='/tourinfo/tdview/foodDetail.it'/>" class=""> <i class="dm-icon fa fa-trophy fa-3x"></i> </a>
+              <a href="<c:url value='/tourinfo/tdview/FoodList.it'/>" class=""> <i class="dm-icon fa fa-trophy fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>음식점 정보</h4>
@@ -263,7 +275,7 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-bottom">
-              <a href="<c:url value='/tourinfo/tdview/sleepDetail.it'/>" class=""> <i class="dm-icon fa fa-heart-o fa-3x"></i> </a>
+              <a href="<c:url value='/tourinfo/tdview/SleepList.it'/>" class=""> <i class="dm-icon fa fa-heart-o fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>숙박 정보</h4>

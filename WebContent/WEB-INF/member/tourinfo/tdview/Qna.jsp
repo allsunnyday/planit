@@ -11,12 +11,18 @@
   ======================================================= -->
 
 <body>
+<!--************************************** 
+ 	삽입
+ **************************************-->
  <jsp:include page="topMenu.jsp" flush="false" />
+
 
   <section class="section1">
     <div class="container clearfix">
       <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
-
+<!--************************************** 
+ 	FAQ / 1:1문의 / ?    세개 이미지버튼
+ **************************************-->
         <div class="col-lg-4 col-md-4 col-sm-12">
           <div class="dmbox">
             <div class="service-icon">
@@ -75,7 +81,9 @@
         <div class="clearfix"></div>
         <div class="divider"></div>
 
-        
+<!--************************************** 
+ 	FAQ 아코디언으로 
+ **************************************-->
         <div class="general-title text-center">
           <h3>FAQ </h3>
         </div>
@@ -153,15 +161,6 @@
 		  </div>
 		</div>
 
-
-
-
-
-
-
-
-
-
       </div>
       <!-- end content -->
     </div>
@@ -170,9 +169,5 @@
   <!-- end section -->
     <script src="https://code.jquery.com/jquery-latest.js"></script> 
  
-
-
-
-
   <div class="dmtop">Scroll to Top</div>
 </body>
