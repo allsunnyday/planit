@@ -147,8 +147,8 @@ $(function(){
 		</div>
 		<!-- 우측 일정 입력 종료 -->
 	</div>
-	</div>
-	<div class="container">
+</div>
+<div class="container">
 	<div class="row" style="height: 700px;">
 		<div class="col-sm-12 col-md-12 col-xs-12 portfolio wow fadeIn text-center">
         	<h2> 전체 여행일정표 </h2>
