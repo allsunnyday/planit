@@ -44,8 +44,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
 	<script src="<c:url value='/main_theme/lib/jquery/jquery.min.js'/> "></script>
-
-  <script src="<c:url value='/main_theme/lib/bootstrap/js/bootstrap.min.js'/> "></script>
+  	<script src="<c:url value='/main_theme/lib/bootstrap/js/bootstrap.min.js'/> "></script>
+	
 </head>
 <body>
 		<!-- navbar 시작 -->

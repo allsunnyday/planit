@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
 	    }
 	  });
   
- 
+
   // Menu
   $(".panel a").click(function(e) {
     e.preventDefault();
