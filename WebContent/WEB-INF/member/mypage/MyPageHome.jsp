@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 .mypage-content {
-	margin-top: 100px;
+	/* margin-top: 100px; */
 	/* border: 3px black solid; */
 }
 
@@ -16,7 +16,7 @@
 	display: inline-block;
 	/*  border: 3px black solid;  */
 	float: right;
-	padding-top: 30px;
+	/* padding-top: 30px; */
 }
 
 #MY-edit-button {
@@ -26,7 +26,7 @@
 	align: right;
 }
 
-#MY-first {
+#MY-First {
 	margin-top: 20px;
 	padding-top: 10px;
 	border-top: 2px rgb(53, 181, 157) solid;
@@ -55,7 +55,7 @@ height: 100%; */
 	margin: auto;
 	display: block;
 }
-#MY-second-content img{
+#MY-First-content img{
 position: absolute; top:0; left: 0;
 width: 100%;
 height: 100%;
@@ -122,26 +122,109 @@ height: 100%;
 	display: inline-block;
 }
 
-#MY-second, #MY-third, #MY-forth, #MY-fifth {
-	margin-top: 60px;
+ #MY-Second, #MY-Third, #MY-Forth {
+	/* margin-top: 60px; */
 	padding-top: 10px;
 	border-top: 2px rgb(53, 181, 157) solid;
 	margin-bottom: 130px;
 }
 
-#MY-second-content div, #MY-third-content div, #forth-content div,
-	#MY-fifth-content div {
+#MY-First-content div, #MY-Second-content div, #Third-content div,
+	#MY-Forth-content div {
 	margin-top: 20px;
 	height: 170px;
 }
+#MY-First-name,#MY-Second-name,
+#MY-Third-name,#MY-Forth-name{
+	display:inline-block;
+}
+.MY-More-Button{
+	display:inline-block;
+	float: right;
+}
+.MY-More-Button button {
+	color:rgb(53, 181, 157);
+	
+}
 </style>
+<!-- *******************************************
+	베이지색 검색창 달린 거
+************************************************ -->
+ <section class="post-wrapper-top" style="margin-top:65px;">
+    <div class="container">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <ul class="breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li>My Account</li>
+        </ul>
+        <h2>MY ACCOUNT</h2>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <!-- search -->
+        <div class="search-bar">
+          <form action="" method="get">
+            <fieldset>
+              <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
+              <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
+            </fieldset>
+          </form>
+        </div>
+        <!-- / end div .search-bar -->
+      </div>
+    </div>
+  </section>
+  <!-- end post-wrapper-top -->
+<!--*************************************
+	왼쪽에 달린 프로필 사진 및 기타등등 
+*****************************************  -->
+  <section class="section1">
+        <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
+        <div>
+          <div class="teammembers">
+            <div class="he-wrap tpl2">
+              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="">
+              <div class="he-view">
+            
+              </div>
+            </div>
+            <!-- he wrap -->
+            <div class="teammembers-meta">
+              <h4>Paul Smith</h4>
+            </div>
+            <div id="MY-first-1-self-detail">
+							<p>
+								<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+									Plan:It님의&nbsp자기소개입니다</span>
+							</p>
+							<p>Plan:It님의&nbsp자기소개입니다</p>
+							<p>Plan:It님의&nbsp자기소개입니다</p>
 
-<div class="container">
 
+
+
+						</div>
+
+            <small>Developer</small>
+            <div class="teamskills">
+              <h2>a</h2>
+              <h2>a</h2>
+              <h2>a</h2>
+              
+            </div>
+          </div>
+          <!-- end teammembers -->
+        </div>
+</div>
+<!-- ************************************
+	마이페이지 홈 내용
+	-수정폼이동,플래너 및 리뷰 요약, 기타 등등
+***************************************** -->
+<div class="container-fluid ">
+      <div class="content col-md-7">
 	<div class="mypage-content">
 		<div class="mypagemenu">
 			<div id="mypage">
-				<h2>MY PAGE</h2>
+			<!-- 	<h2>MY PAGE</h2> -->
 			</div>
 			<div id="MY-edit">
 				<!-- 회원정보 수정폼으로 이동 -->
@@ -161,111 +244,24 @@ height: 100%;
 				</div><!-- dropdown -->
 			</div><!-- MY-edit -->
 		</div><!-- mypagemenu -->
+		
+		
+		
+		
+		
+		
+		
 		<!-- ------------------------- -->
-		<!--        start first        -->
+		<!--        start First       -->
 		<!-- ------------------------- -->
-		<div class="row" id="MY-first">
-			<!--  프로필 들어갈 div -->
-			<div id="MY-first-name">My Information</div>
-
-			<div id="MY-first-1" class="col-md-5 col-md-offset-1">
-				<!-- 영역 이름 -->
-
-				<!-- 프로필 상세 -->
-				<div class="row">
-					<div id="MY-first-1-pictur" class="col-md-5 .col-md-pull-7">
-						<!-- 프로필 사진 들어갈 div -->
-						<div id="MY-user-picture">
-						 <img src='<c:url value='/images/mypage/default-profille.jpg'/>'
-								class="img-circle" alt="프로필사진" /> 
-							<!-- 이미지 들어갈자리 -->
-						</div>
-					
-					</div>
-
-					<div id="MY-first-1-self" class="col-md-7 .col-md-pull-5">
-						<!-- 자기소개 들어갈 div -->
-						<div id="MY-first-1-self-detail">
-							<p>
-								<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-									Plan:It님의&nbsp자기소개입니다</span>
-							</p>
-							<p>Plan:It님의&nbsp자기소개입니다</p>
-							<p>Plan:It님의&nbsp자기소개입니다</p>
-
-
-
-
-						</div>
-
-
-					</div>
-				</div>
-
-
-			</div>
-			<div id="MY-first-2" class="col-md-6">
-				<!-- 내가작성한 컨텐츠 통계 -->
-				<div class="row">
-					<div id="MY-first-2-inform" class="col-md-11 col-md-offset-1">
-						<!-- 내가 작성한 리뷰, 플랜 및 찜한 컨텐츠 갯수 -->
-						<div id="MY-first-2-planer" class="col-md-4">
-							<ul id="ulPlaner" class="MY-first-2-ul">
-								<li>Planer</li>
-								<li>00</li>
-							</ul>
-						</div>
-						<div id="MY-first-2-review" class="col-md-4">
-							<ul id="ulReview" class="MY-first-2-ul">
-								<li>Review</li>
-								<li>00</li>
-							</ul>
-						</div>
-						<div id="MY-first-2-zzim" class="col-md-4">
-							<ul id="ulZZim" class="MY-first-2-ul">
-								<li>ZZim</li>
-								<li>00</li>
-							</ul>
-						</div>
-
-					</div>
-				</div>
-
-				<!-- 내가작성한 컨텐츠 통계 -->
-				<!-- 나의 선호사항 알려주는 부분 -->
-				<div class="row">
-					<div id="MY-first-2-Like" class="col-md-11 col-md-offset-1">
-						<!-- 내가 작성한 리뷰, 플랜 및 찜한 컨텐츠 갯수 -->
-						<div id="MY-first-2-Like-detail" class="col-md-12">
-							<ul id="ulLike" class="MY-first-2-ul">
-								<li>Like</li>
-								<li><span class="glyphicon glyphicon-map-marker"
-									aria-hidden="true">Mountain</span></li>
-								<li><span class="glyphicon glyphicon-map-marker"
-									aria-hidden="true">Beach</span></li>
-								<li><span class="glyphicon glyphicon-map-marker"
-									aria-hidden="true">Field</span></li>
-								<li><span class="glyphicon glyphicon-map-marker"
-									aria-hidden="true">Valley</span></li>
-							</ul>
-						</div>
-
-
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- ---------------------- -->
-		<!--       end first        -->
-		<!-- ---------------------- -->
-		<!-- ------------------------- -->
-		<!--        start second       -->
-		<!-- ------------------------- -->
-		<div class="row" id="MY-second">
+		<div class="row" id="MY-First">
 			<!--  내가 작성한 플래너 들어갈 div -->
-			<div id="MY-second-name">My Planer</div>
-			<div id="second-line">
-				<div id="MY-second-content" class="col-md-12">
+			<div id="MY-First-name">My Planer</div>
+			<div class="MY-More-Button">
+				 <button type="button" class="btn btn-link"><a href="<c:url value='/planit/mypage/detail/Planner.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
+				</div>
+			<div id="First-line">
+				<div id="MY-First-content" class="col-md-12">
 					<div class="col-md-3" style="border: 1px green solid">
 						<img src="<c:url value='/images/main/slide2.jpg'/>" alt="최신 이미지" />
 					</div>
@@ -290,16 +286,19 @@ height: 100%;
 
 		</div>
 		<!-- ---------------------- -->
-		<!--       end second        -->
+		<!--       end First        -->
 		<!-- ---------------------- -->
 		<!-- ------------------------- -->
-		<!--        start third       -->
+		<!--        start Second       -->
 		<!-- ------------------------- -->
-		<div class="row" id="MY-third">
+		<div class="row" id="MY-Second">
 			<!--  내가 작성한 플래너 들어갈 div -->
-			<div id="MY-third-name">My Review</div>
-			<div id="third-line">
-				<div id="MY-third-content" class="col-md-12">
+			<div id="MY-Second-name">My Review</div>
+			<div class="MY-More-Button">
+				 <button type="button" class="btn btn-link"><a href="<c:url value='/planit/mypage/detail/Review.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
+				</div>
+			<div id="Second-line">
+				<div id="MY-Second-content" class="col-md-12">
 					<div class="col-md-3" style="border: 1px green solid">첫번쨰 이미지
 
 					</div>
@@ -323,18 +322,21 @@ height: 100%;
 
 		</div>
 		<!-- ---------------------- -->
-		<!--       end third        -->
+		<!--       end Second        -->
 		<!-- ---------------------- -->
 		<!-- ------------------------- -->
-		<!--        start forth      -->
+		<!--        start Third      -->
 		<!-- ------------------------- -->
-		<div class="row" id="MY-forth">
+		<div class="row" id="MY-Third">
 			<!--  내가 작성한 플래너 들어갈 div -->
-			<div id="MY-forth-name">My ZZim</div>
-			<div id="forth-line">
-				<div id="forth-content" class="col-md-12">
+			<div id="MY-Third-name">My Liked</div>
+			<div class="MY-More-Button">
+				 <button type="button" class="btn btn-link"><a href="<c:url value='/planit/mypage/detail/Liked.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
+				</div>
+			<div id="Third-line">
+				<div id="Third-content" class="col-md-12">
 					<!-- 찜해제버튼 추가 -->
-					<div id="MY-forth-ZZim-table">
+					<div id="MY-Third-ZZim-table">
 						<table class="table">
 							<tr>
 								<td class="col-md-2 ">ZZim No.</td>
@@ -373,17 +375,21 @@ height: 100%;
 
 		</div>
 		<!-- ---------------------- -->
-		<!--       end forth         -->
+		<!--       end Third         -->
 		<!-- ---------------------- -->
 		<!-- ------------------------- -->
-		<!--        start forth      -->
+		<!--        start Third      -->
 		<!-- ------------------------- -->
-		<div class="row" id="MY-fifth">
+		<div class="row" id="MY-Forth">
 			<!--  내가 작성한 플래너 들어갈 div -->
-			<div id="MY-fifth-name">My Q&A</div>
-			<div id="fifth-line">
-				<div id="MY-fifth-content" class="col-md-12">
-					<div id="MY-fifth-Q&A-table">
+			<div id="MY-Forth-name">My Q&A</div>
+			<div class="MY-More-Button">
+			
+				 <button type="button" class="btn btn-link" ><a href="<c:url value='/planit/mypage/detail/Q&A.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button> 
+				</div>
+			<div id="Forth-line">
+				<div id="MY-Forth-content" class="col-md-12">
+					<div id="MY-Forth-Q&A-table">
 						<table class="table">
 							<tr>
 								<td class="col-md-2 ">번호</td>
@@ -424,7 +430,7 @@ height: 100%;
 
 		</div>
 		<!-- ---------------------- -->
-		<!--       end forth         -->
+		<!--       end Third         -->
 		<!-- ---------------------- -->
 
 
@@ -432,4 +438,7 @@ height: 100%;
 	<!--  end mypage-content -->
 
 </div>
-<!--  end container -->
+<!--  end container --> 
+  `
+</div>
+</section>

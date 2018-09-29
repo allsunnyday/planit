@@ -20,7 +20,6 @@ public class MemberController {
 		return "main/main.tiles";// main은 반드시 tiles로 이동해야 함
 	}
 
-
 	@RequestMapping("/member/login/Join.it")
 	public String gotoJoin() throws Exception {
 		return "login/JoinMain.theme";
@@ -66,5 +65,25 @@ public class MemberController {
 	@RequestMapping("/planit/mypage/partner/PartnerMyPageHome.it")
 	public String gotoPartnerMyPageHome() throws Exception {
 		return "mypage/partner/PartnerMyPageHome.theme";
+	}
+	@RequestMapping("/planit/mypage/detail/Q&A.it")
+	public String gotoQnADetail() throws Exception {
+		return "mypage/DetailQnA.theme";
+		
+	}
+	@RequestMapping("/planit/mypage/detail/Review.it")
+	public String gotoReviewDetail() throws Exception {
+		return "mypage/DetailReview.theme";
+		
+	}
+	@RequestMapping("/planit/mypage/detail/Liked.it")
+	public String gotoLikedDetail() throws Exception {
+		return "mypage/DetailLiked.theme";
+		
+	}
+	@RequestMapping("/planit/mypage/detail/Planner.it")
+	public String gotoPlannerDetail() throws Exception {
+		return "mypage/DetailPlanner.theme";
+		
 	}
 }
