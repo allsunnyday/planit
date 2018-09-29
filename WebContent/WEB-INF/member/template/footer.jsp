@@ -23,7 +23,7 @@
             <ul class="menu">
               <li><a href="index.html">Home</a></li>
               <li><a href="about.html">About</a></li>
-              <li><a href="<c:url value='/planit/search/tourinfo/TourList.it'/>">관광리스트</a></li>
+              <li><a href="<c:url value='#'/>">dd</a></li>
               <li><a href="<c:url value='/planit/search/tourinfo/Notice.it'/>">공지사항</a></li>
               <li><a href="<c:url value='/planit/search/tourinfo/Qna.it'/>">Q&A</a></li>
             </ul>

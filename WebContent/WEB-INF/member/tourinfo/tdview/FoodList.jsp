@@ -11,16 +11,15 @@
   ======================================================= -->
 
 <body>
-  
-<jsp:include page="topMenu.jsp" flush="false" />
-    
-  <section class="post-wrapper-top">
+   <jsp:include page="topMenu.jsp" flush="false" />
+   
+    <section class="post-wrapper-top">
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
-        <li>한번자는곳 좋은곳에서!</li>
+        <li>맛있게 식사를!</li>
         </ul>
-        <h2>PLAN-IT에 등록되어 있는 숙소들</h2>
+        <h2>PLAN-IT에 등록되어 있는 식당들</h2>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <!-- search -->
@@ -38,6 +37,10 @@
   </section>
   <!-- end post-wrapper-top -->
 
+
+<!--*********************************** 
+ 		 분류별로 표시하는 목록바
+ ***********************************-->
   <section class="section1">
     <div class="container clearfix">
       <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
@@ -47,23 +50,28 @@
         <nav class="portfolio-filter clearfix">
           <ul>
             <li><a href="#" class="dmbutton2" data-filter="*">모두보기(몇개인지 뿌려주기)</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".hotel">호텔</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".motel">여관/모텔</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".pension">펜션</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".korea">한식</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".china">중식</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".western">양식</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".japan">일식</a></li>
           </ul>
         </nav>
 
+
+<!--*********************************** 
+ 		각 음식점 정보 (data-rel 지워줘야 넘어감)
+ ***********************************-->
         <div class="portfolio-centered">
           <div class="recentitems portfolio">
 
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
               <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/hotel.PNG'/>" alt="">
+                <img src="<c:url value='/images/list/222.jpg'/>" alt="">
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
                     <h3 class="big a1" data-animate="fadeInDown">서울 호텔</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_01.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
+                    class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                     </div>
                     <!-- portfolio_category -->
@@ -78,7 +86,7 @@
             </div>
             <!-- end col-4 -->
 
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 web-design motel">
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 web-design korea">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/motel.PNG'/>" alt="">
                 <div class="he-view">
@@ -100,7 +108,7 @@
             </div>
             <!-- end col-4 -->
 
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/pen.PNG'/>" alt="">
                 <div class="he-view">
@@ -122,7 +130,7 @@
             </div>
             <!-- end col-4 -->
 
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 china">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/hotel.PNG'/>" alt="">
                 <div class="he-view">
@@ -144,7 +152,7 @@
             </div>
             <!-- end col-12 -->
 
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 motel">
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/motel.PNG'/>" alt="">
                 <div class="he-view">
@@ -166,7 +174,7 @@
             </div>
             <!-- end col-12 -->
 
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/hotel.PNG'/>" alt="">
                 <div class="he-view">
@@ -189,7 +197,7 @@
             <!-- end col-12 -->
 
 
-			<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 motel">
+			<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/motel2.PNG'/>" alt="">
                 <div class="he-view">
@@ -213,7 +221,7 @@
             
             
             
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 korea">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/pen.PNG'/>" alt="">
                 <div class="he-view">
@@ -238,7 +246,7 @@
             
             
             
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 korea">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/pen.PNG'/>" alt="">
                 <div class="he-view">
@@ -264,7 +272,7 @@
             
             
             
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 web-design">
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 china">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/hotel.PNG'/>" alt="">
                 <div class="he-view">
@@ -287,7 +295,7 @@
             <!-- end col-12 -->
             
             
-             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
+             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/pen.PNG'/>" alt="">
                 <div class="he-view">
@@ -310,7 +318,7 @@
             <!-- end col-4 -->
             
             
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 motel">
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/motel2.PNG'/>" alt="">
                 <div class="he-view">
@@ -332,6 +340,7 @@
             </div>
             <!-- end col-12 -->
 
+
           </div>
           <!-- portfolio -->
         </div>
@@ -341,8 +350,12 @@
       <!-- end container -->
   </section>
   <!-- end section -->
+<!--*********************************** 
+ 		페이징 준비중
+ ***********************************-->
   <div>
   페이징
   </div>
   <div class="dmtop">Scroll to Top</div>
 </body>
+  
