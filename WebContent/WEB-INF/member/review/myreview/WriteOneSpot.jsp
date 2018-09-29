@@ -21,6 +21,11 @@
 	
 	.text_block{
 		margin-top: 10px;
+		
+	}
+	
+	.text-wrap{
+		padding: 10px;
 	}
 </style>
 <script type="text/javascript">
@@ -171,13 +176,14 @@
 				</div>
 				<!--사용자가 입력하는 공간##########글  -->
 				<div class="col-sm-offset-1 col-sm-10 text_block">
-					<a href="javascript:" onclick="edit()" class="dmbutton2">수정</a> 
-					<a href="javascript:" onclick="save()" class="dmbutton2">완료</a>
+					<p>글을 클릭하시면 수정할 수 있어요!</p>
+					<!-- <a href="javascript:" onclick="edit()" class="dmbutton2">수정</a> 
+					<a href="javascript:" onclick="save()" class="dmbutton2">완료</a> -->
 					<hr>
 				</div>
 				<div class="col-sm-offset-1 col-sm-10 ">
-					<div class="text-wrap">
-						<div class="summernote"></div>
+					<div class="text-wrap" >
+						<div class="summernote">소중한 순간을 기록해 보세요</div>
 					</div>
 				</div>
 			</div>
@@ -191,8 +197,14 @@
 	var edit = function() {
 	  $('.summernote').summernote({
 		  focus: true,
-		  /* airMode: true,  */
+		  airMode: true,
 		  placeholder: '소중한 순간을 기록해보세요!'
+		 /*  popover: {
+			    air: [
+			      ['color', ['color']],
+			      ['font', ['bold', 'underline', 'clear']]
+			    ]
+			  } */
 		  });
 	};
 
@@ -200,8 +212,24 @@
 	  var markup = $('.summernote').summernote('code');
 	  $('.summernote').summernote('destroy');
 	};
+	
+	
 	$(function(){
 		
+		$('.summernote').click(function(){
+			var content=$('.summernote').html(); 
+			console.log('content'+content);
+			if(content=='소중한 순간을 기록해 보세요'){
+				$('.summernote').html('');
+			}
+			edit();
+			$('.text-wrap').css('border', '1px solid #cecece');
+		});
+		
+		$(document).on('blur', '.summernote', function(){
+			save();
+			$('.text-wrap').css('border', 'none');
+		});
 	});
 </script>
 <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet"> -->
