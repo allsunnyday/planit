@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
   });
 
   // DM Menu
-  $('#nav').affix({
+ $('#nav').affix({
     offset: {
       top: $('#nav').offset().top
     }

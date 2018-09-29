@@ -1,12 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-  <section class="section1">
+		
+  <section class="section1" style="background-color: #47698c;">
     <div class="container clearfix">
       <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 
         <div class="general-title text-center">
-          <h3>POPULAR ITEMS</h3>
-          <p>Last week's best seller items</p>
+          <h3 style="color: white;">POPULAR ITEMS</h3>
+          <p style="color: white;">Last week's best seller items</p>
           <hr>
         </div>
 
@@ -14,8 +17,8 @@
 
         <div id="popularitems" class="owl-carousel">
           <div class="col-lg-12">
-            <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_01.png" alt="">
+            <div class="he-wrap tpl6 market-item" >
+              <img class="lazyOwl" src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">First Item</h3>
@@ -40,7 +43,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_02.png" alt="">
+              <img class="lazyOwl" src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">Second Item</h3>
@@ -65,7 +68,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_04.png" alt="">
+              <img class="lazyOwl" src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">Third Item</h3>
@@ -90,7 +93,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_03.png" alt="">
+              <img class="lazyOwl" src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">Fourth Item</h3>
@@ -115,7 +118,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_05.png" alt="">
+              <img class="lazyOwl" src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">Fifth Item</h3>
@@ -140,7 +143,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_06.png" alt="">
+              <img class="lazyOwl" src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">Sixth Item</h3>
@@ -173,7 +176,5 @@
     <!-- end container -->
   </section>
   <!-- end section -->
-
-
-
-
+		
+	

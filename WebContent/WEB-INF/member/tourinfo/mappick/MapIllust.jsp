@@ -154,6 +154,7 @@
 	border-width: 0px;
 	cursor: pointer;
 }
+
 </style>
 
 <div class="container-fluid" style="padding-top: 80px">
@@ -221,36 +222,22 @@
 		컨텐츠 추천 
 		***********************
 		-->
-		<div class="col-md-7"
-			style="background-color: #47698c; height: 100%; border: 2px red solid;">
-			<div class="container clearfix">
-				<div class="content col-sm-7 clearfix"
-					style="display: inline-block; padding-top: 0px;">
-					<!--  제목-->
-					<div class="general-title text-center" style="color: white;">
-						<h3>POPULAR PLACE</h3>
-						<p style="color: white;">Last week's best seller items</p>
-						<hr>
-					</div>
-					<!-- 000000000000000000000000000000000000000 -->
-
-
-  <section class="section1">
+		 <section class="section1" style="background-color: #47698c;">
     <div class="container clearfix">
       <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 
         <div class="general-title text-center">
-          <h3>POPULAR ITEMS</h3>
-          <p>Last week's best seller items</p>
+          <h3 style="color: white;">POPULAR ITEMS</h3>
+          <p style="color: white;">Last week's best seller items</p>
           <hr>
         </div>
 
         <div class="divider"></div>
 
-        <div id="popularitems" class="owl-carousel">
+        <div id="popularitems" class="owl-carousel owl-theme">
           <div class="col-lg-12">
-            <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_01.png" alt="">
+            <div class="he-wrap tpl6 market-item" >
+              <img class="lazyOwl"  src="<c:url value='/images/MapPage/expic.jpg'/>" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">First Item</h3>
@@ -275,7 +262,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_02.png" alt="">
+              <img class="lazyOwl"  src="<c:url value='/images/MapPage/expic.jpg'/>" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">Second Item</h3>
@@ -300,7 +287,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_04.png" alt="">
+              <img class="lazyOwl"  src="<c:url value='/images/MapPage/expic.jpg'/>" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">Third Item</h3>
@@ -325,7 +312,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_03.png" alt="">
+              <img class="lazyOwl" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">Fourth Item</h3>
@@ -350,7 +337,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_05.png" alt="">
+              <img class="lazyOwl" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">Fifth Item</h3>
@@ -375,7 +362,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="img/market_06.png" alt="">
+              <img class="lazyOwl" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">Sixth Item</h3>
@@ -400,21 +387,247 @@
 
         </div>
         <!-- popular items -->
+        <!-- 컨텐츠 별 추천0000000000000000000000000000000000000000000000000000000000 -->
+        
+        
       </div>
       <!-- end content -->
 
      
     </div>
     <!-- end container -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     <div class="container clearfix">
+      <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
+
+        <div class="general-title text-center">
+          <h3 style="color: white;">POPULAR ITEMS</h3>
+          <p style="color: white;">Last week's best seller items</p>
+          <hr>
+        </div>
+
+        <div class="divider"></div>
+
+        <div id="popularitems" class="owl-carousel owl-theme">
+          <div class="col-lg-12">
+            <div class="he-wrap tpl6 market-item" >
+              <img class="lazyOwl"  src="<c:url value='/images/MapPage/expic.jpg'/>" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <h3 class="a1" data-animate="fadeInDown">First Item</h3>
+                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">Buy now</a>
+                  <div class="rating text-center a2" data-animate="fadeIn">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                  <!-- rating -->
+                </div>
+                <!-- he bg -->
+              </div>
+              <!-- he view -->
+            </div>
+            <!-- he wrap -->
+          </div>
+          <!-- end col-12 -->
+
+          <div class="col-lg-12">
+            <div class="he-wrap tpl6 market-item">
+              <img class="lazyOwl"  src="<c:url value='/images/MapPage/expic.jpg'/>" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <h3 class="a1" data-animate="fadeInDown">Second Item</h3>
+                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">Buy now</a>
+                  <div class="rating text-center a2" data-animate="fadeIn">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <!-- rating -->
+                </div>
+                <!-- he bg -->
+              </div>
+              <!-- he view -->
+            </div>
+            <!-- he wrap -->
+          </div>
+          <!-- end col-12 -->
+
+          <div class="col-lg-12">
+            <div class="he-wrap tpl6 market-item">
+              <img class="lazyOwl"  src="<c:url value='/images/MapPage/expic.jpg'/>" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <h3 class="a1" data-animate="fadeInDown">Third Item</h3>
+                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">Buy now</a>
+                  <div class="rating text-center a2" data-animate="fadeIn">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <!-- rating -->
+                </div>
+                <!-- he bg -->
+              </div>
+              <!-- he view -->
+            </div>
+            <!-- he wrap -->
+          </div>
+          <!-- end col-12 -->
+
+          <div class="col-lg-12">
+            <div class="he-wrap tpl6 market-item">
+              <img class="lazyOwl" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <h3 class="a1" data-animate="fadeInDown">Fourth Item</h3>
+                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">Buy now</a>
+                  <div class="rating text-center a2" data-animate="fadeIn">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <!-- rating -->
+                </div>
+                <!-- he bg -->
+              </div>
+              <!-- he view -->
+            </div>
+            <!-- he wrap -->
+          </div>
+          <!-- end col-12 -->
+
+          <div class="col-lg-12">
+            <div class="he-wrap tpl6 market-item">
+              <img class="lazyOwl" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <h3 class="a1" data-animate="fadeInDown">Fifth Item</h3>
+                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">Buy now</a>
+                  <div class="rating text-center a2" data-animate="fadeIn">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                  <!-- rating -->
+                </div>
+                <!-- he bg -->
+              </div>
+              <!-- he view -->
+            </div>
+            <!-- he wrap -->
+          </div>
+          <!-- end col-12 -->
+
+          <div class="col-lg-12">
+            <div class="he-wrap tpl6 market-item">
+              <img class="lazyOwl" data-src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <h3 class="a1" data-animate="fadeInDown">Sixth Item</h3>
+                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">Buy now</a>
+                  <div class="rating text-center a2" data-animate="fadeIn">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                  <!-- rating -->
+                </div>
+                <!-- he bg -->
+              </div>
+              <!-- he view -->
+            </div>
+            <!-- he wrap -->
+          </div>
+          <!-- end col-12 -->
+
+        </div>
+        <!-- popular items -->
+        <!-- 컨텐츠 별 추천0000000000000000000000000000000000000000000000000000000000 -->
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </div>
+      <!-- end content -->
+
+     
+    </div>
+    <!-- end container -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   </section>
   <!-- end section -->
 
-
-
-					<!-- 000000000000000000000000000000000000000 -->
-				</div>
-			</div>
-
-		</div>
+		
+		
 	</div>
 </div>
+		
+ 
