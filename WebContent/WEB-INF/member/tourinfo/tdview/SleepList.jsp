@@ -11,15 +11,20 @@
   ======================================================= -->
 
 <body>
-   <jsp:include page="topMenu.jsp" flush="false" />
-   
-    <section class="post-wrapper-top">
+ <!--************************************** 
+ 	삽입
+ **************************************-->
+<jsp:include page="topMenu.jsp" flush="false" />
+<!--************************************** 
+ 	삽입
+ **************************************-->
+  <section class="post-wrapper-top">
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
-        <li>맛있게 식사를!</li>
+        <li>한번자는곳 좋은곳에서!</li>
         </ul>
-        <h2>PLAN-IT에 등록되어 있는 식당들</h2>
+        <h2>PLAN-IT에 등록되어 있는 숙소들</h2>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <!-- search -->
@@ -36,7 +41,9 @@
     </div>
   </section>
   <!-- end post-wrapper-top -->
-
+<!--*********************************** 
+ 		 분류별로 표시하는 목록바
+ ***********************************-->
   <section class="section1">
     <div class="container clearfix">
       <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
@@ -46,16 +53,17 @@
         <nav class="portfolio-filter clearfix">
           <ul>
             <li><a href="#" class="dmbutton2" data-filter="*">모두보기(몇개인지 뿌려주기)</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".korea">한식</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".china">중식</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".western">양식</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".japan">일식</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".hotel">호텔</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".motel">여관/모텔</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".pension">펜션</a></li>
           </ul>
         </nav>
 
         <div class="portfolio-centered">
           <div class="recentitems portfolio">
-
+<!--*********************************** 
+ 		각 숙박 업소 정보
+ ***********************************-->
             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
               <div class="he-wrap tpl6 market-item">
                 <img src="<c:url value='/images/hotel.PNG'/>" alt="">
@@ -63,7 +71,7 @@
                   <div class="bg a0" data-animate="fadeIn">
                     <h3 class="big a1" data-animate="fadeInDown">서울 호텔</h3>
                     <a data-rel="prettyPhoto" href="img/portfolio_01.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <a href="<c:url value='/planit/search/list/SleepView'/>" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                     </div>
                     <!-- portfolio_category -->
@@ -332,7 +340,6 @@
             </div>
             <!-- end col-12 -->
 
-
           </div>
           <!-- portfolio -->
         </div>
@@ -342,9 +349,11 @@
       <!-- end container -->
   </section>
   <!-- end section -->
+<!--*********************************** 
+ 		뻬이징
+ ***********************************-->
   <div>
   페이징
   </div>
   <div class="dmtop">Scroll to Top</div>
 </body>
-  

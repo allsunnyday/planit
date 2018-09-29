@@ -13,9 +13,11 @@
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/main.css">
 <script src="https://365ok.co.kr/theme/ok/js/jquery-2.2.4.min.js"></script>
 <body>
-<!-- 콘텐츠 시작 { -->
+
 <div id="main" class="container">
-        <!-- start sub title -->
+<!--*********************************** 
+ 		 공지사항 글씨 / 이미지
+ ***********************************-->
 			<section class="sub-area relative" id="home">
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
@@ -23,7 +25,6 @@
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
 								공지사항							</h1>
-							<p class="text-white link-nav"><a href="https://365ok.co.kr/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="#"> 공지사항</a></p>
 						</div>
 					</div>
 				</div>
@@ -33,8 +34,9 @@
 <!-- 게시판 목록 시작 { -->
 <section class="service-area pt-50 pb-50" id="lecture">
 
-
-    <!-- 게시판 페이지 정보 및 버튼 시작 { -->
+<!--*********************************** 
+ 		게시글 수
+ ***********************************-->
     <div id="bo_btn_top">
         <div id="bo_list_total">
             <span>Total 37건</span>
@@ -42,10 +44,7 @@
         </div>
 
             </div>
-    <!-- } 게시판 페이지 정보 및 버튼 끝 -->
 
-    <!-- 게시판 카테고리 시작 { -->
-        <!-- } 게시판 카테고리 끝 -->
 
     <form name="fboardlist" class="form" id="fboardlist" action="./board_list_update.php" onsubmit="return fboardlist_submit(this);" method="post">
     <input type="hidden" name="bo_table" value="notice">
@@ -57,7 +56,9 @@
     <input type="hidden" name="sod" value="">
     <input type="hidden" name="page" value="1">
     <input type="hidden" name="sw" value="">
-
+<!--*********************************** 
+ 		 공지사항 테이블
+ ***********************************-->
     <table class="table table-striped table-hover">
         <thead>
         <tr>
@@ -313,7 +314,9 @@
     
     </form>
 
-       <!-- 게시판 검색 시작 { -->
+<!--*********************************** 
+ 		게시글 검색
+ ***********************************-->
     <div class="text-center">
 
         <form name="fsearch" method="get" class="form-inline">
@@ -346,29 +349,9 @@
 <a href="./board.php?bo_table=notice&amp;page=3" class="pg_page pg_end">맨끝</a>
 </span></nav>
 
-<!-- } 게시판 목록 끝 -->
 
 </div>
-<!-- } 콘텐츠 끝 -->
 
-<script src="https://365ok.co.kr/js/common.js?ver=171222"></script>
-<script src="https://365ok.co.kr/js/wrest.js?ver=171222"></script>
-<script src="https://365ok.co.kr/js/placeholders.min.js"></script>
-
-<script src="https://365ok.co.kr/theme/ok/js/popper.min.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/bootstrap.min.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/easing.min.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/hoverIntent.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/superfish.min.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/mn-accordion.js"></script>
-<!--<script src="https://365ok.co.kr/theme/ok/js/jquery.ajaxchimp.min.js"></script>-->
-<script src="https://365ok.co.kr/theme/ok/js/jquery.magnific-popup.min.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/owl.carousel.min.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/jquery.nice-select.min.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/jquery.counterup.min.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/waypoints.min.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/mail-script.js"></script>
-<script src="https://365ok.co.kr/theme/ok/js/main.js"></script>
 
 </body>
 
