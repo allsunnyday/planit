@@ -57,7 +57,6 @@
 		<!-- footer end -->
 	
 
-	
 	  <!-- JavaScript Libraries -->
   
   <script src="<c:url value='/main_theme/lib/php-mail-form/validate.js'/> "></script>

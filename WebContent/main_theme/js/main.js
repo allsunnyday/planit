@@ -34,12 +34,16 @@ jQuery(document).ready(function($) {
   });
 
   // DM Menu
-  $('#nav').affix({
-    offset: {
-      top: $('#nav').offset().top
-    }
-  });
-
+  console.log($('#nav').offset());
+  console.log($('.navbar-header').offset());
+  
+	  $('#nav').affix({
+	    offset: {
+	      top: $('#nav').offset().top
+	    }
+	  });
+  
+ 
   // Menu
   $(".panel a").click(function(e) {
     e.preventDefault();

@@ -108,7 +108,7 @@
 리뷰작성페이지 step2
 하나의 일정에 대한 리뷰를 작성한다.
 ************************************************************** -->
-<div style="padding-top: 60px"></div>
+<div id="nav" style="padding-top: 60px"></div>
 <section id="intro"
 	style="background: url( <c:url value='/images/main/slide1.jpg'/> ) center center no-repeat fixed;">
 	<div class="container">
@@ -170,12 +170,14 @@
 					</div>
 				</div>
 				<!--사용자가 입력하는 공간##########글  -->
-				<div class="col-sm-offset-1 col-sm-2">
+				<div class="col-sm-offset-1 col-sm-10 text_block">
+					<a href="javascript:" onclick="edit()" class="dmbutton2">수정</a> 
+					<a href="javascript:" onclick="save()" class="dmbutton2">완료</a>
 					<hr>
 				</div>
-				<div class="col-sm-offset-1 col-sm-10 text_block">
+				<div class="col-sm-offset-1 col-sm-10 ">
 					<div class="text-wrap">
-						<textarea style="width: 100%;" rows="15" id="content"></textarea>
+						<div class="summernote"></div>
 					</div>
 				</div>
 			</div>
@@ -186,13 +188,20 @@
 </section>
 
 <script>
+	var edit = function() {
+	  $('.summernote').summernote({
+		  focus: true,
+		  /* airMode: true,  */
+		  placeholder: '소중한 순간을 기록해보세요!'
+		  });
+	};
+
+	var save = function() {
+	  var markup = $('.summernote').summernote('code');
+	  $('.summernote').summernote('destroy');
+	};
 	$(function(){
-		 $('#content').summernote({
-			 height: 300,
-		     minHeight: null,
-		     maxHeight: null,
-		    
-		});
+		
 	});
 </script>
 <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet"> -->
