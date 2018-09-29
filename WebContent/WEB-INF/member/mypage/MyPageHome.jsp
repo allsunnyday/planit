@@ -147,17 +147,13 @@ height: 100%;
 	
 }
 </style>
-<!-- *******************************************
-	베이지색 검색창 달린 거
-************************************************ -->
- <section class="post-wrapper-top" style="margin-top:65px;">
+<section class="post-wrapper-top">
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
-          <li><a href="index.html">Home</a></li>
-          <li>My Account</li>
+        <li>akdlvpdlwl</li>
         </ul>
-        <h2>MY ACCOUNT</h2>
+        <h2>PLAN-IT에 등록되어 있는 식당들</h2>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <!-- search -->
@@ -174,33 +170,61 @@ height: 100%;
     </div>
   </section>
   <!-- end post-wrapper-top -->
-<!--*************************************
-	왼쪽에 달린 프로필 사진 및 기타등등 
-*****************************************  -->
-  <section class="section1">
-        <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
-        <div>
+  <!--***********************************************************
+  오른쪽 (사이드바) 
+  ***************************************************************  -->
+<section class="section1" >
+    <div class="container-fluid clearfix">
+      <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
+        
+        
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 full-left">
           <div class="teammembers">
             <div class="he-wrap tpl2">
               <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="">
               <div class="he-view">
-            
+                <div class="bg a0" data-animate="fadeIn">
+                  <div class="center-bar">
+                    <a href="#" class="twitter a0" data-animate="elasticInDown"></a>
+                    <a href="#" class="facebook a1" data-animate="elasticInDown"></a>
+                    <a href="#" class="google a2" data-animate="elasticInDown"></a>
+                  </div>
+                  <!-- center  bar -->
+                </div>
               </div>
             </div>
             <!-- he wrap -->
             <div class="teammembers-meta">
-              <h4>Paul Smith</h4>
+              <h4>사용자 이름</h4>
             </div>
-            <div id="MY-first-1-self-detail">
-							<p>
-								<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-									Plan:It님의&nbsp자기소개입니다</span>
-							</p>
-							<p>Plan:It님의&nbsp자기소개입니다</p>
-							<p>Plan:It님의&nbsp자기소개입니다</p>
+            <p>자기소개 아ㅓㄹ아ㅓ 알 ㅇ런 ㅇ란 일나 ㄹ</p>
+            <small>등급?</small>
+            <div class="teamskills">
+              <div class="progress">
+                <div data-effect="slide-left" "><span>나의 플래너</span></div>
+              </div>
+              <div class="progress">
+                <div data-effect="slide-left" ><span>나의 리뷰</span></div>
+              </div>
+              <div class="progress">
+                <div data-effect="slide-left"><span>좋아요</span></div>
+              </div>
+              <div class="progress">
+                <div data-effect="slide-left"><span></span></div>
+              </div>
+              <div class="progress">
+                <div data-effect="slide-left"><span>좋아요</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- end teammembers -->
+        </div>
+        <!-- end col 4 -->
+ <!--***********************************************************
+ 위를 jsp include 로 변경해야 한다. 
+  ***************************************************************  -->
 
-
-
+	<div class="col-sm-8 " >
 
 						</div>
 
@@ -260,8 +284,78 @@ height: 100%;
 			<div class="MY-More-Button">
 				 <button type="button" class="btn btn-link"><a href="<c:url value='/planit/mypage/detail/Planner.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
 				</div>
-			<div id="First-line">
-				<div id="MY-First-content" class="col-md-12">
+
+
+			</div>
+			<div id="MY-first-2" class="col-md-6">
+				<!-- 내가작성한 컨텐츠 통계 -->
+				<div class="row">
+					<div id="MY-first-2-inform" class="col-md-11 col-md-offset-1">
+						<!-- 내가 작성한 리뷰, 플랜 및 찜한 컨텐츠 갯수 -->
+						<div id="MY-first-2-planer" class="col-md-4">
+							<ul id="ulPlaner" class="MY-first-2-ul">
+								<li>Planer</li>
+								<li>00</li>
+							</ul>
+						</div>
+						<div id="MY-first-2-review" class="col-md-4">
+							<ul id="ulReview" class="MY-first-2-ul">
+								<li>Review</li>
+								<li>00</li>
+							</ul>
+						</div>
+						<div id="MY-first-2-zzim" class="col-md-4">
+							<ul id="ulZZim" class="MY-first-2-ul">
+								<li>ZZim</li>
+								<li>00</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- 내가작성한 컨텐츠 통계 -->
+				<!-- 나의 선호사항 알려주는 부분 -->
+				<div class="row">
+					<div id="MY-first-2-Like" class="col-md-11 col-md-offset-1">
+						<!-- 내가 작성한 리뷰, 플랜 및 찜한 컨텐츠 갯수 -->
+						<div id="MY-first-2-Like-detail" class="col-md-12">
+							<ul id="ulLike" class="MY-first-2-ul">
+								<li>Like</li>
+								<li><span class="glyphicon glyphicon-map-marker"
+									aria-hidden="true">Mountain</span></li>
+								<li><span class="glyphicon glyphicon-map-marker"
+									aria-hidden="true">Beach</span></li>
+								<li><span class="glyphicon glyphicon-map-marker"
+									aria-hidden="true">Field</span></li>
+								<li><span class="glyphicon glyphicon-map-marker"
+									aria-hidden="true">Valley</span></li>
+							</ul>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ---------------------- -->
+		<!--       end first        -->
+		<!-- ---------------------- -->
+		
+		
+		
+		
+		
+		
+		
+		<!-- ------------------------- -->
+		<!--        start second       -->
+		<!-- ------------------------- -->
+		<div class="row" id="MY-second">
+			<!--  내가 작성한 플래너 들어갈 div -->
+			<div id="MY-second-name">My Planer</div>
+			<div id="second-line">
+				<div id="MY-second-content" class="col-md-12">
 					<div class="col-md-3" style="border: 1px green solid">
 						<img src="<c:url value='/images/main/slide2.jpg'/>" alt="최신 이미지" />
 					</div>
@@ -436,9 +530,9 @@ height: 100%;
 
 	</div>
 	<!--  end mypage-content -->
+	</div>
 
 </div>
-<!--  end container --> 
-  `
+<!--  end container -->
 </div>
 </section>
