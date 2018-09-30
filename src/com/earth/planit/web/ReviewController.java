@@ -1,7 +1,10 @@
 package com.earth.planit.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ReviewController {
@@ -44,6 +47,17 @@ public class ReviewController {
 	@RequestMapping("/photobook/step2/Preview.it")
 	public String previewBook()throws Exception{
 		return "review/photobook/PreviewBook.theme";
+	}
+	
+	
+	////////////////////////////////////////ajax
+	@ResponseBody
+	@RequestMapping(value="/review/write/UploadReview.it",produces="text/html; charset=UTF-8")
+	public String uploadReview(HttpServletRequest multi)throws Exception{
+		System.out.println(multi.getAttribute("content")==null?"nothing":multi.getAttribute("content"));
+		/// ajax로 왜 내용이 넘어오지 않는지..확인이 필요 !! ! 
+		
+		return "success";  //리턴으로 WriteReview를 보내준다. 
 	}
 
 }
