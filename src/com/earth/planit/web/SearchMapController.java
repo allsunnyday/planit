@@ -21,9 +21,9 @@ public class SearchMapController {
 		return "tourinfo/ListNMapPick.theme";
 	}
 	
-	@RequestMapping("/tourinfo/mappick/MapMain.it")
+	@RequestMapping("/tourinfo/mappick/MapPage.it")
 	public String gotoMapPick()throws Exception{
-		return "tourinfo/mappick/MapMain.theme";
+		return "tourinfo/mappick/MapPage.theme";
 	}
 	
 	@RequestMapping("/tourinfo/reviewpick/Reviewpick.it")
@@ -36,8 +36,7 @@ public class SearchMapController {
 		return "tourinfo/mappick/MapIllust.theme";
 	}
 	
-	@RequestMapping("/tourinfo/reviewpick/MapMain.it")
-	public String gotoMapMain()throws Exception{
-		return "tourinfo/mappick/MapMain.theme";
-	}
+	
+	
+	
 }
