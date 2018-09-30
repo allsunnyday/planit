@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@  taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-
 <style>
 	#imgs_wrap img{
 		width: 120px;
@@ -128,7 +126,7 @@
 			<nav class="portfolio-filter clearfix">
 				<ul>
 					<li><a href="javascript:" onclick="submitAction();" class="dmbutton up_button" data-filter="*">저장하기</a></li>
-					<li><a href="#" class="dmbutton" data-filter="*">나가기</a></li>
+					<li><a href="javascript:" onclick="exit();" class="dmbutton" data-filter="*">나가기</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -194,6 +192,18 @@
 </section>
 
 <script>
+	var isChangeContent = false;
+	
+	var exit = function(){
+		if(isChangeContent && confirm('저장하지 않으면 내용이 날아갑니다. ')){
+			console.log('나가자 ');
+			history.back();
+		}else{
+			history.back();
+		}
+		
+	};
+
 	var edit = function() {
 	  $('.summernote').summernote({
 		  focus: true,
@@ -211,11 +221,18 @@
 	var save = function() {
 	  var markup = $('.summernote').summernote('code');
 	  $('.summernote').summernote('destroy');
+	  $('.text_block p').html('글을 클릭하시면 수정할 수 있어요!');
+	  $('.text-wrap').css('border', 'none');
+	  console.log('content'+$('.summernote').val());
+	  if($('.summernote').html()=='<br>'){
+		  $('.summernote').html('소중한 순간을 기록해 보세요');
+		  isChangeContent = false;
+	  }
 	};
 	
 	
 	$(function(){
-		
+		// 글을 클릭하면 summernote를 활성화시킨다. 
 		$('.summernote').click(function(){
 			var content=$('.summernote').html(); 
 			console.log('content'+content);
@@ -224,12 +241,13 @@
 			}
 			edit();
 			$('.text-wrap').css('border', '1px solid #cecece');
+			$('.text_block p').html('<a href="javascript:" onclick="save()" class="dmbutton2">완료</a>');
+			
+			isChangeContent = true;
+			
 		});
 		
-		$(document).on('blur', '.summernote', function(){
-			save();
-			$('.text-wrap').css('border', 'none');
-		});
+		
 	});
 </script>
 <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet"> -->

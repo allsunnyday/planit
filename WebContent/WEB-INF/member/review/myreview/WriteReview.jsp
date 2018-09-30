@@ -21,14 +21,36 @@
 			</div>
 		</div>
 		<div class="col-md-2">
-			<nav class="portfolio-filter clearfix">
+			<div class="portfolio-filter clearfix">
 				<ul>
-					<li><a href="#" class="dmbutton" data-filter="*">배경변경</a></li>
-					
+					<li><button class="dmbutton" data-toggle="modal" data-target="#changebg">배경변경</button></li>
 				</ul>
-			</nav>
+			</div>
 		</div>
 	</div>
+	<!-- changebg modal -->
+	<div class="modal fade" id="changebg" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="changbglabel">이미지를 선택해주세요</h5>
+				</div>
+				<div class="modal-body">
+		        	<div class="input-group">
+					  <div class="custom-file text-center">
+					    <input type="file" class="custom-file-input" id="inputGroupFile04">
+					  </div>
+					</div>
+		      	</div>
+		     	 <div class="modal-footer">
+		       	 	<button type="button" class="dmbutton2" data-dismiss="modal">닫기</button>
+		        	<button type="button" class="dmbutton2">저장</button>
+		      	</div>
+			</div>
+		</div>
+	</div>
+	<!-- changebg modal -->
+	
 </section>
 <section class="section1">
     <div class="container clearfix">
@@ -64,10 +86,6 @@
         </div>
         <!-- end col-lg 8 -->
 		
-		
-		
-		
-		
 		<!-- 테이블 넣기  -->
 	    <div class="col-lg-8 col-md-8 col-sm-12">
 		<div id="comments_wrapper">
@@ -77,7 +95,7 @@
 	              <article class="comment">
 	                <div class="comment-content">
 	                  <h4 class="comment-author">한강 <small class="comment-meta"></small>
-	                       <span class="comment-reply"><a href="<c:url value='/riveiw/write/OneSpot.it'/> " class="comment-reply button small" >리뷰작성</a></span>
+	                       <span class="comment-reply"><a href="<c:url value='/riveiw/write/OneSpot.it'/> " class="comment-reply dmbutton2 small" >리뷰작성</a></span>
 	                   </h4> 주소 / 관람시간 / 비용   
 	                </div>
 	              </article>
@@ -87,7 +105,7 @@
 	              <article class="comment">
 	                <div class="comment-content">
 	                  <h4 class="comment-author">여의도 공원 <small class="comment-meta"></small>
-	                       <span class="comment-reply"><a href="#" class="comment-reply button small">리뷰작성</a></span>
+	                       <span class="comment-reply"><a href="#" class="comment-reply dmbutton2 small">리뷰작성</a></span>
 	                   </h4> 서울시 여의도  / 제한없음 / 무료   
 	                </div>
 	              </article>
@@ -97,7 +115,7 @@
 	              <article class="comment">
 	                <div class="comment-content">
 	                  <h4 class="comment-author">경복궁 <small class="comment-meta"></small>
-	                       <span class="comment-reply"><a href="#" class="comment-reply button small">리뷰작성</a></span>
+	                       <span class="comment-reply"><a href="#" class="comment-reply dmbutton2 small">리뷰작성</a></span>
 	                   </h4> 서울시 광화문  / 9:00 - 5:00 / 4000원  
 	                </div>
 	              </article>
@@ -107,7 +125,7 @@
 	              <article class="comment">
 	                <div class="comment-content">
 	                  <h4 class="comment-author">경복궁 <small class="comment-meta"></small>
-	                       <span class="comment-reply"><a href="#" class="comment-reply button small">리뷰작성</a></span>
+	                       <span class="comment-reply"><a href="#" class="comment-reply dmbutton2 small">리뷰작성</a></span>
 	                   </h4> 서울시 광화문  / 9:00 - 5:00 / 4000원  
 	                </div>
 	              </article>
