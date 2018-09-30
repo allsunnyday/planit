@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 .mypage-content {
+
 	/* margin-top: 100px; */
 	/* border: 3px black solid; */
 }
@@ -20,6 +21,7 @@
 }
 
 #MY-edit-button {
+	background-colorl:whith;
 	border: 1.5px rgb(53, 181, 157) solid;
 	/*  background-color: lightgray; */
 	color: rgb(53, 181, 157);
@@ -55,7 +57,7 @@ height: 100%; */
 	margin: auto;
 	display: block;
 }
-#MY-First-content img{
+#MY-First-content img,#MY-Second-content img{
 position: absolute; top:0; left: 0;
 width: 100%;
 height: 100%;
@@ -67,18 +69,18 @@ height: 100%;
 	border: 2px gray solid;
 }
 
-#MY-first-2-inform {
-	display: inline-block;
+#MY-First-TotalContent{
+		display: inline-block;
 	border-radius: 10px;
-	border: 2px gray solid;
-	background-color: white;
+/* 	border: 3px gray dotted; */
+	background-color: rgb(109, 213, 193);
 }
 
 #MY-first-2-Like {
 	display: inline-block;
 	border-radius: 10px;
-	border: 3px gray dotted;
-	background-color: white;
+/* 	border: 3px gray dotted; */
+	background-color: rgb(109, 213, 193);
 }
 
 #MY-first-2-inform ul, #MY-first-2-Like ul {
@@ -96,16 +98,20 @@ height: 100%;
 	display: inline-block;
 }
 
-.MY-first-2-ul li:first-child {
+#MY-first-informtable td:first-child {
 	font-size: 1.0em;
 	font-weight: bold;
+	color: white;
+	text-indent: 10px;
+	text-align:left;
 }
 
-.MY-first-2-ul li:last-child {
+#MY-first-informtable td:last-child  {
 	font-weight: lighter;
-	font-size: 3.0em;;
-	color: rgb(109, 213, 193);
-	text-indent: 60px;
+	font-size: 1.0em;;
+	color: white;
+	text-align:  right;
+	
 }
 
 #MY-first-2-Like {
@@ -131,7 +137,7 @@ height: 100%;
 
 #MY-First-content div, #MY-Second-content div, #Third-content div,
 	#MY-Forth-content div {
-	margin-top: 20px;
+/* 	margin-top: 20px; */
 	height: 170px;
 }
 #MY-First-name,#MY-Second-name,
@@ -141,6 +147,7 @@ height: 100%;
 .MY-More-Button{
 	display:inline-block;
 	float: right;
+	margin-top:-5px;
 }
 .MY-More-Button button {
 	color:rgb(53, 181, 157);
@@ -154,10 +161,10 @@ height: 100%;
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
-          <li><a href="index.html">Home</a></li>
-          <li>My Account</li>
+          <li><a href="index.html">My Page</a></li>
+          <li>사용자 이름</li>
         </ul>
-        <h2>MY ACCOUNT</h2>
+        <h2>MY Page Home</h2>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <!-- search -->
@@ -182,33 +189,52 @@ height: 100%;
         <div>
           <div class="teammembers">
             <div class="he-wrap tpl2">
-              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="">
+              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
               <div class="he-view">
             
               </div>
             </div>
             <!-- he wrap -->
             <div class="teammembers-meta">
-              <h4>Paul Smith</h4>
+              <h4>Plan:It</h4>
             </div>
             <div id="MY-first-1-self-detail">
 							<p>
 								<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
 									Plan:It님의&nbsp자기소개입니다</span>
+							<p>어서오세요, Plan:It님!
+							멋진 프로필을 등록해 
+							자신만의 개성을 나타내보세요!
 							</p>
-							<p>Plan:It님의&nbsp자기소개입니다</p>
-							<p>Plan:It님의&nbsp자기소개입니다</p>
 
 
+			</div>
 
-
-						</div>
-
-            <small>Developer</small>
-            <div class="teamskills">
-              <h2>a</h2>
-              <h2>a</h2>
-              <h2>a</h2>
+            
+            <div class="teamskills" >
+            <div id="MY-First-TotalContent" style="width:90%;">
+             		<table id="MY-first-informtable" style="width:90%;">
+             		<tr>
+             			<td>Planner</td>
+             			<td>00</td>
+             		</tr>
+             		<tr>
+             		<td>Review</td>
+             			<td>00</td>
+             		</tr>
+             		<tr>
+             			<td>Like</td>
+             			<td>00</td>
+             		</tr>
+             		<tr>
+             			<td>Star Point</td>
+             			<td>00</td>
+             		</tr>
+             	
+             			
+             		</table>
+             	
+             	</div>
               
             </div>
           </div>
@@ -237,19 +263,15 @@ height: 100%;
 				  </button>
 				  <ul class="dropdown-menu" role="menu" aria-labelledby="MY-edit-button">
 				    <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditProfile.it' />">프로필 수정</a></li>
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">비밀번호 변경</a></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditPassword.it' />">비밀번호 변경</a></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPagePassCheck.it' />">비밀번호 확인 페이지(임시)</a></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/Preference.it' />">선호도조사(임시)</a></li>
 				    
 				  </ul>
 				  
 				</div><!-- dropdown -->
 			</div><!-- MY-edit -->
 		</div><!-- mypagemenu -->
-		
-		
-		
-		
-		
-		
 		
 		<!-- ------------------------- -->
 		<!--        start First       -->
@@ -260,26 +282,113 @@ height: 100%;
 			<div class="MY-More-Button">
 				 <button type="button" class="btn btn-link"><a href="<c:url value='/planit/mypage/detail/Planner.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
 				</div>
-			<div id="First-line">
+			<div id="First-line" >
 				<div id="MY-First-content" class="col-md-12">
-					<div class="col-md-3" style="border: 1px green solid">
-						<img src="<c:url value='/images/main/slide2.jpg'/>" alt="최신 이미지" />
+	<!-- **********************************
+		최신 플래너 요약보기/마우스 오버 추가
+	**************************************** -->
+			        <div class="portfolio-centered">
+			          <div class="recentitems portfolio">
+			
+			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
+			              <div class="he-wrap tpl6 market-item">
+			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+			                <div class="he-view">
+			                  <div class="bg a0" data-animate="fadeIn">
+			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+			                    <a data-rel="prettyPhoto" href="img/portfolio_01.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+			                      <a href="gallery-portfolio.html#">Item Category</a>
+			                    </div>
+			                    <!-- portfolio_category -->
+			                  </div>
+			                  <!-- he bg -->
+			                </div>
+			                <!-- he view -->
+			              </div>
+			              <!-- he wrap -->
+			            </div>
+			            <!-- end col-12 -->
+			
+			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 web-design graphic-design">
+			              <div class="he-wrap tpl6 market-item">
+			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+			                <div class="he-view">
+			                  <div class="bg a0" data-animate="fadeIn">
+			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+			                    <a data-rel="prettyPhoto" href="img/portfolio_02.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+			                      <a href="gallery-portfolio.html#">Item Category</a>
+			                    </div>
+			                    <!-- portfolio_category -->
+			                  </div>
+			                  <!-- he bg -->
+			                </div>
+			                <!-- he view -->
+			              </div>
+			              <!-- he wrap -->
+			            </div>
+			            <!-- end col-12 -->
+			
+			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 graphic-design">
+			              <div class="he-wrap tpl6 market-item">
+			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+			                <div class="he-view">
+			                  <div class="bg a0" data-animate="fadeIn">
+			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+			                    <a data-rel="prettyPhoto" href="img/portfolio_03.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+			                      <a href="gallery-portfolio.html#">Item Category</a>
+			                    </div>
+			                    <!-- portfolio_category -->
+			                  </div>
+			                  <!-- he bg -->
+			                </div>
+			                <!-- he view -->
+			              </div>
+			              <!-- he wrap -->
+			            </div>
+			            <!-- end col-12 -->
+			
+			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
+			              <div class="he-wrap tpl6 market-item">
+			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+			                <div class="he-view">
+			                  <div class="bg a0" data-animate="fadeIn">
+			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+			                    <a data-rel="prettyPhoto" href="img/portfolio_04.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+			                      <a href="gallery-portfolio.html#">Item Category</a>
+			                    </div>
+			                    <!-- portfolio_category -->
+			                  </div>
+			                  <!-- he bg -->
+			                </div>
+			                <!-- he view -->
+			              </div>
+			              <!-- he wrap -->
+			            </div>
+			            <!-- end col-12 -->
+			
+			            <!-- end col-12 -->
+			
+			            
+			            <!-- end col-12 -->
+			
+			            <!-- end col-12 -->
+			
+			          </div>
+			          <!-- portfolio -->
+			 			 </div> 
+			
+					
+	
 					</div>
-
-					<div class="col-md-3" style="border: 1px green solid">두번쨰 이미지
-						<img src="<c:url value='/images/main/slide2.jpg'/>" alt="최신 이미지" />
-					</div>
-					<div class="col-md-3" style="border: 1px green solid">세번쨰 이미지
-
-						<img src="<c:url value='/images/main/slide2.jpg'/>" alt="최신 이미지" />
-					</div>
-					<div class="col-md-3" style="border: 1px green solid">네번쨰 이미지
-
-						<img src="<c:url value='/images/main/slide2.jpg'/>" alt="최신 이미지" />
-					</div>
-
-				</div>
-
+	
 
 			</div>
 
@@ -299,22 +408,111 @@ height: 100%;
 				</div>
 			<div id="Second-line">
 				<div id="MY-Second-content" class="col-md-12">
-					<div class="col-md-3" style="border: 1px green solid">첫번쨰 이미지
-
+	<!-- **********************************
+		최신 플래너 요약보기/마우스 오버 추가
+	**************************************** -->
+			        <div class="portfolio-centered">
+			          <div class="recentitems portfolio">
+			
+			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
+			              <div class="he-wrap tpl6 market-item">
+			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+			                <div class="he-view">
+			                  <div class="bg a0" data-animate="fadeIn">
+			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+			                    <a data-rel="prettyPhoto" href="img/portfolio_01.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+			                      <a href="gallery-portfolio.html#">Item Category</a>
+			                    </div>
+			                    <!-- portfolio_category -->
+			                  </div>
+			                  <!-- he bg -->
+			                </div>
+			                <!-- he view -->
+			              </div>
+			              <!-- he wrap -->
+			            </div>
+			            <!-- end col-12 -->
+			
+			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 web-design graphic-design">
+			              <div class="he-wrap tpl6 market-item">
+			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+			                <div class="he-view">
+			                  <div class="bg a0" data-animate="fadeIn">
+			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+			                    <a data-rel="prettyPhoto" href="img/portfolio_02.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+			                      <a href="gallery-portfolio.html#">Item Category</a>
+			                    </div>
+			                    <!-- portfolio_category -->
+			                  </div>
+			                  <!-- he bg -->
+			                </div>
+			                <!-- he view -->
+			              </div>
+			              <!-- he wrap -->
+			            </div>
+			            <!-- end col-12 -->
+			
+			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 graphic-design">
+			              <div class="he-wrap tpl6 market-item">
+			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+			                <div class="he-view">
+			                  <div class="bg a0" data-animate="fadeIn">
+			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+			                    <a data-rel="prettyPhoto" href="img/portfolio_03.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+			                      <a href="gallery-portfolio.html#">Item Category</a>
+			                    </div>
+			                    <!-- portfolio_category -->
+			                  </div>
+			                  <!-- he bg -->
+			                </div>
+			                <!-- he view -->
+			              </div>
+			              <!-- he wrap -->
+			            </div>
+			            <!-- end col-12 -->
+			
+			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
+			              <div class="he-wrap tpl6 market-item">
+			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+			                <div class="he-view">
+			                  <div class="bg a0" data-animate="fadeIn">
+			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+			                    <a data-rel="prettyPhoto" href="img/portfolio_04.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+			                      <a href="gallery-portfolio.html#">Item Category</a>
+			                    </div>
+			                    <!-- portfolio_category -->
+			                  </div>
+			                  <!-- he bg -->
+			                </div>
+			                <!-- he view -->
+			              </div>
+			              <!-- he wrap -->
+			            </div>
+			            <!-- end col-12 -->
+			
+			            <!-- end col-12 -->
+			
+			            
+			            <!-- end col-12 -->
+			
+			            <!-- end col-12 -->
+			
+			          </div>
+			          <!-- portfolio -->
+			 			 </div> 
+			
+					
+	
 					</div>
-
-					<div class="col-md-3" style="border: 1px green solid">두번쨰 이미지
-
-					</div>
-					<div class="col-md-3" style="border: 1px green solid">세번쨰 이미지
-
-					</div>
-					<div class="col-md-3" style="border: 1px green solid">네번쨰 이미지
-
-					</div>
-
-
-				</div>
+	
 
 
 			</div>

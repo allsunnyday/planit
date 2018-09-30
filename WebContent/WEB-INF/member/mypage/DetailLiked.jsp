@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 .mypage-content {
-margin-top: 20px; 
+
 	/* margin-top: 100px; */
 	/* border: 3px black solid; */
 }
@@ -21,6 +21,7 @@ margin-top: 20px;
 }
 
 #MY-edit-button {
+	background-colorl:whith;
 	border: 1.5px rgb(53, 181, 157) solid;
 	/*  background-color: lightgray; */
 	color: rgb(53, 181, 157);
@@ -56,7 +57,7 @@ height: 100%; */
 	margin: auto;
 	display: block;
 }
-#MY-First-content img{
+#MY-First-content img,#MY-Second-content img{
 position: absolute; top:0; left: 0;
 width: 100%;
 height: 100%;
@@ -68,18 +69,18 @@ height: 100%;
 	border: 2px gray solid;
 }
 
-#MY-first-2-inform {
-	display: inline-block;
+#MY-First-TotalContent{
+		display: inline-block;
 	border-radius: 10px;
-	border: 2px gray solid;
-	background-color: white;
+/* 	border: 3px gray dotted; */
+	background-color: rgb(109, 213, 193);
 }
 
 #MY-first-2-Like {
 	display: inline-block;
 	border-radius: 10px;
-	border: 3px gray dotted;
-	background-color: white;
+/* 	border: 3px gray dotted; */
+	background-color: rgb(109, 213, 193);
 }
 
 #MY-first-2-inform ul, #MY-first-2-Like ul {
@@ -97,16 +98,20 @@ height: 100%;
 	display: inline-block;
 }
 
-.MY-first-2-ul li:first-child {
+#MY-first-informtable td:first-child {
 	font-size: 1.0em;
 	font-weight: bold;
+	color: white;
+	text-indent: 10px;
+	text-align:left;
 }
 
-.MY-first-2-ul li:last-child {
+#MY-first-informtable td:last-child  {
 	font-weight: lighter;
-	font-size: 3.0em;;
-	color: rgb(109, 213, 193);
-	text-indent: 60px;
+	font-size: 1.0em;;
+	color: white;
+	text-align:  right;
+	
 }
 
 #MY-first-2-Like {
@@ -122,17 +127,18 @@ height: 100%;
 	text-indent: 10px;
 	display: inline-block;
 }
-
+/* 수정됨 */
  #MY-Second, #MY-Third, #MY-Forth {
-	/* margin-top: 60px; */
+	 margin-top: 20px; 
 	padding-top: 10px;
 	border-top: 2px rgb(53, 181, 157) solid;
 	margin-bottom: 130px;
 }
-
+/* 수정됨 */
 #MY-First-content div, #MY-Second-content div, #Third-content div,
 	#MY-Forth-content div {
-	margin-top: 20px;
+ /* 	margin-top: 20px; */
+	padding-top: 10px;
 	height: 170px;
 }
 #MY-First-name,#MY-Second-name,
@@ -142,6 +148,7 @@ height: 100%;
 .MY-More-Button{
 	display:inline-block;
 	float: right;
+	margin-top:-5px;
 }
 .MY-More-Button button {
 	color:rgb(53, 181, 157);
@@ -179,38 +186,56 @@ height: 100%;
 	왼쪽에 달린 프로필 사진 및 기타등등 
 *****************************************  -->
   <section class="section1">
-  
-        <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
+          <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
         <div>
           <div class="teammembers">
             <div class="he-wrap tpl2">
-              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="">
+              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
               <div class="he-view">
             
               </div>
             </div>
             <!-- he wrap -->
             <div class="teammembers-meta">
-              <h4>Plan:it</h4>
+              <h4>Plan:It</h4>
             </div>
             <div id="MY-first-1-self-detail">
-					<p>
-						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-							Plan:It님의&nbsp자기소개입니다</span>
-					</p>
-					<p>Plan:It님의&nbsp자기소개입니다</p>
-					<p>Plan:It님의&nbsp자기소개입니다</p>
+							<p>
+								<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+									Plan:It님의&nbsp자기소개입니다</span>
+							<p>어서오세요, Plan:It님!
+							멋진 프로필을 등록해 
+							자신만의 개성을 나타내보세요!
+							</p>
 
 
+			</div>
 
-
-				</div>
-
-            <small>Developer</small>
-            <div class="teamskills">
-              <h2>a</h2>
-              <h2>a</h2>
-              <h2>a</h2>
+            
+            <div class="teamskills" >
+            <div id="MY-First-TotalContent" style="width:90%;">
+             		<table id="MY-first-informtable" style="width:90%;">
+             		<tr>
+             			<td>Planner</td>
+             			<td>00</td>
+             		</tr>
+             		<tr>
+             		<td>Review</td>
+             			<td>00</td>
+             		</tr>
+             		<tr>
+             			<td>Like</td>
+             			<td>00</td>
+             		</tr>
+             		<tr>
+             			<td>Star Point</td>
+             			<td>00</td>
+             		</tr>
+             	
+             			
+             		</table>
+             	
+             	</div>
               
             </div>
           </div>
