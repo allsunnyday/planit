@@ -21,7 +21,7 @@
 	<definition name="layouts_main_theme" template="/WEB-INF/member/template/layouts_main_theme.jsp">
 		<put-attribute name="Top" value="/WEB-INF/member/template/top_main_theme.jsp"/>
 		<put-attribute name="Body" value="" />
-		<put-attribute name="Footer" value="/WEB-INF/member/template/footer.jsp" />
+		<put-attribute name="Footer" value="/WEB-INF/member/template/footer_main_theme.jsp" />
 	</definition>
 	
 	<!-- 
