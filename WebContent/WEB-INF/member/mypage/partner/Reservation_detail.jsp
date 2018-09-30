@@ -199,7 +199,6 @@ table.table .avatar {
 }
 }
 </style>
-
 	<div class="container" style="padding-top: 50px">
 		<div class="table-wrapper">
 		<div class="table-title">
@@ -235,8 +234,12 @@ table.table .avatar {
 				<td><a href="#">하늘나라 1층 3호실</a></td>
 			</tr>
 			<tr>
-				<th>예약 날짜</th>
-				<td>2018/10/08 - 2018/10/12</td>
+				<th>체크인</th>
+				<td>2018/10/08 </td>
+			</tr>
+			<tr>
+				<th>체크아웃</th>
+				<td>2018/10/12</td>
 			</tr>
 			<tr>
 				<th>status</th>
@@ -245,6 +248,10 @@ table.table .avatar {
 			<tr>
 				<th>status</th>
 				<td><span class="status text-success">&bull;</span> paid</td>
+			</tr>
+			<tr>
+				<th>예약 날짜</th>
+				<td>2018/10/12</td>
 			</tr>
 			<tr>
 				<th>요청 메세지</th>

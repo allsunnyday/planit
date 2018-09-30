@@ -430,11 +430,13 @@ table.table .avatar {
 						<th><span class="custom-checkbox"> <input
 								type="checkbox" id="selectAll"> <label for="selectAll"></label>
 						</span></th>
-						<th>#</th>
+						<th>No</th>
 						<th>Customer</th>
 						<th>Room</th>
-						<th>Order Date</th>
+						<th>Check-in</th>
+						<th>Check-out</th>
 						<th>Status</th>
+						<th>Order Date</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -449,7 +451,9 @@ table.table .avatar {
 								class="avatar" alt="Avatar"> Michael Holz</a></td>
 						<td><a href="<c:url value='/mypage/partner/Reservation_detail.it'/>">하늘나라 1호실</a></td>
 						<td>Jun 15, 2017</td>
+						<td>Jun 15, 2017</td>
 						<td><span class="status text-success">&bull;</span> PAID</td>
+						<td>Jun 15, 2017</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
 								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
@@ -466,8 +470,10 @@ table.table .avatar {
 						<td><a href="#"><img src="/examples/images/avatar/2.jpg"
 								class="avatar" alt="Avatar"> Paula Wilson</a></td>
 						<td>Madrid</td>
-						<td>Jun 21, 2017</td>
-						<td><span class="status text-info">&bull;</span> Shipped</td>
+							<td>Jun 15, 2017</td>
+						<td>Jun 15, 2017</td>
+						<td><span class="status text-success">&bull;</span> PAID</td>
+						<td>Jun 15, 2017</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
 								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
@@ -484,8 +490,10 @@ table.table .avatar {
 						<td><a href="#"><img src="/examples/images/avatar/3.jpg"
 								class="avatar" alt="Avatar"> Antonio Moreno</a></td>
 						<td>Berlin</td>
-						<td>Jul 04, 2017</td>
-						<td><span class="status text-danger">&bull;</span> Cancelled</td>
+						<td>Jun 15, 2017</td>
+						<td>Jun 15, 2017</td>
+						<td><span class="status text-success">&bull;</span> PAID</td>
+						<td>Jun 15, 2017</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
 								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
@@ -502,8 +510,10 @@ table.table .avatar {
 						<td><a href="#"><img src="/examples/images/avatar/4.jpg"
 								class="avatar" alt="Avatar"> Mary Saveley</a></td>
 						<td>New York</td>
-						<td>Jul 16, 2017</td>
-						<td><span class="status text-warning">&bull;</span> Pending</td>
+							<td>Jun 15, 2017</td>
+						<td>Jun 15, 2017</td>
+						<td><span class="status text-success">&bull;</span> PAID</td>
+						<td>Jun 15, 2017</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
 								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
@@ -520,8 +530,10 @@ table.table .avatar {
 						<td><a href="#"><img src="/examples/images/avatar/5.jpg"
 								class="avatar" alt="Avatar"> Martin Sommer</a></td>
 						<td>Paris</td>
-						<td>Aug 04, 2017</td>
-						<td><span class="status text-success">&bull;</span> Delivered</td>
+							<td>Jun 15, 2017</td>
+						<td>Jun 15, 2017</td>
+						<td><span class="status text-success">&bull;</span> PAID</td>
+						<td>Jun 15, 2017</td>
 						<td><a href="#editEmployeeModal" class="edit"
 							data-toggle="modal"><i class="material-icons"
 								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
