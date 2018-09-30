@@ -2,7 +2,7 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
 	font-weight: 300;
-	color: #888;
+	color: #000000;
 	line-height: 30px;
 	text-align: center;
 }
@@ -12,7 +12,7 @@ strong {
 }
 
 a, a:hover, a:focus {
-	color: #02f7d8;
+	color: #3498DB;
 	text-decoration: none;
 	-o-transition: all .3s;
 	-moz-transition: all .3s;
@@ -26,7 +26,7 @@ h1, h2 {
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 48px;
 	font-weight: 300;
-	color: #555;
+	color: #000000;
 	line-height: 56px;
 }
 
@@ -34,7 +34,7 @@ h3 {
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 32px;
 	font-weight: 300;
-	color: #555;
+	color: #000000;
 	line-height: 40px;
 }
 
@@ -48,17 +48,17 @@ img {
 }
 
 .colored {
-	color: #02f7d8;
+	color: #3498DB;
 }
 
 ::-moz-selection {
-	background: #02f7d8;
+	background: #3498DB;
 	color: #fff;
 	text-shadow: none;
 }
 
 ::selection {
-	background: #02f7d8;
+	background: #3498DB;
 	color: #fff;
 	text-shadow: none;
 }
@@ -94,7 +94,7 @@ img {
 .navbar {
 	margin-bottom: 0;
 	padding-top: 0;
-	background: #444;
+	background: #000000;
 	border: none;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
@@ -108,7 +108,7 @@ img {
 
 .navbar-no-bg {
 	padding-top: 10px;
-	background: #444; /*none*/
+	background: #000000; /*none*/
 	border: none;
 }
 
@@ -128,7 +128,7 @@ ul.navbar-nav {
 }
 
 .navbar-inverse ul.navbar-nav li a:hover {
-	color: #02f7d8;
+	color: #3498DB;
 	border: 0;
 }
 
@@ -142,7 +142,7 @@ ul.navbar-nav {
 	display: inline-block;
 	margin: 9px 0 0 15px;
 	padding: 6px 15px;
-	background: #02f7d8;
+	background: #3498DB;
 	border: 0;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 14px;
@@ -159,7 +159,7 @@ ul.navbar-nav {
 	.navbar-inverse ul.navbar-nav li a.btn-link-3:active, .navbar-inverse ul.navbar-nav li a.btn-link-3:active:focus
 	{
 	outline: 0;
-	opacity: 0.6;
+	/* opacity: 0.6; */
 	color: #fff;
 }
 
@@ -180,7 +180,7 @@ ul.navbar-nav {
 
 /** nav var drop down***/
 .dropdown-menu {
-	background: #444;
+	background: #000000;
 }
 
 /***** Top content *****/
@@ -224,7 +224,7 @@ ul.navbar-nav {
 
 .features-box .features-box-icon {
 	/* font-size: 60px;
-	color: #02f7d8;
+	color: #3498DB;
 	line-height: 60px;
 	text-align: center;
 } */
@@ -233,7 +233,7 @@ ul.navbar-nav {
 	margin: 0 auto;
 	background: #f8f8f8;
 	font-size: 60px;
-	color: #555;
+	color: #000000;
 	line-height: 120px;
 	-moz-border-radius: 50%;
 	-webkit-border-radius: 50%;
@@ -555,7 +555,7 @@ h1.carousel-h1 {
 @media ( max-width : 767px) {
 	.navbar {
 		padding-top: 0;
-		background: #444;
+		background: #000000;
 	}
 	.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand
 		{

@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <footer class="footer">
-    
     <div class="copyrights">
       <div class="container">
         <div class="col-lg-6 col-md-6 col-sm-12 columns footer-left">
@@ -25,7 +24,7 @@
               <li><a href="about.html">About</a></li>
               <li><a href="<c:url value='#'/>">dd</a></li>
               <li><a href="<c:url value='/planit/search/tourinfo/Notice.it'/>">공지사항</a></li>
-              <li><a href="<c:url value='/planit/search/tourinfo/Qna.it'/>">Q&A</a></li>
+              <li><a href="<c:url value='/planit/search/tourinfo/Qna.it'/>">QnA</a></li>
             </ul>
           </div>
         </div>
