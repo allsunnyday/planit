@@ -52,13 +52,19 @@
 				
 					<div class="form-group" id="MY-PassCheck-Message">
 					<div class="col-sm-10">
-						<h4><small>회원정보 수정을 위해서 비밀번호를 입력해주세요</small></h4>
+						<h4><small>변경하실 비밀번호를 입력해주세요</small></h4>
 						
 					</div>
 					   </div>
 					<div class="form-group">
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="PassCheckID"
+							<input type="password" class="form-control" id="newpass"
+								placeholder="Password">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="newpassCheck"
 								placeholder="Password">
 						</div>
 					</div>
