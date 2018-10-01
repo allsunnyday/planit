@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- template에 최상위 페이지명 
+		<definition태그>
+		name="layouts" 상속받을 때  사용하는 이름
+		template = 실제 레이아웃을 만든 jsp파일의 경로
+		<put-attribute>하위 태그
+		name은 실제 jsp에서 사용할 이름 
+		
+	-->
+	<definition name="layouts" template="/WEB-INF/member/template/layouts.jsp">
+		<put-attribute name="Top" value="/WEB-INF/member/template/top.jsp" />
+		<!--name="body"의 내용은 동적으로 변하기때문에 value에 ""지정 -->
+		<put-attribute name="Body" value="" />
+		<put-attribute name="Footer" value="/WEB-INF/member/template/footer.jsp" />
+	</definition>
+	
+	<definition name="layouts_main_theme" template="/WEB-INF/member/template/layouts_main_theme.jsp">
+		<put-attribute name="Top" value="/WEB-INF/member/template/top_main_theme.jsp"/>
+		<put-attribute name="Body" value="" />
+		<put-attribute name="Footer" value="/WEB-INF/member/template/footer.jsp" />
+	</definition>
+	
+	<!-- 
+		위의 definition name=layouts을 상속받았다.
+	 -->
+	<definition name="*.tiles" extends="layouts">
+		<put-attribute name="Body" value="/WEB-INF/member/{1}.jsp" />
+	</definition>
+	
+	<definition name="*/*.tiles" extends="layouts">
+		<put-attribute name="Body" value="/WEB-INF/member/{1}/{2}.jsp" />
+	</definition>
+
+	<definition name="*/*/*.tiles" extends="layouts">
+		<put-attribute name="Body" value="/WEB-INF/member/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	 <definition name="*/*/*/*.tiles" extends="layouts">
+      <put-attribute name="Body" value="/WEB-INF/member/{1}/{2}/{3}/{4}.jsp" />
+   </definition>
+<!--**********************************************************************
+		 새로운 타일즈 
+  *************************************************************************-->
+	<definition name="*.theme" extends="layouts_main_theme">
+		<put-attribute name="Body" value="/WEB-INF/member/{1}.jsp" />
+	</definition>
+	
+	<definition name="*/*.theme" extends="layouts_main_theme">
+		<put-attribute name="Body" value="/WEB-INF/member/{1}/{2}.jsp" />
+	</definition>
+
+	<definition name="*/*/*.theme" extends="layouts_main_theme">
+		<put-attribute name="Body" value="/WEB-INF/member/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	 <definition name="*/*/*/*.theme" extends="layouts_main_theme">
+      <put-attribute name="Body" value="/WEB-INF/member/{1}/{2}/{3}/{4}.jsp" />
+   </definition>
+</tiles-definitions>

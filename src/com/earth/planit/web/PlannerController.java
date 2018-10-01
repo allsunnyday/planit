@@ -29,4 +29,10 @@ public class PlannerController {
 		
 		return "planner/plan/reservation.theme";
 	}
+	
+	/*@RequestMapping("/planner/plan/test.it")
+	public String test() throws Exception{
+		
+		return "planner/plan/test.theme";
+	}*/
 }
