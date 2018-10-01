@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SearchListController {
+
 	
 	//리스트 픽하는 페이지
 	@RequestMapping("/member/tourinfo/listpick/list/ListMain.it")
@@ -37,6 +38,8 @@ public class SearchListController {
 		return "tourinfo/tdview/TourView.theme";
 	}
 
+
+  
 	//숙박 상세보기
 	@RequestMapping("/planit/search/list/SleepView.it")
 	public String SleepView()throws Exception{
@@ -90,4 +93,16 @@ public class SearchListController {
 	public String noticeView()throws Exception{
 		return "tourinfo/tdview/NoticeView.theme";
 	}
+
+   
+   //음식점 리스트
+   @RequestMapping("/tourinfo/tdview/FoodList.it")
+   public String foodList()throws Exception{
+      return "tourinfo/tdview/FoodList.theme";
+   }
+
+
+   
+   
 }//////////////////////////////////////////////////////////////////
+
