@@ -9,8 +9,8 @@
 <section class="marketplace-top">
 	<div id="market-wrapper">
 		<div class="item_image">
-			<img data-effect="fade" class="aligncenter" width="1260" height="400"
-				src="<c:url value='/main_theme/img/market_single_01.png'/> " alt="">
+			<img data-effect="fade" class="aligncenter" width="90%" height="400"
+				src="<c:url value='/main_theme/img/market_single_01.png'/>" alt="">
 		</div>
 		<!-- end item_image -->
 	</div>
@@ -60,17 +60,19 @@
 						</div>
 						<!-- item_price -->
 						<hr>
-						<div class="buttons">
-							<a class="button btn-block large" href="#">지자체 홈페이지</a> <a
-								class="button btn-block large" href="#"><i
-								class="fa fa-pencil"></i>정보 수정</a> <a class="button btn-block large"
-								href="#"> <i class="fa fa-download"></i> 즐겨찾기 추가
+						<div class="buttons" data-target="#myModal">
+							<a class="button btn-block large"
+								href="https://cafe.naver.com/foresthealingyp">지자체 홈페이지</a> <a
+								class="button btn-block large" href="#"> <i
+								class="fa fa-pencil"></i>정보 수정
+							</a> <a class="button btn-block large" href="#"> <i
+								class="fa fa-download"></i> 즐겨찾기 추가
 							</a>
 						</div>
 						<!-- buttons -->
 						<hr>
 						<div class="rating text-center">
-							<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+							<i class="fa fa-plain"></i> <i class="fa fa-star"></i> <i
 								class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 								class="fa fa-star-o"></i>
 							<p>Users Rating</p>
@@ -106,115 +108,9 @@
 					<!-- theme_details -->
 				</div>
 				<!-- col-lg-6 -->
-
-
-
 			</div>
 			<!-- item_details -->
-
 			<div class="clearfix"></div>
-
-			<div class="general-title text-center">
-				<h3>시설안내</h3>
-				<p>시설을 안내하는 곳입니다.</p>
-				<hr>
-			</div>
-
-			<div class="divider"></div>
-			<div class="theme_overviews clearfix">
-				<div class="col-lg-4 col-md-4 col-sm-12 first">
-					<div class="services">
-						<div class="icon-container">
-							<i class="fa fa-arrows"></i>
-						</div>
-						<header>
-							<h3>Different Sizes</h3>
-						</header>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. It has survived not only five centuries,
-							but also the leap into electronic typesetting, remaining
-							essentially unchanged.</p>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-4 col-sm-12">
-					<div class="services">
-						<div class="icon-container">
-							<i class="fa fa-heart"></i>
-						</div>
-						<header>
-							<h3>HandMade in Italy</h3>
-						</header>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. It has survived not only five centuries,
-							but also the leap into electronic typesetting, remaining
-							essentially unchanged.</p>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-4 col-sm-12 last">
-					<div class="services">
-						<div class="icon-container">
-							<i class="fa fa-lock"></i>
-						</div>
-						<header>
-							<h3>Secure Metal Zip</h3>
-						</header>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. It has survived not only five centuries,
-							but also the leap into electronic typesetting, remaining
-							essentially unchanged.</p>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-4 col-sm-12 first">
-					<div class="services">
-						<div class="icon-container">
-							<i class="fa fa-trophy"></i>
-						</div>
-						<header>
-							<h3>Premium Design</h3>
-						</header>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. It has survived not only five centuries,
-							but also the leap into electronic typesetting, remaining
-							essentially unchanged.</p>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-4 col-sm-12">
-					<div class="services">
-						<div class="icon-container">
-							<i class="fa fa-cloud"></i>
-						</div>
-						<header>
-							<h3>Softly Padded</h3>
-						</header>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. It has survived not only five centuries,
-							but also the leap into electronic typesetting, remaining
-							essentially unchanged.</p>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-4 col-sm-12 last">
-					<div class="services">
-						<div class="icon-container">
-							<i class="fa fa-pencil"></i>
-						</div>
-						<header>
-							<h3>Signed Product</h3>
-						</header>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. It has survived not only five centuries,
-							but also the leap into electronic typesetting, remaining
-							essentially unchanged.</p>
-					</div>
-				</div>
-
-			</div>
-			<!-- theme / Products overview -->
-
 		</div>
 		<!-- end content -->
 	</div>
@@ -222,6 +118,10 @@
 </section>
 <!-- end section -->
 
+
+<!-- *****************************************
+	관련리뷰 캐러셀
+***************************************** -->
 <section class="section1">
 	<div class="container clearfix">
 		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
@@ -230,34 +130,25 @@
 			<hr>
 
 			<div class="portfolio-wrapper related_items">
-				<h4 class="title">관련 리뷰 </h4>
+				<h4 class="title">관련 리뷰</h4>
 
-				<div id="owl-related" class="owl-carousel">
-
-					<div class="item">
-						<a href="#"> 
-						<img class="lazyOwl" src="<c:url value='/main_theme/img/portfolio_02.jpg'/> "
-							data-src="<c:url value='/main_theme/img/portfolio_01.jpg'/>" alt="이미지">
-							
-						</a>
-					</div>
-
-					<div class="item">
-						<a href="#"> <img class="lazyOwl" src="<c:url value='/main_theme/img/portfolio_05.jpg'/> "
-							data-src="<c:url value='/main_theme/img/portfolio_01.jpg'/>" alt="이미지">
-							
-						</a>
-					</div>
-
-					<div class="item">
-						<a href="#"> <img class="lazyOwl" src="<c:url value='/main_theme/img/portfolio_08.jpg'/> "
-							data-src="<c:url value='/main_theme/img/portfolio_01.jpg'/>" alt="이미지">
-							
-						</a>
-					</div>
-
+				<div class="container">
+				  <div class="carousel">
+				    <div class="item a"><img src="../../../images/space.jpg" >A</div>
+				    <div class="item b"><img src="../../../images/ppp.png" >B</div>
+				    <div class="item c"><img src="../../../images/bg1.jpg" >C</div>
+				    <div class="item d"><img src="../../../images/ppp.png" >D</div>
+				    <div class="item e"><img src="../../../images/space.jpg" >E</div>
+				    <div class="item f"><img src="../../../images/space.jpg" >F</div>
+				  </div>
 				</div>
-				<!-- end related_items -->
+					<div class="next">Next</div>
+					<div class="prev">Prev</div>
+
+
+				
+				
+				
 			</div>
 			<!-- owl-related -->
 		</div>
@@ -266,4 +157,148 @@
 	<!-- end container -->
 </section>
 <!-- end section -->
+
+<!-- *******************************************
+ 		지도
+************************************************ -->
+<section style="background-color: white;">
+	<div class="general-title text-center" >
+		<h3>지도</h3>
+		<p>지도보여줄 곳</p>
+		<hr>
+	</div>
+
+	<div class="divider"></div>
+	<div class="theme_overviews clearfix">
+		
+<div class="wrapper">
+  <div  id="one"><span style="font-size:5em">지도</span></div>
+  <div  id="two"><span style="font-size:5em">정보</span></div>
+</div>
+
+	</div>
+	<!-- theme / Products overview -->
+
+</section>
+<style>
+#one{
+float:left;
+width:1000px;
+height:700px;
+background-color: red;
+}
+#two{
+float:right;
+width:300px;
+height:700px;
+background-color: blue;
+}
+
+
+
+
+
+ #body1 { 
+   background: #333; 
+   padding: 70px 0; 
+   font: 15px/20px Arial, sans-serif; 
+ }
+
+
+
+.carousel {
+   height: 100%; 
+   width: 100%; 
+  position: static;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.item {
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 250px;
+  height: 200px;
+  line-height: 200px;
+  font-size: 5em;
+  text-align: center;
+  color: #FFF;
+  opacity: 0.95;
+  border-radius: 10px;
+}
+
+.a {
+  transform: rotateY(0deg) translateZ(250px);
+  background: #ed1c24;
+}
+.b {
+  transform: rotateY(60deg) translateZ(250px);
+  background: #0072bc;
+}
+.c {
+  transform: rotateY(120deg) translateZ(250px);
+  background: #39b54a;
+}
+.d {
+  transform: rotateY(180deg) translateZ(250px);
+  background: #f26522;
+}
+.e {
+  transform: rotateY(240deg) translateZ(250px);
+  background: #630460;
+} 
+.f {
+  transform: rotateY(300deg) translateZ(250px);
+  background: #8c6239;
+}
+
+.next, .prev {
+  color: #444;
+  position: absolute;
+  top: 100px;
+  padding: 1em 2em;
+  cursor: pointer;
+  background: #CCC;
+  border-radius: 5px;
+  border-top: 1px solid #FFF;
+  box-shadow: 0 5px 0 #999;
+  transition: box-shadow 0.1s, top 0.1s;
+}
+.next:hover, .prev:hover { color: #000; }
+.next:active, .prev:active {
+  top: 104px;
+  box-shadow: 0 1px 0 #999;
+}
+.next { right: 5em; }
+.prev { left: 5em; }
+
+
+
+
+
+
+</style>
+<script>
+var carousel = $(".carousel"),
+currdeg  = 0;
+
+$(".next").on("click", { d: "n" }, rotate);
+$(".prev").on("click", { d: "p" }, rotate);
+
+function rotate(e){
+if(e.data.d=="n"){
+currdeg = currdeg - 60;
+}
+if(e.data.d=="p"){
+currdeg = currdeg + 60;
+}
+carousel.css({
+"-webkit-transform": "rotateY("+currdeg+"deg)",
+"-moz-transform": "rotateY("+currdeg+"deg)",
+"-o-transform": "rotateY("+currdeg+"deg)",
+"transform": "rotateY("+currdeg+"deg)"
+});
+}
+</script>
 

@@ -27,11 +27,8 @@
 				<p></p>
 				<hr>
 			</div>
-
 			<div class="divider"></div>
-
 			<div class="item_details">
-
 				<div class="col-lg-8 col-md-8 col-sm-12">
 					<div class="theme_details">
 						<div class="details_section">
@@ -44,7 +41,7 @@
 								<li class="designer"><span>이용시간: [당일방문] 09:30~12:00,
 										13:30~16:00 <br> * 시설 상황 등에 따라 변동 가능(사전 문의 권장)
 								</span></li>
-								<li class="designer"><span>쉬는날:연중무휴</span></li>
+								<li class="designer"><span>쉬는날:연중무휴11</span></li>
 							</ul>
 						</div>
 					</div>
@@ -61,11 +58,9 @@
 						<!-- item_price -->
 						<hr>
 						<div class="buttons">
-							<a class="button btn-block large" href="#">지자체 홈페이지</a> <a
-								class="button btn-block large" href="#"><i
-								class="fa fa-pencil"></i>정보 수정</a> <a class="button btn-block large"
-								href="#"> <i class="fa fa-download"></i> 즐겨찾기 추가
-							</a>
+							<a class="button btn-block large" href="<c:url value='https://m.cafe.naver.com/foresthealingyp'/>">지자체 홈페이지</a>
+							<a class="button btn-block large" href="#"><i class="fa fa-pencil"></i>정보 수정</a>
+						    <a class="button btn-block large"href="#"> <i class="fa fa-download"></i> 즐겨찾기 추가</a>
 						</div>
 						<!-- buttons -->
 						<hr>

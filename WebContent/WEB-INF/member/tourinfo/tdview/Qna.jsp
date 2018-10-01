@@ -14,7 +14,7 @@
 <!--************************************** 
  	삽입
  **************************************-->
- <jsp:include page="topMenu.jsp" flush="false" />
+<%--  <jsp:include page="topMenu.jsp" flush="false" /> --%>
 
 
   <section class="section1">
@@ -43,8 +43,8 @@
                 <a class="" href="#"><i class="dm-icon fa fa-envelope-o fa-3x"></i></a>
               </div>
             </div>
-            <h4>1:1 문의</h4>
-            <p>물어보세요(누르면 모달창이나 글쓰는창으로)</p>
+            <a href="<c:url value='/tourinfo/tdview/OneToOne.it'/>"><h4>1:1 문의</h4>
+            <p>물어보세요(누르면 모달창이나 글쓰는창으로)</p></a>
           </div>
         </div>
         <!-- end dmbox -->

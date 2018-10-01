@@ -23,8 +23,7 @@
 				<div class="container">
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-								공지사항							</h1>
+							<h1 class="text-white">공지사항</h1>
 						</div>
 					</div>
 				</div>
@@ -91,7 +90,7 @@
             <td class="td_subject" style="padding-left:0px">
                                 <div class="bo_tit">
 
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=47">
+                    <a href="<c:url value='/planit/search/tourinfo/NoticeView.it'/>">
                         초중고 코딩교육은 https://365ok.co.kr 에서 시작하세요..                    </a>
 
                 </div>
