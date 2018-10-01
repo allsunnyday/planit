@@ -390,8 +390,7 @@ table.table .avatar {
 		
 	});
 </script>
-</head>
-<body>
+
 	<div class="container" style="padding-top: 50px">
 		<div class="table-wrapper">
 			<div class="table-title">
@@ -402,6 +401,7 @@ table.table .avatar {
 						</h2>
 					</div>
 					<div class="col-sm-6" style="float: right;">
+					
 						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
 							<i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
 					</div>
@@ -452,7 +452,7 @@ table.table .avatar {
 						<td>1</td>
 						<td><a href="#"><img src="/examples/images/avatar/1.jpg"
 								class="avatar" alt="Avatar"> Michael Holz</a></td>
-						<td>Room Service Question</td>
+						<td><a href="#detailEmployeeModal" class="edit" data-toggle="modal">Room Service Question</a></td>
 						<td>Jun 15, 2017</td>
 						<td><span class="status text-success">&bull;</span> Replied</td>
 						<td><a href="#editEmployeeModal" class="edit"
@@ -596,27 +596,17 @@ Edit Modal
 					<div class="modal-content">
 						<form>
 							<div class="modal-header">
-								<h4 class="modal-title">Edit Employee</h4>
+								<h4 class="modal-title">Write Reply</h4>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-hidden="true">&times;</button>
 							</div>
 							<div class="modal-body">
+								
 								<div class="form-group">
-									<label>Name</label> <input type="text" class="form-control"
-										required>
-								</div>
-								<div class="form-group">
-									<label>Email</label> <input type="email" class="form-control"
-										required>
-								</div>
-								<div class="form-group">
-									<label>Address</label>
+									<label>Content</label>
 									<textarea class="form-control" required></textarea>
 								</div>
-								<div class="form-group">
-									<label>Phone</label> <input type="text" class="form-control"
-										required>
-								</div>
+								
 							</div>
 							<div class="modal-footer">
 								<input type="button" class="btn btn-default"
@@ -627,9 +617,39 @@ Edit Modal
 					</div>
 				</div>
 			</div>
+<!-- ***************************************************
+detail modal
+************ -->
 
+<div id="detailEmployeeModal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form>
+							<div class="modal-header">
+								<h4 class="modal-title">Request</h4>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								
+								<div class="form-group">
+									<label>Content</label>
+									<textarea class="form-control" readonly="readonly"></textarea>
+								</div>
+								
+							</div>
+							<div class="modal-footer">
+								<input type="button" class="btn btn-default"
+									data-dismiss="modal" value="Cancel"> <input
+									type="submit" class="btn btn-info" value="confirm">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		
+		
 		
 		</div>
 	</div>
-</body>
-</html>
+
