@@ -185,7 +185,7 @@ height: 100%;
 *****************************************  -->
   <section class="section1">
         <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
-        <div>
+       	 <div>
           <div class="teammembers">
             <div class="he-wrap tpl2">
               <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
@@ -233,8 +233,8 @@ height: 100%;
 			
 
             <div class="teamskills" >
-            	<div id="Partner-First-Parter-RoomStatus" style="width:90%;">
-             		<table id="Partner-First-Roomtable" style="width:90%;" >
+            	<div id="Partner-First-Parter-RoomStatus" style="width:100%;">
+             		<table id="Partner-First-Roomtable" style="width:100%;" >
              		<tr>
              			<td>Total Room</td>
              			<td>00</td>
@@ -268,7 +268,7 @@ height: 100%;
 ***************************************** -->
 <div class="container-fluid ">
       <div class="content col-md-7">
-	<div class="Partnerpage-content">
+		<div class="Partnerpage-content">
 		<div class="Partnerpagemenu">
 			<div id="Partnerpage">
 			<!-- 	<h2>Partner PAGE</h2> -->
@@ -446,7 +446,7 @@ height: 100%;
 			<!--  내가 작성한 플래너 들어갈 div -->
 			<div id="Partner-Third-name">Reservation details</div>
 				<div class="Partner-More-Button">
-				 <button type="button" class="btn btn-link"><a href="<c:url value='#'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
+				 <button type="button" class="btn btn-link"><a href="<c:url value='/mypage/partner/Reservation_P.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
 				</div>
 			<div id="Forth-line">
 				<div id="Forth-content" class="col-md-12">
@@ -514,7 +514,7 @@ height: 100%;
 			<!--  내가 작성한 플래너 들어갈 div -->
 			<div id="Partner-Forth-name">Partner Q&A</div>
 				<div class="Partner-More-Button">
-				 <button type="button" class="btn btn-link"><a href="<c:url value='#'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
+				 <button type="button" class="btn btn-link"><a href="<c:url value='/mypage/partner/Request_P.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
 				</div>
 			<div id="Forth-line">
 				<div id="Partner-Forth-content" class="col-md-12">
