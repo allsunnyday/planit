@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <style>
 /* 
 .description:before {
@@ -32,96 +34,98 @@
 지도 영역별 클릭 버튼
 ***********************************************************************************************************************************************
  */
-.icon1 { /* 인천 */
-	left: 80px;
-	top: 98px;
-}
 
-.icon2 { /* 서울 */
-	left: 135px;
-	top: 118px;
-}
-
-.icon3 { /* 경기 */
-	left: 210px;
-	top: 140px;
-}
-
-.icon4 { /* 강원 */
-	left:270px;
-	top: 80px;
-}
-
-.icon5 { /* 충남 */
-	left: 120px;
-	top: 220px;
-}
-
-.icon6 { /* 세종 */
-	left: 156px;
-	top: 180px;
-}
-
-.icon17 { /* 충북 */
-	left: 223px;
-	top: 190px;
-}
-
-.icon7 { /* 대전 */
-	left: 215px;
-	top: 240px;
-}
-
-.icon8 {/* 경북 */
-	left: 310px;
-	top: 250px;
-}
-
-.icon9 {/* 전북 */
-	left: 170px;
-	top: 335px;
-}
-
-.icon10 {/*대구  */
-	left: 300px;
-	top: 320px;
-}
-
-.icon11 {/* 광주 */
-	left: 127px;
-	top: 400px;
-}
-
-.icon12 {/* 전남 */
-	left: 110px;
-	top: 440px;
-}
-
-.icon13 {/*  경남*/
-	left: 250px;
-	top: 370px;
-}
-
-.icon14 {/* 울산 */
-	left: 370px;
-	top: 350px;
-}
-
-.icon15 { /* 부산 */
-	left: 330px;
-	top: 410px;
-}
-
-.icon16 { /* 제주 */
-	left: 120px;
-	top: 565px;
-}
 /* -------------------------------- */
 /* 
 ************************************************************************************************************************************************
 지도 PNG
 ***********************************************************************************************************************************************
  */
+ .icon1{
+ 	left:25%;
+ 	top:15%
+ }
+ .icon2{
+ 	left:32%; 
+ 	top: 17%
+ }
+ 
+.icon3 { /* 경기 */
+	left: 42%;
+	top: 23%;
+}
+
+.icon4 { /* 강원 */
+	left:50%;
+	top: 13%;
+}
+
+.icon5 { /* 충남 */
+	left: 25%;
+	top: 37%;
+}
+
+.icon6 { /* 세종 */
+	left: 32%;
+	top: 34%;
+}
+
+.icon17 { /* 충북 */
+	left: 42%;
+	top: 30%;
+}
+
+.icon7 { /* 대전 */
+	left: 37%;
+	top: 40%;
+}
+
+.icon8 {/* 경북 */
+	left: 55%;
+	top: 40%;
+}
+
+.icon9 {/* 전북 */
+	left: 33%;
+	top: 54%;
+}
+
+.icon10 {/*대구  */
+	left: 56%;
+	top: 52%;
+}
+
+.icon11 {/* 광주 */
+	left: 30%;
+	top: 67%;
+}
+
+.icon12 {/* 전남 */
+	left: 28%;
+	top: 75%;
+}
+
+.icon13 {/*  경남*/
+	left: 46%;
+	top: 62%;
+}
+
+.icon14 {/* 울산 */
+	left: 61%;
+	top: 60%;
+}
+
+.icon15 { /* 부산 */
+	left: 57%;
+	top: 69%;
+}
+
+.icon16 { /* 제주 */
+	left: 24%;
+	top: 90%;
+}
+ 
+ 
 .mapIllust {
 	background:
 		url('http://tong.visitkorea.or.kr/img/vk/kor/bz15/travel_plus/find_map.png')
@@ -176,8 +180,8 @@ $(function() {
 				<form action="" name="searchForm">
 					<div class="lcate"
 						style="overflow: hidden; background-color: #47698c;">
-						<div class="mapIllust">
-							<ul id="setHiddenButtons1">
+						<div class="mapIllust" style="position:relative">
+							<ul id="setHiddenButtons1" style="position:relative">
 								<li class="icon1"><button value="2" name="areaCode" type="button" class="go-button">인천</button></li>
 								<li class="icon2"><button value="1" name="areaCode" type="button" class="go-button ov">서울</button></li>
 								<li class="icon3"><button value="31" name="areaCode" type="button" class="go-button">경기</button></li>

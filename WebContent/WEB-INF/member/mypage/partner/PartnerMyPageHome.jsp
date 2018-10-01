@@ -446,7 +446,7 @@ height: 100%;
 			<!--  내가 작성한 플래너 들어갈 div -->
 			<div id="Partner-Third-name">Reservation details</div>
 				<div class="Partner-More-Button">
-				 <button type="button" class="btn btn-link"><a href="<c:url value='#'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
+				 <button type="button" class="btn btn-link"><a href="<c:url value='/mypage/partner/Reservation_P.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
 				</div>
 			<div id="Forth-line">
 				<div id="Forth-content" class="col-md-12">
@@ -467,7 +467,7 @@ height: 100%;
 							<tr>
 								<td>00</td>
 								<!-- 찜번호 -->
-								<td>김플랜</span></td>
+								<td><span>김플랜</span></td>
 								<td>Standard A</td>
 								<td>2018.01.01</td>
 								<td>2018.01.03</td>
@@ -477,7 +477,7 @@ height: 100%;
 							<tr>
 							<td>00</td>
 								<!-- 찜번호 -->
-								<td>이플랜</span></td>
+								<td><span>이플랜</span></td>
 								<td>Standard B</td>
 								<td>2018.01.01</td>
 								<td>2018.01.03</td>
@@ -487,7 +487,7 @@ height: 100%;
 							</tr>
 							<td>00</td>
 								<!-- 찜번호 -->
-								<td>박플랜</span></td>
+								<td><span>박플랜</span></td>
 								<td>Standard C</td>
 								<td>2018.01.01</td>
 								<td>2018.01.03</td>
@@ -514,7 +514,7 @@ height: 100%;
 			<!--  내가 작성한 플래너 들어갈 div -->
 			<div id="Partner-Forth-name">Partner Q&A</div>
 				<div class="Partner-More-Button">
-				 <button type="button" class="btn btn-link"><a href="<c:url value='#'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
+				 <button type="button" class="btn btn-link"><a href="<c:url value='/mypage/partner/Request_P.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
 				</div>
 			<div id="Forth-line">
 				<div id="Partner-Forth-content" class="col-md-12">

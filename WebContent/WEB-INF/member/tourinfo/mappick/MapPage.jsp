@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="container-fluid" style="padding-top: 80px">
+<div class="container-fluid" style="padding-top: 80px; background-color: #47698c;">
 	<div class="row">
 		<div class="col-md-6" style="background-color: #47698c;">
 			<!--지도-->
 			<div class="col-md-12">
-			<div><h2>안녕</h2></div>
+			<div><h2 style="color: white;">까꿍</h2></div>
 				<div style="width: 100%; float: right; padding-bottom: 50px;">
 					<!-- <div class="container-fluid" style="margin-top: 60px; width: 75%; height: 40px; float: right;"> -->
 					<div id="planmap"
@@ -28,6 +28,8 @@
 					<!-- </div> -->
 				</div>
 			</div>
+			<button class="btn btn-warning" id="showMapPage">지도로 볼래요</button>
+			
 		</div>
 		<!--  관광지별 추천		-->
  <div class="container clearfix col-md-6"  style="background-color: #47698c;">
