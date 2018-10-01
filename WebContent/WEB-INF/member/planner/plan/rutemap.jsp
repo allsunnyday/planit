@@ -11,6 +11,12 @@
 			level: 3 //지도의 레벨(확대, 축소 정도)
 	};				
 	var map = new daum.maps.Map(container, options);//지도 생성 및 객체 리턴
+	container.style.height = '800px';
+	
+	
+	map.relayout();
+	
+	
 	//지도를 클릭한 위치에 표출할 마커입니다
 	var marker = new daum.maps.Marker({ 
 		// 지도 중심좌표에 마커를 생성합니다 

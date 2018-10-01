@@ -52,7 +52,7 @@
 		<!-- ******************************* daum map api 영역 *************************************** -->
 		<div class="col-md-9 col-sm-9 col-xs-12" id="rightrute" style="min-height: 100%;">		
 			<div class="map_wrap">			
-				<div id="planmap"  style="width:100%; height: 800px; position:relative; overflow:auto;"></div>		    
+				<div id="planmap"  style="width:100%; position:relative; overflow:hidden;"></div>		    
 			    <div class="custom_typecontrol radius_border"><!-- 지도타입 컨트롤 div 입니다 -->
 			        <span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
 			        <span id="btnSkyview" class="sky_btn" onclick="setMapType('skyview')">스카이뷰</span> 	        			        
