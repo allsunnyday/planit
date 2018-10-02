@@ -5,8 +5,6 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-
-
 <style type="text/css">
 .table-wrapper {
 	background: #fff;
@@ -259,6 +257,7 @@ table.table .avatar {
 	margin-top: 10px;
 	font-size: 13px;
 }
+
 /* Modal styles */
 .modal .modal-dialog {
 	max-width: 400px;
@@ -361,7 +360,7 @@ table.table .avatar {
 #Partner-First-Parter-RoomStatus {
 	display: inline-block;
 	border-radius: 10px;
-	/* 	border: 3px gray dotted; */
+
 	background-color: darkgray;
 }
 
@@ -407,50 +406,53 @@ table.table .avatar {
 	});
 </script>
 <div class="container-fluid">
-	<div class="col-md-2 col-md-offset-1" style="padding-top: 50px;">
-		<div>
-			<div class="teammembers" style="background-color: white;">
-				<div class="he-wrap tpl2">
-					<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
-						alt="프로필 사진">
-					<div class="he-view"></div>
-				</div>
-				<!-- he wrap -->
-				<div class="teammembers-meta">
-					<h4>Plan:It</h4>
-				</div>
-				<div id="Partner-First-1-self-detail">
-					<p>
-						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-							(주)Plan:It</span>
-					</p>
 
-					<div class="Partner-First-PartnerInform">
+	<div class="col-md-3" style="width: 300px">
+		<div style="padding-top: 50px;">
+			<div>
+				<div class="teammembers" style="background-color: white;">
+					<div class="he-wrap tpl2">
+						<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
+							alt="프로필 사진">
+						<div class="he-view"></div>
+					</div>
+					<!-- he wrap -->
+					<div class="teammembers-meta">
+						<h4>Plan:It</h4>
+					</div>
+					<div id="Partner-First-1-self-detail">
+						<p>
+							<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+								(주)Plan:It</span>
+						</p>
 
-						<table id="Partner-First-informtable" style="width: 110%;">
-							<tr>
-								<td>사업자번호</td>
-								<td>123-45-678900</td>
-							</tr>
-							<tr>
-								<td>대표자</td>
-								<td>김잇잇</td>
-							</tr>
-							<tr>
-								<td>주소</td>
-								<td>서울특별시 디지털로 123 311호</td>
-							</tr>
-							<tr>
-								<td>전화</td>
-								<td>02-0000-0000</td>
-							</tr>
-							<tr>
-								<td>업종</td>
-								<td>숙박업</td>
-							</tr>
+						<div class="Partner-First-PartnerInform">
 
+							<table id="Partner-First-informtable" style="width: 110%;">
+								<tr>
+									<td>사업자번호</td>
+									<td>123-45-678900</td>
+								</tr>
+								<tr>
+									<td>대표자</td>
+									<td>김잇잇</td>
+								</tr>
+								<tr>
+									<td>주소</td>
+									<td>서울특별시 디지털로 123 311호</td>
+								</tr>
+								<tr>
+									<td>전화</td>
+									<td>02-0000-0000</td>
+								</tr>
+								<tr>
+									<td>업종</td>
+									<td>숙박업</td>
+								</tr>
+							</table>
+						</div>
 
-						</table>
+						
 
 					</div>
 
@@ -481,6 +483,7 @@ table.table .avatar {
 					</div>
 
 				</div>
+				<!-- end teammembers -->
 			</div>
 			<!-- end teammembers -->
 		</div>
@@ -713,6 +716,9 @@ Edit Modal
 								<div class="modal-body">
 
 									<div class="form-group" style="height: 100px;">
+
+									<div class="form-group" style="line-height: 100px;">
+
 										<label>Message</label> <input type="text" class="form-control"
 											required>
 									</div>

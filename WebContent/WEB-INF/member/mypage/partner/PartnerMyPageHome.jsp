@@ -185,7 +185,7 @@ height: 100%;
 *****************************************  -->
   <section class="section1">
         <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
-        <div>
+       	 <div>
           <div class="teammembers">
             <div class="he-wrap tpl2">
               <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
@@ -233,8 +233,8 @@ height: 100%;
 			
 
             <div class="teamskills" >
-            	<div id="Partner-First-Parter-RoomStatus" style="width:90%;">
-             		<table id="Partner-First-Roomtable" style="width:90%;" >
+            	<div id="Partner-First-Parter-RoomStatus" style="width:100%;">
+             		<table id="Partner-First-Roomtable" style="width:100%;" >
              		<tr>
              			<td>Total Room</td>
              			<td>00</td>
@@ -268,7 +268,7 @@ height: 100%;
 ***************************************** -->
 <div class="container-fluid ">
       <div class="content col-md-7">
-	<div class="Partnerpage-content">
+		<div class="Partnerpage-content">
 		<div class="Partnerpagemenu">
 			<div id="Partnerpage">
 			<!-- 	<h2>Partner PAGE</h2> -->
