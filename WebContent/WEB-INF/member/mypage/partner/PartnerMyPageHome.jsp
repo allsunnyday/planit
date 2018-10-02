@@ -485,6 +485,7 @@ height: 100%;
 
 
 							</tr>
+							<tr>
 							<td>00</td>
 								<!-- 찜번호 -->
 								<td><span>박플랜</span></td>
@@ -547,9 +548,6 @@ height: 100%;
 							</tr>
 						</table>
 					</div>
-
-
-
 
 				</div>
 
