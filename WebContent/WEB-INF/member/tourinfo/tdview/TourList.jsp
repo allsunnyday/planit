@@ -8,6 +8,9 @@
 <!--************************************
  아래 리스트 
 *************************************** -->
+<script>
+$().dropdown('toggle')
+</script>
     <section class="post-wrapper-top">
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -48,8 +51,31 @@
 <!-- ****************************************
  		지역별 버튼
 **************************************** -->
+
+<div>
  	<nav class="portfolio-filter clearfix">
+ 	
           <ul>
+           
+            <li class="dropdown">
+					<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">
+							지역별 보기
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu" >
+						<li><a href="">서울</a></li>
+						<li><a href="">인천</a></li>
+						<li><a href="">부산</a></li>
+						<li><a href="">강릉</a></li>
+						<li><a href="">춘천</a></li>
+						<li><a href="">대구</a></li>
+						<li><a href="">광주</a></li>
+						<li><a href="">목포</a></li>	
+						<li><a href="">제주도</a></li>
+						<li><a href="">...</a></li>					
+					</ul>
+				</li>
+			
+ 				 
             <li><a href="#" class="dmbutton2" data-filter="*">모두보기(몇개인지 뿌려주기)</a></li>
             <li><a href="#" class="dmbutton2" data-filter=".s">서울</a></li>
             <li><a href="#" class="dmbutton2" data-filter=".i">인천/경기도</a></li>
@@ -61,8 +87,9 @@
             <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" >최신순</button>
             <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-danger" >인기순</button>
           </ul>
+          
 	</nav>
-	
+</div>
 <!-- ****************************************
  		관광지 정보 간단한 사진과 마우스 올리면 디테일로 넘어가게
 **************************************** -->	

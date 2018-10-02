@@ -61,12 +61,14 @@
 						<!-- item_price -->
 						<hr>
 						<div class="buttons" data-target="#myModal">
-							<a class="button btn-block large"
-								href="https://cafe.naver.com/foresthealingyp">지자체 홈페이지</a> <a
-								class="button btn-block large" href="#"> <i
-								class="fa fa-pencil"></i>정보 수정
-							</a> <a class="button btn-block large" href="#"> <i
-								class="fa fa-download"></i> 즐겨찾기 추가
+							<a class="button btn-block large" href="https://cafe.naver.com/foresthealingyp">지자체 홈페이지</a> 
+							<a class="button btn-block large" href="#"> 
+							<i class="fa fa-pencil"></i>정보 수정</a>
+						    <a class="button btn-block large" href="#"> 
+						    <i class="fa fa-download"></i> 즐겨찾기 추가
+						    <a  class="button btn-block large" href="#target"> 
+						    <i class="fa fa-map"></i> 지도
+						    
 							</a>
 						</div>
 						<!-- buttons -->
@@ -122,54 +124,160 @@
 <!-- *****************************************
 	관련리뷰 캐러셀
 ***************************************** -->
-<section class="section1">
-	<div class="container clearfix">
-		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
-
-			<div class="clearfix"></div>
-			<hr>
-
-			<div class="portfolio-wrapper related_items">
-				<h4 class="title">관련 리뷰</h4>
-
-				<div class="container">
-				  <div class="carousel">
-				    <div class="item a"><img src="../../../images/space.jpg" >A</div>
-				    <div class="item b"><img src="../../../images/ppp.png" >B</div>
-				    <div class="item c"><img src="../../../images/bg1.jpg" >C</div>
-				    <div class="item d"><img src="../../../images/ppp.png" >D</div>
-				    <div class="item e"><img src="../../../images/space.jpg" >E</div>
-				    <div class="item f"><img src="../../../images/space.jpg" >F</div>
-				  </div>
-				</div>
-					<div class="next">Next</div>
-					<div class="prev">Prev</div>
-
-
-				
-				
-				
-			</div>
-			<!-- owl-related -->
-		</div>
-		<!-- end content -->
+	<section style="background:white;">
+	<div class="general-title text-center" >
+		<h3>보고계신 여행지와 관련된 </h3>
+		<p>다른관광지들!</p>
+		<hr>
 	</div>
-	<!-- end container -->
+	<div class="a_1">
+		<input checked id="one" name="multiples" type="radio" value="1">
+        <label for="one">1</label>
+        
+		<input id="two" name="multiples" type="radio" value="2">
+        <label for="two">2</label>
+
+        <input id="three" name="multiples" type="radio" value="3">
+        <label for="three">3</label>
+
+        <input id="four" name="multiples" type="radio" value="4">
+        <label for="four">4</label>
+
+        <input id="five" name="multiples" type="radio" value="5">
+        <label for="five">5</label>
+
+        <input id="six" name="multiples" type="radio" value="6">
+        <label for="six">6</label>
+
+        <input id="seven" name="multiples" type="radio" value="7">
+        <label for="seven">7</label>
+
+        <input id="eight" name="multiples" type="radio" value="8">
+        <label for="eight">8</label>
+
+		<div  class="a_1_1">
+			<div class="carousel">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 1">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 2">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 3">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 4">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 5">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 6">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 7">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 8">
+			</div>
+		</div>
+
+	</div>
 </section>
-<!-- end section -->
+<style>
+ .a_1 {
+		width: 500px;
+		margin: 50px auto;
+		text-align: center;
+	}
+
+	figure {
+		margin: 0;
+	}
+
+	.a_1_1 {
+		width: 500px;
+		height: 300px;
+		text-align: left;
+		margin: 60px auto;
+		-webkit-perspective: 1000px;
+		-webkit-perspective-origin: 50% -25%;
+	}
+
+		.carousel {
+			-webkit-transform-style: preserve-3d;
+			-webkit-transform: translateZ(-540px);
+			position: relative;
+			margin: 0;
+			width: 500px;
+			height: 300px;
+			-webkit-transition: 1s;
+		}
+
+		.carousel img {
+				position: absolute;
+				border: 15px solid rgba(0, 0, 0, .8);
+				opacity: .5;
+				-webkit-transition: 1s;
+        width: 500px;
+        height: 300px;
+        background:#ccc;
+			}
+
+				
+				.carousel img:nth-child(1) { -webkit-transform: translateZ(540px) scale(.8); }
+				.carousel img:nth-child(2) { -webkit-transform: rotateY(45deg) translateZ(540px) scale(.8); }
+				.carousel img:nth-child(3) { -webkit-transform: rotateY(90deg) translateZ(540px) scale(.8); }
+				.carousel img:nth-child(4) { -webkit-transform: rotateY(135deg) translateZ(540px) scale(.8); }
+				.carousel img:nth-child(5) { -webkit-transform: rotateY(180deg) translateZ(540px) scale(.8); }
+				.carousel img:nth-child(6) { -webkit-transform: rotateY(225deg) translateZ(540px) scale(.8); }
+				.carousel img:nth-child(7) { -webkit-transform: rotateY(270deg) translateZ(540px) scale(.8); }
+				.carousel img:nth-child(8) { -webkit-transform: rotateY(315deg) translateZ(540px) scale(.8); }
+
+	label {
+		cursor: pointer;
+		background: #eee;
+		display: inline-block;
+		border-radius: 50%;
+		width: 30px;
+		padding-top: 7px;
+		height: 23px;
+		font: .9em Arial;
+	}
+
+	label:hover {
+		background: white;
+	}
+
+	input {
+		position: absolute;
+		left: -9999px;
+	}
+
+	input:checked + label {
+		font-weight: bold;
+		background: white;
+	}
+
+		input[value="1"]:checked ~ .a_1_1 .carousel { -webkit-transform: translateZ(-540px); }
+		input[value="2"]:checked ~ .a_1_1 .carousel { -webkit-transform: translateZ(-540px) rotateY(-45deg); }
+		input[value="3"]:checked ~ .a_1_1 .carousel { -webkit-transform: translateZ(-540px) rotateY(-90deg); }
+		input[value="4"]:checked ~ .a_1_1 .carousel { -webkit-transform: translateZ(-540px) rotateY(-135deg); }
+		input[value="5"]:checked ~ .a_1_1 .carousel { -webkit-transform: translateZ(-540px) rotateY(-180deg); }
+		input[value="6"]:checked ~ .a_1_1 .carousel { -webkit-transform: translateZ(-540px) rotateY(-225deg); }
+		input[value="7"]:checked ~ .a_1_1 .carousel { -webkit-transform: translateZ(-540px) rotateY(-270deg); }
+		input[value="8"]:checked ~ .a_1_1 .carousel { -webkit-transform: translateZ(-540px) rotateY(-315deg); }
+
+		input[value="1"]:checked ~ .a_1_1 .carousel img:nth-child(1) { -webkit-transform: translateZ(540px) scale(1); opacity: 1; }
+		input[value="2"]:checked ~ .a_1_1 .carousel img:nth-child(2) { -webkit-transform: rotateY(45deg) translateZ(540px) scale(1); opacity: 1; }
+		input[value="3"]:checked ~ .a_1_1 .carousel img:nth-child(3) { -webkit-transform: rotateY(90deg) translateZ(540px) scale(1); opacity: 1; }
+		input[value="4"]:checked ~ .a_1_1 .carousel img:nth-child(4) { -webkit-transform: rotateY(135deg) translateZ(540px) scale(1); opacity: 1; }
+		input[value="5"]:checked ~ .a_1_1 .carousel img:nth-child(5) { -webkit-transform: rotateY(180deg) translateZ(540px) scale(1); opacity: 1; }
+		input[value="6"]:checked ~ .a_1_1 .carousel img:nth-child(6) { -webkit-transform: rotateY(225deg) translateZ(540px) scale(1); opacity: 1; }
+		input[value="7"]:checked ~ .a_1_1 .carousel img:nth-child(7) { -webkit-transform: rotateY(270deg) translateZ(540px) scale(1); opacity: 1; }
+		input[value="8"]:checked ~ .a_1_1 .carousel img:nth-child(8) { -webkit-transform: rotateY(315deg) translateZ(540px) scale(1); opacity: 1; }
+</style>
+
 
 <!-- *******************************************
  		지도
 ************************************************ -->
-<section style="background-color: white;">
-	<div class="general-title text-center" >
-		<h3>지도</h3>
+
+<section id="target" style="background-color: white;">
+	<div  class="general-title text-center" >
+		<h3> 지도</h3>
 		<p>지도보여줄 곳</p>
 		<hr>
 	</div>
 
 	<div class="divider"></div>
-	<div class="theme_overviews clearfix">
+	<div  class="theme_overviews clearfix">
 		
 <div class="wrapper">
   <div  id="one">
@@ -198,6 +306,7 @@
 	<!-- theme / Products overview -->
 
 </section>
+
 <style>
 #one{
 float:left;
@@ -213,111 +322,16 @@ height:700px;
 background-color: blue;
 }
 
-
-
-
-
- #body1 { 
-   background: #333; 
-   padding: 70px 0; 
-   font: 15px/20px Arial, sans-serif; 
- }
-
-
-
-.carousel {
-   height: 100%; 
-   width: 100%; 
-  position: static;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-}
-
-.item {
-  display: block;
-  position: absolute;
-  background: #000;
-  width: 250px;
-  height: 200px;
-  line-height: 200px;
-  font-size: 5em;
-  text-align: center;
-  color: #FFF;
-  opacity: 0.95;
-  border-radius: 10px;
-}
-
-.a {
-  transform: rotateY(0deg) translateZ(250px);
-  background: #ed1c24;
-}
-.b {
-  transform: rotateY(60deg) translateZ(250px);
-  background: #0072bc;
-}
-.c {
-  transform: rotateY(120deg) translateZ(250px);
-  background: #39b54a;
-}
-.d {
-  transform: rotateY(180deg) translateZ(250px);
-  background: #f26522;
-}
-.e {
-  transform: rotateY(240deg) translateZ(250px);
-  background: #630460;
-} 
-.f {
-  transform: rotateY(300deg) translateZ(250px);
-  background: #8c6239;
-}
-
-.next, .prev {
-  color: #444;
-  position: absolute;
-  top: 100px;
-  padding: 1em 2em;
-  cursor: pointer;
-  background: #CCC;
-  border-radius: 5px;
-  border-top: 1px solid #FFF;
-  box-shadow: 0 5px 0 #999;
-  transition: box-shadow 0.1s, top 0.1s;
-}
-.next:hover, .prev:hover { color: #000; }
-.next:active, .prev:active {
-  top: 104px;
-  box-shadow: 0 1px 0 #999;
-}
-.next { right: 5em; }
-.prev { left: 5em; }
-
-
-
-
-
-
 </style>
+
 <script>
-var carousel = $(".carousel"),
-currdeg  = 0;
-
-$(".next").on("click", { d: "n" }, rotate);
-$(".prev").on("click", { d: "p" }, rotate);
-
-function rotate(e){
-if(e.data.d=="n"){
-currdeg = currdeg - 60;
-}
-if(e.data.d=="p"){
-currdeg = currdeg + 60;
-}
-carousel.css({
-"-webkit-transform": "rotateY("+currdeg+"deg)",
-"-moz-transform": "rotateY("+currdeg+"deg)",
-"-o-transform": "rotateY("+currdeg+"deg)",
-"transform": "rotateY("+currdeg+"deg)"
+jQuery(document).ready(function($) {
+    $(".scroll").click(function(event){            
+            event.preventDefault();
+            $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+    });
 });
-}
 </script>
 
+
+ 

@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/owl.carousel.css">
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/main.css">
 <script src="https://365ok.co.kr/theme/ok/js/jquery-2.2.4.min.js"></script>
-<body>
 
 <div id="main" class="container">
 <!--*********************************** 
@@ -74,7 +73,7 @@
             <td class="td_subject" style="padding-left:0px">
                                 <div class="bo_tit">
 
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=48">
+                    <a href="<c:url value='/planit/search/tourinfo/NoticeView.it'/>">
                         공지사항              </a>
 
                 </div>
@@ -106,7 +105,7 @@
             <td class="td_subject" style="padding-left:0px">
                                 <div class="bo_tit">
 
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=46">
+                    <a href="<c:url value='/planit/search/tourinfo/NoticeView.it'/>">
                         파이썬 프로그래밍 강좌 개설 기념                    </a>
 
                 </div>
@@ -122,7 +121,7 @@
             <td class="td_subject" style="padding-left:0px">
                                 <div class="bo_tit">
 
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=45">
+                    <a href="<c:url value='/planit/search/tourinfo/NoticeView.it'/>">
                         1년 호스팅 무료 서비스 및 테마 무료설치 지원 안내                    </a>
 
                 </div>
@@ -131,182 +130,8 @@
             <td class="p-1 text-right pr-2">05-21</td>
 
         </tr>
-                <tr class="">
-                        <td class="td_num2">
-            33            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=44">
-                        신규강좌 안내 - CSS Flexbox 강좌 시작합니다.                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">05-15</td>
-
-        </tr>
-                <tr class="">
-                        <td class="td_num2">
-            32            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=43">
-                        유료강좌 가격 인상 및 일부 무료강좌 유료 전환 안내                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">05-14</td>
-
-        </tr>
-                <tr class="">
-                        <td class="td_num2">
-            31            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=41">
-                        부트스트랩4 테마                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">05-11</td>
-
-        </tr>
-                <tr class="">
-                        <td class="td_num2">
-            30            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=39">
-                        1시간이면 웹사이트 완성!! 실화야?                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">04-11</td>
-
-        </tr>
-                <tr class="">
-                        <td class="td_num2">
-            29            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=38">
-                        그누보드5를 이용하여 영어사이트 쉽게 만들기                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">04-06</td>
-
-        </tr>
-                <tr class="">
-                        <td class="td_num2">
-            28            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=37">
-                        100% 프로그램 소스 공개                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">03-27</td>
-
-        </tr>
-                <tr class="">
-                        <td class="td_num2">
-            27            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=36">
-                        웹프로그래밍 400여개 이상의 동영상 강좌를 제공하고 있습니다.                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">03-26</td>
-
-        </tr>
-                <tr class="">
-                        <td class="td_num2">
-            26            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=33">
-                        그누보드5/영카트5를 이해하기 위한 필수 PHP 강좌                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">03-15</td>
-
-        </tr>
-                <tr class="">
-                        <td class="td_num2">
-            25            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=32">
-                        OKGSITE 사이트관리솔루션 소개                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">03-11</td>
-
-        </tr>
-                <tr class="">
-                        <td class="td_num2">
-            24            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=31">
-                        테마관리솔루션                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">03-04</td>
-
-        </tr>
-                <tr class="">
-                        <td class="td_num2">
-            23            </td>
-
-            <td class="td_subject" style="padding-left:0px">
-                                <div class="bo_tit">
-
-                    <a href="https://365ok.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=30">
-                        자동분양 홈페이지 솔루션 소개                    </a>
-
-                </div>
-
-            </td>
-            <td class="p-1 text-right pr-2">03-02</td>
-
-        </tr>
+                
+     
                         </tbody>
         </table>
 
@@ -352,5 +177,4 @@
 </div>
 
 
-</body>
 

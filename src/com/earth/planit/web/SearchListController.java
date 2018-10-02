@@ -77,11 +77,6 @@ public class SearchListController {
 		return "tourinfo/tdview/Qna.theme";
 	}
 	
-	//질문답변 1:1
-	@RequestMapping("/tourinfo/tdview/OneToOne.it")
-	public String oneToOne()throws Exception{
-		return "tourinfo/tdview/OneToOne.theme";
-	}
 	
 	//공지사항
 	@RequestMapping("/planit/search/tourinfo/Notice.it")
@@ -95,12 +90,6 @@ public class SearchListController {
 	}
 
    
-   //음식점 리스트
-   @RequestMapping("/tourinfo/tdview/FoodList.it")
-   public String foodList()throws Exception{
-      return "tourinfo/tdview/FoodList.theme";
-   }
-
 
    
    

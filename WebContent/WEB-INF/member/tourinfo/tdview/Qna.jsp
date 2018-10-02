@@ -1,32 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Ruda:400,900,700" rel="stylesheet">
-  <!-- =======================================================
-    Template Name: MaxiBiz
-    Template URL: https://templatemag.com/maxibiz-bootstrap-business-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
-
-<body>
-<!--************************************** 
- 	삽입
- **************************************-->
-<%--  <jsp:include page="topMenu.jsp" flush="false" /> --%>
-
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/default.css?ver=171222">
+<link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/animate.min.css">
+<link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/owl.carousel.css">
+<link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/main.css">
+<script src="https://365ok.co.kr/theme/ok/js/jquery-2.2.4.min.js"></script>
 
   <section class="section1">
-    <div class="container clearfix">
+    <div class="container clearfix" >
       <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
+      
+      <section class="sub-area relative" id="home">
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">Q&A</h1>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End sub title -->
+      
+      
+      
+      
 <!--************************************** 
  	FAQ / 1:1문의 / ?    세개 이미지버튼
  **************************************-->
+ <div style="padding-top:60px">
         <div class="col-lg-4 col-md-4 col-sm-12">
-          <div class="dmbox">
-            <div class="service-icon">
-              <div class="dm-icon-effect-1" data-effect="slide-bottom">
+          <div class="dmbox" style="height:261px">
+            <div class="service-icon" >
+              <div class="dm-icon-effect-1" data-effect="slide-bottom" >
                 <a class="" href="#"><i class="dm-icon fa fa-question fa-3x"></i></a>
               </div>
             </div>
@@ -36,28 +48,59 @@
         </div>
         <!-- end dmbox -->
 
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <div class="dmbox">
-            <div class="service-icon">
-              <div class="dm-icon-effect-1" data-effect="slide-bottom">
-                <a class="" href="#"><i class="dm-icon fa fa-envelope-o fa-3x"></i></a>
-              </div>
-            </div>
-            <a href="<c:url value='/tourinfo/tdview/OneToOne.it'/>"><h4>1:1 문의</h4>
-            <p>물어보세요(누르면 모달창이나 글쓰는창으로)</p></a>
-          </div>
-        </div>
-        <!-- end dmbox -->
+
+
 
         <div class="col-lg-4 col-md-4 col-sm-12">
           <div class="dmbox">
             <div class="service-icon">
               <div class="dm-icon-effect-1" data-effect="slide-bottom">
-                <a class="" href="#"><i class="dm-icon fa fa-random fa-3x"></i></a>
+                <a class="btn btn-default" data-toggle="modal" href="#normalModal"><i class="dm-icon fa fa-envelope-o fa-3x"></i></a>
               </div>
             </div>
-            <h4>?</h4>
-            <p>?</p>
+<!-- **************************************** 
+			모달창
+**************************************** -->  
+			<h4>1:1 문의</h4>
+	            <p>물어보세요</p>
+	                   
+            <div id="normalModal" class="modal fade">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title">질문창</h4>
+			      </div>
+			      <div class="modal-body">
+			      <p>질문하고 싶은 내용을 적으세요!</p>
+			        <input style="height:200px" type="text" class="form-control"
+										required>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        <button type="button" class="btn btn-primary">보내기</button>
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			</div>
+<!-- **************************************** 
+				모달창 끝
+**************************************** -->
+            
+            
+        </div>
+        <!-- end dmbox -->
+
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="dmbox" style="height:261px">
+            <div class="service-icon">
+              <div class="dm-icon-effect-1" data-effect="slide-bottom">
+                <a class="" href="#"><i class="dm-icon fa fa-plane fa-3x"></i></a>
+              </div>
+            </div>
+            <a><h4>재밌는 여행을 위해</h4>
+            <p>신속한 답변을 드리겠습니다</p></a>
           </div>
         </div>
         <!-- end dmbox -->
@@ -65,102 +108,49 @@
         <div class="clearfix"></div>
         <div class="divider"></div>
 
-        <div class="general-title text-center">
-          <h3>Support Forum</h3>
-          <p>We are here to help you with everything regarding your product.</p>
-          <hr>
-        </div>
-
-        <div class="text-center">
-          <form id="bbsearch" class="form-inline">
-            <input type="text" class="form-control" placeholder="Search on support forums">
-            <button type="submit" class="btn btn-primary">Search</button>
-          </form>
-        </div>
-
-        <div class="clearfix"></div>
-        <div class="divider"></div>
 
 <!--************************************** 
  	FAQ 아코디언으로 
  **************************************-->
-        <div class="general-title text-center">
-          <h3>FAQ </h3>
-        </div>
+	<nav class="accordion arrows">
+		<header class="box">
+			<label for="acc-close" class="box-title">FAQ</label>
+		</header>
+		<input type="radio" name="accordion" id="cb1" />
+		<section class="box">
+			<label class="box-title" for="cb1">몇살이신가요</label>
+			<label class="box-close" for="acc-close"></label>
+			<div class="box-content">26살입니다</br>
+			26살입니다  </br>26살입니다  26살입니다 26살입니다 26살입니다 26살입니다 26살입니다 </br>
+			</div>
+		</section>
+		<input type="radio" name="accordion" id="cb2" />
+		<section class="box">
+			<label class="box-title" for="cb2">Read me too</label>
+			<label class="box-close" for="acc-close"></label>
+			<div class="box-content">Add the class 'arrows' to nav.accordion to add dropdown arrows.</div>
+		</section>
+		<input type="radio" name="accordion" id="cb3" />
+		<section class="box">
+			<label class="box-title" for="cb3">Item 3</label>
+			<label class="box-close" for="acc-close"></label>
+			<div class="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
+		</section>
+		<section class="box">
+			<label class="box-title" for="cb3">Item 4</label>
+			<label class="box-close" for="acc-close"></label>
+			<div class="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
+		</section>
+		<section class="box">
+			<label class="box-title" for="cb3">Item 5</label>
+			<label class="box-close" for="acc-close"></label>
+			<div class="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
+		</section>
 
-		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-		  <div class="panel panel-default">
-		    <div class="panel-heading" role="tab" id="headingOne">
-		      <h4 class="panel-title">
-		        <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-		         		질문내용1
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-		      <div class="panel-body">
-		        		답변1답변1답변1답변1답변1답변1
-		      </div>
-		    </div>
-		  </div>
-		  <div class="panel panel-default">
-		    <div class="panel-heading" role="tab" id="headingTwo">
-		      <h4 class="panel-title">
-		        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-		         			질문2
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-		      <div class="panel-body">
-		        		답변2답변2답변2답변2
-		      </div>
-		    </div>
-		  </div>
-		  <div class="panel panel-default">
-		    <div class="panel-heading" role="tab" id="headingThree">
-		      <h4 class="panel-title">
-		        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-		         	질문3
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-		      <div class="panel-body">
-		        답변3답변3답변3답변3답변3답변3
-		      </div>
-		    </div>
-		  </div>
-		  <div class="panel panel-default">
-		    <div class="panel-heading" role="tab" id="headingFour">
-		      <h4 class="panel-title">
-		        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-		         	질문4
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-		      <div class="panel-body">
-		         답변444444444444444444444
-		      </div>
-		    </div>
-		  </div>
-		  <div class="panel panel-default">
-		    <div class="panel-heading" role="tab" id="headingFive">
-		      <h4 class="panel-title">
-		        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-		         	질문5
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-		      <div class="panel-body">
-		      답변5
-		      </div>
-		    </div>
-		  </div>
-		</div>
-
+		<input type="radio" name="accordion" id="acc-close" />
+	</nav>
+		
+		
       </div>
       <!-- end content -->
     </div>
@@ -170,4 +160,130 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script> 
  
   <div class="dmtop">Scroll to Top</div>
-</body>
+
+</div>
+
+<style>
+/****************************************
+아코디언 css
+**************************************/
+.accordion {
+	margin: auto;
+	width: 900px;
+}
+.accordion input {
+	display: none;
+}
+.box {
+	position: relative;
+	background: white;
+    height: 64px;
+    transition: all .15s ease-in-out;
+}
+.box::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+}
+header.box {
+	background: #00BCD4;
+	z-index: 100;
+	cursor: initial;
+	box-shadow: 0 -1px 0 #e5e5e5,0 0 2px -2px rgba(0,0,0,.12),0 2px 4px -4px rgba(0,0,0,.24);
+}
+header .box-title {
+	margin: 0;
+	font-weight: normal;
+	
+	font-size: 16pt;
+	color: white;
+	cursor: initial;
+}
+.box-title {
+	width: calc(100% - 40px);
+	height: 64px;
+	line-height: 64px;
+	padding: 0 20px;
+	display: inline-block;
+	cursor: pointer;
+	-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;
+}
+.box-content {
+	width: calc(100% - 40px);
+	padding: 30px 20px;
+	font-size: 11pt;
+	color: rgba(0,0,0,.54);
+	display: none;
+}
+.box-close {
+	position: absolute;
+	height: 64px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	display: none;
+}
+input:checked + .box {
+	height: auto;
+	margin: 16px 0;
+    box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
+}
+input:checked + .box .box-title {
+	border-bottom: 1px solid rgba(0,0,0,.18);
+}
+input:checked + .box .box-content,
+input:checked + .box .box-close {
+	display: inline-block;
+}
+.arrows section .box-title {
+	padding-left: 44px;
+	width: calc(100% - 64px);
+}
+.arrows section .box-title:before {
+	position: absolute;
+	display: block;
+	content: '\203a';
+	font-size: 18pt;
+	left: 20px;
+	top: -2px;
+	transition: transform .15s ease-in-out;
+	color: rgba(0,0,0,.54);
+}
+input:checked + section.box .box-title:before {
+	transform: rotate(90deg);
+}
+
+/****************************************
+모달창 css
+**************************************/
+.modal.modal-wide .modal-dialog {
+  width: 90%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+
+/* body { text-align: center; } */
+body p { 
+  max-width: 400px; 
+  margin: 20px auto; 
+}
+#tallModal .modal-body p { margin-bottom: 900px }
+</style>
+
+<script>
+//**************************************
+//  모달창 스크립트
+//**************************************
+$(".modal-wide").on("show.bs.modal", function() {
+  var height = $(window).height() - 200;
+  $(this).find(".modal-body").css("max-height", height);
+});
+</script>
