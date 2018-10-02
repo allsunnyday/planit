@@ -78,19 +78,41 @@
 	}
 	
 	function submitAction(){
-		var data = new FormData();
+		var formdata = new FormData();
 		
 		for(var i=0, len=sel_files.length; i<len; i++){
-			var name="image_"+i;
-			data.append(name, sel_files[i]);
+			var name="image_"+i; 
+			formdata.append(name, sel_files[i]);  // 이미지을 새롭게 변경하여 저장하기 
 		}
-		data.append("image_count", sel_files.length);
+		formdata.append("image_count", sel_files.length);  //사진 개수 저장
 		
 		console.log("이미지 업로드 하기 전 ")
-		console.log("data"+data);
-		for (var pair of data.entries()) {
+		console.log("data"+formdata);
+		console.log("summernote"+$('.summernote').summernote('code'));
+		formdata.append("content", $('.summernote').summernote('code'));  //작성된 글 저장
+		for (var pair of formdata.entries()) {
 		    console.log(pair[0]+ ', ' + pair[1]); 
 		}
+		
+		$.ajax({
+			type:'POST',
+			url: '<c:url value="/review/write/UploadReview.it"/>',
+			dataType:'text',
+			data: formdata,
+			contentType:false,
+			 processData: false,
+			 success: function(data){
+				 console.log(data);
+			 },
+			 error:function(data){
+					/*
+						서버로부터 비정상적인 응답을 받았을 때 호출되는 콜백함수
+						data : 에러 메세지 
+					*/
+					console.log('error!'+data);
+				}
+		});
+		
 	}
 	
 	function deleteImageAction(index){
@@ -125,8 +147,9 @@
 		<div class="col-md-2">
 			<nav class="portfolio-filter clearfix">
 				<ul>
-					<li><a href="javascript:" onclick="submitAction();" class="dmbutton up_button" data-filter="*">저장하기</a></li>
-					<li><a href="javascript:" onclick="exit();" class="dmbutton" data-filter="*">나가기</a></li>
+					<!-- <li><a href="javascript:" onclick="submitAction();" class="dmbutton up_button" data-filter="*">저장하기</a></li> -->
+					<li><a href="javascript:" onclick="history.back();" class="dmbutton up_button" >저장하기</a></li>
+					<li><a href="javascript:" onclick="exit();" class="dmbutton">나가기</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -158,32 +181,34 @@
 				</div>
 				<!--일정에 관한 개요를 보여준다.############   -->
 				<!--############사용자가 입력하는 공간  -->
-				<div class="col-sm-12 input_wrap">
-					<a href="javascript:" onclick="fileUploadAction();" class="dmbutton2" data-filter="*">사진추가</a>
-					<input type="file" id="input_imgs" multiple style="display:none;"  />
-				</div>
-				
-				<!--사용자가 입력하는 공간############이미지-->
-				<div class="col-sm-offset-1 col-sm-10 imgs_block">
-					<!-- 이미지가 없을 시에는 아래의 no-image가 보인다.  -->
-					<div class="no-image text-center" style='width:100%; height:180px;padding-top:60px;background-color: #e6e6e6;'><h1 class="review-title">사진을 추가해주세요</h1></div>
-					<!-- 사용자가 이미지를 추가할 시에는 아래 imgs_wrap 다이브 사이에 추가된다.   -->
-					<div class="imgs_wrap">
-						<img id="img" />
-					</div>
-				</div>
-				<!--사용자가 입력하는 공간##########글  -->
-				<div class="col-sm-offset-1 col-sm-10 text_block">
-					<p>글을 클릭하시면 수정할 수 있어요!</p>
-					<!-- <a href="javascript:" onclick="edit()" class="dmbutton2">수정</a> 
-					<a href="javascript:" onclick="save()" class="dmbutton2">완료</a> -->
-					<hr>
-				</div>
-				<div class="col-sm-offset-1 col-sm-10 ">
-					<div class="text-wrap" >
-						<div class="summernote">소중한 순간을 기록해 보세요</div>
-					</div>
-				</div>
+				<form id="fileForm" action="#" enctype="multipart/form-data">
+						<div class="col-sm-12 input_wrap">
+							<a href="javascript:" onclick="fileUploadAction();" class="dmbutton2" data-filter="*">사진추가</a>
+							<input type="file" id="input_imgs" multiple style="display:none;"  />
+						</div>
+						
+						<!--사용자가 입력하는 공간############이미지-->
+						<div class="col-sm-offset-1 col-sm-10 imgs_block">
+							<!-- 이미지가 없을 시에는 아래의 no-image가 보인다.  -->
+							<div class="no-image text-center" style='width:100%; height:180px;padding-top:60px;background-color: #e6e6e6;'><h1 class="review-title">사진을 추가해주세요</h1></div>
+							<!-- 사용자가 이미지를 추가할 시에는 아래 imgs_wrap 다이브 사이에 추가된다.   -->
+							<div class="imgs_wrap">
+								<img id="img" />
+							</div>
+						</div>
+						<!--사용자가 입력하는 공간##########글  -->
+						<div class="col-sm-offset-1 col-sm-10 text_block">
+							<p>글을 클릭하시면 수정할 수 있어요!</p>
+							<!-- <a href="javascript:" onclick="edit()" class="dmbutton2">수정</a> 
+							<a href="javascript:" onclick="save()" class="dmbutton2">완료</a> -->
+							<hr>
+						</div>
+						<div class="col-sm-offset-1 col-sm-10 ">
+							<div class="text-wrap" >
+								<div class="summernote">소중한 순간을 기록해 보세요</div>
+							</div>
+						</div>
+				</form>
 			</div>
 		</div>
 		<!-- end content -->

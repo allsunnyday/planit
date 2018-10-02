@@ -1,7 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+  text-align: center;
 
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  max-width: 50%;
+  padding: 0 4px;
+}
+
+.column .review {
+  margin-top: 8px;
+  vertical-align: middle;
+  position: relative;
+}
+.column .review img{
+	display:block;
+  width: 100%;
+  height: auto;
+}
+
+.review-overlay{
+ position: absolute;
+   top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%; 
+  opacity: 1;
+  transition: .5s ease;
+/*   background-color: #000000; */
+ 
+}
+
+
+.review:hover .review-overlay {
+  opacity: 0.5;
+  color:#444;
+}
+
+.column .review .text {
+   color: white; 
+  font-size:30px;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 50px;
+  
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+</style>
 <!-- Top content -->
 <div class="top-content">
 	<div class="container">
@@ -163,73 +240,51 @@ real story: 인기있는 리뷰 모아보기
 	            <div class="row">
 	                <div class="col-sm-12 portfolio section-description wow fadeIn">
 	                	<h2>real story</h2>
-	                    <div class="divider-1 wow fadeInUp"><span></span></div>
-	                    <div class="line"></div>
+	                     <div class="divider-1 wow fadeInUp"><div class="line"></div></div>
 	                    <p>
 	                    	플랜잇과 함께한 여행의 소중한 순간들, 전국의플래너들의 여행이야기 지금 시작합니다 
 	                    </p>
 	                </div>
 	            </div>
 	            <!--  -->
-	            <div style="clear:both;"></div>
 	            <div class="row">
-	            	<div class="col-sm-12 portfolio-masonry">
-		                <div class=" col-sm-6  review-main ">
-		                	<img  class="review-main-img" src="<c:url value='/images/main/slide1.jpg'/> " alt="" data-at2x="<c:url value='/images/main/slide1.jpg'/>">
-		                	<div class="review-main-box-text-container">
-		                		<div class="portfolio-box-text">
-		                			<p><a href="#">서울 힙스터</a></p>
-		                		</div>
-		                	</div>
-		                </div>
-		                	<div class="col-sm-3 review-best">
-				                <div class="portfolio-box ">
-				                	<img src="<c:url value='/images/main/slide2.jpg'/>" alt="" data-at2x="<c:url value='/images/main/slide2.jpg'/>">
-				                	<div class="portfolio-box-text-container">
-				                		<div class="portfolio-box-text">
-				                			<p><a href="#">차.도.녀</a></p>
-				                		</div>
-				                	</div>
-				                </div>
-			                </div>
-			                <div class="col-sm-3 ">
-				                <div class="portfolio-box ">
-				                	<img src="<c:url value='/images/main/slide3.jpg'/>" alt="" data-at2x="<c:url value='/images/main/slide3.jpg'/>">
-				                	<div class="portfolio-box-text-container">
-				                		<div class="portfolio-box-text">
-				                			<p><a href="#">먹방여행</a></p>
-				                		</div>
-				                	</div>
-				                </div>
-				            </div>
-				            <div class="col-sm-3 ">
-				                <div class="portfolio-box ">
-				                	<img src="<c:url value='/images/main/slide5.jpg'/>" alt="" data-at2x="<c:url value='/images/main/slide5.jpg'/>">
-				                	<div class="portfolio-box-text-container">
-				                		<div class="portfolio-box-text">
-				                			<p><a href="#">힐링여행</a></p>
-				                		</div>
-				                	</div>
-				                </div>
-				            </div>
-				            <div class="col-sm-3 ">
-				                <!-- 플랜잇과 함께한 순간 더 보기  --> 
-				                <div class=" portfolio-box ">
-				                	<img src="<c:url value='/images/main/007-astronaut.png'/>" alt="" data-at2x="<c:url value='/images/main/007-astronaut.png'/>">
-				                	<div class="portfolio-box-text-container">
-				                		<div class="portfolio-box-text">
-				                			<p><a href="#">힐링여행</a></p>
-				                		</div>
-				                	</div>
-				                </div>
-				           	</div>
-				           	<!--  -->
-		               
-		               <!--  -->
-	                </div>
-	                <!--  -->
+	            	<div class="column">
+	            		<div class="review">
+	            			<img alt="" src="https://images.unsplash.com/photo-1536221563919-37c841f1f945?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=388e358d549a414a2adb8daabdd9d822&auto=format&fit=crop&w=500&q=60" >
+	            			<div class="review-overlay">
+							    <div class="text"><p>사진작가의 서울유랑기</p></div>
+							</div>
+	            		</div>
+	            		<div class="review">
+	            			<img alt="" src="https://images.unsplash.com/photo-1535189043414-47a3c49a0bed?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bcaa443d3be0ebc65b8f9291ea0e19fb&auto=format&fit=crop&w=500&q=60" >
+	            			<div class="review-overlay">
+							    <div class="text"><p>고궁투어를해보자</p></div>
+							</div>
+	            		</div>
+	            	</div>
+	            	<div class="column">
+	            	<div class="review">
+	            			<img alt="" src="<c:url value='/images/main/slide1.jpg'/>" >
+	            			<div class="review-overlay">
+							    <div class="text"><p>사진작가의 서울유랑기</p></div>
+							</div>
+	            		</div>
+	            		<div class="review">
+	            			<img alt="" src="https://images.unsplash.com/photo-1533577116850-9cc66cad8a9b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=40a35c6cb327dbb176d20ff6bd34bbab&auto=format&fit=crop&w=500&q=60" >
+	            			<div class="review-overlay">
+							    <div class="text"><p>리뷰제목1</p></div>
+							</div>
+	            		</div>
+	            		<div class="review">
+	            			<img alt="" src="https://images.unsplash.com/photo-1532649097480-b67d52743b69?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8bc9e7a65c3e8e9049d621c3e88ffc9a&auto=format&fit=crop&w=500&q=60" >
+	            			<div class="review-overlay">
+							    <div class="text"><p>리뷰제목2</p></div>
+							</div>
+	            		</div>
+	            	</div>
+	            	
 	            </div>
-	            <!-- row -->
+	            
 	        </div>
 	        <!-- container -->
         </div>
@@ -244,8 +299,7 @@ planner : 평점이 높은 리뷰를 모아보기
          <div class="row">
               <div class="col-sm-12 portfolio section-description wow fadeIn">
               	<h2>Planner</h2>
-                  <div class="divider-1 wow fadeInUp"><span></span></div>
-                  					<div class="line"></div>
+                   <div class="divider-1 wow fadeInUp"><div class="line"></div></div>
                   <p>
                   	이런 여행 코스는 어떤가요? 
                   </p>
@@ -260,7 +314,7 @@ planner : 평점이 높은 리뷰를 모아보기
                   <p class="mb-0">올해 하태하태던 속초</p>
                 </span>
               </span>
-              <img class="img-fluid" src="<c:url value='/images/main/slide5.jpg'/>" alt="">
+              <img class="img-fluid" src="https://images.unsplash.com/photo-1534321238895-da3ab632df3e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3499f38cd1d86acc109c00b7ff86578a&auto=format&fit=crop&w=1050&q=80" alt="">
             </a>
           </div>
           <div class="col-lg-6">
@@ -271,7 +325,7 @@ planner : 평점이 높은 리뷰를 모아보기
                   <p class="mb-0">제주도 가고싶다.</p>
                 </span>
               </span>
-              <img class="img-fluid" src="<c:url value='/images/main/slide5.jpg'/>" alt="">
+              <img class="img-fluid" src="https://images.unsplash.com/photo-1527824786100-2787b7fdc674?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=745331d1c437cac317e7bc2bee7a6f0b&auto=format&fit=crop&w=1050&q=80" alt="">
             </a>
           </div>
           <div class="col-lg-6">
@@ -282,7 +336,7 @@ planner : 평점이 높은 리뷰를 모아보기
                   <p class="mb-0">서울이 가깝지</p>
                 </span>
               </span>
-              <img class="img-fluid" src="<c:url value='/images/main/slide5.jpg'/>" alt="">
+              <img class="img-fluid" src="https://images.unsplash.com/photo-1488628278511-2177a435414d?ixlib=rb-0.3.5&s=eed829b56aa6cb3008e7032e5c8a6044&auto=format&fit=crop&w=1051&q=80" alt="">
             </a>
           </div>
           <div class="col-lg-6">
@@ -293,13 +347,46 @@ planner : 평점이 높은 리뷰를 모아보기
                   <p class="mb-0">남방 4박 5일 </p>
                 </span>
               </span>
-              <img class="img-fluid" src="<c:url value='/images/main/slide5.jpg'/>" alt="">
+              <img class="img-fluid" src="https://images.unsplash.com/photo-1494804265872-476520fd1a21?ixlib=rb-0.3.5&s=a4352942c0ced5c125fb2273d4a01359&auto=format&fit=crop&w=1050&q=80" alt="">
             </a>
           </div>
         </div>
       </div>
     </section>
- 
+ <section class="content-section" id="portfolio">
+      <div class="container">
+         <div class="row">
+              <div class="col-sm-12 portfolio section-description wow fadeIn">
+              	<h2>Find Our Partner</h2>
+                  <div class="divider-1 wow fadeInUp"><div class="line"></div></div>
+                  
+                  <p>
+                  	planit with you
+                  </p>
+              </div>
+          </div>
+          <div class="row">
+				<div class="col-sm-5 how-it-works-box">
+					<div class="">
+						<iframe src="https://player.vimeo.com/video/3438670?title=0&byline=0&portrait=0&color=ffffff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+					</div>
+				</div>
+				<div class="col-sm-6 col-sm-offset-1  wow fadeInUp text-left">
+					<h3>우리의 파트너가 되어주세요</h3>
+					<p>PLANIT과 함께라면 국내 여행객들에게 색다른 여행을 선사할 수 있습니다.</p>
+					<p>플래너에서 바로바로 예약이 가능한 서비스를 통해 고객들에게 직접적인 추천이 가능합니다. 
+					파트너로 등록하시면 더욱더 많은 혜택을 보실 수 있습니다. </p>
+					<p>
+						지금 바로 <a class="learn-more scroll-link" href="#top-content">REGISTER</a>
+					</p>
+				</div>
+			</div>
+          
+          
+    </div>
+ </section>
+      
  <script type="text/javascript">
 	$('.navbar').css('background', 'none');
 	$(function() {
