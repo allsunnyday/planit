@@ -31,23 +31,24 @@
 		              <li><a href="#partner-login" data-toggle="tab">기업회원</a></li>
 		            </ul>
 		            <div class="tab-content">
+		              <c:if test="${not empty loginError }" var="loginResult"><div><h1>${loginError}</h1></div></c:if>
+		              <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}반갑습니다!</c:if>
 		              <!-- 일반회원 가입-->
 		              <div class="tab-pane active" id="user-login">
 		              	<div class="text-center" style="padding: 50px 0;">
 		              		<img  src="<c:url value='/images/planit_logo.png'/> " alt=""/>
 		              	</div>
-		              	<form id="loginform" method="post" name="loginform" action="">
+		              	<form id="loginform" method="post" name="loginform" action="<c:url value='/member/login/LoginProcess.it'/>" >
 			               <div class="form-group">
 			                  <div class="input-group">
 			                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-			                     <input type="text" class="form-control" placeholder="Username">
+			                     <input type="text" class="form-control" placeholder="Username" name="id">
 			                  </div>
 			               </div>
 			               <div class="form-group">
 			                  <div class="input-group">
 			                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-			                     <input type="password" class="form-control"
-			                        placeholder="Password">
+			                     <input type="password" class="form-control" name="pwd" placeholder="Password">
 			                  </div>
 			               </div>
 			               <div class="form-group">
@@ -58,12 +59,14 @@
 			               </div>
 			               <div class="form-group">
 			                  <button type="submit" class="button">Sign in</button>
-						 <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">회원 마이페이지 임시 이동</a>
+						 <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" >회원 마이페이지 임시 이동</a>
 			               </div>
 			            </form>
 			            
 		              </div>
 	                <!-- 일반회원 가입-->
+	                
+	                
 	                <!--기업회원 가입-->
 		              <div class="tab-pane" id="partner-login">
 		              <div class="text-center" style="padding: 50px 0;">

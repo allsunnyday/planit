@@ -1,7 +1,17 @@
 package com.earth.planit.web;
 
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.earth.planit.service.MemberService;
 
 @Controller
 public class MemberController {
@@ -10,6 +20,12 @@ public class MemberController {
 	 * 
 	 * 
 	 */
+	
+	/* 서비스 주입 */
+	@Resource(name="memberService")
+	private MemberService service;
+	
+	
 	@RequestMapping("/planit/login/Login.it")
 	public String gotoLogin() throws Exception {
 		return "login/LoginForm.theme";
@@ -101,6 +117,27 @@ public class MemberController {
 	@RequestMapping("/planit/mypage/partner/PartnerMyPageHome.it")
 	public String gotoPartnerMyPageHome() throws Exception {
 		return "mypage/partner/PartnerMyPageHome.theme";
+	}
+	
+	
+	
+	/* 로그인 처리  method=RequestMethod.POST로 설정하여 get방식 접근을 막는다. */
+	@RequestMapping(value="/member/login/LoginProcess.it", method=RequestMethod.POST)
+	public String loginProcess(@RequestParam Map map, HttpSession session, Model model)throws Exception{
+		// form 하위 데이터가 잘 온것을 확인! key= input태그의 name속성 
+		System.out.println("id="+map.get("id")+" pwd="+map.get("pwd"));
+		
+		boolean isLogin = service.isLogin(map);
+		
+		if(isLogin) { // 회원일경우
+			//로그인 처리 - 세션 영역에 저장 
+			session.setAttribute("userid", map.get("id"));
+		}
+		else { // 비회원일경우 
+			model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
+		}
+		
+		return "forward:/planit/login/Login.it";
 	}
 	
 }
