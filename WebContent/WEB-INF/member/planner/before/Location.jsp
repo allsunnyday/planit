@@ -369,9 +369,7 @@ button.btn {
 
 <style>
 	/* 드롭 다운 리스트가 블랙으로 출력되는것을 화이트로 수정 */
-	 #planul li {
-		background-color: white;
-	}
+	 #planul li {background-color: white; }
 </style>
 
 <!-- MODAL -->

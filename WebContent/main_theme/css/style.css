@@ -8,7 +8,7 @@
 .navbar {
 	margin-bottom: 0;
 	padding-top: 0;
-	background: #444;
+	background: #000000;
 	border: none;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
@@ -22,7 +22,7 @@
 
 .navbar-no-bg {
 	padding-top: 10px;
-	background: #444; /*none*/
+	background: #000000; /*none*/
 	border: none;
 }
 
@@ -42,7 +42,7 @@ ul.navbar-nav {
 }
 
 .navbar-inverse ul.navbar-nav li a:hover {
-	color: #02f7d8;
+	color: #fff;
 	border: 0;
 }
 
@@ -56,7 +56,7 @@ ul.navbar-nav {
 	display: inline-block;
 	margin: 9px 0 0 15px;
 	padding: 6px 15px;
-	background: #02f7d8;
+	background: #3498DB;
 	border: 0;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 14px;
@@ -93,7 +93,7 @@ ul.navbar-nav {
 
 /** nav var drop down***/
 .dropdown-menu {
-	background: #444;
+	background: #000000;
 }
 
 
@@ -2853,7 +2853,7 @@ section {
 	top: 0;
 	left: 0;
 	height: 1px;
-	background: #02f7d8;
+	background: #3498DB;
 }
 
 .f1-step {
@@ -2879,8 +2879,8 @@ section {
 
 .f1-step.activated .f1-step-icon {
 	background: #fff;
-	border: 1px solid #02f7d8;
-	color: #02f7d8;
+	border: 1px solid #3498DB;
+	color: #3498DB;
 	line-height: 38px;
 }
 
@@ -2888,7 +2888,7 @@ section {
 	width: 48px;
 	height: 48px;
 	margin-top: 0;
-	background: #02f7d8;
+	background: #3498DB;
 	font-size: 22px;
 	line-height: 48px;
 }
@@ -2898,11 +2898,11 @@ section {
 }
 
 .f1-step.activated p {
-	color: #02f7d8;
+	color: #3498DB;
 }
 
 .f1-step.active p {
-	color: #02f7d8;
+	color: #3498DB;
 }
 
 .f1 fieldset {

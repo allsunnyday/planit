@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div style="padding-top: 60px"></div>
+<div style="padding-top: 60px;" ></div>
+
 <!--*********************************
 리뷰 제목부분 (제목/즐겨찾기 /사용자보기) 
 ***************************************  -->
 <section id="intro"
 	style="background: url( <c:url value='/images/main/slide1.jpg'/> ) center center no-repeat fixed;">
-	<div class="container">
+	<div class="container" >
 
 		<div class="ror">
 			<div class="col-md-8 col-md-offset-2">
@@ -24,15 +25,60 @@
 		<div class="col-md-2">
 			<nav class="portfolio-filter clearfix">
 				<ul>
-					<li><a href="#" class="dmbutton" data-filter="*">일정보기</a></li>
-					<li><a href="#" class="dmbutton" data-filter="">즐겨찾기</a></li>
-					<li><a href="#" class="dmbutton" data-filter="">시리즈보기</a></li>
-					<li><a href="<c:url value='/review/myreview/Write.it'/> " class="dmbutton" data-filter="">수정하기</a></li>
+					<li><a href="#" class="dmbutton" >일정보기</a></li>
+					<li><a href="#" class="dmbutton" >즐겨찾기</a></li>
+					<li><a href="#" class="dmbutton showSeriesbtn" data-toggle="modal" data-target="#seriesmodal" >시리즈보기</a></li>
+					<li><a href="<c:url value='/review/myreview/Write.it'/> " class="dmbutton" >수정하기</a></li>
 				</ul>
 			</nav>
 
 		</div>
 	</div>
+	<div class="series"></div>
+		<!-- changebg modal -->
+	<div class="modal fade" id="seriesmodal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+		        	<div id="comments_wrapper">
+						<h4 class="title">여행 시리즈</h4>
+				          <ul class="comment-list">
+				            <li>
+				              <article class="comment">
+				                <div class="comment-content">
+				                  <h4 class="comment-author">사진작가의 서울 유랑기 
+				                       <span class="comment-reply"><a href="# " class="comment-reply dmbutton2" >1</a></span>
+				                   </h4>  
+				                </div>
+				              </article>
+				              <!-- End .comment -->
+				            </li>
+				            <li>
+				              <article class="comment">
+				                <div class="comment-content">
+				                  <h4 class="comment-author">사진작가의 서울 유랑기 
+				                       <span class="comment-reply"><a href="#" class="comment-reply dmbutton2">2</a></span>
+				                   </h4>    
+				                </div>
+				              </article>
+				              <!-- End .comment -->
+				            </li>
+				          </ul>
+				             <!-- End .comment LIst-->
+				        </div>
+		        	
+		        	
+		      	</div>
+		     	 <div class="modal-footer">
+		       	 	<button type="button" class="dmbutton2" data-dismiss="modal">닫기</button>
+		        	
+		      	</div>
+			</div>
+		</div>
+	</div>
+	<!-- changebg modal -->
+	
+	
 </section>
 
 <!--*********************************
@@ -87,19 +133,19 @@
 					<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
 					<div class="item active">
 						<div id="popularitems" class="">
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/97/2030897_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/09/1580109_image2_1.jpg"
 									alt="">
@@ -109,19 +155,19 @@
 					<!-- end carousel slide 1   -->
 					<div class="item ">
 						<div id="popularitems" class="">
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/14/1580114_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
@@ -199,19 +245,19 @@
 					<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
 					<div class="item active">
 						<div id="popularitems" class="">
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/97/2030897_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/09/1580109_image2_1.jpg"
 									alt="">
@@ -221,19 +267,19 @@
 					<!-- end carousel slide 1   -->
 					<div class="item ">
 						<div id="popularitems" class="">
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/14/1580114_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-sm-4">
 								<img class=""
 									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
 									alt="">
@@ -306,7 +352,7 @@
                 <img src="https://blogpfthumb-phinf.pstatic.net/MjAxODA3MDJfMjk1/MDAxNTMwNTI3MTIwNjAx.XanKPuN9rA3-YNeGK_CtgsoAHQPqumlMMXkqkR_yQs8g.1CuJLtxaD7xjkeuLv-VNx4DOBfg1P6HqDUY9f2glEmgg.JPEG.gream50/1%25C2%25F7%2B%25B1%25B3%25BE%25C8.jpg?type=w161" alt="avatar" class="comment-avatar">
                 <div class="comment-content">
                   <h4 class="comment-author">톤톤 <small class="comment-meta">January 12, 2014</small>
-                       <span class="comment-reply"><a href="#" class="comment-reply button small">reply</a></span>
+                       <span class="comment-reply"><a href="#" class="comment-reply button">reply</a></span>
                    </h4> 작가님, 혹시 치킨은 어디꺼 시켜드셨나요?  
                 </div>
               </article>
