@@ -4,6 +4,7 @@ public class MemberDTO {
 	
 	private String id;
 	private String pwd;
+		
 	
 	public String getId() {
 		return id;

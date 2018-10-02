@@ -17,7 +17,7 @@ public class MemberDAO implements MemberService {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public boolean isLogin(Map map) {
+	public boolean isLogin(Map map) {//id pwd 
 		int count = template.selectOne("MemberIsLogin", map);
 		return count==1?true:false;
 	}

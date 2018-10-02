@@ -126,6 +126,7 @@ public class MemberController {
 	public String loginProcess(@RequestParam Map map, HttpSession session, Model model)throws Exception{
 		// form 하위 데이터가 잘 온것을 확인! key= input태그의 name속성 
 		System.out.println("id="+map.get("id")+" pwd="+map.get("pwd"));
+		
 		boolean isLogin = service.isLogin(map);
 		
 		if(isLogin) { // 회원일경우
