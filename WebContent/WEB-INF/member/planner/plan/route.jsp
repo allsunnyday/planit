@@ -3,7 +3,7 @@
 
 <!-- *****************************map 관련 css 및 map api 호출  시작 *********************************-->
 <link href="<c:url value='/BootStrap/planmap/css/planmaprute.css'/>" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437&libraries=services,clusterer,drawing"></script>
 <!-- ****************************map 관련 css 및 map api 호출 종료 ***********************************-->
 
 <!-- ******************************루트 페이지 바디 영역 시작****************************************-->
@@ -51,8 +51,9 @@
 		
 		<!-- ******************************* daum map api 영역 *************************************** -->
 		<div class="col-md-9 col-sm-9 col-xs-12" id="rightrute" style="min-height: 100%;">		
-			<div class="map_wrap">			
-				<div id="planmap"  style="width:100%; height: 800px; position:relative; overflow:auto;"></div>		    
+			<div class="map_wrap">	
+				<!-- *********************************지도 타입 및 확대 축소 시작 **************************************-->		
+				<div id="planmap"  style="width:100%; position:relative; overflow:hidden;"></div>		    
 			    <div class="custom_typecontrol radius_border"><!-- 지도타입 컨트롤 div 입니다 -->
 			        <span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
 			        <span id="btnSkyview" class="sky_btn" onclick="setMapType('skyview')">스카이뷰</span> 	        			        
@@ -61,11 +62,13 @@
 			        <span onclick="zoomIn()"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></span>  
 			        <span onclick="zoomOut()"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>
 			    </div>
+			    <!-- *********************************지도 타입 및 확대 축소 종료 **************************************-->
+			    <!-- *********************************지도 검색창 출력 및 검색정보 출력 시작 **************************************-->
 			    <div id="menu_wrap" class="bg_white">
 			        <div class="option">
 			        	<div>
-			                <form onsubmit="searchPlaces(); return false;" style="display: inline-flex;">
-								<input type="text" class="form-control" placeholder="검색 장소 입력" id="keyword" style="width: 60%;">
+			                <form onsubmit="searchPlaces(); return false;" style="display: inline-flex;">			                	
+								<input type="text" class="form-control" placeholder="장소 검색" id="keyword" style="width: 60%;">
 								<button type="submit">검색하기</button> 
 			                </form>
 			        	</div>
@@ -73,10 +76,20 @@
 			        <hr>
 			        <ul id="placesList"></ul>
 			        <div id="pagination"></div>
-			    </div>	
+			    </div>
+			    <!-- *********************************지도 검색창 출력 및 검색정보 출력 시작 **************************************-->
+			    <!--*********************************** daum map api 출력 시작  *****************************************-->
+			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+			    <!--*********************************** daum map api 출력 종료  *****************************************-->
+			    
+			    <ul id="category">
+			        <li id="CT1" data-order="0"><span class="category_bg culture"></span>문화 </li>       
+			        <li id="AT4" data-order="1"><span class="category_bg tourist"></span>관광</li>  
+			        <li id="AD5" data-order="2"><span class="category_bg lodge"></span>숙박</li>  
+			        <li id="FD6" data-order="3"><span class="category_bg eatery"></span>음식점</li>
+			    </ul>	
 			</div>
-		</div>
-		<!-- ******************************* daum map api 영역 *************************************** -->	
+		</div>	
 	</div>
 </section>
 <!-- ******************************루트 페이지 바디 영역 종료****************************************-->
