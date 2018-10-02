@@ -32,7 +32,7 @@
 					</p>
 				</div>
 				<div id="second-text" class="showText">
-					<p>
+					<p >
 						Plan:it과 여행을 떠나기 전<br /> 유저님을 파악하기 위한 간단한 설문조사를 하겠다
 						<a type="button" href="<c:url value='/planit/mypage/Preference2.it'></c:url>" class="btn btn-default">
 							<span class="glyphicon glyphicon-triangle-right"
