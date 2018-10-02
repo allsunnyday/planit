@@ -155,6 +155,7 @@
 	font-size: 20px;
 }
 
+
 </style>
 <script>
 $(function() {
@@ -209,7 +210,8 @@ $(function() {
 <!-- title -->
 			<div class="general-title text-center">
 				<h3 style="color: white;">POPULAR ITEMS</h3>
-				<p style="color: white;"><a href="<c:url value='/mypage/partner/Reservation_P.it'/>">베스트 관광지</a></p>
+				<p style="color: white; font-style: normal;"><a href="<c:url value='/mypage/partner/Reservation_P.it'/>">베스트 관광지</a></p>
+				<button class="btn btn-warning" style="text-align: ">+</button>
 				<hr>
 			</div>
 				<!-- carousel start -->
@@ -272,7 +274,7 @@ $(function() {
 				<!-- end carousel container-->
 				<!-- title -->
 				<div class="general-title text-center">
-					<p style="color: white;"><a href="<c:url value='/mypage/partner/Request_P.it'/>">컨텐츠별 베스트</a></p>
+					<p style="color: white; font-style: normal;"><a href="<c:url value='/mypage/partner/Request_P.it'/>">컨텐츠별 베스트</a></p>
 					<hr>
 				</div>
 				<!-- carousel start -->
@@ -334,7 +336,7 @@ $(function() {
 				<!-- end carousel container-->
 <!-- title -->
 				<div class="general-title text-center">
-					<p style="color: white;">베스트 리뷰</p>
+					<p style="color: white; font-style: normal;">베스트 리뷰</p>
 					<hr>
 				</div>
 				<!-- carousel start -->
