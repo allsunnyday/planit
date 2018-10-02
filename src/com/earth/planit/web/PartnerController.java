@@ -23,9 +23,9 @@ public class PartnerController {
 		return "mypage/partner/Request_P.theme";
 	}
 	
-	@RequestMapping("/mypage/partner/Request_detail.it")
+	@RequestMapping("/mypage/partner/Reservation_detail.it")
 	public String gotoRequestdetail_P()throws Exception{
-		return "mypage/partner/Request_detail.theme";
+		return "mypage/partner/Reservation_detail.theme";
 	}
 	
 }

@@ -7,7 +7,7 @@
 	margin-right: auto;
 	
 }
-
+.footer {position:fixed; bottom:0; width:100%;}
 </style>
 
 <div class="container-fluid" style="padding-top: 100px; " >
