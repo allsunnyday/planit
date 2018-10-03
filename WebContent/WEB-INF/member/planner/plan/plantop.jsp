@@ -13,7 +13,7 @@
 							<li style="width: 15%;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
 							<li style="width: 15%;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
 							<li class="active" style="width: 15%;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>
-							<li style="width: 15%;"><a href="<c:url value='/planner/plan/test.it'/>"> 즐겨 찾기 </a></li>
+							<li style="width: 15%;"><a href="#"> 즐겨 찾기 </a></li>
 						</ul>
 					</div>
 				</div><!-- nav -->

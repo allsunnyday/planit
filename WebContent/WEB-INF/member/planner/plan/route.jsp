@@ -53,7 +53,7 @@
 		<div class="col-md-9 col-sm-9 col-xs-12" id="rightrute" style="min-height: 100%;">		
 			<div class="map_wrap">	
 				<!-- *********************************지도 타입 및 확대 축소 시작 **************************************-->		
-				<div id="planmap"  style="width:100%; position:relative; overflow:hidden;"></div>		    
+				<div id="map"  style="width:100%; height:800px; position:relative; overflow:hidden;"></div>		    
 			    <div class="custom_typecontrol radius_border"><!-- 지도타입 컨트롤 div 입니다 -->
 			        <span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
 			        <span id="btnSkyview" class="sky_btn" onclick="setMapType('skyview')">스카이뷰</span> 	        			        
@@ -67,33 +67,28 @@
 			    <div id="menu_wrap" class="bg_white">
 			        <div class="option">
 			        	<div>
-			                <form onsubmit="searchPlaces(); return false;" style="display: inline-flex;">			                	
+			                <form onsubmit="searchPlaces(); return false;" style="display: inline-flex;">
 								<input type="text" class="form-control" placeholder="장소 검색" id="keyword" style="width: 60%;">
+			                	<input type="hidden" id="searchmap" value="검색">		                	
 								<button type="submit">검색하기</button> 
 			                </form>
 			        	</div>
 			        </div>
-			        <hr>
-			        <ul id="placesList"></ul>
-			        <div id="pagination"></div>
 			    </div>
 			    <!-- *********************************지도 검색창 출력 및 검색정보 출력 시작 **************************************-->
-			    <!--*********************************** daum map api 출력 시작  *****************************************-->
-			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-			    <!--*********************************** daum map api 출력 종료  *****************************************-->
-			    
+			    <!-- ********************************** 카테고리 버튼  시작 ****************************************** -->	    
 			    <ul id="category">
 			        <li id="CT1" data-order="0"><span class="category_bg culture"></span>문화 </li>       
 			        <li id="AT4" data-order="1"><span class="category_bg tourist"></span>관광</li>  
 			        <li id="AD5" data-order="2"><span class="category_bg lodge"></span>숙박</li>  
-			        <li id="FD6" data-order="3"><span class="category_bg eatery"></span>음식점</li>
+			        <li id="FD6" data-order="3"><span class="category_bg eatery"></span>음식점</li>			    
 			    </ul>	
+			    <!-- ********************************** 카테고리 버튼  시작 ****************************************** -->
 			</div>
 		</div>	
 	</div>
 </section>
 <!-- ******************************루트 페이지 바디 영역 종료****************************************-->
-
 <!-- ********************************** map script 호출 시작 *************************************** -->
 <%@ include file="rutemap.jsp" %>
 <!-- ********************************** map script 호출 종료 *************************************** -->
