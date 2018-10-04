@@ -17,7 +17,15 @@
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
-        <li>맛있게 식사를!</li>
+        <li>
+          <c:choose>
+            <c:when test="${food=='foodinfo'}">맛있게 식사를!</c:when>
+            <c:when test="${food=='foodrank'}">음식점 순위를 알아보자!</c:when>
+            <c:when test="${food=='foodstreet'}">맛집 파헤치기!</c:when>
+            <c:otherwise>조건을 만족하지 않는 경우</c:otherwise>
+	     </c:choose>
+        
+        </li>
         </ul>
         <h2>PLAN-IT에 등록되어 있는 식당들</h2>
       </div>
@@ -66,10 +74,10 @@
 
             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
               <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/list/222.jpg'/>" alt="">
+                <img src="<c:url value='/images/list/bibim.jpg'/>" alt="">
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">서울 호텔</h3>
+                    <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
                     <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
@@ -81,154 +89,22 @@
                 <!-- he view -->
               </div>
               <!-- he wrap -->
-              <h3 class="title">서울 ㅇㅇ호텔</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+              <h3 class="title">전주 성미당</h3>
+              <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br>
+            	  전북 전주시 완산구 전라감영5길 19-9</br>
+              	문의: 063-287-8800
+              </p>
             </div>
             <!-- end col-4 -->
 
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 web-design korea">
-              <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/motel.PNG'/>" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">부산 ㅇㅇ모텔</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_02.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-              <h3 class="title">부산 ㅇㅇ모텔</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
-            </div>
-            <!-- end col-4 -->
-
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
-              <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/pen.PNG'/>" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">인천 ㅇㅇ펜션</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_03.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-              <h3 class="title">인천 ㅇㅇ펜션</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
-            </div>
-            <!-- end col-4 -->
-
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 china">
-              <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/hotel.PNG'/>" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">광주 ㅇㅇ호텔</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_04.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-              <h3 class="title">광주 ㅇㅇ호텔</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
-            </div>
-            <!-- end col-12 -->
-
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
-              <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/motel.PNG'/>" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">대구 ㅇㅇ모텔</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_05.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-              <h3 class="title">대구 ㅇㅇ모텔</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
-            </div>
-            <!-- end col-12 -->
-
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan">
-              <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/hotel.PNG'/>" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">제주도 ㅇㅇ모텔</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-              <h3 class="title">제주도 ㅇㅇ모텔</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
-            </div>
-            <!-- end col-12 -->
-
-
-			<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan">
-              <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/motel2.PNG'/>" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">강릉 ㅇㅇ모텔</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-              <h3 class="title">강릉 ㅇㅇ모텔</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
-            </div>
-            <!-- end col-12 -->
-            
-            
-            
             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 korea">
               <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/pen.PNG'/>" alt="">
+                <img src="<c:url value='/images/list/bibim.jpg'/>" alt="">
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">속초 ㅇㅇ펜션</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
+                    <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
+                    class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                     </div>
                     <!-- portfolio_category -->
@@ -238,94 +114,22 @@
                 <!-- he view -->
               </div>
               <!-- he wrap -->
-              <h3 class="title">속초 ㅇㅇ펜션</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
-            </div>
-            <!-- end col-12 -->
-            
-            
-            
-            
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 korea">
-              <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/pen.PNG'/>" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">목포 ㅇㅇ펜션</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-              <h3 class="title">목포 ㅇㅇ펜션</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
-            </div>
-            <!-- end col-12 -->
-            
-            
-            
-            
-            
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 china">
-              <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/hotel.PNG'/>" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">Project Name Here</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-              <h3 class="title">Project Name - 6</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
-            </div>
-            <!-- end col-12 -->
-            
-            
-             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan">
-              <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/pen.PNG'/>" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">인천 ㅇㅇ펜션</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_03.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-              <h3 class="title">인천 ㅇㅇ펜션</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+              <h3 class="title">전주 성미당</h3>
+              <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br>
+            	  전북 전주시 완산구 전라감영5길 19-9</br>
+              	문의: 063-287-8800
+              </p>
             </div>
             <!-- end col-4 -->
-            
             
             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan">
               <div class="he-wrap tpl6 market-item">
-                <img src="<c:url value='/images/motel2.PNG'/>" alt="">
+                <img src="<c:url value='/images/list/bibim.jpg'/>" alt="">
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="big a1" data-animate="fadeInDown">제주도 ㅇㅇ모텔</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_06.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+                    <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
+                    <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
+                    class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                     </div>
                     <!-- portfolio_category -->
@@ -335,10 +139,163 @@
                 <!-- he view -->
               </div>
               <!-- he wrap -->
-              <h3 class="title">제주도 ㅇㅇ모텔</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy..</p>
+              <h3 class="title">전주 성미당</h3>
+              <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br>
+            	  전북 전주시 완산구 전라감영5길 19-9</br>
+              	문의: 063-287-8800
+              </p>
             </div>
-            <!-- end col-12 -->
+            <!-- end col-4 -->
+            
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 china">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/list/bibim.jpg'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
+                    <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
+                    class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">전주 성미당</h3>
+              <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br>
+            	  전북 전주시 완산구 전라감영5길 19-9</br>
+              	문의: 063-287-8800
+              </p>
+            </div>
+            <!-- end col-4 -->
+            
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/list/bibim.jpg'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
+                    <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
+                    class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">전주 성미당</h3>
+              <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br>
+            	  전북 전주시 완산구 전라감영5길 19-9</br>
+              	문의: 063-287-8800
+              </p>
+            </div>
+            <!-- end col-4 -->
+            
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/list/bibim.jpg'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
+                    <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
+                    class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">전주 성미당</h3>
+              <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br>
+            	  전북 전주시 완산구 전라감영5길 19-9</br>
+              	문의: 063-287-8800
+              </p>
+            </div>
+            <!-- end col-4 -->
+            
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 korea">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/list/bibim.jpg'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
+                    <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
+                    class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">전주 성미당</h3>
+              <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br>
+            	  전북 전주시 완산구 전라감영5길 19-9</br>
+              	문의: 063-287-8800
+              </p>
+            </div>
+            <!-- end col-4 -->
+            
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/list/bibim.jpg'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
+                    <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
+                    class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">전주 성미당</h3>
+              <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br>
+            	  전북 전주시 완산구 전라감영5길 19-9</br>
+              	문의: 063-287-8800
+              </p>
+            </div>
+            <!-- end col-4 -->
+            
+            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 china">
+              <div class="he-wrap tpl6 market-item">
+                <img src="<c:url value='/images/list/bibim.jpg'/>" alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
+                    <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
+                    class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+              <h3 class="title">전주 성미당</h3>
+              <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br>
+            	  전북 전주시 완산구 전라감영5길 19-9</br>
+              	문의: 063-287-8800
+              </p>
+            </div>
+            <!-- end col-4 -->
 
 
           </div>
