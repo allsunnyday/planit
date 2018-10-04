@@ -82,7 +82,7 @@
 #category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
 #category li:last-child{margin-right:0;border-right:0;}
 #category li span {display: block;margin:0 auto 3px;width:32px;height: 32px;} 
-#category li .category_bg {background:url(/Planit/images/plan/css_categorys.png) no-repeat;} /* background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) */
+#category li .category_bg {background:url(/Planit/images/plan/css_category.png) no-repeat;} /* background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) */
 #category li .eatery {background-position: -2px -0px; }								/* background:url(https://image.flaticon.com/icons/svg/489/489407.svg) */ 
 #category li .tourist {background-position: -2px -98px; }							/*background:url(https://image.flaticon.com/icons/svg/1087/1087300.svg)*/
 #category li .culture {background-position: -2px -34px;  }							/* background:url(https://image.flaticon.com/icons/svg/675/675235.svg) */
@@ -101,3 +101,16 @@
 /*************************************** daum map 카테고리 css 종료************************************************/
 
 
+/* *************************************** 상세정보 출력 관련 스타일 시작 ************************************************* */
+#thedate{
+	width: 120px;
+	font-size: 11pt;
+	background: #fff; 
+	margin-left: 0px; 
+	padding-left: 5px; 
+	padding-top: 2px;
+	padding-bottom: 2px; 
+	color: #c0c0c0; 
+	border: 1px solid #c0c0c0;
+}
+/* *************************************** 상세정보 출력 관련 스타일 종료 ************************************************* */

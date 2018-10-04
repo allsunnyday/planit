@@ -5,7 +5,8 @@
 <link href="<c:url value='/BootStrap/planmap/css/planmaprute.css'/>" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437&libraries=services,clusterer,drawing"></script>
 <!-- ****************************map 관련 css 및 map api 호출 종료 ***********************************-->
-
+<%@ include file="routedetails.jsp" %>
+<!-- ********************************* 상세 일정 페이지 달력 출력 종료 *************************************** -->
 <!-- ******************************루트 페이지 바디 영역 시작****************************************-->
 <section class="section1">
 <!--**************************** 오른쪽 맵 과 상단 네비 게이션 바 구성 시작********************************-->
@@ -22,23 +23,28 @@
 								<div style="border-radius: 2; border: 1px solid #efefef; padding-left: 10px; background: #fff; padding-top: 5px;">
 									<span style="padding-left: 0px; padding-right: 0px; color: #696969; font-size: 10pt;">
 											<i class="fa fa-calendar"></i> 출발일</span> 
-									<input style="width: 120px; font-size: 11pt; background: #fff; margin-left: 0px; padding-left: 5px; padding-top: 2px; 
-										padding-bottom: 2px; color: #c0c0c0; border: 1px solid #c0c0c0" id="thedate" type="text" onchange="updateDate()"
-										class="hasDatepicker">
+									<input style="" id="thedate" type="text" readonly>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>		
-				<div style="float: left; width: 25%; text-align: right; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
+				<!-- <div style="float: left; width: 25%; text-align: right; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
 					<div onclick="함수 입력" style="cursor: pointer; border: 1px solid #efefef; background: #fff; height: 42px; 
 						border-radius: 2px;; text-align: center; padding-top: 12px; padding-bottom: 5px;">
-						<!-- onclick="toggleSelectTripWith();" -->
+						onclick="toggleSelectTripWith();"
 						<div style="display: block"> </div>
 						<div style="font-size: 10pt;">
 							<span id="tripwith_txt">타입선택</span><i class="fa fa-angle-down"></i>
+							혼자서 / 둘이서 / 가족끼리 / 친구들끼리 / 모임  / 
 						</div>
 					</div>
+				</div> -->
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">행동 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+					  <!-- 드롭다운 메뉴 링크들 -->
+					</ul>
 				</div>
 				<div style="clear: both"></div>
 				</div>	
@@ -90,7 +96,7 @@
 </section>
 <!-- ******************************루트 페이지 바디 영역 종료****************************************-->
 <!-- ********************************** map script 호출 시작 *************************************** -->
-<%@ include file="rutemap.jsp" %>
+<%@ include file="routemap.jsp" %>
 <!-- ********************************** map script 호출 종료 *************************************** -->
 
 
