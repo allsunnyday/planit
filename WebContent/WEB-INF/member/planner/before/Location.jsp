@@ -8,7 +8,7 @@ button.btn {
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;
-    background: #8ec1cd;
+    background: #46b8da;
     border: 0;
     font-family: 'Lato', sans-serif;
     font-size: 22px;
@@ -398,26 +398,24 @@ button.btn {
 
 <!-- MODAL -->
 <!-- Large modal -->
-<div id="pardoinfo" class="modal fade modal-center" tabindex="-1"
-	role="dialog" aria-labelledby="dlogLabel" aria-hidden="true">
-	<div class="modal-dialog modal-center">
-		<div class="modal-content modal-center">
-			<!-- 모달 헤더 -->
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-				</button>				
-				<h3 class="modal-title text-center" id="modal-login-label">City</h3>
-				<p class="text-center">추억을 남길 도시를 선택하세요</p>
-			</div>
-			<!-- 모달 바디 -->
-			<div class="modal-body text-center">
-				<form action="<c:url value='/planner/plan/route.it' />"
-					method="post" class="" style=" margin: 0 auto; width:400px;">
-					<div class="row text-center" style="margin: 0 auto;">
-						<div class="dropdown text-left col-md-3">
-							<a id="pardocity" data-toggle="dropdown" aria-haspopup="true"
-								class="btn btn-default dropdown-toggle"
+<div id="pardoinfo" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="dlogLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form action="<c:url value='/planner/plan/route.it' />" method="post" class="" style=" margin: 0 auto; ">
+				<!-- ************************************************* 모달 헤더 시작 ******************************************************** -->
+				<div class="modal-header text-center">
+					<h2 class="modal-title text-center" id="modal-login-label" style="display: inline">City</h2>
+					<p class="text-center" style="display: inline">...추억을 남길 도시를 선택하세요</p>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						<span >&times;</span>
+					</button>				
+				</div>
+				<!-- ************************************************* 모달 헤더 종료 ******************************************************** -->
+				<!-- ******************************************************모달 바디 시작 **************************************************** -->
+				<div class="modal-body">
+					<div class="row" >
+						<div class="dropdown text-right col-md-4 col-sm-4 col-xs-12" >
+							<a id="pardocity" data-toggle="dropdown" aria-haspopup="true" class="btn btn-default dropdown-toggle"
 								aria-expanded="false"> 도시 선택 <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="citymenu" id="planul"
@@ -427,7 +425,7 @@ button.btn {
 								<li><a href="#">안산</a></li>
 							</ul>
 						</div>
-						<div class="col-md-5 col-md-offset-1" style="width: 250px;">
+						<div class="col-md-6 col-sm-6 col-xs-12" >
 							<!-- <label class="sr-only" for="form-text"> 여행 도시 입력 </label> -->
 							<input type="text" name="paldotext"
 								style="font-size: 14px; margin: 0 auto;"
@@ -435,11 +433,10 @@ button.btn {
 								id="paldotext">
 						</div>
 					</div>
-					<div class="row text-center" style="margin: 20px auto; ">
-						<div class="dropdown text-left col-md-3">
-							<a id="planday" data-toggle="dropdown" aria-haspopup="true"
-								class="btn btn-default dropdown-toggle"
-								aria-expanded="false"> 여행 일수 <span class="caret"></span>
+					<div class="row" style="margin-top: 20px;">
+						<div class="dropdown text-right col-md-4 col-sm-4 col-xs-12">
+							<a id="planday" data-toggle="dropdown" aria-haspopup="true" class="btn btn-default dropdown-toggle" aria-expanded="false"> 
+								여행 일수 <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="daymenu"  id="planul"
 								aria-labelledby="planday">
@@ -453,21 +450,35 @@ button.btn {
 								<li><a href="#">8일이상</a></li>
 							</ul>
 						</div>
-						<div class="col-md-5 col-md-offset-1" style="width: 250px;">
-							<!-- <label class="sr-only" for="form-text"> 여행 도시 입력 </label> -->
-							<input type="text" name="paldotext" style="font-size: 14px;"
-								placeholder="여행 일수를 입력해주세요" class="form-control"
-								id="paldotext">
+						<div class="col-md-6 col-sm-6 col-xs-12" >
+							<input type="text" name="paldotext" style="font-size: 14px;" placeholder="여행 일수를 입력해주세요" class="form-control" id="paldotext">
 						</div>
 					</div>
+				</div>
+				<!-- ******************************************************모달 바디 시작 **************************************************** -->
+				<div class="modal-footer">
 					<div class="row text-center" style="text-align: center;">
 						<div class="col-md-12">
-							<button type="submit" class="btn"
-								style="font-size: 14px; width: auto;">다음 화면으로..</button>								
+							<button type="submit" class="btn" style="font-size: 14px; width: auto;">Next Plan</button>								
 						</div>						
 					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
+
+<script>
+$(function(){
+	$('#pardoinfo').modal('show').css({
+		'margin-top' : function() {
+			return -($(this).height() /2 );		
+		},
+		'margin-left': function(){
+			return -($(this).width() / 2 );
+		}
+	});
+});
+	
+</script>
+
