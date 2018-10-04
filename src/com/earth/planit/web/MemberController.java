@@ -20,7 +20,6 @@ public class MemberController {
 		return "main/main.tiles";// main은 반드시 tiles로 이동해야 함
 	}
 
-
 	@RequestMapping("/member/login/Join.it")
 	public String gotoJoin() throws Exception {
 		return "login/JoinMain.theme";
@@ -51,6 +50,20 @@ public class MemberController {
    public String gotoMyPageEditPassword()throws Exception{
 	   return "mypage/MyPageEditPassword.theme";
 	}
+	///******임시
+	@RequestMapping("/planit/mypage/MyPagePassCheck.it")
+	public String gotoMyPagePassCheck()throws Exception{
+		return "mypage/MyPagePassCheck.theme";
+	}
+	@RequestMapping("/planit/mypage/Preference.it")
+	public String gotoPreference()throws Exception{
+		return "mypage/UserPreference.theme";
+	}
+	@RequestMapping("/planit/mypage/Preference2.it")
+	public String gotoPreference2()throws Exception{
+		return "/mypage/UserPreference2.theme";
+		///planit/WebContent/WEB-INF/member/mypage/UserPreference2.jsp
+	}
    //마이페이지에서 회원정보 및 비밀번호 변경시 기존 비밀번호 체크를 위한 프로세스
    //아직은 체크없이 바로 해당페이지로 이동합니다 :)
   /* @RequestMapping("/planit/mypage/MyPageEditProfile.it")
@@ -63,8 +76,31 @@ public class MemberController {
    }*/
 	   //***************마이페이지 이동(일반회원)
 	   
+	
+	@RequestMapping("/planit/mypage/detail/Q&A.it")
+	public String gotoQnADetail() throws Exception {
+		return "mypage/DetailQnA.theme";
+		
+	}
+	@RequestMapping("/planit/mypage/detail/Review.it")
+	public String gotoReviewDetail() throws Exception {
+		return "mypage/DetailReview.theme";
+		
+	}
+	@RequestMapping("/planit/mypage/detail/Liked.it")
+	public String gotoLikedDetail() throws Exception {
+		return "mypage/DetailLiked.theme";
+		
+	}
+	@RequestMapping("/planit/mypage/detail/Planner.it")
+	public String gotoPlannerDetail() throws Exception {
+		return "mypage/DetailPlanner.theme";
+		
+	}
+	//***************마이페이지 이동(기업회원)
 	@RequestMapping("/planit/mypage/partner/PartnerMyPageHome.it")
 	public String gotoPartnerMyPageHome() throws Exception {
 		return "mypage/partner/PartnerMyPageHome.theme";
 	}
+	
 }
