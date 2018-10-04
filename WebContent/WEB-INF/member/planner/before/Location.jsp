@@ -30,17 +30,41 @@ button.btn {
 </style>
 <!-- 버튼 css -->
 
+<section class="post-wrapper-top" style="margin-top: 70px;">
+	<div class="container">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<ul class="breadcrumb">
+				<li>여행 플래너</li>
+			</ul>
+			<h2>나만의 즐거운 여행 계획 작성하기</h2>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<!-- search -->
+			<div class="search-bar">
+				<form action="" method="get">
+					<fieldset>
+						<input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
+						<input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
+					</fieldset>
+				</form>
+			</div>
+			<!-- / end div .search-bar -->
+		</div>
+	</div>
+</section>
+<!-- end post-wrapper-top -->
+
 <!-- 여행 지역 선택(팔도) 시작 -->
 <section class="section1">
 	<div class="container clearfix">
 		<div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
 		<div class="divider"></div>
 		<!-- 상단 타이틀 시작 -->
-		<div class="col-lg-12 col-md-12 col-sm-12 text-center">
-		<h2> 여행지 선택</h2>
-		 <small>새로운 추억을 남길 여행지를 선택하고 루트설정으로 이동</small>			
-		<hr/>	
-		</div>
+		<!-- <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+			<h2> 여행지 선택</h2>
+			 <small>새로운 추억을 남길 여행지를 선택하고 루트설정으로 이동</small>			
+			<hr/>	
+		</div> -->
 		<!-- 상단 타이틀 종료 -->
 			<div class="divider"></div>
 			<div class="portfolio-centered">
