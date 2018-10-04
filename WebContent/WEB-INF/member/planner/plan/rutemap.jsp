@@ -57,22 +57,23 @@
 	var ps;
 	var infowindow = new daum.maps.InfoWindow({zIndex:1});	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다	
 	
+	
 	// 키워드 검색을 요청하는 함수입니다
 	function searchPlaces() {
 		/* ******************************검색 관련 함수*******************************/
 		if (!currCategory ) {			
-		    var keyword = document.getElementById('keyword').value;
 			ps = new daum.maps.services.Places();
-			if(document.getElementById('searchmap').value !='검색'){
-			    if (!keyword.replace(/^\s+|\s+$/g, '')) {
-			        alert('키워드를 입력해주세요!');	        
-			        return false;
-			    }
-			    return true;
-			}
+		    var keyword = document.getElementById('keyword').value;
+			//if(document.getElementById('searchmap').value !='검색'){
+		    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+		        alert('키워드를 입력해주세요!');	        
+		        return false;
+		    }
+			//}
 			
 		    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 		    ps.keywordSearch(keyword, placesSearchCB);
+		    document.getElementById('keyword').value = "";
 	        return;
 	    }
 		/* ******************************검색 관련 함수*******************************/
@@ -101,61 +102,60 @@
 	
 	// 검색 결과 목록과 마커를 표출하는 함수입니다
 	function displayPlaces(places) {
-	    var listEl = document.getElementById('placesList'), 
-	    menuEl = document.getElementById('menu_wrap'),
-	    fragment = document.createDocumentFragment(), 
-	    bounds = new daum.maps.LatLngBounds(), 
-	    listStr = '';	    
-	    removeMarker();	    // 지도에 표시되고 있는 마커를 제거합니다    
-	    
-	   /*  
-	    if(document.getElementById('searchmap').value != "검색" ){			
-		    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
-		    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
-		    var order = document.getElementById(currCategory).getAttribute('data-order');
-		    for ( var i=0; i<places.length; i++ ) {	
-		            // 마커를 생성하고 지도에 표시합니다
-		            var marker = addMarker(new daum.maps.LatLng(places[i].y, places[i].x), order);	
-		            // 마커와 검색결과 항목을 클릭 했을 때
-		            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
-		            (function(marker, place) {
-		                daum.maps.event.addListener(marker, 'click', function() {
-		                    displayPlaceInfo(place);
-		                });
-		            })(marker, places[i]);
-		    }
-		    return;
-		}
-	     */
-	     
-	    
-	     
-	    for ( var i=0; i<places.length; i++ ) {
-	        // 마커를 생성하고 지도에 표시합니다
-	        var placePosition = new daum.maps.LatLng(places[i].y, places[i].x),
-	            marker = addMarker(placePosition, i); // 검색 결과 항목 Element를 생성합니다
-
-	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해  LatLngBounds 객체에 좌표를 추가합니다
-	        bounds.extend(placePosition);
-
-	        // 마커와 검색결과 항목에 mouseover 했을때 해당 장소에 인포윈도우에 장소명을 표시합니다
-	        // mouseout 했을 때는 인포윈도우를 닫습니다
-	        (function(marker, title) {
-	            daum.maps.event.addListener(marker, 'mouseover', function() {
-	                displayInfowindow(marker, title);
-	            });
-	            daum.maps.event.addListener(marker, 'mouseout', function() {
-	                infowindow.close();
-	            });	            
-	        })(marker, places[i].place_name);
+		
+		    var listEl = document.getElementById('placesList'), 
+		    menuEl = document.getElementById('menu_wrap'),
+		    fragment = document.createDocumentFragment(), 
+		    bounds = new daum.maps.LatLngBounds(), 
+		    listStr = '';	    
+		    removeMarker();	    // 지도에 표시되고 있는 마커를 제거합니다    
+		
+	    if(currCategory){	
+	    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
+	    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
+	    var order = document.getElementById(currCategory).getAttribute('data-order');
 	    }
 	    
 	     
-	    menuEl.scrollTop = 0;	    // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
-	    map.setBounds(bounds);	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다	
+	    for ( var i=0; i<places.length; i++ ) {
+	    	if(!currCategory){
+		    	/* ************************************************* 키워드로 장소검색하고 목록으로 표출하기 ***************************************** */
+		        // 마커를 생성하고 지도에 표시합니다
+		        var placePosition = new daum.maps.LatLng(places[i].y, places[i].x),
+		            marker = addMarker(placePosition, null, i); // 검색 결과 항목 Element를 생성합니다
+		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해  LatLngBounds 객체에 좌표를 추가합니다
+		        bounds.extend(placePosition);
+		        // 마커와 검색결과 항목에 mouseover 했을때 해당 장소에 인포윈도우에 장소명을 표시합니다
+		        // mouseout 했을 때는 인포윈도우를 닫습니다
+		        (function(marker, title) {
+		            daum.maps.event.addListener(marker, 'mouseover', function() {
+		                displayInfowindow(marker, title);
+		            });
+		            daum.maps.event.addListener(marker, 'mouseout', function() {
+		                infowindow.close();
+		            });	            
+		        })(marker, places[i].place_name);
+		        
+		     	
+		        map.setBounds(bounds);	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+		        /* ************************************************* 키워드로 장소검색하고 목록으로 표출하기 ***************************************** */
+    		}
+	    	/* ******************************************* 카테 고리 검색 ***************************************** */
+	    	// 마커를 생성하고 지도에 표시합니다
+            var marker = addMarker(new daum.maps.LatLng(places[i].y, places[i].x), order, null);	
+            // 마커와 검색결과 항목을 클릭 했을 때
+            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
+            (function(marker, place) {
+                daum.maps.event.addListener(marker, 'click', function() {
+                    displayPlaceInfo(place);
+                });
+            })(marker, places[i]);
+            /* ******************************************* 카테 고리 검색 ***************************************** */
+	    	
+	    }	    	
 	}
 	
-	
+	/* 
 	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 	function addMarker(position, idx, title) {
 	    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
@@ -174,7 +174,8 @@
 	    marker.setMap(map); // 지도 위에 마커를 표출합니다
 	    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
 	    return marker;
-	}
+	} */
+	
 	
 	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
 	function removeMarker() {
@@ -209,9 +210,10 @@
 	// 장소 검색 객체를 생성합니다
     //var ps = new daum.maps.services.Places(map); 
 	
+    if(currCategory){
 	// 지도에 idle 이벤트를 등록합니다
-    daum.maps.event.addListener(map, 'idle', searchPlaces);
-	
+    	daum.maps.event.addListener(map, 'idle', searchPlaces);
+    }
 	// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
     contentNode.className = 'placeinfo_wrap';
 	
@@ -234,57 +236,42 @@
 	        target.attachEvent('on' + type, callback);
 	    }
 	}	
-	 
-		 
 	
-	// 지도에 마커를 표출하는 함수입니다
-	function displayPlaces(places) {
-
-		//if(document.getElementById('searchmap').value == "검색" ){			
-		    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
-		    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
-		    var order = document.getElementById(currCategory).getAttribute('data-order');
-	
-		    
-	
-		    for ( var i=0; i<places.length; i++ ) {
-	
-		            // 마커를 생성하고 지도에 표시합니다
-		            var marker = addMarker(new daum.maps.LatLng(places[i].y, places[i].x), order);
-	
-		            // 마커와 검색결과 항목을 클릭 했을 때
-		            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
-		            (function(marker, place) {
-		                daum.maps.event.addListener(marker, 'click', function() {
-		                    displayPlaceInfo(place);
-		                });
-		            })(marker, places[i]);
-		    }
-		//}
-	}
-	 
-	 
 	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-	function addMarker(position, order) {
-	    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-	        imageSize = new daum.maps.Size(27, 28),  // 마커 이미지의 크기
+	function addMarker(position, order, idx) {
+		 var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+	        imageSize = new daum.maps.Size(36, 37),  // 마커 이미지의 크기
 	        imgOptions =  {
-	            spriteSize : new daum.maps.Size(72, 208), // 스프라이트 이미지의 크기
-	            spriteOrigin : new daum.maps.Point(46, (order*36)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-	            offset: new daum.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+	            spriteSize : new daum.maps.Size(36, 691), // 스프라이트 이미지의 크기
+	            spriteOrigin : new daum.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+	            offset: new daum.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
 	        },
 	        markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imgOptions),
 	            marker = new daum.maps.Marker({
 	            position: position, // 마커의 위치
 	            image: markerImage 
 	        });
-
-	    marker.setMap(map); // 지도 위에 마커를 표출합니다
-	    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-
-	    return marker;
-	}
+		 
+		if(currCategory){
+		    var imageSrc = '/Planit/images/plan/css_categorys.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다 // http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png
+		        imageSize = new daum.maps.Size(32, 32),  // 마커 이미지의 크기
+		        imgOptions =  {
+		            spriteSize : new daum.maps.Size(70, 197), // 스프라이트 이미지의 크기
+		            spriteOrigin : new daum.maps.Point(38, (order*33)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+		            offset: new daum.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+		        },
+		        markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+		            marker = new daum.maps.Marker({
+		            position: position, // 마커의 위치
+		            image: markerImage 
+		        });		
+		}
+		
+		    marker.setMap(map); // 지도 위에 마커를 표출합니다
+		    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
 	
+		    return marker;
+	}
 	
 	// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 	function displayPlaceInfo (place) {
@@ -334,20 +321,16 @@
 	        changeCategoryClass(this);
 	        searchPlaces();
 	    }
-	}
-	
-	
+	}	
 	
 	// 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
 	function changeCategoryClass(el) {
 	    var category = document.getElementById('category'),
 	        children = category.children,
 	        i;
-
 	    for ( i=0; i<children.length; i++ ) {
 	        children[i].className = '';
 	    }
-
 	    if (el) {
 	        el.className = 'on';
 	    } 

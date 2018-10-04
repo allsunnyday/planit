@@ -36,7 +36,7 @@ button.btn {
 			<ul class="breadcrumb">
 				<li>여행 플래너</li>
 			</ul>
-			<h2>나만의 계획적이고 즐거운 여행 계획 작성하기</h2>
+			<h2>나만의 즐거운 여행 계획 작성하기</h2>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<!-- search -->

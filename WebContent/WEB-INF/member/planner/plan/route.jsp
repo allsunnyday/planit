@@ -78,10 +78,10 @@
 			    <!-- *********************************지도 검색창 출력 및 검색정보 출력 시작 **************************************-->
 			    <!-- ********************************** 카테고리 버튼  시작 ****************************************** -->	    
 			    <ul id="category">
-			        <li id="CT1" data-order="0"><span class="category_bg culture"></span>문화 </li>       
-			        <li id="AT4" data-order="1"><span class="category_bg tourist"></span>관광</li>  
+			        <li id="CT1" data-order="1"><span class="category_bg culture"></span>문화 </li>       
+			        <li id="AT4" data-order="3"><span class="category_bg tourist"></span>관광</li>  
 			        <li id="AD5" data-order="2"><span class="category_bg lodge"></span>숙박</li>  
-			        <li id="FD6" data-order="3"><span class="category_bg eatery"></span>음식점</li>			    
+			        <li id="FD6" data-order="0"><span class="category_bg eatery"></span>음식점</li>			    
 			    </ul>	
 			    <!-- ********************************** 카테고리 버튼  시작 ****************************************** -->
 			</div>
