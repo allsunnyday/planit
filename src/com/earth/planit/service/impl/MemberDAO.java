@@ -15,7 +15,7 @@ public class MemberDAO implements MemberService {
 	/*root-context에 등록한 sqlsessiontemplate객체를 통해 데이터 베이스 작업을 한다.*/
 	@Resource(name="template")
 	private SqlSessionTemplate template;
-	
+	//[질문]
 	@Override
 	public boolean isLogin(Map map) {//id pwd 
 		int count = template.selectOne("MemberIsLogin", map);

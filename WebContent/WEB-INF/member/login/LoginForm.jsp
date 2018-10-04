@@ -11,6 +11,7 @@
 				<h4 class="title">
 					<span>Welcome PLAN:IT!</span>
 				</h4>
+				<div>
 				<p>Lorem Ipsum is simply dummy text of the printing and
 					typesetting industry. Lorem Ipsum has been the industry"s standard
 					dummy text ever since the 1500s.</p>
@@ -19,6 +20,7 @@
 				<p class="withpadding">
 					플랜잇이 처음이신가요? 지금 바로 <a href="#">Planit</a>에서 놀라운 경험을 해보세요.
 				</p>
+				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<!-- <h4 class="title">

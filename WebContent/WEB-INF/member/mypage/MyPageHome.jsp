@@ -201,7 +201,9 @@ height: 100%;
             <div id="MY-first-1-self-detail">
                      <p>
                         <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                           Plan:It님의&nbsp자기소개입니다</span>
+                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
+                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
+                           님의&nbsp자기소개입니다</span>
                      <p>어서오세요, Plan:It님!
                      멋진 프로필을 등록해 
                      자신만의 개성을 나타내보세요!

@@ -47,36 +47,56 @@ public class MemberController {
 	}
 
 	@RequestMapping("/member/login/UserJoin.it")
-	public String gotoCompanyLogin() throws Exception {
+	public String gotoUserJoin(@RequestParam Map map) throws Exception {
+	
 		return "login/JoinUserProgress.theme";
 	}
 
 	// ***************마이페이지 이동(일반회원)
 	@RequestMapping("/planit/mypage/MyPageHome.it")
-	public String gotoMyPageHome() throws Exception {
+	public String gotoMyPageHome(@RequestParam Map map,HttpSession session) throws Exception {
+		//사진 및 기타등등 노출
+	System.out.println("id"+map.get("id"));
+			session.setAttribute("userid", map.get("id"));
+		
 		return "mypage/MyPageHome.theme";
 	}
 
 	@RequestMapping("/planit/mypage/MyPageEditProfile.it")
 	public String gotoMyPageEditProfile() throws Exception {
+		
+		
+		
 		return "mypage/MyPageEditProfile.theme";
 	}
 
 	@RequestMapping("/planit/mypage/MyPageEditPassword.it")
    public String gotoMyPageEditPassword()throws Exception{
+		
+		
+		
 	   return "mypage/MyPageEditPassword.theme";
 	}
 	///******임시
 	@RequestMapping("/planit/mypage/MyPagePassCheck.it")
 	public String gotoMyPagePassCheck()throws Exception{
+		
+		
 		return "mypage/MyPagePassCheck.theme";
 	}
 	@RequestMapping("/planit/mypage/Preference.it")
 	public String gotoPreference()throws Exception{
+		
+		
+		
 		return "mypage/UserPreference.theme";
 	}
 	@RequestMapping("/planit/mypage/Preference2.it")
 	public String gotoPreference2()throws Exception{
+		
+		
+		
+		
 		return "/mypage/UserPreference2.theme";
 		///planit/WebContent/WEB-INF/member/mypage/UserPreference2.jsp
 	}
@@ -90,7 +110,7 @@ public class MemberController {
    public String gotoMyPageEditPassword()throws Exception{
 	   return "mypage/MyPagePassCheck.theme";
    }*/
-	   //***************마이페이지 이동(일반회원)
+	   //***************마이페이지 상세페이지 이동(일반회원)
 	   
 	
 	@RequestMapping("/planit/mypage/detail/Q&A.it")
@@ -138,6 +158,17 @@ public class MemberController {
 		}
 		
 		return "forward:/planit/login/Login.it";
+	}
+	@RequestMapping(value="/member/login/UserJoinFormProcess.it" ,method=RequestMethod.POST)
+	public String UserJoinFormProcess(@RequestParam Map map) throws Exception{
+		
+		System.out.println(String.format("name:%s,id:%s", map.get("id"),map.get("Lastname")));
+		System.out.println(String.format("email:%s,pass:%s", map.get("email"),map.get("password")));
+		//System.out.println(String.format("name:%s,id:%s", map.get("id"),map.get("name")));
+		
+		
+		//선호도 체크페이지 이동
+		return "mypage/UserPreference.theme";
 	}
 	
 }
