@@ -14,21 +14,13 @@
 <!--**************************** 오른쪽 맵과 상단 네비 게이션 바 구성 종료*********************************-->
 	<div class="container-fluid"> 
 		<!--********************************왼쪽 여행 상세정보 출력 정보 시작**********************************-->
-		 <div class="col-md-3 col-sm-3 col-xs-12" id="leftrute">
-		 	<div style="background: #1abc9c; padding-top: 5px;">
-				<div id="planroutetop" style="padding-top: 0px; width: 75%; float: left;">			
-					<div style="height: 60px; padding-top: 2px; padding-left: 4px; padding-bottom: 5px;">
-						<div style="text-align: left; padding-top: 5px; padding-left: 5px;">
-							<div style="padding-right: 20px; padding-left: 5px; padding-top: 1px;">
-								<div style="border-radius: 2; border: 1px solid #efefef; padding-left: 10px; background: #fff; padding-top: 5px;">
-									<span style="padding-left: 0px; padding-right: 0px; color: #696969; font-size: 10pt;">
-											<i class="fa fa-calendar"></i> 출발일</span> 
-									<input style="" id="thedate" type="text" readonly>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>		
+		 <div class="col-md-3 col-sm-3 col-xs-12" id="leftrute" >
+			<div id="planroutetop" style="background: #1abc9c; padding: 10px; text-align: center;">			
+				<div id="plandate" style=" padding: 2px; width: auto; display: inline-block; ">					
+					<span style="display: inline-block; margin-top: 8px; margin-left:5px; color: #5D5D5D; font-size: 13pt;">
+						<i class="fa fa-calendar"></i> 출발일</span>
+					<input id="thedate" type="text" readonly class="text-center">
+				</div>				
 				<!-- <div style="float: left; width: 25%; text-align: right; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
 					<div onclick="함수 입력" style="cursor: pointer; border: 1px solid #efefef; background: #fff; height: 42px; 
 						border-radius: 2px;; text-align: center; padding-top: 12px; padding-bottom: 5px;">
@@ -40,10 +32,15 @@
 						</div>
 					</div>
 				</div> -->
-				<div class="btn-group">
-					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">행동 <span class="caret"></span></a>
+				<div class="btn-group" style="margin-top: 8px;">
+					<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" style="margin-top: 7px;">행동 <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-					  <!-- 드롭다운 메뉴 링크들 -->
+						<!-- 드롭다운 메뉴 링크들 -->
+						<li> 혼자서 </li>
+						<li> 둘이서 </li>
+						<li> 가족끼리 </li>
+						<li> 친구끼리 </li>
+						<li> 동호회 </li>
 					</ul>
 				</div>
 				<div style="clear: both"></div>
@@ -74,8 +71,7 @@
 			        <div class="option">
 			        	<div>
 			                <form onsubmit="searchPlaces(); return false;" style="display: inline-flex;">
-								<input type="text" class="form-control" placeholder="장소 검색" id="keyword" style="width: 60%;">
-			                	<input type="hidden" id="searchmap" value="검색">		                	
+								<input type="text" class="form-control" placeholder="장소 검색" id="keyword" style="width: 60%;">             	
 								<button type="submit">검색하기</button> 
 			                </form>
 			        	</div>

@@ -68,8 +68,7 @@ button.btn {
 		<!-- 상단 타이틀 종료 -->
 			<div class="divider"></div>
 			<div class="portfolio-centered">
-				<div class="recentitems portfolio">
-				
+				<div class="recentitems portfolio">				
 					<!-- 서울 특별시  선택 프로필 시작-->
 					<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12" style="height: 445px;">
 						<div class="he-wrap tpl6 market-item">
@@ -398,8 +397,8 @@ button.btn {
 
 <!-- MODAL -->
 <!-- Large modal -->
-<div id="pardoinfo" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="dlogLabel" aria-hidden="true">
-	<div class="modal-dialog">
+<div id="pardoinfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlogLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<form action="<c:url value='/planner/plan/route.it' />" method="post" class="" style=" margin: 0 auto; ">
 				<!-- ************************************************* 모달 헤더 시작 ******************************************************** -->
@@ -418,8 +417,7 @@ button.btn {
 							<a id="pardocity" data-toggle="dropdown" aria-haspopup="true" class="btn btn-default dropdown-toggle"
 								aria-expanded="false"> 도시 선택 <span class="caret"></span>
 							</a>
-							<ul class="dropdown-menu" role="citymenu" id="planul"
-								aria-labelledby="pardocity">
+							<ul class="dropdown-menu" role="citymenu" id="planul" aria-labelledby="pardocity">
 								<li><a href="#">평택</a></li>
 								<li><a href="#">수원</a></li>
 								<li><a href="#">안산</a></li>
@@ -438,8 +436,7 @@ button.btn {
 							<a id="planday" data-toggle="dropdown" aria-haspopup="true" class="btn btn-default dropdown-toggle" aria-expanded="false"> 
 								여행 일수 <span class="caret"></span>
 							</a>
-							<ul class="dropdown-menu" role="daymenu"  id="planul"
-								aria-labelledby="planday">
+							<ul class="dropdown-menu" role="daymenu"  id="planul" aria-labelledby="planday">
 								<li><a href="#">1일</a></li>
 								<li><a href="#">2일</a></li>
 								<li><a href="#">3일</a></li>
@@ -469,7 +466,7 @@ button.btn {
 </div>
 
 <script>
-$(function(){
+/* $(function(){
 	$('#pardoinfo').modal('show').css({
 		'margin-top' : function() {
 			return -($(this).height() /2 );		
@@ -478,7 +475,7 @@ $(function(){
 			return -($(this).width() / 2 );
 		}
 	});
-});
+}); */
 	
 </script>
 
