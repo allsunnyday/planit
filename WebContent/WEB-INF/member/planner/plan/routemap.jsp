@@ -4,12 +4,12 @@
 
 <script>	
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
+	var options = { //지도를 생성할 때 필요한 기본 옵션			
 			center: new daum.maps.LatLng(37.47868488487008, 126.87946377805068), //지도의 중심좌표.
 			level: 3 //지도의 레벨(확대, 축소 정도)
 	};				
 	var map = new daum.maps.Map(container, options);//지도를 생성합니다
-	container.style.height = '800px';/* map 의 레이아웃 설정 */	
+	container.style.height = '800px';/* map 의 레이아웃 설정 */
 	map.relayout();/* map 의 레이아웃 설정 */
 	
 	//지도를 클릭한 위치에 표출할 마커입니다
@@ -222,7 +222,6 @@
 	
 	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 	function addMarker(position, order, idx) {
-		console.log("idx__"+idx);
 		 var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
 	        imageSize = new daum.maps.Size(36, 37),  // 마커 이미지의 크기
 	        imgOptions =  {
@@ -320,6 +319,8 @@
 	} 
 	
 	/************************************************ 카테고리별 장소 검색하기 종료  **********************************************************/
+	
+	
 </script>
 
 

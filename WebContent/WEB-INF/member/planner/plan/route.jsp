@@ -12,37 +12,40 @@
 <!--**************************** 오른쪽 맵 과 상단 네비 게이션 바 구성 시작********************************-->
 	<jsp:include page="plantop.jsp"></jsp:include>
 <!--**************************** 오른쪽 맵과 상단 네비 게이션 바 구성 종료*********************************-->
-	<div class="container-fluid"> 
+	<div class="container-fluid" style="height: 100%"> 
 		<!--********************************왼쪽 여행 상세정보 출력 정보 시작**********************************-->
 		 <div class="col-md-3 col-sm-3 col-xs-12" id="leftrute" >
-			<div id="planroutetop" style="background: #1abc9c; padding: 10px; text-align: center;">			
-				<div id="plandate" style=" padding: 2px; width: auto; display: inline-block; ">					
-					<span style="display: inline-block; margin-top: 8px; margin-left:5px; color: #5D5D5D; font-size: 13pt;">
-						<i class="fa fa-calendar"></i> 출발일</span>
-					<input id="thedate" type="text" readonly class="text-center">
-				</div>				
-				<!-- <div style="float: left; width: 25%; text-align: right; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
-					<div onclick="함수 입력" style="cursor: pointer; border: 1px solid #efefef; background: #fff; height: 42px; 
-						border-radius: 2px;; text-align: center; padding-top: 12px; padding-bottom: 5px;">
-						onclick="toggleSelectTripWith();"
-						<div style="display: block"> </div>
-						<div style="font-size: 10pt;">
-							<span id="tripwith_txt">타입선택</span><i class="fa fa-angle-down"></i>
-							혼자서 / 둘이서 / 가족끼리 / 친구들끼리 / 모임  / 
+			<div id="planroutetop" style="background: #1abc9c; padding: 10px; text-align: center;">
+				<div class="row ">						
+					<div class="col-md-8 col-sm-8 col-xs-12" id="plandate" style="width: auto; display:block; margin: 0 auto;">
+						<div style="display:block; margin-bottom: -10px; ">
+							<span style="display: inline-block; margin-top: 8px; margin-left:5px; padding:5px; color: #5D5D5D; font-size: 10pt;
+								background-color: white; ">
+								<i class="fa fa-calendar"></i> 작성일</span>
+								<input type="text" style="width: auto; padding: 4px;" disabled class="text-center" id="nowdate" name="nowdate">						
+						</div>
+						<div style="display:block;">
+							<span style="display: inline-block; margin-top: 8px; margin-left:5px; padding:5px; color: #5D5D5D; font-size: 10pt;
+								background-color: white;">
+								<i class="fa fa-calendar"></i> 출발일</span>
+							<input id="thedate" style="width: auto; padding: 4px;" type="text" readonly class="text-center">						
 						</div>
 					</div>
-				</div> -->
-				<div class="btn-group" style="margin-top: 8px;">
-					<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" style="margin-top: 7px;">행동 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<!-- 드롭다운 메뉴 링크들 -->
-						<li> 혼자서 </li>
-						<li> 둘이서 </li>
-						<li> 가족끼리 </li>
-						<li> 친구끼리 </li>
-						<li> 동호회 </li>
-					</ul>
-				</div>
+					<div class="col-md-4 col-sm-4 col-xs-12 text-center">
+						<div class="btn-group" style="margin-top: 8px;">
+							<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" style="margin-top: 7px;"> 여행 타입 <span class="caret"></span></a>
+							<ul class="dropdown-menu" id="peopletype">
+								<!-- 드롭다운 메뉴 링크들 -->
+								<li><a href="#"><img src="/Planit/images/member/Preference/Preference_alone.JPG" alt="혼자서"></a></li>
+								<li><a href="#"><img src="/Planit/images/member/Preference/Preference_couple.JPG" alt="연인끼리"></a></li>
+								<li><a href="#"><img src="/Planit/images/member/Preference/Preference_family.JPG" alt="가족끼리"></a></li>
+								<li><a href="#"><img src="/Planit/images/plan/friend1.png" alt="친구끼리"></a></li>
+								<li><a href="#"><img src="/Planit/images/plan/club1.png" alt="동호회"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>	
+				
 				<div style="clear: both"></div>
 				</div>	
 			<div id="cityroute" style="position: relative; text-align: center; width: 100%; margin-left: 0px; padding-left: 0px; 
@@ -53,10 +56,10 @@
 		<!--******************************** 왼쪽 여행 상세정보 출력 종료 *************************************-->
 		
 		<!-- ******************************* daum map api 영역 *************************************** -->
-		<div class="col-md-9 col-sm-9 col-xs-12" id="rightrute" style="min-height: 100%;">		
+		<div class="col-md-9 col-sm-9 col-xs-12" id="rightrute">		
 			<div class="map_wrap">	
 				<!-- *********************************지도 타입 및 확대 축소 시작 **************************************-->		
-				<div id="map"  style="width:100%; height:800px; position:relative; overflow:hidden;"></div>		    
+				<div id="map" style="width:100%; position:relative; overflow:hidden;"></div>		    
 			    <div class="custom_typecontrol radius_border"><!-- 지도타입 컨트롤 div 입니다 -->
 			        <span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
 			        <span id="btnSkyview" class="sky_btn" onclick="setMapType('skyview')">스카이뷰</span> 	        			        
