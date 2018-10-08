@@ -40,18 +40,18 @@
 			</ul>
 			<h2> 추억을 남길 나의 여행 지역 선택하기 </h2>
 		</div>
-		<!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			search
-			<div class="search-bar">
-				<form action="" method="get">
-					<fieldset>
-						<input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
-						<input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
-					</fieldset>
-				</form>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: 20px;">
+			<div class="container clearfix" style="margin-top: 27px;">
+			<ul id="jetmenu" class="jetmenu blue">
+				<li style="display: block;"><a href="#"> 저 장 </a></li>
+				<li class="active" style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
+				<li style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
+				<li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
+				<li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>
+				<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>
+			</ul>
 			</div>
-			/ end div .search-bar
-		</div> -->
+		</div>		
 	</div>
 </section>
 <!-- end post-wrapper-top -->
