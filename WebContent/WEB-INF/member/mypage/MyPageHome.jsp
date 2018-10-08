@@ -162,7 +162,7 @@ height: 100%;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
           <li><a href="index.html">My Page</a></li>
-          <li>사용자 이름</li>
+          <li>${userid }</li>
         </ul>
         <h2>MY Page Home</h2>
       </div>
@@ -196,7 +196,7 @@ height: 100%;
             </div>
             <!-- he wrap -->
             <div class="teammembers-meta">
-              <h4>Plan:It</h4>
+              <h4>${sessionScope.userid}</h4>
             </div>
             <div id="MY-first-1-self-detail">
                      <p>
@@ -204,7 +204,7 @@ height: 100%;
                         <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
                         <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
                            님의&nbsp자기소개입니다</span>
-                     <p>어서오세요, Plan:It님!
+                     <p>어서오세요, ${userid }님!
                      멋진 프로필을 등록해 
                      자신만의 개성을 나타내보세요!
                      </p>

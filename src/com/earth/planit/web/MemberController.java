@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.earth.planit.service.MemberDTO;
 import com.earth.planit.service.MemberService;
 
 @Controller
@@ -54,11 +55,11 @@ public class MemberController {
 
 	// ***************마이페이지 이동(일반회원)
 	@RequestMapping("/planit/mypage/MyPageHome.it")
-	public String gotoMyPageHome(@RequestParam Map map,HttpSession session) throws Exception {
+	public String gotoMyPageHome() throws Exception {
 		//사진 및 기타등등 노출
-	System.out.println("id"+map.get("id"));
-			session.setAttribute("userid", map.get("id"));
-		
+		/*System.out.println("id"+map.get("id"));
+		session.setAttribute("userid", map.get("id"));*/
+		//@RequestParam Map map,HttpSession session
 		return "mypage/MyPageHome.theme";
 	}
 
@@ -158,14 +159,26 @@ public class MemberController {
 			model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
 		}
 		
-		return "forward:/planit/login/Login.it";
+		//return "forward:/planit/login/Login.it";
+		return "main/main.tiles";
 	}
-	@RequestMapping(value="/member/login/UserJoinFormProcess.it" ,method=RequestMethod.POST)
-	public String UserJoinFormProcess(@RequestParam Map map) throws Exception{
+	
+	//[로그아웃 처리]
+	@RequestMapping("/member/login/Logout.it")
+	public String logoutProcess(HttpSession session) throws Exception{
+		session.invalidate();
+		return "main/main.tiles";
 		
-		System.out.println(String.format("name:%s,id:%s", map.get("id"),map.get("Lastname")));
-		System.out.println(String.format("email:%s,pass:%s", map.get("email"),map.get("password")));
-		//System.out.println(String.format("name:%s,id:%s", map.get("id"),map.get("name")));
+	}
+	
+	//[회원가입 처리]
+	@RequestMapping(value="/member/login/UserJoinFormProcess.it" ,method=RequestMethod.POST)
+	public String UserJoinFormProcess(MemberDTO dto,@RequestParam Map map) throws Exception{
+		System.out.println("비밀번호:"+map.get("pwd"));
+		System.out.println("비밀번호:"+dto.getPwd());
+		
+		int isJoin=service.isJoin(dto);
+		System.out.println(isJoin);
 		
 		
 		//선호도 체크페이지 이동

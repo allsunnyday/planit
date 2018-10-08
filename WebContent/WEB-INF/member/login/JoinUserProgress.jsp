@@ -349,8 +349,8 @@ jQuery(document).ready(function() {
 				</div>
 				<div class="form-group">
 					<label class="sr-only" for="f1-password">Password</label> <input
-						type="password" name="password" placeholder="Password..."
-						class="f1-password form-control" id="password">
+						type="password" name="pwd" placeholder="Password..."
+						class="f1-password form-control" id="pwd">
 				</div>
 				<div class="form-group">
 					<label class="sr-only" for="f1-repeat-password">Repeat
