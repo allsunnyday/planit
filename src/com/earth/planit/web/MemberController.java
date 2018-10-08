@@ -148,7 +148,8 @@ public class MemberController {
 		System.out.println("id="+map.get("id")+" pwd="+map.get("pwd"));
 		
 		boolean isLogin = service.isLogin(map);
-		
+		System.out.println(isLogin);
+		System.out.println(service.isLogin(map));
 		if(isLogin) { // 회원일경우
 			//로그인 처리 - 세션 영역에 저장 
 			session.setAttribute("userid", map.get("id"));

@@ -33,8 +33,8 @@
 		              <li><a href="#partner-login" data-toggle="tab">기업회원</a></li>
 		            </ul>
 		            <div class="tab-content">
-		              <c:if test="${not empty loginError }" var="loginResult"><div><h1>${loginError}</h1></div></c:if>
-		              <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}반갑습니다!</c:if>
+		               
+		             <%--  <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}반갑습니다!</c:if>  --%>
 		              <!-- 일반회원 가입-->
 		              <div class="tab-pane active" id="user-login">
 		              	<div class="text-center" style="padding: 50px 0;">
@@ -42,6 +42,7 @@
 		              	</div>
 		              	<form id="loginform" method="post" name="loginform" action="<c:url value='/member/login/LoginProcess.it'/>" >
 			               <div class="form-group">
+			               <c:if test="${not empty loginError }" var="loginResult"><div><p style="color:red;">${loginError}</p></div></c:if>
 			                  <div class="input-group">
 			                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
 			                     <input type="text" class="form-control" placeholder="Username" name="id">
