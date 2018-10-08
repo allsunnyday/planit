@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 .Partnerpage-content {
-
 	/* margin-top: 100px; */
 	/* border: 3px black solid; */
+	
 }
 
 #Partnerpage {
@@ -21,7 +21,7 @@
 }
 
 #Partner-edit-button {
-	background-color:whith;
+	background-color: whith;
 	border: 1.5px black solid;
 	/*  background-color: lightgray; */
 	color: black;
@@ -47,7 +47,6 @@
 	height: 150%;
 }
 
-
 #Partner-user-picture img {
 	/* position: absolute; top:0; left: 0;
 width: 100%;
@@ -57,11 +56,15 @@ height: 100%; */
 	margin: auto;
 	display: block;
 }
-#Partner-First-content img,#Partner-Second-content img{
-position: absolute; top:0; left: 0;
-width: 100%;
-height: 100%;
+
+#Partner-First-content img, #Partner-Second-content img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
+
 #Partner-user-picture {
 	width: 150px;
 	height: 150px;
@@ -69,34 +72,35 @@ height: 100%;
 	border: 2px gray solid;
 }
 
-#Partner-First-Parter-RoomStatus{
-		display: inline-block;
+#Partner-First-Parter-RoomStatus {
+	display: inline-block;
 	border-radius: 10px;
-/* 	border: 3px gray dotted; */
+	/* 	border: 3px gray dotted; */
 	background-color: darkgray;
 }
 
 #Partner-First-2-Like {
 	display: inline-block;
 	border-radius: 10px;
-/* 	border: 3px gray dotted; */
+	/* 	border: 3px gray dotted; */
 	background-color: rgb(109, 213, 193);
 }
 
-#Partner-First-informtable td:first-child{
-		font-size: 0.8em;
+#Partner-First-informtable td:first-child {
+	font-size: 0.8em;
 	/* font-weight: bold; */
 	color: darkgray;
-	text-align:left;
-	align:left;
+	text-align: left;
+	align: left;
 }
-#Partner-First-informtable td:last-child{
+
+#Partner-First-informtable td:last-child {
 	font-weight: lighter;
 	font-size: 0.8em;
 	color: black;
-	text-align:left;
-/* 	align:right; */
-	align:left;
+	text-align: left;
+	/* 	align:right; */
+	align: left;
 }
 
 .Partner-First-2-zzim {
@@ -108,16 +112,15 @@ height: 100%;
 	font-weight: bold;
 	color: white;
 	text-indent: 10px;
-	text-align:left;
+	text-align: left;
 }
 
 #Partner-First-Roomtable td:nth-child(2n) {
 	font-weight: lighter;
 	font-size: 1.0em;;
 	color: white;
-/* 	align:right; */
+	/* 	align:right; */
 	text-indent: 10px;
-	
 }
 
 #Partner-First-2-Like {
@@ -125,9 +128,7 @@ height: 100%;
 	margin-top: 20px;
 }
 
-
-
- #Partner-Second, #Partner-Forth, #Partner-Third {
+#Partner-Second, #Partner-Forth, #Partner-Third {
 	/* margin-top: 60px; */
 	padding-top: 10px;
 	border-top: 2px black solid;
@@ -136,437 +137,472 @@ height: 100%;
 
 #Partner-First-content div, #Partner-Second-content div, #Third-content div,
 	#Partner-Third-content div {
-/* 	margin-top: 20px; */
+	/* 	margin-top: 20px; */
 	height: 170px;
 }
-#Partner-First-name,#Partner-Second-name,
-#Partner-Forth-name,#Partner-Third-name{
-	display:inline-block;
+
+#Partner-First-name, #Partner-Second-name, #Partner-Forth-name,
+	#Partner-Third-name {
+	display: inline-block;
 }
-.Partner-More-Button{
-	display:inline-block;
+
+.Partner-More-Button {
+	display: inline-block;
 	float: right;
-	margin-top:-5px;
+	margin-top: -5px;
 }
+
 .Partner-More-Button button {
-	color:rgb(53, 181, 157);
-	
+	color: rgb(53, 181, 157);
 }
 </style>
 <!-- *******************************************
 	베이지색 검색창 달린 거
 ************************************************ -->
- <section class="post-wrapper-top" style="margin-top:65px;">
-    <div class="container">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <ul class="breadcrumb">
-          <li><a href="index.html">Partner Page</a></li>
-          <li>사용자 이름</li>
-        </ul>
-        <h2>Partner Page Home</h2>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <!-- search -->
-        <div class="search-bar">
-          <form action="" method="get">
-            <fieldset>
-              <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
-              <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
-            </fieldset>
-          </form>
-        </div>
-        <!-- / end div .search-bar -->
-      </div>
-    </div>
-  </section>
-  <!-- end post-wrapper-top -->
+<section class="post-wrapper-top" style="margin-top: 65px;">
+	<div class="container">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<ul class="breadcrumb">
+				<li><a href="index.html">Partner Page</a></li>
+				<li>사용자 이름</li>
+			</ul>
+			<h2>Partner Page Home</h2>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<!-- search -->
+			<div class="search-bar">
+				<form action="" method="get">
+					<fieldset>
+						<input type="image" src="img/pixel.gif" class="searchsubmit"
+							alt="" /> <input type="text" class="search_text showtextback"
+							name="s" id="s" value="Search..." />
+					</fieldset>
+				</form>
+			</div>
+			<!-- / end div .search-bar -->
+		</div>
+	</div>
+</section>
+<!-- end post-wrapper-top -->
 <!--*************************************
 	왼쪽에 달린 프로필 사진 및 기타등등 
 *****************************************  -->
-  <section class="section1">
-        <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
-        <div>
-          <div class="teammembers">
-            <div class="he-wrap tpl2">
-              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
-              <div class="he-view">
-            
-              </div>
-            </div>
-            <!-- he wrap -->
-            <div class="teammembers-meta">
-              <h4>Plan:It</h4>
-            </div>
-            <div id="Partner-First-1-self-detail">
-							<p>
-								<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-									(주)Plan:It</span>
-			
-				 <div class="Partner-First-PartnerInform"> 
-					
-					<table id="Partner-First-informtable" style="width:110%;">
-             		<tr>
-             			<td>사업자번호</td>
-             			<td>123-45-678900</td>
-             		</tr>
-             		<tr>
-             		<td>대표자</td>
-             			<td>김잇잇</td>
-             		</tr>
-             		<tr>
-             			<td>주소</td>
-             			<td>서울특별시 디지털로 123 311호</td>
-             		</tr>
-             		<tr>
-             			<td>전화</td>
-             			<td>02-0000-0000</td>
-             		</tr>
-             		<tr>
-             			<td>업종</td>
-             			<td>숙박업</td>
-             		</tr>
-             	
-             			
-             		</table>
-					
+<section class="section1">
+	<div class="col-md-2 col-md-offset-1" style="margin-top: 25px;">
+		<div>
+			<div class="teammembers">
+				<div class="he-wrap tpl2">
+					<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
+						alt="프로필 사진">
+					<div class="he-view"></div>
 				</div>
-			
+				<!-- he wrap -->
+				<div class="teammembers-meta">
+					<h4>Plan:It</h4>
+				</div>
+				<div id="Partner-First-1-self-detail">
+					<p>
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+							(주)Plan:It</span>
+					<div class="Partner-First-PartnerInform">
 
-            <div class="teamskills" >
-            	<div id="Partner-First-Parter-RoomStatus" style="width:90%;">
-             		<table id="Partner-First-Roomtable" style="width:90%;" >
-             		<tr>
-             			<td>Total Room</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             		<td>Resting room</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             			<td>Reserved room</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             			<td>Star Point</td>
-             			<td>00</td>
-             		</tr>
-             	
-             			
-             		</table>
-             	</div>
-             	</div>
-              
-            </div>
-          </div>
-          <!-- end teammembers -->
-        </div>
-</div>
-<!-- ************************************
+						<table id="Partner-First-informtable" style="width: 110%;">
+							<tr>
+								<td>사업자번호</td>
+								<td>123-45-678900</td>
+							</tr>
+							<tr>
+								<td>대표자</td>
+								<td>김잇잇</td>
+							</tr>
+							<tr>
+								<td>주소</td>
+								<td>서울특별시 디지털로 123 311호</td>
+							</tr>
+							<tr>
+								<td>전화</td>
+								<td>02-0000-0000</td>
+							</tr>
+							<tr>
+								<td>업종</td>
+								<td>숙박업</td>
+							</tr>
+
+
+						</table>
+
+					</div>
+
+
+					<div class="teamskills">
+						<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
+							<table id="Partner-First-Roomtable" style="width: 100%;">
+								<tr>
+									<td>Total Room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Resting room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Reserved room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Star Point</td>
+									<td>00</td>
+								</tr>
+
+
+							</table>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- end teammembers -->
+		</div>
+	</div>
+	<!-- ************************************
 	마이페이지 홈 내용
 	-수정폼이동,플래너 및 리뷰 요약, 기타 등등
 ***************************************** -->
-<div class="container-fluid ">
-      <div class="content col-md-7">
-	<div class="Partnerpage-content">
-		<div class="Partnerpagemenu">
-			<div id="Partnerpage">
-			<!-- 	<h2>Partner PAGE</h2> -->
-			</div>
-			<div id="Partner-edit">
-				<!-- 회원정보 수정폼으로 이동 -->
-				<!-- <button type="submit" class="btn btn-default" id="Partner-edit-button">회원정보수정</button> -->
-			<%-- 	<a href="<c:url value='/planit/Partnerpage/PartnerPageEditProfile.it' />" class="btn btn-default" id="Partner-edit-button">회원정보수정</a> --%>
-			<div class="dropdown">
-				  <button class="btn btn-default dropdown-toggle" type="button" id="Partner-edit-button" data-toggle="dropdown" aria-expanded="true">
-				    회원정보수정
-				    <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" role="menu" aria-labelledby="Partner-edit-button">
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='#' />">프로필 수정</a></li>
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='#' />">비밀번호 변경</a></li>
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='#' />">비밀번호 확인 페이지(임시)</a></li>
-				    
-				  </ul>
-				  
-				</div><!-- dropdown -->
-			</div><!-- Partner-edit -->
-		</div><!-- Partnerpagemenu -->
-		
-		<!-- ------------------------- -->
-		<!--        start First       -->
-		<!-- ------------------------- -->
-		<div class="row" id="Partner-First">
-			<!--  내가 작성한 플래너 들어갈 div -->
-	<!-- **********************************
+	<div class="container-fluid ">
+		<div class="content col-md-7">
+			<div class="Partnerpage-content">
+				<div class="Partnerpagemenu">
+					<div id="Partnerpage">
+						<!-- 	<h2>Partner PAGE</h2> -->
+					</div>
+					<div id="Partner-edit">
+						<!-- 회원정보 수정폼으로 이동 -->
+						<!-- <button type="submit" class="btn btn-default" id="Partner-edit-button">회원정보수정</button> -->
+						<%-- 	<a href="<c:url value='/planit/Partnerpage/PartnerPageEditProfile.it' />" class="btn btn-default" id="Partner-edit-button">회원정보수정</a> --%>
+						<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" type="button"
+								id="Partner-edit-button" data-toggle="dropdown"
+								aria-expanded="true">
+								회원정보수정 <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu"
+								aria-labelledby="Partner-edit-button">
+								<li role="presentation"><a role="menuitem" tabindex="-1"
+									href="<c:url value='#' />">프로필 수정</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1"
+									href="<c:url value='#' />">비밀번호 변경</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1"
+									href="<c:url value='#' />">비밀번호 확인 페이지(임시)</a></li>
+
+							</ul>
+
+						</div>
+						<!-- dropdown -->
+					</div>
+					<!-- Partner-edit -->
+				</div>
+				<!-- Partnerpagemenu -->
+
+				<!-- ------------------------- -->
+				<!--        start First       -->
+				<!-- ------------------------- -->
+				<div class="row" id="Partner-First">
+					<!--  내가 작성한 플래너 들어갈 div -->
+					<!-- **********************************
 		최신 플래너 요약보기/마우스 오버 추가
 	**************************************** -->
-			<div id="Partner-First-name">Room Information</div>
-			<div class="Partner-More-Button">
-				 <button type="button" class="btn btn-link"><a href="<c:url value='#'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
-				</div>
-			<div id="First-line" >
-				<div id="Partner-First-content" class="col-md-12">
-			        <div class="portfolio-centered">
-			          <div class="recentitems portfolio">
-			
-			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
-			              <div class="he-wrap tpl6 market-item">
-			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-			                <div class="he-view">
-			                  <div class="bg a0" data-animate="fadeIn">
-			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-			                    <a data-rel="prettyPhoto" href="img/portfolio_01.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-			                      <a href="gallery-portfolio.html#">Item Category</a>
-			                    </div>
-			                    <!-- portfolio_category -->
-			                  </div>
-			                  <!-- he bg -->
-			                </div>
-			                <!-- he view -->
-			              </div>
-			              <!-- he wrap -->
-			            </div>
-			            <!-- end col-12 -->
-			
-			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 web-design graphic-design">
-			              <div class="he-wrap tpl6 market-item">
-			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-			                <div class="he-view">
-			                  <div class="bg a0" data-animate="fadeIn">
-			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-			                    <a data-rel="prettyPhoto" href="img/portfolio_02.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-			                      <a href="gallery-portfolio.html#">Item Category</a>
-			                    </div>
-			                    <!-- portfolio_category -->
-			                  </div>
-			                  <!-- he bg -->
-			                </div>
-			                <!-- he view -->
-			              </div>
-			              <!-- he wrap -->
-			            </div>
-			            <!-- end col-12 -->
-			
-			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 graphic-design">
-			              <div class="he-wrap tpl6 market-item">
-			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-			                <div class="he-view">
-			                  <div class="bg a0" data-animate="fadeIn">
-			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-			                    <a data-rel="prettyPhoto" href="img/portfolio_03.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-			                      <a href="gallery-portfolio.html#">Item Category</a>
-			                    </div>
-			                    <!-- portfolio_category -->
-			                  </div>
-			                  <!-- he bg -->
-			                </div>
-			                <!-- he view -->
-			              </div>
-			              <!-- he wrap -->
-			            </div>
-			            <!-- end col-12 -->
-			
-			            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
-			              <div class="he-wrap tpl6 market-item">
-			                <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-			                <div class="he-view">
-			                  <div class="bg a0" data-animate="fadeIn">
-			                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-			                    <a data-rel="prettyPhoto" href="img/portfolio_04.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-			                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-			                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-			                      <a href="gallery-portfolio.html#">Item Category</a>
-			                    </div>
-			                    <!-- portfolio_category -->
-			                  </div>
-			                  <!-- he bg -->
-			                </div>
-			                <!-- he view -->
-			              </div>
-			              <!-- he wrap -->
-			            </div>
-			            <!-- end col-12 -->
-			
-			            <!-- end col-12 -->
-			
-			            
-			            <!-- end col-12 -->
-			
-			            <!-- end col-12 -->
-			
-			          </div>
-			          <!-- portfolio -->
-			 			 </div> 
-			
-					
-	
+					<div id="Partner-First-name">Room Information</div>
+					<div class="Partner-More-Button">
+						<button type="button" class="btn btn-link">
+							<a href="<c:url value='#'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a>
+						</button>
 					</div>
-	
+					<div id="First-line">
+						<div id="Partner-First-content" class="col-md-12">
+							<div class="portfolio-centered">
+								<div class="recentitems portfolio">
 
-			</div>
+									<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
+										<div class="he-wrap tpl6 market-item">
+											<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+											<div class="he-view">
+												<div class="bg a0" data-animate="fadeIn">
+													<h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+													<a data-rel="prettyPhoto" href="img/portfolio_01.jpg"
+														class="dmbutton a2" data-animate="bounceInLeft"><i
+														class="fa fa-search"></i></a> <a
+														href="single-portfolio-2.html" class="dmbutton a2"
+														data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+													<div class="portfolio_category text-center a2"
+														data-animate="fadeIn">
+														<a href="gallery-portfolio.html#">Item Category</a>
+													</div>
+													<!-- portfolio_category -->
+												</div>
+												<!-- he bg -->
+											</div>
+											<!-- he view -->
+										</div>
+										<!-- he wrap -->
+									</div>
+									<!-- end col-12 -->
+
+									<div
+										class="col-lg-3 col-md-3 col-sm-6 col-xs-12 web-design graphic-design">
+										<div class="he-wrap tpl6 market-item">
+											<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+											<div class="he-view">
+												<div class="bg a0" data-animate="fadeIn">
+													<h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+													<a data-rel="prettyPhoto" href="img/portfolio_02.jpg"
+														class="dmbutton a2" data-animate="bounceInLeft"><i
+														class="fa fa-search"></i></a> <a
+														href="single-portfolio-2.html" class="dmbutton a2"
+														data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+													<div class="portfolio_category text-center a2"
+														data-animate="fadeIn">
+														<a href="gallery-portfolio.html#">Item Category</a>
+													</div>
+													<!-- portfolio_category -->
+												</div>
+												<!-- he bg -->
+											</div>
+											<!-- he view -->
+										</div>
+										<!-- he wrap -->
+									</div>
+									<!-- end col-12 -->
+
+									<div
+										class="col-lg-3 col-md-3 col-sm-6 col-xs-12 graphic-design">
+										<div class="he-wrap tpl6 market-item">
+											<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+											<div class="he-view">
+												<div class="bg a0" data-animate="fadeIn">
+													<h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+													<a data-rel="prettyPhoto" href="img/portfolio_03.jpg"
+														class="dmbutton a2" data-animate="bounceInLeft"><i
+														class="fa fa-search"></i></a> <a
+														href="single-portfolio-2.html" class="dmbutton a2"
+														data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+													<div class="portfolio_category text-center a2"
+														data-animate="fadeIn">
+														<a href="gallery-portfolio.html#">Item Category</a>
+													</div>
+													<!-- portfolio_category -->
+												</div>
+												<!-- he bg -->
+											</div>
+											<!-- he view -->
+										</div>
+										<!-- he wrap -->
+									</div>
+									<!-- end col-12 -->
+
+									<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
+										<div class="he-wrap tpl6 market-item">
+											<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+											<div class="he-view">
+												<div class="bg a0" data-animate="fadeIn">
+													<h3 class="a1" data-animate="fadeInDown">Project Name</h3>
+													<a data-rel="prettyPhoto" href="img/portfolio_04.jpg"
+														class="dmbutton a2" data-animate="bounceInLeft"><i
+														class="fa fa-search"></i></a> <a
+														href="single-portfolio-2.html" class="dmbutton a2"
+														data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+													<div class="portfolio_category text-center a2"
+														data-animate="fadeIn">
+														<a href="gallery-portfolio.html#">Item Category</a>
+													</div>
+													<!-- portfolio_category -->
+												</div>
+												<!-- he bg -->
+											</div>
+											<!-- he view -->
+										</div>
+										<!-- he wrap -->
+									</div>
+									<!-- end col-12 -->
+
+									<!-- end col-12 -->
 
 
-		</div>
-		<!-- ---------------------- -->
-		<!--       end First        -->
-		<!-- ---------------------- -->
-		<!-- ---------------------- -->
-		<!--       end Second       -->
-		<!-- ---------------------- -->
-		<div class="row" id="Partner-Second">
-			<!--  내가 작성한 플래너 들어갈 div -->
-			<div id="Partner-Second-name">Partner Review</div>
-				<div class="Partner-More-Button">
-				 <button type="button" class="btn btn-link"><a href="<c:url value='#'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
-				</div>
-			<div id="Third-line">
-				<div id="Partner-Second-content" class="col-md-12">
-					주간 예약 통계
-				</div>
+									<!-- end col-12 -->
+
+									<!-- end col-12 -->
+
+								</div>
+								<!-- portfolio -->
+							</div>
 
 
-			</div>
+
+						</div>
 
 
-		</div>
-		<!-- ---------------------- -->
-		<!--       end Second        -->
-		<!-- ---------------------- -->
-		<!-- ------------------------- -->
-		<!--        start Forth      -->
-		<!-- ------------------------- -->
-		<div class="row" id="Partner-Third">
-			<!--  내가 작성한 플래너 들어갈 div -->
-			<div id="Partner-Third-name">Reservation details</div>
-				<div class="Partner-More-Button">
-				 <button type="button" class="btn btn-link"><a href="<c:url value='#'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
-				</div>
-			<div id="Forth-line">
-				<div id="Forth-content" class="col-md-12">
-					<!-- 찜해제버튼 추가 -->
-					<div id="Partner-Third-ZZim-table">
-						<table class="table">
-							<tr>
-								<td class="col-md-1 ">No.</td>
-								<!-- 찜번호 -->
-								<td class="col-md-1 ">이름</td>
-								
-								<td class="col-md-1 col-md-offset-1">객실</td>
-								<td class="col-md-1 col-md-offset-1">Check-In</td>
-								<td class="col-md-1 col-md-offset-1">Check-Out</td>
-								<td class="col-md-1 col-md-offset-1">추가사항</td>
-
-							</tr>
-							<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td>김플랜</span></td>
-								<td>Standard A</td>
-								<td>2018.01.01</td>
-								<td>2018.01.03</td>
-								<td>X</td>
-
-							</tr>
-							<tr>
-							<td>00</td>
-								<!-- 찜번호 -->
-								<td>이플랜</span></td>
-								<td>Standard B</td>
-								<td>2018.01.01</td>
-								<td>2018.01.03</td>
-								<td>추가 침구</td>
-
-
-							</tr>
-							<td>00</td>
-								<!-- 찜번호 -->
-								<td>박플랜</span></td>
-								<td>Standard C</td>
-								<td>2018.01.01</td>
-								<td>2018.01.03</td>
-								<td>조식추가</td>
-
-
-							</tr>
-						</table>
-					</div>
-				</div>
-
-
-			</div>
-
-
-		</div>
-		<!-- ---------------------- -->
-		<!--       end Forth         -->
-		<!-- ---------------------- -->
-		<!-- ------------------------- -->
-		<!--        start Forth      -->
-		<!-- ------------------------- -->
-		<div class="row" id="Partner-Forth">
-			<!--  내가 작성한 플래너 들어갈 div -->
-			<div id="Partner-Forth-name">Partner Q&A</div>
-				<div class="Partner-More-Button">
-				 <button type="button" class="btn btn-link"><a href="<c:url value='#'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
-				</div>
-			<div id="Forth-line">
-				<div id="Partner-Forth-content" class="col-md-12">
-					<div id="Partner-Forth-Q&A-table">
-						<table class="table">
-							<tr>
-								<td class="col-md-2 ">번호</td>
-								<!-- 찜번호 -->
-								<td class="col-md-1 ">분류</td>
-								<td class="col-md-3 col-md-offset-1">제목</td>
-								<td class="col-md-2 col-md-offset-2">날짜</td>
-								<td class="col-md-2 col-md-offset-2">진행여부</td>
-
-							</tr>
-							<tr>
-								<td>00</td>
-								<td>정보수정</td>
-								<td>관광지 정보수정 문의</td>
-								<td>2018.01.01</td>
-								<td>문의 접수</td>
-
-							</tr>
-							<tr>
-								<td>00</td>
-								<td>그냥문의</td>
-								<td>제목뭘루하지</td>
-								<td>2018.01.01</td>
-								<td>처리 중</td>
-
-							</tr>
-						</table>
 					</div>
 
 
+				</div>
+				<!-- ---------------------- -->
+				<!--       end First        -->
+				<!-- ---------------------- -->
+				<!-- ---------------------- -->
+				<!--       end Second       -->
+				<!-- ---------------------- -->
+				<div class="row" id="Partner-Second">
+					<!--  내가 작성한 플래너 들어갈 div -->
+					<div id="Partner-Second-name">Partner Review</div>
+					<div class="Partner-More-Button">
+						<button type="button" class="btn btn-link">
+							<a href="<c:url value='#'/>"><span
+								class="glyphicon glyphicon-plus">더보기 </span></a>
+						</button>
+					</div>
+					<div id="Third-line">
+						<div id="Partner-Second-content" class="col-md-12">주간 예약 통계
+						</div>
+
+
+					</div>
 
 
 				</div>
+				<!-- ---------------------- -->
+				<!--       end Second        -->
+				<!-- ---------------------- -->
+				<!-- ------------------------- -->
+				<!--        start Forth      -->
+				<!-- ------------------------- -->
+				<div class="row" id="Partner-Third">
+					<!--  내가 작성한 플래너 들어갈 div -->
+					<div id="Partner-Third-name">Reservation details</div>
+					<div class="Partner-More-Button">
+						<button type="button" class="btn btn-link">
+							<a href="<c:url value='/mypage/partner/Reservation_P.it'/>"><span
+								class="glyphicon glyphicon-plus">더보기 </span></a>
+						</button>
+					</div>
+					<div id="Forth-line">
+						<div id="Forth-content" class="col-md-12">
+							<!-- 찜해제버튼 추가 -->
+							<div id="Partner-Third-ZZim-table">
+								<table class="table">
+									<tr>
+										<td class="col-md-1 ">No.</td>
+										<!-- 찜번호 -->
+										<td class="col-md-1 ">이름</td>
 
+										<td class="col-md-1 col-md-offset-1">객실</td>
+										<td class="col-md-1 col-md-offset-1">Check-In</td>
+										<td class="col-md-1 col-md-offset-1">Check-Out</td>
+										<td class="col-md-1 col-md-offset-1">추가사항</td>
+
+									</tr>
+									<tr>
+										<td>00</td>
+										<!-- 찜번호 -->
+										<td><span>김플랜</span></td>
+										<td>Standard A</td>
+										<td>2018.01.01</td>
+										<td>2018.01.03</td>
+										<td>X</td>
+
+									</tr>
+									<tr>
+										<td>00</td>
+										<!-- 찜번호 -->
+										<td><span>이플랜</span></td>
+										<td>Standard B</td>
+										<td>2018.01.01</td>
+										<td>2018.01.03</td>
+										<td>추가 침구</td>
+
+
+									</tr>
+									<tr>
+										<td>00</td>
+										<!-- 찜번호 -->
+										<td><span>박플랜</span></td>
+										<td>Standard C</td>
+										<td>2018.01.01</td>
+										<td>2018.01.03</td>
+										<td>조식추가</td>
+
+
+									</tr>
+								</table>
+							</div>
+						</div>
+
+
+					</div>
+
+
+				</div>
+				<!-- ---------------------- -->
+				<!--       end Forth         -->
+				<!-- ---------------------- -->
+				<!-- ------------------------- -->
+				<!--        start Forth      -->
+				<!-- ------------------------- -->
+				<div class="row" id="Partner-Forth">
+					<!--  내가 작성한 플래너 들어갈 div -->
+					<div id="Partner-Forth-name">Partner Q&A</div>
+					<div class="Partner-More-Button">
+						<button type="button" class="btn btn-link">
+							<a href="<c:url value='/mypage/partner/Request_P.it'/>"><span
+								class="glyphicon glyphicon-plus">더보기 </span></a>
+						</button>
+					</div>
+					<div id="Forth-line">
+						<div id="Partner-Forth-content" class="col-md-12">
+							<div id="Partner-Forth-Q&A-table">
+								<table class="table">
+									<tr>
+										<td class="col-md-2 ">번호</td>
+										<!-- 찜번호 -->
+										<td class="col-md-1 ">분류</td>
+										<td class="col-md-3 col-md-offset-1">제목</td>
+										<td class="col-md-2 col-md-offset-2">날짜</td>
+										<td class="col-md-2 col-md-offset-2">진행여부</td>
+
+									</tr>
+									<tr>
+										<td>00</td>
+										<td>정보수정</td>
+										<td>관광지 정보수정 문의</td>
+										<td>2018.01.01</td>
+										<td>문의 접수</td>
+
+									</tr>
+									<tr>
+										<td>00</td>
+										<td>그냥문의</td>
+										<td>제목뭘루하지</td>
+										<td>2018.01.01</td>
+										<td>처리 중</td>
+
+									</tr>
+								</table>
+							</div>
+
+						</div>
+
+
+					</div>
+
+
+				</div>
+				<!-- ---------------------- -->
+				<!--       end Forth         -->
+				<!-- ---------------------- -->
 
 			</div>
-
+			<!--  end Partnerpage-content -->
 
 		</div>
-		<!-- ---------------------- -->
-		<!--       end Forth         -->
-		<!-- ---------------------- -->
-
+		<!--  end container -->
+		`
 	</div>
-	<!--  end Partnerpage-content -->
-
-</div>
-<!--  end container --> 
-  `
-</div>
 </section>

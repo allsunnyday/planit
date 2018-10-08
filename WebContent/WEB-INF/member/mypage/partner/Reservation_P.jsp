@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 아이콘을 위한 css -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <style type="text/css">
 .table-wrapper {
@@ -258,6 +257,7 @@ table.table .avatar {
 	margin-top: 10px;
 	font-size: 13px;
 }
+
 /* Modal styles */
 .modal .modal-dialog {
 	max-width: 400px;
@@ -356,6 +356,29 @@ table.table .avatar {
 	box-shadow: none;
 	background: #ddd;
 }
+
+#Partner-First-Parter-RoomStatus {
+	display: inline-block;
+	border-radius: 10px;
+
+	background-color: darkgray;
+}
+
+#Partner-First-Roomtable td:First-child {
+	font-size: 1.0em;
+	font-weight: bold;
+	color: white;
+	text-indent: 10px;
+	text-align: left;
+}
+
+#Partner-First-Roomtable td:nth-child(2n) {
+	font-weight: lighter;
+	font-size: 1.0em;;
+	color: white;
+	/* 	align:right; */
+	text-indent: 10px;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -380,293 +403,346 @@ table.table .avatar {
 				$("#selectAll").prop("checked", false);
 			}
 		});
+		
+		$('#form-control').change(function() {
+			if ($("#form-control option:selected").val() != 'All') {
+				console.log($("#form-control option:selected").val());
+				var selectedStatus = $("#form-control option:selected").val();
+				var target = $('table tr[data-status="'+ $("#form-control option:selected").val() + '"]');
+				$("table tbody tr").not(target).hide();
+				target.fadeIn();
+			} else {
+				$("table tbody tr").fadeIn();
+			}		
+		});
+		
+		
 	});
 </script>
-</head>
-<body>
-	<div class="container" style="padding-top: 50px">
-		<div class="table-wrapper">
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-4">
-						<h2>
-							Reservation <b>Details</b>
-						</h2>
+<div class="container-fluid">
+
+	<div class="col-md-3" style="width: 300px">
+		<div style="padding-top: 50px;">
+			<div>
+				<div class="teammembers" style="background-color: white;">
+					<div class="he-wrap tpl2">
+						<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
+							alt="프로필 사진">
+						<div class="he-view"></div>
 					</div>
-					<div class="col-sm-6" style="float: right;">
-						<a href="#addEmployeeModal" class="btn btn-success"
-							data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add
-								New Employee</span></a> <a href="#deleteEmployeeModal"
-							class="btn btn-danger" data-toggle="modal"><i
-							class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+					<!-- he wrap -->
+					<div class="teammembers-meta">
+						<h4>Plan:It</h4>
 					</div>
-				</div>
-			</div>
-			<div class="table-filter">
-				<div class="row">
-					<div class="col-sm-3"></div>
-					<div class="col-sm-9">
-						<button type="button" class="btn btn-primary">
-							<i class="fa fa-search"></i>
-						</button>
-						<div class="filter-group">
-							<label>Name</label> <input type="text" class="form-control">
+					<div id="Partner-First-1-self-detail">
+						<p>
+							<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+								(주)Plan:It</span>
+						</p>
+
+						<div class="Partner-First-PartnerInform">
+
+							<table id="Partner-First-informtable" style="width: 110%;">
+								<tr>
+									<td>사업자번호</td>
+									<td>123-45-678900</td>
+								</tr>
+								<tr>
+									<td>대표자</td>
+									<td>김잇잇</td>
+								</tr>
+								<tr>
+									<td>주소</td>
+									<td>서울특별시 디지털로 123 311호</td>
+								</tr>
+								<tr>
+									<td>전화</td>
+									<td>02-0000-0000</td>
+								</tr>
+								<tr>
+									<td>업종</td>
+									<td>숙박업</td>
+								</tr>
+							</table>
 						</div>
 
-						<div class="filter-group">
-							<label>Status</label> <select class="form-control">
-								<option>Any</option>
-								<option>Delivered</option>
-								<option>Shipped</option>
-								<option>Pending</option>
-								<option>Cancelled</option>
-							</select>
+						
+
+					</div>
+
+
+					<div class="teamskills">
+						<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
+							<table id="Partner-First-Roomtable" style="width: 100%;">
+								<tr>
+									<td>Total Room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Resting room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Reserved room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Star Point</td>
+									<td>00</td>
+								</tr>
+
+
+							</table>
 						</div>
-						<span class="filter-icon"><i class="fa fa-filter"></i></span>
+					</div>
+
+				</div>
+				<!-- end teammembers -->
+			</div>
+			<!-- end teammembers -->
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="container-fluid" style="padding-top: 50px">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-4">
+							<h2>
+								Reservation <b>Details</b>
+							</h2>
+						</div>
+						<div class="col-sm-6" style="float: right;">
+							<a href="#deleteEmployeeModal" class="btn btn-danger"
+								data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+						</div>
 					</div>
 				</div>
-			</div>
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th><span class="custom-checkbox"> <input
-								type="checkbox" id="selectAll"> <label for="selectAll"></label>
-						</span></th>
-						<th>#</th>
-						<th>Customer</th>
-						<th>Room</th>
-						<th>Order Date</th>
-						<th>Status</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-						</span></td>
-						<td>1</td>
-						<td><a href="#"><img src="/examples/images/avatar/1.jpg"
-								class="avatar" alt="Avatar"> Michael Holz</a></td>
-						<td>London</td>
-						<td>Jun 15, 2017</td>
-						<td><span class="status text-success">&bull;</span> Delivered</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-						</span></td>
-						<td>2</td>
-						<td><a href="#"><img src="/examples/images/avatar/2.jpg"
-								class="avatar" alt="Avatar"> Paula Wilson</a></td>
-						<td>Madrid</td>
-						<td>Jun 21, 2017</td>
-						<td><span class="status text-info">&bull;</span> Shipped</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-						</span></td>
-						<td>3</td>
-						<td><a href="#"><img src="/examples/images/avatar/3.jpg"
-								class="avatar" alt="Avatar"> Antonio Moreno</a></td>
-						<td>Berlin</td>
-						<td>Jul 04, 2017</td>
-						<td><span class="status text-danger">&bull;</span> Cancelled</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox4" name="options[]" value="1">
-								<label for="checkbox4"></label>
-						</span></td>
-						<td>4</td>
-						<td><a href="#"><img src="/examples/images/avatar/4.jpg"
-								class="avatar" alt="Avatar"> Mary Saveley</a></td>
-						<td>New York</td>
-						<td>Jul 16, 2017</td>
-						<td><span class="status text-warning">&bull;</span> Pending</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-						</span></td>
-						<td>5</td>
-						<td><a href="#"><img src="/examples/images/avatar/5.jpg"
-								class="avatar" alt="Avatar"> Martin Sommer</a></td>
-						<td>Paris</td>
-						<td>Aug 04, 2017</td>
-						<td><span class="status text-success">&bull;</span> Delivered</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<!--
+				<div class="table-filter">
+					<div class="row">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-9">
+							<button type="button" class="btn btn-primary">
+								<i class="fa fa-search"></i>
+							</button>
+							<div class="filter-group">
+								<label>Name</label> <input type="text" class="form-control">
+							</div>
+
+							<div class="filter-group">
+								<label>Status</label> <select id="form-control">
+									<option>All</option>
+									<option>Paid</option>
+									<option>Refund</option>
+									<option>Pending</option>
+									<option>Cancel</option>
+								</select>
+							</div>
+							<span class="filter-icon"><i class="fa fa-filter"></i></span>
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th><span class="custom-checkbox"> <input
+									type="checkbox" id="selectAll"> <label for="selectAll"></label>
+							</span></th>
+							<th>No</th>
+							<th>Customer</th>
+							<th>Room</th>
+							<th>Check-in</th>
+							<th>Check-out</th>
+							<th>Status</th>
+							<th>Order Date</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-status="Paid">
+							<td><span class="custom-checkbox"> <input
+									type="checkbox" id="checkbox1" name="options[]" value="1">
+									<label for="checkbox1"></label>
+							</span></td>
+							<td>1</td>
+							<td><a href="#"><img src="/examples/images/avatar/1.jpg"
+									class="avatar" alt="Avatar"> Michael Holz</a></td>
+							<td><a
+								href="<c:url value='/mypage/partner/Reservation_detail.it'/>">하늘나라
+									1호실</a></td>
+							<td>Jun 15, 2017</td>
+							<td>Jun 15, 2017</td>
+							<td><span class="status text-success">&bull;</span> Paid</td>
+							<td>Jun 15, 2017</td>
+							<td><a href="#editEmployeeModal" class="edit"
+								data-toggle="modal"><i class="material-icons"
+									data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
+								href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+						</tr>
+						<tr data-status="Refund">
+							<td><span class="custom-checkbox"> <input
+									type="checkbox" id="checkbox2" name="options[]" value="1">
+									<label for="checkbox2"></label>
+							</span></td>
+							<td>2</td>
+							<td><a href="#"><img src="/examples/images/avatar/2.jpg"
+									class="avatar" alt="Avatar"> Paula Wilson</a></td>
+							<td>Madrid</td>
+							<td>Jun 15, 2017</td>
+							<td>Jun 15, 2017</td>
+							<td><span class="status text-primary">&bull;</span> Refund</td>
+							<td>Jun 15, 2017</td>
+							<td><a href="#editEmployeeModal" class="edit"
+								data-toggle="modal"><i class="material-icons"
+									data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
+								href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+						</tr>
+						<tr data-status="Pending">
+							<td><span class="custom-checkbox"> <input
+									type="checkbox" id="checkbox3" name="options[]" value="1">
+									<label for="checkbox3"></label>
+							</span></td>
+							<td>3</td>
+							<td><a href="#"><img src="/examples/images/avatar/3.jpg"
+									class="avatar" alt="Avatar"> Antonio Moreno</a></td>
+							<td>Berlin</td>
+							<td>Jun 15, 2017</td>
+							<td>Jun 15, 2017</td>
+							<td><span class="status text-danger">&bull;</span> Pending</td>
+							<td>Jun 15, 2017</td>
+							<td><a href="#editEmployeeModal" class="edit"
+								data-toggle="modal"><i class="material-icons"
+									data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
+								href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+						</tr>
+						<tr data-status="Cancel">
+							<td><span class="custom-checkbox"> <input
+									type="checkbox" id="checkbox4" name="options[]" value="1">
+									<label for="checkbox4"></label>
+							</span></td>
+							<td>4</td>
+							<td><a href="#"><img src="/examples/images/avatar/4.jpg"
+									class="avatar" alt="Avatar"> Mary Saveley</a></td>
+							<td>New York</td>
+							<td>Jun 15, 2017</td>
+							<td>Jun 15, 2017</td>
+							<td><span class="status text-warning">&bull;</span> Cancel</td>
+							<td>Jun 15, 2017</td>
+							<td><a href="#editEmployeeModal" class="edit"
+								data-toggle="modal"><i class="material-icons"
+									data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
+								href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+						</tr>
+						<tr data-status="Paid">
+							<td><span class="custom-checkbox"> <input
+									type="checkbox" id="checkbox5" name="options[]" value="1">
+									<label for="checkbox5"></label>
+							</span></td>
+							<td>5</td>
+							<td><a href="#"><img src="/examples/images/avatar/5.jpg"
+									class="avatar" alt="Avatar"> Martin Sommer</a></td>
+							<td>Paris</td>
+							<td>Jun 15, 2017</td>
+							<td>Jun 15, 2017</td>
+							<td><span class="status text-success">&bull;</span> Paid</td>
+							<td>Jun 15, 2017</td>
+							<td><a href="#editEmployeeModal" class="edit"
+								data-toggle="modal"><i class="material-icons"
+									data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
+								href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!--
 ***************************************************************************************
 페이징 처리
 ***************************************************************************************
   -->
-			<div class="clearfix">
-				<div class="hint-text">
-					Showing <b>5</b> out of <b>25</b> entries
+				<div class="clearfix">
+					<div class="hint-text">
+						Showing <b>5</b> out of <b>25</b> entries
+					</div>
+					<ul class="pagination">
+						<li class="page-item disabled"><a href="#">Previous</a></li>
+						<li class="page-item"><a href="#" class="page-link">1</a></li>
+						<li class="page-item"><a href="#" class="page-link">2</a></li>
+						<li class="page-item"><a href="#" class="page-link">3</a></li>
+						<li class="page-item active"><a href="#" class="page-link">4</a></li>
+						<li class="page-item"><a href="#" class="page-link">5</a></li>
+						<li class="page-item"><a href="#" class="page-link">6</a></li>
+						<li class="page-item"><a href="#" class="page-link">7</a></li>
+						<li class="page-item"><a href="#" class="page-link">Next</a></li>
+					</ul>
 				</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item active"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">6</a></li>
-					<li class="page-item"><a href="#" class="page-link">7</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
-			</div>
-			<!--
+				<!--
 ***************************************************************************************
 Delete Modal
 ***************************************************************************************
   -->
-			<div id="deleteEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Delete Client</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-								<p>Are you sure you want to delete these Records?</p>
-								<p class="text-warning">
-									<small>This action cannot be undone.</small>
-								</p>
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-danger" value="Delete">
-							</div>
-						</form>
+				<div id="deleteEmployeeModal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<form>
+								<div class="modal-header">
+									<h4 class="modal-title">Delete Client</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<p>Are you sure you want to delete these Records?</p>
+									<p class="text-warning">
+										<small>This action cannot be undone.</small>
+									</p>
+								</div>
+								<div class="modal-footer">
+									<input type="button" class="btn btn-default"
+										data-dismiss="modal" value="Cancel"> <input
+										type="submit" class="btn btn-danger" value="Delete">
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
-			<!--
+				<!--
 ***************************************************************************************
 Edit Modal
 ***************************************************************************************
   -->
-			<div id="editEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Edit Employee</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label>Name</label> <input type="text" class="form-control"
-										required>
+				<div id="editEmployeeModal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<form>
+								<div class="modal-header">
+									<h4 class="modal-title">Change Status</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
 								</div>
-								<div class="form-group">
-									<label>Email</label> <input type="email" class="form-control"
-										required>
+								<div class="modal-body">
+									<div class="form-group">
+										<label>Message</label> <input style="height: 300px;" type="text" class="form-control"
+											required>
+									</div>
 								</div>
-								<div class="form-group">
-									<label>Address</label>
-									<textarea class="form-control" required></textarea>
+								<div class="modal-footer">
+									<input type="button" class="btn btn-default"
+										data-dismiss="modal" value="Cancel"> <input
+										type="submit" class="btn btn-info" value="REPLY">
 								</div>
-								<div class="form-group">
-									<label>Phone</label> <input type="text" class="form-control"
-										required>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-info" value="Save">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!--
-***************************************************************************************
-add Edit
-***************************************************************************************
-  -->
-			<!-- Edit Modal HTML -->
-			<div id="addEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Add Employee</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label>Name</label> <input type="text" class="form-control"
-										required>
-								</div>
-								<div class="form-group">
-									<label>Email</label> <input type="email" class="form-control"
-										required>
-								</div>
-								<div class="form-group">
-									<label>Address</label>
-									<textarea class="form-control" required></textarea>
-								</div>
-								<div class="form-group">
-									<label>Phone</label> <input type="text" class="form-control"
-										required>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-success" value="Add">
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+</div>
