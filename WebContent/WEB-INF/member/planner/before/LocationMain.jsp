@@ -3,12 +3,12 @@
 
 <!-- ************************************** style 시작 ***************************************** -->
 <style>
-	.footer {position:fixed; bottom:0; width:100%;}
+	.footer {position:inherit; bottom:0; width:100%;}
 </style>
 <!-- ************************************** style 종료 ***************************************** -->
 
 <!-- ********************************************** 플래너 상단 부분 시작 ****************************************** -->
-<section class="post-wrapper-top" style="margin-top: 70px; position: relative;">
+<section class="post-wrapper-top" style="margin-top: 70px; ">
 	<div class="container">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<ul class="breadcrumb">
@@ -55,17 +55,18 @@
 </section>
 <!-- ********************************************** 플래너 계획 이미지 설명 종료  ****************************************** -->
 <section class="section1">
-	<div class="text-center">
-		<img src="/Planit/images/plan/plan.jpeg" alt="plan메인 이미지">
-		
+	<div class="row">
+		<div class="text-center">
+			<img src="/Planit/images/plan/plan.jpeg" alt="plan메인 이미지">		
+			<img src="" alt="">	
+		</div>
 	</div>
-</section>
-
-<section class="section1">	
-	<div class="text-center">
-		<form action="<c:url value='/Planit/Before/Location.it'/>">
-			<button type="submit" class="btn btn-large btn-primary"> 나만의 여행 계획 작성하러 가기 </button>
-		</form>		
+	<div class="row" style="margin-top: 50px;">
+		<div class="text-center">
+			<form action="<c:url value='/Planit/Before/Location.it'/>">
+				<button type="submit" class="btn btn-large btn-primary"> 나만의 여행 계획 작성하러 가기 </button>
+			</form>		
+		</div>
 	</div>
 </section>
 
