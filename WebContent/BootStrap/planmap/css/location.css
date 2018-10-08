@@ -1,0 +1,68 @@
+/*************************************************** 드롭 다운 리스트가 블랙으로 출력되는것을 화이트로 수정 ****************************************/
+#planul li { background-color: white; }	 
+/*************************************************** 드롭 다운 리스트가 블랙으로 출력되는것을 화이트로 수정 ****************************************/
+/*************************************************** 모달 창 select option 박스 css 수정  시작 ****************************************/	
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #46b8da;
+  background-image: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: block;
+  line-height: 2.5;
+  background: #46b8da;
+  overflow: hidden;
+  border-radius: .25em;
+}
+select {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 0 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+select::-ms-expand {
+  display: none;
+}
+/* Arrow */
+.select::after {
+  content: '\25bc';
+  position: absolute;
+  color: white;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 .3em;
+  background: #46b8da;;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+.select::after {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/*************************************************** 모달 창 select option 박스 css 수정  종료****************************************/
+
+
+/* select option .hide::after{
+	display: none;
+} */
+
+
+	
+	
+	
+	

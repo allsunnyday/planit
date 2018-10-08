@@ -6,7 +6,7 @@
 		<div class="site-header clearfix">
 			<!-- title area -->
 			<div class="col-md-12 col-sm-12 col-xs-12" >
-				<div class="right">
+				<div id="nav" class="right">
 					<div class="container clearfix">
 						<ul id="jetmenu" class="jetmenu blue" >
 							<li style="width: 15%;"><a href="#"> 저 장 </a></li>

@@ -4,12 +4,12 @@
 
 <script>	
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
+	var options = { //지도를 생성할 때 필요한 기본 옵션			
 			center: new daum.maps.LatLng(37.47868488487008, 126.87946377805068), //지도의 중심좌표.
 			level: 3 //지도의 레벨(확대, 축소 정도)
 	};				
 	var map = new daum.maps.Map(container, options);//지도를 생성합니다
-	container.style.height = '800px';/* map 의 레이아웃 설정 */	
+	container.style.height = '800px';/* map 의 레이아웃 설정 */
 	map.relayout();/* map 의 레이아웃 설정 */
 	
 	//지도를 클릭한 위치에 표출할 마커입니다
@@ -122,60 +122,43 @@
 		    	/* ************************************************* 키워드로 장소검색하고 목록으로 표출하기 ***************************************** */
 		        // 마커를 생성하고 지도에 표시합니다
 		        var placePosition = new daum.maps.LatLng(places[i].y, places[i].x),
-		            marker = addMarker(placePosition, null, i); // 검색 결과 항목 Element를 생성합니다
+		            marker = addMarker(placePosition, null, i); // 검색 결과 항목 Element를 생성합니다		            
 		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해  LatLngBounds 객체에 좌표를 추가합니다
 		        bounds.extend(placePosition);
 		        // 마커와 검색결과 항목에 mouseover 했을때 해당 장소에 인포윈도우에 장소명을 표시합니다
 		        // mouseout 했을 때는 인포윈도우를 닫습니다
-		        (function(marker, title) {
+		        /* (function(marker, title) {
 		            daum.maps.event.addListener(marker, 'mouseover', function() {
 		                displayInfowindow(marker, title);
 		            });
 		            daum.maps.event.addListener(marker, 'mouseout', function() {
 		                infowindow.close();
 		            });	            
-		        })(marker, places[i].place_name);
-		        
+		        })(marker, places[i].place_name); */
+		        (function(marker, place) {
+	                daum.maps.event.addListener(marker, 'click', function() {
+	                    displayPlaceInfo(place);
+	                });
+	            })(marker, places[i]);
 		     	
 		        map.setBounds(bounds);	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 		        /* ************************************************* 키워드로 장소검색하고 목록으로 표출하기 ***************************************** */
     		}
-	    	/* ******************************************* 카테 고리 검색 ***************************************** */
-	    	// 마커를 생성하고 지도에 표시합니다
-            var marker = addMarker(new daum.maps.LatLng(places[i].y, places[i].x), order, null);	
-            // 마커와 검색결과 항목을 클릭 했을 때
-            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
-            (function(marker, place) {
-                daum.maps.event.addListener(marker, 'click', function() {
-                    displayPlaceInfo(place);
-                });
-            })(marker, places[i]);
-            /* ******************************************* 카테 고리 검색 ***************************************** */
-	    	
+	    	if(currCategory){
+		    	/* ******************************************* 카테 고리 검색 ***************************************** */
+		    	// 마커를 생성하고 지도에 표시합니다
+	            var marker = addMarker(new daum.maps.LatLng(places[i].y, places[i].x), order, null);	
+	            // 마커와 검색결과 항목을 클릭 했을 때
+	            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
+	            (function(marker, place) {
+	                daum.maps.event.addListener(marker, 'click', function() {
+	                    displayPlaceInfo(place);
+	                });
+	            })(marker, places[i]);
+	            /* ******************************************* 카테 고리 검색 ***************************************** */
+	    	}
 	    }	    	
-	}
-	
-	/* 
-	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-	function addMarker(position, idx, title) {
-	    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-	        imageSize = new daum.maps.Size(36, 37),  // 마커 이미지의 크기
-	        imgOptions =  {
-	            spriteSize : new daum.maps.Size(36, 691), // 스프라이트 이미지의 크기
-	            spriteOrigin : new daum.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-	            offset: new daum.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-	        },
-	        markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-	            marker = new daum.maps.Marker({
-	            position: position, // 마커의 위치
-	            image: markerImage 
-	        });
-
-	    marker.setMap(map); // 지도 위에 마커를 표출합니다
-	    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-	    return marker;
-	} */
-	
+	}	
 	
 	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
 	function removeMarker() {
@@ -251,9 +234,8 @@
 	            position: position, // 마커의 위치
 	            image: markerImage 
 	        });
-		 
-		if(currCategory){
-		    var imageSrc = '/Planit/images/plan/css_categorys.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다 // http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png
+		if(currCategory){			
+		    var imageSrc = '/Planit/images/plan/css_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다 // http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png
 		        imageSize = new daum.maps.Size(32, 32),  // 마커 이미지의 크기
 		        imgOptions =  {
 		            spriteSize : new daum.maps.Size(70, 197), // 스프라이트 이미지의 크기
@@ -337,6 +319,8 @@
 	} 
 	
 	/************************************************ 카테고리별 장소 검색하기 종료  **********************************************************/
+	
+	
 </script>
 
 

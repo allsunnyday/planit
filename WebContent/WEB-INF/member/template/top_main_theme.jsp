@@ -29,7 +29,7 @@
 				<!-- 지인, 길형 -->
 				<li><a href="<c:url value='/tourinfo/ListNMapPick.it'/>">search</a></li>
 				<!-- 선기 -->
-				<li><a href="<c:url value='/Planit/Before/Location.it'/>">Planner</a></li>
+				<li><a href="<c:url value='/Planit/Before/LocationMain.it'/>">Planner</a></li>
 				<!-- 현선 -->
 				<li><a href="<c:url value='/planit/review/ReviewList.it'/> ">reviews</a></li>
 				<!-- 예원 -->
