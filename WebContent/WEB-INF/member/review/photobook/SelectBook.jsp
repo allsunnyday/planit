@@ -1,6 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@  taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script>
+	$(function(){
+		$('.sample').click(function(e){
+			console.log('clicked'+$(this).attr('title'))
+			$('.sample').attr('data-toggle',"modal").attr('data-target', '#changebg')// data-toggle="modal" data-target="#changebg"
+			$('.modalforsample').append('<div class="modal fade" id="changebg" tabindex="-1" role="dialog">'+
+					'<div class="modal-dialog" role="document">'+
+					'<div class="modal-content">'+
+						'<div class="modal-header">'+
+							'<h5 class="modal-title" id="changbglabel">sample</h5>'+
+						'</div>'+
+						'<div class="modal-body">'+
+				        	'<div class="input-group">'+
+							  '<div class="custom-file text-center">'+
+							    '<img src="'+$('img.'+$(this).attr('title')).attr('src')+'" alt ="이미지">'+
+							  '</div>'+
+							'</div>'+
+				      	'</div>'+
+				     	 '<div class="modal-footer">'+
+				       	 	'<button type="button" class="dmbutton2" data-dismiss="modal">닫기</button>'+
+				        	
+				      	'</div>'+
+					'</div>'+
+				'</div>'+
+			'</div>');
+		});
+		
+	});
+</script>
+
 <!--**********************************************************
 포토북 디자인을 고르는 페이지   
 ************************************************************** -->
@@ -42,28 +72,20 @@
 <section class="section1">
     <div class="container clearfix">
       <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
-
-        <div class="divider"></div>
-
-        <nav class="portfolio-filter clearfix">
-          <ul>
-            <li><a href="#" class="dmbutton2" data-filter="*">All Works (8)</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".free">free</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".premium">premium</a></li>
-           
-          </ul>
-        </nav>
-
         <div class="portfolio-centered">
           <div class="recentitems portfolio">
-
+            <div class="modalforsample"></div><!-- 모달을 동적으로 추가하기 위한 다이브 -->
+            
+            <!-- 포토북 아이템 1  -->
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 free">
               <div class="he-wrap tpl6 market-item">
-                <img src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
+              <!-- img의 클래스명은 book테이블에서 가져온 book의 name값을 넣어준다.   -->
+                <img class="basic" src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
                     <h3 class="a1" data-animate="fadeInDown">bagic</h3>
-                    <a data-rel="prettyPhoto" href="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <!-- 버튼의 타이틀은 img의 클래스명과 동일하게 작성한다 (모달에서 샘플을 띄워주기 위해서)   -->
+                    <button title="basic" class="dmbutton a2 sample" data-animate="bounceInLeft"><i class="fa fa-search"></i></button>
                     <a href="<c:url value='/photobook/step2/Preview.it'/> " class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i>선택하기</a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                       <a href="#">free</a>
@@ -80,11 +102,11 @@
 
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 free">
               <div class="he-wrap tpl6 market-item">
-                <img src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
+                <img class="classic" src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                    <a data-rel="prettyPhoto" href="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <h3 class="a1" data-animate="fadeInDown">classic</h3>
+                    <button title="classic" class="dmbutton a2 sample" data-animate="bounceInLeft"><i class="fa fa-search"></i></button>
                     <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                       <a href="#">free</a>
@@ -101,11 +123,11 @@
 
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 free">
               <div class="he-wrap tpl6 market-item">
-                <img src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
+                <img class="premium" src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                    <a data-rel="prettyPhoto" href="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <h3 class="a1" data-animate="fadeInDown">premium</h3>
+                    <button title="premium" class="dmbutton a2 sample" data-animate="bounceInLeft"><i class="fa fa-search"></i></button>
                     <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                       <a href="#">free</a>
@@ -122,11 +144,11 @@
 
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 free">
               <div class="he-wrap tpl6 market-item">
-                <img src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
+                <img class="premium" src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                    <a data-rel="prettyPhoto" href="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+                    <h3 class="a1" data-animate="fadeInDown">premium</h3>
+                    <button title="premium" class="dmbutton a2 sample" data-animate="bounceInLeft"><i class="fa fa-search"></i></button>s
                     <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                       <a href="#">free</a>
@@ -141,89 +163,7 @@
             </div>
             <!-- end col-12 -->
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 premium">
-              <div class="he-wrap tpl6 market-item">
-                <img src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                    <a data-rel="prettyPhoto" href="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                      <a href="#">free</a>
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-            </div>
-            <!-- end col-12 -->
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 premium">
-              <div class="he-wrap tpl6 market-item">
-                <img src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                    <a data-rel="prettyPhoto" href="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                      <a href="#">free</a>
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-            </div>
-            <!-- end col-12 -->
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 premium">
-              <div class="he-wrap tpl6 market-item">
-                <img src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_07.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                      <a href="#">free</a>
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-            </div>
-            <!-- end col-12 -->
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 premium">
-              <div class="he-wrap tpl6 market-item">
-                <img src="https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-0.3.5&s=b2731705e21742ac11eb20749f38c4b1&auto=format&fit=crop&w=1050&q=80" alt="">
-                <div class="he-view">
-                  <div class="bg a0" data-animate="fadeIn">
-                    <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                    <a data-rel="prettyPhoto" href="img/portfolio_08.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                    <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                     <a href="#">free</a>
-                    </div>
-                    <!-- portfolio_category -->
-                  </div>
-                  <!-- he bg -->
-                </div>
-                <!-- he view -->
-              </div>
-              <!-- he wrap -->
-            </div>
-            <!-- end col-12 -->
+            
 
           </div>
           <!-- portfolio -->
@@ -232,6 +172,7 @@
         <div class="divider"></div>
       </div>
       <!-- end container -->
+      </div>
   </section>
   <!-- end section -->
 
