@@ -8,12 +8,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PlannerController {
-
+	
+	@RequestMapping("/Planit/Before/LocationMain.it")
+	public String gotoLocationMain() throws Exception{
+		
+		return "planner/before/LocationMain.theme";
+	}
+	
 	@RequestMapping("/Planit/Before/Location.it")
 	public String gotoLocation() throws Exception{
 		
 		return "planner/before/Location.theme";
 	}
+	
 	
 	@RequestMapping("/planner/plan/route.it")
 	public String locationsub() throws Exception{

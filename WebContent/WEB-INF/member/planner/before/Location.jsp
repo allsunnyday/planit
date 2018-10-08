@@ -3,30 +3,32 @@
 
 <!-- 버튼 css -->
 <style>
-button.btn {
-	height: 52px;
-    margin: 0;
-    padding: 0 20px;
-    vertical-align: middle;
-    background: #46b8da;
-    border: 0;
-    font-family: 'Lato', sans-serif;
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 52px;
-    color: #fff;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
-    text-shadow: none;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    -o-transition: all .3s;
-    -moz-transition: all .3s;
-    -webkit-transition: all .3s;
-    -ms-transition: all .3s;
-    transition: all .3s;
+	button.btn {
+		height: 52px;
+	    margin: 0;
+	    padding: 0 20px;
+	    vertical-align: middle;
+	    background: #46b8da;
+	    border: 0;
+	    font-family: 'Lato', sans-serif;
+	    font-size: 22px;
+	    font-weight: 400;
+	    line-height: 52px;
+	    color: #fff;
+	    -moz-border-radius: 6px;
+	    -webkit-border-radius: 6px;
+	    border-radius: 6px;
+	    text-shadow: none;
+	    -moz-box-shadow: none;
+	    -webkit-box-shadow: none;
+	    box-shadow: none;
+	    -o-transition: all .3s;
+	    -moz-transition: all .3s;
+	    -webkit-transition: all .3s;
+	    -ms-transition: all .3s;
+	    transition: all .3s;
+    }
+    
 </style>
 <!-- 버튼 css -->
 
@@ -36,7 +38,7 @@ button.btn {
 			<ul class="breadcrumb">
 				<li>여행 플래너</li>
 			</ul>
-			<h2>나만의 즐거운 여행 계획 작성하기</h2>
+			<h2> 추억을 남길 나의 여행 지역 선택하기 </h2>
 		</div>
 		<!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			search
