@@ -12,7 +12,9 @@ import com.earth.planit.service.MemberService;
 @Repository
 public class MemberDAO implements MemberService {
 
-	/*root-context에 등록한 sqlsessiontemplate객체를 통해 데이터 베이스 작업을 한다.*/
+	/*root-context에 등록한 sqlsessiontemplate객체를 통해 데이터 베이스 작업을 한다.
+	 * 
+	 * */
 	@Resource(name="template")
 	private SqlSessionTemplate template;
 	

@@ -1,14 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 <style>
-/* 
-.description:before {
-	content: "";
-	height: 100%;
-} */
+
 /* 
 ************************************************************************************************************************************************
 지역선택 아이콘 
@@ -32,13 +26,6 @@
 /* 
 ************************************************************************************************************************************************
 지도 영역별 클릭 버튼
-***********************************************************************************************************************************************
- */
-
-/* -------------------------------- */
-/* 
-************************************************************************************************************************************************
-지도 PNG
 ***********************************************************************************************************************************************
  */
  .icon1{
@@ -96,12 +83,12 @@
 }
 
 .icon11 {/* 광주 */
-	left: 30%;
+	left: 27%;
 	top: 67%;
 }
 
 .icon12 {/* 전남 */
-	left: 28%;
+	left: 25%;
 	top: 75%;
 }
 
@@ -125,7 +112,11 @@
 	top: 90%;
 }
  
- 
+ /* 
+************************************************************************************************************************************************
+지도 PNG
+***********************************************************************************************************************************************
+ */
 .mapIllust {
 	background:
 		url('http://tong.visitkorea.or.kr/img/vk/kor/bz15/travel_plus/find_map.png')
@@ -158,18 +149,31 @@
 	cursor: pointer;
 	font-size: 20px;
 }
-
-
 </style>
+
 <script>
 $(function() {
-	$('#showMapPage').click(function() {
-		location.href='<c:url value="/tourinfo/mappick/MapPage.it"/>';
+	$('.go-button').click(function() {
+		console.log("지역값: "+$(this).html()); //버튼 클릭시 해당 지역이름 받아오기
+		 
+		$.ajax(){
+			
+			
+		};
+		
+		
+		
+		
 	});
+	
+	
+	
+	
 });
+
 </script>
 
-<div class="container-fluid" style="padding-top: 70px; background-color:#47698c; ">
+<div class="container-fluid" style="padding-top: 70px; background-color:#47698c;">
 	<div class="row">
 		<div class="col-md-5" style="background-color: #47698c;  padding-bottom: 30px;">
 			<!-- 지역선택 아이콘 -->
@@ -178,72 +182,59 @@ $(function() {
 			</div>
 			<!--지도-->
 			<div class="col-md-12">
-				<form action="" name="searchForm">
-					<div class="lcate"
-						style="overflow: hidden; background-color: #47698c;">
+				<form action="<c:url value='/tourinfo/mappick/MapIllust.it'/>">
+					<div class="lcate" style="overflow: hidden; background-color: #47698c;"> 
 						<div class="mapIllust" style="position:relative">
 							<ul id="setHiddenButtons1" style="position:relative">
-								<li class="icon1"><button value="2" name="areaCode" type="button" class="go-button">인천</button></li>
-								<li class="icon2"><button value="1" name="areaCode" type="button" class="go-button ov">서울</button></li>
-								<li class="icon3"><button value="31" name="areaCode" type="button" class="go-button">경기</button></li>
-								<li class="icon4"><button value="32" name="areaCode" type="button" class="go-button">강원</button></li>
-								<li class="icon5"><button value="34" name="areaCode" type="button" class="go-button">충남</button></li>
-								<li class="icon6"><button value="8" name="areaCode" type="button" class="go-button">세종</button></li>
-								<li class="icon17"><button value="33" name="areaCode" type="button" class="go-button">충북</button></li>
-								<li class="icon7"><button value="3" name="areaCode" type="button" class="go-button">대전</button></li>
-								<li class="icon8"><button value="35" name="areaCode" type="button" class="go-button">경북</button></li>
-								<li class="icon9"><button value="37" name="areaCode" type="button" class="go-button">전북</button></li>
-								<li class="icon10"><button value="4" name="areaCode" type="button" class="go-button">대구</button></li>
-								<li class="icon11"><button value="5" name="areaCode" type="button" class="go-button">광주</button></li>
-								<li class="icon12"><button value="38" name="areaCode" type="button" class="go-button">전남</button></li>
-								<li class="icon13"><button value="36" name="areaCode" type="button" class="go-button">경남</button></li>
-								<li class="icon14"><button value="7" name="areaCode" type="button" class="go-button">울산</button></li>
-								<li class="icon15"><button value="6" name="areaCode" type="button" class="go-button">부산</button></li>
-								<li class="icon16"><button value="39" name="areaCode" type="button" class="go-button">제주</button></li>
+								<li class="icon2"><button value="1" name="areaCode" type="submit" class="go-button">서울</button></li>
+								<li class="icon3"><button value="31" name="areaCode" type="submit" class="go-button">경기</button></li>
+								<li class="icon4"><button value="32" name="areaCode" type="submit" class="go-button">강원</button></li>
+								<li class="icon5"><button value="34" name="areaCode" type="submit" class="go-button">충남</button></li>
+								<li class="icon6"><button value="8" name="areaCode" type="submit" class="go-button">세종</button></li>
+								<li class="icon17"><button value="33" name="areaCode" type="submit" class="go-button">충북</button></li>
+								<li class="icon7"><button value="3" name="areaCode" type="submit" class="go-button">대전</button></li>
+								<li class="icon8"><button value="35" name="areaCode" type="submit" class="go-button">경북</button></li>
+								<li class="icon9"><button value="37" name="areaCode" type="submit" class="go-button">전북</button></li>
+								<li class="icon10"><button value="4" name="areaCode" type="submit" class="go-button">대구</button></li>
+								<li class="icon11"><button value="5" name="areaCode" type="submit" class="go-button">광주</button></li>
+								<li class="icon12"><button value="38" name="areaCode" type="submit" class="go-button">전남</button></li>
+								<li class="icon13"><button value="36" name="areaCode" type="submit" class="go-button">경남</button></li>
+								<li class="icon14"><button value="7" name="areaCode" type="submit" class="go-button">울산</button></li>
+								<li class="icon15"><button value="6" name="areaCode" type="submit" class="go-button">부산</button></li>
+								<li class="icon16"><button value="39" name="areaCode" type="submit" class="go-button">제주</button></li>
 							</ul>
 						</div>
 					</div>
 				</form>
 			</div>
-			<button class="btn btn-warning" id="showMapPage">지도로 볼래요</button>
 		</div>
 		
-		<!--  관광지별 추천		-->
+<!--  관광지별 추천		-->
  <div class="container clearfix col-md-7"  style="background-color: #47698c;">
 		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 <!-- title -->
 			<div class="general-title text-center">
 				<h3 style="color: white;">POPULAR ITEMS</h3>
-				<p style="color: white; font-style: normal;"><a href="<c:url value='/mypage/partner/Reservation_P.it'/>">베스트 관광지</a></p>
-				<button class="btn btn-warning" style="text-align: ">+</button>
-				<hr>
+				<p style="color: white; font-style: normal;">베스트 관광지</p>
+				<a href="<c:url value=''/>" style="text-align: right;">더보기</a>
 			</div>
 				<!-- carousel start -->
 				<div id="mycarousel" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#mycarousel" data-slide-to="0" class="avtive"></li>
-						<li data-target="#mycarousel" data-slide-to="1"></li>
-						<!-- <li data-target="#mycarousel" data-slide-to="2"></li> -->
-					</ol>
 					<!-- wrapper for slides -->
 					<div class="carousel-inner">
 						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
 						<div class="item active">
 							<div id="popularitems" class="">
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
-										
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a>
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a>
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a>
 								</div>
 							</div>
 						</div>
@@ -251,61 +242,49 @@ $(function() {
 						<div class="item ">
 							<div id="popularitems" class="">
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a>
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a> 
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a>
 								</div>
 							</div>
 						</div>
 
 					</div>
 					<!-- end wrapper for slides -->
-					<a class="left carousel-control" href="#mycarousel"
-						data-slide="prev"> <span class="icon-prev"></span>
-					</a> <a class="right carousel-control" href="#mycarousel"
-						data-slide="next"> <span class="icon-next"></span>
+					<a class="left carousel-control" href="#mycarousel" data-slide="prev"> 
+						<span class="icon-prev"></span>
+					</a> <a class="right carousel-control" href="#mycarousel" data-slide="next"> 
+						<span class="icon-next"></span>
 					</a>
 				</div>
 				<!-- end carousel container-->
 				<!-- title -->
 				<div class="general-title text-center">
-					<p style="color: white; font-style: normal;"><a href="<c:url value='/mypage/partner/Request_P.it'/>">컨텐츠별 베스트</a></p>
-					<hr>
+					<p style="color: white; font-style: normal;">컨텐츠별 베스트</p>
 				</div>
 				<!-- carousel start -->
-				<div id="mycarousel" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#mycarousel" data-slide-to="0" class="avtive"></li>
-						<li data-target="#mycarousel" data-slide-to="1"></li>
-						<!-- <li data-target="#mycarousel" data-slide-to="2"></li> -->
-					</ol>
+				<div id="mycarousel1" class="carousel slide" data-ride="carousel">
 					<!-- wrapper for slides -->
 					<div class="carousel-inner">
 						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
 						<div class="item active">
 							<div id="popularitems" class="">
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
 							</div>
 						</div>
@@ -313,27 +292,24 @@ $(function() {
 						<div class="item ">
 							<div id="popularitems" class="">
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
 							</div>
 						</div>
 
 					</div>
 					<!-- end wrapper for slides -->
-					<a class="left carousel-control" href="#mycarousel"
+					<a class="left carousel-control" href="#mycarousel1"
 						data-slide="prev"> <span class="icon-prev"></span>
-					</a> <a class="right carousel-control" href="#mycarousel"
+					</a> <a class="right carousel-control" href="#mycarousel1"
 						data-slide="next"> <span class="icon-next"></span>
 					</a>
 				</div>
@@ -341,33 +317,24 @@ $(function() {
 <!-- title -->
 				<div class="general-title text-center">
 					<p style="color: white; font-style: normal;">베스트 리뷰</p>
-					<hr>
 				</div>
 				<!-- carousel start -->
-				<div id="mycarousel" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#mycarousel" data-slide-to="0" class="avtive"></li>
-						<li data-target="#mycarousel" data-slide-to="1"></li>
-						<!-- <li data-target="#mycarousel" data-slide-to="2"></li> -->
-					</ol>
+				<div id="mycarousel2" class="carousel slide" data-ride="carousel">
 					<!-- wrapper for slides -->
 					<div class="carousel-inner">
 						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
 						<div class="item active">
 							<div id="popularitems" class="">
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
 							</div>
 						</div>
@@ -375,28 +342,22 @@ $(function() {
 						<div class="item ">
 							<div id="popularitems" class="">
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
 								</div>
 
 								<div class="col-lg-4">
-									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"
-										alt="">
+									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
 								</div>
 							</div>
 						</div>
-
 					</div>
 					<!-- end wrapper for slides -->
-					<a class="left carousel-control" href="#mycarousel"
-						data-slide="prev"> <span class="icon-prev"></span>
-					</a> <a class="right carousel-control" href="#mycarousel"
-						data-slide="next"> <span class="icon-next"></span>
+					<a class="left carousel-control" href="#mycarousel2" data-slide="prev"> <span class="icon-prev"></span>
+					</a> <a class="right carousel-control" href="#mycarousel2" data-slide="next"> <span class="icon-next"></span>
 					</a>
 				</div>
 				<!-- end carousel container-->
@@ -405,9 +366,6 @@ $(function() {
 	</div>
 	<!-- end carousel  -->
 		
-
-       
-
 	</div>
 </div>
  

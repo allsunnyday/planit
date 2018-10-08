@@ -403,17 +403,25 @@ table.table .avatar {
 						$("#selectAll").prop("checked", false);
 					}
 				});
-
-				if ($("#form-control option:selected").val() != 'ALL') {
-					var select = $('table tr[data-status="'
-							+ $("#form-control option:selected").val() + '"]');
-					$("table tbody tr").not(target).hide();
-					target.fadeIn();
-				} else {
-					$("table tbody tr").fadeIn();
-				}
-
+				
+				$('#select_request').change(function() {//Status별 정렬
+					if ($("#select_request option:selected").val() != 'ALL') {
+						console.log($("#select_request option:selected").val());
+						var selectedStatus = $("#select_request option:selected").val();
+						var target = $('table tr[data-status="'+ $("#select_request option:selected").val() + '"]');
+						$("table tbody tr").not(target).hide();
+						target.fadeIn();
+					} else {
+						$("table tbody tr").fadeIn();
+					}		
+				});
+				
+				$('#findname_request').change(function() {//이름으로 검색하기
+					console.log($('#findname_request').val());
+				});
 			});
+	
+		
 </script>
 <div class="container-fluid">
 	<div class="col-md-3" style="width: 300px">
@@ -431,12 +439,9 @@ table.table .avatar {
 					</div>
 					<div id="Partner-First-1-self-detail">
 						<p>
-							<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-								(주)Plan:It</span>
+							<span class="glyphicon glyphicon-map-marker" aria-hidden="true">(주)Plan:It</span>
 						</p>
-
 						<div class="Partner-First-PartnerInform">
-
 							<table id="Partner-First-informtable" style="width: 110%;">
 								<tr>
 									<td>사업자번호</td>
@@ -458,12 +463,8 @@ table.table .avatar {
 									<td>업종</td>
 									<td>숙박업</td>
 								</tr>
-
-
 							</table>
-
 						</div>
-
 
 						<div class="teamskills">
 							<div id="Partner-First-Parter-RoomStatus" style="width: 90%;">
@@ -484,8 +485,6 @@ table.table .avatar {
 										<td>Star Point</td>
 										<td>00</td>
 									</tr>
-
-
 								</table>
 							</div>
 						</div>
@@ -496,10 +495,6 @@ table.table .avatar {
 			</div>
 		</div>
 	</div>
-
-
-
-
 
 <div class="col-md-9">
 	<div class="container-fluid" style="padding-top: 50px">
@@ -526,11 +521,12 @@ table.table .avatar {
 							<i class="fa fa-search"></i>
 						</button>
 						<div class="filter-group">
-							<label>Name</label> <input type="text" class="form-control">
+							<label>Name</label> <input type="text" class="form-control" id="findname_request">
 						</div>
 
 						<div class="filter-group">
-							<label>Status</label> <select class="form-control">
+							<label>Status</label> 
+							<select class="form-control" id="select_request">
 								<option>ALL</option>
 								<option>Replied</option>
 								<option>Waited</option>
@@ -556,8 +552,8 @@ table.table .avatar {
 				</thead>
 				<tbody>
 					<tr data-status="Replied">
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox1" name="options[]" value="1">
+						<td><span class="custom-checkbox"> 
+						<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 						</span></td>
 						<td>1</td>
@@ -621,11 +617,10 @@ table.table .avatar {
 						<td>New York</td>
 						<td>Jul 16, 2017</td>
 						<td><span class="status text-danger">&bull;</span> Waited</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+						<td><a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
+								data-toggle="tooltip" title="Reply">&#xE254;</i></a>
+							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"> 
+							<i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
 					<tr data-status="Replied">
@@ -716,7 +711,7 @@ Edit Modal
 
 								<div class="form-group">
 									<label>Content</label>
-									<textarea class="form-control" required></textarea>
+									<textarea style="height: 300px;" class="form-control" required></textarea>
 								</div>
 
 							</div>
