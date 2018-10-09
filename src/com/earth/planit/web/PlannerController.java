@@ -1,7 +1,10 @@
 package com.earth.planit.web;
 
+import java.util.Map;
+
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +19,8 @@ public class PlannerController {
 	}
 	
 	@RequestMapping("/Planit/Before/Location.it")
-	public String gotoLocation() throws Exception{
+	public String gotoLocation(@RequestParam Map map, Model model) throws Exception{
+
 		
 		return "planner/before/Location.theme";
 	}
@@ -322,9 +326,12 @@ public class PlannerController {
 			json.put("paldoNcity16_17", "함양군");
 			json.put("paldoNcity16_18", "합천군");
 			break;
-		default: //제주도
+		case "paldoNcity17": //제주도
 			json.put("paldoNcity17_01", "서귀포시");
 			json.put("paldoNcity17_02", "제주시");
+			break;
+		default: 
+			json.put("paldoNcity99_01", "--직접 입력--");
 		}
 		return json.toJSONString();
 	}

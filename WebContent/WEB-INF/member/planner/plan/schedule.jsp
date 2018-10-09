@@ -63,14 +63,37 @@ $(function(){
 <!-- 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
--->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>-->
 <link href="<c:url value='/BootStrap/plan_calendar/availability-calendar.css'/>" rel="stylesheet" type="text/css">
 <!-- 달력 부트스트랩 css 적용 종료 -->
 
-<!-- 상단 내부 네비게이션바 시작 -->
+<section class="post-wrapper-top" style="margin-top: 70px;">
+	<div class="container">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<ul class="breadcrumb">
+				<li>여행 플래너</li>
+			</ul>
+			<h2> 추억을 남길 나의 여행 일정 작성하기 </h2>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: 61px;">
+			<ul class="nav nav-tabs" style="float: right;">
+				<li style="display: block;"><a href="#"> 저 장 </a></li>
+				<li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
+				<li  style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
+				<li class="active" style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
+				<li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>
+				<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>				
+			</ul>						
+		</div>		
+	</div>
+</section>
+
+
+
+
 <section class="section1">
-	<jsp:include page="plantop.jsp"></jsp:include>
+<!-- 상단 내부 네비게이션바 시작 -->
+	<%-- <jsp:include page="plantop.jsp"></jsp:include> --%>
 <!-- 상단 내부 네비게이션바 종료 -->
 	<div class="container">
 		<div class="row">

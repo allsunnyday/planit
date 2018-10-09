@@ -7,50 +7,46 @@
 <!-- ****************************map 관련 css 및 map api 호출 종료 ***********************************-->
 <%@ include file="routedetails.jsp" %>
 <!-- ********************************* 상세 일정 페이지 달력 출력 종료 *************************************** -->
-<section class="post-wrapper-top" style="margin-top: 70px;">
-	<div class="container">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<ul class="breadcrumb">
-				<li>여행 플래너</li>
-			</ul>
-			<h2> 추억을 남길 나의 여행 루트 작성하기 </h2>
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: -10px;">
-			<div id="nav" class="right affix-top">
-				<div class="container clearfix" style="margin-top: 57px;">
-				<ul id="jetmenu" class="jetmenu blue">
-					
-					<li style="display: block;"><a href="#"> 저 장 </a></li>
-					<li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
-					<li class="active" style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
-					<li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
-					<li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>
-					<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>
-				</ul>			
-				</div>
-			</div>
-		</div>		
-	</div>
-</section>
 <!-- ******************************루트 페이지 바디 영역 시작****************************************-->
 <div class="container-fluid" style="height: 100%">
 	<section class="section1" style="margin-top: -30px; height: 100%">
 	<!--**************************** 오른쪽 맵 과 상단 네비 게이션 바 구성 시작********************************-->
-		<%-- <jsp:include page="plantop.jsp"></jsp:include> --%>		
+		<header class="header" style="background-color: #1abc9c; margin-top: 20px;" >
+			<div class="container-fluid">
+				<div class="site-header" >
+					<!-- title area -->
+					<div class="col-md-12 col-sm-12 col-xs-12" >
+						<div id="nav" class="right" style=" float: right;">
+							<!-- <div class="text-right" > -->
+								<ul id="jetmenu" class="jetmenu blue" style="text-align: right;">
+									<li style="display: block;"><a href="#"> 저 장 </a></li>
+									<li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
+									<li class="active" style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
+									<li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
+									<li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>
+									<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>
+								</ul>
+							<!-- </div> -->
+						</div><!-- nav -->
+					</div><!-- title area -->
+				</div><!-- site header -->
+			</div><!-- end container -->
+		</header><!-- end header -->						
+		<%-- <jsp:include page="plantop.jsp"></jsp:include> --%>
 	<!--**************************** 오른쪽 맵과 상단 네비 게이션 바 구성 종료*********************************-->
-		<div class="container-fluid" style="height: 100%"> 
+		<div class="container-fluid" style="height: 100%; overflow: scroll;"> 
 			<!--********************************왼쪽 여행 상세정보 출력 정보 시작**********************************-->
-			 <div class="col-md-3 col-sm-3 col-xs-12" id="leftrute" >
-				<div id="planroutetop" style="background: #1abc9c; padding: 10px; text-align: center;">
-					<div class="row ">						
+			 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" id="leftrute" >
+				<div id="planroutetop" style="background: #1abc9c; padding: 10px; text-align: center; height: auto">
+					<div class="row" >						
 						<div class="col-md-8 col-sm-8 col-xs-12" id="plandate" style="width: auto; display:block; margin: 0 auto;">
-							<div style="display:block; margin-bottom: -10px; ">
+							<div style="display:block; margin-bottom: -10px; height: auto; width: auto">
 								<span style="display: inline-block; margin-top: 8px; margin-left:5px; padding:5px; color: #5D5D5D; font-size: 10pt;
 									background-color: white; ">
 									<i class="fa fa-calendar"></i> 작성일</span>
 									<input type="text" style="width: auto; padding: 4px;" disabled class="text-center" id="nowdate" name="nowdate">						
 							</div>
-							<div style="display:block;">
+							<div style="display:block; height: auto; width: auto">
 								<span style="display: inline-block; margin-top: 8px; margin-left:5px; padding:5px; color: #5D5D5D; font-size: 10pt;
 									background-color: white;">
 									<i class="fa fa-calendar"></i> 출발일</span>
@@ -73,7 +69,7 @@
 					</div>	
 					
 					<div style="clear: both"></div>
-					</div>	
+				</div>	
 				<div id="cityroute" style="position: relative; text-align: center; width: 100%; margin-left: 0px; padding-left: 0px; 
 					padding-top: 0px; overflow: auto; background: rgb(255, 255, 255); height: 100px;" class="ui-sortable">
 						<br><br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font>
@@ -82,10 +78,10 @@
 			<!--******************************** 왼쪽 여행 상세정보 출력 종료 *************************************-->
 			
 			<!-- ******************************* daum map api 영역 *************************************** -->
-			<div class="col-md-9 col-sm-9 col-xs-12" id="rightrute" >		
+			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" id="rightrute" >		
 				<div class="map_wrap" style="height: 100%">
 					<!-- *********************************지도 타입 및 확대 축소 시작 **************************************-->		
-					<div id="map" style="width:100%; height:100%; position:relative; overflow:hidden;"></div>		    
+					<div id="map" style="width:100%; height:85%; position:relative; overflow:hidden;"></div>		    
 				    <div class="custom_typecontrol radius_border"><!-- 지도타입 컨트롤 div 입니다 -->
 				        <span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
 				        <span id="btnSkyview" class="sky_btn" onclick="setMapType('skyview')">스카이뷰</span> 	        			        

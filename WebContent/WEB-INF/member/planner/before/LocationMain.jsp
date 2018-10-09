@@ -7,22 +7,23 @@
 </style>
 <!-- ************************************** style 종료 ***************************************** -->
 
-<!-- ********************************************** 플래너 상단 부분 시작 ****************************************** -->
-<section class="post-wrapper-top" style="margin-top: 70px; ">
-	<div class="container">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<ul class="breadcrumb">
-				<li>여행 플래너</li>
-			</ul>
-			<h2>나만의 즐거운 여행 계획 작성하기</h2>
-		</div>
-	</div>
-</section><!-- end post-wrapper-top -->
-<!-- ********************************************** 플래너 상단 부분 종료 ****************************************** -->
+
 
 <!-- ********************************************** 플래너 계획 이미지 설명 시작  ****************************************** -->
 <!-- <div style="padding-top: 60px"></div> -->
-<div class="container-fluid" style="height: auto">
+<div class="container-fluid" style="height: auto; overflow: visible;">
+<!-- ********************************************** 플래너 상단 부분 시작 ****************************************** -->
+	<section class="post-wrapper-top" style="margin-top: 70px; ">
+		<div class="container">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<ul class="breadcrumb">
+					<li>여행 플래너</li>
+				</ul>
+				<h2>나만의 즐거운 여행 계획 작성하기</h2>
+			</div>
+		</div>
+	</section><!-- end post-wrapper-top -->
+<!-- ********************************************** 플래너 상단 부분 종료 ****************************************** -->
 	<section class="section1">
 		<div class="container clearfix">
 		    <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">		
@@ -55,16 +56,18 @@
 	</div>
 	</section>
 	<!-- ********************************************** 플래너 계획 이미지 설명 종료  ****************************************** -->
-	<section class="section1">
-		<div class="container" style="display: block;">
+	<section class="section1" style="margin-bottom: 120px;">
+		<div class="container" style="display: block; overflow: visible;">
 			<div class="row">
-				<div class="text-center">
-					<img src="/Planit/images/plan/plan.jpeg" alt="plan메인 이미지">		
-					<img src="" alt="">	
+				<div class="col-lg-12 col-md-12 col-sm-12 clearfix">
+					<div class="text-center">
+						<img src="/Planit/images/plan/plan.jpeg" alt="plan메인 이미지">		
+						<img src="" alt="">	
+					</div>
 				</div>
 			</div>
-			<div class="row" style="margin-top: 50px;">
-				<div class="text-center">
+			<div class="row" style="display:block; margin-top: 50px;">
+				<div class="col-lg-12 col-md-12 col-sm-12 clearfix text-center">
 					<form action="<c:url value='/Planit/Before/Location.it'/>">
 						<button type="submit" class="btn btn-large btn-primary"> 나만의 여행 계획 작성하러 가기 </button>
 					</form>		
