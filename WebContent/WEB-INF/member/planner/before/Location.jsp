@@ -403,7 +403,7 @@
 <div id="pardoinfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlogLabel" aria-hidden="true" >
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content" style="width: 700px;">
-			<form action="<c:url value='/planner/plan/route.it' />" method="post" style=" margin: 0 auto;" name="join">
+			<form method="post" style=" margin: 0 auto;" name="locationday" id="locationday"><!-- action="<c:url value='/planner/plan/route.it'/>" -->
 				<!-- ************************************************* 모달 헤더 시작 ******************************************************** -->
 				<div class="modal-header text-center">
 					<h2 class="modal-title text-center" id="modal-login-label" style="display: inline">City</h2>
@@ -419,24 +419,24 @@
 						<div class="col-md-4 col-sm-4 col-xs-12 text-center">							
 							<div class="select">
 								<select name="paldoNcity" id="paldoNcity" style="width: 100%">
-							    	<option value="paldoNcity01" selected>서울 특별시</option>
-							    	<option value="paldoNcity02">부산 광역시</option>
-							    	<option value="paldoNcity03">대구 광역시</option>
-							    	<option value="paldoNcity04">인천 광역시</option>
-							    	<option value="paldoNcity05">광주 광역시</option>
-							    	<option value="paldoNcity06">대전 광역시</option>
-							    	<option value="paldoNcity07">울산 광역시</option>
-							    	<option value="paldoNcity08">세종 특별 자치시</option>
-							    	<option value="paldoNcity09">경기도</option>
-							    	<option value="paldoNcity10">충청북도</option>
-							    	<option value="paldoNcity11">충청남도</option>
-							    	<option value="paldoNcity12">강원도</option>
-							    	<option value="paldoNcity13">전라북도</option>
-							    	<option value="paldoNcity14">전라남도</option>
-							    	<option value="paldoNcity15">경상북도</option>
-							    	<option value="paldoNcity16">경상남도</option>
-							    	<option value="paldoNcity17">제주도</option>
-							    	<option value="paldoNcity99">-- 직접입력--</option>
+							    	<option value="1">서울 특별시</option>
+							    	<option value="2">인천 광역시</option>
+							    	<option value="3">대전 광역시</option>
+							    	<option value="4">대구 광역시</option>
+							    	<option value="5">광주 광역시</option>
+							    	<option value="6">부산 광역시</option>
+							    	<option value="7">울산 광역시</option>
+							    	<option value="8">세종 특별 자치시</option>
+							    	<option value="31">경기도</option>
+							    	<option value="32">강원도</option>
+							    	<option value="33">충청북도</option>
+							    	<option value="34">충청남도</option>
+							    	<option value="35">경상북도</option>
+							    	<option value="36">경상남도</option>
+							    	<option value="37">전라북도</option>
+							    	<option value="38">전라남도</option>
+							    	<option value="39">제주도</option>
+							    	<option value="aa">-- 직접입력--</option>
 							    </select>
 						    </div>
 						</div>
@@ -480,7 +480,7 @@
 						<div class="col-md-4 col-sm-4 col-xs-12 text-right" >
 							<div class="select" style="width: 100%">
 								<select role="menu"  id="planday" name="planday" aria-labelledby="planday">
-									<option value="0" selected> -- 여행 일수 -- </option>
+									<option value="" id=""> -- 여행 일수 -- </option>
 									<option value="1"> 1일 (당일치기) </option>
 									<option value="2"> 2일 (1박 2일) </option>
 									<option value="3"> 3일 (2박 3일) </option>
@@ -502,7 +502,7 @@
 				<div class="modal-footer">
 					<div class="row text-center" style="text-align: center;">
 						<div class="col-md-12">
-							<button type="submit" class="btn" style="font-size: 14px; width: auto;">Next Plan</button>								
+							<button type="submit" id="nextplan" name="nextplan" class="btn" style="font-size: 14px; width: auto;">Next Plan</button>								
 						</div>						
 					</div>
 				</div>

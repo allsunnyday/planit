@@ -55,7 +55,8 @@
 						</div>
 						<div class="col-md-4 col-sm-4 col-xs-12 text-center">
 							<div class="btn-group" style="margin-top: 8px;">
-								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" style="margin-top: 7px;"> 여행 타입 <span class="caret"></span></a>
+								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" style="margin-top: 7px;" 
+									id="tourtype"><img id="tourtypeimage" alt="여행 타입" src=""><span class="caret"></span></a>
 								<ul class="dropdown-menu" id="peopletype">
 									<!-- 드롭다운 메뉴 링크들 -->
 									<li><a href="#"><img src="/Planit/images/member/Preference/Preference_alone.JPG" alt="혼자서"></a></li>
@@ -64,7 +65,7 @@
 									<li><a href="#"><img src="/Planit/images/plan/friend1.png" alt="친구끼리"></a></li>
 									<li><a href="#"><img src="/Planit/images/plan/club1.png" alt="동호회"></a></li>
 								</ul>
-							</div>
+							</div>							
 						</div>
 					</div>	
 					
@@ -116,6 +117,7 @@
 		</div>
 	</section>
 </div>
+
 <!-- ******************************루트 페이지 바디 영역 종료****************************************-->
 <!-- ********************************** map script 호출 시작 *************************************** -->
 <%@ include file="routemap.jsp" %>

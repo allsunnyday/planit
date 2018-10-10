@@ -41,6 +41,7 @@
 					$('#plandaytext').attr("disabled", false);
 				}
 				else {//선택일경우
+					$('#plandaytext').val($(this).val());
 					$('#plandaytext').attr("disabled", true);
 				}
 			});
@@ -49,8 +50,7 @@
 		/* ******************************************** 여행 지역 직접 입력 ************************************************ */
 		$('#paldoNcity').change(function(){
 			$('#paldoNcity option:selected').each(function() {
-				console.log($(this).val());
-				if($(this).val()=='paldoNcity99'){//직접 입력 할경우					
+				if($(this).val()=='aa'){//직접 입력 할경우					
 					$('#paldotext').val('');
 					$('#paldotext').attr("disabled", false);
 					$('#paldoNcityColumn').attr("disabled", true);
@@ -63,9 +63,26 @@
 		});
 		/* ******************************************** 여행 지역 직접 입력 ************************************************ */
 		
+		$('#nextplan').click(function(){
+			var plandaytext = $('#plandaytext').val();
+			$('#paldoNcity option:selected').each(function() {
+				if(plandaytext =='' && ($(this).val()=='aa' & $('#paldotext').val()=='')){
+					alert('여행 일수 와 도시를 입력하지 않았습니다.');
+				}
+				else if(plandaytext ==''){				
+					alert('여행 일수를 선택 및 입력하지 않았습니다.');
+				}
+				else if(!parseInt(plandaytext)){
+					alert('여행 일수는 숫자만 입력해주세요');
+					location.assign;
+				}
+				else {
+					$('#locationday').attr("action", "<c:url value='/planner/plan/route.it'/>");
+				}
+			});
+		});
 	});	
-	
-	$
+				/* console.log($(this).val()); */
 	/* ************************************************************************************************************ */
 	
 </script>
