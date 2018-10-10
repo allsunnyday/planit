@@ -360,6 +360,7 @@ table.table .avatar {
 #Partner-First-Parter-RoomStatus {
 	display: inline-block;
 	border-radius: 10px;
+
 	background-color: darkgray;
 }
 
@@ -402,9 +403,24 @@ table.table .avatar {
 				$("#selectAll").prop("checked", false);
 			}
 		});
+		
+		$('#form-control').change(function() {
+			if ($("#form-control option:selected").val() != 'All') {
+				console.log($("#form-control option:selected").val());
+				var selectedStatus = $("#form-control option:selected").val();
+				var target = $('table tr[data-status="'+ $("#form-control option:selected").val() + '"]');
+				$("table tbody tr").not(target).hide();
+				target.fadeIn();
+			} else {
+				$("table tbody tr").fadeIn();
+			}		
+		});
+		
+		
 	});
 </script>
 <div class="container-fluid">
+
 	<div class="col-md-3" style="width: 300px">
 		<div style="padding-top: 50px;">
 			<div>
@@ -450,34 +466,40 @@ table.table .avatar {
 							</table>
 						</div>
 
-						<div class="teamskills">
-							<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
-								<table id="Partner-First-Roomtable" style="width: 100%;">
-									<tr>
-										<td>Total Room</td>
-										<td>00</td>
-									</tr>
-									<tr>
-										<td>Resting room</td>
-										<td>00</td>
-									</tr>
-									<tr>
-										<td>Reserved room</td>
-										<td>00</td>
-									</tr>
-									<tr>
-										<td>Star Point</td>
-										<td>00</td>
-									</tr>
-
-								</table>
-							</div>
-						</div>
+						
 
 					</div>
+
+
+					<div class="teamskills">
+						<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
+							<table id="Partner-First-Roomtable" style="width: 100%;">
+								<tr>
+									<td>Total Room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Resting room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Reserved room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Star Point</td>
+									<td>00</td>
+								</tr>
+
+
+							</table>
+						</div>
+					</div>
+
 				</div>
 				<!-- end teammembers -->
 			</div>
+			<!-- end teammembers -->
 		</div>
 	</div>
 	<div class="col-md-9">
@@ -508,12 +530,12 @@ table.table .avatar {
 							</div>
 
 							<div class="filter-group">
-								<label>Status</label> <select class="form-control">
-									<option>Any</option>
-									<option>PAID</option>
-									<option>REFUND</option>
-									<option>PENDING</option>
-									<option>CANCEL</option>
+								<label>Status</label> <select id="form-control">
+									<option>All</option>
+									<option>Paid</option>
+									<option>Refund</option>
+									<option>Pending</option>
+									<option>Cancel</option>
 								</select>
 							</div>
 							<span class="filter-icon"><i class="fa fa-filter"></i></span>
@@ -537,7 +559,7 @@ table.table .avatar {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr data-status="Paid">
 							<td><span class="custom-checkbox"> <input
 									type="checkbox" id="checkbox1" name="options[]" value="1">
 									<label for="checkbox1"></label>
@@ -550,7 +572,7 @@ table.table .avatar {
 									1호실</a></td>
 							<td>Jun 15, 2017</td>
 							<td>Jun 15, 2017</td>
-							<td><span class="status text-success">&bull;</span> PAID</td>
+							<td><span class="status text-success">&bull;</span> Paid</td>
 							<td>Jun 15, 2017</td>
 							<td><a href="#editEmployeeModal" class="edit"
 								data-toggle="modal"><i class="material-icons"
@@ -559,7 +581,7 @@ table.table .avatar {
 									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
-						<tr>
+						<tr data-status="Refund">
 							<td><span class="custom-checkbox"> <input
 									type="checkbox" id="checkbox2" name="options[]" value="1">
 									<label for="checkbox2"></label>
@@ -570,7 +592,7 @@ table.table .avatar {
 							<td>Madrid</td>
 							<td>Jun 15, 2017</td>
 							<td>Jun 15, 2017</td>
-							<td><span class="status text-success">&bull;</span> PAID</td>
+							<td><span class="status text-primary">&bull;</span> Refund</td>
 							<td>Jun 15, 2017</td>
 							<td><a href="#editEmployeeModal" class="edit"
 								data-toggle="modal"><i class="material-icons"
@@ -579,7 +601,7 @@ table.table .avatar {
 									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
-						<tr>
+						<tr data-status="Pending">
 							<td><span class="custom-checkbox"> <input
 									type="checkbox" id="checkbox3" name="options[]" value="1">
 									<label for="checkbox3"></label>
@@ -590,7 +612,7 @@ table.table .avatar {
 							<td>Berlin</td>
 							<td>Jun 15, 2017</td>
 							<td>Jun 15, 2017</td>
-							<td><span class="status text-success">&bull;</span> PAID</td>
+							<td><span class="status text-danger">&bull;</span> Pending</td>
 							<td>Jun 15, 2017</td>
 							<td><a href="#editEmployeeModal" class="edit"
 								data-toggle="modal"><i class="material-icons"
@@ -599,7 +621,7 @@ table.table .avatar {
 									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
-						<tr>
+						<tr data-status="Cancel">
 							<td><span class="custom-checkbox"> <input
 									type="checkbox" id="checkbox4" name="options[]" value="1">
 									<label for="checkbox4"></label>
@@ -610,7 +632,7 @@ table.table .avatar {
 							<td>New York</td>
 							<td>Jun 15, 2017</td>
 							<td>Jun 15, 2017</td>
-							<td><span class="status text-success">&bull;</span> PAID</td>
+							<td><span class="status text-warning">&bull;</span> Cancel</td>
 							<td>Jun 15, 2017</td>
 							<td><a href="#editEmployeeModal" class="edit"
 								data-toggle="modal"><i class="material-icons"
@@ -619,7 +641,7 @@ table.table .avatar {
 									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
-						<tr>
+						<tr data-status="Paid">
 							<td><span class="custom-checkbox"> <input
 									type="checkbox" id="checkbox5" name="options[]" value="1">
 									<label for="checkbox5"></label>
@@ -630,7 +652,7 @@ table.table .avatar {
 							<td>Paris</td>
 							<td>Jun 15, 2017</td>
 							<td>Jun 15, 2017</td>
-							<td><span class="status text-success">&bull;</span> PAID</td>
+							<td><span class="status text-success">&bull;</span> Paid</td>
 							<td>Jun 15, 2017</td>
 							<td><a href="#editEmployeeModal" class="edit"
 								data-toggle="modal"><i class="material-icons"
@@ -701,14 +723,13 @@ Edit Modal
 						<div class="modal-content">
 							<form>
 								<div class="modal-header">
-									<h4 class="modal-title">Reply</h4>
+									<h4 class="modal-title">Change Status</h4>
 									<button type="button" class="close" data-dismiss="modal"
 										aria-hidden="true">&times;</button>
 								</div>
 								<div class="modal-body">
-
-									<div class="form-group" style="line-height: 100px;">
-										<label>Message</label> <input type="text" class="form-control"
+									<div class="form-group">
+										<label>Message</label> <input style="height: 300px;" type="text" class="form-control"
 											required>
 									</div>
 								</div>

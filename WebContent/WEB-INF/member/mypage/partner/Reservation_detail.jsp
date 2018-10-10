@@ -305,10 +305,8 @@ table.table .avatar {
 				<div class="col-sm-4">
 					<h2>Reservation</h2>
 				</div>
-
 				<div class="col-sm-6" style="float: right;">
-					<a href="#deleteEmployeeModal" class="btn btn-danger"
-						data-toggle="modal"> <span>Delete</span></a>
+					<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"> <span>Delete</span></a>
 				</div>
 
 			</div>
@@ -339,10 +337,6 @@ table.table .avatar {
 			<tr>
 				<th>체크아웃</th>
 				<td>2018/10/12</td>
-			</tr>
-			<tr>
-				<th>status</th>
-				<td><span class="status text-success">&bull;</span> Replied</td>
 			</tr>
 			<tr>
 				<th>status</th>
