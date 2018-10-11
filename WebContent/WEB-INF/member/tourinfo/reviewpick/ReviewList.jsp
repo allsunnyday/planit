@@ -123,7 +123,7 @@
 	
 	          <div class="post-desc">
 	            <p></p>
-	            <a class="readmore" href="<c:url value='/planit/review/ReviewView.it?review_no=${review.REVIEW_ID}'/> " title="">read more</a>
+	            <a class="readmore" href="<c:url value='/planit/review/ReviewView.it?review_id=${review.REVIEW_ID}'/> " title="">read more</a>
 	          </div>
 	        </article>
 	        
