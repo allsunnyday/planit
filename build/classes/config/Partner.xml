@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	*변경사항*
+	mapper 파일의 완전한 경로 . xml은 생략
+	ibatis와는 다르게 id값에 '.'를 사용하지 못함
+ -->
+<mapper namespace="config.Pember">
+	<select id="PartnerIsLogin" parameterType="java.util.Map" resultType="int">
+		<!-- select count(*) from member where id='user1' and pwd='1234'; -->
+		
+		SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} AND pwd=#{pwd}
+	</select>
+
+	<insert id="PartnerIsJoin" parameterType="PartnerDTO">
+
+		insert into partner(p_id,business_no,pwd,firstimage,regidate,tel,site,address) values(#{p_id},#{business_no},NO IMAGE,SYSDATE,#{tel},#{site},#{address})
+	
+	</insert>
+
+	
+	
+
+</mapper>

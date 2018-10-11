@@ -18,6 +18,9 @@ public class ReviewController {
 	
 	@RequestMapping("/planit/review/ReviewList.it")
 	public String reviewList()throws Exception{
+		//리뷰 리스트를 가지고 온다. 
+		
+		
 		return "tourinfo/reviewpick/ReviewList.theme";
 	}
 	
