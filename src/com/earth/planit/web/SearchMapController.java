@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.earth.planit.service.SearchMapDTO;
-import com.planit.backend.service.ContentDTO;
 
 @Controller
 public class SearchMapController {

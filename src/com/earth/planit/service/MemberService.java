@@ -8,4 +8,7 @@ public interface MemberService {
 	
 	//회원가입_int로 해야하나..
 	int isJoin(MemberDTO dto);
+	
+	
+	
 }

@@ -15,15 +15,14 @@
 
         <h5 class="title">Company Information</h5>
 
-        <form id="personalinfo" action="<c:url value='/member/login/PartnereJoinFormProcess.it'></c:url>" name="personalinfo" method="post">
+        <form id="personalinfo" action="<c:url value='/member/login/PartnerJoinFormProcess.it'></c:url>" name="personalinfo" method="post">
           <label for="email">Business Number <span class="required">*</span></label>
-          <input type="text" name="businessnumber" id="businessnumber" class="form-control" placeholder="Business Number">
+          <input type="text" name="business_no" id="business_no" class="form-control" placeholder="Business Number">
           <label for="email">Company Name<span class="required">*</span></label>
-          <input type="text" name="companyname" id="companyname" class="form-control" placeholder="Company Name">
-          <label for="fname">First Name <span class="required">*</span></label>
-          <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First Name">
-          <label for="lname">Last Name </label>
-          <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Name">
+          <input type="text" name="p_name" id="p_name" class="form-control" placeholder="Company Name">
+          <label for="fname">Name <span class="required">*</span></label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+         
         </form>
 
         <div class="clearfix"></div>
@@ -33,13 +32,13 @@
 
         <form id="cartinfo" action="<c:url value='/member/login/PartnereJoinFormProcess.it'></c:url>" name="cartinfo" method="post">
           <label for="cardnumber">ID<span class="required">*</span></label>
-          <input type="text" name="partnerID" id="partnerID" class="form-control" placeholder="아이디를 입력해주세욜">
+          <input type="text" name="p_id" id="p_id" class="form-control" placeholder="아이디를 입력해주세요">
           <label for="cvc">Password <span class="required">*</span></label>
-          <input type="password" name="partnerpass" id="partnerpass" class="form-control" placeholder="비밀번호를 입력해주세요">
+          <input type="password" name="pwd" id="pwd" class="form-control" placeholder="비밀번호를 입력해주세요">
           <label for="ncard">Password Checking<span class="required">*</span></label>
           <input type="password" name="partnerpasscheck" id="partnerpasscheck" class="form-control" placeholder="비밀번호를 다시한번 입력해주세요">
           <label for="ncard">Email <span class="required">*</span></label>
-          <input type="email" name="partnerEmail" id="partnerEmail" class="form-control" placeholder="이메일을 입력해주세요">
+          <input type="email" name="email" id="email" class="form-control" placeholder="이메일을 입력해주세요">
 
           <div class="clearfix"></div>
 
@@ -56,8 +55,8 @@
           <input type="text" name="address" id="address" class="form-control" placeholder="사업장 주소를 입력해주세요">
           <label for="baddress1">Tel</label>
           <input type="text" name="Tel" id="Tel" class="form-control" placeholder="전화번호를 입력해주세요">
-          <label for="bcity">Type of Business</label>
-          <input type="text" name="typeofbusiness" id="typeofbusiness" class="form-control" placeholder="업종을 입력해주세요">
+         <!--  <label for="bcity">Type of Business</label> -->
+         <!--  <input type="text" name="typeofbusiness" id="typeofbusiness" class="form-control" placeholder="업종을 입력해주세요"> -->
          <!--  <label for="bzip">Zip / Postal Code </label>
           <input type="text" name="bzip" id="bzip" class="form-control" placeholder="Your ZIP or postal code"> -->
 

@@ -42,10 +42,6 @@ public class MemberController {
 		return "login/JoinMain.theme";
 	}
 
-	@RequestMapping("/member/login/CompanyJoin.it")
-	public String gotoCompanyJoin() throws Exception {
-		return "login/JoinPartnerProgress.theme";
-	}
 
 	@RequestMapping("/member/login/UserJoin.it")
 	public String gotoUserJoin(@RequestParam Map map) throws Exception {
@@ -135,11 +131,7 @@ public class MemberController {
 		
 	}
 	//***************마이페이지 이동(기업회원)
-	@RequestMapping("/planit/mypage/partner/PartnerMyPageHome.it")
-	public String gotoPartnerMyPageHome() throws Exception {
-		return "mypage/partner/PartnerMyPageHome.theme";
-	}
-	
+
 	
 	
 	/* 로그인 처리  method=RequestMethod.POST로 설정하여 get방식 접근을 막는다. */
@@ -154,13 +146,14 @@ public class MemberController {
 		if(isLogin) { // 회원일경우
 			//로그인 처리 - 세션 영역에 저장 
 			session.setAttribute("userid", map.get("id"));
+			return "main/main.tiles";
 		}
 		else { // 비회원일경우 
 			model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
 		}
 		
-		//return "forward:/planit/login/Login.it";
-		return "main/main.tiles";
+		return "forward:/planit/login/Login.it";
+		
 	}
 	
 	//[로그아웃 처리]
@@ -173,16 +166,19 @@ public class MemberController {
 	
 	//[회원가입 처리]
 	@RequestMapping(value="/member/login/UserJoinFormProcess.it" ,method=RequestMethod.POST)
-	public String UserJoinFormProcess(MemberDTO dto,@RequestParam Map map) throws Exception{
+	public String userJoinFormProcess(MemberDTO dto,@RequestParam Map map, HttpSession session) throws Exception{
 		System.out.println("비밀번호:"+map.get("pwd"));
 		System.out.println("비밀번호:"+dto.getPwd());
 		
 		int isJoin=service.isJoin(dto);
 		System.out.println(isJoin);
-		
-		
-		//선호도 체크페이지 이동
+		if(isJoin==1) {
+			session.setAttribute("userid", map.get("id"));
+		}
 		return "mypage/UserPreference.theme";
+	
+		//선호도 체크페이지 이동
+		
 	}
 	
 }

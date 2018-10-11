@@ -14,12 +14,19 @@ public class MemberDTO {
 	private String gender;
 	private String age;
 	private String star;
+	private String name;
+	
+
 	
 	
 	
 	
-	
-	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	//[게터세터]
 	public String getId() {
 		return id;
@@ -81,6 +88,6 @@ public class MemberDTO {
 	public void setStar(String star) {
 		this.star = star;
 	}
-	
+
 	
 }

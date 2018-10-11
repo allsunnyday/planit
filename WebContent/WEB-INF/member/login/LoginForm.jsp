@@ -62,7 +62,7 @@
 			               </div>
 			               <div class="form-group">
 			                  <button type="submit" class="button">Sign in</button>
-						 <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" >회원 마이페이지 임시 이동</a>
+						<%--  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" >회원 마이페이지 임시 이동</a> --%>
 			               </div>
 			            </form>
 			            
@@ -75,17 +75,18 @@
 		              <div class="text-center" style="padding: 50px 0;">
 		              		<img  src="<c:url value='/images/planit_logo.png'/> " alt=""/>
 		              	</div>
-		                <form id="loginform" method="post" name="loginform" action="">
+		                <form id="loginform" method="post" name="loginform" action="<c:url value='/partner/login/LoginProcess.it'></c:url>">
 		               <div class="form-group">
+		               <c:if test="${not empty loginError }" var="loginResult"><div><p style="color:red;">${loginError}</p></div></c:if>
 		                  <div class="input-group">
 		                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-		                     <input type="text" class="form-control" placeholder="Username">
+		                     <input type="text" class="form-control" name="p_id" id="p_id"  placeholder="Username">
 		                  </div>
 		               </div>
 		               <div class="form-group">
 		                  <div class="input-group">
 		                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-		                     <input type="password" class="form-control"
+		                     <input type="password" id="pwd" name="pwd"class="form-control"
 		                        placeholder="Password">
 		                  </div>
 		               </div>

@@ -314,34 +314,62 @@ jQuery(document).ready(function() {
 
 			<fieldset>
 				<h4>Tell us who you are:</h4>
+			
+				
 				<div class="form-group">
-					<label class="sr-only" for="f1-first-name">First name</label> <input
-						type="text" name="Firstname" placeholder="First name..."
-						class="f1-first-name form-control" id="firstname">
+					<label class="sr-only" for="f1-last-name">Name</label> <input
+						type="text" name="name" placeholder="Name..."
+						class="f1-last-name form-control" id="name">
 				</div>
 				<div class="form-group">
-					<label class="sr-only" for="f1-last-name">Last name</label> <input
-						type="text" name="Lastname" placeholder="Last name..."
-						class="f1-last-name form-control" id="lastname">
+					<label class="sr-only" for="f1-email">ID</label> <input
+						type="text" name="id" placeholder="Id..."
+						class="f1-email form-control" id="id">
+						<input type="hidden" name="idDuplication" value="idUncheck" >
+
+					<!-- Button trigger modal -->
+					
 				</div>
-				<div class="form-group">
-					<label class="sr-only" for="f1-about-yourself">About
-						yourself</label>
-					<textarea name="f1-about-yourself" placeholder="About yourself..."
-						class="f1-about-yourself form-control" id="aboutyourself"></textarea>
-				</div>
+				
 				<div class="f1-buttons">
+					<%-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+						  아이디 중복검사
+						</button>
+						
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel"> 아이디 중복확인</h4>
+						      </div>
+						      <div class="modal-body">
+						       	<form action="<c:url value='/member/login/UserJoinIdCheck.it'></c:url>"  class="f1">
+						       		 <div class="form-group">
+									    
+									    <div class="col-sm-10">
+									      <input type="email" class="form-control" name="checkID" id="checkID" placeholder="Id를 입력해주세요">
+									    </div>
+								
+									  </div>
+						       	
+						       <!-- 	</form> -->
+						      </div>
+						      <div class="modal-footer">
+						        	<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+									    	<button type="submit" class="btn btn-submit">중복검사</button>
+						      </div>
+						    </div>
+						  </div>
+						</div> --%>
 					<button type="button" class="btn btn-next">Next</button>
 				</div>
 			</fieldset>
 
 			<fieldset>
 				<h4>Set up your account:</h4>
-				<div class="form-group">
-					<label class="sr-only" for="f1-email">ID</label> <input
-						type="text" name="id" placeholder="Id..."
-						class="f1-email form-control" id="id">
-				</div>
+				
 				<div class="form-group">
 					<label class="sr-only" for="f1-email">Email</label> <input
 						type="text" name="email" placeholder="Email..."
@@ -365,21 +393,24 @@ jQuery(document).ready(function() {
 			</fieldset>
 
 			<fieldset>
-				<h4>Social media profiles:</h4>
+				<h4>Tell us your information</h4>
 				<div class="form-group">
-					<label class="sr-only" for="f1-facebook">Facebook</label> <input
-						type="text" name="f1-facebook" placeholder="Facebook..."
-						class="f1-facebook form-control" id="facebook">
+					<label class="sr-only" for="f1-facebook">Age</label> <input
+						type="text" name="age" placeholder="Age..."
+						class="f1-facebook form-control" id="age">
 				</div>
 				<div class="form-group">
-					<label class="sr-only" for="f1-twitter">Twitter</label> <input
-						type="text" name="f1-twitter" placeholder="Twitter..."
-						class="f1-twitter form-control" id="twitter">
+					<label class="sr-only" for="f1-twitter">Twitter</label> 
+				
+					<input
+						type="text" name="gender" placeholder="Gender...(Please enter M or Y)"
+						class="f1-twitter form-control" id="gender">
 				</div>
 				<div class="form-group">
-					<label class="sr-only" for="f1-google-plus">Google plus</label> <input
-						type="text" name="f1-google-plus" placeholder="Google plus..."
-						class="f1-google-plus form-control" id="googleplus">
+					<label class="sr-only" for="f1-about-yourself">About
+						yourself</label>
+					<textarea name="f1-about-yourself" placeholder="About yourself..."
+						class="f1-about-yourself form-control" id="aboutyourself"></textarea>
 				</div>
 				<div class="form-group">
 			                  <div class="checkbox">
