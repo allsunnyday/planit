@@ -14,7 +14,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<!-- 회원DTO 등을 입력-->
 		<typeAlias alias="memberDTO" type="com.earth.planit.service.MemberDTO"/>
-		<typeAlias alias="partnerDTO" type="com.earth.planit.service.PartnerDTO"/> 
+		<typeAlias alias="partnerDTO" type="com.earth.planit.service.PartnerDTO"/>
+		<typeAlias alias="reviewDTO" type="com.earth.planit.service.ReviewDTO" /> 
 	</typeAliases>
 	
 	
@@ -45,6 +46,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
 		<mapper resource="config/Member.xml" />
 		<mapper resource="config/Partner.xml" />
+		<mapper resource="config/Review.xml"/>
 	</mappers>
 	
 	

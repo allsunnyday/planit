@@ -1,14 +1,40 @@
 package com.earth.planit.web;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.earth.planit.service.ReviewDTO;
+import com.earth.planit.service.ReviewService;
 
 @Controller
 public class ReviewController {
 
+	@Resource(name="reviewService")
+	private ReviewService reviewService;
+	
+	//리뷰 리스트로 이동
+	@RequestMapping("/planit/review/ReviewList.it")
+	public String reviewList(@RequestParam Map map, Model model)throws Exception{
+		//리뷰 리스트를 가지고 온다. 
+		
+		List<Map> list = reviewService.selectReviewList(map);
+		System.out.println(list.size());
+		
+		model.addAttribute("list", list);
+		return "tourinfo/reviewpick/ReviewList.theme";
+	}
+	
+	
+	
 	@RequestMapping("/review/myreview/Write.it")
 	public String reviewDetail()throws Exception{
 		//review정보를 가지고 오기 
@@ -16,18 +42,21 @@ public class ReviewController {
 		return "review/myreview/WriteReview.theme";
 	}
 	
-	@RequestMapping("/planit/review/ReviewList.it")
-	public String reviewList()throws Exception{
-		//리뷰 리스트를 가지고 온다. 
-		
-		
-		return "tourinfo/reviewpick/ReviewList.theme";
-	}
 	
-	@RequestMapping("/planit/review/reviewView.it")
-	public String reviewView()throws Exception{
+	// 리뷰 보기 페이지 
+	@RequestMapping("/planit/review/ReviewView.it")
+	public String reviewView(@RequestParam Map map,  // review_no=값
+							Model model)throws Exception{
 		// 하나의 리뷰를 화면에 보여준다. 
-		// db에서 리뷰 1개의 정보 등을 가지고 온다. 
+		ReviewDTO review = reviewService.selectReviewOne(map);
+		// route를 파싱하는 작업이 필요하다 
+		String beforeParsing = review.getRoute();
+		System.out.println(beforeParsing);
+		// route에 해당하는 컨텐트츠 객체를 가지고 오는게 중요하다 (overview읽어오기?)
+		String schedule[] = beforeParsing.split("#");
+		System.out.println("갯수 예상(2) == "+schedule.length);
+		// firstimage 읽어오기?
+		
 		
 		return "tourinfo/reviewpick/ReviewView.theme";
 	}
