@@ -7,8 +7,9 @@
 #leftrute{margin: 0;padding: 0; height: 100%}
 #rightrute{margin: 0; padding: 0; height: 100%;}
 .container-fluid{margin: 0;padding: 0;}
-
 /* 웹 페이지 배치 상, 하, 좌, 우 빈공 백 제거 종료*/	
+
+
 
 /*----------------------------------------- 지도 확대 및 축소, 스카이뷰 및 지도 보기 전환 시작 ------------------------------------------------*/
 html, body {width:100%; height:100%;margin:0;padding:0;} 
@@ -102,19 +103,11 @@ html, body {width:100%; height:100%;margin:0;padding:0;}
 
 
 /* *************************************** 상세정보 출력 관련 스타일 시작 ************************************************* */
-ul #peopletype{
-	list-style:none;
-    margin:0;
-    padding:0;
-}
-
-#peopletype li{
-	background-color: white;
-	margin: 0;
-    padding: 0;
-    border : 0;
-}
-#peopletype li:hover{
-	background-color: #3498db;
-}
+ul #peopletype{ list-style:none; margin:0; padding:0; }
+#peopletype li{ background-color: white; margin: 0; padding: 0; border : 0; }
+#peopletype li:hover{ background-color: #3498db; }
 /* *************************************** 상세정보 출력 관련 스타일 종료 ************************************************* */
+
+#jetmenu li{margin-right: 150px;}
+#jetmenu li a{ font-size: 1.6ex;}
+
