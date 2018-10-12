@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	*변경사항*
+	mapper 파일의 완전한 경로 . xml은 생략
+	ibatis와는 다르게 id값에 '.'를 사용하지 못함
+ -->
+<mapper namespace="config.Pember">
+
+	<select id="reviewSelectList" parameterType="java.util.Map" resultType="java.util.Map">
+		select r.*, id from review r join planner p on r.planner_id=p.planner_id
+	</select>
+	
+	<select id="reviewSelectOne"  parameterType="java.util.Map" resultType="reviewDTO" >
+		select r.*, id from review r join planner p on r.planner_id=p.planner_id
+		where r.review_id=#{review_id}
+	</select>
+	
+
+	
+	
+	
+
+</mapper>

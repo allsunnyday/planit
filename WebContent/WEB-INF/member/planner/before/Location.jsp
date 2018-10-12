@@ -1,37 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!-- 버튼 css -->
-<style>
-	button.btn {
-		height: 52px;
-	    margin: 0;
-	    padding: 0 20px;
-	    vertical-align: middle;
-	    background: #46b8da;
-	    border: 0;
-	    font-family: 'Lato', sans-serif;
-	    font-size: 22px;
-	    font-weight: 400;
-	    line-height: 52px;
-	    color: #fff;
-	    -moz-border-radius: 6px;
-	    -webkit-border-radius: 6px;
-	    border-radius: 6px;
-	    text-shadow: none;
-	    -moz-box-shadow: none;
-	    -webkit-box-shadow: none;
-	    box-shadow: none;
-	    -o-transition: all .3s;
-	    -moz-transition: all .3s;
-	    -webkit-transition: all .3s;
-	    -ms-transition: all .3s;
-	    transition: all .3s;
-    }
-    
-</style>
-<!-- 버튼 css -->
-
+<!--*************************************** location 상단 메뉴 부분 수정 시작 *********************************************-->
+<!-- **********************************************************상단 타이틀 시작 *****************************************************-->
 <section class="post-wrapper-top" style="margin-top: 70px;">
 	<div class="container">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -40,34 +10,24 @@
 			</ul>
 			<h2> 추억을 남길 나의 여행 지역 선택하기 </h2>
 		</div>
-		<!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			search
-			<div class="search-bar">
-				<form action="" method="get">
-					<fieldset>
-						<input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
-						<input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
-					</fieldset>
-				</form>
-			</div>
-			/ end div .search-bar
-		</div> -->
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: 61px;">
+			<ul class="nav nav-tabs" style="float: right;">
+				<li class="active" style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
+				<li style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
+				<li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
+				<li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>				
+			</ul>						
+		</div>		
 	</div>
 </section>
-<!-- end post-wrapper-top -->
+<!-- **********************************************************상단 타이틀 종료 *****************************************************-->
+<!--*************************************** location 상단 메뉴 부분 수정 종료 *********************************************-->
 
 <!-- 여행 지역 선택(팔도) 시작 -->
 <section class="section1">
 	<div class="container clearfix">
 		<div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
 		<div class="divider"></div>
-		<!-- 상단 타이틀 시작 -->
-		<!-- <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-			<h2> 여행지 선택</h2>
-			 <small>새로운 추억을 남길 여행지를 선택하고 루트설정으로 이동</small>			
-			<hr/>	
-		</div> -->
-		<!-- 상단 타이틀 종료 -->
 			<div class="divider"></div>
 			<div class="portfolio-centered">
 				<div class="recentitems portfolio">				
@@ -78,14 +38,15 @@
 							<div class="he-view">
 								<div class="bg a0" data-animate="fadeIn">
 									<h3 class="big a1" data-animate="fadeInDown">서울 특별시</h3>
-									<a data-rel="prettyPhoto" data-toggle="modal" data-target="#pardoinfo" data-modal-id="pardoinfo" href="#" class="dmbutton a2" data-animate="bounceInLeft">
+									<a data-rel="prettyPhoto" data-toggle="modal" data-target="#pardoinfo" 
+										data-modal-id="pardoinfo" href="#" class="dmbutton a2" data-animate="bounceInLeft">
 										<i class="fa fa-search"></i></a>									
 									<div class="portfolio_category text-center a2" data-animate="fadeIn"></div>
 								</div>
 							</div>
 						</div>
-						<h3 class="title text-center" >
-							<a href="#" data-toggle="modal" data-target="#pardoinfo" data-modal-id="pardoinfo"> 서울 특별시 </a>
+						<h3 class="title text-center">							
+							<a href="#" data-toggle="modal" data-target="#pardoinfo" data-modal-id="pardoinfo"> 서울 특별시 </a>														
 						</h3>
 						<p>강남구, 강동구, 강북구, 강서구, 관악구, 광진구, 구로구, 금천구, 노원구, 도봉구, 동대문구,
 							동작구, 마포구, 서대문구, 서초구, 성동구, 성북구, 송파구, 양천구, 영등포구, 용산구, 은평구, 종로구, 중구,
@@ -434,6 +395,7 @@
 <!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> -->
 <%@ include file="selectCityJavascript.jsp" %>
 <!--********************************************************* 모달 적용 자바 스크립트 시작  *****************************************************-->
+
 <!--*******************************************************모달 적용 css 시작************************************************  -->
 <link href="<c:url value='/BootStrap/planmap/css/location.css'/>" rel="stylesheet" type="text/css">
 <!--*******************************************************모달 적용 css 종료************************************************  -->
@@ -441,7 +403,7 @@
 <div id="pardoinfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlogLabel" aria-hidden="true" >
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content" style="width: 700px;">
-			<form action="<c:url value='/planner/plan/route.it' />" method="post" style=" margin: 0 auto;">
+			<form method="post" style=" margin: 0 auto;" name="locationday" id="locationday"><!-- action="<c:url value='/planner/plan/route.it'/>" -->
 				<!-- ************************************************* 모달 헤더 시작 ******************************************************** -->
 				<div class="modal-header text-center">
 					<h2 class="modal-title text-center" id="modal-login-label" style="display: inline">City</h2>
@@ -457,32 +419,31 @@
 						<div class="col-md-4 col-sm-4 col-xs-12 text-center">							
 							<div class="select">
 								<select name="paldoNcity" id="paldoNcity" style="width: 100%">
-									<option value="hide" role="icon-temperature">--주요도시 및 전국 팔도--</option>
-							    	<option value="paldoNcity01">서울 특별시</option>
-							    	<option value="paldoNcity02">부산 광역시</option>
-							    	<option value="paldoNcity03">대구 광역시</option>
-							    	<option value="paldoNcity04">인천 광역시</option>
-							    	<option value="paldoNcity05">광주 광역시</option>
-							    	<option value="paldoNcity06">대전 광역시</option>
-							    	<option value="paldoNcity07">울산 광역시</option>
-							    	<option value="paldoNcity08">세종 특별 자치시</option>
-							    	<option value="paldoNcity09">경기도</option>
-							    	<option value="paldoNcity10">충청북도</option>
-							    	<option value="paldoNcity11">충청남도</option>
-							    	<option value="paldoNcity12">강원도</option>
-							    	<option value="paldoNcity13">전라북도</option>
-							    	<option value="paldoNcity14">전라남도</option>
-							    	<option value="paldoNcity15">경상북도</option>
-							    	<option value="paldoNcity16">경상남도</option>
-							    	<option value="paldoNcity17">제주도</option>
+							    	<option value="1">서울 특별시</option>
+							    	<option value="2">인천 광역시</option>
+							    	<option value="3">대전 광역시</option>
+							    	<option value="4">대구 광역시</option>
+							    	<option value="5">광주 광역시</option>
+							    	<option value="6">부산 광역시</option>
+							    	<option value="7">울산 광역시</option>
+							    	<option value="8">세종 특별 자치시</option>
+							    	<option value="31">경기도</option>
+							    	<option value="32">강원도</option>
+							    	<option value="33">충청북도</option>
+							    	<option value="34">충청남도</option>
+							    	<option value="35">경상북도</option>
+							    	<option value="36">경상남도</option>
+							    	<option value="37">전라북도</option>
+							    	<option value="38">전라남도</option>
+							    	<option value="39">제주도</option>
+							    	<option value="aa">-- 직접입력--</option>
 							    </select>
 						    </div>
 						</div>
 						<div class="col-md-3 col-sm-3 col-xs-12 text-center">
 							<div class="select">						
-								<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%">
-									<option value="hide" role="icon-temperature">-- 상세지역 --</option>
-							    	<option value="paldoNcity01_01">강남구</option>
+								<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%" >
+							    	<option value="paldoNcity01_01" selected>강남구</option>
 							    	<option value="paldoNcity01_02">강동구</option>
 							    	<option value="paldoNcity01_03">강북구</option>
 							    	<option value="paldoNcity01_04">강서구</option>
@@ -511,30 +472,29 @@
 						    </div>
 						</div>
 						<div class="col-md-5 col-sm-5 col-xs-12" >
-							<input type="text" name="paldotext" style="font-size: 14px; margin: 0 auto;"
-								placeholder="여행 도시를 직접 입력해주세요" class="form-control" id="paldotext">
+							<input type="text" id="paldotext" name="paldotext" style="font-size: 14px; margin: 0 auto;"
+								placeholder="여행 도시를 직접 입력" class="form-control" disabled value=''>
 						</div>
 					</div>
 					<div class="row" style="margin-top: 20px;">
 						<div class="col-md-4 col-sm-4 col-xs-12 text-right" >
-							<div class="btn-group" style="width: 100%">
-								<a id="pardocity" data-toggle="dropdown" aria-haspopup="true" class="btn btn-default dropdown-toggle" 
-									aria-expanded="false" style="width: 100%"> -- 여행 일수 -- <span class="caret"></span></a>
-								<ul class="dropdown-menu" role="daymenu"  id="planul" aria-labelledby="planday">
-									<li><a href="#">1일</a></li>
-									<li><a href="#">2일</a></li>
-									<li><a href="#">3일</a></li>
-									<li><a href="#">4일</a></li>
-									<li><a href="#">5일</a></li>
-									<li><a href="#">6일</a></li>
-									<li><a href="#">7일</a></li>
-									<li><a href="#">8일이상</a></li>
-								</ul>
+							<div class="select" style="width: 100%">
+								<select role="menu"  id="planday" name="planday" aria-labelledby="planday">
+									<option value="" id=""> -- 여행 일수 -- </option>
+									<option value="1"> 1일 (당일치기) </option>
+									<option value="2"> 2일 (1박 2일) </option>
+									<option value="3"> 3일 (2박 3일) </option>
+									<option value="4"> 4일 (3박 4일) </option>
+									<option value="5"> 5일 (4박 5일) </option>
+									<option value="6"> 6일 (5박 6일) </option>
+									<option value="7"> 7일 (6박 7일) </option>
+									<option value="9"> 직접 입력 </option>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-8 col-sm-8 col-xs-12">
-							<input type="text" name="paldotext" style="font-size: 14px; width: 100%" placeholder="여행 일수를 입력해주세요" 
-								class="form-control" id="paldotext">
+							<input type="text" id="plandaytext" name="plandaytext" style="font-size: 14px; width: 100%" 
+								placeholder="직접 입력시 일수만 입력해주세요" class="form-control" disabled value=''>
 						</div>
 					</div>
 				</div>
@@ -542,7 +502,7 @@
 				<div class="modal-footer">
 					<div class="row text-center" style="text-align: center;">
 						<div class="col-md-12">
-							<button type="submit" class="btn" style="font-size: 14px; width: auto;">Next Plan</button>								
+							<button type="submit" id="nextplan" name="nextplan" class="btn" style="font-size: 14px; width: auto;">Next Plan</button>								
 						</div>						
 					</div>
 				</div>

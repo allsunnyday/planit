@@ -6,6 +6,11 @@
 <!--*********************************
 리뷰 제목부분 (제목/즐겨찾기 /사용자보기) 
 ***************************************  -->
+
+<script>
+	console.log('${review}');
+	console.log('${oneRoute}');
+</script>
 <section id="intro"
 	style="background: url( <c:url value='/images/main/slide1.jpg'/> ) center center no-repeat fixed;">
 	<div class="container" >

@@ -21,13 +21,33 @@
 	});
 </script>
 
+<section class="post-wrapper-top" style="margin-top: 70px;">
+	<div class="container">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<ul class="breadcrumb">
+				<li>여행 플래너</li>
+			</ul>
+			<h2> 보금자리 예약하기  </h2>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: 61px;">
+			<ul class="nav nav-tabs" style="float: right;">
+				<li style="display: block;"><a href="#"> 저 장 </a></li>
+				<li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
+				<li style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
+				<li  style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
+				<li class="active" style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>
+				<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>				
+			</ul>						
+		</div>		
+	</div>
+</section>
+
 <section class="section1">
 <!--  -->
-<jsp:include page="plantop.jsp"></jsp:include>
+<%-- <jsp:include page="plantop.jsp"></jsp:include> --%>
+
 <!--  -->
-<div>
-	<h3 class="text-center">숙박 예약</h3><hr/>
-</div>
+
 <div class="container-fluid" style="background-color: #B2EBF4">
 	<form id="bbsearch" class="form-inline text-center">
 		<div class="btn-group text-center" style=" margin: 0 auto; width: auto">
