@@ -5,8 +5,6 @@
 <link href="<c:url value='/BootStrap/planmap/css/planmaprute.css'/>" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437&libraries=services,clusterer,drawing"></script>
 <!-- ****************************map 관련 css 및 map api 호출 종료 ***********************************-->
-<%@ include file="routedetails.jsp" %>
-<!-- ********************************* 상세 일정 페이지 달력 출력 종료 *************************************** -->
 <!-- ******************************루트 페이지 바디 영역 시작****************************************-->
 <div class="container-fluid" style="height: 100%">
 	<section class="section1" style="margin-top: -30px; height: 100%">
@@ -37,43 +35,76 @@
 		<div class="container-fluid" style="height: 100%; overflow: scroll;"> 
 			<!--********************************왼쪽 여행 상세정보 출력 정보 시작**********************************-->
 			 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" id="leftrute" >
-				<div id="planroutetop" style="background: #1abc9c; padding: 10px; text-align: center; height: auto">
-					<div class="row" >						
+				<div id="planroutetop" style="background: #1abc9c; text-align: center; height: auto" >
+					<div class="row" style="display: inline; margin-top: -40px;">						
 						<div class="col-md-8 col-sm-8 col-xs-12" id="plandate" style="width: auto; display:block; margin: 0 auto;">
+							<!-- *************  루트 작성 당일 일자 출력 시작 ************ -->
 							<div style="display:block; margin-bottom: -10px; height: auto; width: auto">
 								<span style="display: inline-block; margin-top: 8px; margin-left:5px; padding:5px; color: #5D5D5D; font-size: 10pt;
 									background-color: white; ">
 									<i class="fa fa-calendar"></i> 작성일</span>
 									<input type="text" style="width: auto; padding: 4px;" disabled class="text-center" id="nowdate" name="nowdate">						
 							</div>
+							<!-- *************  루트 작성 당일 일자 출력 종료 ************ -->
+							<!-- *************  루트 시작 일자 선택 시작  ************ -->
 							<div style="display:block; height: auto; width: auto">
 								<span style="display: inline-block; margin-top: 8px; margin-left:5px; padding:5px; color: #5D5D5D; font-size: 10pt;
 									background-color: white;">
 									<i class="fa fa-calendar"></i> 출발일</span>
 								<input id="thedate" style="width: auto; padding: 4px;" type="text" readonly class="text-center">						
 							</div>
+							<!-- *************  루트 시작 일자 선택 시작  ************ -->							
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-12 text-center">
+						<!-- **********************  여행 타입 선택 이미지 박스 시작  ********************* -->
+						<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="width: 150px; height: 80px;">
 							<div class="btn-group" style="margin-top: 8px;">
-								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" style="margin-top: 7px;" 
-									id="tourtype"><img id="tourtypeimage" alt="여행 타입" src=""><span class="caret"></span></a>
+								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" id="tourtype">
+									<img id="tourtypeimage" alt="여행 타입" src="" style=""><span id="caret" class="caret"></span></a>
 								<ul class="dropdown-menu" id="peopletype">
-									<!-- 드롭다운 메뉴 링크들 -->
-									<li><a href="#"><img src="/Planit/images/member/Preference/Preference_alone.JPG" alt="혼자서"></a></li>
-									<li><a href="#"><img src="/Planit/images/member/Preference/Preference_couple.JPG" alt="연인끼리"></a></li>
-									<li><a href="#"><img src="/Planit/images/member/Preference/Preference_family.JPG" alt="가족끼리"></a></li>
-									<li><a href="#"><img src="/Planit/images/plan/friend1.png" alt="친구끼리"></a></li>
-									<li><a href="#"><img src="/Planit/images/plan/club1.png" alt="동호회"></a></li>
+									<li id="single"><a href="#"><img src="/Planit/images/member/Preference/Preference_alone.JPG" alt="혼자서"></a></li>
+									<li id="couple"><a href="#"><img src="/Planit/images/member/Preference/Preference_couple.JPG" alt="연인끼리"></a></li>
+									<li id="friend"><a href="#"><img src="/Planit/images/plan/friend1.png" alt="친구끼리"></a></li>
+									<li id="family"><a href="#"><img src="/Planit/images/member/Preference/Preference_family.JPG" alt="가족끼리"></a></li>
+									<li id="club"><a href="#"><img src="/Planit/images/plan/club1.png" alt="동호회"></a></li>
 								</ul>
-							</div>							
+							</div>												
 						</div>
+						<!-- **********************  여행 타입 선택 이미지 박스 종료  ********************* -->
 					</div>	
 					
 					<div style="clear: both"></div>
 				</div>	
-				<div id="cityroute" style="position: relative; text-align: center; width: 100%; margin-left: 0px; padding-left: 0px; 
-					padding-top: 0px; overflow: auto; background: rgb(255, 255, 255); height: 100px;" class="ui-sortable">
-						<br><br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font>
+				<div id="cityroute" class="" >
+					
+						<!-- 사용자가 추가한 여행정보가 없을때 -->
+						<div id="nocityrute" style="background-color: cyan; ">
+							<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>
+						</div>
+						<!-- 사용자가 추가한 여행정보가 없을때 -->
+						
+						<!-- 사용자가 추가한 여행 정보가 있을때 -->
+						<div id="planroute" style="height: 100px;" class="text-center" >
+							<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 text-center" style="height: auto; width: 120px; text-align: center;">
+								<div style="width: 44px; border-right: 4px solid #3ad195; height: 8px;"></div>
+								<div id="planroutecycle" >
+									<div class="btn-group" style="height: auto; margin-top: 8px; display: inline-block;">
+										<a href="" id="" class="dmbutton dropdown-toggle" data-toggle="dropdown">
+											<span id="caret" class="caret"></span></a>일
+										<ul class="dropdown-menu" id="">
+											<li>M</li>
+											<li>2</li>
+										</ul>
+									</div>
+								</div>
+								<div style="width: 44px; border-right: 4px solid #3ad195; height: 8px;"></div>							
+							</div>									
+						</div>																
+						
+						
+						<div id="planroute" style="background-color: pink; height: 100px;" >
+							
+						</div>
+						<!-- 사용자가 추가한 여행 정보가 있을때 -->	
 				</div>
 			</div>
 			<!--******************************** 왼쪽 여행 상세정보 출력 종료 *************************************-->
@@ -82,7 +113,7 @@
 			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" id="rightrute" >		
 				<div class="map_wrap" style="height: 100%">
 					<!-- *********************************지도 타입 및 확대 축소 시작 **************************************-->		
-					<div id="map" style="width:100%; height:85%; position:relative; overflow:hidden;"></div>		    
+					<div id="map"></div>		    
 				    <div class="custom_typecontrol radius_border"><!-- 지도타입 컨트롤 div 입니다 -->
 				        <span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
 				        <span id="btnSkyview" class="sky_btn" onclick="setMapType('skyview')">스카이뷰</span> 	        			        

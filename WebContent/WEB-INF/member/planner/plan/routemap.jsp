@@ -102,21 +102,23 @@
 	
 	// 검색 결과 목록과 마커를 표출하는 함수입니다
 	function displayPlaces(places) {
-		
+		/* **************** 검색 키워드 출력 *************** */
 		    var listEl = document.getElementById('placesList'), 
 		    menuEl = document.getElementById('menu_wrap'),
 		    fragment = document.createDocumentFragment(), 
 		    bounds = new daum.maps.LatLngBounds(), 
 		    listStr = '';	    
-		    removeMarker();	    // 지도에 표시되고 있는 마커를 제거합니다    
+		    removeMarker();	    // 지도에 표시되고 있는 마커를 제거합니다
+	    /* **************** 검색 키워드 출력 *************** */
 		
+		    /* **************** 카테 고리별 검색 *************** */
 	    if(currCategory){	
-	    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
-	    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
-	    var order = document.getElementById(currCategory).getAttribute('data-order');
+		    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
+		    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
+		    var order = document.getElementById(currCategory).getAttribute('data-order');
 	    }
+	    /* **************** 카테 고리별 검색 *************** */
 	    
-	     
 	    for ( var i=0; i<places.length; i++ ) {
 	    	if(!currCategory){
 		    	/* ************************************************* 키워드로 장소검색하고 목록으로 표출하기 ***************************************** */
@@ -137,8 +139,11 @@
 		        })(marker, places[i].place_name); */
 		        (function(marker, place) {
 	                daum.maps.event.addListener(marker, 'click', function() {
-	                    displayPlaceInfo(place);
-	                });
+	                    //displayPlaceInfo(place);											// 포커스 아웃시 닫아야함.	                    
+	                	var clickcount = 0;
+	                	if(clickcount ==0){ displayPlaceInfo(place); clickcount=1;}
+						else if(clickcount ==1){ displayPlaceInfo(""); clickcount=0; }
+	                });	
 	            })(marker, places[i]);
 		     	
 		        map.setBounds(bounds);	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
@@ -151,8 +156,12 @@
 	            // 마커와 검색결과 항목을 클릭 했을 때
 	            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
 	            (function(marker, place) {
-	                daum.maps.event.addListener(marker, 'click', function() {
-	                    displayPlaceInfo(place);
+	            	var clickcount = 0;
+	                daum.maps.event.addListener(marker, 'click', function() {	                	
+						//displayPlaceInfo(place);												// 포커스 아웃시 닫아야함.
+						if(clickcount ==0){ displayPlaceInfo(place); clickcount=1;}
+						else if(clickcount ==1){ displayPlaceInfo(""); clickcount=0; }
+						
 	                });
 	            })(marker, places[i]);
 	            /* ******************************************* 카테 고리 검색 ***************************************** */
@@ -234,9 +243,10 @@
 	            position: position, // 마커의 위치
 	            image: markerImage 
 	        });
+		 /* console.log(order+"///"+idx); */
 		if(currCategory){			
 		    var imageSrc = '/Planit/images/plan/css_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다 // http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png
-		        imageSize = new daum.maps.Size(32, 32),  // 마커 이미지의 크기
+		        imageSize = new daum.maps.Size(31, 31),  // 마커 이미지의 크기
 		        imgOptions =  {
 		            spriteSize : new daum.maps.Size(70, 197), // 스프라이트 이미지의 크기
 		            spriteOrigin : new daum.maps.Point(38, (order*33)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
@@ -267,14 +277,20 @@
 	        content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
 	    }                
 	   
-	    content += '    <span class="tel">' + place.phone + '</span>' + 
-	                '</div>' + 
+	    content += '    <span class="tel">' + place.phone + '</span>' +
+	    			'<a href="#" id="planplus"><img src="/Planit/images/plan/planplus.png" ></a>'+				//상세보기 + 버튼구현
+	                '</div>' +
+	                
 	                '<div class="after"></div>';
 
 	    contentNode.innerHTML = content;
 	    placeOverlay.setPosition(new daum.maps.LatLng(place.y, place.x));
 	    placeOverlay.setMap(map);  
 	}
+	
+	/*******************************************/
+	
+	/*******************************************/
 	
 	
 	// 각 카테고리에 클릭 이벤트를 등록합니다
@@ -323,4 +339,85 @@
 	
 </script>
 
+<script>
+
+</script>
+<!--**************************************************************************************************************************-->
+<!--**************************************************************************************************************************-->
+<!--**************************************************************************************************************************-->
+<!--**************************************************************************************************************************-->
+<!--**************************************************************************************************************************-->
+
+
+<!-- ************************루트 상세 정보 계획 자바 스크립트 시작****************** -->
+<!-- ********************************* 상세 일정 페이지 달력 출력 시작 *************************************** -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- ********************************* 상세 일정 페이지 달력 출력 종료 *************************************** -->
+<script>
+
+	$(function() {
+	/* ************************************* 상세정보 입력 란의 달력 정보 출력 시작 ******************************************* */
+		 $.datepicker.setDefaults({
+		        dateFormat: 'yy년 mm월 dd일',
+		        prevText: '이전 달',
+		        nextText: '다음 달',
+		        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		        showMonthAfterYear: true,
+		        yearSuffix: '년 '
+		    });
+		$("#thedate").datepicker({ minDate: 0});
+	/* ************************************* 상세정보 입력 란의 달력 정보 출력 종료 ******************************************* */
+
+		/********************  이미지 선택 박스 출력 시작 *******************/		
+		$('#peopletype li > a > img').on('click', function(){
+			//alert($(this).attr('alt'));//오 읽어온다.
+			$('#tourtypeimage').attr('src',$(this).attr('src')).attr('alt',$(this).attr('alt')).css('height',80);
+			$('#caret').attr('class','');
+			$('#tourtype').css('padding',0).css( 'height' ,'auto');
+		});
+		/********************  이미지 선택 박스 출력 시작 *******************/
+		
+	});
+
+		
+
+	/* ************************************* 상세정보 입력 란의 오늘 일자 정보 출력 시작 ******************************************* */
+	function autoDate () {
+		var tDay = new Date();
+		var tMonth = tDay.getMonth()+1;
+		var nowdate = tDay.getDate();
+		if ( tMonth < 10) tMonth = "0"+tMonth;
+		if ( nowdate < 10) nowdate = "0"+nowdate;
+		document.getElementById("nowdate").value = tDay.getFullYear()+"년 "+tMonth+"월 "+nowdate+"일";
+	 }
+	
+	
+	function addLoadEvent(func) {
+		var oldonload = window.onload;
+		if (typeof window.onload != 'function') {
+			window.onload = func;
+		} else {
+			window.onload = function() {
+				if (oldonload) {
+					oldonload();
+				}
+				func();
+			}
+		}
+	}
+
+	addLoadEvent(function() {
+		autoDate();
+	});
+	/* ************************************* 상세정보 입력 란의 오늘 일자 정보 출력 종료 ******************************************* */
+	
+	
+	
+</script>
+<!-- ****************************************************루트 상세 정보 계획 자바 스크립트 종료************************************************************ -->
 
