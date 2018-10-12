@@ -24,7 +24,7 @@ public class SearchMapDAO implements SearchMapService {
 
 	@Override
 	public List<SearchMapDTO> selectContentList(Map map) {
-		return template.selectList("searchMapContent", map);
+		return template.selectList("selectContentList", map);
 	}
 
 	@Override

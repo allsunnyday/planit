@@ -53,18 +53,28 @@ public class SearchMapController {
 		//로그인 했는지 확인
 		Boolean isLogin = session.getAttribute("id") != null ? true : false;
 		//선호도조사결과 확인
-		System.out.println();
 		
 		map.put("start", 1);
 		map.put("end", 6);
 		System.out.println("map.size(): "+map.size());
+		//tour목록 
+		List<SearchMapDTO> tourlist = service.selectTravelList(map);
+		System.out.println("tourlist.size():"+tourlist.size());
+		model.addAttribute("tourlist",tourlist);
 		
-		List<SearchMapDTO> list = service.selectTravelList(map);
-		System.out.println("List.size():"+list.size());
-		model.addAttribute("list",list);
-	
+		//content목록
+		List<SearchMapDTO> contentlist = service.selectContentList(map);
+		System.out.println("contentlist.size:"+contentlist.size());
+		model.addAttribute("contentlist",contentlist);
+		
+		
 		return "tourinfo/mappick/MapIllust.theme";
 	}
+	
+	
+	
+	
+	
 	
 	@ResponseBody
 	@RequestMapping(value="/tourinfo/mappick/MapPick.it", produces="text/plain; charset=UTF-8")
@@ -76,24 +86,38 @@ public class SearchMapController {
 		map1.put("end", 6);
 		map1.put("areacode", map.get("areacode"));
 		
-		List<SearchMapDTO> pickList = service.selectTravelList(map1);
+		List<SearchMapDTO> tourpickList = service.selectTravelList(map1);
 		System.out.println("map1에 값 + 쿼리에 들어가는 값"+ map1.size());
 		
 		List<Map> collections = new Vector<Map>();
-		for(SearchMapDTO dto: pickList) {
+		for(SearchMapDTO dto: tourpickList) {
 			Map record = new HashMap();
 			record.put("contentid", dto.getContentid());
 			record.put("title", dto.getTitle());
 			record.put("firstimage", dto.getFirstimage());
 			collections.add(record);
-			
 		}
 		
-		System.out.println("pickList.size():"+pickList.size());
-		System.out.println("collections크기:"+collections.size());
+		///컨텐츠용
+		List<SearchMapDTO> contentpickList = service.selectContentList(map1);
 		
+		for(SearchMapDTO dto: contentpickList) {
+			Map record = new HashMap();
+			record.put("contentid", dto.getContentid());
+			record.put("title",dto.getTitle());
+			record.put("firstimage",dto.getFirstimage());
+			collections.add(record);
+		}
+		
+//		System.out.println("pickList.size():"+pickList.size());
+		System.out.println("collections크기:"+collections.size());
+		System.out.println(JSONArray.toJSONString(collections));
 		return JSONArray.toJSONString(collections);
 	}
+	
+	
+	
+	
 	
 	/*@RequestMapping("/tourinfo/mappick/MapPick.it")
 	public String MapPickAjax(@RequestParam Map map) throws Exception{
