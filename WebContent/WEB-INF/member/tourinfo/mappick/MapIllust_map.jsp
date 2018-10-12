@@ -11,7 +11,7 @@
 		<div class="col-md-5" style="background-color: #47698c;">
 			<!--지도-->
 			<div class="col-md-12">
-					<h2 style="color: white;">${areaCode} 입니다</h2>
+					<h2 style="color: white;">${areacode} 입니다</h2>
 				<div style="width: 100%; float: right; padding-bottom: 50px;">
 					<!-- <div class="container-fluid" style="margin-top: 60px; width: 75%; height: 40px; float: right;"> -->
 					<div id="planmap" style="width: 100%; height: 700px; float: inherit; text-align: center;">

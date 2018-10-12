@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
 
+<style>
 /* 
-************************************************************************************************************************************************
+***************************
 지역선택 아이콘 
-***********************************************************************************************************************************************
+*************************
  */
 #description_icon {
 	width: 200px;
@@ -152,56 +152,84 @@
 </style>
 
 <script>
-$(function() {
-	$('.go-button').click(function() {
-		console.log("지역값: "+$(this).html()); //버튼 클릭시 해당 지역이름 받아오기
-		 
-		$.ajax(){
-			
-			
-		};
-		
-		
-		
-		
+//1. 버튼 클릭시 지도 api띄워주기
+//2. 해당 지역관랸 추천 리스트띄워주기
+//3. session에서 로그인 멤버 선호도 내용 찾기
+	
+	$(function(){
+		$('.go-button').click(function() {
+			console.log("지역값: "+$(this).html()+$(this).val()); //버튼 클릭시 해당 지역이름 받아오기
+			$.ajax({
+				url: "<c:url value='/tourinfo/mappick/MapPick.it'/>",
+				dataType: 'json',
+				data:{areacode:$(this).val()},
+				success: successMapPick,
+				error: function(request, status, error){
+					console.log(request, status, error);
+				}
+			});
+		});
 	});
 	
-	
-	
-	
-});
+	//지도 버튼 클릭시 ajax성공 함수
+	var successMapPick = function(data) {
+		console.log(JSON.stringify(data));
+		var firstString = '';
+		var lastString ='';
+		$.each(data, function(index, content){// index = 0부터
+			console.log(content['contentid']);
+			console.log(index+'index ');
+			//
+			if(index <3){ //0 1 2
+				firstString+=''
+					+'<div class="col-lg-4">'
+					+'	<a><img class="" src="'+content['firstimage']+'" alt="travelimg"><span>'+content['title']+'</span></a>'
+					+'</div>';
+			}
+			else{ // 3,4,5
+				lastString+=''
+				+'<div class="col-lg-4">'
+				+'	<a><img class="" src="'+content['firstimage']+'" alt="travelimg"><span>'+content['title']+'</span></a>'
+				+'</div>';
+			}
+		});// each
+		$('.best-first').html(firstString);
+		$('.best-last').html(lastString);
+	};
 
 </script>
 
+
 <div class="container-fluid" style="padding-top: 70px; background-color:#47698c;">
 	<div class="row">
-		<div class="col-md-5" style="background-color: #47698c;  padding-bottom: 30px;">
+		<div id="showDiv" class="col-md-5" style="background-color: #47698c;  padding-bottom: 30px;">
 			<!-- 지역선택 아이콘 -->
 			<div class="col-md-12">
 				<div id="description_icon" style="margin-top: 30px"></div>
 			</div>
 			<!--지도-->
 			<div class="col-md-12">
-				<form action="<c:url value='/tourinfo/mappick/MapIllust.it'/>">
+				<form >
 					<div class="lcate" style="overflow: hidden; background-color: #47698c;"> 
 						<div class="mapIllust" style="position:relative">
 							<ul id="setHiddenButtons1" style="position:relative">
-								<li class="icon2"><button value="1" name="areaCode" type="submit" class="go-button">서울</button></li>
-								<li class="icon3"><button value="31" name="areaCode" type="submit" class="go-button">경기</button></li>
-								<li class="icon4"><button value="32" name="areaCode" type="submit" class="go-button">강원</button></li>
-								<li class="icon5"><button value="34" name="areaCode" type="submit" class="go-button">충남</button></li>
-								<li class="icon6"><button value="8" name="areaCode" type="submit" class="go-button">세종</button></li>
-								<li class="icon17"><button value="33" name="areaCode" type="submit" class="go-button">충북</button></li>
-								<li class="icon7"><button value="3" name="areaCode" type="submit" class="go-button">대전</button></li>
-								<li class="icon8"><button value="35" name="areaCode" type="submit" class="go-button">경북</button></li>
-								<li class="icon9"><button value="37" name="areaCode" type="submit" class="go-button">전북</button></li>
-								<li class="icon10"><button value="4" name="areaCode" type="submit" class="go-button">대구</button></li>
-								<li class="icon11"><button value="5" name="areaCode" type="submit" class="go-button">광주</button></li>
-								<li class="icon12"><button value="38" name="areaCode" type="submit" class="go-button">전남</button></li>
-								<li class="icon13"><button value="36" name="areaCode" type="submit" class="go-button">경남</button></li>
-								<li class="icon14"><button value="7" name="areaCode" type="submit" class="go-button">울산</button></li>
-								<li class="icon15"><button value="6" name="areaCode" type="submit" class="go-button">부산</button></li>
-								<li class="icon16"><button value="39" name="areaCode" type="submit" class="go-button">제주</button></li>
+								<li class="icon1"><button value="2" name="areacode" type="button" class="go-button">인천</button></li>
+								<li class="icon2"><button value="1" name="areacode" type="button" class="go-button">서울</button></li>
+								<li class="icon3"><button value="31" name="areacode" type="button" class="go-button">경기</button></li>
+								<li class="icon4"><button value="32" name="areacode" type="button" class="go-button">강원</button></li>
+								<li class="icon5"><button value="34" name="areacode" type="button" class="go-button">충남</button></li>
+								<li class="icon6"><button value="8" name="areacode" type="button" class="go-button">세종</button></li>
+								<li class="icon17"><button value="33" name="areacode" type="button" class="go-button">충북</button></li>
+								<li class="icon7"><button value="3" name="areacode" type="button" class="go-button">대전</button></li>
+								<li class="icon8"><button value="35" name="areacode" type="button" class="go-button">경북</button></li>
+								<li class="icon9"><button value="37" name="areacode" type="button" class="go-button">전북</button></li>
+								<li class="icon10"><button value="4" name="areacode" type="button" class="go-button">대구</button></li>
+								<li class="icon11"><button value="5" name="areacode" type="button" class="go-button">광주</button></li>
+								<li class="icon12"><button value="38" name="areacode" type="button" class="go-button">전남</button></li>
+								<li class="icon13"><button value="36" name="areacode" type="button" class="go-button">경남</button></li>
+								<li class="icon14"><button value="7" name="areacode" type="button" class="go-button">울산</button></li>
+								<li class="icon15"><button value="6" name="areacode" type="button" class="go-button">부산</button></li>
+								<li class="icon16"><button value="39" name="areacode" type="button" class="go-button">제주</button></li>
 							</ul>
 						</div>
 					</div>
@@ -222,39 +250,29 @@ $(function() {
 				<div id="mycarousel" class="carousel slide" data-ride="carousel">
 					<!-- wrapper for slides -->
 					<div class="carousel-inner">
+					
+					
 						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
-						<div class="item active">
-							<div id="popularitems" class="">
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a>
-								</div>
-
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a>
-								</div>
-
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a>
-								</div>
+						 <div class="item active">
+							<div id="popularitems " class="best-first" >
+								<c:forEach var="travel" items="${list}" begin="0" end="2">
+									<div class="col-lg-4">
+										<a><img class="" src="${travel.firstimage}" alt="travelimg"><span>${travel.title}</span></a>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 						<!-- end carousel slide 1   -->
 						<div class="item ">
-							<div id="popularitems" class="">
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a>
-								</div>
-
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a> 
-								</div>
-
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>"></a>
-								</div>
+							<div id="popularitems " class="items_travel best-last">
+								<c:forEach var="travel" items="${list}" begin="3" end="5">
+									<div class="col-lg-4">
+										<a><img class="" src="${travel.firstimage}" alt="travelimg"><span>${travel.title}</span></a>
+									</div>
+							</c:forEach>
 							</div>
 						</div>
-
+						
 					</div>
 					<!-- end wrapper for slides -->
 					<a class="left carousel-control" href="#mycarousel" data-slide="prev"> 
@@ -274,7 +292,7 @@ $(function() {
 					<div class="carousel-inner">
 						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
 						<div class="item active">
-							<div id="popularitems" class="">
+							<div id="popularitems" class="items_content">
 								<div class="col-lg-4">
 									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
@@ -290,7 +308,7 @@ $(function() {
 						</div>
 						<!-- end carousel slide 1   -->
 						<div class="item ">
-							<div id="popularitems" class="">
+							<div id="popularitems" class="items_content">
 								<div class="col-lg-4">
 									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
@@ -315,7 +333,7 @@ $(function() {
 				</div>
 				<!-- end carousel container-->
 <!-- title -->
-				<div class="general-title text-center">
+				<%-- <div class="general-title text-center">
 					<p style="color: white; font-style: normal;">베스트 리뷰</p>
 				</div>
 				<!-- carousel start -->
@@ -324,7 +342,7 @@ $(function() {
 					<div class="carousel-inner">
 						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
 						<div class="item active">
-							<div id="popularitems" class="">
+							<div id="popularitems" class="items_review">
 								<div class="col-lg-4">
 									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
 								</div>
@@ -340,7 +358,7 @@ $(function() {
 						</div>
 						<!-- end carousel slide 1   -->
 						<div class="item ">
-							<div id="popularitems" class="">
+							<div id="popularitems" class="items_review">
 								<div class="col-lg-4">
 									<img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt="">
 								</div>
@@ -359,7 +377,7 @@ $(function() {
 					<a class="left carousel-control" href="#mycarousel2" data-slide="prev"> <span class="icon-prev"></span>
 					</a> <a class="right carousel-control" href="#mycarousel2" data-slide="next"> <span class="icon-next"></span>
 					</a>
-				</div>
+				</div> --%>
 				<!-- end carousel container-->
 		</div>
 		<!-- end content -->

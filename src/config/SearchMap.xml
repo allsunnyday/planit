@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	*변경사항*
+	mapper 파일의 완전한 경로 . xml은 생략
+	ibatis와는 다르게 id값에 '.'를 사용하지 못함
+ -->
+ <!--AND firstimage IS NOT NULL	  -->
+ <mapper namespace="config.SearchMap">
+	<select id="searchMapTourList" parameterType="java.util.Map" resultType="searchMapDTO">
+			SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT contentid, title, firstimage FROM content WHERE contenttype=12 	
+		<if test="areacode != null">
+		   AND areacode=${areacode}
+		</if>
+		   )T) WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectContentList" parameterType="java.util.Map" resultType="searchMapDTO">
+		SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT contentid, title, firstimage FROM content WHERE contenttype NOT IN(25,12) AND firstimage IS NOT NULL
+			<if test="areacode != null">
+			and areacode=${areacode}
+			</if>
+			)T) WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectReviewList" parameterType="java.util.Map" resultType="java.util.Map">
+		select contentid, title, firstimage from content where not contenttype=12 and not contenttype=25
+			<if test="areacode != null">
+			and areacode=${areacode}
+			</if>
+	</select>
+	
+</mapper>
+
+
+
