@@ -15,6 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM member WHERE id=#{id} AND pwd=#{pwd}
 	</select>
 
+
+
 	<insert id="MemberIsJoin" parameterType="MemberDTO">
 	<!-- insert into member(id, email,pwd,verified,regidate,gender,age,star) values('test','test@test.com','1234','Y',SYSDATE,'M','20',0); -->
 		INSERT INTO member(id, email,pwd,verified,regidate,gender,age,star,name) values(#{id},#{email},#{pwd},'Y',SYSDATE,#{gender},#{age},0,#{name})
