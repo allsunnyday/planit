@@ -74,10 +74,8 @@
 						<!-- buttons -->
 						<hr>
 						<div class="rating text-center">
-							<i class="fa fa-plain"></i> <i class="fa fa-star"></i> <i
-								class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-								class="fa fa-star-o"></i>
-							<p>Users Rating</p>
+							<i class="fa fa-star-o"></i> 
+							<p>찜찜찜찜찜</p>
 						</div>
 						<!-- rating -->
 					</div>
@@ -158,13 +156,13 @@
 		<div  class="a_1_1">
 			<div class="carousel">
 				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 1">
-				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 2">
-				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 3">
-				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 4">
-				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 5">
-				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 6">
-				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 7">
-				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 8">
+				<img src="<c:url value='/images/list/333.jpg'/>" alt="Landscape 2">
+				<img src="<c:url value='/images/list/bibim.jpg'/>" alt="Landscape 3">
+				<img src="<c:url value='/images/list/andong.jpg'/>" alt="Landscape 4">
+				<img src="<c:url value='/images/list/forest.jpg'/>" alt="Landscape 5">
+				<img src="<c:url value='/images/list/hotel.PNG'/>" alt="Landscape 6">
+				<img src="<c:url value='/images/list/motel.PNG'/>" alt="Landscape 7">
+				<img src="<c:url value='/images/list/pen.PNG'/>" alt="Landscape 8">
 			</div>
 		</div>
 
@@ -185,7 +183,7 @@
 		width: 500px;
 		height: 300px;
 		text-align: left;
-		margin: 60px auto;
+		margin:80px auto;
 		-webkit-perspective: 1000px;
 		-webkit-perspective-origin: 50% -25%;
 	}

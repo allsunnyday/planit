@@ -74,10 +74,8 @@
 						<!-- buttons -->
 						<hr>
 						<div class="rating text-center">
-							<i class="fa fa-plain"></i> <i class="fa fa-star"></i> <i
-								class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-								class="fa fa-star-o"></i>
-							<p>Users Rating</p>
+							<i class="fa fa-star-o"></i> 
+							<p>찜찜찜찜찜</p>
 						</div>
 						<!-- rating -->
 					</div>
@@ -281,7 +279,7 @@
 		
 <div class="wrapper">
   <div  id="one">
-  <div style="width: 100%; float: right;">
+  <div style="width: 100%;">
 	<!-- <div class="container-fluid" style="margin-top: 60px; width: 100%; height: 40px; float: right;"> -->
 		<div id="planmap"  style="background-color:cyan; width:100%; height:570px; float: inherit; text-align: center;">
 			<!-- 다음 map 시작 -->
@@ -299,7 +297,6 @@
 	<!-- </div> -->
 </div>
   </div>
-  <div  id="two"><span style="font-size:5em">정보</span></div>
 </div>
 
 	</div>
