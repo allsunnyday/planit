@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.ReviewDTO;
 import com.earth.planit.service.ReviewService;
 
@@ -77,13 +78,17 @@ public class ReviewController {
 			rmap.put("todo", items[4]);
 			rmap.put("todomemo", items[5]);
 			rmap.put("stayNY", items[6]);
-			
+			ContentDTO dto = TourApiUtils.getdetailCommon(items[1], items[2]);
 			// 관광데이터 가지고 오기 
-			
+			rmap.put("overview", dto.getOverview());
 			
 			oneRoute.add(rmap);
 		}
 		
+		
+		//데이터 저장
+		model.addAttribute("reveiw", review);
+		model.addAttribute("oneRoute",oneRoute);
 		return "tourinfo/reviewpick/ReviewView.theme";
 	}
 	
