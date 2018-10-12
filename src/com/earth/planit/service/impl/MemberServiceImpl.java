@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.earth.planit.service.MemberDTO;
 import com.earth.planit.service.MemberService;
 
 @Service("memberService")
@@ -18,6 +19,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean isLogin(Map map) {
 		return dao.isLogin(map);
+	}
+
+	@Override
+	public int isJoin(MemberDTO dto) {
+		//[회원가입]
+		return dao.isJoin(dto);
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.earth.planit.service.MemberDTO;
 import com.earth.planit.service.MemberService;
 
 @Controller
@@ -41,42 +42,58 @@ public class MemberController {
 		return "login/JoinMain.theme";
 	}
 
-	@RequestMapping("/member/login/CompanyJoin.it")
-	public String gotoCompanyJoin() throws Exception {
-		return "login/JoinPartnerProgress.theme";
-	}
 
 	@RequestMapping("/member/login/UserJoin.it")
-	public String gotoCompanyLogin() throws Exception {
+	public String gotoUserJoin(@RequestParam Map map) throws Exception {
+	
 		return "login/JoinUserProgress.theme";
 	}
 
 	// ***************마이페이지 이동(일반회원)
 	@RequestMapping("/planit/mypage/MyPageHome.it")
 	public String gotoMyPageHome() throws Exception {
+		//사진 및 기타등등 노출
+		/*System.out.println("id"+map.get("id"));
+		session.setAttribute("userid", map.get("id"));*/
+		//@RequestParam Map map,HttpSession session
 		return "mypage/MyPageHome.theme";
 	}
 
 	@RequestMapping("/planit/mypage/MyPageEditProfile.it")
 	public String gotoMyPageEditProfile() throws Exception {
+		
+		
+		
 		return "mypage/MyPageEditProfile.theme";
 	}
 
 	@RequestMapping("/planit/mypage/MyPageEditPassword.it")
    public String gotoMyPageEditPassword()throws Exception{
+		
+		
+		
 	   return "mypage/MyPageEditPassword.theme";
 	}
 	///******임시
 	@RequestMapping("/planit/mypage/MyPagePassCheck.it")
 	public String gotoMyPagePassCheck()throws Exception{
+		
+		
 		return "mypage/MyPagePassCheck.theme";
 	}
 	@RequestMapping("/planit/mypage/Preference.it")
 	public String gotoPreference()throws Exception{
+		
+		
+		
 		return "mypage/UserPreference.theme";
 	}
 	@RequestMapping("/planit/mypage/Preference2.it")
 	public String gotoPreference2()throws Exception{
+		
+		
+		
+		
 		return "/mypage/UserPreference2.theme";
 		///planit/WebContent/WEB-INF/member/mypage/UserPreference2.jsp
 	}
@@ -90,7 +107,7 @@ public class MemberController {
    public String gotoMyPageEditPassword()throws Exception{
 	   return "mypage/MyPagePassCheck.theme";
    }*/
-	   //***************마이페이지 이동(일반회원)
+	   //***************마이페이지 상세페이지 이동(일반회원)
 	   
 	
 	@RequestMapping("/planit/mypage/detail/Q&A.it")
@@ -114,11 +131,7 @@ public class MemberController {
 		
 	}
 	//***************마이페이지 이동(기업회원)
-	@RequestMapping("/planit/mypage/partner/PartnerMyPageHome.it")
-	public String gotoPartnerMyPageHome() throws Exception {
-		return "mypage/partner/PartnerMyPageHome.theme";
-	}
-	
+
 	
 	
 	/* 로그인 처리  method=RequestMethod.POST로 설정하여 get방식 접근을 막는다. */
@@ -128,16 +141,44 @@ public class MemberController {
 		System.out.println("id="+map.get("id")+" pwd="+map.get("pwd"));
 		
 		boolean isLogin = service.isLogin(map);
-		
+		System.out.println(isLogin);
+		System.out.println(service.isLogin(map));
 		if(isLogin) { // 회원일경우
 			//로그인 처리 - 세션 영역에 저장 
 			session.setAttribute("userid", map.get("id"));
+			return "main/main.tiles";
 		}
 		else { // 비회원일경우 
 			model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
 		}
 		
 		return "forward:/planit/login/Login.it";
+		
+	}
+	
+	//[로그아웃 처리]
+	@RequestMapping("/member/login/Logout.it")
+	public String logoutProcess(HttpSession session) throws Exception{
+		session.invalidate();
+		return "main/main.tiles";
+		
+	}
+	
+	//[회원가입 처리]
+	@RequestMapping(value="/member/login/UserJoinFormProcess.it" ,method=RequestMethod.POST)
+	public String userJoinFormProcess(MemberDTO dto,@RequestParam Map map, HttpSession session) throws Exception{
+		System.out.println("비밀번호:"+map.get("pwd"));
+		System.out.println("비밀번호:"+dto.getPwd());
+		
+		int isJoin=service.isJoin(dto);
+		System.out.println(isJoin);
+		if(isJoin==1) {
+			session.setAttribute("userid", map.get("id"));
+		}
+		return "mypage/UserPreference.theme";
+	
+		//선호도 체크페이지 이동
+		
 	}
 	
 }

@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 아이콘을 위한 css -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <style type="text/css">
 .table-wrapper {
@@ -342,7 +344,6 @@ table.table .avatar {
 .custom-checkbox input[type="checkbox"]:checked+label:before {
 	border-color: #02f7d8;
 	background: #02f7d8; /* 체크후 색상 */
-	
 }
 
 .custom-checkbox input[type="checkbox"]:checked+label:after {
@@ -356,148 +357,144 @@ table.table .avatar {
 	background: #ddd;
 }
 
-
-#Partner-First-Parter-RoomStatus{
+#Partner-First-Parter-RoomStatus {
 	display: inline-block;
 	border-radius: 10px;
 	background-color: darkgray;
 }
-
 
 #Partner-First-Roomtable td:First-child {
 	font-size: 1.0em;
 	font-weight: bold;
 	color: white;
 	text-indent: 10px;
-	text-align:left;
+	text-align: left;
 }
 
 #Partner-First-Roomtable td:nth-child(2n) {
 	font-weight: lighter;
 	font-size: 1.0em;;
 	color: white;
-/* 	align:right; */
+	/* 	align:right; */
 	text-indent: 10px;
-	
 }
-
 </style>
 <script type="text/javascript">
-	$(document).ready(function() {
-		// Activate tooltip
-		$('[data-toggle="tooltip"]').tooltip();
+	$(document).ready(
+			function() {
+				// Activate tooltip
+				$('[data-toggle="tooltip"]').tooltip();
 
-		// Select/Deselect checkboxes
-		var checkbox = $('table tbody input[type="checkbox"]');
-		$("#selectAll").click(function() {
-			if (this.checked) {
-				checkbox.each(function() {
-					this.checked = true;
+				// Select/Deselect checkboxes
+				var checkbox = $('table tbody input[type="checkbox"]');
+				$("#selectAll").click(function() {
+					if (this.checked) {
+						checkbox.each(function() {
+							this.checked = true;
+						});
+					} else {
+						checkbox.each(function() {
+							this.checked = false;
+						});
+					}
 				});
-			} else {
-				checkbox.each(function() {
-					this.checked = false;
+				checkbox.click(function() {
+					if (!this.checked) {
+						$("#selectAll").prop("checked", false);
+					}
 				});
-			}
-		});
-		checkbox.click(function() {
-			if (!this.checked) {
-				$("#selectAll").prop("checked", false);
-			}
-		});
+				
+				$('#select_request').change(function() {//Status별 정렬
+					if ($("#select_request option:selected").val() != 'ALL') {
+						console.log($("#select_request option:selected").val());
+						var selectedStatus = $("#select_request option:selected").val();
+						var target = $('table tr[data-status="'+ $("#select_request option:selected").val() + '"]');
+						$("table tbody tr").not(target).hide();
+						target.fadeIn();
+					} else {
+						$("table tbody tr").fadeIn();
+					}		
+				});
+				
+				$('#findname_request').change(function() {//이름으로 검색하기
+					console.log($('#findname_request').val());
+				});
+			});
+	
 		
-		if($("#form-control option:selected").val() != 'ALL'){
-			var select = $('table tr[data-status="' + $("#form-control option:selected").val() + '"]');
-			$("table tbody tr").not(target).hide();
-			target.fadeIn();
-		}else{
-			$("table tbody tr").fadeIn();
-		}
-		
-	});
 </script>
 <div class="container-fluid">
-
 	<div class="col-md-3" style="width: 300px">
-        <div style="padding-top:50px; ">
-        <div>
-          <div class="teammembers" style="background-color: white;">
-            <div class="he-wrap tpl2">
-              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
-              <div class="he-view">
-            
-              </div>
-            </div>
-            <!-- he wrap -->
-            <div class="teammembers-meta">
-              <h4>Plan:It</h4>
-            </div>
-            <div id="Partner-First-1-self-detail">
-					<p>
-						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-							(주)Plan:It</span></p>
-	
-				 <div class="Partner-First-PartnerInform"> 
-					
-					<table id="Partner-First-informtable" style="width:110%;">
-             		<tr>
-             			<td>사업자번호</td>
-             			<td>123-45-678900</td>
-             		</tr>
-             		<tr>
-             		<td>대표자</td>
-             			<td>김잇잇</td>
-             		</tr>
-             		<tr>
-             			<td>주소</td>
-             			<td>서울특별시 디지털로 123 311호</td>
-             		</tr>
-             		<tr>
-             			<td>전화</td>
-             			<td>02-0000-0000</td>
-             		</tr>
-             		<tr>
-             			<td>업종</td>
-             			<td>숙박업</td>
-             		</tr>
-             	
-             			
-             		</table>
-					
-				</div>
-			
+		<div style="padding-top: 50px;">
+			<div>
+				<div class="teammembers" style="background-color: white;">
+					<div class="he-wrap tpl2">
+						<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
+							alt="프로필 사진">
+						<div class="he-view"></div>
+					</div>
+					<!-- he wrap -->
+					<div class="teammembers-meta">
+						<h4>Plan:It</h4>
+					</div>
+					<div id="Partner-First-1-self-detail">
+						<p>
+							<span class="glyphicon glyphicon-map-marker" aria-hidden="true">(주)Plan:It</span>
+						</p>
+						<div class="Partner-First-PartnerInform">
+							<table id="Partner-First-informtable" style="width: 110%;">
+								<tr>
+									<td>사업자번호</td>
+									<td>123-45-678900</td>
+								</tr>
+								<tr>
+									<td>대표자</td>
+									<td>김잇잇</td>
+								</tr>
+								<tr>
+									<td>주소</td>
+									<td>서울특별시 디지털로 123 311호</td>
+								</tr>
+								<tr>
+									<td>전화</td>
+									<td>02-0000-0000</td>
+								</tr>
+								<tr>
+									<td>업종</td>
+									<td>숙박업</td>
+								</tr>
+							</table>
+						</div>
 
-            <div class="teamskills" >
-            	<div id="Partner-First-Parter-RoomStatus" style="width:90%;">
-             		<table id="Partner-First-Roomtable" style="width:90%;" >
-             		<tr>
-             			<td>Total Room</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             		<td>Resting room</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             			<td>Reserved room</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             			<td>Star Point</td>
-             			<td>00</td>
-             		</tr>
-             	
-             			
-             		</table>
-             	</div>
-             	</div>
-              
-            </div>
-          </div>
-          <!-- end teammembers -->
-        </div>
-</div>
-</div>
+						<div class="teamskills">
+							<div id="Partner-First-Parter-RoomStatus" style="width: 90%;">
+								<table id="Partner-First-Roomtable" style="width: 90%;">
+									<tr>
+										<td>Total Room</td>
+										<td>00</td>
+									</tr>
+									<tr>
+										<td>Resting room</td>
+										<td>00</td>
+									</tr>
+									<tr>
+										<td>Reserved room</td>
+										<td>00</td>
+									</tr>
+									<tr>
+										<td>Star Point</td>
+										<td>00</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- end teammembers -->
+			</div>
+		</div>
+	</div>
 
 <div class="col-md-9">
 	<div class="container-fluid" style="padding-top: 50px">
@@ -510,9 +507,9 @@ table.table .avatar {
 						</h2>
 					</div>
 					<div class="col-sm-6" style="float: right;">
-					
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
-							<i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+
+						<a href="#deleteEmployeeModal" class="btn btn-danger"
+							data-toggle="modal"> <i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
 					</div>
 				</div>
 			</div>
@@ -524,11 +521,12 @@ table.table .avatar {
 							<i class="fa fa-search"></i>
 						</button>
 						<div class="filter-group">
-							<label>Name</label> <input type="text" class="form-control">
+							<label>Name</label> <input type="text" class="form-control" id="findname_request">
 						</div>
 
 						<div class="filter-group">
-							<label>Status</label> <select class="form-control">
+							<label>Status</label> 
+							<select class="form-control" id="select_request">
 								<option>ALL</option>
 								<option>Replied</option>
 								<option>Waited</option>
@@ -554,14 +552,15 @@ table.table .avatar {
 				</thead>
 				<tbody>
 					<tr data-status="Replied">
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox1" name="options[]" value="1">
+						<td><span class="custom-checkbox"> 
+						<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 						</span></td>
 						<td>1</td>
 						<td><a href="#"><img src="/examples/images/avatar/1.jpg"
 								class="avatar" alt="Avatar"> Michael Holz</a></td>
-						<td><a href="#detailEmployeeModal" class="edit" data-toggle="modal">Room Service Question</a></td>
+						<td><a href="#detailEmployeeModal" class="edit"
+							data-toggle="modal">Room Service Question</a></td>
 						<td>Jun 15, 2017</td>
 						<td><span class="status text-success">&bull;</span> Replied</td>
 						<td><a href="#editEmployeeModal" class="edit"
@@ -618,11 +617,10 @@ table.table .avatar {
 						<td>New York</td>
 						<td>Jul 16, 2017</td>
 						<td><span class="status text-danger">&bull;</span> Waited</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+						<td><a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
+								data-toggle="tooltip" title="Reply">&#xE254;</i></a>
+							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"> 
+							<i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
 					<tr data-status="Replied">
@@ -710,12 +708,12 @@ Edit Modal
 									aria-hidden="true">&times;</button>
 							</div>
 							<div class="modal-body">
-								
+
 								<div class="form-group">
 									<label>Content</label>
-									<textarea class="form-control" required></textarea>
+									<textarea style="height: 300px;" class="form-control" required></textarea>
 								</div>
-								
+
 							</div>
 							<div class="modal-footer">
 								<input type="button" class="btn btn-default"
@@ -726,11 +724,11 @@ Edit Modal
 					</div>
 				</div>
 			</div>
-<!-- ***************************************************
+			<!-- ***************************************************
 detail modal
 ************ -->
 
-<div id="detailEmployeeModal" class="modal fade">
+			<div id="detailEmployeeModal" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<form>
@@ -740,12 +738,12 @@ detail modal
 									aria-hidden="true">&times;</button>
 							</div>
 							<div class="modal-body">
-								
+
 								<div class="form-group">
 									<label>Content</label>
 									<textarea class="form-control" readonly="readonly"></textarea>
 								</div>
-								
+
 							</div>
 							<div class="modal-footer">
 								<input type="button" class="btn btn-default"
@@ -756,9 +754,10 @@ detail modal
 					</div>
 				</div>
 			</div>
-		
 		</div>
-		</div>
-		</div>
+
 	</div>
+</div>
+</div>
+
 

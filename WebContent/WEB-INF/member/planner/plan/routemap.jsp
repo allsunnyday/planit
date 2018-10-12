@@ -9,7 +9,7 @@
 			level: 3 //지도의 레벨(확대, 축소 정도)
 	};				
 	var map = new daum.maps.Map(container, options);//지도를 생성합니다
-	container.style.height = '800px';/* map 의 레이아웃 설정 */
+	//container.style.height = '800px';/* map 의 레이아웃 설정 */
 	map.relayout();/* map 의 레이아웃 설정 */
 	
 	//지도를 클릭한 위치에 표출할 마커입니다
