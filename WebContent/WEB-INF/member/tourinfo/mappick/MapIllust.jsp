@@ -172,7 +172,7 @@
 				error: function(request, status, error){
 					console.log(request, status, error);
 				}
-			});
+			});///ajax
 		});
 	});
 	
@@ -181,25 +181,50 @@
 		console.log(JSON.stringify(data));
 		var firstString = '';
 		var lastString ='';
+		var first='';
+		var last='';
+		/* var tourpickList = data['tourpickList'] ;
+		console.log(JSON.stringify(tourpickList)); */
 		$.each(data, function(index, content){// index = 0부터
-			console.log(content['contentid']);
-			console.log(index+'index ');
-			//
-			if(index <3){ //0 1 2
-				firstString+=''
+			if(index < 6 ){ //012 345
+				if(index <3){ //0 1 2
+					firstString+=''
+						+'<div class="col-lg-4">'
+						+'	<a><img src=\''+content['firstimage']+'\' alt="travelimg"><span>'+content['title']+'</span></a>'
+						+'</div>';
+				}
+				else{ // 3,4,5
+					lastString+=''
 					+'<div class="col-lg-4">'
 					+'	<a><img src=\''+content['firstimage']+'\' alt="travelimg"><span>'+content['title']+'</span></a>'
 					+'</div>';
+				}
 			}
-			else{ // 3,4,5
-				lastString+=''
-				+'<div class="col-lg-4">'
-				+'	<a><img src=\''+content['firstimage']+'\' alt="travelimg"><span>'+content['title']+'</span></a>'
-				+'</div>';
+			else{  //678 910 11
+				// contentpick일경우에는여기에서 스트링을 만든다 .
+				if(index <9){ //6 7 8
+					first+=''
+						+'<div class="col-lg-4">'
+						+'	<a><img src=\''+content['firstimage']+'\' alt="contentimg"><span>'+content['title']+'</span></a>'
+						+'</div>';
+				}
+				else{ // 3,4,5
+					last+=''
+					+'<div class="col-lg-4">'
+					+'	<a><img src=\''+content['firstimage']+'\' alt="contentimg"><span>'+content['title']+'</span></a>'
+					+'</div>';
+				}
 			}
-		});// each
+		});// each 
+		
+		
 		$('.best-first').html(firstString);
 		$('.best-last').html(lastString);
+		//
+		$('.content-first').html(first);
+		$('.content-last').html(last);
+		
+		//contentpickList
 	};
 
 </script>
@@ -254,11 +279,11 @@
 				<!-- carousel start -->
 				<div id="mycarousel" class="carousel slide" data-ride="carousel">
 					<!-- wrapper for slides -->
-					<div class="carousel-inner">
+					<div class="carousel-inner tourpickList">
 
 						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.) -->
 						 <div class="item active">
-							<div id="popularitems " class="best-first" >
+							<div id="popularitems" class="best-first" >
 								<c:forEach var="travel" items="${tourlist}" begin="0" end="2">
 									<div class="col-lg-4">
 										<a href="<c:url value='/'/>"><img src='${travel.firstimage}' alt="travelimg"><span>${travel.title}</span></a>
@@ -268,7 +293,7 @@
 						</div>
 						<!-- end carousel slide 1   -->
 						<div class="item ">
-							<div id="popularitems " class="items_travel best-last">
+							<div id="popularitems" class="items_travel best-last">
 								<c:forEach var="travel" items="${tourlist}" begin="3" end="5">
 									<div class="col-lg-4">
 										<a href="<c:url value='/'/>"><img src='${travel.firstimage}' alt="travelimg"><span>${travel.title}</span></a>
@@ -293,10 +318,12 @@
 				<!-- carousel start -->
 				<div id="mycarousel1" class="carousel slide" data-ride="carousel">
 					<!-- wrapper for slides -->
-					<div class="carousel-inner">
+					<div class="carousel-inner contentpickList">
+					
+					
 						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.) -->
 						 <div class="item active">
-							<div id="popularitems " class="best-first" >
+							<div id="popularitems " class="content-first" >
 								<c:forEach var="content" items="${contentlist}" begin="0" end="2">
 									<div class="col-lg-4">
 										<a href="<c:url value='/'/>"><img src='${content.firstimage}' alt="contentimg"><span>${content.title}</span></a>
@@ -306,7 +333,7 @@
 						</div>
 						<!-- end carousel slide 1   -->
 						<div class="item ">
-							<div id="popularitems " class="items_travel best-last">
+							<div id="popularitems " class="items_travel content-last">
 								<c:forEach var="content" items="${contentlist}" begin="3" end="5">
 									<div class="col-lg-4">
 										<a href="<c:url value='/'/>"><img src='${content.firstimage}' alt="contentimg"><span>${content.title}</span></a>

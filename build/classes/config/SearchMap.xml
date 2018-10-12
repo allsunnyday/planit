@@ -5,33 +5,39 @@
 	mapper 파일의 완전한 경로 . xml은 생략
 	ibatis와는 다르게 id값에 '.'를 사용하지 못함
  -->
- <!--AND firstimage IS NOT NULL	  -->
+ <!--AND firstimage IS NOT NULL	  
+ 
+  contentid, title, firstimage-->
  
  <!-- tour용 쿼리-->
  <mapper namespace="config.SearchMap">
 	<select id="searchMapTourList" parameterType="java.util.Map" resultType="searchMapDTO">
-			SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT contentid, title, firstimage FROM content WHERE contenttype=12    	
+			SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT * FROM content WHERE contenttype=12    	
 		<if test="areacode != null">
 		   AND areacode=${areacode}
 		</if>
-		   )T) WHERE R BETWEEN #{start} AND #{end}
+		   )T) WHERE R BETWEEN 1 AND 6
 	</select>
 	
 	<!-- content용 쿼리-->
 	<select id="selectContentList" parameterType="java.util.Map" resultType="searchMapDTO">
-		SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT contentid, title, firstimage FROM content WHERE contenttype NOT IN(25,12)        
+		SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT * FROM content WHERE contenttype NOT IN(25,12)        
 			<if test="areacode != null">
 			and areacode=${areacode}
 			</if>
-			)T) WHERE R BETWEEN #{start} AND #{end}
+			)T) WHERE R BETWEEN 1 AND 6
 	</select>
 	
+	<!-- review용 쿼리 -->
 	<!-- <select id="selectReviewList" parameterType="java.util.Map" resultType="java.util.Map">
 		select contentid, title, firstimage from content where not contenttype=12 and not contenttype=25       
 			<if test="areacode != null">
 			and areacode=${areacode}
 			</if>
 	</select> -->
+	
+	
+	
 	
 </mapper>
 
