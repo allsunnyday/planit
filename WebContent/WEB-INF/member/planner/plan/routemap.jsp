@@ -102,21 +102,23 @@
 	
 	// 검색 결과 목록과 마커를 표출하는 함수입니다
 	function displayPlaces(places) {
-		
+		/* **************** 검색 키워드 출력 *************** */
 		    var listEl = document.getElementById('placesList'), 
 		    menuEl = document.getElementById('menu_wrap'),
 		    fragment = document.createDocumentFragment(), 
 		    bounds = new daum.maps.LatLngBounds(), 
 		    listStr = '';	    
-		    removeMarker();	    // 지도에 표시되고 있는 마커를 제거합니다    
+		    removeMarker();	    // 지도에 표시되고 있는 마커를 제거합니다
+	    /* **************** 검색 키워드 출력 *************** */
 		
+		    /* **************** 카테 고리별 검색 *************** */
 	    if(currCategory){	
-	    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
-	    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
-	    var order = document.getElementById(currCategory).getAttribute('data-order');
+		    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
+		    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
+		    var order = document.getElementById(currCategory).getAttribute('data-order');
 	    }
+	    /* **************** 카테 고리별 검색 *************** */
 	    
-	     
 	    for ( var i=0; i<places.length; i++ ) {
 	    	if(!currCategory){
 		    	/* ************************************************* 키워드로 장소검색하고 목록으로 표출하기 ***************************************** */
@@ -137,7 +139,7 @@
 		        })(marker, places[i].place_name); */
 		        (function(marker, place) {
 	                daum.maps.event.addListener(marker, 'click', function() {
-	                    //displayPlaceInfo(place);											// 포커스 아웃시 닫아야함.
+	                    //displayPlaceInfo(place);											// 포커스 아웃시 닫아야함.	                    
 	                	var clickcount = 0;
 	                	if(clickcount ==0){ displayPlaceInfo(place); clickcount=1;}
 						else if(clickcount ==1){ displayPlaceInfo(""); clickcount=0; }
@@ -155,10 +157,11 @@
 	            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
 	            (function(marker, place) {
 	            	var clickcount = 0;
-	                daum.maps.event.addListener(marker, 'click', function() {
+	                daum.maps.event.addListener(marker, 'click', function() {	                	
 						//displayPlaceInfo(place);												// 포커스 아웃시 닫아야함.
 						if(clickcount ==0){ displayPlaceInfo(place); clickcount=1;}
 						else if(clickcount ==1){ displayPlaceInfo(""); clickcount=0; }
+						
 	                });
 	            })(marker, places[i]);
 	            /* ******************************************* 카테 고리 검색 ***************************************** */
@@ -240,6 +243,7 @@
 	            position: position, // 마커의 위치
 	            image: markerImage 
 	        });
+		 /* console.log(order+"///"+idx); */
 		if(currCategory){			
 		    var imageSrc = '/Planit/images/plan/css_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다 // http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png
 		        imageSize = new daum.maps.Size(31, 31),  // 마커 이미지의 크기
@@ -335,6 +339,9 @@
 	
 </script>
 
+<script>
+
+</script>
 <!--**************************************************************************************************************************-->
 <!--**************************************************************************************************************************-->
 <!--**************************************************************************************************************************-->
@@ -409,9 +416,7 @@
 	});
 	/* ************************************* 상세정보 입력 란의 오늘 일자 정보 출력 종료 ******************************************* */
 	
-	function(){
-		
-	}
+	
 	
 </script>
 <!-- ****************************************************루트 상세 정보 계획 자바 스크립트 종료************************************************************ -->

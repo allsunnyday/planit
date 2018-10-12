@@ -58,8 +58,8 @@
 						<!-- **********************  여행 타입 선택 이미지 박스 시작  ********************* -->
 						<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="width: 150px; height: 80px;">
 							<div class="btn-group" style="margin-top: 8px;">
-								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" style=" " 
-									id="tourtype"><img id="tourtypeimage" alt="여행 타입" src="" style=""><span id="caret" class="caret"></span></a>
+								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" id="tourtype">
+									<img id="tourtypeimage" alt="여행 타입" src="" style=""><span id="caret" class="caret"></span></a>
 								<ul class="dropdown-menu" id="peopletype">
 									<li id="single"><a href="#"><img src="/Planit/images/member/Preference/Preference_alone.JPG" alt="혼자서"></a></li>
 									<li id="couple"><a href="#"><img src="/Planit/images/member/Preference/Preference_couple.JPG" alt="연인끼리"></a></li>
@@ -77,11 +77,33 @@
 				<div id="cityroute" class="" >
 					
 						<!-- 사용자가 추가한 여행정보가 없을때 -->
-						<br><br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font>
+						<div id="nocityrute" style="background-color: cyan; ">
+							<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>
+						</div>
 						<!-- 사용자가 추가한 여행정보가 없을때 -->
 						
 						<!-- 사용자가 추가한 여행 정보가 있을때 -->
+						<div id="planroute" style="height: 100px;" class="text-center" >
+							<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 text-center" style="height: auto; width: 120px; text-align: center;">
+								<div style="width: 44px; border-right: 4px solid #3ad195; height: 8px;"></div>
+								<div id="planroutecycle" >
+									<div class="btn-group" style="height: auto; margin-top: 8px; display: inline-block;">
+										<a href="" id="" class="dmbutton dropdown-toggle" data-toggle="dropdown">
+											<span id="caret" class="caret"></span></a>일
+										<ul class="dropdown-menu" id="">
+											<li>M</li>
+											<li>2</li>
+										</ul>
+									</div>
+								</div>
+								<div style="width: 44px; border-right: 4px solid #3ad195; height: 8px;"></div>							
+							</div>									
+						</div>																
 						
+						
+						<div id="planroute" style="background-color: pink; height: 100px;" >
+							
+						</div>
 						<!-- 사용자가 추가한 여행 정보가 있을때 -->	
 				</div>
 			</div>

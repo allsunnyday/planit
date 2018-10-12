@@ -115,5 +115,10 @@ ul #peopletype{ list-style:none; margin:0; padding:0; }
 
 /* ******************************************* 상세정보 추가 div  ******************************************** */
 #cityroute{position: relative; text-align: center; width: 100%; margin-left: 0px; padding-left: 0px; 
-			 padding-top: 0px; overflow: auto; background: rgb(255, 255, 255); height: 100px;}
+			 padding-top: 0px; overflow: auto; background: rgb(255, 255, 255); height: 100%;}
 /* ******************************************* 상세정보 추가 div  ******************************************** */
+
+
+/* *************************************** */
+#planroutecycle{ float:left; width:84px; height:84px; padding-left:7px; background:#fff; padding-top:13px;
+	border-radius:100px; border:3px solid #3ad195; cursor:pointer;}
