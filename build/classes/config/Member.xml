@@ -13,8 +13,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="MemberIsLogin" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) FROM templogin WHERE id=#{id} AND pwd=#{pwd}
 	</select>
-	
 
-	
-	
 </mapper>

@@ -12,6 +12,7 @@
  	color:#FFF;
  	}
  </style>
+
  <!-- ****************************************
  		탑메뉴 삽입
  **************************************** -->
@@ -30,36 +31,44 @@
 						<li data-target="#myCarousel" data-slide-to="2"></li>
 					</ol>
 				
+				
 					<div class="carousel-inner">
 						<!--슬라이드1-->
-						<div class="item active"> 
-							<img src="<c:url value='/images/list/222.jpg'/> " style="width:100%;height: 550px" height="300px" alt="First slide">
-							<div class="container">
-							<div class="text">
-							<p><span style="font-size:5.0em;color:white;">경복궁입니다</span></p>
+						<!-- --------------------------------------------관광지-------------------------- -->
+							<c:forEach var="record" items="${tour}" begin="1" end="1" >
+								<div class="item active"> 
+									<a href="#"><img src="${record.firstimage}" style="width:100%;height: 550px" height="300px" alt="First slide"></a>
+									<div class="review-overlay">
+							   			 <div class="text"><p><span style="font-size:2em; color:white; font-weight:bold; margin-left:200px ">${record.title }</span></p></div>
+									</div>
+									<div class="container">
+								</div>
 							</div>
-							</div>
-						</div>
+							</c:forEach>
 						<!--슬라이드1-->
-				
+						<!-- --------------------------------------------식당-------------------------- -->
 						<!--슬라이드2-->
+						<c:forEach var="record" items="${sleep}" >
 						<div class="item"> 
-							<img src="<c:url value='/images/list/andong.jpg'/>" style="width:100%;height: 550px" data-src="" alt="Second slide">
+							<a href="#"><img src="${record.firstimage}" style="width:100%;height: 550px" data-src="" alt="Second slide"></a>
 							<div class="container">
 								<div class="carousel-caption">
 								</div>
 							</div>
 						</div>
+						</c:forEach>
 						<!--슬라이드2-->
-						
+						<!-- --------------------------------------------숙박-------------------------- -->
 						<!--슬라이드3-->
+						<c:forEach var="record" items="${food}" >
 						<div class="item"> 
-							<img src="<c:url value='/images/list/andong.jpg'/>" style="width:100%;height: 550px" data-src="sssss"  alt="Third slide">
+							<a href="#"><img src="${record.firstimage}" style="width:100%;height: 550px" data-src="sssss"  alt="Third slide"></a>
 							<div class="container">
 								<div class="carousel-caption">
 								</div>
 							</div>
 						</div>
+						</c:forEach>
 						<!--슬라이드3-->
 					</div>
 					
@@ -74,32 +83,146 @@
 **************************************** -->
   <section class="section1">
     <div class="container clearfix">
-      <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
-
-        <div class="general-title text-center">
+     <div class="general-title text-center">
           <h3>인기 여행지를 한눈에!</h3>
           <p>best</p>
+          <hr>
         </div>
-        </div>
+      <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 
+       
+        </div>
+			<div class="divider"></div>
 <!-- ****************************************
- 		목록들()
+ 		핫여행지 목록들()
 **************************************** -->
-        <div class="divider"></div>
+         <c:forEach var="record" items="${tour}" begin="1" end="1">
         <div id="popularitems" class="owl-carousel">
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
+            <div class="hot-tour">
+           
+              <img class="lazyOwl" data-src="${record.firstimage }" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
-                  <h3 class="a1" data-animate="fadeInDown">관광지이름</h3>
+                  <h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
                   <a href="<c:url value='/tourinfo/tdview/TourList.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
+                  
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  
+                 
+                  
+
+                  <!-- rating -->
+                </div>
+                <!-- he bg -->
+                </div>
+              </div>
+              <!-- he view -->
+            </div>
+            <!-- he wrap -->
+          </div>
+          
+          <!-- end col-12 -->
+
+
+          <div class="col-lg-12">
+            <div class="he-wrap tpl6 market-item">
+              <img class="lazyOwl" data-src="${record.firstimage }" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
+                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
+                  <div class="rating text-center a2" data-animate="fadeIn">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <!-- rating -->
+                </div>
+                <!-- he bg -->
+              </div>
+              <!-- he view -->
+            </div>
+            <!-- he wrap -->
+          </div>
+          <!-- end col-12 -->
+
+          <div class="col-lg-12">
+            <div class="he-wrap tpl6 market-item">
+              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
+                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
+                  <div class="rating text-center a2" data-animate="fadeIn">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <!-- rating -->
+                </div>
+                <!-- he bg -->
+              </div>
+              <!-- he view -->
+            </div>
+            <!-- he wrap -->
+          </div>
+          <!-- end col-12 -->
+
+
+
+          <div class="col-lg-12">
+            <div class="he-wrap tpl6 market-item">
+              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
+                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
+                  <div class="rating text-center a2" data-animate="fadeIn">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <!-- rating -->
+                </div>
+                <!-- he bg -->
+              </div>
+              <!-- he view -->
+            </div>
+            <!-- he wrap -->
+          </div>
+          <!-- end col-12 -->
+
+          <div class="col-lg-12">
+            <div class="he-wrap tpl6 market-item">
+              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                  <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
+                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
+                  <div class="rating text-center a2" data-animate="fadeIn">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
                     <i class="fa fa-star-o"></i>
                   </div>
                   <!-- rating -->
@@ -114,107 +237,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
-              <div class="he-view">
-                <div class="bg a0" data-animate="fadeIn">
-                  <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
-                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
-                  <div class="rating text-center a2" data-animate="fadeIn">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                  </div>
-                  <!-- rating -->
-                </div>
-                <!-- he bg -->
-              </div>
-              <!-- he view -->
-            </div>
-            <!-- he wrap -->
-          </div>
-          <!-- end col-12 -->
-
-          <div class="col-lg-12">
-            <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
-              <div class="he-view">
-                <div class="bg a0" data-animate="fadeIn">
-                  <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
-                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
-                  <div class="rating text-center a2" data-animate="fadeIn">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                  </div>
-                  <!-- rating -->
-                </div>
-                <!-- he bg -->
-              </div>
-              <!-- he view -->
-            </div>
-            <!-- he wrap -->
-          </div>
-          <!-- end col-12 -->
-
-          <div class="col-lg-12">
-            <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
-              <div class="he-view">
-                <div class="bg a0" data-animate="fadeIn">
-                  <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
-                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
-                  <div class="rating text-center a2" data-animate="fadeIn">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                  </div>
-                  <!-- rating -->
-                </div>
-                <!-- he bg -->
-              </div>
-              <!-- he view -->
-            </div>
-            <!-- he wrap -->
-          </div>
-          <!-- end col-12 -->
-
-          <div class="col-lg-12">
-            <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
-              <div class="he-view">
-                <div class="bg a0" data-animate="fadeIn">
-                  <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
-                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
-                  <div class="rating text-center a2" data-animate="fadeIn">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
-                  </div>
-                  <!-- rating -->
-                </div>
-                <!-- he bg -->
-              </div>
-              <!-- he view -->
-            </div>
-            <!-- he wrap -->
-          </div>
-          <!-- end col-12 -->
-
-          <div class="col-lg-12">
-            <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -244,16 +267,11 @@
       
       <div class="container clearfix">
       <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
-
-
-<!-- ****************************************
- 		목록들()
-**************************************** -->
         <div class="divider"></div>
         <div id="popularitems" class="owl-carousel">
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름</h3>
@@ -278,7 +296,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -303,7 +321,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -328,7 +346,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -353,7 +371,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -378,7 +396,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="<c:url value='/images/list/andong.jpg'/>" alt="">
+              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -405,7 +423,7 @@
         <!-- popular items -->
       </div>
       <!-- end content -->
-
+</c:forEach>
 
 <!-- ****************************************
  		해당목록으로 넘어가게하는 아이콘
