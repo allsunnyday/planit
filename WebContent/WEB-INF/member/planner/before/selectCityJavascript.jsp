@@ -71,13 +71,21 @@
 				}
 				else if(plandaytext ==''){				
 					alert('여행 일수를 선택 및 입력하지 않았습니다.');
+					
 				}
 				else if(!parseInt(plandaytext)){
 					alert('여행 일수는 숫자만 입력해주세요');
 					location.assign;
 				}
 				else {
-					$('#locationday').attr("action", "<c:url value='/planner/plan/route.it'/>");
+					//alert($('#plandaytext').val()); //여행 일수 입력 전달
+					//alert($('#paldoNcity option:selected').val());
+					//alert($('#paldoNcityColumn option:selected').val());
+					
+					var days = $('#plandaytext').val();
+					var areacode = $('#paldoNcity option:selected').val();					
+					var areacodesub = $('#paldoNcityColumn option:selected').val();
+					$('#locationday').attr("action", "<c:url value='/planner/plan/route.it?days="+days+"&areacode="+areacode+"&areacodesub="+areacodesub+"'/>");
 				}
 			});
 		});
