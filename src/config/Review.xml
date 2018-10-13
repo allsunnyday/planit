@@ -34,8 +34,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="reviewSelectReviewContent" parameterType="java.util.Map" resultType="java.util.Map">
 		select * 
-		from review_content r, content c 
-		where r.contentid=c.contentid  and r.review_id=#{review_id} and r.route_index=#{route_index}
+		from (select re.* ,planner_id from review_content re join review v on re.review_id=v.review_id ) r join content c on  r.contentid=c.contentid
+		where r.review_id = #{review_id} and r.route_index=#{route_index}
 	</select>
-
+	
+	<update id="ReviewUpdateContent" parameterType="java.util.Map">
+		update review_content set content=#{content} , image=#{image} where re_co_id=#{re_co_id}
+	
+	</update>
 </mapper>

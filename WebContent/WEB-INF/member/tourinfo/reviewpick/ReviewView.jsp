@@ -25,6 +25,8 @@ review :
 		//사용자 별점 반영하기
 		reviewRating('${review.rating}');
 		
+		
+		
 	});
 	
 	
@@ -43,6 +45,8 @@ review :
 		}
 		$('.big-title').html(starString);
 	};
+	
+
 </script>
 
 <!--**********************************************************************
@@ -133,108 +137,111 @@ review :
 				<h3>${review.id}님의 이야기, 지금 시작합니다</h3>
 				<hr>
 			</div>
-	</div>
-			<div class=" col-sm-12 first">
-				<div class="testimonial">
-					<img data-effect="slide-bottom" class="alignleft img-circle"
-						src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
-						alt="">
-					<p>서울 반포대교에 설치된 분수인 달빛무지개분수는 반포대교 570m 구간 양측 총 1천140m에 380개 노즐을
-						설치해 수중펌프로 끌어올린 한강물을 약 20m 아래 한강 수면으로 떨어뜨리는 새로운 개념의 분수이다</p>
-					<div class="testimonial-meta">
-						<h4>
-							반포 달빛무지개<small><a href="#">자세히 보기</a></small>
-						</h4>
-					</div>
-				</div>
-				<!-- end dmbox -->
-			</div>
 		</div>
-		<!-- end content -->
-
+	</div>
 	
-	<!-- end container -->
-
-	<!-- carousel container -->
-	<div class="container clearfix">
-		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
-			<!-- carousel start -->
-			<div id="mycarousel1" class="carousel slide" data-ride="carousel">
-				<!-- wrapper for slides -->
-				<div class="carousel-inner">
-					<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
-					<div class="item active">
-						<div id="popularitems" class="">
-							<div class="col-sm-4">
-								<img class=""
-									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
-									alt="">
-							</div>
-
-							<div class="col-sm-4">
-								<img class=""
-									src="http://tong.visitkorea.or.kr/cms/resource/97/2030897_image2_1.jpg"
-									alt="">
-							</div>
-
-							<div class="col-sm-4">
-								<img class=""
-									src="http://tong.visitkorea.or.kr/cms/resource/09/1580109_image2_1.jpg"
-									alt="">
+	<c:forEach items="${oneRoute}" var="review">
+					<div class=" col-sm-12 first">
+						<div class="testimonial">
+							<img data-effect="slide-bottom" class="alignleft img-circle"
+								src="${review.firstimage2}"
+								alt="">
+							${review.overview}
+							<p>${review.addr1}</p>							
+							<div class="testimonial-meta">
+								<h4>
+									${review.title}<small><a href="#">자세히 보기</a></small>
+								</h4>
 							</div>
 						</div>
+						<!-- end dmbox -->
 					</div>
-					<!-- end carousel slide 1   -->
-					<div class="item ">
-						<div id="popularitems" class="">
-							<div class="col-sm-4">
-								<img class=""
-									src="http://tong.visitkorea.or.kr/cms/resource/14/1580114_image2_1.jpg"
-									alt="">
+				
+				<!-- end content -->
+		
+			
+			<!-- end container -->
+			<c:if test="${ not (review.image eq 'no-image')}">
+					<!-- carousel container -->
+					<div class="container clearfix">
+						<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
+							<!-- carousel start -->
+							<div id="mycarousel1" class="carousel slide" data-ride="carousel">
+								<!-- wrapper for slides -->
+								<div class="carousel-inner">
+									<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
+									<div class="item active">
+										<div id="popularitems" class="">
+											<div class="col-sm-4">
+												<img class=""
+													src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
+													alt="">
+											</div>
+				
+											<div class="col-sm-4">
+												<img class=""
+													src="http://tong.visitkorea.or.kr/cms/resource/97/2030897_image2_1.jpg"
+													alt="">
+											</div>
+				
+											<div class="col-sm-4">
+												<img class=""
+													src="http://tong.visitkorea.or.kr/cms/resource/09/1580109_image2_1.jpg"
+													alt="">
+											</div>
+										</div>
+									</div>
+									<!-- end carousel slide 1   -->
+									<div class="item ">
+										<div id="popularitems" class="">
+											<div class="col-sm-4">
+												<img class=""
+													src="http://tong.visitkorea.or.kr/cms/resource/14/1580114_image2_1.jpg"
+													alt="">
+											</div>
+				
+											<div class="col-sm-4">
+												<img class=""
+													src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
+													alt="">
+											</div>
+				
+											<div class="col-sm-4">
+												<img class=""
+													src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
+													alt="">
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								<!-- end wrapper for slides -->
+								<a class="left carousel-control" href="#mycarousel1" data-slide="prev"> 
+									<span class="icon-prev"></span>
+								</a> 
+								<a class="right carousel-control" href="#mycarousel1" data-slide="next"> 
+								<span class="icon-next"></span> 
+								</a>
 							</div>
-
-							<div class="col-sm-4">
-								<img class=""
-									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
-									alt="">
-							</div>
-
-							<div class="col-sm-4">
-								<img class=""
-									src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
-									alt="">
-							</div>
+							<!-- end carousel container-->
 						</div>
+						<!-- end content -->
 					</div>
-					
-				</div>
-				<!-- end wrapper for slides -->
-				<a class="left carousel-control" href="#mycarousel1" data-slide="prev"> 
-					<span class="icon-prev"></span>
-				</a> 
-				<a class="right carousel-control" href="#mycarousel1" data-slide="next"> 
-				<span class="icon-next"></span> 
-				</a>
-			</div>
-			<!-- end carousel container-->
-		</div>
-		<!-- end content -->
-	</div>
-	<!-- end carousel  -->
-
-    <div class="container clearfix">
-      <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
-        <blockquote>
-          <p>세계의 많은 도시들이 강을 가졌지만, 나는 그중 한강이 가장 아름답다고 생각한다. 밤이 되면 넘실대는 새까만 강물에 비친 서울의 모습은 매우 아름답다.
-          다른 강과는 달리 냄새도 나지 않고  탁트인 시야에서 친구들과 치맥을 하면, 크으 인생에 즐거움이란 이런것인가 하고 무릎을 탁! 치게 된다 .
-          그렇지만 한강에서 시켜먹은 치맥은 조심해야 한다. 그냥 치킨을 시켰을 경우에는 퀄리티가 떨어질 수 있으니 리뷰를 잘살피던가 아니면 차라리 한강에 가기전에 
-          구매를 해가는 것이 좋다. </p>
-        </blockquote>
-        <div class="clearfix"></div>
-      </div>
-      <!-- end content -->
-    </div>
-    <!-- end container -->
+					<!-- end carousel  -->
+			</c:if>
+			<c:if test="${not empty review.content}">
+			    <div class="container clearfix">
+			      <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
+			        <blockquote>
+			          <p>${review.content}</p>
+			        </blockquote>
+			        <div class="clearfix"></div>
+			      </div>
+			      <!-- end content -->
+			    </div>
+		    <!-- end container -->
+    	</c:if>
+    </c:forEach>
   </section>
   <!-- end section -->
 	

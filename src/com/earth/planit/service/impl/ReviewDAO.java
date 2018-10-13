@@ -40,7 +40,7 @@ public class ReviewDAO implements ReviewService {
 
 	@Override
 	public int updateReview(Map map) {
-		return 0;
+		return template.update("ReviewUpdateContent", map);
 	}
 
 	@Override
