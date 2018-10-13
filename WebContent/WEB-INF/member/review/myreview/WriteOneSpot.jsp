@@ -53,7 +53,8 @@
 		//sel_files=[];
 		//$('.imgs_wrap').empty();
 		
-		var files = e.target.files;
+		var files = e.target.files;  //filelist객체 
+		console.log('files='+files);
 		var filesArr = Array.prototype.slice.call(files);
 		
 		var index =0;
@@ -79,9 +80,9 @@
 	
 	function submitAction(){
 		var formdata = new FormData();
-		
+		var reviewid= ${reviewContent.REVIEW_ID};
 		for(var i=0, len=sel_files.length; i<len; i++){
-			var name="image_"+i; 
+			var name=reviewid+"_"+i; 
 			formdata.append(name, sel_files[i]);  // 이미지을 새롭게 변경하여 저장하기 
 		}
 		formdata.append("image_count", sel_files.length);  //사진 개수 저장
@@ -100,7 +101,7 @@
 			dataType:'text',
 			data: formdata,
 			contentType:false,
-			 processData: false,
+			processData: false,
 			 success: function(data){
 				 console.log(data);
 			 },
@@ -117,7 +118,7 @@
 	
 	function deleteImageAction(index){
 		console.log("index:"+index);
-		sel_files.splice(index, 1);
+		sel_files.splice(index, 1);  //splice함수로 해당 이미지가 포함된 인덱스 삭제 
 		var img_id = "#img_id_"+index;
 		$(img_id).remove();
 		if(sel_files.length==0){
@@ -182,7 +183,7 @@
 				<!--############사용자가 입력하는 공간  -->
 				<form id="fileForm" action="#" enctype="multipart/form-data">
 						<div class="col-sm-12 input_wrap">
-							<a href="javascript:" onclick="fileUploadAction();" class="dmbutton2" data-filter="*">사진추가</a>
+							<a href="javascript:" onclick="fileUploadAction();" class="dmbutton2" >사진추가</a>
 							<input type="file" id="input_imgs" multiple style="display:none;"  />
 						</div>
 						
