@@ -17,11 +17,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="reviewSelectOne"  parameterType="java.util.Map" resultType="reviewDTO" >
 		select r.*, id from review r join planner p on r.planner_id=p.planner_id
 		where r.review_id=#{review_id}
+		
 	</select>
 	
-
+	<select id="reviewSelectPlanner"  parameterType="java.util.Map" resultType="java.util.Map">
+		select * from planner where planner_id=#{planner_id}
+	</select>
 	
+	<select id="reviewSelectContent" parameterType="java.util.Map" resultType="contentDTO">
+		select * from content where contentid=#{contentid}
+	</select>
 	
+	<select id="reviewGetTotal" parameterType="java.util.Map" resultType="int">
+		select count(*) from review where planner_id=#{planner_id}
+	</select>
 	
+	<select id="reviewSelectReviewContent" parameterType="java.util.Map" resultType="java.util.Map">
+		select * 
+		from review_content r, content c 
+		where r.contentid=c.contentid  and r.review_id=#{review_id} and r.route_index=#{route_index};
+	</select>
 
 </mapper>

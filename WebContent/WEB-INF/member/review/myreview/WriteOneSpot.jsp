@@ -169,13 +169,12 @@
 				<!--############일정에 관한 개요를 보여준다.   -->
 				<div class="testimonial">
 					<img data-effect="slide-bottom" class="alignleft img-circle"
-						src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
+						src="${reviewContent.FIRSTIMAGE2}"
 						alt="">
-					<p>서울 반포대교에 설치된 분수인 달빛무지개분수는 반포대교 570m 구간 양측 총 1천140m에 380개 노즐을
-						설치해 수중펌프로 끌어올린 한강물을 약 20m 아래 한강 수면으로 떨어뜨리는 새로운 개념의 분수이다</p>
+					<p>${reviewContent.OVERVIEW}</p>
 					<div class="testimonial-meta">
 						<h4>
-							반포 달빛무지개<small><a href="#">자세히 보기</a></small>
+							${reviewContent.TITLE}<small><a href="#">자세히 보기</a></small>
 						</h4>
 					</div>
 				</div>
@@ -205,7 +204,12 @@
 						</div>
 						<div class="col-sm-offset-1 col-sm-10 ">
 							<div class="text-wrap" >
-								<div class="summernote">소중한 순간을 기록해 보세요</div>
+								<div class="summernote">
+								<c:if test="${empty  reviewContent.CONTENT}">
+								소중한 순간을 기록해 보세요
+								</c:if>
+								${reviewContent.CONTENT}
+								</div>
 							</div>
 						</div>
 				</form>
@@ -275,5 +279,5 @@
 		
 	});
 </script>
-<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet"> -->
+
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>

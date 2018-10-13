@@ -18,6 +18,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="reviewDTO" type="com.earth.planit.service.ReviewDTO" /> 
 		<typeAlias alias="searchMapDTO" type="com.earth.planit.service.SearchMapDTO"/>
 		<typeAlias alias="searchListDTO" type="com.earth.planit.service.SearchListDTO"/>
+		<typeAlias alias="contentDTO" type="com.earth.planit.service.ContentDTO"/>
 		
 	</typeAliases>
 	
