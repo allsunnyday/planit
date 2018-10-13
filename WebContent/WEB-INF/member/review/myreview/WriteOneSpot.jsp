@@ -263,7 +263,7 @@
 	$(function(){
 		// 글을 클릭하면 summernote를 활성화시킨다. 
 		$('.summernote').click(function(){
-			var content=$('.summernote').html(); 
+			var content=$('.summernote').html().trim(); 
 			console.log('content'+content);
 			if(content=='소중한 순간을 기록해 보세요'){
 				$('.summernote').html('');

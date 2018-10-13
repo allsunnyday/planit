@@ -26,21 +26,29 @@ oneRoute
 		json = JSON.parse(data);
 		var routestr='';
 		var routecount = 0;
-		
+		console.log(routestr+'여기에서 찍히면 되는거 아니냐');
 		$.each(json, function(index, element){
 			routecount=routecount+1;
-			if(index==0){
+			if(index===0){
 				showMemo(index);
 			}
-			routestr+=''
-			+'<li>'
+			routestr+='<li>';
+			routestr+='<article class="comment">';
+			routestr+='<img src="' +element['firstimage2']+ '" alt="avatar" class="comment-avatar" onclick="showMemo(' +index+ ');">';
+			routestr+='<div class="comment-content" >';
+			routestr+='<h4 class="comment-author">'+element['title']+'<small class="comment-meta"></small><span class="comment-reply">';
+			routestr+='<a href="#" class="comment-reply dmbutton2 small review-write"  title="'+element['contentid']+'-'+index+'">리뷰작성</a></span>';
+			routestr+='</h4> '+element['addr1']+'</div></article> </li>';
+			
+			
+			/* +'<li>'
 			+'<article class="comment">'
 			+'<img src="'+element['firstimage2']+'" alt="avatar" class="comment-avatar" onclick="showMemo('+index+');">'
 			+'  <div class="comment-content" >'
 			+'   <h4 class="comment-author"> '+element['title']+' <small class="comment-meta"></small>'
 			+'       <span class="comment-reply">'
 			+'<a href="#" class="comment-reply dmbutton2 small review-write"  title="'+element['contentid']='-'+index+'">리뷰작성</a></span>'
-			+'   </h4> '+element['addr1']+'</div></article> </li>'; 
+			+'   </h4> '+element['addr1']+'</div></article> </li>';  */
 			
 			
 		});
@@ -50,9 +58,9 @@ oneRoute
 		$('.routecount').html(routecount);
 		// 리뷰작성페이지로 넘어가기
 		$('.review-write').click(function(){
-			var title= $(this).attr('title').split('-')[0];
+			var title= $(this).attr('title').split('-')[1];
 			var review_id=${review.review_id};
-			var contentid=$(this).attr('title').split('-')[1];
+			var contentid=$(this).attr('title').split('-')[0];
 			location.replace("<c:url value='/riveiw/write/OneSpot.it?review_id="+review_id+"&route_index="+title+"&contentid="+contentid+"'/> ");
 		});
 	};
