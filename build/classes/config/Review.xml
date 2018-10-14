@@ -42,4 +42,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update review_content set content=#{content} , image=#{image} where re_co_id=#{re_co_id}
 	
 	</update>
+	
+	<!-- review -->
+	<select id="ReviewHasRating" parameterType="java.util.Map"  resultType="int">
+		select count(*) from review_rating where id=#{id} and review_id=#{review_id}
+	</select>
+	
+	<insert id="ReviewInsertRating" parameterType="java.util.Map">
+		insert into review_rating(rating_id,riview_id ,id,review_rating) 
+		values(SEQ_review_rating_rating_id.nextval, #{review_id}, #{id}, review_rating+#{review_rating})
+	</insert>
+	
+	
 </mapper>
