@@ -14,38 +14,60 @@
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
 
 	<!-- planit.xml 설정파일 -->
-	<!-- 
-		1.	기본 패키지 설정 
-		2.  annotation 사용을 위한 빈 등록 및 한글 처리 
-		3.	 접두어 및 접미어 처리 (viewresolver) order=2
-		4.	타일즈 사용을 위한 빈 등록   order=1
-	 -->
- 	<!-- 컴포넌트 스탠 적용 즉, 빈 등록 불필요 -->
-	<context:component-scan base-package="com.earth.planit"/>
+	<!-- 1. 기본 패키지 설정 2. annotation 사용을 위한 빈 등록 및 한글 처리 3. 접두어 및 접미어 처리 (viewresolver) 
+		order=2 4. 타일즈 사용을 위한 빈 등록 order=1 -->
+	<!-- 컴포넌트 스탠 적용 즉, 빈 등록 불필요 -->
+	<context:component-scan
+		base-package="com.earth.planit" />
 	<!-- @Autowired, @required @resource사용하기 위해서 필요 -->
-	<context:annotation-config/>
+	<context:annotation-config />
 	<!-- @ResponseBody한글처리 : 직접 응답을 보낼 때 필요 -->
-	<mvc:annotation-driven/>
-	<!-- 빈에서 사용할 키값이 있는 리소스 파일을 사용하기 위한 태그 등록  -->
-	<context:property-placeholder location="classpath:com/earth/planit/resource/resource.properties"/>
+	<mvc:annotation-driven />
+	<!-- 빈에서 사용할 키값이 있는 리소스 파일을 사용하기 위한 태그 등록 -->
+	<context:property-placeholder
+		location="classpath:com/earth/planit/resource/resource.properties" />
 	<!-- 접두어 및 접미어 처리 -->
-	<bean class ="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="2"></property>
 		<property name="prefix" value="/WEB-INF/member"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
-	<!-- 타일즈3 사용을 위한 빈 등록  -->
-	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+
+	<!-- 타일즈3 사용을 위한 빈 등록 -->
+	<bean
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/member/template/layouts.xml</value>
 			</list>
-		</property> 
+		</property>
 	</bean>
-	
-	<bean  class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="order" value="1"/>  <!-- .jsp도 view로 사용하기 위해 우선순위를 가장먼저--> 
-		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
-   </bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="order" value="1" />  <!-- .jsp도 view로 사용하기 위해 우선순위를 가장먼저 -->
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+	</bean>
+
+
+	<!--  
+	스프링 프레임 워크에서 파일 업로드를 위한 API
+    id는 반드시 multipartResolver로 지정
+      왜냐하면 파일업로드와 관련된 스프링의 다른 클래스들이
+    multipartResolver란 이름으로 참조하여 사용함으로......
+  	-->
+  	<!-- 최대 업로드 용량 사이즈 설정:maxUploadSize속성(바이트)
+        -1:무제한        
+    -->
+    <!-- 용량 초과시
+      org.springframework.web.multipart.MaxUploadSizeExceededException
+        예외 발생
+    -->	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="500000000" />
+	</bean>
+
 </beans>

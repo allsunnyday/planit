@@ -7,9 +7,6 @@ import java.util.Vector;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.earth.planit.service.SearchMapDTO;
 import com.earth.planit.service.SearchMapService;
+
 
 @Controller
 public class SearchMapController {

@@ -5,15 +5,13 @@ public class ReviewDTO {
 	private String review_id;
 	private String planner_id;
 	private String series;
-	private String images;
-	private String content;
 	private String title;
 	private String hashtag;
 	private String view_count;
 	private String liked;
 	private String postdate;
 	private String rating;
-	private String rirstimage;
+	private String frirstimage;
 	private String route;
 	
 	private String id;  //작성한 아이디
@@ -42,21 +40,6 @@ public class ReviewDTO {
 		this.series = series;
 	}
 
-	public String getImages() {
-		return images;
-	}
-
-	public void setImages(String images) {
-		this.images = images;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
 
 	public String getTitle() {
 		return title;
@@ -106,12 +89,12 @@ public class ReviewDTO {
 		this.rating = rating;
 	}
 
-	public String getRirstimage() {
-		return rirstimage;
+	public String getFrirstimage() {
+		return frirstimage;
 	}
 
-	public void setRirstimage(String rirstimage) {
-		this.rirstimage = rirstimage;
+	public void setFrirstimage(String frirstimage) {
+		this.frirstimage = frirstimage;
 	}
 
 	public String getRoute() {
@@ -129,6 +112,7 @@ public class ReviewDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	
 	
 
