@@ -108,6 +108,13 @@
 	}
 	
 	
+	function searchaction(){
+		ps = new daum.maps.services.Places();
+		keyword = document.getElementById('keyword').value;
+		ps.keywordSearch(keyword, placesSearchCB);
+		
+	}
+	
 	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 	function placesSearchCB(data, status, pagination) {
 	    if (status === daum.maps.services.Status.OK) {
@@ -400,7 +407,7 @@
 					content += '</div>';
 					content += '<div>';
 						content += '<div>'; 							
-							content +='&nbsp;&nbsp;<label>지역:</label>&nbsp;<font> '+keyword+' </font> &nbsp;&nbsp;|'; console.log(place+"///" );
+							content +='&nbsp;&nbsp;<label>지역:</label>&nbsp;<font> '+keyword+' </font> &nbsp;&nbsp;|'; /* console.log(place+"///" ); */
 							content +='&nbsp;&nbsp;<label>장소: </label><font class=""> '+ document.getElementById('plantitle').title +' </font>&nbsp;<a class="btnDel" href="#">'; // '화가 난다'
 							content +='<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a>';							
 						content += '</div>';
@@ -434,7 +441,10 @@
 
 	$(function() {
 		/* **************** location 의 도시 정보 검색  **************** */		
-			searchPlaces(); //  새로 고침 시에 "키워드를 입력하세요" 라는 문구를 뜨지 않도록 함수 작성해야함.		 
+			//searchPlaces(); //  새로 고침 시에 "키워드를 입력하세요" 라는 문구를 뜨지 않도록 함수 작성해야함.
+			searchaction();
+			//console.log(keyword);
+			
 		/* **************** location 의 도시 정보 검색  **************** */
 		
 		

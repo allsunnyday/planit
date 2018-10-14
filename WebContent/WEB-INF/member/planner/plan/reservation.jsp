@@ -14,10 +14,12 @@
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	$(function() {
-		$("#datepicker").datepicker();
+		$("#indatepicker").datepicker();
+		$("#outdatepicker").datepicker();
 	});
 </script>
 
@@ -64,8 +66,8 @@
 	</form>
 	
 		<div class="text-center" >
-			<input type="button" class="btn btn-primary" id="datepicker" value="체크인" style="width: 10%; margin-bottom: 10px; margin-right: 30px;"/>		
-			<input type="button" class="btn btn-primary" id="datepicker" value="체크 아웃" style="width: 10%; margin-bottom: 10px; margin-right: 30px;"/>
+			<input type="button" class="btn btn-primary" id="indatepicker" value="체크인" style="width: 10%; margin-bottom: 10px; margin-right: 30px;"/>		
+			<input type="button" class="btn btn-primary" id="outdatepicker" value="체크 아웃" style="width: 10%; margin-bottom: 10px; margin-right: 30px;"/>
 			<div class="btn-group text-center" style="margin-right: 30px;margin-bottom: 10px;">
 				<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#" style="width: 150%;"> 룸선택 <span class="caret"></span> </a>
 				<ul class="dropdown-menu" role="planhotel" id="planhotel" aria-labelledby="planhotel">
@@ -89,6 +91,7 @@
 	</div>
 </div>
 </section>
+
 <section class="section1">
 	<div class="container clearfix">
 		<div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
