@@ -67,7 +67,7 @@ review :
 	// 평점주기 버튼
 	function giveRating(){
 		
-		if('${sessionScope.userid}'==''){
+		if('${sessionScope.id}'==''){
 			alert('로그인해주세요!');
 			return ;
 		}
@@ -116,7 +116,7 @@ review :
 					<li><a href="#" class="dmbutton" >일정보기</a></li>
 					<li><a href="#" class="dmbutton" >즐겨찾기</a></li>
 					<li><a href="#" class="dmbutton showSeriesbtn" data-toggle="modal" data-target="#seriesmodal" >시리즈보기</a></li>
-					<c:if test="${sessionScope.userid eq review.id}">
+					<c:if test="${sessionScope.id eq review.id}">
 					<li><a href="<c:url value='/review/myreview/Write.it?planner_id=${review.planner_id}&review_id=${review.review_id}'/> " class="dmbutton" >수정하기</a></li>
 					</c:if>
 				</ul>

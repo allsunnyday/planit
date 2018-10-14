@@ -273,7 +273,7 @@ public class ReviewController {
 	public String hasRating(@RequestParam Map map, HttpSession session)throws Exception{
 		//
 		System.out.println(map.get("review_id"));
-		map.put("id",session.getAttribute("userid"));
+		map.put("id",session.getAttribute("id"));
 		
 		// 있는지 확인
 		int hasRating = reviewService.hasRating(map);
