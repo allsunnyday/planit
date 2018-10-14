@@ -58,18 +58,23 @@
 	var infowindow = new daum.maps.InfoWindow({zIndex:1});	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다	
 	
 	
+	
+    var localkeyword = document.getElementById('localkeyword').value;
+    console.log(localkeyword);
+	
 	// 키워드 검색을 요청하는 함수입니다
 	function searchPlaces() {
 		/* ******************************검색 관련 함수*******************************/
 		if (!currCategory ) {			
 			ps = new daum.maps.services.Places();
 		    var keyword = document.getElementById('keyword').value;
-			//if(document.getElementById('searchmap').value !='검색'){
 		    if (!keyword.replace(/^\s+|\s+$/g, '')) {
 		        alert('키워드를 입력해주세요!');	        
 		        return false;
 		    }
-			//}
+		    if(localkeyword != null){
+		    	
+		    }
 			
 		    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 		    ps.keywordSearch(keyword, placesSearchCB);
@@ -278,8 +283,8 @@
 	    }                
 	   
 	    content += '    <span class="tel">' + place.phone + '</span>' +
-	    			'<a href="#" id="planplus"><img src="/Planit/images/plan/planplus.png" ></a>'+				//상세보기 + 버튼구현
-	                '</div>' +
+	    			'<a href="javascript:planplusActionplus()" id="planplus"><img src="/Planit/images/plan/planplus.png" id="planrouteplusimg"></a>'+				//상세보기 + 버튼구현 // <img src="/Planit/images/plan/planplus.png" id="planrouteplusimg">
+					'</div>' +
 	                
 	                '<div class="after"></div>';
 
@@ -287,12 +292,7 @@
 	    placeOverlay.setPosition(new daum.maps.LatLng(place.y, place.x));
 	    placeOverlay.setMap(map);  
 	}
-	
-	/*******************************************/
-	
-	/*******************************************/
-	
-	
+		
 	// 각 카테고리에 클릭 이벤트를 등록합니다
 	function addCategoryClickEvent() {
 	    var category = document.getElementById('category'),
@@ -337,18 +337,77 @@
 	/************************************************ 카테고리별 장소 검색하기 종료  **********************************************************/
 	
 	
-</script>
+</script>	
+<!--**************************************************************************************************************************-->
+<!--**************************************************************************************************************************-->
 
+<!--*********************************** plan 상세여행 정보 추가 시작 ***********************************-->
 <script>
-
+	/*******************************************/	
+	
+	
+	
+	/* ******************** daum map api 함수 내부의 추가하기 버튼 함수 시작 ******************** */
+	function planplusActionplus(){
+		console.log("planplusActionplus() : routeInfoPlusAction() 가 호출 안되어야 함.");
+		var plancase = 0;
+		plancase ++;
+		routeInfoPlusAction(plancase);
+		
+	}	
+	/* ******************** daum map api 함수 내부의 추가하기 버튼 함수 시작 ******************** */
+	
+	/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
+	function routeInfoPlusAction(plancase){
+		var content;		
+		if(plancase == 0){
+			content ='';
+			content +=  '<div id="nocityrute" style="background-color: cyan; ">';
+				content += '<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>';
+			content +='</div>';
+		}
+		
+		if(plancase != 0){
+			$('#nocityrute').remove();
+			content ='';
+			content += '<div id="planroute" style="height: 120px;" class="text-center" >';
+				content += '<div style="width: 50px; border-right: 4px solid #3ad195; height: 12px;"></div>';
+				content += '<div style="width:100%;">';
+					content += '<div id="planroutecycle" style="float:left; width:94px; height:94px; padding-left:7px; background:#fff; padding-top:15px; border-radius:100px; border:3px solid #3ad195; cursor:pointer;">';
+						content += '<div class="btn-group" style="height: auto; margin-top: 8px;">';
+							content += '<a href="" id="" class="dmbutton dropdown-toggle" data-toggle="dropdown"> <span id="caret" class="caret"></span></a>일';
+							content += '<ul class="dropdown-menu" id="">';
+								content += '<li>text1</li>';
+								content += '<li>text2</li>';
+							content += '</ul>';
+						content +='</div>';
+					content += '</div>';
+					content += '<div>';
+						content += '<div>';
+							content +='&nbsp;&nbsp;<label>지역:</label>&nbsp;<font>서울 특별시</font> &nbsp;&nbsp;|';
+							content +='&nbsp;&nbsp;<label>장소: </label><font class=""> kosmo </font>&nbsp;<a class="btnDel" href="#">';
+							content +='<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a>';							
+						content += '</div>';
+						content +='<div style="text-align: left;">';
+							content += '&nbsp;&nbsp;<label style="margin-left:10%;"> 거리: </label>&nbsp;<font>3 km </font> <br/>';
+							content += '&nbsp;&nbsp;<label style="margin-left:10%;"> 도보:</label>&nbsp;<font> mm시간 dd분 </font> <br/>	';
+							content += '&nbsp;&nbsp;<label style="margin-left:10%;"> 승용차: </label><font class=""> dd분 </font>';							
+						content +='</div>';						
+					content += '</div>';
+				content += '</div>';
+				content += '<div style="width: 50px; border-right: 4px solid #3ad195; height: 16px; margin-top: -6px;"></div>';
+			content +='</div>';
+		}
+		$('#cityroute').append(content);
+	}
+	/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
+	
 </script>
-<!--**************************************************************************************************************************-->
-<!--**************************************************************************************************************************-->
-<!--**************************************************************************************************************************-->
-<!--**************************************************************************************************************************-->
-<!--**************************************************************************************************************************-->
+<!--*********************************** plan 상세여행 정보 추가 종료***********************************-->
 
 
+<!--**************************************************************************************************************************-->
+<!--**************************************************************************************************************************-->
 <!-- ************************루트 상세 정보 계획 자바 스크립트 시작****************** -->
 <!-- ********************************* 상세 일정 페이지 달력 출력 시작 *************************************** -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
