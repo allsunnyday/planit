@@ -33,5 +33,18 @@ public class SearchListDAO implements SearchListService {
 		return template.selectList("selectSleepList",map);
 	}
 
+	@Override
+	public int getTotalCount(Map map) {
+		return template.selectOne("getTotalCount",map);
+	}
+
+	@Override
+	public List<SearchListDTO> selectList(Map map) {
+		return template.selectList("searchSelectList",map);
+	}
+
+
+	
+
 
 }

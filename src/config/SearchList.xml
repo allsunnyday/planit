@@ -12,16 +12,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectTourList" parameterType="java.util.Map" resultType="searchListDTO">
 		select * from(select a .*,rownum r from
-		(select firstimage,title,addr1,tel from content where contenttype=12)a)
+		(select firstimage,title,addr1,tel,areacode from content where contenttype=12)a)
 		where r  between #{start} and #{end}
 	</select>
 	<select id="selectFoodList" parameterType="java.util.Map" resultType="searchListDTO">
-		select * from(select a .*,rownum r from(select firstimage,title,addr1,tel from content where contenttype=39)a)
+		select * from(select a .*,rownum r from
+		(select firstimage,title,addr1,tel from content where contenttype=39)a)
 		where r  between #{start} and #{end}
 	</select>
 	<select id="selectSleepList" parameterType="java.util.Map" resultType="searchListDTO">
-		select * from(select a .*,rownum r from(select firstimage,title,addr1,tel from content where contenttype=32)a)
+		select * from(select a .*,rownum r from
+		(select firstimage,title,addr1,tel from content where contenttype=32)a)
 		where r  between #{start} and #{end}
 	</select>
+	
+	
+	
+	
+	<select id="getTotalCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from content
+		<if test="searchWord != null">
+				where ${searchColumn} LIKE '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	
+	<select id="searchSelectList" parameterType="java.util.Map" resultType="searchListDTO">
+		select * from
+		(select a.*,rownum r from(
+		select firstimage,title,addr1,tel from content where contenttype=12)a)
+		where  r between #{start} and #{end}
+	</select>
 
+	
+	
+	
+
+	
+	
+	
+	
+	
 </mapper>

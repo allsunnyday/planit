@@ -8,6 +8,10 @@ public interface SearchListService {
 	List<SearchListDTO> selectTourList(Map map);
 	List<SearchListDTO> selectFoodList(Map map);
 	List<SearchListDTO> selectSleepList(Map map);
+	int getTotalCount(Map map);
+	List<SearchListDTO> selectList(Map map);
+	
+	
 	
 	
 }
