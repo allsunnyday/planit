@@ -593,8 +593,8 @@ table.table .avatar {
 								<td><span class="status text-success">&bull;</span>${record.status}</td>
 								<td><a href="#editEmployeeModal" class="edit"
 									data-toggle="modal"><i class="material-icons"
-										data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
-									href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+										data-toggle="tooltip" title="Reply">&#xE254;</i></a> 
+										<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
 										class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 								</td>
 							</tr>
@@ -699,14 +699,13 @@ Edit Modal
 							<div class="modal-body">
 								<div class="form-group">
 									<label>Content</label>
-									<textarea class="form-control" readonly="readonly" id="detailcontent" ></textarea>
+									<textarea class="form-control" readonly="readonly" id="detailcontent">${list.content}</textarea>
 								</div>
 
 							</div>
 							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-info" value="confirm">
+								<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"> 
+								<a href="#editEmployeeModal"><input type="submit" class="btn btn-info" value="Reply"></a>
 							</div>
 						</form>
 					</div>

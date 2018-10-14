@@ -23,9 +23,9 @@ import com.earth.planit.service.impl.PagingUtil;
 @Controller
 public class PartnerController {
 	//리소스파일(resource.properties)에서 읽어오기
-	@Value("${PAGE_SIZE}")
+	@Value("${TABLE_PAGE_SIZE}")
 	private int pageSize;
-	@Value("${BLOCK_PAGE}")
+	@Value("${TABLE_BLOCK_PAGE}")
 	private int blockPage;
 	
 	/*
