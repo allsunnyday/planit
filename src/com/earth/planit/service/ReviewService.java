@@ -19,6 +19,23 @@ public interface ReviewService {
 	// delete 
 	int deleteReview(Map map);
 	
-
+	
+	
+	//planner에 대해서 조회한다. 
+	Map selectPlannerOne(Map map);
+	// content DTO에 대해 조회
+	ContentDTO selectContent(Map map);
+	// review_content+content조인  가지고 온다. 
+	Map selectReviewContent(Map map);
+	
+	
+	// 평점
+	int hasRating(Map map);
+	//  평점
+	int insertRating(Map map);
+	//  
+	Map selectRating(Map map);
+	
+	// 
 	
 }

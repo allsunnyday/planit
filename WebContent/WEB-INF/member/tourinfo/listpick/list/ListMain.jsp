@@ -37,9 +37,15 @@
 						<!-- --------------------------------------------관광지-------------------------- -->
 							<c:forEach var="record" items="${tour}" begin="1" end="1" >
 								<div class="item active"> 
+									<!--  아래 이미지는 배경이 된다. -->
 									<a href="#"><img src="${record.firstimage}" style="width:100%;height: 550px" height="300px" alt="First slide"></a>
 									<div class="review-overlay">
-							   			 <div class="text"><p><span style="font-size:2em; color:white; font-weight:bold; margin-left:200px ">${record.title }</span></p></div>
+							   			 <div class="text"><p><span style="font-size:2em; color:white; font-weight:bold; margin-left:200px ">
+							   			 <img src="${record.firstimage}"  >
+										 	<img src="${record.firstimage}" >
+										 	<img src="${record.firstimage}"  >
+							   			 ${record.title }</span></p></div>
+										 	
 									</div>
 									<div class="container">
 								</div>
@@ -102,7 +108,7 @@
             <div class="he-wrap tpl6 market-item">
             <div class="hot-tour">
            
-              <img class="lazyOwl" data-src="${record.firstimage }" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage }' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
@@ -135,7 +141,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage }" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage }' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -160,7 +166,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -187,7 +193,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -212,7 +218,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -237,7 +243,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -271,7 +277,7 @@
         <div id="popularitems" class="owl-carousel">
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름</h3>
@@ -296,7 +302,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -321,7 +327,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -346,7 +352,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -371,7 +377,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -396,7 +402,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>

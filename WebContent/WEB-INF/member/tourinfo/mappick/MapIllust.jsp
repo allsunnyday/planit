@@ -190,7 +190,7 @@
 				if(index <3){ //0 1 2
 					firstString+=''
 						+'<div class="col-lg-4">'
-						+'	<a><img src=\''+content['firstimage']+'\' alt="travelimg"><span>'+content['title']+'</span></a>'
+						+'	<a href="<c:url value=\'/planit/search/list/TourView.it\'/> "><img src=\''+content['firstimage']+'\' alt="travelimg"><span>'+content['title']+'</span></a>'
 						+'</div>';
 				}
 				else{ // 3,4,5
@@ -274,7 +274,7 @@
 			<div class="general-title text-center">
 				<h3 style="color: white;">POPULAR ITEMS</h3>
 				<p style="color: white; font-style: normal;">베스트 관광지</p>
-				<a href="<c:url value=''/>" style="text-align: right;">더보기</a>
+				<a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
 			</div>
 				<!-- carousel start -->
 				<div id="mycarousel" class="carousel slide" data-ride="carousel">

@@ -56,16 +56,16 @@
 							<!-- *************  루트 시작 일자 선택 시작  ************ -->							
 						</div>
 						<!-- **********************  여행 타입 선택 이미지 박스 시작  ********************* -->
-						<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="width: 150px; height: 80px;">
+						<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="width: 120px; height: 80px;">
 							<div class="btn-group" style="margin-top: 8px;">
 								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" id="tourtype">
-									<img id="tourtypeimage" alt="여행 타입" src="" style=""><span id="caret" class="caret"></span></a>
+									<img id="tourtypeimage" alt="타입" src="" style=""><span id="caret" class="caret"></span></a>
 								<ul class="dropdown-menu" id="peopletype">
 									<li id="single"><a href="#"><img src="/Planit/images/member/Preference/Preference_alone.JPG" alt="혼자서"></a></li>
 									<li id="couple"><a href="#"><img src="/Planit/images/member/Preference/Preference_couple.JPG" alt="연인끼리"></a></li>
 									<li id="friend"><a href="#"><img src="/Planit/images/plan/friend1.png" alt="친구끼리"></a></li>
 									<li id="family"><a href="#"><img src="/Planit/images/member/Preference/Preference_family.JPG" alt="가족끼리"></a></li>
-									<li id="club"><a href="#"><img src="/Planit/images/plan/club1.png" alt="동호회"></a></li>
+									<li id="club"><a href="#" ><img src="/Planit/images/plan/club1.png" alt="동호회" ></a></li>
 								</ul>
 							</div>												
 						</div>
@@ -83,27 +83,35 @@
 						<!-- 사용자가 추가한 여행정보가 없을때 -->
 						
 						<!-- 사용자가 추가한 여행 정보가 있을때 -->
-						<div id="planroute" style="height: 100px;" class="text-center" >
-							<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 text-center" style="height: auto; width: 120px; text-align: center;">
-								<div style="width: 44px; border-right: 4px solid #3ad195; height: 8px;"></div>
-								<div id="planroutecycle" >
-									<div class="btn-group" style="height: auto; margin-top: 8px; display: inline-block;">
+						<!-- <div id="planroute" style="height: 120px;" class="text-center" >							
+							<div style="width: 50px; border-right: 4px solid #3ad195; height: 12px;"></div>
+							<div style="width:100%;">								
+								<div id="planroutecycle" style="float:left; width:94px; height:94px; padding-left:7px; background:#fff; 
+									padding-top:15px; border-radius:100px; border:3px solid #3ad195; cursor:pointer;">
+									<div class="btn-group" style="height: auto; margin-top: 8px;">
 										<a href="" id="" class="dmbutton dropdown-toggle" data-toggle="dropdown">
 											<span id="caret" class="caret"></span></a>일
 										<ul class="dropdown-menu" id="">
 											<li>M</li>
 											<li>2</li>
 										</ul>
+									</div>										
+								</div>
+								<div>
+									<div >
+										&nbsp;&nbsp;<label>지역:</label>&nbsp;<font>서울 특별시</font> &nbsp;&nbsp;|
+										&nbsp;&nbsp;<label>장소: </label><font class=""> kosmo </font>&nbsp;<a class="btnDel" href="#">
+										<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a>
+									</div>
+									<div style="text-align: left;">										
+										&nbsp;&nbsp;<label style="margin-left:10%;"> 거리: </label>&nbsp;<font>3 km </font> <br/>
+										&nbsp;&nbsp;<label style="margin-left:10%;"> 도보:</label>&nbsp;<font> mm시간 dd분 </font> <br/>										
+										&nbsp;&nbsp;<label style="margin-left:10%;"> 승용차: </label><font class=""> dd분 </font>
 									</div>
 								</div>
-								<div style="width: 44px; border-right: 4px solid #3ad195; height: 8px;"></div>							
-							</div>									
-						</div>																
-						
-						
-						<div id="planroute" style="background-color: pink; height: 100px;" >
-							
-						</div>
+							</div>
+							<div style="width: 50px; border-right: 4px solid #3ad195; height: 16px; margin-top: -6px;"></div>
+						</div> -->						
 						<!-- 사용자가 추가한 여행 정보가 있을때 -->	
 				</div>
 			</div>
@@ -127,10 +135,13 @@
 				    <div id="menu_wrap" class="bg_white">
 				        <div class="option">
 				        	<div>
+					        	<%-- <input type="hidden" value="${areacodename } ${areacodesubname}" id="localkeyword"> --%>
 				                <form onsubmit="searchPlaces(); return false;" style="display: inline-flex;">
-									<input type="text" class="form-control" placeholder="장소 검색" id="keyword" style="width: 60%;">             	
-									<button type="submit">검색하기</button> 
-				                </form>
+				                	<input type="hidden" value="${areacodename } ${areacodesubname}" id="localkeyword">
+									<input type="text" class="form-control" placeholder="장소 검색" id="keyword" style="width: 60%;"
+									value='${areacodename} ${areacodesubname}'>         	
+									<button type="submit" id="mapsearch">검색하기</button> 
+				                </form>			                
 				        	</div>
 				        </div>
 				    </div>
@@ -153,5 +164,6 @@
 <!-- ********************************** map script 호출 시작 *************************************** -->
 <%@ include file="routemap.jsp" %>
 <!-- ********************************** map script 호출 종료 *************************************** -->
+
 
 

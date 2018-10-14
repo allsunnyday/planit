@@ -3,29 +3,78 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 
-	*변경사항*
-	mapper 파일의 완전한 경로 . xml은 생략
-	ibatis와는 다르게 id값에 '.'를 사용하지 못함
- -->
 <mapper namespace="config.Member">
+<!-- 로그인처리 -->
 	<select id="MemberIsLogin" parameterType="java.util.Map" resultType="int">
-		<!-- select count(*) from member where id='user1' and pwd='1234'; -->
-		<!-- SELECT COUNT(*) FROM templogin WHERE id=#{id} AND pwd=#{pwd} -->
 		SELECT COUNT(*) FROM member WHERE id=#{id} AND pwd=#{pwd}
+
 	</select>
 
-
+<!-- 멤버디테일 담는 거-->
+	<select id="MemberInformation" parameterType="java.util.Map" resultType="memberDTO">
+		SELECT * FROM member WHERE id=#{id}
+	</select>
+<!-- 회원가입처리 -->
 
 	<insert id="MemberIsJoin" parameterType="MemberDTO">
-	<!-- insert into member(id, email,pwd,verified,regidate,gender,age,star) values('test','test@test.com','1234','Y',SYSDATE,'M','20',0); -->
 		INSERT INTO member(id, email,pwd,verified,regidate,gender,age,star,name) values(#{id},#{email},#{pwd},'Y',SYSDATE,#{gender},#{age},0,#{name})
-<!-- 	INSERT INTO member(id, email,pwd,verified,regidate,gender,age,star) values(#{id},#{email},#{pwd},Y,SYSDATE,M,20,0) -->
-	
-	
+		
 	</insert>
 
+<!-- 중복검사 -->
+	<select id="MemberIsDuplicate" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM member WHERE id=#{id} 
+	</select>
 	
-	
+	<insert id="MemberInsertPefer"  parameterType="java.util.Map" >
+	insert all
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0102')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0201')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0202')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0203')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0204')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0205')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0206')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0207')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0208')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0301')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0302')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0303')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0304')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0305')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0401')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'A0502')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'B0201')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'C0112')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'C0113')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'C0114')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'C0115')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'C0116')
+		into preference(prefer_id, id, cat2) values
+		(get_prefer_seq,#{id}, 'C0117')
+		select * from dual
+	</insert>
 
 </mapper>

@@ -26,6 +26,15 @@ public class PartnerServiceImpl implements PartnerService{
 	}
 
 	@Override
+	public PartnerDTO partnerInfo(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerInfo(map);
+	}
+
+	@Override
+	public boolean isDuplicate(Map map) {
+		return dao.isDuplicate(map);
+	}
 	public int getTotalRecordforRequestTotal(Map map) {
 		return dao.getTotalRecordforRequestTotal(map);
 	}

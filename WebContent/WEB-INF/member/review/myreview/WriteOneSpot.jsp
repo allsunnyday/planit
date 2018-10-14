@@ -32,6 +32,13 @@
 	//현재 선택된 파일 수를 담을 배열
 	var file_count=0;
 	
+	var review_content_id = ${reviewContent.RE_CO_ID};
+	//저장 성공시 WriteReview페이지로 이동
+	var success_action = "<c:url value='/review/myreview/Write.it?planner_id="+${reviewContent.PLANNER_ID}+"&review_id="+${reviewContent.REVIEW_ID}+"'/> ";
+	// 이미 이미지가 있는 경우
+	var image= '${reviewContent.IMAGE}';
+	
+	console.log(review_content_id+":"+image);
 	$(function(){
 		$('#input_imgs').on("change", handleImgFileSelect);
 		if(sel_files.length==0){
@@ -53,7 +60,8 @@
 		//sel_files=[];
 		//$('.imgs_wrap').empty();
 		
-		var files = e.target.files;
+		var files = e.target.files;  //filelist객체 
+		console.log('files='+files);
 		var filesArr = Array.prototype.slice.call(files);
 		
 		var index =0;
@@ -68,7 +76,8 @@
 			var reader = new FileReader();
 			reader.onload = function(e){
 				var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction('"+index+"');\" id=\"img_id_"+index+"\">"+
-							"<img alt=\"\" src=\""+e.target.result+"\" data-file=\""+f.name+"\" class=\"selProductFile\" title=\"click to remove\" style='width:150px; height:180px; margin:0 10px 10px 0; border:1px dotted #444'></a>";
+							"<img alt=\"\" src=\""+e.target.result+"\" data-file=\""
+							+f.name+"\" class=\"selProductFile\" title=\"click to remove\" style='width:150px; height:180px; margin:0 10px 10px 0; border:1px dotted #444'></a>";
 				$('.imgs_wrap').append(html);
 				index++;
 			};
@@ -81,18 +90,26 @@
 		var formdata = new FormData();
 		
 		for(var i=0, len=sel_files.length; i<len; i++){
-			var name="image_"+i; 
+			var name="review_"+i; 
 			formdata.append(name, sel_files[i]);  // 이미지을 새롭게 변경하여 저장하기 
 		}
 		formdata.append("image_count", sel_files.length);  //사진 개수 저장
 		
 		console.log("이미지 업로드 하기 전 ")
+		// 이미지를 
 		console.log("data"+formdata);
-		console.log("summernote"+$('.summernote').summernote('code'));
-		formdata.append("content", $('.summernote').summernote('code'));  //작성된 글 저장
-		for (var pair of formdata.entries()) {
+		/* console.log("summernote"+$('.summernote').summernote('code')); */
+		
+		// 사용자가 입력한 값 
+		formdata.append("content", $('.summernote').summernote('code').trim());  //작성된 글 저장
+		/* for (var pair of formdata.entries()) {
 		    console.log(pair[0]+ ', ' + pair[1]); 
-		}
+		} */
+		// insert key 값
+		formdata.append("re_co_id", review_content_id);
+		
+		// 이미 올린 이미지가 있는경우
+		formdata.append("preimage", image);
 		
 		$.ajax({
 			type:'POST',
@@ -100,9 +117,13 @@
 			dataType:'text',
 			data: formdata,
 			contentType:false,
-			 processData: false,
+			processData: false,  //중요!!
+			/*  enctype:'multipart/form-data',  */
 			 success: function(data){
 				 console.log(data);
+				 if(confirm('성공적으로 저장되었습니다.')){
+					 location.replace(success_action);
+				 }
 			 },
 			 error:function(data){
 					/*
@@ -117,7 +138,7 @@
 	
 	function deleteImageAction(index){
 		console.log("index:"+index);
-		sel_files.splice(index, 1);
+		sel_files.splice(index, 1);  //splice함수로 해당 이미지가 포함된 인덱스 삭제 
 		var img_id = "#img_id_"+index;
 		$(img_id).remove();
 		if(sel_files.length==0){
@@ -127,6 +148,14 @@
 		console.log(sel_files);
 	}
 
+	var deletePreImage = function(alt, index){
+		//var alt = $(this).attr('id');
+		var del = alt+'<*>';
+		console.log(del);
+		image = image.replace(del, '');
+		console.log(image);
+		$('#preimage'+index).remove();
+	};
 </script>
 
 <!--**********************************************************
@@ -147,8 +176,8 @@
 		<div class="col-md-2">
 			<nav class="portfolio-filter clearfix">
 				<ul>
-					<!-- <li><a href="javascript:" onclick="submitAction();" class="dmbutton up_button" data-filter="*">저장하기</a></li> -->
-					<li><a href="javascript:" onclick="history.back();" class="dmbutton up_button" >저장하기</a></li>
+					 <li><a href="javascript:" onclick="submitAction();" class="dmbutton up_button" data-filter="*">저장하기</a></li>
+					<!-- <li><a href="javascript:" onclick="history.back();" class="dmbutton up_button" >저장하기</a></li> -->
 					<li><a href="javascript:" onclick="exit();" class="dmbutton">나가기</a></li>
 				</ul>
 			</nav>
@@ -162,20 +191,21 @@
 	<div class="container clearfix">
 		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 			<div class="general-title text-center">
-				<h3>1일차</h3>
+				<h3>${reviewContent.TITLE}</h3>
 				<hr>
 			</div>
 			<div class=" col-sm-12 first">
 				<!--############일정에 관한 개요를 보여준다.   -->
 				<div class="testimonial">
 					<img data-effect="slide-bottom" class="alignleft img-circle"
-						src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
+						src="${reviewContent.FIRSTIMAGE2}"
 						alt="">
-					<p>서울 반포대교에 설치된 분수인 달빛무지개분수는 반포대교 570m 구간 양측 총 1천140m에 380개 노즐을
-						설치해 수중펌프로 끌어올린 한강물을 약 20m 아래 한강 수면으로 떨어뜨리는 새로운 개념의 분수이다</p>
+					<p>${reviewContent.CAT1} / ${reviewContent.CAT2} / ${reviewContent.CAT3}</p>
+					<p>${reviewContent.ADDR2}</p>
+					<p>${reviewContent.HOMEPAGE}</p>
 					<div class="testimonial-meta">
 						<h4>
-							반포 달빛무지개<small><a href="#">자세히 보기</a></small>
+							${reviewContent.TITLE}<small><a href="#">자세히 보기</a></small>
 						</h4>
 					</div>
 				</div>
@@ -183,16 +213,22 @@
 				<!--############사용자가 입력하는 공간  -->
 				<form id="fileForm" action="#" enctype="multipart/form-data">
 						<div class="col-sm-12 input_wrap">
-							<a href="javascript:" onclick="fileUploadAction();" class="dmbutton2" data-filter="*">사진추가</a>
+							<a href="javascript:" onclick="fileUploadAction();" class="dmbutton2" >사진추가</a>
 							<input type="file" id="input_imgs" multiple style="display:none;"  />
 						</div>
 						
 						<!--사용자가 입력하는 공간############이미지-->
 						<div class="col-sm-offset-1 col-sm-10 imgs_block">
 							<!-- 이미지가 없을 시에는 아래의 no-image가 보인다.  -->
+							<c:if test="${empty imageMap}">
 							<div class="no-image text-center" style='width:100%; height:180px;padding-top:60px;background-color: #e6e6e6;'><h1 class="review-title">사진을 추가해주세요</h1></div>
 							<!-- 사용자가 이미지를 추가할 시에는 아래 imgs_wrap 다이브 사이에 추가된다.   -->
+							</c:if>
 							<div class="imgs_wrap">
+								<c:forEach var="imgs"  items="${imageMap}"  varStatus="loop">
+									<a href="javascript:" onclick="deletePreImage('${imgs.value}', ${loop.index});" id="preimage${loop.index}" >
+										<img alt="${imgs.value}" src="<c:url value='/Upload/Review/${imgs.value}'/> " class="selProductFile" title="click to remove" style='width:150px; height:180px; margin:0 10px 10px 0; border:1px dotted #444'></a>
+								</c:forEach>
 								<img id="img" />
 							</div>
 						</div>
@@ -205,7 +241,9 @@
 						</div>
 						<div class="col-sm-offset-1 col-sm-10 ">
 							<div class="text-wrap" >
-								<div class="summernote">소중한 순간을 기록해 보세요</div>
+								<div class="summernote"><c:if test="${empty  reviewContent.CONTENT}">소중한 순간을 기록해 보세요</c:if>
+								${reviewContent.CONTENT}
+								</div>
 							</div>
 						</div>
 				</form>
@@ -221,10 +259,10 @@
 	
 	var exit = function(){
 		if(isChangeContent && confirm('저장하지 않으면 내용이 날아갑니다. ')){
-			console.log('나가자 ');
-			history.back();
+			location.replace(success_action);
+			
 		}else{
-			history.back();
+			location.replace(success_action);
 		}
 		
 	};
@@ -248,8 +286,13 @@
 	  $('.summernote').summernote('destroy');
 	  $('.text_block p').html('글을 클릭하시면 수정할 수 있어요!');
 	  $('.text-wrap').css('border', 'none');
-	  console.log('content'+$('.summernote').val());
-	  if($('.summernote').html()=='<br>'){
+	 
+	  console.log('content'+$('.summernote').html());
+	  console.log('content1'+markup);
+	  if($('.summernote').html()=='<p><br></p>'  ||
+			  $('.summernote').html()=='<p></p>'  ||
+			  $('.summernote').html()=='<br>' ||
+			  $('.summernote').html()==''){
 		  $('.summernote').html('소중한 순간을 기록해 보세요');
 		  isChangeContent = false;
 	  }
@@ -259,7 +302,7 @@
 	$(function(){
 		// 글을 클릭하면 summernote를 활성화시킨다. 
 		$('.summernote').click(function(){
-			var content=$('.summernote').html(); 
+			var content=$('.summernote').html().trim(); 
 			console.log('content'+content);
 			if(content=='소중한 순간을 기록해 보세요'){
 				$('.summernote').html('');
@@ -275,5 +318,5 @@
 		
 	});
 </script>
-<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet"> -->
+
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>

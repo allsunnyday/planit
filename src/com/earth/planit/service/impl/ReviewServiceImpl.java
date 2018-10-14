@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.ReviewDTO;
 import com.earth.planit.service.ReviewService;
 
@@ -45,5 +46,39 @@ public class ReviewServiceImpl implements ReviewService {
 	public int deleteReview(Map map) {
 		return dao.deleteReview(map);
 	}
+
+	@Override
+	public Map selectPlannerOne(Map map) {
+		return dao.selectPlannerOne(map);
+	}
+
+	@Override
+	public ContentDTO selectContent(Map map) {
+		return dao.selectContent(map);
+	}
+
+	@Override
+	public Map selectReviewContent(Map map) {
+		return dao.selectReviewContent(map);
+	}
+
+	@Override
+	public int hasRating(Map map) {
+		return dao.hasRating(map);
+	}
+
+	@Override
+	public int insertRating(Map map) {
+		// TODO Auto-generated method stub
+		return dao.insertRating(map);
+	}
+
+	@Override
+	public Map selectRating(Map map) {
+		// TODO Auto-generated method stub
+		return dao.selectRating(map);
+	}
+
+	
 
 }

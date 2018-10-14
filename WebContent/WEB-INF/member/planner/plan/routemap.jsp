@@ -16,9 +16,15 @@
 	var marker = new daum.maps.Marker({ 
 		// 지도 중심좌표에 마커를 생성합니다 
  		//position: map.getCenter()
+ 		
+		//displayPlaceInfo(place);
+	
+		
 	}); 
 	marker.setMap(map);		//지도에 마커를 표시합니다
 	marker.setDraggable(true); // 마커 드래그 가능하도록 설정
+	
+	
 	
 	//지도에 클릭 이벤트를 등록합니다
 	//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
@@ -28,8 +34,20 @@
 		// 마커 위치를 클릭한 위치로 옮깁니다
 		marker.setPosition(latlng);
 		/* var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-	message += '경도는 ' + latlng.getLng() + ' 입니다'; */				
+	message += '경도는 ' + latlng.getLng() + ' 입니다'; */		
+	
+		
 	});	
+	
+	/* daum.maps.event.addListener(marker, 'click', function() {
+	      // 마커 위에 인포윈도우를 표시합니다
+	      //infowindow.open(map, marker);
+	      console.log('클릭한 지점 정보 얻어오도록 수정해야하는곳');
+	      //displayPlaceInfo(place);
+	      
+	});
+	 */
+	
 	
 	//지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
 	function setMapType(maptype) { 
@@ -58,21 +76,23 @@
 	var infowindow = new daum.maps.InfoWindow({zIndex:1});	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다	
 	
 	
+	
+    var keyword;
 	// 키워드 검색을 요청하는 함수입니다
 	function searchPlaces() {
 		/* ******************************검색 관련 함수*******************************/
 		if (!currCategory ) {			
 			ps = new daum.maps.services.Places();
-		    var keyword = document.getElementById('keyword').value;
-			//if(document.getElementById('searchmap').value !='검색'){
+		    keyword = document.getElementById('keyword').value;
+		    console.log("keyword: "+keyword);
 		    if (!keyword.replace(/^\s+|\s+$/g, '')) {
 		        alert('키워드를 입력해주세요!');	        
 		        return false;
 		    }
-			//}
 			
 		    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 		    ps.keywordSearch(keyword, placesSearchCB);
+		    localkeyword = keyword;
 		    document.getElementById('keyword').value = "";
 	        return;
 	    }
@@ -138,14 +158,15 @@
 		            });	            
 		        })(marker, places[i].place_name); */
 		        (function(marker, place) {
+                	var clickcount1 = 0;
 	                daum.maps.event.addListener(marker, 'click', function() {
 	                    //displayPlaceInfo(place);											// 포커스 아웃시 닫아야함.	                    
-	                	var clickcount = 0;
-	                	if(clickcount ==0){ displayPlaceInfo(place); clickcount=1;}
-						else if(clickcount ==1){ displayPlaceInfo(""); clickcount=0; }
+	                	if(clickcount1 ==0){ displayPlaceInfo(place); clickcount1=1;}
+						else if(clickcount1 ==1){ displayPlaceInfo(""); clickcount1=0; }
 	                });	
+	                console.log("dmld?");
 	            })(marker, places[i]);
-		     	
+		        //console.log(marker.getPosition());
 		        map.setBounds(bounds);	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 		        /* ************************************************* 키워드로 장소검색하고 목록으로 표출하기 ***************************************** */
     		}
@@ -164,6 +185,7 @@
 						
 	                });
 	            })(marker, places[i]);
+	            //console.log(marker.getPosition());
 	            /* ******************************************* 카테 고리 검색 ***************************************** */
 	    	}
 	    }	    	
@@ -268,7 +290,7 @@
 	// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 	function displayPlaceInfo (place) {
 	    var content = '<div class="placeinfo">' +
-	                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+	                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '" id="plantitle">' + place.place_name + '</a>';   
 
 	    if (place.road_address_name) {
 	        content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
@@ -278,21 +300,15 @@
 	    }                
 	   
 	    content += '    <span class="tel">' + place.phone + '</span>' +
-	    			'<a href="#" id="planplus"><img src="/Planit/images/plan/planplus.png" ></a>'+				//상세보기 + 버튼구현
-	                '</div>' +
+	    			'<a href="javascript:planplusActionplus()" id="planplus"><img src="/Planit/images/plan/planplus.png" id="planrouteplusimg"></a>'+				//상세보기 + 버튼구현 // <img src="/Planit/images/plan/planplus.png" id="planrouteplusimg">
+					'</div>' +
 	                
-	                '<div class="after"></div>';
-
+	                '<div class="after"></div>';        
 	    contentNode.innerHTML = content;
 	    placeOverlay.setPosition(new daum.maps.LatLng(place.y, place.x));
 	    placeOverlay.setMap(map);  
 	}
-	
-	/*******************************************/
-	
-	/*******************************************/
-	
-	
+		
 	// 각 카테고리에 클릭 이벤트를 등록합니다
 	function addCategoryClickEvent() {
 	    var category = document.getElementById('category'),
@@ -337,18 +353,78 @@
 	/************************************************ 카테고리별 장소 검색하기 종료  **********************************************************/
 	
 	
-</script>
+</script>	
+<!--**************************************************************************************************************************-->
+<!--**************************************************************************************************************************-->
 
+<!--*********************************** plan 상세여행 정보 추가 시작 ***********************************-->
 <script>
-
+	/*******************************************/	
+	
+	
+	/* ******************** daum map api 함수 내부의 추가하기 버튼 함수 시작 ******************** */
+	function planplusActionplus(){
+		console.log("planplusActionplus() : routeInfoPlusAction() 가 호출 안되어야 함.");
+		var plancase = 0;
+		plancase ++;
+		routeInfoPlusAction(plancase);
+		
+	}	
+	/* ******************** daum map api 함수 내부의 추가하기 버튼 함수 시작 ******************** */
+	
+	/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
+	function routeInfoPlusAction(place, plancase){
+		var content;
+		
+		if(plancase == 0){
+			content ='';
+			content +=  '<div id="nocityrute" style="background-color: cyan; ">';
+				content += '<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>';
+			content +='</div>';
+		}
+		
+		if(plancase != 0){
+			$('#nocityrute').remove();
+			content ='';
+			content += '<div id="planroute" style="height: 120px;" class="text-center" >';
+				content += '<div style="width: 50px; border-right: 4px solid #3ad195; height: 12px;"></div>';
+				content += '<div style="width:100%;">';
+					content += '<div id="planroutecycle" style="float:left; width:94px; height:94px; padding-left:7px; background:#fff; padding-top:15px; border-radius:100px; border:3px solid #3ad195; cursor:pointer;">';
+						content += '<div class="btn-group" style="height: auto; margin-top: 8px;">';
+							content += '<a href="" id="" class="dmbutton dropdown-toggle" data-toggle="dropdown"> <span id="caret" class="caret"></span></a>일';
+							content += '<ul class="dropdown-menu" id="">';
+								content += '<li>text1</li>';
+								content += '<li>text2</li>';
+							content += '</ul>';
+						content +='</div>';
+					content += '</div>';
+					content += '<div>';
+						content += '<div>'; 							
+							content +='&nbsp;&nbsp;<label>지역:</label>&nbsp;<font> '+keyword+' </font> &nbsp;&nbsp;|'; console.log(place+"///" );
+							content +='&nbsp;&nbsp;<label>장소: </label><font class=""> '+ document.getElementById('plantitle').title +' </font>&nbsp;<a class="btnDel" href="#">'; // '화가 난다'
+							content +='<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a>';							
+						content += '</div>';
+						content +='<div style="text-align: left;">';
+							content += '&nbsp;&nbsp;<label style="margin-left:10%;"> 거리: </label>&nbsp;<font>3 km </font> &nbsp;&nbsp; | ';
+							content += '&nbsp;&nbsp;<label style="margin-left:10%;"> 도보:</label>&nbsp;<font> mm시간 dd분 </font> <br/>	';
+							content += '&nbsp;&nbsp;<label style="margin-left:10%;"> 승용차: </label><font class=""> dd분 </font>';							
+						content +='</div>';						
+					content += '</div>';
+				content += '</div>';
+				content += '<div style="width: 50px; border-right: 4px solid #3ad195; height: 16px; margin-top:16px"></div>';
+			content +='</div>';			
+			console.log("좌표 : "+ marker.getPosition());
+		}
+		$('#cityroute').append(content);
+	}
+	/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
+	
 </script>
-<!--**************************************************************************************************************************-->
-<!--**************************************************************************************************************************-->
-<!--**************************************************************************************************************************-->
-<!--**************************************************************************************************************************-->
-<!--**************************************************************************************************************************-->
+<!--*********************************** plan 상세여행 정보 추가 종료***********************************-->
 
 
+<!--**************************************************************************************************************************-->
+<!--**************************************************************************************************************************-->
 <!-- ************************루트 상세 정보 계획 자바 스크립트 시작****************** -->
 <!-- ********************************* 상세 일정 페이지 달력 출력 시작 *************************************** -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -357,6 +433,12 @@
 <script>
 
 	$(function() {
+		/* **************** location 의 도시 정보 검색  **************** */		
+			searchPlaces(); //  새로 고침 시에 "키워드를 입력하세요" 라는 문구를 뜨지 않도록 함수 작성해야함.		 
+		/* **************** location 의 도시 정보 검색  **************** */
+		
+		
+		
 	/* ************************************* 상세정보 입력 란의 달력 정보 출력 시작 ******************************************* */
 		 $.datepicker.setDefaults({
 		        dateFormat: 'yy년 mm월 dd일',

@@ -111,7 +111,7 @@
 					<a href="#"><img class="img-responsive" alt="" src="<c:url value='/main_theme/img/team_02.png'/> " ></a>
 				</span>
 	            </div>
-	            <h3 class="general-title">${review.TITLE}</h3>
+	            <h3 class="general-title">${review.TITLE} (${review.SERIES})</h3>
 	            <div class="post-meta">
 	              <p>
 	             	   여행일자: <span class="publish-on">${review.POSTDATE}</span>

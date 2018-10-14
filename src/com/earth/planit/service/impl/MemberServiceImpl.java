@@ -1,5 +1,6 @@
 package com.earth.planit.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -26,5 +27,24 @@ public class MemberServiceImpl implements MemberService {
 		//[회원가입]
 		return dao.isJoin(dto);
 	}
+
+	@Override
+	public MemberDTO memberInfo(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberInfo(map);
+	}
+
+	@Override
+	public boolean idDuplicate(Map map) {
+		// TODO Auto-generated method stub
+		return dao.idDuplicate(map);
+	}
+
+	@Override
+	public int insertPreference(Map map) {
+		return dao.insertPreference(map);
+	}
+
+	
 
 }

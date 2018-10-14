@@ -15,6 +15,22 @@ public class PartnerDTO {
 	private String tel;
 	private String site;
 	private String address;
+	private String name;
+	private String p_name;
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
 
 	// u_ask_p 를 위한 필수데이터
 	private String id;

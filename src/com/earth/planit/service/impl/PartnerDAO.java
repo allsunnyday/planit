@@ -27,6 +27,17 @@ public class PartnerDAO implements PartnerService{
 	}
 
 	@Override
+	public PartnerDTO partnerInfo(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("PartnerInformation",map);
+	}
+//아이디 중복검사용 
+	@Override
+	public boolean isDuplicate(Map map) {
+		int count=template.selectOne("partnerIsDuplicate",map);
+		return count==0?true:false;
+	}
+	
 	public int getTotalRecordforRequestTotal(Map map) {
 		return template.selectOne("RequestTotal", map);
 	}

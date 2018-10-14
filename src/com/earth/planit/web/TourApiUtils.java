@@ -21,7 +21,7 @@ public class TourApiUtils {
 	public static String serviceKey ="NCPqTyv3znqjQjXg0mr6tqFnxmLBJcm10iYsAe66egVkZa%2F28tT1iJSvoKaq9Y8P92LAcQaoxcD5I5kTY%2Bn%2Buw%3D%3D";
 	//관광 공통 정보를 조회하는 메소드 
 	public static ContentDTO getdetailCommon(String contenttype, String contentid) throws Exception {
-		ContentDTO content = new ContentDTO();
+		
 		String addr="http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey="+serviceKey +
 				"&contentTypeId="+ contenttype+
 				"&contentId="+contentid+ 
@@ -48,40 +48,35 @@ public class TourApiUtils {
 			result.append(data); 
 		}
 		reader.close();
-		in.close();
-		System.out.println(result.toString());
-		
+		in.close();	
 		JSONParser jsonparser = new JSONParser();
-
 		JSONObject jsonobject = (JSONObject) jsonparser.parse(result.toString());
 		JSONObject json = (JSONObject) jsonobject.get("response");
 		json = (JSONObject) json.get("body");
 		json = (JSONObject) json.get("items");
-		JSONArray list = (JSONArray) json.get("item");
-		List<ContentDTO> contents = new Vector();
-		for(int i=0; i<list.size(); i++) {
-			JSONObject jsonobj = (JSONObject)list.get(i);
-			ContentDTO dto = new ContentDTO();
-			dto.setContentid(jsonobj.get("contentid").toString());
-			dto.setContenttype(jsonobj.get("contenttypeid").toString());
-			dto.setTitle(jsonobj.get("title").toString());
-			dto.setTel(jsonobj.get("tel")==null?"":jsonobj.get("tel").toString());
-			dto.setAreacode(jsonobj.get("areacode")==null?"null":jsonobj.get("areacode").toString());
-			dto.setAddr1(jsonobj.get("addr1")==null?"":jsonobj.get("addr1").toString());
-			dto.setAddr2(jsonobj.get("addr2")==null?"":jsonobj.get("addr2").toString());
-			dto.setCat1(jsonobj.get("cat1")==null?"":jsonobj.get("cat1").toString());
-			dto.setCat2(jsonobj.get("cat2")==null?"":jsonobj.get("cat2").toString());
-			dto.setCat3(jsonobj.get("cat3")==null?"":jsonobj.get("cat3").toString());
-			dto.setMapx(jsonobj.get("mapx")==null?"0":jsonobj.get("mapx").toString());
-			dto.setMapy(jsonobj.get("mapy")==null?"0":jsonobj.get("mapy").toString());
-			dto.setFirstimage(jsonobj.get("firstimage")==null?"":jsonobj.get("firstimage").toString());
-			dto.setFirstimage2(jsonobj.get("firstimage2")==null?"":jsonobj.get("firstimage2").toString());
-			dto.setSigungucode(jsonobj.get("sigungucode")==null?"":jsonobj.get("sigungucode").toString());
-			dto.setZipcode(jsonobj.get("zipcode")==null?"":jsonobj.get("zipcode").toString());
-			dto.setOverview(jsonobj.get("overview")==null?"":jsonobj.get("overview").toString());
-			contents.add(dto);
-		}
-		return content;
+		// 공통사항 조회는 item이 jsonarray가 아니라 jsonobject형식이다. 따라서 jsonArray로 변환이 안된는 점에 유의하라
+		json = (JSONObject) json.get("item");
+		//System.out.println("============="+json.toJSONString());
+		ContentDTO dto = new ContentDTO();
+		dto.setContentid(json.get("contentid").toString());
+		dto.setContenttype(json.get("contenttypeid").toString());
+		dto.setTitle(json.get("title").toString());
+		dto.setTel(json.get("tel")==null?"":json.get("tel").toString());
+		dto.setAreacode(json.get("areacode")==null?"null":json.get("areacode").toString());
+		dto.setAddr1(json.get("addr1")==null?"":json.get("addr1").toString());
+		dto.setAddr2(json.get("addr2")==null?"":json.get("addr2").toString());
+		dto.setCat1(json.get("cat1")==null?"":json.get("cat1").toString());
+		dto.setCat2(json.get("cat2")==null?"":json.get("cat2").toString());
+		dto.setCat3(json.get("cat3")==null?"":json.get("cat3").toString());
+		dto.setMapx(json.get("mapx")==null?"0":json.get("mapx").toString());
+		dto.setMapy(json.get("mapy")==null?"0":json.get("mapy").toString());
+		dto.setFirstimage(json.get("firstimage")==null?"":json.get("firstimage").toString());
+		dto.setFirstimage2(json.get("firstimage2")==null?"":json.get("firstimage2").toString());
+		dto.setSigungucode(json.get("sigungucode")==null?"":json.get("sigungucode").toString());
+		dto.setZipcode(json.get("zipcode")==null?"":json.get("zipcode").toString());
+		dto.setOverview(json.get("overview")==null?"":json.get("overview").toString());
+
+		return dto;
 		
 	}
 	
