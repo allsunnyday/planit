@@ -8,6 +8,7 @@
 지역선택 아이콘 
 *************************
  */
+ 
 #description_icon {
 	width: 200px;
 	height: 97px;
@@ -123,7 +124,6 @@
 		no-repeat;
 	background-size: 400px 600px;
 	background-position: center;
-	
 }
 
 .mapIllust ul {
@@ -143,11 +143,16 @@
 }
 
 .go-button {
-	/* display: block; */
 	background: transparent;
 	border-width: 0px;
 	cursor: pointer;
 	font-size: 20px;
+}
+
+/* 이미지 사이즈 조정 */
+.carousel-inner img{
+	height: 200px;
+	width: 500px;
 }
 </style>
 
@@ -167,7 +172,7 @@
 				error: function(request, status, error){
 					console.log(request, status, error);
 				}
-			});
+			});///ajax
 		});
 	});
 	
@@ -176,25 +181,50 @@
 		console.log(JSON.stringify(data));
 		var firstString = '';
 		var lastString ='';
+		var first='';
+		var last='';
+		/* var tourpickList = data['tourpickList'] ;
+		console.log(JSON.stringify(tourpickList)); */
 		$.each(data, function(index, content){// index = 0부터
-			console.log(content['contentid']);
-			console.log(index+'index ');
-			//
-			if(index <3){ //0 1 2
-				firstString+=''
+			if(index < 6 ){ //012 345
+				if(index <3){ //0 1 2
+					firstString+=''
+						+'<div class="col-lg-4">'
+						+'	<a><img src=\''+content['firstimage']+'\' alt="travelimg"><span>'+content['title']+'</span></a>'
+						+'</div>';
+				}
+				else{ // 3,4,5
+					lastString+=''
 					+'<div class="col-lg-4">'
-					+'	<a><img class="" src="'+content['firstimage']+'" alt="travelimg"><span>'+content['title']+'</span></a>'
+					+'	<a><img src=\''+content['firstimage']+'\' alt="travelimg"><span>'+content['title']+'</span></a>'
 					+'</div>';
+				}
 			}
-			else{ // 3,4,5
-				lastString+=''
-				+'<div class="col-lg-4">'
-				+'	<a><img class="" src="'+content['firstimage']+'" alt="travelimg"><span>'+content['title']+'</span></a>'
-				+'</div>';
+			else{  //678 910 11
+				// contentpick일경우에는여기에서 스트링을 만든다 .
+				if(index <9){ //6 7 8
+					first+=''
+						+'<div class="col-lg-4">'
+						+'	<a><img src=\''+content['firstimage']+'\' alt="contentimg"><span>'+content['title']+'</span></a>'
+						+'</div>';
+				}
+				else{ // 3,4,5
+					last+=''
+					+'<div class="col-lg-4">'
+					+'	<a><img src=\''+content['firstimage']+'\' alt="contentimg"><span>'+content['title']+'</span></a>'
+					+'</div>';
+				}
 			}
-		});// each
+		});// each 
+		
+		
 		$('.best-first').html(firstString);
 		$('.best-last').html(lastString);
+		//
+		$('.content-first').html(first);
+		$('.content-last').html(last);
+		
+		//contentpickList
 	};
 
 </script>
@@ -209,7 +239,7 @@
 			</div>
 			<!--지도-->
 			<div class="col-md-12">
-				<form >
+				<form>
 					<div class="lcate" style="overflow: hidden; background-color: #47698c;"> 
 						<div class="mapIllust" style="position:relative">
 							<ul id="setHiddenButtons1" style="position:relative">
@@ -249,25 +279,24 @@
 				<!-- carousel start -->
 				<div id="mycarousel" class="carousel slide" data-ride="carousel">
 					<!-- wrapper for slides -->
-					<div class="carousel-inner">
-					
-					
-						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
+					<div class="carousel-inner tourpickList">
+
+						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.) -->
 						 <div class="item active">
-							<div id="popularitems " class="best-first" >
-								<c:forEach var="travel" items="${list}" begin="0" end="2">
+							<div id="popularitems" class="best-first" >
+								<c:forEach var="travel" items="${tourlist}" begin="0" end="2">
 									<div class="col-lg-4">
-										<a><img class="" src="${travel.firstimage}" alt="travelimg"><span>${travel.title}</span></a>
+										<a href="<c:url value='/'/>"><img src='${travel.firstimage}' alt="travelimg"><span>${travel.title}</span></a>
 									</div>
 								</c:forEach>
 							</div>
 						</div>
 						<!-- end carousel slide 1   -->
 						<div class="item ">
-							<div id="popularitems " class="items_travel best-last">
-								<c:forEach var="travel" items="${list}" begin="3" end="5">
+							<div id="popularitems" class="items_travel best-last">
+								<c:forEach var="travel" items="${tourlist}" begin="3" end="5">
 									<div class="col-lg-4">
-										<a><img class="" src="${travel.firstimage}" alt="travelimg"><span>${travel.title}</span></a>
+										<a href="<c:url value='/'/>"><img src='${travel.firstimage}' alt="travelimg"><span>${travel.title}</span></a>
 									</div>
 							</c:forEach>
 							</div>
@@ -289,40 +318,29 @@
 				<!-- carousel start -->
 				<div id="mycarousel1" class="carousel slide" data-ride="carousel">
 					<!-- wrapper for slides -->
-					<div class="carousel-inner">
-						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
-						<div class="item active">
-							<div id="popularitems" class="items_content">
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
-								</div>
-
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
-								</div>
-
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
-								</div>
+					<div class="carousel-inner contentpickList">
+					
+					
+						<!-- carousel slide 1 (총 3개의 이미지를 보여준다.) -->
+						 <div class="item active">
+							<div id="popularitems " class="content-first" >
+								<c:forEach var="content" items="${contentlist}" begin="0" end="2">
+									<div class="col-lg-4">
+										<a href="<c:url value='/'/>"><img src='${content.firstimage}' alt="contentimg"><span>${content.title}</span></a>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 						<!-- end carousel slide 1   -->
 						<div class="item ">
-							<div id="popularitems" class="items_content">
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
-								</div>
-
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
-								</div>
-
-								<div class="col-lg-4">
-									<a><img class="" src="<c:url value='/images/MapPage/expic.jpg'/>" alt=""></a>
-								</div>
+							<div id="popularitems " class="items_travel content-last">
+								<c:forEach var="content" items="${contentlist}" begin="3" end="5">
+									<div class="col-lg-4">
+										<a href="<c:url value='/'/>"><img src='${content.firstimage}' alt="contentimg"><span>${content.title}</span></a>
+									</div>
+							</c:forEach>
 							</div>
 						</div>
-
 					</div>
 					<!-- end wrapper for slides -->
 					<a class="left carousel-control" href="#mycarousel1"
@@ -332,7 +350,8 @@
 					</a>
 				</div>
 				<!-- end carousel container-->
-<!-- title -->
+				
+			<!-- title -->
 				<%-- <div class="general-title text-center">
 					<p style="color: white; font-style: normal;">베스트 리뷰</p>
 				</div>

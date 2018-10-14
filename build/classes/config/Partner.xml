@@ -11,7 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="config.Pember">
 	<select id="PartnerIsLogin" parameterType="java.util.Map" resultType="int">
 		<!-- select count(*) from member where id='user1' and pwd='1234'; -->
-		
 		SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} AND pwd=#{pwd}
 	</select>
 	<select id="PartnerInformation" parameterType="java.util.Map" resultType="PartnerDTO" >
@@ -27,10 +26,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="PartnerIsJoin" parameterType="PartnerDTO">
 		<!--insert into partner(p_id,business_no,pwd,firstimage,regidate,tel,address) values  -->
 		insert into partner(p_id,business_no,pwd,email,firstimage,regidate,tel,address) values(#{p_id},#{business_no},#{pwd},#{email},'NOIMAGE',SYSDATE,#{tel},#{address})
-	
+
 	</insert>
 
+	<select id="PartnerRequestList" parameterType="java.util.Map" resultType="PartnerDTO">
+			SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT * FROM u_ask_p WHERE p_id= '${p_id}')T) WHERE R BETWEEN ${start} AND ${end}	
+	</select>
+	
+	<select id="RequestTotal" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM u_ask_p WHERE p_id = '${p_id}'
+	</select>
+	
+	<select id="ReservationTotal" parameterType="java.util.Map" resultType="int">
+		SELECT r.*, p_id FROM reservation r JOIN p_product p ON r.roomcode=p.roomcode;
+	</select>
 	
 	
-
 </mapper>
