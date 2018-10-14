@@ -108,10 +108,10 @@ public class SearchListController {
 	}
 	
 	//관광지 상세보기
-	@RequestMapping("/planit/search/list/TourView.it")
+	/*@RequestMapping("/planit/search/list/TourView.it")
 	public String tourView() throws Exception{
 		return "tourinfo/tdview/TourView.theme";
-	}
+	}*/
 
 
   

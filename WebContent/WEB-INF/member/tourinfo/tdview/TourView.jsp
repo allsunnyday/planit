@@ -5,11 +5,12 @@
 <!--*******************************************************
 	관광정보 상세  
 ***********************************************************  -->
+
 <section class="section1">
 	<div class="container clearfix">
 		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 			<div class="general-title text-center">
-				<h3>국립양평치유의 숲</h3>
+				<h3>${content.title}</h3>
 				<p></p>
 				<hr>
 			</div>
@@ -20,16 +21,12 @@
 				<div class="col-lg-8 col-md-8 col-sm-12">
 					<div class="theme_details">
 						<div class="details_section">
-							<h3>개요</h3>
+							<h3>기본정보</h3>
 							<ul>
-								<li class="version"><span>위치: 경기도 양평군 양동면 황거길</span></li>
-
-								<li class="release"><span>문의: 031-8097-4581</span></li>
-
-								<li class="designer"><span>이용시간: [당일방문] 09:30~12:00,
-										13:30~16:00 <br> * 시설 상황 등에 따라 변동 가능(사전 문의 권장)
-								</span></li>
-								<li class="designer"><span>쉬는날:연중무휴</span></li>
+								<li class="version"><span>주소 : ${content.addr1}</span></li>
+							<%-- 	<li class="release"><span>문의: ${content.tel}</span></li>
+								<li class="release"><span>문의: ${content.homepage}</span></li> --%>
+								<li class="designer"><span></span></li>
 							</ul>
 						</div>
 					</div>
@@ -69,18 +66,8 @@
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="theme_details">
 						<div class="item-description">
-
-							<p>개요 : 립양평치유의숲은 경기도 양평군 양동면 황거길 262-10 삼각산(538m) 남쪽자락에 위치하여,
-								수도권에서 한시간 이내의 뛰어난 접근성을 가지고 있으며, 온열치유실, 명상움막, 무인건강관리시스템 등의 다양한
-								치유시설 및 대상별 전문적인 치유프로그램을 제공합니다.</p>
-							<hr>
-							<p>개장일:</p>
-							<hr>
-							<p>소요시간:</p>
-							<hr>
-							<p>등산로:</p>
-							<hr>
-							<p>야간산행 제한안내:</p>
+							<h3>개요</h3>
+							${content.overview}
 							<hr>
 						</div>
 						<!-- item-description -->
@@ -135,14 +122,9 @@
 
 		<div  class="a_1_1">
 			<div class="carousel">
-				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 1">
-				<img src="<c:url value='/images/list/333.jpg'/>" alt="Landscape 2">
-				<img src="<c:url value='/images/list/bibim.jpg'/>" alt="Landscape 3">
-				<img src="<c:url value='/images/list/andong.jpg'/>" alt="Landscape 4">
-				<img src="<c:url value='/images/list/forest.jpg'/>" alt="Landscape 5">
-				<img src="<c:url value='/images/list/hotel.PNG'/>" alt="Landscape 6">
-				<img src="<c:url value='/images/list/motel.PNG'/>" alt="Landscape 7">
-				<img src="<c:url value='/images/list/pen.PNG'/>" alt="Landscape 8">
+				<c:forEach varStatus="loop" var="image" items="imagelist">
+				<img src="${image['originimgurl']}" alt="Landscape 1">
+				</c:forEach>
 			</div>
 		</div>
 

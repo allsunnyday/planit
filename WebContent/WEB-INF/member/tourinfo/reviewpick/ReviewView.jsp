@@ -196,7 +196,7 @@ review :
 								alt="">
 							<h4>${review.title}</h4>
 							${review.overview}
-							<p>${review.addr1}</p><small><a href="#">자세히 보기</a></small>							
+							<p>${review.addr1}</p><small><a href="<c:url value='/planit/search/list/TourView.it?contentid=${review.contentid}'/> ">자세히 보기</a></small>							
 							<div class="testimonial-meta">
 								<h4>
 									
@@ -232,7 +232,7 @@ review :
 												<div class="col-sm-10">
 													<img class=""
 														src="<c:url value='/Upload/Review/${images}'/> "
-														alt="${images}">
+														alt="${images}" >
 												</div>
 											</div>
 										</div>

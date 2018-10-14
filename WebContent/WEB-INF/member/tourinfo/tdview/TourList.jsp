@@ -7,7 +7,7 @@
 <jsp:include page="topMenu.jsp" flush="false" />
 
 <script>
-<script>
+
 
 var search=function(){
 	$('#frm').submit();
@@ -37,7 +37,7 @@ $(function(){
 
 
 </script>
-</script>
+
 
 
 
@@ -135,8 +135,8 @@ $(function(){
 								<div class="bg a0" data-animate="fadeIn">
 									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
 									<a data-rel="" 
-									href="<c:url value='/planit/search/list/TourView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
+									href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}'/> "
+										class="dmbutton a2" data-animate="bounceInLeft"  >
 										
 										<i class="fa fa-search"></i></a>
 									<div class="portfolio_category text-center a2"

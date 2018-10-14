@@ -1,12 +1,12 @@
 package com.earth.planit.web;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
@@ -78,6 +78,92 @@ public class TourApiUtils {
 
 		return dto;
 		
+	}
+	
+	public static String getOverView(String contentid, String contenttype) throws Exception {
+		
+		String addr="http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey="+serviceKey +
+				"&contentTypeId="+ contenttype+
+				"&contentId="+contentid+ 
+				"&MobileOS=ETC" + 
+				"&MobileApp=TourAPI3.0_Guide" + 
+				"&defaultYN=N" + 
+				"&firstImageYN=N" + 
+				"&areacodeYN=N" + 
+				"&catcodeYN=N" + 
+				"&addrinfoYN=N" + 
+				"&mapinfoYN=N" + 
+				"&overviewYN=Y" + 
+				"&_type=json"+
+				"&transGuideYN=Y";
+		URL url = new URL(addr);
+		//URL로부터 자바로 데이터 읽어오도록 URL객체로 스트림열기
+		InputStream in = url.openStream();
+		// 데이터 읽어 오기 
+		StringBuffer result=new StringBuffer();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"));
+		String data;
+		//결과값을 한줄씩 읽어옴
+		while((data=reader.readLine())!=null) {
+			result.append(data); 
+		}
+		reader.close();
+		in.close();	
+		JSONParser jsonparser = new JSONParser();
+		JSONObject jsonobject = (JSONObject) jsonparser.parse(result.toString());
+		JSONObject json = (JSONObject) jsonobject.get("response");
+		json = (JSONObject) json.get("body");
+		json = (JSONObject) json.get("items");
+		// 공통사항 조회는 item이 jsonarray가 아니라 jsonobject형식이다. 따라서 jsonArray로 변환이 안된는 점에 유의하라
+		json = (JSONObject) json.get("item");
+		//System.out.println("============="+json.toJSONString());
+		return json.get("overview")==null?"":json.get("overview").toString();
+	}
+	
+	
+	public static List<Map> getImageTourdata(String contentid)throws Exception{
+		
+		String addr="http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage?ServiceKey="+serviceKey
+				+ "&contentId="+contentid
+				+ "&imageYN=Y"
+				+ "&MobileOS=ETC"
+				+"&_type=json"
+				+ "&MobileApp=AppTest";
+		
+		URL url = new URL(addr);
+		//URL로부터 자바로 데이터 읽어오도록 URL객체로 스트림열기
+		InputStream in = url.openStream();
+		// 데이터 읽어 오기 
+		StringBuffer result=new StringBuffer();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"));
+		String data;
+		//결과값을 한줄씩 읽어옴
+		while((data=reader.readLine())!=null) {
+			result.append(data); 
+		}
+		reader.close();
+		in.close();	
+		JSONParser jsonparser = new JSONParser();
+		JSONObject jsonobject = (JSONObject) jsonparser.parse(result.toString());
+		JSONObject json = (JSONObject) jsonobject.get("response");
+		json = (JSONObject) json.get("body");
+		json = (JSONObject) json.get("items");
+		// 공통사항 조회는 item이 jsonarray가 아니라 jsonobject형식이다. 따라서 jsonArray로 변환이 안된는 점에 유의하라
+		JSONArray jsonarray = (JSONArray) json.get("item");
+		System.out.println(jsonarray.toJSONString()+"======================"+jsonarray.size());
+		//
+		List<Map> imagelist = new Vector<Map>();
+		for(int i=0; i<jsonarray.size(); i++) {
+			JSONObject js = (JSONObject) jsonarray.get(i);
+			Map map = new HashMap();
+			//map.put("imagename", json.get("imagename"));
+			map.put("originimgurl", json.get("originimgurl")==null?"no-image":json.get("originimgurl").toString());
+			map.put("serialnum", json.get("serialnum")==null?"no-image":json.get("serialnum").toString());
+			map.put("smallimageurl", json.get("smallimageurl")==null?"no-image":json.get("smallimageurl").toString());
+			imagelist.add(map);
+			
+		}
+		return imagelist;
 	}
 	
 }

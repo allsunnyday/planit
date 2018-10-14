@@ -148,7 +148,7 @@ public class MemberController {
 			session.setAttribute("id", map.get("id"));
 			MemberDTO memberRecord=service.memberInfo(map);
 			session.setAttribute("memberRecord", memberRecord);
-			return "forward:/Plait/Planit.it";
+			return "redirect:/";
 		}
 		else { // 비회원일경우 
 			model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
@@ -162,7 +162,7 @@ public class MemberController {
 	@RequestMapping("/member/login/Logout.it")
 	public String logoutProcess(HttpSession session) throws Exception{
 		session.invalidate();
-		return "forward:/Plait/Planit.it";
+		return "redirect:/Plait/Planit.it";
 		
 	}
 	
