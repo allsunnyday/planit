@@ -3,11 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
-/* function(position) {
-	var lat = position.coords.latitude, // 위도
-	lon = position.coords.longitude; // 경도	 
-	console.log(lat+"||||||||"+lon);
-} */
 /**************************/
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션		
@@ -77,7 +72,6 @@
 	var infowindow = new daum.maps.InfoWindow({zIndex:1});	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다	
 	
 	
-	
     var keyword;
 	// 키워드 검색을 요청하는 함수입니다
 	function searchPlaces() {
@@ -114,6 +108,7 @@
 	
 	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 	function placesSearchCB(data, status, pagination) {
+		console.log('data: '+ data); // 뭐들음?
 	    if (status === daum.maps.services.Status.OK) {
 	        displayPlaces(data);	        // 정상적으로 검색이 완료됐으면 검색 목록과 마커를 표출합니다
 	    } else if (status === daum.maps.services.Status.ZERO_RESULT) {
@@ -125,7 +120,7 @@
 	}	
 	
 	var planposition;	// 플랜 좌표를 담을 포지션 객체
-	var planpositioncount=0; // 즐랜 좌표를 추가할 객체 번호
+	
 	// 검색 결과 목록과 마커를 표출하는 함수입니다
 	function displayPlaces(places) {
 		/* **************** 검색 키워드 출력 *************** */
@@ -172,7 +167,6 @@
 	                		//console.log("좌표 : "+ marker.getPosition());
 	                		planposition = marker.getPosition();
 	                		console.log('planposition: '+planposition);
-	                		planpositioncount++;
 	                		clickcount1=1;
                 		} // 좌표 얻엇다.
 						else if(clickcount1 ==1){ displayPlaceInfo(""); clickcount1=0; }
@@ -195,8 +189,9 @@
 						//displayPlaceInfo(place);												// 포커스 아웃시 닫아야함.
 						if(clickcount ==0){ 
 							displayPlaceInfo(place);
-							console.log("좌표 : "+ marker.getPosition()); 
-							
+							//console.log("좌표 : "+ marker.getPosition()); 
+							planposition = marker.getPosition();
+	                		console.log('planposition: '+planposition);
 							clickcount=1;}
 						else if(clickcount ==1){ displayPlaceInfo(""); clickcount=0; }
 						
@@ -219,7 +214,7 @@
 	
 	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 	// 인포윈도우에 장소명을 표시합니다
-	function displayInfowindow(marker, title) {
+	/* function displayInfowindow(marker, title) {
 	    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
 	    infowindow.setContent(content);
 	    infowindow.open(map, marker);
@@ -229,7 +224,7 @@
 	    while (el.hasChildNodes()) {
 	        el.removeChild (el.lastChild);
 	    }
-	}
+	} */
 	/******************************************** 키워드로 장소검색하고 목록으로 표출하기 종료 **************************************************/
 	/************************************************ 카테고리별 장소 검색하기 시작  **********************************************************/
 	// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
@@ -489,16 +484,18 @@
 
 	$(function() {
 		/* **************** location 의 도시 정보 검색  **************** */		
-			//searchPlaces(); //  새로 고침 시에 "키워드를 입력하세요" 라는 문구를 뜨지 않도록 함수 작성해야함.
-			searchaction();
-			//console.log(keyword);
+		//searchPlaces(); //  새로 고침 시에 "키워드를 입력하세요" 라는 문구를 뜨지 않도록 함수 작성해야함.
+		searchaction();		
+		//console.log(keyword);
 		function searchaction(){
 			ps = new daum.maps.services.Places();
 			keyword = document.getElementById('keyword').value;
 			document.getElementById('keyword').value = "";
-			ps.keywordSearch(keyword, placesSearchCB);
+			ps.keywordSearch(keyword, displayPlaces);
 		}
-			
+		
+		removeMarker(); // 마커 왜..
+		console.log('???????');
 		/* **************** location 의 도시 정보 검색  **************** */
 		
 		
