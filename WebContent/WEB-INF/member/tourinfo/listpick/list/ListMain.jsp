@@ -12,11 +12,21 @@
  	color:#FFF;
  	}
  	
- 	#iii{
- 	float:left;
- 	margin-right:10px;
- 	margin-top:30px;
- 	width:32%;
+ 	#iii1{
+ 	padding-right:20px;
+  	margin-top:30px; 
+  	padding-left:10px;
+  	width:420px
+ 	}
+ 	 	#iii2{
+ 	padding-right:20px;
+  	margin-top:30px; 
+  	width:460px
+ 	}
+ 	 	#iii3{
+ 	padding-right:20px;
+  	margin-top:30px; 
+  	width:460px
  	}
  </style>
 
@@ -40,7 +50,7 @@
 					<div class="carousel-inner">
 						<!--슬라이드1-->
 						<!-- --------------------------------------------관광지-------------------------- -->
-							<c:forEach var="record" items="${tour}"  begin="1" end="1" >
+							
 								<div class="item active"> 
 									<!--  아래 이미지는 배경이 된다. -->
 									<a href="#">
@@ -48,15 +58,25 @@
 												style="width:100%;height: 550px" height="300px" alt="First slide"></a>
 									<div class="review-overlay">
 							   			 <div class="text" >
-							   				 <img id="iii" src="${record.firstimage}">
-										 	<img id="iii" src="${record.firstimage}">
-										 	<img id="iii" src="${record.firstimage}">
+							   			 
+							   			 <c:forEach var="record" items="${tour}" end="1">
+							   				 <img id="iii1" src="${record.firstimage}">
+							   			 </c:forEach>
+							   				 
+							   			 <c:forEach var="record" items="${food}" end="1">
+										 	<img id="iii2" src="${record.firstimage}">
+										 </c:forEach>
+										 	
+										 <c:forEach var="record" items="${sleep}" end="1">
+										 	<img id="iii3" src="${record.firstimage}">
+										 </c:forEach>
+										 	
 							   			</div>
 									</div>
 									<div class="container">
 								</div>
 							</div>
-							</c:forEach>
+							
 						<!--슬라이드1-->
 					</div>
 					
@@ -120,7 +140,7 @@
               <img class="lazyOwl" data-src='${record.firstimage }' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
-                  <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
+                  <h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
                   <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
@@ -145,7 +165,7 @@
               <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
-                  <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
+                  <h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
                   <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
