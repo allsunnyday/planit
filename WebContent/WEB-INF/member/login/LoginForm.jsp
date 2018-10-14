@@ -11,6 +11,7 @@
 				<h4 class="title">
 					<span>Welcome PLAN:IT!</span>
 				</h4>
+				<div>
 				<p>Lorem Ipsum is simply dummy text of the printing and
 					typesetting industry. Lorem Ipsum has been the industry"s standard
 					dummy text ever since the 1500s.</p>
@@ -19,6 +20,7 @@
 				<p class="withpadding">
 					플랜잇이 처음이신가요? 지금 바로 <a href="#">Planit</a>에서 놀라운 경험을 해보세요.
 				</p>
+				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<!-- <h4 class="title">
@@ -31,8 +33,8 @@
 		              <li><a href="#partner-login" data-toggle="tab">기업회원</a></li>
 		            </ul>
 		            <div class="tab-content">
-		              <c:if test="${not empty loginError }" var="loginResult"><div><h1>${loginError}</h1></div></c:if>
-		              <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}반갑습니다!</c:if>
+		               
+		             <%--  <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}반갑습니다!</c:if>  --%>
 		              <!-- 일반회원 가입-->
 		              <div class="tab-pane active" id="user-login">
 		              	<div class="text-center" style="padding: 50px 0;">
@@ -40,6 +42,7 @@
 		              	</div>
 		              	<form id="loginform" method="post" name="loginform" action="<c:url value='/member/login/LoginProcess.it'/>" >
 			               <div class="form-group">
+			               <c:if test="${not empty loginError }" var="loginResult"><div><p style="color:red;">${loginError}</p></div></c:if>
 			                  <div class="input-group">
 			                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
 			                     <input type="text" class="form-control" placeholder="Username" name="id">
@@ -59,7 +62,7 @@
 			               </div>
 			               <div class="form-group">
 			                  <button type="submit" class="button">Sign in</button>
-						 <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" >회원 마이페이지 임시 이동</a>
+						<%--  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" >회원 마이페이지 임시 이동</a> --%>
 			               </div>
 			            </form>
 			            
@@ -72,17 +75,18 @@
 		              <div class="text-center" style="padding: 50px 0;">
 		              		<img  src="<c:url value='/images/planit_logo.png'/> " alt=""/>
 		              	</div>
-		                <form id="loginform" method="post" name="loginform" action="">
+		                <form id="loginform" method="post" name="loginform" action="<c:url value='/partner/login/LoginProcess.it'></c:url>">
 		               <div class="form-group">
+		               <c:if test="${not empty loginError }" var="loginResult"><div><p style="color:red;">${loginError}</p></div></c:if>
 		                  <div class="input-group">
 		                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-		                     <input type="text" class="form-control" placeholder="Username">
+		                     <input type="text" class="form-control" name="p_id" id="p_id"  placeholder="Username">
 		                  </div>
 		               </div>
 		               <div class="form-group">
 		                  <div class="input-group">
 		                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-		                     <input type="password" class="form-control"
+		                     <input type="password" id="pwd" name="pwd"class="form-control"
 		                        placeholder="Password">
 		                  </div>
 		               </div>

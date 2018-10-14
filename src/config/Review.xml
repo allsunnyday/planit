@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	*변경사항*
+	mapper 파일의 완전한 경로 . xml은 생략
+	ibatis와는 다르게 id값에 '.'를 사용하지 못함
+ -->
+<mapper namespace="config.Pember">
+
+	<select id="reviewSelectList" parameterType="java.util.Map" resultType="java.util.Map">
+		select r.*, id from review r join planner p on r.planner_id=p.planner_id
+	</select>
+	
+	<select id="reviewSelectOne"  parameterType="java.util.Map" resultType="reviewDTO" >
+		select r.*, id from review r join planner p on r.planner_id=p.planner_id
+		where r.review_id=#{review_id}
+		
+	</select>
+	
+	<select id="reviewSelectPlanner"  parameterType="java.util.Map" resultType="java.util.Map">
+		select * from planner where planner_id=#{planner_id}
+	</select>
+	
+	<select id="reviewSelectContent" parameterType="java.util.Map" resultType="contentDTO">
+		select * from content where contentid=#{contentid}
+	</select>
+	
+	<select id="reviewGetTotal" parameterType="java.util.Map" resultType="int">
+		select count(*) from review where planner_id=#{planner_id}
+	</select>
+	
+	<select id="reviewSelectReviewContent" parameterType="java.util.Map" resultType="java.util.Map">
+		select * 
+		from (select re.* ,planner_id from review_content re join review v on re.review_id=v.review_id ) r join content c on  r.contentid=c.contentid
+		where r.review_id = #{review_id} and r.route_index=#{route_index}
+	</select>
+	
+	<update id="ReviewUpdateContent" parameterType="java.util.Map">
+		update review_content set content=#{content} , image=#{image} where re_co_id=#{re_co_id}
+	
+	</update>
+	
+	<!-- review -->
+	<select id="ReviewHasRating" parameterType="java.util.Map"  resultType="int">
+		select count(*) from review_rating where id=#{id} and review_id=#{review_id}
+	</select>
+	
+	<insert id="ReviewInsertRating" parameterType="java.util.Map">
+		insert into review_rating(rating_id,riview_id ,id,review_rating) 
+		values(SEQ_review_rating_rating_id.nextval, #{review_id}, #{id}, review_rating+#{review_rating})
+	</insert>
+	
+	
+</mapper>

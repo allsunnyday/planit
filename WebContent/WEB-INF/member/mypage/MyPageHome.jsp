@@ -75,6 +75,11 @@ height: 100%;
 /*    border: 3px gray dotted; */
    background-color: rgb(109, 213, 193);
 }
+#MY-First-Preference{
+display: inline-block;
+   border-radius: 10px;
+   border:1px rgb(109, 213, 193) dashed;
+}
 
 #MY-first-2-Like {
    display: inline-block;
@@ -162,7 +167,7 @@ height: 100%;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
           <li><a href="index.html">My Page</a></li>
-          <li>사용자 이름</li>
+          <li>${userid }</li>
         </ul>
         <h2>MY Page Home</h2>
       </div>
@@ -196,13 +201,15 @@ height: 100%;
             </div>
             <!-- he wrap -->
             <div class="teammembers-meta">
-              <h4>Plan:It</h4>
+              <h4>${sessionScope.userid}</h4>
             </div>
             <div id="MY-first-1-self-detail">
                      <p>
                         <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                           Plan:It님의&nbsp자기소개입니다</span>
-                     <p>어서오세요, Plan:It님!
+                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
+                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
+                           님의&nbsp자기소개입니다</span>
+                     <p>어서오세요, ${userid }님!
                      멋진 프로필을 등록해 
                      자신만의 개성을 나타내보세요!
                      </p>
@@ -228,14 +235,31 @@ height: 100%;
                    </tr>
                    <tr>
                       <td>Star Point</td>
-                      <td>00</td>
-                   </tr>
-                
-                      
+                      <td>0000</td>
+                  <!--  </tr>
+                	<tr style="border-top:1px white dashed;">
+                	<td colspan="2"> 선호사항</td>
+                	</tr>
+                       -->
                    </table>
                 
                 </div>
               
+            </div>
+            <!-- ***********************8
+            선호도 조사 들어갈 부분
+            *****************************8 -->
+            <div id="MY-First-Preference" style="width:90%;" >
+            	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
+            		<tr>
+            			<td>1</td>
+            			<td>2</td>
+            			<td>3</td>
+            			<td>4</td>
+            		</tr>
+            	
+            	</table>
+            
             </div>
           </div>
           <!-- end teammembers -->

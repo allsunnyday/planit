@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	*변경사항*
+	mapper 파일의 완전한 경로 . xml은 생략
+	ibatis와는 다르게 id값에 '.'를 사용하지 못함
+ -->
+<mapper namespace="config.SearchList">
+
+	<select id="selectTourList" parameterType="java.util.Map" resultType="searchListDTO">
+		select * from(select a .*,rownum r from
+		(select firstimage,title,addr1,tel,areacode from content where contenttype=12)a)
+		where r  between #{start} and #{end}
+	</select>
+	<select id="selectFoodList" parameterType="java.util.Map" resultType="searchListDTO">
+		select * from(select a .*,rownum r from
+		(select firstimage,title,addr1,tel from content where contenttype=39)a)
+		where r  between #{start} and #{end}
+	</select>
+	<select id="selectSleepList" parameterType="java.util.Map" resultType="searchListDTO">
+		select * from(select a .*,rownum r from
+		(select firstimage,title,addr1,tel from content where contenttype=32)a)
+		where r  between #{start} and #{end}
+	</select>
+	
+	
+	
+	
+	<select id="getTotalCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from content
+		<if test="searchWord != null">
+				where ${searchColumn} LIKE '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	
+	<select id="searchSelectList" parameterType="java.util.Map" resultType="searchListDTO">
+		select * from
+		(select a.*,rownum r from(
+		select firstimage,title,addr1,tel from content where contenttype=12)a)
+		where  r between #{start} and #{end}
+	</select>
+
+	
+	
+	
+
+	
+	
+	
+	
+	
+</mapper>

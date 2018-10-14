@@ -40,20 +40,34 @@
 				<li><a href="<c:url value='/planit/review/ReviewList.it'/> ">reviews</a></li>
 				<!-- 예원 -->
 				<li class="dropdown">
-					<c:if test="${empty sessionScope.user_id}" var="isNotLogin">
-					<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">시작하기<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu" >
-						<li><a href="<c:url value='/planit/login/Login.it'/> " style="color:#888;">LOGIN</a></li>
-						<li><a href="<c:url value='/member/login/Join.it'/> " style="color:#888;">JOIN</a></li>
-					</ul>
-					</c:if>
-					<c:if test="${not isNotLogin}">
-					<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">플랫잇 님<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu" >
-						<li><a href="<c:url value='/member/login/Login.it'/> " style="color:#888;">마이페이지</a></li>
-						<li><a href="<c:url value='/member/login/Join.it'/> " style="color:#888;">문의</a></li>
-					</ul>
-					</c:if>
+						<c:choose>
+						<c:when test="${empty sessionScope.id and empty sessionScope.p_id}">
+							<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">시작하기<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu" >
+								<li><a href="<c:url value='/planit/login/Login.it'/> " style="color:#888;">LOGIN</a></li>
+								<li><a href="<c:url value='/member/login/Join.it'/> " style="color:#888;">JOIN</a></li>
+							</ul>
+						</c:when>
+						<c:when test="${not empty sessionScope.id}">
+							<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">${id} 님<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu" >
+								<li><a href="<c:url value='/planit/mypage/MyPageHome.it'/> " style="color:#888;">마이페이지</a></li>
+								 <li><a href="<c:url value='#'/> " style="color:#888;">문의</a></li> 
+								<li><a href="<c:url value='/member/login/Logout.it'/> " style="color:#888;">로그아웃</a></li>
+							</ul>
+						
+						</c:when>
+						<c:otherwise>
+							<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">${p_id}님<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu" >
+							<li>${partnerRecord.business_no}</li>
+							<li><a href="<c:url value='/planit/mypage/partner/PartnerMyPageHome.it'/> " style="color:#888;">마이페이지</a></li>
+							 <li><a href="<c:url value='/member/login/Join.it'/> " style="color:#888;">문의</a></li> 
+							<li><a href="<c:url value='/member/login/Logout.it'/> " style="color:#888;">로그아웃</a></li>
+							<li><a href="<c:url value='#'/> " style="color:#888;">문의</a></li>
+						</ul>
+						</c:otherwise>
+					</c:choose>
 				</li>
 			</ul>
 		</div>
