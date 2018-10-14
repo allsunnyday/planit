@@ -142,13 +142,13 @@ public class MemberController {
 		
 		boolean isLogin = service.isLogin(map);
 		System.out.println(isLogin);
-		System.out.println(service.isLogin(map));
+		System.out.println();
 		if(isLogin) { // 회원일경우
 			//로그인 처리 - 세션 영역에 저장 
 			session.setAttribute("userid", map.get("id"));
 			MemberDTO memberRecord=service.memberInfo(map);
 			session.setAttribute("memberRecord", memberRecord);
-			return "main/main.tiles";
+			return "forward:/Plait/Planit.it";
 		}
 		else { // 비회원일경우 
 			model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
@@ -162,7 +162,7 @@ public class MemberController {
 	@RequestMapping("/member/login/Logout.it")
 	public String logoutProcess(HttpSession session) throws Exception{
 		session.invalidate();
-		return "main/main.tiles";
+		return "forward:/Plait/Planit.it";
 		
 	}
 	
@@ -187,4 +187,6 @@ public class MemberController {
 		
 	}
 	
+	
+
 }
