@@ -290,7 +290,8 @@ height: 100%; */
 								</h4>
 								
 								<div>
-									<input type="file" >
+									<input type="file" name="roomimg1art" id="roomimg1art">
+									
 									
 								</div>
 
