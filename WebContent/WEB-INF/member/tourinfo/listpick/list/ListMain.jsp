@@ -37,9 +37,15 @@
 						<!-- --------------------------------------------관광지-------------------------- -->
 							<c:forEach var="record" items="${tour}" begin="1" end="1" >
 								<div class="item active"> 
+									<!--  아래 이미지는 배경이 된다. -->
 									<a href="#"><img src="${record.firstimage}" style="width:100%;height: 550px" height="300px" alt="First slide"></a>
 									<div class="review-overlay">
-							   			 <div class="text"><p><span style="font-size:2em; color:white; font-weight:bold; margin-left:200px ">${record.title }</span></p></div>
+							   			 <div class="text"><p><span style="font-size:2em; color:white; font-weight:bold; margin-left:200px ">
+							   			 <img src="${record.firstimage}"  >
+										 	<img src="${record.firstimage}" >
+										 	<img src="${record.firstimage}"  >
+							   			 ${record.title }</span></p></div>
+										 	
 									</div>
 									<div class="container">
 								</div>
