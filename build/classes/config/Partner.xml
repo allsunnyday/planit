@@ -14,19 +14,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} AND pwd=#{pwd}
 	</select>
-	<select id="PartnerInformation" parameterType="java.util.Map" resultType="PartnerDTO" >
-		SELECT * FROM partner WHERE p_id=#{p_id}
-	</select>
-<!-- 중복검사 -->
-	<select id="partnerIsDuplicate" parameterType="java.util.Map" resultType="int">
-	SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} 
-	
-	</select> 
 
-	
 	<insert id="PartnerIsJoin" parameterType="PartnerDTO">
-		<!--insert into partner(p_id,business_no,pwd,firstimage,regidate,tel,address) values  -->
-		insert into partner(p_id,business_no,pwd,email,firstimage,regidate,tel,address) values(#{p_id},#{business_no},#{pwd},#{email},'NOIMAGE',SYSDATE,#{tel},#{address})
+
+		insert into partner(p_id,business_no,pwd,firstimage,regidate,tel,site,address) values(#{p_id},#{business_no},NO IMAGE,SYSDATE,#{tel},#{site},#{address})
 	
 	</insert>
 

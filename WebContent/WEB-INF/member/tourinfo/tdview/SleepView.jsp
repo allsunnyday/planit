@@ -74,11 +74,10 @@
 						<!-- buttons -->
 						<hr>
 						<div class="rating text-center">
-							<i class="fa fa-plain"></i> <i class="fa fa-star"></i> <i
-								class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-								class="fa fa-star-o"></i>
-							<p>Users Rating</p>
+							<i class="fa fa-star-o"></i> 
+							<p>찜찜찜찜찜</p>
 						</div>
+						
 						<!-- rating -->
 					</div>
 					<!-- theme_details -->

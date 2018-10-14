@@ -13,10 +13,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM member WHERE id=#{id}
 	</select>
 <!-- 회원가입처리 -->
+
 	<insert id="MemberIsJoin" parameterType="MemberDTO">
 		INSERT INTO member(id, email,pwd,verified,regidate,gender,age,star,name) values(#{id},#{email},#{pwd},'Y',SYSDATE,#{gender},#{age},0,#{name})
 		
 	</insert>
+
 <!-- 중복검사 -->
 	<select id="MemberIsDuplicate" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) FROM member WHERE id=#{id} 

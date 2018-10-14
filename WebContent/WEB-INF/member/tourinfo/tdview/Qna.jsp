@@ -10,18 +10,17 @@
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/animate.min.css">
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/owl.carousel.css">
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/main.css">
-<script src="https://365ok.co.kr/theme/ok/js/jquery-2.2.4.min.js"></script>
-
+<script src="https://365ok.co.kr/theme/ok/js/jquery-2.2.4.min.js"></script>	
   <section class="section1">
     <div class="container clearfix" >
       <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
       
-      <section class="sub-area relative" id="home">
+      <section class="sub-area relative" id="home" >
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">Q&A</h1>
+					<div class="row d-flex align-items-center justify-content-center" >
+						<div class="about-content col-lg-12" >
+							<h1 class="text-white" >Q&A</h1>
 						</div>
 					</div>
 				</div>
@@ -39,7 +38,7 @@
           <div class="dmbox" style="height:261px">
             <div class="service-icon" >
               <div class="dm-icon-effect-1" data-effect="slide-bottom" >
-                <a class="" href="#"><i class="dm-icon fa fa-question fa-3x"></i></a>
+                <a class="" href="#target"><i class="dm-icon fa fa-question fa-3x" ></i></a>
               </div>
             </div>
             <h4>FAQ</h4>
@@ -112,8 +111,8 @@
 <!--************************************** 
  	FAQ 아코디언으로 
  **************************************-->
-	<nav class="accordion arrows">
-		<header class="box">
+	<nav id="target"class="accordion arrows">
+		<header  class="box">
 			<label for="acc-close" class="box-title">FAQ</label>
 		</header>
 		<input type="radio" name="accordion" id="cb1" />
@@ -136,20 +135,21 @@
 			<label class="box-close" for="acc-close"></label>
 			<div class="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
 		</section>
+		<input type="radio" name="accordion" id="cb4" />
 		<section class="box">
-			<label class="box-title" for="cb3">Item 4</label>
+			<label class="box-title" for="cb4">Item 4</label>
 			<label class="box-close" for="acc-close"></label>
 			<div class="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
 		</section>
+		<input type="radio" name="accordion" id="cb5" />
 		<section class="box">
-			<label class="box-title" for="cb3">Item 5</label>
+			<label class="box-title" for="cb5">Item 5</label>
 			<label class="box-close" for="acc-close"></label>
 			<div class="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
 		</section>
 
 		<input type="radio" name="accordion" id="acc-close" />
 	</nav>
-		
 		
       </div>
       <!-- end content -->
@@ -161,7 +161,6 @@
  
   <div class="dmtop">Scroll to Top</div>
 
-</div>
 
 <style>
 /****************************************
