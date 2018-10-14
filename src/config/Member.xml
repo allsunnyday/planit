@@ -7,7 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 로그인처리 -->
 	<select id="MemberIsLogin" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) FROM member WHERE id=#{id} AND pwd=#{pwd}
+
 	</select>
+
 <!-- 멤버디테일 담는 거-->
 	<select id="MemberInformation" parameterType="java.util.Map" resultType="memberDTO">
 		SELECT * FROM member WHERE id=#{id}
