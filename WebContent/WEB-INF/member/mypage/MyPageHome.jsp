@@ -75,6 +75,11 @@ height: 100%;
 /*    border: 3px gray dotted; */
    background-color: rgb(109, 213, 193);
 }
+#MY-First-Preference{
+display: inline-block;
+   border-radius: 10px;
+   border:1px rgb(109, 213, 193) dashed;
+}
 
 #MY-first-2-Like {
    display: inline-block;
@@ -230,14 +235,31 @@ height: 100%;
                    </tr>
                    <tr>
                       <td>Star Point</td>
-                      <td>00</td>
-                   </tr>
-                
-                      
+                      <td>0000</td>
+                  <!--  </tr>
+                	<tr style="border-top:1px white dashed;">
+                	<td colspan="2"> 선호사항</td>
+                	</tr>
+                       -->
                    </table>
                 
                 </div>
               
+            </div>
+            <!-- ***********************8
+            선호도 조사 들어갈 부분
+            *****************************8 -->
+            <div id="MY-First-Preference" style="width:90%;" >
+            	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
+            		<tr>
+            			<td>1</td>
+            			<td>2</td>
+            			<td>3</td>
+            			<td>4</td>
+            		</tr>
+            	
+            	</table>
+            
             </div>
           </div>
           <!-- end teammembers -->

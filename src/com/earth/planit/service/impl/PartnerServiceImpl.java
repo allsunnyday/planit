@@ -24,4 +24,16 @@ public class PartnerServiceImpl implements PartnerService{
 		return dao.isPartnerJoin(dto);
 	}
 
+	@Override
+	public PartnerDTO partnerInfo(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerInfo(map);
+	}
+
+	@Override
+	public boolean isDuplicate(Map map) {
+		// TODO Auto-generated method stub
+		return dao.isDuplicate(map);
+	}
+
 }

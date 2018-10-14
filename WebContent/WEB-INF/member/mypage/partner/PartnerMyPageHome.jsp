@@ -164,7 +164,7 @@ height: 100%; */
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<ul class="breadcrumb">
 				<li><a href="index.html">Partner Page</a></li>
-				<li>사용자 이름</li>
+				<li>${partnerRecord.p_id }</li>
 			</ul>
 			<h2>Partner Page Home</h2>
 		</div>
@@ -203,30 +203,27 @@ height: 100%; */
 				<div id="Partner-First-1-self-detail">
 					<p>
 						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-							(주)Plan:It</span>
+							(주)회사이름추가하기</span>
 					<div class="Partner-First-PartnerInform">
 
 						<table id="Partner-First-informtable" style="width: 110%;">
 							<tr>
 								<td>사업자번호</td>
-								<td>123-45-678900</td>
+								<td>${partnerRecord.business_no }</td>
 							</tr>
 							<tr>
 								<td>대표자</td>
-								<td>김잇잇</td>
+								<td>${partnerRecord.name }</td>
 							</tr>
 							<tr>
 								<td>주소</td>
-								<td>서울특별시 디지털로 123 311호</td>
+								<td>${partnerRecord.address }</td>
 							</tr>
 							<tr>
 								<td>전화</td>
-								<td>02-0000-0000</td>
+								<td>${partnerRecord.tel }</td>
 							</tr>
-							<tr>
-								<td>업종</td>
-								<td>숙박업</td>
-							</tr>
+							
 
 
 						</table>
@@ -287,6 +284,8 @@ height: 100%; */
 							</button>
 							<ul class="dropdown-menu" role="menu"
 								aria-labelledby="Partner-edit-button">
+								<li role="presentation"><a role="menuitem" tabindex="-1"
+									href="<c:url value='/plantit/mypage/partner/productResist.it' />">상품등록</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1"
 									href="<c:url value='#' />">프로필 수정</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1"

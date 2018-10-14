@@ -142,11 +142,13 @@ public class MemberController {
 		
 		boolean isLogin = service.isLogin(map);
 		System.out.println(isLogin);
-		System.out.println(service.isLogin(map));
+		System.out.println();
 		if(isLogin) { // 회원일경우
 			//로그인 처리 - 세션 영역에 저장 
 			session.setAttribute("userid", map.get("id"));
-			return "main/main.tiles";
+			MemberDTO memberRecord=service.memberInfo(map);
+			session.setAttribute("memberRecord", memberRecord);
+			return "forward:/Plait/Planit.it";
 		}
 		else { // 비회원일경우 
 			model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
@@ -160,7 +162,7 @@ public class MemberController {
 	@RequestMapping("/member/login/Logout.it")
 	public String logoutProcess(HttpSession session) throws Exception{
 		session.invalidate();
-		return "main/main.tiles";
+		return "forward:/Plait/Planit.it";
 		
 	}
 	
@@ -171,9 +173,13 @@ public class MemberController {
 		System.out.println("비밀번호:"+dto.getPwd());
 		
 		int isJoin=service.isJoin(dto);
+		//
 		System.out.println(isJoin);
 		if(isJoin==1) {
 			session.setAttribute("userid", map.get("id"));
+			//시용자 선호도를 하기 위한 preference 테이블에 추가 (총 23개가 insert되야한다)
+			int insertPrefer=service.insertPreference(map);
+			System.out.println("선호도 추가된 행 개수 "+ insertPrefer);
 		}
 		return "mypage/UserPreference.theme";
 	
@@ -181,4 +187,6 @@ public class MemberController {
 		
 	}
 	
+	
+
 }

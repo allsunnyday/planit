@@ -26,8 +26,22 @@ public class MemberDAO implements MemberService {
 	}
 	@Override
 	public int isJoin(MemberDTO dto) {
-		//[회원가입]
-		return template.insert("MemberIsJoin",dto);
+		return template.insert("MemberIsJoin", dto);
 	}
+	@Override
+	public MemberDTO memberInfo(Map map) {
+		return template.selectOne("MemberInformation",map);
+	}
+	@Override
+	public boolean idDuplicate(Map map) {
+		int count=template.selectOne("MemberIsDuplicate",map);
+		return count==0?true:false;
+	}
+	@Override
+	public int insertPreference(Map map) {
+		// TODO Auto-generated method stub
+		return template.insert("MemberInsertPefer",map);
+	}
+	
 
 }

@@ -48,8 +48,14 @@ public class PartnerController {
 		System.out.println(service.isPartnerLogin(map));
 		if(isLogin) { // 회원일경우
 			//로그인 처리 - 세션 영역에 저장 
-			session.setAttribute("p_id", map.get("id"));
-			session.setAttribute("business_no", map.get("id"));
+			session.setAttribute("p_id", map.get("p_id"));
+			//session.setAttribute("business_no", map.get("id"));
+			
+			PartnerDTO partnerRecord=service.partnerInfo(map);
+			System.out.println(partnerRecord.getP_id());
+			System.out.println(partnerRecord.getBusiness_no());
+			//model.addAttribute("record", partnerRecord);
+			session.setAttribute("partnerRecord",partnerRecord);
 			return "mypage/partner/PartnerMyPageHome.theme";
 		}
 		else { // 비회원일경우 
@@ -71,12 +77,24 @@ public class PartnerController {
 	@RequestMapping(value="/member/login/PartnerJoinFormProcess.it" ,method=RequestMethod.POST)
 	public String partnerJoinFormProcess(PartnerDTO dto,@RequestParam Map map, HttpSession session) throws Exception{
 		
-		return "mypage/partner/PartnerMyPageHome.theme";
+		int isPartnerJoin=service.isPartnerJoin(dto);
+		System.out.println(isPartnerJoin);
+	/*	if(isPartnerJoin==1) {
+			session.setAttribute("p_id", map.get("p_id"));
+		}
+			*/	
+		return "forward:/planit/login/Login.it";
 	}
-	/*// [기업_마이페이지]
-	@RequestMapping("/planit/mypage/partner/PartnerMyPageHome.it")
+	// [기업_마이페이지]
+	@RequestMapping("planit/mypage/partner/PartnerMyPageHome.it")
 	public String gotoPartnerMyPageHome() throws Exception {
 		return "mypage/partner/PartnerMyPageHome.theme";
-	}*/
+	}
+	//http://localhost:11080/Planit/planit/mypage/partner/plantit/mypage/partner/productResist.it
+	@RequestMapping("/plantit/mypage/partner/productResist.it")
+	public String gotoPartnerProductResist() throws Exception {
+		///planit/WebContent/WEB-INF/member/mypage/partner/PartnerProduct.jsp
+		return "mypage/partner/PartnerProduct.theme";
+	}
 
 }
