@@ -12,6 +12,7 @@ public class CommonUtil {
 		Node nValue = nlList.item(0);
 		System.out.println("["+tag+"]"+nValue.getNodeValue());
 		if(nValue == null) return "";
+		
 		return nValue.getNodeValue();
 	}
 	
