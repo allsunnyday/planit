@@ -23,17 +23,21 @@ public class SearchListServiceImpl implements SearchListService{
 	public List<SearchListDTO> selectTourList(Map map) {
 		return dao.selectTourList(map);
 	}
-
-
 	@Override
 	public List<SearchListDTO> selectFoodList(Map map) {
 		return dao.selectFoodList(map);
 	}
-
-
 	@Override
 	public List<SearchListDTO> selectSleepList(Map map) {
 		return dao.selectSleepList(map);
+	}
+	@Override
+	public int getTotalCount(Map map) {
+		return dao.getTotalCount(map);
+	}
+	@Override
+	public List<SearchListDTO> selectList(Map map) {
+		return dao.selectList(map);
 	}
 	
 	

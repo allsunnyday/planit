@@ -30,16 +30,7 @@
         <h2>PLAN-IT에 등록되어 있는 식당들</h2>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <!-- search -->
-        <div class="search-bar">
-          <form action="" method="get">
-            <fieldset>
-              <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
-              <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
-            </fieldset>
-          </form>
-        </div>
-        <!-- / end div .search-bar -->
+ 
       </div>
     </div>
   </section>
@@ -49,7 +40,6 @@
 <!--*********************************** 
  		 분류별로 표시하는 목록바
  ***********************************-->
-  <section class="section1">
     <div class="container clearfix">
       <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
 
@@ -75,7 +65,7 @@
 <c:forEach  var="record" items="${food}">
             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
               <div class="he-wrap tpl6 market-item">
-                <img src="${record.firstimage}" alt="">
+                <img src='${record.firstimage}' alt="">
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
@@ -98,206 +88,6 @@
             </c:forEach>
             <!-- end col-4 -->
 
-<!--             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 korea"> -->
-<!--               <div class="he-wrap tpl6 market-item"> -->
-<%--                 <img src="<c:url value='/images/list/bibim.jpg'/>" alt=""> --%>
-<!--                 <div class="he-view"> -->
-<!--                   <div class="bg a0" data-animate="fadeIn"> -->
-<!--                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3> -->
-<%--                     <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>"  --%>
-<!--                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a> -->
-<!--                     <div class="portfolio_category text-center a2" data-animate="fadeIn"> -->
-<!--                     </div> -->
-<!--                     portfolio_category -->
-<!--                   </div> -->
-<!--                   he bg -->
-<!--                 </div> -->
-<!--                 he view -->
-<!--               </div> -->
-<!--               he wrap -->
-<!--               <h3 class="title">전주 성미당</h3> -->
-<!--               <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br> -->
-<!--             	  전북 전주시 완산구 전라감영5길 19-9</br> -->
-<!--               	문의: 063-287-8800 -->
-<!--               </p> -->
-<!--             </div> -->
-<!--             end col-4 -->
-            
-<!--             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan"> -->
-<!--               <div class="he-wrap tpl6 market-item"> -->
-<%--                 <img src="<c:url value='/images/list/bibim.jpg'/>" alt=""> --%>
-<!--                 <div class="he-view"> -->
-<!--                   <div class="bg a0" data-animate="fadeIn"> -->
-<!--                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3> -->
-<%--                     <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>"  --%>
-<!--                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a> -->
-<!--                     <div class="portfolio_category text-center a2" data-animate="fadeIn"> -->
-<!--                     </div> -->
-<!--                     portfolio_category -->
-<!--                   </div> -->
-<!--                   he bg -->
-<!--                 </div> -->
-<!--                 he view -->
-<!--               </div> -->
-<!--               he wrap -->
-<!--               <h3 class="title">전주 성미당</h3> -->
-<!--               <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br> -->
-<!--             	  전북 전주시 완산구 전라감영5길 19-9</br> -->
-<!--               	문의: 063-287-8800 -->
-<!--               </p> -->
-<!--             </div> -->
-<!--             end col-4 -->
-            
-<!--             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 china"> -->
-<!--               <div class="he-wrap tpl6 market-item"> -->
-<%--                 <img src="<c:url value='/images/list/bibim.jpg'/>" alt=""> --%>
-<!--                 <div class="he-view"> -->
-<!--                   <div class="bg a0" data-animate="fadeIn"> -->
-<!--                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3> -->
-<%--                     <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>"  --%>
-<!--                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a> -->
-<!--                     <div class="portfolio_category text-center a2" data-animate="fadeIn"> -->
-<!--                     </div> -->
-<!--                     portfolio_category -->
-<!--                   </div> -->
-<!--                   he bg -->
-<!--                 </div> -->
-<!--                 he view -->
-<!--               </div> -->
-<!--               he wrap -->
-<!--               <h3 class="title">전주 성미당</h3> -->
-<!--               <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br> -->
-<!--             	  전북 전주시 완산구 전라감영5길 19-9</br> -->
-<!--               	문의: 063-287-8800 -->
-<!--               </p> -->
-<!--             </div> -->
-<!--             end col-4 -->
-            
-<!--             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western"> -->
-<!--               <div class="he-wrap tpl6 market-item"> -->
-<%--                 <img src="<c:url value='/images/list/bibim.jpg'/>" alt=""> --%>
-<!--                 <div class="he-view"> -->
-<!--                   <div class="bg a0" data-animate="fadeIn"> -->
-<!--                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3> -->
-<%--                     <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>"  --%>
-<!--                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a> -->
-<!--                     <div class="portfolio_category text-center a2" data-animate="fadeIn"> -->
-<!--                     </div> -->
-<!--                     portfolio_category -->
-<!--                   </div> -->
-<!--                   he bg -->
-<!--                 </div> -->
-<!--                 he view -->
-<!--               </div> -->
-<!--               he wrap -->
-<!--               <h3 class="title">전주 성미당</h3> -->
-<!--               <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br> -->
-<!--             	  전북 전주시 완산구 전라감영5길 19-9</br> -->
-<!--               	문의: 063-287-8800 -->
-<!--               </p> -->
-<!--             </div> -->
-<!--             end col-4 -->
-            
-<!--             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western"> -->
-<!--               <div class="he-wrap tpl6 market-item"> -->
-<%--                 <img src="<c:url value='/images/list/bibim.jpg'/>" alt=""> --%>
-<!--                 <div class="he-view"> -->
-<!--                   <div class="bg a0" data-animate="fadeIn"> -->
-<!--                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3> -->
-<%--                     <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>"  --%>
-<!--                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a> -->
-<!--                     <div class="portfolio_category text-center a2" data-animate="fadeIn"> -->
-<!--                     </div> -->
-<!--                     portfolio_category -->
-<!--                   </div> -->
-<!--                   he bg -->
-<!--                 </div> -->
-<!--                 he view -->
-<!--               </div> -->
-<!--               he wrap -->
-<!--               <h3 class="title">전주 성미당</h3> -->
-<!--               <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br> -->
-<!--             	  전북 전주시 완산구 전라감영5길 19-9</br> -->
-<!--               	문의: 063-287-8800 -->
-<!--               </p> -->
-<!--             </div> -->
-<!--             end col-4 -->
-            
-<!--             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 korea"> -->
-<!--               <div class="he-wrap tpl6 market-item"> -->
-<%--                 <img src="<c:url value='/images/list/bibim.jpg'/>" alt=""> --%>
-<!--                 <div class="he-view"> -->
-<!--                   <div class="bg a0" data-animate="fadeIn"> -->
-<!--                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3> -->
-<%--                     <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>"  --%>
-<!--                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a> -->
-<!--                     <div class="portfolio_category text-center a2" data-animate="fadeIn"> -->
-<!--                     </div> -->
-<!--                     portfolio_category -->
-<!--                   </div> -->
-<!--                   he bg -->
-<!--                 </div> -->
-<!--                 he view -->
-<!--               </div> -->
-<!--               he wrap -->
-<!--               <h3 class="title">전주 성미당</h3> -->
-<!--               <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br> -->
-<!--             	  전북 전주시 완산구 전라감영5길 19-9</br> -->
-<!--               	문의: 063-287-8800 -->
-<!--               </p> -->
-<!--             </div> -->
-<!--             end col-4 -->
-            
-<!--             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 japan"> -->
-<!--               <div class="he-wrap tpl6 market-item"> -->
-<%--                 <img src="<c:url value='/images/list/bibim.jpg'/>" alt=""> --%>
-<!--                 <div class="he-view"> -->
-<!--                   <div class="bg a0" data-animate="fadeIn"> -->
-<!--                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3> -->
-<%--                     <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>"  --%>
-<!--                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a> -->
-<!--                     <div class="portfolio_category text-center a2" data-animate="fadeIn"> -->
-<!--                     </div> -->
-<!--                     portfolio_category -->
-<!--                   </div> -->
-<!--                   he bg -->
-<!--                 </div> -->
-<!--                 he view -->
-<!--               </div> -->
-<!--               he wrap -->
-<!--               <h3 class="title">전주 성미당</h3> -->
-<!--               <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br> -->
-<!--             	  전북 전주시 완산구 전라감영5길 19-9</br> -->
-<!--               	문의: 063-287-8800 -->
-<!--               </p> -->
-<!--             </div> -->
-<!--             end col-4 -->
-            
-<!--             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 china"> -->
-<!--               <div class="he-wrap tpl6 market-item"> -->
-<%--                 <img src="<c:url value='/images/list/bibim.jpg'/>" alt=""> --%>
-<!--                 <div class="he-view"> -->
-<!--                   <div class="bg a0" data-animate="fadeIn"> -->
-<!--                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3> -->
-<%--                     <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>"  --%>
-<!--                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a> -->
-<!--                     <div class="portfolio_category text-center a2" data-animate="fadeIn"> -->
-<!--                     </div> -->
-<!--                     portfolio_category -->
-<!--                   </div> -->
-<!--                   he bg -->
-<!--                 </div> -->
-<!--                 he view -->
-<!--               </div> -->
-<!--               he wrap -->
-<!--               <h3 class="title">전주 성미당</h3> -->
-<!--               <p>역대 대통령들이 찾은 전주 비빔밥 맛집!</br> -->
-<!--             	  전북 전주시 완산구 전라감영5길 19-9</br> -->
-<!--               	문의: 063-287-8800 -->
-<!--               </p> -->
-<!--             </div> -->
-<!--             end col-4 -->
-
 
           </div>
           <!-- portfolio -->
@@ -306,14 +96,33 @@
         <div class="divider"></div>
       </div>
       <!-- end container -->
-  </section>
   <!-- end section -->
 <!--*********************************** 
  		페이징 준비중
  ***********************************-->
-  <div>
-  페이징
-  </div>
+	<div class="row">
+		<div class="col-md-12">${pagingString}</div>
+	</div>
+
+<div class="row">
+	<div class="text-center">
+		<form class="form-inline" method="post"
+			action="<c:url value='#'/>">
+			<div class="form-group">
+				<select name="searchColumn" class="form-control">
+					<option value="title">제목</option>
+					<option value="name">작성자</option>
+					<option value="content">내용</option>
+				</select>
+			</div>
+			<div class="form-group" >
+				<input type="text" name="searchWord" class="form-control" />
+			</div>
+			<button style="margin-bottom: 10px"type="submit" class="btn btn-primary">검색</button>
+
+		</form>
+	</div>
+</div>
   <div class="dmtop">Scroll to Top</div>
 </body>
   

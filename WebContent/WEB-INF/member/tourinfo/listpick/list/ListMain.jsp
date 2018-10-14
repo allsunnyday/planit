@@ -102,7 +102,7 @@
             <div class="he-wrap tpl6 market-item">
             <div class="hot-tour">
            
-              <img class="lazyOwl" data-src="${record.firstimage }" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage }' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
@@ -135,7 +135,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage }" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage }' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -160,7 +160,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -187,7 +187,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -212,7 +212,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -237,7 +237,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -271,7 +271,7 @@
         <div id="popularitems" class="owl-carousel">
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름</h3>
@@ -296,7 +296,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -321,7 +321,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -346,7 +346,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -371,7 +371,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
@@ -396,7 +396,7 @@
 
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
-              <img class="lazyOwl" data-src="${record.firstimage}" alt="">
+              <img class="lazyOwl" data-src='${record.firstimage}' alt="">
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
