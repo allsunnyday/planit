@@ -135,11 +135,11 @@
 				    <div id="menu_wrap" class="bg_white">
 				        <div class="option">
 				        	<div>
-					        	<input type="hidden" value="${areacodename } ${areacodesubname}" id="localkeyword">
+					        	<%-- <input type="hidden" value="${areacodename } ${areacodesubname}" id="localkeyword"> --%>
 				                <form onsubmit="searchPlaces(); return false;" style="display: inline-flex;">
-				                	<%-- <input type="hidden" value="${areacodename } ${areacodesubname}" id="localkeyword"> --%>
+				                	<input type="hidden" value="${areacodename } ${areacodesubname}" id="localkeyword">
 									<input type="text" class="form-control" placeholder="장소 검색" id="keyword" style="width: 60%;"
-									value='${areacodename } ${areacodesubname}'>         	
+									value='${areacodename} ${areacodesubname}'>         	
 									<button type="submit" id="mapsearch">검색하기</button> 
 				                </form>			                
 				        	</div>
