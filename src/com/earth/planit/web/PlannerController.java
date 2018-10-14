@@ -15,6 +15,7 @@ public class PlannerController {
 //	투어 api 키값
 	private String key ="NCPqTyv3znqjQjXg0mr6tqFnxmLBJcm10iYsAe66egVkZa%2F28tT1iJSvoKaq9Y8P92LAcQaoxcD5I5kTY%2Bn%2Buw%3D%3D";
 	
+	
 	@RequestMapping("/Planit/Before/LocationMain.it")
 	public String gotoLocationMain() throws Exception{
 		
@@ -31,13 +32,16 @@ public class PlannerController {
 	
 	@RequestMapping("/planner/plan/route.it")
 	public String locationsub(@RequestParam Map map, Model model) throws Exception{
-		System.out.println("areacode: " + map.get("areacode")); // 사용자가 선택한 여행 지역 얻어오기
-		System.out.println("areacodesub: " + map.get("areacodesub")); // 사용자가 선택한 여행 지역 얻어오기2
+		System.out.println("areacode: " + map.get("areacode") + " / areacodename : "+ map.get("areacodename")); // 사용자가 선택한 여행 지역 얻어오기
+		System.out.println("areacodesub: " + map.get("areacodesub")+"/ areacodesubname : "+ map.get("areacodesubname")); // 사용자가 선택한 여행 지역 얻어오기2
 		System.out.println("days: " + map.get("days")); // 사용자가 선택한 여행 일수 얻기
 		
 		
 		model.addAttribute("areacode", map.get("areacode")); // 사용자가 선택한 여행 지역 얻어오기
+		model.addAttribute("areacodename", map.get("areacodename"));
 		model.addAttribute("areacodesub", map.get("areacodesub")); // 사용자가 선택한 여행 지역 얻어오기2
+		model.addAttribute("areacodesubname", map.get("areacodesubname"));
+		
 		model.addAttribute("days", map.get("days")); // 사용자가 선택한 여행일수 넘기기	
 		
 		return "planner/plan/route.theme";

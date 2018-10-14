@@ -135,11 +135,13 @@
 				    <div id="menu_wrap" class="bg_white">
 				        <div class="option">
 				        	<div>
+					        	<input type="hidden" value="${areacodename } ${areacodesubname}" id="localkeyword">
 				                <form onsubmit="searchPlaces(); return false;" style="display: inline-flex;">
+				                	<%-- <input type="hidden" value="${areacodename } ${areacodesubname}" id="localkeyword"> --%>
 									<input type="text" class="form-control" placeholder="장소 검색" id="keyword" style="width: 60%;"
-									value=''>             	
-									<button type="submit">검색하기</button> 
-				                </form>
+									value='${areacodename } ${areacodesubname}'>         	
+									<button type="submit" id="mapsearch">검색하기</button> 
+				                </form>			                
 				        	</div>
 				        </div>
 				    </div>
@@ -162,5 +164,6 @@
 <!-- ********************************** map script 호출 시작 *************************************** -->
 <%@ include file="routemap.jsp" %>
 <!-- ********************************** map script 호출 종료 *************************************** -->
+
 
 

@@ -58,18 +58,23 @@
 	var infowindow = new daum.maps.InfoWindow({zIndex:1});	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다	
 	
 	
+	
+    var localkeyword = document.getElementById('localkeyword').value;
+    console.log(localkeyword);
+	
 	// 키워드 검색을 요청하는 함수입니다
 	function searchPlaces() {
 		/* ******************************검색 관련 함수*******************************/
 		if (!currCategory ) {			
 			ps = new daum.maps.services.Places();
 		    var keyword = document.getElementById('keyword').value;
-			//if(document.getElementById('searchmap').value !='검색'){
 		    if (!keyword.replace(/^\s+|\s+$/g, '')) {
 		        alert('키워드를 입력해주세요!');	        
 		        return false;
 		    }
-			//}
+		    if(localkeyword != null){
+		    	
+		    }
 			
 		    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 		    ps.keywordSearch(keyword, placesSearchCB);
@@ -340,12 +345,15 @@
 <script>
 	/*******************************************/	
 	
+	
+	
 	/* ******************** daum map api 함수 내부의 추가하기 버튼 함수 시작 ******************** */
 	function planplusActionplus(){
 		console.log("planplusActionplus() : routeInfoPlusAction() 가 호출 안되어야 함.");
 		var plancase = 0;
 		plancase ++;
-		routeInfoPlusAction(plancase);		
+		routeInfoPlusAction(plancase);
+		
 	}	
 	/* ******************** daum map api 함수 내부의 추가하기 버튼 함수 시작 ******************** */
 	

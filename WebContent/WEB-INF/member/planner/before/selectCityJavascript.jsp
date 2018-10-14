@@ -81,11 +81,14 @@
 					//alert($('#plandaytext').val()); //여행 일수 입력 전달
 					//alert($('#paldoNcity option:selected').val());
 					//alert($('#paldoNcityColumn option:selected').val());
+					//alert($('#paldoNcityColumn option:selected').html());
 					
-					var days = $('#plandaytext').val();
-					var areacode = $('#paldoNcity option:selected').val();					
-					var areacodesub = $('#paldoNcityColumn option:selected').val();
-					$('#locationday').attr("action", "<c:url value='/planner/plan/route.it?days="+days+"&areacode="+areacode+"&areacodesub="+areacodesub+"'/>");
+					var days = $('#plandaytext').val(); // 여행일수 저장
+					var areacode = $('#paldoNcity option:selected').val(); // 여행 지역 코드 저장					
+					var areacodesub = $('#paldoNcityColumn option:selected').val(); // 여행 시군구 코드 저장
+					var areacodename = $('#paldoNcity option:selected').html(); // 여행 지역 이름 저장
+					var areacodesubname = $('#paldoNcityColumn option:selected').html(); // 여행 지역 시군구 이름 저장
+					$('#locationday').attr("action", "<c:url value='/planner/plan/route.it?days="+days+"&areacode="+areacode+"&areacodesub="+areacodesub+"&areacodename="+areacodename+"&areacodesubname="+areacodesubname+"'/>");
 				}
 			});
 		});
