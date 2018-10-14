@@ -1,13 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="topMenu.jsp" flush="false"/>
+<jsp:include page="topMenu.jsp" flush="false" />
 
+<!--*******************************************************
+	관광 이미지 
+***********************************************************  -->
+<section class="marketplace-top">
+	<div id="market-wrapper">
+		<div class="item_image">
+			<img data-effect="fade" class="aligncenter" width="90%" height="400"
+				src="<c:url value='/main_theme/img/market_single_01.png'/>" alt="">
+		</div>
+		<!-- end item_image -->
+	</div>
+</section>
 <!--*******************************************************
 	관광정보 상세  
 ***********************************************************  -->
 <section class="section1">
 	<div class="container clearfix">
 		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
+
 			<div class="general-title text-center">
 				<h3>국립양평치유의 숲</h3>
 				<p></p>
@@ -17,6 +31,7 @@
 			<div class="divider"></div>
 
 			<div class="item_details">
+
 				<div class="col-lg-8 col-md-8 col-sm-12">
 					<div class="theme_details">
 						<div class="details_section">
@@ -47,9 +62,14 @@
 						<hr>
 						<div class="buttons" data-target="#myModal">
 							<a class="button btn-block large" href="https://cafe.naver.com/foresthealingyp">지자체 홈페이지</a> 
-							<a class="button btn-block large" href="#"> <i class="fa fa-pencil"></i>정보 수정</a>
-						    <a class="button btn-block large" href="#"><i class="fa-smile-o"></i> 즐겨찾기 추가</a>
-						    <a  class="button btn-block large" href="#target"><i class="fa fa-map"></i> 지도</a>
+							<a class="button btn-block large" href="#"> 
+							<i class="fa fa-pencil"></i>정보 수정</a>
+						    <a class="button btn-block large" href="#"> 
+						    <i class="fa fa-download"></i> 즐겨찾기 추가
+						    <a  class="button btn-block large" href="#target"> 
+						    <i class="fa fa-map"></i> 지도
+						    
+							</a>
 						</div>
 						<!-- buttons -->
 						<hr>
@@ -136,13 +156,13 @@
 		<div  class="a_1_1">
 			<div class="carousel">
 				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 1">
-				<img src="<c:url value='/images/list/333.jpg'/>" alt="Landscape 2">
-				<img src="<c:url value='/images/list/bibim.jpg'/>" alt="Landscape 3">
-				<img src="<c:url value='/images/list/andong.jpg'/>" alt="Landscape 4">
-				<img src="<c:url value='/images/list/forest.jpg'/>" alt="Landscape 5">
-				<img src="<c:url value='/images/list/hotel.PNG'/>" alt="Landscape 6">
-				<img src="<c:url value='/images/list/motel.PNG'/>" alt="Landscape 7">
-				<img src="<c:url value='/images/list/pen.PNG'/>" alt="Landscape 8">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 2">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 3">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 4">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 5">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 6">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 7">
+				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 8">
 			</div>
 		</div>
 
@@ -163,7 +183,7 @@
 		width: 500px;
 		height: 300px;
 		text-align: left;
-		margin:80px auto;
+		margin: 60px auto;
 		-webkit-perspective: 1000px;
 		-webkit-perspective-origin: 50% -25%;
 	}
@@ -187,6 +207,8 @@
         height: 300px;
         background:#ccc;
 			}
+
+				
 				.carousel img:nth-child(1) { -webkit-transform: translateZ(540px) scale(.8); }
 				.carousel img:nth-child(2) { -webkit-transform: rotateY(45deg) translateZ(540px) scale(.8); }
 				.carousel img:nth-child(3) { -webkit-transform: rotateY(90deg) translateZ(540px) scale(.8); }
@@ -241,21 +263,62 @@
 </style>
 
 
+<!-- *******************************************
+ 		지도
+************************************************ -->
+
+<section id="target" style="background-color: white;">
+	<div  class="general-title text-center" >
+		<h3> 지도</h3>
+		<p>지도보여줄 곳</p>
+		<hr>
+	</div>
+
+	<div class="divider"></div>
+	<div  class="theme_overviews clearfix">
+		
+<div class="wrapper">
+  <div  id="one">
+  <div style="width: 100%;">
+	<!-- <div class="container-fluid" style="margin-top: 60px; width: 100%; height: 40px; float: right;"> -->
+		<div id="planmap"  style="background-color:cyan; width:100%; height:570px; float: inherit; text-align: center;">
+			<!-- 다음 map 시작 -->
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437"></script>
+			<script>
+				var container = document.getElementById('planmap'); //지도를 담을 영역의 DOM 레퍼런스
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+					center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+					level: 3 //지도의 레벨(확대, 축소 정도)
+				};				
+				var map = new daum.maps.Map(container, options);
+			</script>
+			<!-- 다음 map 종료 -->
+		</div>
+	<!-- </div> -->
+</div>
+  </div>
+</div>
+
+	</div>
+	<!-- theme / Products overview -->
+
+</section>
+
 <style>
-#one {
-	float: left;
-	margin-left: 5px;
-	width: 1000px;
-	height: 700px;
-	/* background-color: red; */
+#one{
+float:left;
+margin-left:5px;
+width:1000px;
+height:700px;
+/* background-color: red; */
+}
+#two{
+float:right;
+width:300px;
+height:700px;
+background-color: blue;
 }
 
-#two {
-	float: right;
-	width: 300px;
-	height: 700px;
-	background-color: blue;
-}
 </style>
 
 <script>
@@ -266,6 +329,3 @@ jQuery(document).ready(function($) {
     });
 });
 </script>
-
-
- 

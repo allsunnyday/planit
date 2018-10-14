@@ -3,14 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Ruda:400,900,700" rel="stylesheet">
-  <!-- =======================================================
-    Template Name: MaxiBiz
-    Template URL: https://templatemag.com/maxibiz-bootstrap-business-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
 
-<body>
+<style>
+img{
+max-width: 100%;
+	width: 600px;
+	max-height: 100%;
+	height : 280px;
+}
+
+</style>
+
  <!--************************************** 
  	삽입
  **************************************-->
@@ -60,7 +63,7 @@
  		각 숙박 업소 정보
  ***********************************-->
  <c:forEach var="record" items="${sleep}">
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
+            <div id="tourimage" class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
 						<div class="he-wrap tpl6 market-item">
 							<img src='${record.firstimage}' alt="">
 							<div class="he-view">
@@ -93,6 +96,7 @@
       </div>
       <!-- end container -->
   <!-- end section -->
+  </div></div>
 <!--*********************************** 
  		뻬이징
  ***********************************-->
@@ -106,9 +110,9 @@
 			action="<c:url value='#'/>">
 			<div class="form-group">
 				<select name="searchColumn" class="form-control">
-					<option value="title">제목</option>
-					<option value="name">작성자</option>
-					<option value="content">내용</option>
+					<option value="all">전체검색</option>
+					<option value="title">업소명</option>
+					<option value="tel">전화번호</option>
 				</select>
 			</div>
 			<div class="form-group" >
@@ -119,5 +123,3 @@
 		</form>
 	</div>
 </div>
-  <div class="dmtop">Scroll to Top</div>
-</body>

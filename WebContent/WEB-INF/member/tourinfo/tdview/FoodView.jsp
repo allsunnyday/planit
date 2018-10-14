@@ -277,11 +277,10 @@
 	<div class="divider"></div>
 	<div  class="theme_overviews clearfix">
 		
-<div class="wrapper">
-  <div  id="one">
-  <div style="width: 100%;">
+  <div id="mapone">
+  <div >
 	<!-- <div class="container-fluid" style="margin-top: 60px; width: 100%; height: 40px; float: right;"> -->
-		<div id="planmap"  style="background-color:cyan; width:100%; height:570px; float: inherit; text-align: center;">
+		<div id="planmap"  style="background-color:cyan; width:100%; height:570px; float: center; text-align: center;">
 			<!-- 다음 map 시작 -->
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437"></script>
 			<script>
@@ -296,7 +295,6 @@
 		</div>
 	<!-- </div> -->
 </div>
-  </div>
 </div>
 
 	</div>

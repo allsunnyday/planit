@@ -11,6 +11,13 @@
  	margin-left:50px;
  	color:#FFF;
  	}
+ 	
+ 	#iii{
+ 	float:left;
+ 	margin-right:10px;
+ 	margin-top:30px;
+ 	width:32%;
+ 	}
  </style>
 
  <!-- ****************************************
@@ -26,60 +33,33 @@
 	<div class="row">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel"> 
 					<ol class="carousel-indicators">
-						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-						<li data-target="#myCarousel" data-slide-to="1"></li>
-						<li data-target="#myCarousel" data-slide-to="2"></li>
-					</ol>
-				
-				
+					    <li data-target="#carousel-example-generic" data-slide-to="0"class="active" ></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="2"class="active"></li>
+					  </ol>
 					<div class="carousel-inner">
 						<!--슬라이드1-->
 						<!-- --------------------------------------------관광지-------------------------- -->
-							<c:forEach var="record" items="${tour}" begin="1" end="1" >
+							<c:forEach var="record" items="${tour}"  begin="1" end="1" >
 								<div class="item active"> 
 									<!--  아래 이미지는 배경이 된다. -->
-									<a href="#"><img src="${record.firstimage}" style="width:100%;height: 550px" height="300px" alt="First slide"></a>
+									<a href="#">
+									<img src="<c:url value='https://images.unsplash.com/photo-1472387040940-3ae0cdbf127d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4aed91054fb429606c129dc3dd75acf2&auto=format&fit=crop&w=1256&q=80'/>" 
+												style="width:100%;height: 550px" height="300px" alt="First slide"></a>
 									<div class="review-overlay">
-							   			 <div class="text"><p><span style="font-size:2em; color:white; font-weight:bold; margin-left:200px ">
-							   			 <img src="${record.firstimage}"  >
-										 	<img src="${record.firstimage}" >
-										 	<img src="${record.firstimage}"  >
-							   			 ${record.title }</span></p></div>
-										 	
+							   			 <div class="text" >
+							   				 <img id="iii" src="${record.firstimage}">
+										 	<img id="iii" src="${record.firstimage}">
+										 	<img id="iii" src="${record.firstimage}">
+							   			</div>
 									</div>
 									<div class="container">
 								</div>
 							</div>
 							</c:forEach>
 						<!--슬라이드1-->
-						<!-- --------------------------------------------식당-------------------------- -->
-						<!--슬라이드2-->
-						<c:forEach var="record" items="${sleep}" >
-						<div class="item"> 
-							<a href="#"><img src="${record.firstimage}" style="width:100%;height: 550px" data-src="" alt="Second slide"></a>
-							<div class="container">
-								<div class="carousel-caption">
-								</div>
-							</div>
-						</div>
-						</c:forEach>
-						<!--슬라이드2-->
-						<!-- --------------------------------------------숙박-------------------------- -->
-						<!--슬라이드3-->
-						<c:forEach var="record" items="${food}" >
-						<div class="item"> 
-							<a href="#"><img src="${record.firstimage}" style="width:100%;height: 550px" data-src="sssss"  alt="Third slide"></a>
-							<div class="container">
-								<div class="carousel-caption">
-								</div>
-							</div>
-						</div>
-						</c:forEach>
-						<!--슬라이드3-->
 					</div>
 					
-					<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> 
-					<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a> 
 				</div>
 			</div>
   </section>
@@ -102,7 +82,7 @@
 <!-- ****************************************
  		핫여행지 목록들()
 **************************************** -->
-         <c:forEach var="record" items="${tour}" begin="1" end="1">
+   <c:forEach var="record" items="${tour}" begin="1" end="1">
         <div id="popularitems" class="owl-carousel">
           <div class="col-lg-12">
             <div class="he-wrap tpl6 market-item">
@@ -112,7 +92,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
-                  <a href="<c:url value='/tourinfo/tdview/TourList.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   
                   <div class="rating text-center a2" data-animate="fadeIn">
@@ -122,10 +102,6 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
                   </div>
-                  
-                 
-                  
-
                   <!-- rating -->
                 </div>
                 <!-- he bg -->
@@ -145,7 +121,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -170,7 +146,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -197,7 +173,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -222,7 +198,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -247,7 +223,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -281,7 +257,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름</h3>
-                  <a href="<c:url value='/tourinfo/tdview/TourList.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -306,7 +282,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -331,7 +307,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -356,7 +332,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -381,7 +357,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
@@ -406,7 +382,7 @@
               <div class="he-view">
                 <div class="bg a0" data-animate="fadeIn">
                   <h3 class="a1" data-animate="fadeInDown">관광지이름 Item</h3>
-                  <a href="single-product.html" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
                   <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
                   <div class="rating text-center a2" data-animate="fadeIn">
                     <i class="fa fa-star"></i>
