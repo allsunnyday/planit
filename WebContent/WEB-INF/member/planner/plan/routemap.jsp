@@ -446,7 +446,7 @@
 					content += '</div>';
 					content += '<div style="float:left; width:auto; padding-bottom:5px; display:inline-block;">';
 						content += '<div class="text-left">'; 							
-							content +='&nbsp;<label>지역:</label>&nbsp;<font> '+keyword+' </font><br/>'; /* console.log(place+"///" ); */
+							content +='&nbsp;<label>지역:</label>&nbsp;<font> '+keyword+' </font><br/>';
 							content +='&nbsp;<label>관광지: </label><font class=""> '+ document.getElementById('plantitle').title +' </font>&nbsp;<a class="btnDel" href="#">'; 
 							content +='<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a><br/>';		
 							content += '&nbsp;<label> 거리: </label>&nbsp;<font>3 km </font> ';
