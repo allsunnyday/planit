@@ -37,7 +37,7 @@ public class SearchMapController {
 	}
 	
 	//지도 일러스트 페이지 가기
-	@RequestMapping("/tourinfo/mappick/MapIllust.it")
+	@RequestMapping("/member/tourinfo/mappick/MapIllust.it")
 	public String gotoMapPick(@RequestParam Map map, HttpSession session, Model model) throws Exception{
 		System.out.println("gotoMapPick호출");
 		//로그인 했는지 확인
