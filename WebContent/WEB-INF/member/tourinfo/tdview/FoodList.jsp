@@ -3,14 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Ruda:400,900,700" rel="stylesheet">
-  <!-- =======================================================
-    Template Name: MaxiBiz
-    Template URL: https://templatemag.com/maxibiz-bootstrap-business-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
+<style>
+img{
+max-width: 100%;
+	width: 600px;
+	max-height: 100%;
+	height : 280px;
+}
 
-<body>
+</style>
+
    <jsp:include page="topMenu.jsp" flush="false" />
    
     <section class="post-wrapper-top">
@@ -97,6 +99,7 @@
       </div>
       <!-- end container -->
   <!-- end section -->
+  </div>
 <!--*********************************** 
  		페이징 준비중
  ***********************************-->
@@ -110,9 +113,9 @@
 			action="<c:url value='#'/>">
 			<div class="form-group">
 				<select name="searchColumn" class="form-control">
-					<option value="title">제목</option>
-					<option value="name">작성자</option>
-					<option value="content">내용</option>
+					<option value="all">전체검색</option>
+					<option value="title">식당명</option>
+					<option value="tel">전화번호</option>
 				</select>
 			</div>
 			<div class="form-group" >
@@ -123,6 +126,4 @@
 		</form>
 	</div>
 </div>
-  <div class="dmtop">Scroll to Top</div>
-</body>
   

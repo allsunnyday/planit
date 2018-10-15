@@ -5,9 +5,21 @@
 네비게이터가 필요
 *************************************** -->
 <jsp:include page="topMenu.jsp" flush="false" />
+<style>
+img{
+max-width: 100%;
+	width: 600px;
+	max-height: 100%;
+	height : 280px;
+}
 
+</style>
 <script>
+<<<<<<< HEAD
 
+=======
+ <script>//이걸 지우면 기능들이 안먹혀요..
+>>>>>>> refs/remotes/origin/Gilhyoung
 
 var search=function(){
 	$('#frm').submit();
@@ -157,7 +169,7 @@ $(function(){
 			</div>
 			<!-- portfolio container -->
 		<!-- end container -->
-
+</div></div></div>
 
 
 	<div class="row">
@@ -170,9 +182,9 @@ $(function(){
 			action="<c:url value='#'/>">
 			<div class="form-group">
 				<select name="searchColumn" class="form-control">
-					<option value="title">제목</option>
-					<option value="name">작성자</option>
-					<option value="content">내용</option>
+					<option value="all">전체검색</option>
+					<option value="title">관광지명</option>
+					<option value="tel">전화번호</option>
 				</select>
 			</div>
 			<div class="form-group" >
@@ -183,7 +195,8 @@ $(function(){
 		</form>
 	</div>
 </div>
-	</div>
+
+
+
 <!-- end section -->
-</div>
 

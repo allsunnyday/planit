@@ -181,7 +181,7 @@ public class SearchListController {
 		int end  = nowPage*pageSize;
 		map.put("start", start);
 		map.put("end", end);
-		List<SearchListDTO> Foodlist = service.selectTourList(map);
+		List<SearchListDTO> Foodlist = service.selectFoodList(map);
 		String pagingString = CommonUtil.pagingBootStrapStyle(
 							totalCount,
 							pageSize, 
