@@ -188,7 +188,8 @@
 	                daum.maps.event.addListener(marker, 'click', function() {	                	
 						//displayPlaceInfo(place);												// 포커스 아웃시 닫아야함.
 						if(clickcount ==0){ 
-							displayPlaceInfo(place);
+							//console.log("place: "+place.val);
+							displayPlaceInfo(place);							
 							//console.log("좌표 : "+ marker.getPosition()); 
 							planposition = marker.getPosition();
 	                		console.log('planposition: '+planposition);
@@ -315,7 +316,8 @@
 	    			'<a href="javascript:planplusActionplus()" id="planplus"><img src="/Planit/images/plan/planplus.png" id="planrouteplusimg"></a>'+				//상세보기 + 버튼구현 // <img src="/Planit/images/plan/planplus.png" id="planrouteplusimg">
 					'</div>' +
 	                
-	                '<div class="after"></div>';        
+	                '<div class="after"></div>';  
+	                console.log("place: "+ place[0]);
 	    contentNode.innerHTML = content;
 	    placeOverlay.setPosition(new daum.maps.LatLng(place.y, place.x));
 	    placeOverlay.setMap(map);  
@@ -364,7 +366,6 @@
 	
 	/************************************************ 카테고리별 장소 검색하기 종료  **********************************************************/
 	
-	
 </script>	
 <!--**************************************************************************************************************************-->
 <!--**************************************************************************************************************************-->
@@ -378,17 +379,22 @@
 	var linePath = [];
 	/********************** 마커 선연결하기 *********************/
 	var plankarking=0;
+	/********************** 마커 거리 얻어온다  *********************/
+	var distance; // 마커와 마커 사이의 거리 정보?
+	var temp=0; // 이전거리정보?
+	var walkkTime=0; // 사람이 걷는 거리의 소요 시간
+	var carTime=0;
 	/* ******************** daum map api 함수 내부의 추가하기 버튼 함수 시작 ******************** */
 	function planplusActionplus(){
-		console.log("planplusActionplus() : routeInfoPlusAction() 가 호출 안되어야 함.");
+		console.log("planplusActionplus() : routeInfoPlusAction() 가 호출 되지 않아야함.");
 		var plancase = 0;
 		positions[plankarking] = {title:document.getElementById('plantitle').title, latlng:planposition};
-		//linePath[plankarking] = new daum.maps.LatLng(planposition);
-		linePath[plankarking] = planposition;
-		console.log(linePath);
+		//linePath[plankarking] = planposition;
+		linePath.push(planposition);
+		console.log(linePath.length);
 		plancase ++;
-		plankarking++;
-		routeInfoPlusAction(plancase);		
+		plankarking++;		
+		//routeInfoPlusAction(plancase); // 버튼 클릭시 상세 여행정보에 추가 되는 함수		
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
 		// 마커 이미지의 이미지 주소입니다
 		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 		    
@@ -405,6 +411,10 @@
 		        image : markerImage // 마커 이미지 
 		    });		    
 		}
+		/* if (i != 0) {
+            linePath = [ positions[i - 1].latlng, positions[i].latlng ];
+        };
+        lineLine.setPath(linePath); */ 
 		// 지도에 표시할 선을 생성합니다
 		var polyline = new daum.maps.Polyline({
 		    path: linePath, // 선을 구성하는 좌표배열 입니다
@@ -413,15 +423,41 @@
 		    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 		    strokeStyle: 'solid' // 선의 스타일입니다
 		});
+		
+		/*  */
+		
+		if(Math.round(polyline.getLength() ==0)){
+			distance = Math.round(polyline.getLength());
+			temp = distance;
+		}
+		else if(Math.round(polyline.getLength() !=0)){
+			distance = Math.round(polyline.getLength()) - temp;
+			walkkTime = distance / 67 | 0;
+			carTime = distance / 1000 | 0;
+			temp = distance;
+		}
+		console.log("walkkTime: "+ walkkTime);
+		console.log("carTime: "+ carTime);
+		/*  */
+		
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
 		polyline.setMap(map);  
+		routeInfoPlusAction(plancase); // 버튼 클릭시 상세 여행정보에 추가 되는 함수
+		removeMarker(); // 상세 지역 추가후 마커 삭제
+		displayPlaceInfo("");//상세 지역 추가후 상세보기 닫기
+		currCategory = keyword;
+        changeCategoryClass();
 	}	
+
+	var days = document.getElementById("days").value;
+	
 	/* ******************** daum map api 함수 내부의 추가하기 버튼 함수 시작 ******************** */
 	
 	/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
 	var diveplus=1;
 	function routeInfoPlusAction(place, plancase){
 		var content;
+		var dist; // 마커 와 마커 이전거리 저장용
 		if(plancase == 0){
 			content ='';
 			content +=  '<div id="nocityrute" style="background-color: cyan; ">';
@@ -429,7 +465,7 @@
 			content +='</div>';
 		}
 		
-		if(plancase != 0){
+		if(plancase != 0){			
 			$('#nocityrute').remove();
 			content ='';
 			content += '<div id="planroute'+diveplus+'" style="height: 90px; width:100%" >';
@@ -438,9 +474,13 @@
 					content += '<div id="planroutecycle" style="float:left; width:94px; height:94px; padding-left:7px; background:#fff; padding-top:15px; border-radius:100px; border:3px solid #3ad195; cursor:pointer; display:inline-block;">';
 						content += '<div class="btn-group" style="height: auto; margin-top: 8px;">';
 							content += '<a href="" id="" class="dmbutton dropdown-toggle" data-toggle="dropdown"> <span id="caret" class="caret"></span></a>일';
-							content += '<ul class="dropdown-menu" id="">';
-								content += '<li>text1</li>';
-								content += '<li>text2</li>';
+							content += '<ul class="dropdown-menu" id="planselectday">';	
+							for(var i=1; i<=days; i++){
+								if(days==1){
+									content += '<li> 당일치기 </li>';
+								}
+								else {content += '<li>'+i+'</li>';}
+							}
 							content += '</ul>';
 						content +='</div>';
 					content += '</div>';
@@ -449,9 +489,17 @@
 							content +='&nbsp;<label>지역:</label>&nbsp;<font> '+keyword+' </font><br/>';
 							content +='&nbsp;<label>관광지: </label><font class=""> '+ document.getElementById('plantitle').title +' </font>&nbsp;<a class="btnDel" href="#">'; 
 							content +='<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a><br/>';		
-							content += '&nbsp;<label> 거리: </label>&nbsp;<font>3 km </font> ';
-							content += '&nbsp;<label> 도보: </label>&nbsp;<font> mm시간 dd분 </font> <br/>	';
-							content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> dd분 </font>';
+							content += '&nbsp;<label> 거리: </label>&nbsp;<font> '+distance+' m </font> ';
+						if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄							
+						else {content += '&nbsp;<label> 도보: </label>&nbsp;<font> '+ walkkTime +' 분</font> <br/>';} // 도보가 한시간 미만 일때
+						if(carTime <= 0){content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> 1분 미만 </font>';}
+						else if(carTime >= 60){
+							var carhourTime = Math.floor(carTime/60);
+							carTime = carTime %60;
+							content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> '+ carhourTime +'시간 '+ carTime+'분 </font>';
+						}
+						else 							
+							content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> 최소'+ carTime*2 +' 분 소요 </font>';
 						content += '</div>';					
 					content += '</div>';
 				content += '</div>';
@@ -478,8 +526,10 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- ********************************* 상세 일정 페이지 달력 출력 종료 *************************************** -->
 <script>
-
+	
 	$(function() {
+		
+		
 		/* **************** location 의 도시 정보 검색  **************** */		
 		//searchPlaces(); //  새로 고침 시에 "키워드를 입력하세요" 라는 문구를 뜨지 않도록 함수 작성해야함.
 		searchaction();		
@@ -488,14 +538,33 @@
 			ps = new daum.maps.services.Places();
 			keyword = document.getElementById('keyword').value;
 			document.getElementById('keyword').value = "";
-			ps.keywordSearch(keyword, displayPlaces);
+			//ps.keywordSearch(keyword, displayPlaces);
+			/* ******************* location 에서 사용자가 선택한 지역으로 자동 서치 ****************** */		
+			// 주소-좌표 변환 객체를 생성합니다
+			var geocoder = new daum.maps.services.Geocoder();
+			console.log(keyword);
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch(keyword, function(result, status) {	
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === daum.maps.services.Status.OK) {	
+			        var coords = new daum.maps.LatLng(result[0].y, result[0].x);	
+			        // 결과값으로 받은 위치를 마커로 표시합니다
+			        /*var marker = new daum.maps.Marker({
+			            map: map,
+			            position: coords
+			        });			
+			        // 인포윈도우로 장소에 대한 설명을 표시합니다
+			        var infowindow = new daum.maps.InfoWindow({
+			            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+			        });
+			        infowindow.open(map, marker);	 */
+			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			        map.setCenter(coords);
+			    } 
+			});
+			/* ******************* location 에서 사용자가 선택한 지역으로 자동 서치 ****************** */
 		}
-		
-		removeMarker(); // 마커 왜..
-		console.log('???????');
 		/* **************** location 의 도시 정보 검색  **************** */
-		
-		
 		
 	/* ************************************* 상세정보 입력 란의 달력 정보 출력 시작 ******************************************* */
 		 $.datepicker.setDefaults({
