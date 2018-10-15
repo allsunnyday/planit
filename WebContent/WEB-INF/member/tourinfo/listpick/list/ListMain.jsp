@@ -67,9 +67,9 @@
                                   <img id="iii2" src="${record.firstimage}">
                                </c:forEach>
                                   
-                               <c:forEach var="record" items="${sleep}" end="1">
+                               <%-- <c:forEach var="record" items="${sleep}" end="1">
                                   <img id="iii3" src="${record.firstimage}">
-                               </c:forEach>
+                               </c:forEach> --%>
                                   
                                  </div>
                            </div>
@@ -77,13 +77,13 @@
                         </div>
                      </div>
                      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+					    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+					    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
                   <!--슬라이드1-->
                </div>
                
@@ -103,7 +103,6 @@
         </div>
       <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 
-       
         </div>
          <div class="divider"></div>
 <!-- ****************************************
