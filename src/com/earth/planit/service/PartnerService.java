@@ -15,8 +15,8 @@ public interface PartnerService {
 	PartnerDTO partnerInfo(Map map);
 	//List<PartnerDTO> partnerInfo(Map map);
 
-		int getTotalRecordforRequestTotal(Map map);
-
-		List<PartnerDTO> selectRequestList(Map map);
+	int getTotalRecordforRequestTotal(Map map);
+	
+	List<PartnerDTO> selectRequestList(Map map);
 		
 }
