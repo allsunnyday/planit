@@ -2,90 +2,97 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <style>
- 	.item{
- 	position:relative;
- 	}
- 	.item .text{
- 	position:absolute;
- 	top:50px;
- 	margin-left:50px;
- 	color:#FFF;
- 	}
- 	
- 	#iii1{
- 	padding-right:20px;
-  	margin-top:30px; 
-  	padding-left:10px;
-  	width:420px
- 	}
- 	 	#iii2{
- 	padding-right:20px;
-  	margin-top:30px; 
-  	width:460px
- 	}
- 	 	#iii3{
- 	padding-right:20px;
-  	margin-top:30px; 
-  	width:460px
- 	}
+    .item{
+    position:relative;
+    }
+    .item .text{
+    position:absolute;
+    top:50px;
+    margin-left:50px;
+    color:#FFF;
+    }
+    
+    #iii1{
+    padding-right:20px;
+     margin-top:30px; 
+     padding-left:10px;
+     width:420px
+    }
+        #iii2{
+    padding-right:20px;
+     margin-top:30px; 
+     width:460px
+    }
+        #iii3{
+    padding-right:20px;
+     margin-top:30px; 
+     width:460px
+    }
  </style>
 
  <!-- ****************************************
- 		탑메뉴 삽입
+       탑메뉴 삽입
  **************************************** -->
 <jsp:include page="../../tdview/topMenu.jsp" flush="false" />
 
 
 <!-- ****************************************
- 		가장 핫한거 하나씩 보여줄 캐러셀
+       가장 핫한거 하나씩 보여줄 캐러셀
 **************************************** -->
   <section class="marketplace-top">
-	<div class="row">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel"> 
-					<ol class="carousel-indicators">
-					    <li data-target="#carousel-example-generic" data-slide-to="0"class="active" ></li>
-					    <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
-					    <li data-target="#carousel-example-generic" data-slide-to="2"class="active"></li>
-					  </ol>
-					<div class="carousel-inner">
-						<!--슬라이드1-->
-						<!-- --------------------------------------------관광지-------------------------- -->
-							
-								<div class="item active"> 
-									<!--  아래 이미지는 배경이 된다. -->
-									<a href="#">
-									<img src="<c:url value='https://images.unsplash.com/photo-1472387040940-3ae0cdbf127d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4aed91054fb429606c129dc3dd75acf2&auto=format&fit=crop&w=1256&q=80'/>" 
-												style="width:100%;height: 550px" height="300px" alt="First slide"></a>
-									<div class="review-overlay">
-							   			 <div class="text" >
-							   			 
-							   			 <c:forEach var="record" items="${tour}" end="1">
-							   				 <img id="iii1" src="${record.firstimage}">
-							   			 </c:forEach>
-							   				 
-							   			 <c:forEach var="record" items="${food}" end="1">
-										 	<img id="iii2" src="${record.firstimage}">
-										 </c:forEach>
-										 	
-										 <c:forEach var="record" items="${sleep}" end="1">
-										 	<img id="iii3" src="${record.firstimage}">
-										 </c:forEach>
-										 	
-							   			</div>
-									</div>
-									<div class="container">
-								</div>
-							</div>
-							
-						<!--슬라이드1-->
-					</div>
-					
-				</div>
-			</div>
+   <div class="row">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
+               <ol class="carousel-indicators">
+                   <li data-target="#carousel-example-generic" data-slide-to="0"class="active" ></li>
+                   <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
+                   <li data-target="#carousel-example-generic" data-slide-to="2"class="active"></li>
+                 </ol>
+               <div class="carousel-inner">
+                  <!--슬라이드1-->
+                  <!-- --------------------------------------------관광지-------------------------- -->
+                     
+                        <div class="item active"> 
+                           <!--  아래 이미지는 배경이 된다. -->
+                           <a href="#">
+                           <img src="<c:url value='https://images.unsplash.com/photo-1472387040940-3ae0cdbf127d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4aed91054fb429606c129dc3dd75acf2&auto=format&fit=crop&w=1256&q=80'/>" 
+                                    style="width:100%;height: 550px" height="300px" alt="First slide"></a>
+                           <div class="review-overlay">
+                                  <div class="text" >
+                                  
+                                  <c:forEach var="record" items="${tour}" end="1">
+                                     <img id="iii1" src="${record.firstimage}">
+                                  </c:forEach>
+                                     
+                                  <c:forEach var="record" items="${food}" end="1">
+                                  <img id="iii2" src="${record.firstimage}">
+                               </c:forEach>
+                                  
+                               <c:forEach var="record" items="${sleep}" end="1">
+                                  <img id="iii3" src="${record.firstimage}">
+                               </c:forEach>
+                                  
+                                 </div>
+                           </div>
+                           <div class="container">
+                        </div>
+                     </div>
+                     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+                  <!--슬라이드1-->
+               </div>
+               
+            </div>
+         </div>
   </section>
 
 <!-- ****************************************
- 		인기여행지들 보여주는 캐러셀
+       인기여행지들 보여주는 캐러셀
 **************************************** -->
   <section class="section1">
     <div class="container clearfix">
@@ -98,9 +105,9 @@
 
        
         </div>
-			<div class="divider"></div>
+         <div class="divider"></div>
 <!-- ****************************************
- 		핫여행지 목록들()
+       핫여행지 목록들()
 **************************************** -->
    <c:forEach var="record" items="${tour}" begin="1" end="1">
         <div id="popularitems" class="owl-carousel">
@@ -428,7 +435,7 @@
 </c:forEach>
 
 <!-- ****************************************
- 		해당목록으로 넘어가게하는 아이콘
+       해당목록으로 넘어가게하는 아이콘
 **************************************** -->
       <div class="general-title text-center">
         <h3>제일 궁금한게~?</h3>

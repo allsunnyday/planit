@@ -70,7 +70,7 @@ max-width: 100%;
 								<div class="bg a0" data-animate="fadeIn">
 									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
 									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
+									href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}&contenttype=32'/> "
 										class="dmbutton a2" data-animate="bounceInLeft">
 										
 										<i class="fa fa-search"></i></a>

@@ -71,7 +71,7 @@ max-width: 100%;
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
-                    <a data-rel="" href="<c:url value='/planit/search/list/FoodView.it'/>" 
+                    <a data-rel="" href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}&contenttype=39'/> " 
                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                     </div>
