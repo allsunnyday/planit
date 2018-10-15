@@ -699,7 +699,7 @@ Edit Modal
 							<div class="modal-body">
 								<div class="form-group">
 									<label>Content</label>
-									<textarea class="form-control" readonly="readonly" id="detailcontent">${list.content}</textarea>
+									<textarea class="form-control" readonly="readonly" id="detailcontent"></textarea>
 								</div>
 
 							</div>
