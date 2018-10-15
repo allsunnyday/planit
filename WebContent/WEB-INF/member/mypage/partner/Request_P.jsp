@@ -210,44 +210,10 @@ table.table .avatar {
 .text-danger {
 	color: #ff5b5b;
 }
-
+/* 페이징 정렬 */
 .pagination {
-	float: right;
+	float: center;
 	margin: 0 0 5px;
-}
-
-.pagination li a {
-	border: none;
-	font-size: 13px;
-	min-width: 30px;
-	min-height: 30px;
-	color: #999;
-	margin: 0 2px;
-	line-height: 30px;
-	border-radius: 2px !important;
-	text-align: center;
-	padding: 0 6px;
-}
-
-.pagination li a:hover {
-	color: #666;
-}
-
-.pagination li.active a {
-	background: #03A9F4;
-}
-
-.pagination li.active a:hover {
-	background: #0397d6;
-}
-
-.pagination li.disabled i {
-	color: #ccc;
-}
-
-.pagination li i {
-	font-size: 16px;
-	padding-top: 6px
 }
 
 .hint-text {
@@ -255,6 +221,7 @@ table.table .avatar {
 	margin-top: 10px;
 	font-size: 13px;
 }
+
 /* Modal styles */
 .modal .modal-dialog {
 	max-width: 400px;
@@ -419,8 +386,6 @@ table.table .avatar {
 					console.log($('#findname_request').val());
 				});
 				
-				
-				
 				// 모달창을 띄우기 전에 데이터 세팅  
 				$('.askview').click(function(){
 					console.log('clicked='+$(this).attr('title'));
@@ -441,8 +406,6 @@ table.table .avatar {
 					$(this).html(text);
 				});
 			});
-	
-		
 </script>
 <div class="container-fluid">
 	<div class="col-md-3" style="width: 300px">
@@ -572,9 +535,9 @@ table.table .avatar {
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="${empty requestScope.list}" var="isEmpty">
+					<c:if test="${empty list}" var="isEmpty">
 						<tr>
-							<td colspan="4">등록된 문의가 없어요</td>
+							<td colspan="4">사용자에게 더 어필해주세요 !</td>
 						</tr>
 					</c:if>
 					<c:if test="${not isEmpty}">
@@ -587,11 +550,11 @@ table.table .avatar {
 								<td>${record.ask_no}</td>
 								<td><a href="#">
 								<img src="#" class="avatar" alt="profile"> ${record.id} </a></td>
-								<td><a href="#detailEmployeeModal" class="edit  askview" id="" title="${loop.index}"
+								<td><a href="<c:url value='/mypage/partner/Request_detail.it?ask_no=${record.ask_no}'/>" class="edit  askview" id="" title="${loop.index}"
 									 >${record.title}</a></td>
 								<td>${record.askdate}</td>
 								<td><span class="status text-success">&bull;</span>${record.status}</td>
-								<td><a href="#editEmployeeModal" class="edit"
+								<td><a href="#" class="edit"
 									data-toggle="modal"><i class="material-icons"
 										data-toggle="tooltip" title="Reply">&#xE254;</i></a> 
 										<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
@@ -611,17 +574,9 @@ table.table .avatar {
 				<div class="hint-text">
 					Showing <b>6</b> out of <b>${totalRecordCount}</b> entries
 				</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item active"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">6</a></li>
-					<li class="page-item"><a href="#" class="page-link">7</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
+				<div class="row">
+					<div class="col-md-12">${pagingString}</div>
+				</div>
 			</div>
 			<!--
 ***************************************************************************************
@@ -657,7 +612,7 @@ Delete Modal
 Edit Modal
 ***************************************************************************************
   -->
-			<div id="editEmployeeModal" class="modal fade">
+			<!-- <div id="editEmployeeModal" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<form>
@@ -682,12 +637,12 @@ Edit Modal
 						</form>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<!-- **************
 			detail modal
 			************ -->
 
-			<div id="detailEmployeeModal" class="modal fade">
+			<!-- <div id="detailEmployeeModal" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<form>
@@ -710,7 +665,7 @@ Edit Modal
 						</form>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 
 	</div>

@@ -14,12 +14,7 @@ max-width: 100%;
 }
 
 </style>
-<script>
-<<<<<<< HEAD
-
-=======
  <script>//이걸 지우면 기능들이 안먹혀요..
->>>>>>> refs/remotes/origin/Gilhyoung
 
 var search=function(){
 	$('#frm').submit();

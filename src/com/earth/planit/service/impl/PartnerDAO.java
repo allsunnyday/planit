@@ -37,18 +37,31 @@ public class PartnerDAO implements PartnerService{
 		int count=template.selectOne("partnerIsDuplicate",map);
 		return count==0?true:false;
 	}
-	
-	public int getTotalRecordforRequestTotal(Map map) {
-		return template.selectOne("RequestTotal", map);
+	@Override
+	public int getTotalRecordforRequest(Map map) {
+		return template.selectOne("PartnerRequestTotal", map);
 	}
-	
+	@Override
 	public int getTotalRecordforReservation(Map map) {
-		return template.selectOne("ReservationTotal", map);
+		return template.selectOne("PartnerReservationTotal", map);
 	}
 
 	@Override
 	public List<PartnerDTO> selectRequestList(Map map) {
 		return template.selectList("PartnerRequestList", map);
 	}
+	
+	@Override
+	public List<PartnerDTO> selectReservationList(Map map) {
+		return template.selectList("PartnerReservationList", map);
+	}
 
+	@Override
+	public PartnerDTO selectRequestDetail(Map map) {
+		return template.selectOne("PartnerRequestDetail", map);
+	}
+
+	
+	
+	
 }

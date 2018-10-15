@@ -35,17 +35,29 @@ public class PartnerServiceImpl implements PartnerService{
 	public boolean isDuplicate(Map map) {
 		return dao.isDuplicate(map);
 	}
-	public int getTotalRecordforRequestTotal(Map map) {
-		return dao.getTotalRecordforRequestTotal(map);
+	
+	@Override
+	public int getTotalRecordforRequest(Map map) {
+		return dao.getTotalRecordforRequest(map);
 	}
 
 	@Override
 	public List<PartnerDTO> selectRequestList(Map map) {
 		return dao.selectRequestList(map);
 	}
-	
+	@Override
 	public int getTotalRecordforReservation(Map map) {
 		return dao.getTotalRecordforReservation(map);
 	}
+	@Override
+	public PartnerDTO selectRequestDetail(Map map) {
+		return dao.selectRequestDetail(map);
+	}
+
+	@Override
+	public List<PartnerDTO> selectReservationList(Map map) {
+		return dao.selectReservationList(map);
+	}
+	
 
 }

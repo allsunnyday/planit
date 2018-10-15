@@ -22,11 +22,11 @@ import com.earth.planit.service.impl.PagingUtil;
 
 @Controller
 public class PartnerController {
-	//리소스파일(resource.properties)에서 읽어오기
+/*	//리소스파일(resource.properties)에서 읽어오기
 	@Value("${TABLE_PAGE_SIZE}")
 	private int pageSize;
 	@Value("${TABLE_BLOCK_PAGE}")
-	private int blockPage;
+	private int blockPage;*/
 	
 	/*
 	 * PartnerController 
@@ -38,12 +38,12 @@ public class PartnerController {
 	@Resource(name="partnerService")
 	private PartnerService service;
 	
-	@RequestMapping("/mypage/partner/Reservation_P.it")
+	/*@RequestMapping("/mypage/partner/Reservation_P.it")
 	public String gotoReservation_P() throws Exception {
 		return "mypage/partner/Reservation_P.theme";
 	}
 	
-	/*문의 */
+	문의 
 	@RequestMapping(value="/mypage/partner/Request_P.it", produces="text/plain; charset=UTF-8")
 	public String gotoRequest_P(HttpServletRequest req,//페이징용 메소드에 전달
 			@RequestParam Map map,Model model, HttpSession session,
@@ -81,7 +81,7 @@ public class PartnerController {
 	public String gotoRequestdetail_P() throws Exception {
 		return "mypage/partner/Reservation_detail.theme";
 	}
-	
+	*/
 	//[기업 로그인]
 	@RequestMapping(value="/partner/login/LoginProcess.it", method=RequestMethod.POST)
 	public String partnerLoginProcess(@RequestParam Map map, HttpSession session, Model model)throws Exception{
