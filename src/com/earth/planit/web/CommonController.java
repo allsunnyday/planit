@@ -1,6 +1,5 @@
 package com.earth.planit.web;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.earth.planit.service.ContentDTO;
+import com.earth.planit.service.ContentService;
 import com.earth.planit.service.ReviewService;
 
 @Controller
@@ -21,9 +21,15 @@ public class CommonController {
 	@Resource(name="reviewService")
 	private ReviewService reviewService;
 	
+	@Resource(name="contentService")
+	private ContentService contentService;
+	
 	@RequestMapping("/planit/search/list/TourView.it")
 	public String tourView(@RequestParam Map map,
 								Model model) throws Exception{
+		// viewcount 올리기 
+		int affected = contentService.updateViewcount(map);
+		System.out.println("updateviewcount affected row = "+affected);
 		// map에 
 		ContentDTO dto = reviewService.selectContent(map);
 		// map 으로  

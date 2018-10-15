@@ -4,7 +4,7 @@
 <!--************************************
 네비게이터가 필요
 *************************************** -->
-<jsp:include page="topMenu.jsp" flush="false" />
+
 <style>
 img{
 max-width: 100%;
@@ -14,41 +14,8 @@ max-width: 100%;
 }
 
 </style>
-<script>
-<<<<<<< HEAD
-
-=======
- <script>//이걸 지우면 기능들이 안먹혀요..
->>>>>>> refs/remotes/origin/Gilhyoung
-
-var search=function(){
-	$('#frm').submit();
-};
-
-$(function(){
-	$('#frm').validate({rules:{
-		searchWord:{
-			required:true
-			  //최소문자길이
-		}
-	},
-	messages:{
-		searchWord:{
-			required:'검색어를 입력하세요'
-			
-		}
-	}});
-});
-
-$(function(){
-	<c:if test="${not empty searchColumn}">
-	$(".chooseColumn").html($("option[value=${searchColumn}").html());
-	</c:if>
-	
-});
 
 
-</script>
 
 
 
@@ -56,7 +23,7 @@ $(function(){
 <!--************************************
  아래 리스트 
 *************************************** -->
-
+<jsp:include page="topMenu.jsp" flush="false" />
     <section class="post-wrapper-top">
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -142,12 +109,17 @@ $(function(){
 				<c:forEach var="record" items="${tour}" >
 					<div  class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<div class="he-wrap tpl6 market-item">
-							<img src='${record.firstimage}' alt="">
+							<c:if test="${empty record.firstimage }">
+			                <img src="<c:url value='/Upload/Tour/tempimage.png'/>" alt="">
+			                </c:if>
+			                <c:if test="${not empty record.firstimage }">
+			                <img src='${record.firstimage}' alt="">
+			                </c:if>
 							<div class="he-view">
 								<div class="bg a0" data-animate="fadeIn">
 									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
 									<a data-rel="" 
-									href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}&contenttype=12'/> "
+									href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}'/> "
 										class="dmbutton a2" data-animate="bounceInLeft"  >
 										
 										<i class="fa fa-search"></i></a>
@@ -199,4 +171,20 @@ $(function(){
 
 
 <!-- end section -->
+
+ <script>//이걸 지우면 기능들이 안먹혀요..
+
+	var search=function(){
+		$('#frm').submit();
+	};
+
+	$(function(){
+		<c:if test="${not empty searchColumn}">
+		$(".chooseColumn").html($("option[value=${searchColumn}").html());
+		</c:if>
+		
+	});
+
+
+</script>
 

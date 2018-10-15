@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.earth.planit.service.ContentService;
 import com.earth.planit.service.SearchListDTO;
 import com.earth.planit.service.SearchListService;
 
@@ -43,24 +44,33 @@ public class SearchListController {
 	@Resource(name="searchListService")
 	private SearchListService service;
 	
+	@Resource(name="contentService")
+	private ContentService contentService;
+	
 	//리스트 픽하는 페이지
 	@RequestMapping("/member/tourinfo/listpick/list/ListMain.it")
 	public String listMain(@RequestParam Map map,Model model)throws Exception{
 		
 		int start = 1;
-		int end = 5;
+		int end = 3;
 		map.put("start", start);
 		map.put("end", end);
 		
 		List<SearchListDTO> tourlist = service.selectTourList(map);
 		map.put("start", start);
-		map.put("end", 1);
+		
 		List<SearchListDTO> sleeplist = service.selectSleepList(map);
 		List<SearchListDTO> foodlist = service.selectFoodList(map);
+		
+		map.put("start", 1);
+		map.put("end", 6);
+		
+		List<SearchListDTO> besttourlist = service.selectTourList(map);
 		
 		model.addAttribute("tour",tourlist);
 		model.addAttribute("sleep",sleeplist);
 		model.addAttribute("food",foodlist);
+		model.addAttribute("besttourlist",besttourlist);
 		return "tourinfo/listpick/list/ListMain.theme";
 	}
 	

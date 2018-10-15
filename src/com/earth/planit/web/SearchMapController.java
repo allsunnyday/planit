@@ -51,7 +51,7 @@ public class SearchMapController {
 		
 		//tour목록 
 		List<SearchMapDTO> tourlist = service.selectTravelList(map);
-		System.out.println("tourlist.size():"+tourlist.size());
+		// 데이터저장
 		model.addAttribute("tourlist",tourlist);
 		
 		//content목록
@@ -83,11 +83,7 @@ public class SearchMapController {
 			record.put("title", dto.getTitle());
 			record.put("firstimage", dto.getFirstimage());
 			collections.add(record);
-			/*JSONObject json = new JSONObject();
-			json.put("contentid", dto.getContentid());
-			json.put("title", dto.getTitle());
-			json.put("firstimage", dto.getFirstimage());
-			collections.put("tourpickList", json);*/
+			
 		}//for
 		
 		///컨텐츠용
@@ -99,16 +95,10 @@ public class SearchMapController {
 			record.put("title",dto.getTitle());
 			record.put("firstimage",dto.getFirstimage());
 			collections.add(record);
-			/*JSONObject json = new JSONObject();
-			json.put("contentid", dto.getContentid());
-			json.put("title", dto.getTitle());
-			json.put("firstimage", dto.getFirstimage());
-			collections.put("contentpickList", json);*/
 		}//for
-		// 최종적으로 맵 -> list
-		//collections.add(record);
-		System.out.println("collections크기:"+collections.size());
 		
+		System.out.println("collections크기:"+collections.size());
+		// 앞에 6개는  관광 컨텐츠  뒤의6개는 컨텐츠
 		return JSONArray.toJSONString(collections);
 	}////MapPickAjax
 	
