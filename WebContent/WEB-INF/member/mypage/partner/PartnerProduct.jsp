@@ -282,17 +282,16 @@ height: 100%; */
 				<div class="container clearfix">
 					<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 
-						<form id="registerform" method="post" name="registerform"
-							action="#">
+						<form id="registerform" method="post" name="registerform" enctype="multipart/form-data"
+							action="<c:url value='/planit/member/partner/RoomResistForm.it'></c:url>">
 							<div class="col-lg-5 col-md-5 col-sm-12">
 								<h4 class="title">
-									<span>Room Pictur</span>
+									<span>Room Picture</span>
 								</h4>
 								
 								<div>
 									<input type="file" name="roomimg1art" id="roomimg1art">
-									
-									
+								
 								</div>
 
 							</div>
@@ -305,7 +304,7 @@ height: 100%; */
 <!-- 상품이름 -->
 								<div class="form-group">
 									<input type="text" class="form-control"
-										placeholder="상품의 이름을 입력해주세요" id="">
+										placeholder="상품의 이름을 입력해주세요" name="roomtitle" id="roomtitle">
 
 								</div>
 
@@ -329,9 +328,14 @@ height: 100%; */
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="cardnumber">Room Size<span class="required">*</span></label>
+									<label for="cardnumber">Room Size1<span class="required">*</span></label>
 									<input type="text" class="form-control"
-										placeholder="평수을 입력해주세요">
+										placeholder="평수을 입력해주세요(평수)" id="roomsize1" name="roomsize1">
+								</div>
+								<div class="form-group">
+									<label for="cardnumber">Room Size2<span class="required">*</span></label>
+									<input type="text" class="form-control"
+										placeholder="평수을 입력해주세요(평방미터)" id="roomsize2" name="roomsize2">
 								</div>
 								<div class="form-group">
 									<label for="cardnumber">Quantity<span class="required">*</span></label>
@@ -351,25 +355,25 @@ height: 100%; */
 								<div class="form-group">
 									<label for="cardnumber">비수기 평일<span class="required">*</span></label>
 									<input type="text" class="form-control"
-										name="roomoffseasonfee1" id="roomoffseasonfee1"
+										name="roomoffseasonminfee1" id="roomoffseasonminfee1"
 										placeholder="숫자만 입력해주세요">
 								</div>
 								<div class=form-group>
 									<label for="cardnumber">비수기 주말<span class="required">*</span></label>
 									<input type="text" class="form-control"
-										name="roomoffseasonfee2" id="roomoffseasonfee2"
+										name="roomoffseasonminfee2" id="roomoffseasonminfee2"
 										placeholder="숫자만 입력해주세요">
 								</div>
 								<div class="form-group">
 									<label for="cardnumber">성수기 평일<span class="required">*</span></label>
 									<input type="text" class="form-control"
-										name="roompeakseasonfee1" id="roompeakseasonfee1"
+										name="roompeakseasonminfee1" id="roompeakseasonminfee1"
 										placeholder="숫자만 입력해주세요">
 								</div>
 								<div class="form-group">
 									<label for="cardnumber">성수기 주말<span class="required">*</span></label>
 									<input type="text" class="form-control"
-										name="roompeakseasonfee2" id="roompeakseasonfee2"
+										name="roompeakseasonminfee2" id="roompeakseasonminfee2"
 										placeholder="숫자만 입력해주세요">
 								</div>
 
@@ -397,14 +401,24 @@ height: 100%; */
 										<input type="checkbox" value="roomhairdryer" id="roomhairdryer" name="roomhairdryer"> 드라이기
 									</div>
 								</div>
+								<div class="form-group">
+									<label for="cardnumber">RoomIntro<span class="required">*</span></label>
+									<!-- 룸 소개 -->
+									<textarea class="form-control" id="roomintro" name="roomintro" placeholder="객실소개를 입력해주세요">
+									</textarea>
+									</div>
+								<div class="form-group">
+									<input type="submit" class="button btn-block" value="등록"/>
+								</div>
+								</div>
 						</form>
 					</div>
 				</div>
 				<!-- end register -->
+			</section>
 		</div>
 		<!-- end content -->
-</section>
-</div>
-</div>
+	</div>
+
 </section>
 <!-- end section -->

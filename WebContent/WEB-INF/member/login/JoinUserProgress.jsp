@@ -99,6 +99,51 @@ jQuery(document).ready(function() {
 
 
 </script>
+  
+  <script>
+ 
+$(function() {
+    //idck 버튼을 클릭했을 때 
+    $("#idcheck").click(function() {
+    	
+        //userid 를 param.
+        var id =  $("#id").val(); 
+       
+        $.ajax({
+            async: true,
+            type : 'POST',
+            data : id,
+            url : "<c:url value='/planit/member/idcheck.it'></c:url>",
+            dataType : "text",
+            contentType: "application/json; charset=UTF-8",
+            success : function(data) {
+                if (data > 0) {
+                    
+                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                    $("#id").focus();
+               
+                } else {
+                	console.log(data);
+                    alert("사용가능한 아이디입니다.");
+               
+                    $("#pwd").focus();
+                    
+                    idck = 1;
+                    $('input:checkbox[name="checkcomplite"]').is(":checked") == true;
+
+              
+                }
+            },
+            error : function(error) {
+                
+                alert("error : " + error);
+            }
+        });
+    });
+});
+ 
+ 
+</script>
 <div style="padding-top: 70px;"></div>
 <div class="row">
 	<div
@@ -324,8 +369,8 @@ jQuery(document).ready(function() {
 				<div class="form-group">
 					<label class="sr-only" for="f1-email">ID</label> <input
 						type="text" name="id" placeholder="Id..."
-						class="f1-email form-control" id="id">
-						<input type="hidden" name="idDuplication" value="idUncheck" >
+						class="f1-email form-control" id="id" style="width:90%; display: inline-block;">
+						<Button id="idcheck" >중복확인</Button>
 
 					<!-- Button trigger modal -->
 					

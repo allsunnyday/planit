@@ -10,8 +10,11 @@ public interface PartnerService {
 	//회원가입_int로 해야하나..
 	int isPartnerJoin(PartnerDTO dto);
 	//아이디 중복검사
-	boolean isDuplicate(Map map);
+	boolean isDuplicate(String p_id);
 	//회원개인정보를 담을 컬렉션
 	PartnerDTO partnerInfo(Map map);
 	//List<PartnerDTO> partnerInfo(Map map);
+	
+	//[Room 정보 등록]
+	int roomResist(PartnerRoomDTO dto);
 }

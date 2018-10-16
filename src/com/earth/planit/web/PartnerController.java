@@ -1,5 +1,6 @@
 package com.earth.planit.web;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -7,11 +8,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.earth.planit.service.PartnerDTO;
+import com.earth.planit.service.PartnerRoomDTO;
 import com.earth.planit.service.PartnerService;
 
 @Controller
@@ -79,22 +83,43 @@ public class PartnerController {
 		
 		int isPartnerJoin=service.isPartnerJoin(dto);
 		System.out.println(isPartnerJoin);
-	/*	if(isPartnerJoin==1) {
-			session.setAttribute("p_id", map.get("p_id"));
-		}
-			*/	
+		
 		return "forward:/planit/login/Login.it";
 	}
+	@RequestMapping(value="/planit/member/partner/p_idcheck.it" ,method=RequestMethod.POST)
+    @ResponseBody
+    public String idcheck(@RequestBody String p_id) {
+        
+        int count = 0;
+        Map map = new HashMap();
+ 
+        count = service.isDuplicate(p_id)==true?0:1;
+        System.out.println(count);
+        //map.put("cnt", count);
+ 
+        return String.valueOf(count);
+    }
 	// [기업_마이페이지]
-	@RequestMapping("planit/mypage/partner/PartnerMyPageHome.it")
+	@RequestMapping("/planit/mypage/partner/PartnerMyPageHome.it")
 	public String gotoPartnerMyPageHome() throws Exception {
 		return "mypage/partner/PartnerMyPageHome.theme";
 	}
-	//http://localhost:11080/Planit/planit/mypage/partner/plantit/mypage/partner/productResist.it
+	//[상품등록페이지 이동]
 	@RequestMapping("/plantit/mypage/partner/productResist.it")
 	public String gotoPartnerProductResist() throws Exception {
-		///planit/WebContent/WEB-INF/member/mypage/partner/PartnerProduct.jsp
 		return "mypage/partner/PartnerProduct.theme";
+	}
+	//[상품등록 프로세스]
+	@RequestMapping(value="/planit/member/partner/RoomResistForm.it",method=RequestMethod.POST)
+	public String RoomResistProcess(PartnerRoomDTO dto, HttpSession session) throws Exception {
+		String p_id=(String) session.getAttribute("p_id");
+		System.out.println(p_id);
+		dto.setP_id(p_id);
+		service.roomResist(dto);
+		System.out.println(service.roomResist(dto));
+		
+		return "forward:/planit/mypage/partner/PartnerMyPageHome.it";
+		
 	}
 
 }

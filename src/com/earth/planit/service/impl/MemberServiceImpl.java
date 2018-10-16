@@ -35,14 +35,20 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean idDuplicate(Map map) {
+	public boolean idDuplicate(String id) {
 		// TODO Auto-generated method stub
-		return dao.idDuplicate(map);
+		return dao.idDuplicate(id);
 	}
 
 	@Override
 	public int insertPreference(Map map) {
 		return dao.insertPreference(map);
+	}
+
+	@Override
+	public int updateProfile(Map map) {
+		// TODO Auto-generated method stub
+		return dao.updateProfile(map);
 	}
 
 	

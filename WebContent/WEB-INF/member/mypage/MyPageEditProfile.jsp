@@ -5,7 +5,7 @@
 <style>
 .mypage-content {
 	margin-top: 100px;
-	padding-bottom:100px;
+	padding-bottom: 100px;
 	/* border: 3px black solid; */
 }
 
@@ -36,9 +36,10 @@ height: 100%; */
 #ME-first-EditForm, #ME-second-EditForm, #ME-third-EditForm {
 	margin-top: 20px;
 }
-.submitButton{
-	 display:inline-block;
-	 float:right;
+
+.submitButton {
+	display: inline-block;
+	float: right;
 }
 </style>
 <div class="container">
@@ -55,12 +56,12 @@ height: 100%; */
 		<!-- ------------------------------- -->
 		<!--        start Edit first         -->
 		<!-- ------------------------------- -->
+		<form class="form-horizontal" action="<c:url value='/planit/mypage/editsave.it'/>" method="post">
 
-		<div class="row" id="ME-first">
-			<!--  프로필 들어갈 div -->
-			<div id="ME-first-name">Edit My Information</div>
-			<div id="ME-first-EditForm" class="col-md-8 col-md-offset-2">
-				<form class="form-horizontal">
+			<div class="row" id="ME-first">
+				<!--  프로필 들어갈 div -->
+				<div id="ME-first-name">Edit My Information</div>
+				<div id="ME-first-EditForm" class="col-md-8 col-md-offset-2">
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="userID"
 							value="Plan:It" disabled>
@@ -73,58 +74,59 @@ height: 100%; */
 						<input type="email" class="form-control" id="useremail"
 							placeholder="이메일을 입력해주세요" value="">
 					</div>
-				</form>
-			</div>
-
-		</div>
-		<!-- ------------------------------- -->
-		<!--          end Edit first         -->
-		<!-- ------------------------------- -->
-		<!-- ------------------------------- -->
-		<!--        start Edit second        -->
-		<!-- ------------------------------- -->
-		<div class="row" id="ME-second">
-			<div id="ME-second-name">Edit My Profile</div>
-			<div id="ME-second-EditForm" class="col-md-8 col-md-offset-2">
-				<div>
-					<!-- 사진 업로드 할 부분 -->
-					<input type="file" name="selfi">
-				</div>
-				<div>
-					<textarea class="form-control" rows="3" placeholder="자기소개를 입력해주세요"></textarea>
 
 				</div>
 			</div>
+			<!-- ------------------------------- -->
+			<!--          end Edit first         -->
+			<!-- ------------------------------- -->
+			<!-- ------------------------------- -->
+			<!--        start Edit second        -->
+			<!-- ------------------------------- -->
+			<div class="row" id="ME-second">
+				<div id="ME-second-name">Edit My Profile</div>
+				<div id="ME-second-EditForm" class="col-md-8 col-md-offset-2">
+					<div>
+						<!-- 사진 업로드 할 부분 -->
+						<input type="file" name="profile" id="profile" >
+					</div>
+					<div>${memberRecord.profile}</div>
+					<div>
+						<textarea class="form-control" rows="3" placeholder="자기소개를 입력해주세요"></textarea>
+
+					</div>
+				</div>
 
 
-		</div>
-		<!-- ------------------------------- -->
-		<!--          end Edit second        -->
-		<!-- ------------------------------- -->
-		<!-- ------------------------------- -->
-		<!--        start Edit third         -->
-		<!-- ------------------------------- -->
-		<div class="row" id="ME-third">
-			<div id="ME-third-name">Edit My Favorite</div>
-			<div id="ME-third-EditForm" class="col-md-8 col-md-offset-2">
-				<div>선호사항 들어갈 자리</div>
 			</div>
+			<!-- ------------------------------- -->
+			<!--          end Edit second        -->
+			<!-- ------------------------------- -->
+			<!-- ------------------------------- -->
+			<!--        start Edit third         -->
+			<!-- ------------------------------- -->
+			<div class="row" id="ME-third">
+				<div id="ME-third-name">Edit My Favorite</div>
+				<div id="ME-third-EditForm" class="col-md-8 col-md-offset-2">
+					<div>선호사항 들어갈 자리</div>
+
+				</div>
 
 
-		</div>
-		<!-- ------------------------------- -->
-		<!--          end Edit third         -->
-		<!-- ------------------------------- -->
-		<!-- ------------------------------- -->
-		<!--           서브밋 버튼                      -->
-		<!-- -------------------------------  -->
-	
+			</div>
+			<!-- ------------------------------- -->
+			<!--          end Edit third         -->
+			<!-- ------------------------------- -->
+			<!-- ------------------------------- -->
+			<!--           서브밋 버튼                      -->
+			<!-- -------------------------------  -->
+
 			<div class="submitButton">
 				<input id="ME-Submit-Button" type="submit" class="btn btn-default"
 					value="Edit">
 			</div>
-		
 
+		</form>
 
 	</div>
 	<!--  end mypage-content -->

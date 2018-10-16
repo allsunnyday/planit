@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	*변경사항*
+	mapper 파일의 완전한 경로 . xml은 생략
+	ibatis와는 다르게 id값에 '.'를 사용하지 못함
+ -->
+<mapper namespace="config.Pember">
+	<select id="PartnerIsLogin" parameterType="java.util.Map" resultType="int">
+		<!-- select count(*) from member where id='user1' and pwd='1234'; -->
+		
+		SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} AND pwd=#{pwd}
+	</select>
+	<select id="PartnerInformation" parameterType="java.util.Map" resultType="PartnerDTO" >
+		SELECT * FROM partner WHERE p_id=#{p_id}
+	</select>
+<!-- 중복검사 -->
+	<select id="partnerIsDuplicate" parameterType="String" resultType="int">
+	SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} 
+	
+	</select> 
+
+	
+	<insert id="PartnerIsJoin" parameterType="PartnerDTO">
+		<!--insert into partner(p_id,business_no,pwd,firstimage,regidate,tel,address) values  -->
+		insert into partner(p_id,business_no,pwd,email,firstimage,regidate,tel,address) values(#{p_id},#{business_no},#{pwd},#{email},'NOIMAGE',SYSDATE,#{tel},#{address})
+	
+	</insert>
+<!-- Room등록용 -->
+	<insert id="PartnerRoomResist" parameterType="PartnerRoomDTO">
+		INSERT INTO 
+			p_product
+			(
+				roomcode,
+				p_id,
+				roomtitle
+				<if test="roomsize1 != null">
+					,roomsize1
+				</if>
+				<if test="roomcount != null">
+					,roomcount
+				</if>
+	
+				
+				<if test="roombasecount != null">
+					,roombasecount
+				</if>
+				<if test="roommaxcount != null">
+					,roommaxcount
+				</if>
+				<if test="roomoffseasonminfee1 != null">
+					,roomoffseasonminfee1
+				</if>
+				<if test="roomoffseasonminfee2 != null">
+					,roomoffseasonminfee2
+				</if>
+				<if test="roompeakseasonfee1 != null">
+					,roompeakseasonfee1
+				</if>
+				
+				
+				<if test="roompeakseasonfee2 != null">
+					,roompeakseasonfee2
+				</if>
+				<if test="roomintro != null">
+					,roomintro
+				</if>
+				<if test="roombathfacility != null">
+					,roombathfacility
+				</if>
+				<if test="roombath != null">
+					,roombath
+				</if>
+				<if test="roomhometheater != null">
+					,roomhometheater
+				</if>
+				
+				
+				<if test="roomaircondition != null">
+					,roomaircondition
+				</if>
+				<if test="roomtv != null">
+					,roomtv
+				</if>
+				<if test="roompc != null">
+					,roompc
+				</if>
+				<if test="roomcable != null">
+					,roomcable
+				</if>
+				<if test="roominternet != null">
+					,roominternet
+				</if>
+				
+				
+				<if test="roomrefrigerator != null">
+					,roomrefrigerator
+				</if>
+				<if test="roomtoiletries != null">
+					,roomtoiletries
+				</if>
+				<if test="roomsofa != null">
+					,roomsofa
+				</if>
+				<if test="roomcook != null">
+					,roomcook
+				</if>
+				<if test="roomtable != null">
+					,roomtable
+				</if>
+				
+				
+				<if test="roomhairdryer != null">
+					,roomhairdryer
+				</if>
+				<if test="roomsize2 != null">
+					,roomsize2
+				</if>
+			)
+			 VALUES
+	        (
+	            'roomcode_test_001',
+	            #{p_id},
+	            #{roomtitle}
+	        <if test="roomsize1 != null">
+					,#{roomsize1}
+				</if>
+				<if test="roomcount != null">
+					,#{roomcount}
+				</if>
+	
+				
+				<if test="roombasecount != null">
+					,#{roombasecount}
+				</if>
+				<if test="roommaxcount != null">
+					,#{roommaxcount}
+				</if>
+				<if test="roomoffseasonfee1 != null">
+					,#{roomoffseasonfee1}
+				</if>
+				<if test="roomoffseasonfee2 != null">
+					,#{roomoffseasonfee2}
+				</if>
+				<if test="roompeakseasonfee1 != null">
+					,#{roompeakseasonfee1}
+				</if>
+				
+				
+				<if test="roompeakseasonfee2 != null">
+					,#{roompeakseasonfee2}
+				</if>
+				<if test="roomintro != null">
+					,#{roomintro}
+				</if>
+				<if test="roombathfacility != null">
+					,#{roombathfacility}
+				</if>
+				<if test="roombath != null">
+					,#{roombath}
+				</if>
+				<if test="roomhometheater != null">
+					,#{roomhometheater}
+				</if>
+				
+				
+				<if test="roomaircondition != null">
+					,#{roomaircondition}
+				</if>
+				<if test="roomtv != null">
+					,#{roomtv}
+				</if>
+				<if test="roompc != null">
+					,#{roompc}
+				</if>
+				<if test="roomcable != null">
+					,#{roomcable}
+				</if>
+				<if test="roominternet != null">
+					,#{roominternet}
+				</if>
+				
+				
+				<if test="roomrefrigerator != null">
+					,#{roomrefrigerator}
+				</if>
+				<if test="roomtoiletries != null">
+					,#{roomtoiletries}
+				</if>
+				<if test="roomsofa != null">
+					,#{roomsofa}
+				</if>
+				<if test="roomcook != null">
+					,#{roomcook}
+				</if>
+				<if test="roomtable != null">
+					,#{roomtable}
+				</if>
+				
+				
+				<if test="roomhairdryer != null">
+					,#{roomhairdryer}
+				</if>
+				<if test="roomsize2 != null">
+					,#{roomsize2}
+				</if>
+	</insert>
+	
+	
+
+</mapper>
