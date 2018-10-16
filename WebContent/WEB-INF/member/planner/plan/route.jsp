@@ -74,13 +74,13 @@
 					
 					<div style="clear: both"></div>
 				</div>	
-				<div id="cityroute" class="" >
+				<div id="cityroute">
 					
 						<!-- 사용자가 추가한 여행정보가 없을때 -->
-						<div id="nocityrute" style="background-color: cyan; ">
+						<div id="nocityrute">
 							<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>
 						</div>
-						<!-- 사용자가 추가한 여행정보가 없을때 -->					
+						<!-- 사용자가 추가한 여행정보가 없을때 -->		
 						
 				</div>
 			</div>

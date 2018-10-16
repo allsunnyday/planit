@@ -317,7 +317,7 @@
 					'</div>' +
 	                
 	                '<div class="after"></div>';  
-	                console.log("place: "+ place[0]);
+	                //console.log("place: "+ place[0]);
 	    contentNode.innerHTML = content;
 	    placeOverlay.setPosition(new daum.maps.LatLng(place.y, place.x));
 	    placeOverlay.setMap(map);  
@@ -381,14 +381,15 @@
 	var plankarking=0;
 	/********************** 마커 거리 얻어온다  *********************/
 	var distance; // 마커와 마커 사이의 거리 정보?
-	var temp=0; // 이전거리정보?
+	var temp=0; // 마커 와 마커 이전거리 저장용
 	var walkkTime=0; // 사람이 걷는 거리의 소요 시간
-	var carTime=0;
-	/* ******************** daum map api 함수 내부의 추가하기 버튼 함수 시작 ******************** */
+	var carTime=0; // 자동차가 이동하는데 소요 되는 시간 
+	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	function planplusActionplus(){
 		console.log("planplusActionplus() : routeInfoPlusAction() 가 호출 되지 않아야함.");
 		var plancase = 0;
-		positions[plankarking] = {title:document.getElementById('plantitle').title, latlng:planposition};
+		//positions[plankarking] = {title:document.getElementById('plantitle').title, latlng:planposition};
+		positions.push({title:document.getElementById('plantitle').title, latlng:planposition});
 		//linePath[plankarking] = planposition;
 		linePath.push(planposition);
 		console.log(linePath.length);
@@ -424,8 +425,7 @@
 		    strokeStyle: 'solid' // 선의 스타일입니다
 		});
 		
-		/*  */
-		
+		/* *****************사람및 자동차가 움직이는 시간 계산 ***************** */		
 		if(Math.round(polyline.getLength() ==0)){
 			distance = Math.round(polyline.getLength());
 			temp = distance;
@@ -438,26 +438,25 @@
 		}
 		console.log("walkkTime: "+ walkkTime);
 		console.log("carTime: "+ carTime);
-		/*  */
+		/* *****************사람및 자동차가 움직이는 시간 계산 ***************** */
 		
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
+		polyline.setMap(null);
 		polyline.setMap(map);  
 		routeInfoPlusAction(plancase); // 버튼 클릭시 상세 여행정보에 추가 되는 함수
-		removeMarker(); // 상세 지역 추가후 마커 삭제
-		displayPlaceInfo("");//상세 지역 추가후 상세보기 닫기
-		currCategory = keyword;
-        changeCategoryClass();
+		removeMarker(); // 계획 일정 추가시 지도에 표시된 카테고리 마커 삭제
+		displayPlaceInfo(""); //계획 일정 추가후 상세보기 닫기
+		currCategory = keyword; // 사용자가 선택한 지역유지를 위한 변수 설정
+        changeCategoryClass(); // on 상태인 카테고리 마크를 off 설정
 	}	
 
-	var days = document.getElementById("days").value;
-	
-	/* ******************** daum map api 함수 내부의 추가하기 버튼 함수 시작 ******************** */
+	var days = document.getElementById("days").value; // location 에서 지정한 여행 일자 얻기	
+	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	
 	/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
-	var diveplus=1;
+	var diveplus=0; // 여행계획 추가 다이브 번호 생성
 	function routeInfoPlusAction(place, plancase){
 		var content;
-		var dist; // 마커 와 마커 이전거리 저장용
 		if(plancase == 0){
 			content ='';
 			content +=  '<div id="nocityrute" style="background-color: cyan; ">';
@@ -468,52 +467,71 @@
 		if(plancase != 0){			
 			$('#nocityrute').remove();
 			content ='';
-			content += '<div id="planroute'+diveplus+'" style="height: 90px; width:100%" >';
-				content += '<div style="width: 50px; border-right: 4px solid #3ad195; height: 12px;"></div>';
-				content += '<div style="width:100%; height: 100%;">';
-					content += '<div id="planroutecycle" style="float:left; width:94px; height:94px; padding-left:7px; background:#fff; padding-top:15px; border-radius:100px; border:3px solid #3ad195; cursor:pointer; display:inline-block;">';
-						content += '<div class="btn-group" style="height: auto; margin-top: 8px;">';
-							content += '<a href="" id="" class="dmbutton dropdown-toggle" data-toggle="dropdown"> <span id="caret" class="caret"></span></a>일';
-							content += '<ul class="dropdown-menu" id="planselectday">';	
-							for(var i=1; i<=days; i++){
-								if(days==1){
-									content += '<li> 당일치기 </li>';
-								}
-								else {content += '<li>'+i+'</li>';}
+			content +='<div id="planroute_'+diveplus+'" class="planroute" style="height: 105px; width:100%;">';
+				content += '<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="margin-top:15px; height:auto">';					
+					content += '<div class="btn-group" style="height: auto; border: 4px solid #3ad195; padding: 4px;">';
+						content += '<a href="" id="" class="dmbutton dropdown-toggle" data-toggle="dropdown" style="color:black;"> 일차 <span id="caret" class="caret"></span></a>';
+						content += '<ul class="dropdown-menu" id="planselectday">';
+						for(var i=1; i<=days; i++){
+							if(days==1){
+								content += '<li> 당일치기 </li>';
 							}
-							content += '</ul>';
-						content +='</div>';
-					content += '</div>';
-					content += '<div style="float:left; width:auto; padding-bottom:5px; display:inline-block;">';
-						content += '<div class="text-left">'; 							
-							content +='&nbsp;<label>지역:</label>&nbsp;<font> '+keyword+' </font><br/>';
-							content +='&nbsp;<label>관광지: </label><font class=""> '+ document.getElementById('plantitle').title +' </font>&nbsp;<a class="btnDel" href="#">'; 
-							content +='<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a><br/>';		
-							content += '&nbsp;<label> 거리: </label>&nbsp;<font> '+distance+' m </font> ';
-						if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄							
-						else {content += '&nbsp;<label> 도보: </label>&nbsp;<font> '+ walkkTime +' 분</font> <br/>';} // 도보가 한시간 미만 일때
-						if(carTime <= 0){content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> 1분 미만 </font>';}
-						else if(carTime >= 60){
-							var carhourTime = Math.floor(carTime/60);
-							carTime = carTime %60;
-							content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> '+ carhourTime +'시간 '+ carTime+'분 </font>';
+							else {content += '<li>'+i+'일차</li>';}
 						}
-						else 							
-							content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> 최소'+ carTime*2 +' 분 소요 </font>';
-						content += '</div>';					
+						content += '</ul>';
+					content +='</div>';
+				content += '</div>';
+				content += '<div class="col-md-8 col-sm-8 col-xs-12">';
+					content += '<div style="float:left; width: auto; display:block; margin-top: 8px;">';
+						content += '<div class="text-left">';
+							content += '<label>지역:</label>&nbsp;<font>'+keyword+'</font><br/>';
+							content += '<label>관광지: </label><font class="">'+ document.getElementById('plantitle').title +'</font>&nbsp;<a class="btnDel" href="#" onclick =deletePlanRoute('+diveplus+') >';
+							content += '<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font><input type="hidden" id="deleteplanroute"></a><br/>';
+							content += '<label> 거리: </label>&nbsp;<font>'+distance+'m</font> ';
+							if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄							
+							else {content += '&nbsp;<label> 도보: </label>&nbsp;<font> '+ walkkTime +' 분</font> <br/>';} // 도보가 한시간 미만 일때
+							if(carTime <= 0){content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> 1분 미만 </font>';}
+							else if(carTime >= 60){
+								var carhourTime = Math.floor(carTime/60);
+								carTime = carTime %60;
+								content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> '+ carhourTime +'시간 '+ carTime+'분 </font>';
+							}
+							else 							
+								content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> 최소'+ carTime*2 +' 분 소요 </font>';
+						content += '</div>';
 					content += '</div>';
 				content += '</div>';
-				content += '<div style="width: 50px; border-right: 4px solid #3ad195; height: 16px;"></div>';
-			content +='</div><br/>';	
-			diveplus++;			
-			/*  */
-			
-			/*  */
+			content += '</div>';
+			diveplus++;
 		}
 		$('#cityroute').append(content);
+		/*  */
+		
+		/*  */
 	}
-	/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
+	/* ************* 추가 버튼 클릭시 추가 되는 함수 종료 ************** */
 	
+	
+	/* **************** plan route div 삭제 함수 시작 ***************** */
+	function deletePlanRoute(diveplus){		
+		var vava = $("#deleteplanroute").parents('#planroute_'+diveplus);
+		
+		vava.remove(); // 선택된 해당 여행일정 삭제		
+		diveplus--; // 여행일정 삭제시 카운트가 감소
+		console.log("diveplus 삭제후 : " + diveplus);// 여행 일정 계획 추가 삭제시 카운트가 변경 되는 지 확인용
+		
+		/* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */
+		if(diveplus == 0){
+			content ='';
+			content +=  '<div id="nocityrute">';
+				content += '<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>';
+			content +='</div>';
+			$('#cityroute').append(content);
+		}
+		/* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */
+		
+	}
+	/* **************** plan route div 삭제 함수 종료 ***************** */
 </script>
 <!--*********************************** plan 상세여행 정보 추가 종료***********************************-->
 
