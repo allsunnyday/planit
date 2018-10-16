@@ -42,7 +42,7 @@ Map 메뉴
           <div class="dmbox">
             <div class="service-icon">
               <div class="dm-icon-effect-1" data-effect="slide-bottom">
-                <a class="" href="<c:url value='/tourinfo/mappick/MapIllust.it'/>">
+                <a class="" href="<c:url value='/member/tourinfo/mappick/MapIllust.it'/>">
                 <img alt="mapicon" src="<c:url value='/images/ListNMappick/mapicon.png'/>"></a>
               </div>
             </div>

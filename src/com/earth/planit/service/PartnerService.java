@@ -14,7 +14,17 @@ public interface PartnerService {
 	//회원개인정보를 담을 컬렉션
 	PartnerDTO partnerInfo(Map map);
 	//List<PartnerDTO> partnerInfo(Map map);
-	
+
 	//[Room 정보 등록]
 	int roomResist(PartnerRoomDTO dto);
+
+
+
+	int getTotalRecordforRequestTotal(Map map);
+	
+	List<PartnerDTO> selectRequestList(Map map);
+
+	
+		
 }
+

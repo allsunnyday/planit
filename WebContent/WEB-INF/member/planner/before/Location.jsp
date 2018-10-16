@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--*************************************** location 상단 메뉴 부분 수정 시작 *********************************************-->
-<!-- **********************************************************상단 타이틀 시작 *****************************************************-->
+
 <section class="post-wrapper-top" style="margin-top: 70px;">
 	<div class="container">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -10,17 +10,17 @@
 			</ul>
 			<h2> 추억을 남길 나의 여행 지역 선택하기 </h2>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: 61px;">
+		<%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: 61px;">
 			<ul class="nav nav-tabs" style="float: right;">
 				<li class="active" style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
 				<li style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
 				<li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
 				<li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>				
 			</ul>						
-		</div>		
+		</div>	 --%>	
 	</div>
 </section>
-<!-- **********************************************************상단 타이틀 종료 *****************************************************-->
+
 <!--*************************************** location 상단 메뉴 부분 수정 종료 *********************************************-->
 
 <!-- 여행 지역 선택(팔도) 시작 -->
@@ -233,7 +233,7 @@
 						<h3 class="title text-center">
 							<a href="#" data-toggle="modal" data-target="#pardoinfo" data-modal-id="pardoinfo">충청북도</a>
 						</h3>
-						<p>괴산군, 단양군, 보은군, 영동군, 옥천군, 음성군, 제천시, 증평군, 진천군, 청주시, 충주시</p>
+						<p>괴산군, 단양군, 보은군, 영동군, 옥천군, 음성군, 제천시, 증평군, 진천군, 청주시, 충주시, 청원군</p>
 					</div>
 					<!-- 충청북도 지역 선택 프로필 종료 -->
 
@@ -357,7 +357,7 @@
 							<a href="#" data-toggle="modal" data-target="#pardoinfo" data-modal-id="pardoinfo">경상남도</a>
 						</h3>
 						<p>거제시, 거창군, 고성군, 김해시, 남해군, 밀양시, 사천시, 산청군, 양산시, 의령군, 진주시, 창녕군,
-							창원시, 통영시, 하동군, 함안군, 함양군, 합천군</p>
+							창원시, 통영시, 하동군, 함안군, 함양군, 합천군, 마산시, 진해시</p>
 					</div>
 					<!-- 경상남도 지역 선택 프로필 종료 -->
 					
@@ -377,7 +377,7 @@
 						<h3 class="title text-center">
 							<a href="#" data-toggle="modal" data-target="#pardoinfo" data-modal-id="pardoinfo">제주도</a>
 						</h3>
-						<p>서귀포시, 제주시</p>
+						<p>서귀포시, 제주시, 남제주군, 북제주군</p>
 					</div>
 					<!-- 제주도 지역 선택 프로필 종료 -->
 				</div>
@@ -443,31 +443,31 @@
 						<div class="col-md-3 col-sm-3 col-xs-12 text-center">
 							<div class="select">						
 								<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%" >
-							    	<option value="paldoNcity01_01" selected>강남구</option>
-							    	<option value="paldoNcity01_02">강동구</option>
-							    	<option value="paldoNcity01_03">강북구</option>
-							    	<option value="paldoNcity01_04">강서구</option>
-							    	<option value="paldoNcity01_05">관악구</option>
-							    	<option value="paldoNcity01_06">광진구</option>
-							    	<option value="paldoNcity01_07">구로구</option>
-							    	<option value="paldoNcity01_08">금천구</option>
-							    	<option value="paldoNcity01_09">노원구</option>
-							    	<option value="paldoNcity01_10">도봉구</option>
-							    	<option value="paldoNcity01_11">동대문구</option>
-							    	<option value="paldoNcity01_12">동작구</option>
-							    	<option value="paldoNcity01_13">마포구</option>
-							    	<option value="paldoNcity01_14">서대문구</option>
-							    	<option value="paldoNcity01_15">서초구</option>
-							    	<option value="paldoNcity01_16">성동구</option>
-							    	<option value="paldoNcity01_17">성북구</option>
-							    	<option value="paldoNcity01_18">송파구</option>
-							    	<option value="paldoNcity01_19">양천구</option>
-							    	<option value="paldoNcity01_20">영등포구</option>
-							    	<option value="paldoNcity01_21">용산구</option>
-							    	<option value="paldoNcity01_22">은평구</option>
-							    	<option value="paldoNcity01_23">종로구</option>
-							    	<option value="paldoNcity01_24">중구</option>
-							    	<option value="paldoNcity01_25">중랑구</option>
+							    	<option value="1" selected>강남구</option>
+							    	<option value="2">강동구</option>
+							    	<option value="3">강북구</option>
+							    	<option value="4">강서구</option>
+							    	<option value="5">관악구</option>
+							    	<option value="6">광진구</option>
+							    	<option value="7">구로구</option>
+							    	<option value="8">금천구</option>
+							    	<option value="9">노원구</option>
+							    	<option value="10">도봉구</option>
+							    	<option value="11">동대문구</option>
+							    	<option value="12">동작구</option>
+							    	<option value="13">마포구</option>
+							    	<option value="14">서대문구</option>
+							    	<option value="15">서초구</option>
+							    	<option value="16">성동구</option>
+							    	<option value="17">성북구</option>
+							    	<option value="18">송파구</option>
+							    	<option value="19">양천구</option>
+							    	<option value="20">영등포구</option>
+							    	<option value="21">용산구</option>
+							    	<option value="22">은평구</option>
+							    	<option value="23">종로구</option>
+							    	<option value="24">중구</option>
+							    	<option value="25">중랑구</option>
 							    </select>
 						    </div>
 						</div>
@@ -480,7 +480,7 @@
 						<div class="col-md-4 col-sm-4 col-xs-12 text-right" >
 							<div class="select" style="width: 100%">
 								<select role="menu"  id="planday" name="planday" aria-labelledby="planday">
-									<option value="" id=""> -- 여행 일수 -- </option>
+									<option value="0" id=""> -- 여행 일수 -- </option>
 									<option value="1"> 1일 (당일치기) </option>
 									<option value="2"> 2일 (1박 2일) </option>
 									<option value="3"> 3일 (2박 3일) </option>

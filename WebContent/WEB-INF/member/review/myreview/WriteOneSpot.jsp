@@ -148,13 +148,13 @@
 		console.log(sel_files);
 	}
 
-	var deletePreImage = function(alt){
+	var deletePreImage = function(alt, index){
 		//var alt = $(this).attr('id');
 		var del = alt+'<*>';
 		console.log(del);
 		image = image.replace(del, '');
 		console.log(image);
-		$('#'+alt).remove();
+		$('#preimage'+index).remove();
 	};
 </script>
 
@@ -225,8 +225,8 @@
 							<!-- 사용자가 이미지를 추가할 시에는 아래 imgs_wrap 다이브 사이에 추가된다.   -->
 							</c:if>
 							<div class="imgs_wrap">
-								<c:forEach var="imgs"  items="${imageMap}" >
-									<a href="javascript:" onclick="deletePreImage('${imgs.value}');" id="${imgs.value}" >
+								<c:forEach var="imgs"  items="${imageMap}"  varStatus="loop">
+									<a href="javascript:" onclick="deletePreImage('${imgs.value}', ${loop.index});" id="preimage${loop.index}" >
 										<img alt="${imgs.value}" src="<c:url value='/Upload/Review/${imgs.value}'/> " class="selProductFile" title="click to remove" style='width:150px; height:180px; margin:0 10px 10px 0; border:1px dotted #444'></a>
 								</c:forEach>
 								<img id="img" />

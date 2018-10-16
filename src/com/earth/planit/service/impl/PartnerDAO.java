@@ -1,5 +1,6 @@
 package com.earth.planit.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -23,7 +24,6 @@ public class PartnerDAO implements PartnerService{
 
 	@Override
 	public int isPartnerJoin(PartnerDTO dto) {
-		// TODO Auto-generated method stub
 		return template.insert("PartnerIsJoin",dto);
 	}
 
@@ -45,7 +45,17 @@ public class PartnerDAO implements PartnerService{
 		return template.insert("PartnerRoomResist",dto);
 	}
 	
+	public int getTotalRecordforRequestTotal(Map map) {
+		return template.selectOne("RequestTotal", map);
+	}
 	
-	
+	public int getTotalRecordforReservation(Map map) {
+		return template.selectOne("ReservationTotal", map);
+	}
+
+	@Override
+	public List<PartnerDTO> selectRequestList(Map map) {
+		return template.selectList("PartnerRequestList", map);
+	}
 
 }

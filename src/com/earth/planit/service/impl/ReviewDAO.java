@@ -63,4 +63,19 @@ public class ReviewDAO implements ReviewService {
 		return template.selectOne("reviewSelectReviewContent", map);
 	}
 
+	@Override
+	public int hasRating(Map map) {
+		return template.selectOne("ReviewHasRating", map);
+	}
+
+	@Override
+	public int insertRating(Map map) {
+		return template.insert("ReviewInsertRating", map);
+	}
+
+	@Override
+	public Map selectRating(Map map) {
+		return null;
+	}
+
 }

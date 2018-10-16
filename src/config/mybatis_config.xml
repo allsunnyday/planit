@@ -54,6 +54,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="config/Review.xml"/>
 		<mapper resource="config/SearchMap.xml" />
 		<mapper resource="config/SearchList.xml" />
+		<mapper resource="config/Content.xml" />
+		
 	</mappers>
 	
 	

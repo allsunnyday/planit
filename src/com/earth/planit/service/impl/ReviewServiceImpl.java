@@ -62,6 +62,23 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.selectReviewContent(map);
 	}
 
+	@Override
+	public int hasRating(Map map) {
+		return dao.hasRating(map);
+	}
+
+	@Override
+	public int insertRating(Map map) {
+		// TODO Auto-generated method stub
+		return dao.insertRating(map);
+	}
+
+	@Override
+	public Map selectRating(Map map) {
+		// TODO Auto-generated method stub
+		return dao.selectRating(map);
+	}
+
 	
 
 }

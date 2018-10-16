@@ -550,8 +550,8 @@ height: 100%; */
 					<div id="Partner-Forth-name">Partner Q&A</div>
 					<div class="Partner-More-Button">
 						<button type="button" class="btn btn-link">
-							<a href="<c:url value='/mypage/partner/Request_P.it'/>"><span
-								class="glyphicon glyphicon-plus">더보기 </span></a>
+							<a href="<c:url value='/mypage/partner/Request_P.it'/>">
+							<span class="glyphicon glyphicon-plus">더보기 </span></a>
 						</button>
 					</div>
 					<div id="Forth-line">
@@ -585,13 +585,8 @@ height: 100%; */
 									</tr>
 								</table>
 							</div>
-
 						</div>
-
-
 					</div>
-
-
 				</div>
 				<!-- ---------------------- -->
 				<!--       end Forth         -->

@@ -29,4 +29,14 @@ public interface ReviewService {
 	Map selectReviewContent(Map map);
 	
 	
+	// 평점
+	int hasRating(Map map);
+	//  평점
+	int insertRating(Map map);
+	//  
+	Map selectRating(Map map);
+	
+	
+	// 
+	
 }

@@ -10,6 +10,7 @@ import java.util.Vector;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
@@ -159,7 +160,7 @@ public class ReviewController {
 			}
 			ContentDTO dto = TourApiUtils.getdetailCommon(items[1], items[2]);
 			// 관광데이터 가지고 오기 
-			rmap.put("overview", dto.getOverview().length()>100 ? dto.getOverview().substring(0, 100)+"..." : dto.getOverview());
+			rmap.put("overview", dto.getOverview().length()>300 ? dto.getOverview().substring(0, 300)+"..." : dto.getOverview());
 			rmap.put("firstimage2", dto.getFirstimage2());
 			rmap.put("addr1", dto.getAddr1());
 			//System.out.println(dto.getOverview());
@@ -265,5 +266,21 @@ public class ReviewController {
 		System.out.println("제대로 되었는지?="+affected);
 		return "success";  //리턴으로 WriteReview를 보내준다. 
 	}
+	
+	//rating을 주었는지 판단
+	@ResponseBody
+	@RequestMapping(value="/Planit/Review/Rating/hasRating.it",produces="text/plain; charset=UTF-8")
+	public String hasRating(@RequestParam Map map, HttpSession session)throws Exception{
+		//
+		System.out.println(map.get("review_id"));
+		map.put("id",session.getAttribute("id"));
+		
+		// 있는지 확인
+		int hasRating = reviewService.hasRating(map);
+		
+		
+		return (hasRating==1)?"Y":"N";
+	}
+	
 
 }

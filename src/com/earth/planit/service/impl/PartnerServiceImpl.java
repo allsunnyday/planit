@@ -1,5 +1,6 @@
 package com.earth.planit.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,17 +12,17 @@ import com.earth.planit.service.PartnerRoomDTO;
 import com.earth.planit.service.PartnerService;
 @Service("partnerService")
 public class PartnerServiceImpl implements PartnerService{
+	
 	@Resource(name="partnerDAO")
 	private PartnerDAO dao;
+	
 	@Override
 	public boolean isPartnerLogin(Map map) {
-		// TODO Auto-generated method stub
 		return dao.isPartnerLogin(map);
 	}
 
 	@Override
 	public int isPartnerJoin(PartnerDTO dto) {
-		// TODO Auto-generated method stub
 		return dao.isPartnerJoin(dto);
 	}
 
@@ -32,6 +33,7 @@ public class PartnerServiceImpl implements PartnerService{
 	}
 
 	@Override
+
 	public boolean isDuplicate(String p_id) {
 		// TODO Auto-generated method stub
 		return dao.isDuplicate(p_id);
@@ -41,6 +43,19 @@ public class PartnerServiceImpl implements PartnerService{
 	public int roomResist(PartnerRoomDTO dto) {
 		// TODO Auto-generated method stub
 		return dao.roomResist(dto);
+	}
+	
+	public int getTotalRecordforRequestTotal(Map map) {
+		return dao.getTotalRecordforRequestTotal(map);
+	}
+
+	@Override
+	public List<PartnerDTO> selectRequestList(Map map) {
+		return dao.selectRequestList(map);
+	}
+	
+	public int getTotalRecordforReservation(Map map) {
+		return dao.getTotalRecordforReservation(map);
 	}
 
 }

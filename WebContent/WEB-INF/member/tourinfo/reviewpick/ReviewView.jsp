@@ -20,11 +20,23 @@ review :
 ***************************************  -->
 
 <script>
+
+	
+
 	$(function(){
 		
 		//사용자 별점 반영하기
 		reviewRating('${review.rating}');
 		
+		
+		//즐겨찾기 
+		
+		// 일정보기 
+		
+		
+		// 시리즈 보기 처리 
+		
+		//사용자 평점 
 		
 		
 	});
@@ -46,6 +58,39 @@ review :
 		$('.big-title').html(starString);
 	};
 	
+	var displayImages = function(data){
+		$.each(data, function(index, element){
+			console.log(index+"="+element);
+		});
+	};
+	
+	// 평점주기 버튼
+	function giveRating(){
+		
+		if('${sessionScope.id}'==''){
+			alert('로그인해주세요!');
+			return ;
+		}
+		
+		$.ajax({
+			url:"<c:url value='/Planit/Review/Rating/hasRating.it'/> ",
+			data:{review_id:'${review.review_id}'},
+			type:'post',
+			dataType:'text',
+			success:function(data){
+				if(data=='Y'){
+					alert('이미 평점을 주었습니다.');
+					return false;
+				}
+				else{
+					console.log('평점을 줘야합니다.');
+					$('#rating').attr('data-toggle', 'modal');
+					$('#rating').attr('data-target', 'ratingmodal');
+					$('#rating').toggle();
+				}
+			}
+		});
+	} 
 
 </script>
 
@@ -71,7 +116,9 @@ review :
 					<li><a href="#" class="dmbutton" >일정보기</a></li>
 					<li><a href="#" class="dmbutton" >즐겨찾기</a></li>
 					<li><a href="#" class="dmbutton showSeriesbtn" data-toggle="modal" data-target="#seriesmodal" >시리즈보기</a></li>
+					<c:if test="${sessionScope.id eq review.id}">
 					<li><a href="<c:url value='/review/myreview/Write.it?planner_id=${review.planner_id}&review_id=${review.review_id}'/> " class="dmbutton" >수정하기</a></li>
+					</c:if>
 				</ul>
 			</nav>
 
@@ -140,17 +187,19 @@ review :
 		</div>
 	</div>
 	
-	<c:forEach items="${oneRoute}" var="review">
+	<c:forEach items="${oneRoute}" var="review" varStatus="outerloop">
+		<div class="container clearfix">
 					<div class=" col-sm-12 first">
 						<div class="testimonial">
 							<img data-effect="slide-bottom" class="alignleft img-circle"
 								src="${review.firstimage2}"
 								alt="">
+							<h4>${review.title}</h4>
 							${review.overview}
-							<p>${review.addr1}</p>							
+							<p>${review.addr1}</p><small><a href="<c:url value='/planit/search/list/TourView.it?contentid=${review.contentid}'/> ">자세히 보기</a></small>							
 							<div class="testimonial-meta">
 								<h4>
-									${review.title}<small><a href="#">자세히 보기</a></small>
+									
 								</h4>
 							</div>
 						</div>
@@ -158,68 +207,42 @@ review :
 					</div>
 				
 				<!-- end content -->
-		
+		</div>
 			
 			<!-- end container -->
 			<c:if test="${ not (review.image eq 'no-image')}">
+					
 					<!-- carousel container -->
 					<div class="container clearfix">
 						<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 							<!-- carousel start -->
-							<div id="mycarousel1" class="carousel slide" data-ride="carousel">
+							<div id="mycarousel${outerloop.index}" class="carousel slide" data-ride="carousel">
 								<!-- wrapper for slides -->
 								<div class="carousel-inner">
-									<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
-									<div class="item active">
-										<div id="popularitems" class="">
-											<div class="col-sm-4">
-												<img class=""
-													src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
-													alt="">
-											</div>
-				
-											<div class="col-sm-4">
-												<img class=""
-													src="http://tong.visitkorea.or.kr/cms/resource/97/2030897_image2_1.jpg"
-													alt="">
-											</div>
-				
-											<div class="col-sm-4">
-												<img class=""
-													src="http://tong.visitkorea.or.kr/cms/resource/09/1580109_image2_1.jpg"
-													alt="">
-											</div>
-										</div>
-									</div>
-									<!-- end carousel slide 1   -->
-									<div class="item ">
-										<div id="popularitems" class="">
-											<div class="col-sm-4">
-												<img class=""
-													src="http://tong.visitkorea.or.kr/cms/resource/14/1580114_image2_1.jpg"
-													alt="">
-											</div>
-				
-											<div class="col-sm-4">
-												<img class=""
-													src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
-													alt="">
-											</div>
-				
-											<div class="col-sm-4">
-												<img class=""
-													src="http://tong.visitkorea.or.kr/cms/resource/92/2030892_image2_1.jpg"
-													alt="">
-											</div>
-										</div>
-									</div>
 									
+									<c:forEach var="images" items="${review.image}" varStatus="loop">
+										<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
+										<c:if test="${loop.first}" var="isFirst">
+										<div class="item active">
+										</c:if>
+										<c:if test="${not isFirst}">
+										<div class="item">
+										</c:if>
+											<div id="" class="">
+												<div class="col-sm-10">
+													<img class=""
+														src="<c:url value='/Upload/Review/${images}'/> "
+														alt="${images}" >
+												</div>
+											</div>
+										</div>
+									</c:forEach>
 								</div>
 								<!-- end wrapper for slides -->
-								<a class="left carousel-control" href="#mycarousel1" data-slide="prev"> 
+								<a class="left carousel-control" href="#mycarousel${outerloop.index}" data-slide="prev"> 
 									<span class="icon-prev"></span>
 								</a> 
-								<a class="right carousel-control" href="#mycarousel1" data-slide="next"> 
+								<a class="right carousel-control" href="#mycarousel${outerloop.index}" data-slide="next"> 
 								<span class="icon-next"></span> 
 								</a>
 							</div>
@@ -257,13 +280,32 @@ review :
     <div class="container">
       <div class="message text-center">
         <h2 class="big-title-for-user-rating"><span>review</span>가 도움이 되었나요?</h2>
-        <a class="button large" href="#"> 평점주기 </a>
+        <a class="button large" href="#" onclick="giveRating();" id="rating" > 평점주기 </a>
       </div>
       <!-- end message -->
     </div>
     <!-- end container -->
   </section>
   <!-- end section2 -->
+
+
+<div class="modal fade" id="ratingmodal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+		        	<div id="comments_wrapper">
+						<h4 class="title">여행 시리즈</h4>
+				     </div>
+		      	</div>
+		     	 <div class="modal-footer">
+		       	 	<button type="button" class="dmbutton2" data-dismiss="modal">닫기</button>
+		       	 	<button type="button" class="dmbutton2" >확인</button>
+		      	</div>
+			</div>
+		</div>
+	</div>
+	<!-- changebg modal -->
+
 
 <!--***********************************************************************
 코멘트남기기 

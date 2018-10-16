@@ -378,6 +378,7 @@ table.table .avatar {
 }
 </style>
 <script type="text/javascript">
+	
 	$(document).ready(
 			function() {
 				// Activate tooltip
@@ -416,6 +417,28 @@ table.table .avatar {
 				
 				$('#findname_request').change(function() {//이름으로 검색하기
 					console.log($('#findname_request').val());
+				});
+				
+				
+				
+				// 모달창을 띄우기 전에 데이터 세팅  
+				$('.askview').click(function(){
+					console.log('clicked='+$(this).attr('title'));
+					var text = $(this).html();
+					//data-toggle="modal"
+					/* 
+					$.each(json, function(index, element){
+						if(element['ask_no']==$(this).attr('title')){
+							$('#detailcontent').html(element['content']);
+							return;
+						}
+					}); */
+					$.each(list, function( index, value ) {
+						alert( index + ": " + value );
+					});
+					
+					$(this).attr('data-toggle', 'modal');
+					$(this).html(text);
 				});
 			});
 	
@@ -537,8 +560,8 @@ table.table .avatar {
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th><span class="custom-checkbox"> <input
-								type="checkbox" id="selectAll"> <label for="selectAll"></label>
+						<th><span class="custom-checkbox"> 
+						<input type="checkbox" id="selectAll"> <label for="selectAll"></label>
 						</span></th>
 						<th>#</th>
 						<th>Customer</th>
@@ -549,96 +572,34 @@ table.table .avatar {
 					</tr>
 				</thead>
 				<tbody>
-					<tr data-status="Replied">
-						<td><span class="custom-checkbox"> 
-						<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-						</span></td>
-						<td>1</td>
-						<td><a href="#"><img src="/examples/images/avatar/1.jpg"
-								class="avatar" alt="Avatar"> Michael Holz</a></td>
-						<td><a href="#detailEmployeeModal" class="edit"
-							data-toggle="modal">Room Service Question</a></td>
-						<td>Jun 15, 2017</td>
-						<td><span class="status text-success">&bull;</span> Replied</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr data-status="Waited">
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-						</span></td>
-						<td>2</td>
-						<td><a href="#"><img src="/examples/images/avatar/2.jpg"
-								class="avatar" alt="Avatar"> Paula Wilson</a></td>
-						<td>Madrid</td>
-						<td>Jun 21, 2017</td>
-						<td><span class="status text-danger">&bull;</span> Waited</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr data-status="Waited">
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-						</span></td>
-						<td>3</td>
-						<td><a href="#"><img src="/examples/images/avatar/3.jpg"
-								class="avatar" alt="Avatar"> Antonio Moreno</a></td>
-						<td>Berlin</td>
-						<td>Jul 04, 2017</td>
-						<td><span class="status text-danger">&bull;</span> Waited</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr data-status="Waited">
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox4" name="options[]" value="1">
-								<label for="checkbox4"></label>
-						</span></td>
-						<td>4</td>
-						<td><a href="#"><img src="/examples/images/avatar/4.jpg"
-								class="avatar" alt="Avatar"> Mary Saveley</a></td>
-						<td>New York</td>
-						<td>Jul 16, 2017</td>
-						<td><span class="status text-danger">&bull;</span> Waited</td>
-						<td><a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Reply">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"> 
-							<i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr data-status="Replied">
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-						</span></td>
-						<td>5</td>
-						<td><a href="#"><img src="/examples/images/avatar/5.jpg"
-								class="avatar" alt="Avatar"> Martin Sommer</a></td>
-						<td>Paris</td>
-						<td>Aug 04, 2017</td>
-						<td><span class="status text-success">&bull;</span> Replied</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
+					<c:if test="${empty requestScope.list}" var="isEmpty">
+						<tr>
+							<td colspan="4">등록된 문의가 없어요</td>
+						</tr>
+					</c:if>
+					<c:if test="${not isEmpty}">
+						<c:forEach var="record" items="${list}" varStatus="loop">
+							<tr data-status="${record.status}">
+								<td><span class="custom-checkbox"> 
+								<input type="checkbox" id="checkbox${loop.count}" name="options[]" value="1">
+										<label></label>
+								</span></td>
+								<td>${record.ask_no}</td>
+								<td><a href="#">
+								<img src="#" class="avatar" alt="profile"> ${record.id} </a></td>
+								<td><a href="#detailEmployeeModal" class="edit  askview" id="" title="${loop.index}"
+									 >${record.title}</a></td>
+								<td>${record.askdate}</td>
+								<td><span class="status text-success">&bull;</span>${record.status}</td>
+								<td><a href="#editEmployeeModal" class="edit"
+									data-toggle="modal"><i class="material-icons"
+										data-toggle="tooltip" title="Reply">&#xE254;</i></a> 
+										<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+										class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								</td>
+							</tr>
+						</c:forEach>
+					</c:if>
 				</tbody>
 			</table>
 			<!--
@@ -648,7 +609,7 @@ table.table .avatar {
   -->
 			<div class="clearfix">
 				<div class="hint-text">
-					Showing <b>5</b> out of <b>25</b> entries
+					Showing <b>6</b> out of <b>${totalRecordCount}</b> entries
 				</div>
 				<ul class="pagination">
 					<li class="page-item disabled"><a href="#">Previous</a></li>
@@ -722,9 +683,9 @@ Edit Modal
 					</div>
 				</div>
 			</div>
-			<!-- ***************************************************
-detail modal
-************ -->
+			<!-- **************
+			detail modal
+			************ -->
 
 			<div id="detailEmployeeModal" class="modal fade">
 				<div class="modal-dialog">
@@ -736,17 +697,15 @@ detail modal
 									aria-hidden="true">&times;</button>
 							</div>
 							<div class="modal-body">
-
 								<div class="form-group">
 									<label>Content</label>
-									<textarea class="form-control" readonly="readonly"></textarea>
+									<textarea class="form-control" readonly="readonly" id="detailcontent"></textarea>
 								</div>
 
 							</div>
 							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-info" value="confirm">
+								<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"> 
+								<a href="#editEmployeeModal"><input type="submit" class="btn btn-info" value="Reply"></a>
 							</div>
 						</form>
 					</div>

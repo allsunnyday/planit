@@ -3,14 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Ruda:400,900,700" rel="stylesheet">
-  <!-- =======================================================
-    Template Name: MaxiBiz
-    Template URL: https://templatemag.com/maxibiz-bootstrap-business-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
 
-<body>
+<style>
+img{
+max-width: 100%;
+	width: 600px;
+	max-height: 100%;
+	height : 280px;
+}
+
+</style>
+
  <!--************************************** 
  	삽입
  **************************************-->
@@ -33,16 +36,6 @@
         <h2>PLAN-IT에 등록되어 있는 숙소들</h2>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <!-- search -->
-        <div class="search-bar">
-          <form action="" method="get">
-            <fieldset>
-              <input type="image" src="" class="searchsubmit" alt="" />
-              <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
-            </fieldset>
-          </form>
-        </div>
-        <!-- / end div .search-bar -->
       </div>
     </div>
   </section>
@@ -50,7 +43,6 @@
 <!--*********************************** 
  		 분류별로 표시하는 목록바
  ***********************************-->
-  <section class="section1">
     <div class="container clearfix">
       <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
 
@@ -70,14 +62,20 @@
 <!--*********************************** 
  		각 숙박 업소 정보
  ***********************************-->
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
+ <c:forEach var="record" items="${sleep}">
+            <div id="tourimage" class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
 						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
+							<c:if test="${empty record.firstimage }">
+			                <img src="<c:url value='/Upload/Tour/tempimage.png'/>" alt="">
+			                </c:if>
+			                <c:if test="${not empty record.firstimage }">
+			                <img src='${record.firstimage}' alt="">
+			                </c:if>
 							<div class="he-view">
 								<div class="bg a0" data-animate="fadeIn">
 									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
 									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
+									href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}&contenttype=32'/> "
 										class="dmbutton a2" data-animate="bounceInLeft">
 										
 										<i class="fa fa-search"></i></a>
@@ -90,309 +88,43 @@
 							<!-- he view -->
 						</div>
 						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
+						<h3 class="title">${record.title}</h3>
+						문의: {record.tel}</p>
 					</div>
 
-           <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-            <!-- end col-4 -->
-            
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-            <!-- end col-4 -->
-            
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-            <!-- end col-4 -->
-            
-           <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-            <!-- end col-4 -->
-            
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-            <!-- end col-4 -->
-            
-           <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-            <!-- end col-4 -->
-            
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 pension">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-            <!-- end col-4 -->
-            
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 motel">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-            <!-- end col-4 -->
-            
-           <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-					<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 motel">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-					<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 motel">
-						<div class="he-wrap tpl6 market-item">
-							<img src="<c:url value='/images/list/hotel.jpg'/> " alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">롯데호텔서울 이그제큐티브 타워</h3>
-						<p>서울특별시 중구 을지로 30<br>
-						문의: 02-771-1000</p>
-					</div>
-            <!-- end col-4 -->
-            
-            
+</c:forEach>
 
-          </div>
           <!-- portfolio -->
         </div>
         <!-- portfolio container -->
         <div class="divider"></div>
       </div>
       <!-- end container -->
-  </section>
   <!-- end section -->
+  </div></div>
 <!--*********************************** 
  		뻬이징
  ***********************************-->
-  <div>
-  페이징
-  </div>
-  <div class="dmtop">Scroll to Top</div>
-</body>
+	<div class="row">
+		<div class="col-md-12">${pagingString}</div>
+	</div>
+
+<div class="row">
+	<div class="text-center">
+		<form class="form-inline" method="post"
+			action="<c:url value='#'/>">
+			<div class="form-group">
+				<select name="searchColumn" class="form-control">
+					<option value="all">전체검색</option>
+					<option value="title">업소명</option>
+					<option value="tel">전화번호</option>
+				</select>
+			</div>
+			<div class="form-group" >
+				<input type="text" name="searchWord" class="form-control" />
+			</div>
+			<button style="margin-bottom: 10px"type="submit" class="btn btn-primary">검색</button>
+
+		</form>
+	</div>
+</div>
