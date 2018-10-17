@@ -9,8 +9,8 @@
 <section class="marketplace-top">
 	<div id="market-wrapper">
 		<div class="item_image">
-			<img data-effect="fade" class="aligncenter" width="90%" height="400"
-				src="<c:url value='/main_theme/img/market_single_01.png'/>" alt="">
+			<%-- <img data-effect="fade" class="aligncenter" width="90%" height="400"
+				src="${content.firstimage}" alt=""> --%>
 		</div>
 		<!-- end item_image -->
 	</div>
@@ -36,12 +36,13 @@
 				<div class="col-lg-8 col-md-8 col-sm-12">
 					<div class="theme_details">
 						<div class="details_section">
-							<h3>기본정보</h3>
+							
 							<ul>
-								<li class="version"><span>주소 : ${content.addr1}</span></li>
+								<li class="designer"><img data-effect="fade" class="aligncenter" src="${content.firstimage}" alt=""></li>
+								
 							<%-- 	<li class="release"><span>문의: ${content.tel}</span></li>
 								<li class="release"><span>문의: ${content.homepage}</span></li> --%>
-								<li class="designer"><span></span></li>
+								
 							</ul>
 						</div>
 					</div>
@@ -56,23 +57,23 @@
 							</h3> -->
 						</div>
 						<!-- item_price -->
-						<hr>
+						
 						<div class="buttons" data-target="#myModal">
-							<a class="button btn-block large" href="https://cafe.naver.com/foresthealingyp">지자체 홈페이지</a> 
-							<a class="button btn-block large" href="#"> 
-							<i class="fa fa-pencil"></i>정보 수정</a>
-						    <a class="button btn-block large" href="#"> 
-						    <i class="fa fa-download"></i> 즐겨찾기 추가
-						    <a  class="button btn-block large" href="#target"> 
-						    <i class="fa fa-map"></i> 지도
-						    
-							</a>
+							<ul>
+								<li><h3>위치</h3>
+								 ${content.addr1}<hr></li>
+								<li><h3>문의/안내</h3>
+								${content.tel}<hr></li>
+								<li><h3>홈페이지</h3>
+								${content.homepage}<hr></li>
+							</ul>
 						</div>
 						<!-- buttons -->
-						<hr>
-						<div class="rating text-center">
-							<i class="fa fa-star-o"></i> 
-							<p>찜찜찜찜찜</p>
+						
+						<div class="buttons">
+						    <a class="dmbutton2" href="#"> <i class="fa fa-star-o"></i> 즐겨찾기 추가</a>
+						    <a  class="dmbutton2" href="#target"><i class="fa fa-map"></i> 지도</a>
+							<a class="dmbutton2" href="#"> <i class="fa fa-pencil"></i>정보 수정</a>
 						</div>
 						<!-- rating -->
 					</div>

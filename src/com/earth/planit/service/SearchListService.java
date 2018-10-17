@@ -5,11 +5,11 @@ import java.util.Map;
 
 public interface SearchListService {
 
-	List<SearchListDTO> selectTourList(Map map);
-	List<SearchListDTO> selectFoodList(Map map);
-	List<SearchListDTO> selectSleepList(Map map);
+	List<ContentDTO> selectTourList(Map map);
+	List<ContentDTO> selectFoodList(Map map);
+	List<ContentDTO> selectSleepList(Map map);
 	int getTotalCount(Map map);
-	List<SearchListDTO> selectList(Map map);
+	List<ContentDTO> selectList(Map map);
 	
 	
 	

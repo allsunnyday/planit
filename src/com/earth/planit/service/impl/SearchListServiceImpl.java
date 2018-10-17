@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.SearchListDTO;
 import com.earth.planit.service.SearchListService;
 
@@ -20,15 +21,15 @@ public class SearchListServiceImpl implements SearchListService{
 	
 
 	@Override
-	public List<SearchListDTO> selectTourList(Map map) {
+	public List<ContentDTO> selectTourList(Map map) {
 		return dao.selectTourList(map);
 	}
 	@Override
-	public List<SearchListDTO> selectFoodList(Map map) {
+	public List<ContentDTO> selectFoodList(Map map) {
 		return dao.selectFoodList(map);
 	}
 	@Override
-	public List<SearchListDTO> selectSleepList(Map map) {
+	public List<ContentDTO> selectSleepList(Map map) {
 		return dao.selectSleepList(map);
 	}
 	@Override
@@ -36,7 +37,7 @@ public class SearchListServiceImpl implements SearchListService{
 		return dao.getTotalCount(map);
 	}
 	@Override
-	public List<SearchListDTO> selectList(Map map) {
+	public List<ContentDTO> selectList(Map map) {
 		return dao.selectList(map);
 	}
 	
