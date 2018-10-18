@@ -8,11 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	mapper 파일의 완전한 경로 . xml은 생략
 	ibatis와는 다르게 id값에 '.'를 사용하지 못함
  -->
-<mapper namespace="config.planit_MyBatis">
-
+<mapper namespace="config.Content">
 	
-	
-
-	
+	<update id="ContentUpdateViewcount" parameterType="java.util.Map">
+		update content set viewcount=viewcount+1 where contentid=#{contentid}
+	</update>
 	
 </mapper>

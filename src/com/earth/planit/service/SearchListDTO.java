@@ -2,7 +2,7 @@ package com.earth.planit.service;
 
 public class SearchListDTO {
 
-	private String contentid;
+		private String contentid;
 		private String contenttypeid;
 		private String homepage;
 		private String tel;

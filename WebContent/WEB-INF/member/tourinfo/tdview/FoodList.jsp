@@ -67,11 +67,16 @@ max-width: 100%;
 <c:forEach  var="record" items="${food}">
             <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
               <div class="he-wrap tpl6 market-item">
+                <c:if test="${empty record.firstimage }">
+                <img src="<c:url value='/Upload/Tour/tempimage.png'/>" alt="">
+                </c:if>
+                <c:if test="${not empty record.firstimage }">
                 <img src='${record.firstimage}' alt="">
+                </c:if>
                 <div class="he-view">
                   <div class="bg a0" data-animate="fadeIn">
                     <h3 class="big a1" data-animate="fadeInDown">비빔빱</h3>
-                    <a data-rel="" href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}&contenttype=39'/> " 
+                    <a data-rel="" href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}'/> " 
                     class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                     </div>

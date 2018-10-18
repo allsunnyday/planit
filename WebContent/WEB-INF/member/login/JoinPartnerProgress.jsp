@@ -4,6 +4,7 @@
 <!-- 제이쿼리 유효성검증용 플러그인 -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
   <script>
+
 	$(function(){
 		$('#partnerJoinForm').validate({rules:{
 			  
@@ -12,42 +13,84 @@
 			  p_name:'required',
 			  name:'required',
 			  p_id:{required:true,minlength:4},
+			  checkcomplite:{required:true,minlength:1},
 			  pwd:{required:true,minlength:4},
 			  partnerpwdcheck:{required:true,minlength:4,equalTo:'#pwd'},
 			  email:'required',
 			  address:'required',
 			  tel:{required:true,minlength:8},
 			  partnerTermCheck:{required:true,minlength:1}
-		/* 	   name:'required',
-			   id:{required:true,minlength:3},
-			      pwd:{required:true,minlength:5},
-			      pwd2:{required:true,minlength:5,equalTo:'#pwd'},
-			      inter:{required:true,minlength:2},
-			      sex:'required',
-			      sel:'required',
-			      file:'required',
-			      self:'required' */
+	
 			      
 			  },messages:{
 				  business_no:{required:'사업자 번호를 입력하세요'},
 				  p_name:{required:'회사명을 입력하세요'},
 				  name:{required:'대표자이름을 입력하세요'},
 				  p_id:{required:'아이디를 입력해주세요'},
+				  checkcomplite:{required:'아이디 중복검사가 필요합니다'},
 				  pwd:{required:'비밀번호를 입력하세요',minlength:'비밀번호는 최소 4자 이상 입력해주세요'},
 				  partnerpwdcheck:{required:'비밀번호확인을 입력하세요',minlength:'비밀번호는 최소 4자 이상 입력해주세요',equalTo:'비밀번호가 일치하지 않습니다'},
 			   	  email:{required:'이메일을 입력하세요'},
 			   	address:{required:'주소를 입력하세요'},
-			   	tel:{required:'전화번호를 입력하세요','형식에 맞지 않습니다 다시 입력해주세요'},
+			   	tel:{required:'전화번호를 입력하세요'},
 			   	partnerTermCheck:{required:'이용약관에 동의해주세요',minlength:'이용약관에 동의해주세요'}
-			   
-			/*    inter:{required:'관심사항을 선택하세요',minlength:'최소 2개이상 선택하세요'},
-			   sex:{required:'성별을 선택하세요'},
-			   sel:{required:'학력을 선택하세요'},
-			   file:{required:'파일을 첨부하세요'},
-			   self:{required:'자기소개를 입력하세요'} */
+		
 			  }});
 	});  
+	/*아이디 중복검사 추가 checkbox,display none 으로 체크박스 주고 밸리데이트로 했는지 안했는지 검사  */
+	/*아이디 중복검사 추가 checkbox,display none 으로 체크박스 주고 밸리데이트로 했는지 안했는지 검사 _아이디 중복확인 다시하기*/
   </script>
+  
+  <script>
+  console.log( '체크박스1:'+ $("#checkcomplite:checked").length );
+ $('input:checkbox[name="checkcomplite"]').is(":checked") == false;
+  console.log( '체크박스2:'+ $("#checkcomplite:checked").length );
+//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+var idck = 0;
+//var checkcomplite=document.getElementById("checkbox").checked;
+$(function() {
+    //idck 버튼을 클릭했을 때 
+    $("#p_idcheck").click(function() {
+    	isCheckComplite=true;
+        //userid 를 param.
+        var p_id =  $("#p_id").val(); 
+       
+        $.ajax({
+            async: true,
+            type : 'POST',
+            data : p_id,
+            url : "<c:url value='/planit/member/partner/p_idcheck.it'></c:url>",
+            dataType : "text",
+            contentType: "application/json; charset=UTF-8",
+            success : function(data) {
+                if (data > 0) {
+                    
+                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                    $("#p_id").focus();
+               
+                } else {
+                	console.log(data);
+                    alert("사용가능한 아이디입니다.");
+               
+                    $("#pwd").focus();
+                    
+                    idck = 1;
+                    $('input:checkbox[name="checkcomplite"]').is(":checked") == true;
+
+              
+                }
+            },
+            error : function(error) {
+                
+                alert("error : " + error);
+            }
+        });
+    });
+});
+ 
+ 
+</script>
+  
   <script type="text/javascript">
   
         
@@ -87,31 +130,11 @@
 	
 	       <div>
 	          <label for="cardnumber">ID<span class="required">*</span></label>
-	           <div class="input-group">
-			      <div class="input-group-addon">
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-				
-						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-						  <div class="modal-dialog modal-sm">
-						    <div class="modal-content">
-								 <div class="modal-header">
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							        <h4 class="modal-title" id="myModalLabel">아이디 중복검사</h4>
-							      </div>
-							      <div class="modal-body">
-							      	<form action="<c:url value='/member/login/PartnerIsDuplicate.it'></c:url>"  method="post">
-							       	<input type="text" name="checkP_id" id="checkP_id">
-							       	<input type="submit" class="btn btn-primary">
-							       	<p>${isExist}</p>
-							       	</form>
-							      </div>
-						       
-						    </div>
-						  </div>
-						</div>
-					</div>
-	          <input type="text" name="p_id" id="p_id" class="form-control" placeholder="아이디를 입력해주세요">
-	          </div> 
+	        	<br/>
+	          <input type="text" name="p_id" id="p_id" class="form-control" placeholder="아이디를 입력해주세요" style="width:87%;display:inline-block;">
+	        	<Button id="p_idcheck" >중복확인</Button>
+	        	<input type="checkbox" style="display:none" id="checkcomplite" name="checkcomplite"/>
+	        	<input type="checkbox" style="display:none" id="onemorecheck" name="onemorecheck"/>
 	      	</div>
 	       <div>
 	          <label for="cvc">Password <span class="required">*</span></label>
@@ -345,7 +368,7 @@
 	          <br>
 	       
 	          <!-- <button type="submit" class="button large btn-block">회원가입</button> -->
-	          <input type="submit" class="button large btn-block" value="회원가입">
+	          <input type="submit" class="button large btn-block" value="회원가입"/>
 	</form>
       </div>
       <!-- end content -->

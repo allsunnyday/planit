@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.earth.planit.service.PartnerDTO;
+import com.earth.planit.service.PartnerRoomDTO;
 import com.earth.planit.service.PartnerService;
 @Service("partnerService")
 public class PartnerServiceImpl implements PartnerService{
@@ -32,14 +33,24 @@ public class PartnerServiceImpl implements PartnerService{
 	}
 
 	@Override
-	public boolean isDuplicate(Map map) {
-		return dao.isDuplicate(map);
+
+	public boolean isDuplicate(String p_id) {
+		// TODO Auto-generated method stub
+		return dao.isDuplicate(p_id);
 	}
 	
 	@Override
 	public int getTotalRecordforRequest(Map map) {
 		return dao.getTotalRecordforRequest(map);
+
 	}
+	@Override
+	public int roomResist(Map map) {
+		// TODO Auto-generated method stub
+		System.out.println(map.get("p_id"));
+		return dao.roomResist(map);
+	}
+	
 
 	@Override
 	public List<PartnerDTO> selectRequestList(Map map) {
@@ -84,5 +95,17 @@ public class PartnerServiceImpl implements PartnerService{
 		return dao.reply(map);
 	}
 	
+
+	@Override
+	public PartnerRoomDTO partnerRoomView(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerRoomView(map);
+	}
+
+	@Override
+	public List<PartnerRoomDTO> partnerRoomList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerRoomList(map);
+	}
 
 }

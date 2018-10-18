@@ -156,13 +156,166 @@ height: 100%; */
 	color: rgb(53, 181, 157);
 }
 </style>
-
+<style>
+	#imgs_wrap img{
+		width: 120px;
+		height:130px;
+	}
+	
+	.input_wrap{
+		padding-top: 10px;
+		text-align: right;
+	}
+	
+	.imgs_block{
+		color:#fff;
+	}
+	
+	.text_block{
+		margin-top: 10px;
+		
+	}
+	
+	.text-wrap{
+		padding: 10px;
+	}
+</style>
 <script type="text/javascript">
-	$(function() {
-		$('#datetimepicker3').datetimepicker({
-			format : 'LT'
-		});
+	//이미지 정보를 담을 배열
+	var sel_files=[];
+	//현재 선택된 파일 수를 담을 배열
+	var file_count=0;
+	
+	//var review_content_id = ${reviewContent.RE_CO_ID};
+	//저장 성공시 WriteReview페이지로 이동
+	// var success_action = "<c:url value='/review/myreview/Write.it?planner_id="+${reviewContent.PLANNER_ID}+"&review_id="+${reviewContent.REVIEW_ID}+"'/> ";
+	// 이미 이미지가 있는 경우
+	//var image= '${reviewContent.IMAGE}';
+	//console.log(review_content_id+":"+image);
+	
+	$(function(){
+		$('#input_imgs').on("change", handleImgFileSelect);
+		if(sel_files.length==0){
+			console.log('no-image');
+		}
+		else{
+			$('.no-image').css('display', 'none');
+		}
 	});
+	
+	//[사진 추가]버튼 클릭시 이벤트 처리
+	function fileUploadAction(){
+		console.log("fileUploadAction");
+		$('#input_imgs').click();
+	}
+	
+	function handleImgFileSelect(e){
+		//이미지 정보들을 초기화
+		//sel_files=[];
+		//$('.imgs_wrap').empty();
+		
+		var files = e.target.files;  //filelist객체 
+		console.log('files='+files);
+		var filesArr = Array.prototype.slice.call(files);
+		
+		var index =0;
+		filesArr.forEach(function(f){
+			if(!f.type.match("image.*")){
+				alert("확장자는 이미지 확장자만 가능합니다.");
+				return;
+			}
+			if(sel_files.length<5){
+			sel_files.push(f);
+			
+			var reader = new FileReader();
+			reader.onload = function(e){
+				var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction('"+index+"');\" id=\"img_id_"+index+"\">"+
+							"<img alt=\"\" src=\""+e.target.result+"\" data-file=\""
+							+f.name+"\" class=\"selProductFile\" title=\"click to remove\" style='width:150px; height:180px; margin:0 10px 10px 0; border:1px dotted #444'></a>";
+				$('.imgs_wrap').append(html);
+				index++;
+			};
+			reader.readAsDataURL(f);
+			}
+			else{
+				alert("사진은 최대 6장까지 등록가능합니다");
+			}
+		});
+		$('.no-image').css('display', 'none');
+		
+	}
+	
+	
+	function submitAction(){
+		var formdata = new FormData();
+		
+		for(var i=0, len=sel_files.length; i<len; i++){
+			var name="review_"+i; 
+			formdata.append(name, sel_files[i]);  // 이미지을 새롭게 변경하여 저장하기 
+		}
+		formdata.append("image_count", sel_files.length);  //사진 개수 저장
+		
+		console.log("이미지 업로드 하기 전 ")
+		// 이미지를 
+		console.log("data"+formdata);
+		/* console.log("summernote"+$('.summernote').summernote('code')); */
+		
+		// 사용자가 입력한 값 
+		formdata.append("content", $('.summernote').summernote('code').trim());  //작성된 글 저장
+		/* for (var pair of formdata.entries()) {
+		    console.log(pair[0]+ ', ' + pair[1]); 
+		} */
+		// insert key 값
+		formdata.append("re_co_id", review_content_id);
+		
+		// 이미 올린 이미지가 있는경우
+		formdata.append("preimage", image);
+		
+		$.ajax({
+			type:'POST',
+			url: '<c:url value="/review/write/UploadReview.it"/>',
+			dataType:'text',
+			data: formdata,
+			contentType:false,
+			processData: false,  //중요!!
+			/*  enctype:'multipart/form-data',  */
+			 success: function(data){
+				 console.log(data);
+				 if(confirm('성공적으로 저장되었습니다.')){
+					 location.replace(success_action);
+				 }
+			 },
+			 error:function(data){
+					/*
+						서버로부터 비정상적인 응답을 받았을 때 호출되는 콜백함수
+						data : 에러 메세지 
+					*/
+					console.log('error!'+data);
+				}
+		});
+		
+	}
+	
+	function deleteImageAction(index){
+		console.log("index:"+index);
+		sel_files.splice(index, 1);  //splice함수로 해당 이미지가 포함된 인덱스 삭제 
+		var img_id = "#img_id_"+index;
+		$(img_id).remove();
+		if(sel_files.length==0){
+			console.log('no-image');
+			$('.no-image').css('display', '');
+		}
+		console.log(sel_files);
+	}
+
+	var deletePreImage = function(alt, index){
+		//var alt = $(this).attr('id');
+		var del = alt+'<*>';
+		console.log(del);
+		image = image.replace(del, '');
+		console.log(image);
+		$('#preimage'+index).remove();
+	};
 </script>
 
 <!-- *******************************************
@@ -282,17 +435,33 @@ height: 100%; */
 				<div class="container clearfix">
 					<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 
-						<form id="registerform" method="post" name="registerform"
-							action="#">
+						<form id="registerform" method="post" name="registerform" enctype="multipart/form-data"
+							action="<c:url value='/planit/member/partner/RoomResistForm.it'></c:url>">
 							<div class="col-lg-5 col-md-5 col-sm-12">
 								<h4 class="title">
-									<span>Room Pictur</span>
+									<span>Room Picture</span>
 								</h4>
 								
-								<div>
-									<input type="file" name="roomimg1art" id="roomimg1art">
-									
-									
+								<div>	
+									<div class="col-sm-12 input_wrap">
+										<a href="javascript:" onclick="fileUploadAction();" class="dmbutton2" >사진추가</a>
+										<input type="file" id="input_imgs" name="roomimages" multiple="multiple" style="display:none;"  />
+									</div>
+									<div class="col-sm-offset-1 col-sm-10 imgs_block">
+										<!-- 이미지가 없을 시에는 아래의 no-image가 보인다.  -->
+										<c:if test="${empty imageMap}">
+											<div class="no-image text-center" style='width:100%; height:180px;padding-top:60px;background-color: #e6e6e6;'><h1 class="review-title">사진을 추가해주세요</h1></div>
+											<!-- 사용자가 이미지를 추가할 시에는 아래 imgs_wrap 다이브 사이에 추가된다.   -->
+										</c:if>
+										<div class="imgs_wrap">
+											<c:forEach var="imgs"  items="${imageMap}"  varStatus="loop">
+												<a href="javascript:" onclick="deletePreImage('${imgs.value}', ${loop.index});" id="preimage${loop.index}" >
+												<img alt="${imgs.value}" src="<c:url value='/Upload/Review/${imgs.value}'/> " class="selProductFile" title="click to remove" style='width:150px; height:180px; margin:0 10px 10px 0; border:1px dotted #444'></a>
+											</c:forEach>
+											<img id="img" />
+										</div>
+									</div>
+								
 								</div>
 
 							</div>
@@ -305,7 +474,7 @@ height: 100%; */
 <!-- 상품이름 -->
 								<div class="form-group">
 									<input type="text" class="form-control"
-										placeholder="상품의 이름을 입력해주세요" id="">
+										placeholder="상품의 이름을 입력해주세요" name="roomtitle" id="roomtitle">
 
 								</div>
 
@@ -329,9 +498,14 @@ height: 100%; */
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="cardnumber">Room Size<span class="required">*</span></label>
+									<label for="cardnumber">Room Size1<span class="required">*</span></label>
 									<input type="text" class="form-control"
-										placeholder="평수을 입력해주세요">
+										placeholder="평수을 입력해주세요(평수)" id="roomsize1" name="roomsize1">
+								</div>
+								<div class="form-group">
+									<label for="cardnumber">Room Size2<span class="required">*</span></label>
+									<input type="text" class="form-control"
+										placeholder="평수을 입력해주세요(평방미터)" id="roomsize2" name="roomsize2">
 								</div>
 								<div class="form-group">
 									<label for="cardnumber">Quantity<span class="required">*</span></label>
@@ -351,60 +525,70 @@ height: 100%; */
 								<div class="form-group">
 									<label for="cardnumber">비수기 평일<span class="required">*</span></label>
 									<input type="text" class="form-control"
-										name="roomoffseasonfee1" id="roomoffseasonfee1"
+										name="roomoffseasonminfee1" id="roomoffseasonminfee1"
 										placeholder="숫자만 입력해주세요">
 								</div>
 								<div class=form-group>
 									<label for="cardnumber">비수기 주말<span class="required">*</span></label>
 									<input type="text" class="form-control"
-										name="roomoffseasonfee2" id="roomoffseasonfee2"
+										name="roomoffseasonminfee2" id="roomoffseasonminfee2"
 										placeholder="숫자만 입력해주세요">
 								</div>
 								<div class="form-group">
 									<label for="cardnumber">성수기 평일<span class="required">*</span></label>
 									<input type="text" class="form-control"
-										name="roompeakseasonfee1" id="roompeakseasonfee1"
+										name="roompeakseasonminfee1" id="roompeakseasonminfee1"
 										placeholder="숫자만 입력해주세요">
 								</div>
 								<div class="form-group">
 									<label for="cardnumber">성수기 주말<span class="required">*</span></label>
 									<input type="text" class="form-control"
-										name="roompeakseasonfee2" id="roompeakseasonfee2"
+										name="roompeakseasonminfee2" id="roompeakseasonminfee2"
 										placeholder="숫자만 입력해주세요">
 								</div>
 
 								<div class="form-group">
 									<label for="cardnumber">Option 1<span class="required">*</span></label>
 									<div>
-										<input type="checkbox" value="roombathfacility" id="roombathfacility" name="roombathfacility"> 목욕시설
-										<input type="checkbox" value="roombath" id="roombath" name="roombath">욕조
-										<input type="checkbox" value="roomhometheater" id="roomhometheater" name="roomhometheater"> 홈시어터
-										<input type="checkbox" value="roomaircondition" id="roomaircondition" name="roombathfacility"> 에어컨
-										<input type="checkbox" value="roomtv" id="roomtv" name="roomtv"> TV
-										<input type="checkbox" value="roompc" id="roompc" name="roompc">PC
-										<input type="checkbox" value="roomcable" id="roomcable" name="roomcable"> 케이블
+										<input type="checkbox" value="Y" id="roombathfacility" name="roombathfacility"> 목욕시설
+										<input type="checkbox" value="Y" id="roombath" name="roombath">욕조
+										<input type="checkbox" value="Y" id="roomhometheater" name="roomhometheater"> 홈시어터
+										<input type="checkbox" value="Y" id="roomaircondition" name="roombathfacility"> 에어컨
+										<input type="checkbox" value="Y" id="roomtv" name="roomtv"> TV
+										<input type="checkbox" value="Y" id="roompc" name="roompc">PC
+										<input type="checkbox" value="Y" id="roomcable" name="roomcable"> 케이블
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="cardnumber">Option 2<span class="required">*</span></label>
 									<div >
-										<input type="checkbox" value="roominternet" id="roominternet" name="roominternet"> 인터넷
-										<input type="checkbox" value="roomrefrigerator" id="roomrefrigerator" name="roomrefrigerator"> 냉장고
-										<input type="checkbox" value="roomtoiletries" id="roomtoiletries" name="roomtoiletries"> 세면도구
-										<input type="checkbox" value="roomsofa" id="roomsofa" name="roomsofa"> 소파
-										<input type="checkbox" value="roomcook" id="roomcook" name="roomcook">취사용춤
-										<input type="checkbox" value="roomtable" id="roomtable" name="roomtable"> 테이블
-										<input type="checkbox" value="roomhairdryer" id="roomhairdryer" name="roomhairdryer"> 드라이기
+										<input type="checkbox" value="Y" id="roominternet" name="roominternet"> 인터넷
+										<input type="checkbox" value="Y" id="roomrefrigerator" name="roomrefrigerator"> 냉장고
+										<input type="checkbox" value="Y" id="roomtoiletries" name="roomtoiletries"> 세면도구
+										<input type="checkbox" value="Y" id="roomsofa" name="roomsofa"> 소파
+										<input type="checkbox" value="Y" id="roomcook" name="roomcook">취사용춤
+										<input type="checkbox" value="Y" id="roomtable" name="roomtable"> 테이블
+										<input type="checkbox" value="Y" id="roomhairdryer" name="roomhairdryer"> 드라이기
 									</div>
+								</div>
+								<div class="form-group">
+									<label for="cardnumber">RoomIntro<span class="required">*</span></label>
+									<!-- 룸 소개 -->
+									<textarea class="form-control" id="roomintro" name="roomintro" placeholder="객실소개를 입력해주세요">
+									</textarea>
+									</div>
+								<div class="form-group">
+									<input type="submit" class="button btn-block" value="등록"/>
+								</div>
 								</div>
 						</form>
 					</div>
 				</div>
 				<!-- end register -->
+			</section>
 		</div>
 		<!-- end content -->
-</section>
-</div>
-</div>
+	</div>
+
 </section>
 <!-- end section -->

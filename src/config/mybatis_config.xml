@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- 회원DTO 등을 입력-->
 		<typeAlias alias="memberDTO" type="com.earth.planit.service.MemberDTO"/>
 		<typeAlias alias="partnerDTO" type="com.earth.planit.service.PartnerDTO"/>
+		<typeAlias alias="partnerRoomDTO" type="com.earth.planit.service.PartnerRoomDTO"/>
 		<typeAlias alias="reviewDTO" type="com.earth.planit.service.ReviewDTO" /> 
 		<typeAlias alias="searchMapDTO" type="com.earth.planit.service.SearchMapDTO"/>
 		<typeAlias alias="searchListDTO" type="com.earth.planit.service.SearchListDTO"/>
@@ -53,6 +54,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="config/Review.xml"/>
 		<mapper resource="config/SearchMap.xml" />
 		<mapper resource="config/SearchList.xml" />
+		<mapper resource="config/Content.xml" />
+		
 	</mappers>
 	
 	
