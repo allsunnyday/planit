@@ -482,7 +482,7 @@
 					content += '<div style="float:left; width: auto; display:block; margin-top: 8px;">';
 						content += '<div class="text-left">';
 							content += '<label>지역:</label>&nbsp;<font>'+keyword+'</font><br/>';
-							content += '<label>관광지: </label><font class="">'+ document.getElementById('plantitle').title +'</font>&nbsp;<a class="btnDel" href="javascript:void(0)" id="deletePlanRoute" onclick=deletePlanRoute('+diveplus+') >';
+							content += '<label>관광지: </label><font class="">'+ document.getElementById('plantitle').title +'</font>&nbsp;<a class="btnDel" href="javascript:" onclick="deletePlanRoute('+diveplus+')" id="deletePlanRoute" >';
 							content += '<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a><br/>';//<input type="hidden" id="deleteplanroute">
 							content += '<label> 거리: </label>&nbsp;<font>'+distance+'m</font> ';
 							if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄							
@@ -537,12 +537,11 @@
 			content +='</div>';
 			$('#cityroute').append(content);
 		}
-		/* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */
-		
+		/* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */		
 	}
 	
 	/* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
-	function plandivCountdown(diveplus){ 								
+	function plandivCountdown(diveplus){
 		console.log('diveplus(3)== '+ diveplus + '// plancase(3)== '+ plancase);// 0 / 2 
 		for(var i=diveplus; i<plancase; i++){									//i=0; i < 2; i++
 			var redivcount= $('#planroute_'+(i+1));
@@ -551,19 +550,18 @@
 				if(i >= 0){
 					redivcount.attr('id','planroute_'+i);//id 재부여
 					console.log(recount);
-					//$('#deletePlanRoute').removeAttr('onclick');
-					//$('#deletePlanRoute').attr('onclick', 'deletePlanRoute('+i+')');
-					//redivcount.children('#deletePlanRoute').removeAttr('onclick');
-					//redivcount.children('#deletePlanRoute').attr('onclick', 'deletePlanRoute('+i+')');
+					console.log(recount.selector);		
+					//recount.attr('onclick', 'deletePlanRoute('+i+')');
 				}
 			}
 			else {continue;}
-			
-			if(recount != null){
-				recount.attr('onclick', 'deletePlanRoute('+i+')')
-			}
-			else { continue; }
-		}		
+		}
+		var ttest = document.getElementsByClassName('planroute');
+		console.log('ttest: '+ttest);
+		$('.planroute > a').change(function() {
+			$(this).
+		})
+		
 		console.log('plancase 너 감소되냐?' + plancase);  //2
 		console.log('diveplus 넌 몇이냐??' + diveplus); //0 << 너가문제구나 어떻게 해줘야하는건가
 		//updatedivnumver++;
