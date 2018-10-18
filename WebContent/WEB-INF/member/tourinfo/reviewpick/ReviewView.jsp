@@ -158,9 +158,6 @@ review :
             +'<div class="comment-content">'
             +'<h4 class="comment-author">'+comment['ID']+'<small class="comment-meta">'+comment['POSTDATE']+'</small>'
             +'     <span class="comment-reply"><a href="javascript:" class="comment-reply button" onclick="commentShowReply();" title="'+comment['COMMENT_NO']+'" >reply</a></span>'
-            
-            
-            
             +' </h4>'+comment['CONTENT']
             +'</div></article></li>';
 		});
