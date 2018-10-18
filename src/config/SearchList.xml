@@ -10,30 +10,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  -->
 <mapper namespace="config.SearchList">
 
-	<select id="selectTourList" parameterType="java.util.Map" resultType="searchListDTO">
-		select * from(select a .*,rownum r from
-		(select * from content where contenttype=12)a)
+	<select id="selectTourList" parameterType="java.util.Map" resultType="contentDTO">
+		select * from
+		(select a.*,rownum r from
+          	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor from content c, cat2 c2, cat3 c3  
+           		 where c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=12
+           		 order by
+           		 <if test="orderColumn != null">
+           		 	 #{orderColumn} desc,
+           		 </if>
+           		 viewcount desc, contentid desc )   a )
 		where r  between #{start} and #{end}
 	</select>
-	<select id="selectFoodList" parameterType="java.util.Map" resultType="searchListDTO">
-		select * from(select a .*,rownum r from
-		(select * from content where contenttype=39)a)
+	<select id="selectFoodList" parameterType="java.util.Map" resultType="contentDTO">
+		select * from
+		(select a.*,rownum r from
+          	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor from content c, cat2 c2, cat3 c3  
+           		 where c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=39
+           		  order by
+           		 <if test="orderColumn != null">
+           		 	 #{orderColumn} desc,
+           		 </if>
+           		 viewcount desc, contentid desc )   a )
 		where r  between #{start} and #{end}
 	</select>
-	<select id="selectSleepList" parameterType="java.util.Map" resultType="searchListDTO">
-		select * from(select a .*,rownum r from
-		(select * from content where contenttype=32)a)
+	<select id="selectSleepList" parameterType="java.util.Map" resultType="contentDTO">
+		select * from
+			(select a.*,rownum r from
+          	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor from content c, cat2 c2, cat3 c3  
+           		 where c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=32
+           		  order by
+           		 <if test="orderColumn != null">
+           		 	 #{orderColumn} desc,
+           		 </if>
+           		 viewcount desc, contentid desc )   a )
 		where r  between #{start} and #{end}
 	</select>
 	
 	<select id="getTotalCount" parameterType="java.util.Map" resultType="int">
-		select count(*) from content
+		select count(*) from content where contenttype=#{contenttype}
 		<if test="searchWord != null">
-				where ${searchColumn} LIKE '%' || #{searchWord} || '%'
+				and ${searchColumn} LIKE '%' || #{searchWord} || '%'
 		</if>
 	</select>
 	
-	<select id="searchSelectList" parameterType="java.util.Map" resultType="searchListDTO">
+	<select id="searchSelectList" parameterType="java.util.Map" resultType="contentDTO">
 		select * from
 		(select a.*,rownum r from(
 		select * from content where contenttype=12)a)

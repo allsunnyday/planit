@@ -1,30 +1,18 @@
 package com.earth.planit.web;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.annotations.Param;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.ContentService;
 import com.earth.planit.service.SearchListDTO;
 import com.earth.planit.service.SearchListService;
@@ -56,16 +44,16 @@ public class SearchListController {
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<SearchListDTO> tourlist = service.selectTourList(map);
+		List<ContentDTO> tourlist = service.selectTourList(map);
 		map.put("start", start);
 		
-		List<SearchListDTO> sleeplist = service.selectSleepList(map);
-		List<SearchListDTO> foodlist = service.selectFoodList(map);
+		List<ContentDTO> sleeplist = service.selectSleepList(map);
+		List<ContentDTO> foodlist = service.selectFoodList(map);
 		
 		map.put("start", 1);
 		map.put("end", 6);
 		
-		List<SearchListDTO> besttourlist = service.selectTourList(map);
+		List<ContentDTO> besttourlist = service.selectTourList(map);
 		
 		model.addAttribute("tour",tourlist);
 		model.addAttribute("sleep",sleeplist);
@@ -85,18 +73,18 @@ public class SearchListController {
 		
 		
 	
-	
 		if(map.get("searchColumn")!= null) {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
+		map.put("contenttype", "12");
 		int totalCount = service.getTotalCount(map);
 		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
 		int start = (nowPage-1)*pageSize+1;
 		int end  = nowPage*pageSize;
 		map.put("start", start);
 		map.put("end", end);
-		List<SearchListDTO> tourlist = service.selectTourList(map);
+		List<ContentDTO> tourlist = service.selectTourList(map);
 		String pagingString = CommonUtil.pagingBootStrapStyle(
 							totalCount,
 							pageSize, 
@@ -110,7 +98,6 @@ public class SearchListController {
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("nowPage", nowPage);
 		
-	
 		model.addAttribute("tour",tourlist);
 		
 		
@@ -142,13 +129,14 @@ public class SearchListController {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
+		map.put("contenttype", "32");
 		int totalCount = service.getTotalCount(map);
 		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
 		int start = (nowPage-1)*pageSize+1;
 		int end  = nowPage*pageSize;
 		map.put("start", start);
 		map.put("end", end);
-		List<SearchListDTO> sleepList = service.selectSleepList(map);
+		List<ContentDTO> sleepList = service.selectSleepList(map);
 		String pagingString = CommonUtil.pagingBootStrapStyle(
 							totalCount,
 							pageSize, 
@@ -185,13 +173,14 @@ public class SearchListController {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
+		map.put("contenttype", "39");
 		int totalCount = service.getTotalCount(map);
 		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
 		int start = (nowPage-1)*pageSize+1;
 		int end  = nowPage*pageSize;
 		map.put("start", start);
 		map.put("end", end);
-		List<SearchListDTO> Foodlist = service.selectFoodList(map);
+		List<ContentDTO> Foodlist = service.selectFoodList(map);
 		String pagingString = CommonUtil.pagingBootStrapStyle(
 							totalCount,
 							pageSize, 
@@ -204,7 +193,6 @@ public class SearchListController {
 		model.addAttribute("totalRecordCount", totalCount);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("nowPage", nowPage);
-		
 	
 		model.addAttribute("food",Foodlist);
 		

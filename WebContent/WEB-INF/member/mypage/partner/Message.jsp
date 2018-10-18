@@ -12,7 +12,7 @@
 	<c:otherwise>
 		<c:set var="successMessage" value="삭제 성공했어요"/>
 		<c:set var="failMessage" value="삭제 실패했어요"/>
-		<c:set var="successMoveUrl" value="forward:/mypage/partner/Request_detail.it"/>	
+		<c:set var="successMoveUrl" value="/mypage/partner/Request_P.it"/>	
 	</c:otherwise>
 </c:choose>
 

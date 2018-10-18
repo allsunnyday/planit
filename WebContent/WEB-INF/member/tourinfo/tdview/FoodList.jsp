@@ -29,7 +29,7 @@ max-width: 100%;
         
         </li>
         </ul>
-        <h2>PLAN-IT에 등록되어 있는 식당들</h2>
+        <h2>PLAN-IT에 등록되어 있는 식당들(총 ${totalRecordCount}개)</h2>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
  
@@ -44,29 +44,137 @@ max-width: 100%;
  ***********************************-->
     <div class="container clearfix">
       <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
+      <div class="divider"></div>
+<div class="wrapper text-center">
+			<form id="justAction" action="#" method="GET" name="searchForm" class="form-inline">
+			<div class="form-group" >
+				<select name="areaCode" id="areaCode" class="dmbutton2" title="조회지역" style="display: inline-block;">
+						<option value="">지역선택</option>
+						<option value="">전체</option>
 
-        <div class="divider"></div>
+						<option value="1" >서울</option>
+						
+
+						<option value="2" >인천</option>
+
+						<option value="3" >대전</option>
+						
+
+						<option value="4" >대구</option>
+						
+
+						<option value="5" >광주</option>
+						
+
+						<option value="6" >부산</option>
+						
+
+						<option value="7" >울산</option>
+						
+
+						<option value="8" >세종특별자치시</option>
+						
+
+						<option value="31" >경기도</option>
+						
+
+						<option value="32" >강원도</option>
+						
+
+						<option value="33" >충청북도</option>
+						
+
+						<option value="34" >충청남도</option>
+						
+
+						<option value="35" >경상북도</option>
+						
+
+						<option value="36" >경상남도</option>
+						
+
+						<option value="37" >전라북도</option>
+						
+
+						<option value="38" >전라남도</option>
+						
+
+						<option value="39" >제주도</option>
+						
+
+				</select>
+				</div>
+<!-- *************************************** cat2 선택  **************************************** -->
+				<div data-type="multiple" class="form-group" style="display: inline-block;" >
+					<ul class="jetmenu ">
+						<li><button name="all" value="" class="button ov" type="button">전체</button></li>
+						<li>
+						<button name="category" value="F0101" class="button " type="button">한식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0102" class="button " type="button">양식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0104" class="button " type="button">중식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0103" class="button " type="button">일식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0105" class="button " type="button">아시아식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0108" class="button " type="button">채식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0109" class="button " type="button">카페&전통찻집</button>
+						
+						</li>
+					</ul>
+					
+				</div>
+				<div class="form-group" >
+					<button type="submit" class="dmbutton2" value="조회">조회</button>
+					<a class="dmbutton2 ov" href="#" onclick="">조회순</a>
+                	<a class="dmbutton2" href="#" onclick="">제목순</a>
+				</div>
+				
+				<!-- <input type="hidden" name="gotoPage" value=""/>
+				<input type="hidden" name="listType" value="cdesc"/>
+				<input type="hidden" name="cid" value=""/>
+				<input type="hidden" name="out_service" value=""/> -->
+			</form>
+		</div>
+
+
+
+        
 
         <nav class="portfolio-filter clearfix">
           <ul>
-            <li><a href="#" class="dmbutton2" data-filter="*">모두보기(몇개인지 뿌려주기)</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".korea">한식</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".china">중식</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".western">양식</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".japan">일식</a></li>
+            <li><a href="#" class="dmbutton2" data-filter="*">모두보기</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".A05020100">한식</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".A05020400">중식</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".A05020200">서양식</a></li>
+            <li><a href="#" class="dmbutton2" data-filter=".A05020300">일식</a></li>
           </ul>
         </nav>
+<div class="divider"></div>
 
-
-<!--*********************************** 
- 		각 음식점 정보 (data-rel 지워줘야 넘어감)
- ***********************************-->
+<!--*********************************** 각 음식점 정보 (data-rel 지워줘야 넘어감) ***********************************-->
         <div class="portfolio-centered">
           <div class="recentitems portfolio">
 
 <c:forEach  var="record" items="${food}">
-            <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 western">
+     <div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 ${record.cat3}">
               <div class="he-wrap tpl6 market-item">
+                <!-- empty image일 경우에는 서버의 임시 이미지와 연결한다.  -->
                 <c:if test="${empty record.firstimage }">
                 <img src="<c:url value='/Upload/Tour/tempimage.png'/>" alt="">
                 </c:if>

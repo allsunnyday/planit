@@ -4,8 +4,8 @@
 /* ***********************footer 하단에 위치 종료***************************** */
 
 /* 웹 페이지 배치 상, 하, 좌, 우 빈공 백 제거 시작*/	
-#leftrute{margin: 0;padding: 0; height: 100%}
-#rightrute{margin: 0; padding: 0; height: 100%;}
+#leftrute{margin: 0;padding: 0; height: 85%}
+#rightrute{margin: 0; padding: 0; height: 85%;}
 .container-fluid{margin: 0;padding: 0;}
 /* 웹 페이지 배치 상, 하, 좌, 우 빈공 백 제거 종료*/	
 

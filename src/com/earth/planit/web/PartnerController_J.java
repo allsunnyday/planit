@@ -174,9 +174,9 @@ public class PartnerController_J {
 		System.out.println(map.get("ask_no"));
 		int affected = service.replyDelete(dto);
 		
-//		model.addAttribute("successFail", affected);	
+		model.addAttribute("successFail", affected);	
 		
-		return "forward:/mypage/partner/Request_P.it";
+		return "/mypage/partner/Message";
 	}
 	
 	/*예약 삭제*/
@@ -184,9 +184,9 @@ public class PartnerController_J {
 	public String Reservationdelete(PartnerDTO dto, Model model, @RequestParam Map map) throws Exception{
 		System.out.println("reservation_id"+map.get("reservation_id"));
 		int affected = service.reservationDelete(dto);
+		model.addAttribute("successFail", affected);
 		
-		
-		return "";
+		return "/mypage/partner/Message";
 	}
 	
 	

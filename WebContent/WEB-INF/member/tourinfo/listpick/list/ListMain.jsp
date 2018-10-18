@@ -179,6 +179,7 @@
                     </div>
                     <!-- he view -->
                   </div>
+		            
             
             <!-- he wrap -->
           </div>
@@ -273,7 +274,6 @@
       <!-- large-3 -->
 
       <div class="divider"></div>
-    </div>
     <!-- end container -->
   </section>
   <!-- end section -->

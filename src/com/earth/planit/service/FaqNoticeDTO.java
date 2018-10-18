@@ -10,7 +10,6 @@ public class FaqNoticeDTO {
 	private String emp_no;
 	private Date postdate;
 	
-	private String p_id;
 	private String ask_no;
 	private String id;
 	private String refer;
@@ -62,13 +61,6 @@ public class FaqNoticeDTO {
 		this.postdate = postdate;
 	}
 
-	public String getP_id() {
-		return p_id;
-	}
-
-	public void setP_id(String p_id) {
-		this.p_id = p_id;
-	}
 
 	public String getAsk_no() {
 		return ask_no;
