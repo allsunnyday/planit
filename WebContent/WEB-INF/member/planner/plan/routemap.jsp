@@ -450,8 +450,8 @@
 	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	
 	/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */	
-	var diveplus;
-	function routeInfoPlusAction(){
+	var diveplus; // 여행계획 추가 다이브 번호 생성
+	function routeInfoPlusAction(diveplus){
 		var content;
 		diveplus = plancase-1;
 		if(plancase == 0){
@@ -482,8 +482,8 @@
 					content += '<div style="float:left; width: auto; display:block; margin-top: 8px;">';
 						content += '<div class="text-left">';
 							content += '<label>지역:</label>&nbsp;<font>'+keyword+'</font><br/>';
-							content += '<label>관광지: </label><font class="">'+ document.getElementById('plantitle').title +'</font>&nbsp;<a class="btnDel" href="javascript:" onclick=deletePlanRoute('+diveplus+') >';
-							content += '<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font><input type="hidden" id="deleteplanroute"></a><br/>';
+							content += '<label>관광지: </label><font class="">'+ document.getElementById('plantitle').title +'</font>&nbsp;<a class="btnDel" href="javascript:void(0)" id="deletePlanRoute" onclick=deletePlanRoute('+diveplus+') >';
+							content += '<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a><br/>';//<input type="hidden" id="deleteplanroute">
 							content += '<label> 거리: </label>&nbsp;<font>'+distance+'m</font> ';
 							if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄							
 							else {content += '&nbsp;<label> 도보: </label>&nbsp;<font> '+ walkkTime +' 분</font> <br/>';} // 도보가 한시간 미만 일때
@@ -499,7 +499,7 @@
 					content += '</div>';
 				content += '</div>';
 			content += '</div>';
-			//diveplus++; // div 생성 번호
+			//diveplus++; // div 생성 번호			
 		}
 		$('#cityroute').append(content);
 		console.log('diveplus(1) '+ diveplus + '// plancase(1) '+ plancase);
@@ -511,21 +511,24 @@
 	/* ************* 추가 버튼 클릭시 추가 되는 함수 종료 ************** */	
 	
 	/* **************** plan route div 삭제 함수 시작 ***************** */
-	function deletePlanRoute(diveplus){
+	function deletePlanRoute(diveplus){		
 		$('#planroute_'+diveplus).remove(); // 해당 다이브 삭제
 		
-		console.log('diveplus(2) '+ diveplus + '// plancase(2) '+ plancase);
+		console.log('diveplus(2) '+ diveplus + '// plancase(2) '+ plancase); //<<<<<<<
+		console.log("linePath: "+ linePath[diveplus] + " positions: "+ positions[diveplus] + " removemarking: "+ removemarking[diveplus]);
+		//console.log($('#planroute_'+(diveplus+1)).children('#deletePlanRoute').attr('onclick'));
 		
 		linePath.splice(diveplus, 1); // 삭제한 여행일정 라인정보 삭제		
 		positions.splice(diveplus, 1);//좌표 삭제
-		removemarking[diveplus].setMap(null); // 삭제할 좌표의 해당 마커 삭제		    
-		removemarking.splice(diveplus, 1);
-		
-		
+		removemarking[diveplus].setMap(null); // 지도에 표시된 마커 삭제		    
+		removemarking.splice(diveplus, 1); // 마커가 등록된 정보 삭제		
 		removepolyline.setMap(null);
 		removepolyline.setMap(map); 
+		
+		
 		plandivCountdown(diveplus) // 다이브에 부여 한 넘버를 가져감.
 		plancase--;
+		diveplus = plancase-1;
 		/* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */
 		if(plancase == 0){
 			content ='';
@@ -540,18 +543,29 @@
 	
 	/* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
 	function plandivCountdown(diveplus){ 								
-		console.log('diveplus(3)== '+ diveplus + ' //  plancase(3)== '+ plancase);
-		for(var i=diveplus; i<plancase; i++){							//i=1; i < 3 i++
+		console.log('diveplus(3)== '+ diveplus + '// plancase(3)== '+ plancase);// 0 / 2 
+		for(var i=diveplus; i<plancase; i++){									//i=0; i < 2; i++
 			var redivcount= $('#planroute_'+(i+1));
+			var recount = $('#deletePlanRoute'+(i+1));
 			if(redivcount != null){
 				if(i >= 0){
 					redivcount.attr('id','planroute_'+i);//id 재부여
+					console.log(recount);
+					//$('#deletePlanRoute').removeAttr('onclick');
+					//$('#deletePlanRoute').attr('onclick', 'deletePlanRoute('+i+')');
+					//redivcount.children('#deletePlanRoute').removeAttr('onclick');
+					//redivcount.children('#deletePlanRoute').attr('onclick', 'deletePlanRoute('+i+')');
 				}
 			}
 			else {continue;}
+			
+			if(recount != null){
+				recount.attr('onclick', 'deletePlanRoute('+i+')')
+			}
+			else { continue; }
 		}		
-		console.log('plancase 너 감소되냐?' + plancase);
-		console.log('diveplus 넌 몇이냐??' + diveplus);
+		console.log('plancase 너 감소되냐?' + plancase);  //2
+		console.log('diveplus 넌 몇이냐??' + diveplus); //0 << 너가문제구나 어떻게 해줘야하는건가
 		//updatedivnumver++;
 	}
 	/* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
