@@ -66,7 +66,7 @@
                            <!--  아래 이미지는 배경이 된다. -->
                            
                            <img src="<c:url value='/Upload/Tour/listmain_food.jpg'/>" 
-                                    style="width:100%;height: 550px" height="300px" alt="First slide">
+                                    style="width:100%; height: 550px" height="300px" alt="First slide">
                            <div class="tourlist-overlay"  style="margin-left: 30px;">
                                   <div class="text" style="background-color: rgba(0, 0, 0, 0.5); padding: 0 10px 50px 10px" >
 									<div class="general-title text-center">
@@ -162,7 +162,7 @@
 		              <div class="he-view">
 		                <div class="bg a0" data-animate="fadeIn">
 		                  <h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
-		                  <a href="<c:url value='/planit/search/list/TourView.it'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
+		                  <a href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
 		                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
 		                  
 		                  <div class="rating text-center a2" data-animate="fadeIn">

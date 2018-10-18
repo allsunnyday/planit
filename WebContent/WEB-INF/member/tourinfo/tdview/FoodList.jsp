@@ -109,27 +109,33 @@ max-width: 100%;
 					<ul class="jetmenu ">
 						<li><button name="all" value="" class="button ov" type="button">전체</button></li>
 						<li>
-						<button name="category" value="A01" class="button " type="button">자연</button>
-						</li>
-						<li>
-						<button name="category" value="A03" class="button " type="button">체험</button>
-						</li>
-						<li>
-						<button name="category" value="B01" class="button " type="button">문화시설</button>
-						</li>
-						<li>
-						<button name="category" value="DDD" class="button " type="button">레포츠</button>
-						</li>
-						<li>
-						<button name="category" value="A02" class="button " type="button">역사</button>
-						</li>
-						<li>
-						<button name="category" value="J02" class="button " type="button">테마</button>
-						</li>
-						<li>
-						<button name="category" value="E01" class="button " type="button">쇼핑</button>
-						</li>
+						<button name="category" value="F0101" class="button " type="button">한식</button>
 						
+						</li>
+						<li>
+						<button name="category" value="F0102" class="button " type="button">양식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0104" class="button " type="button">중식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0103" class="button " type="button">일식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0105" class="button " type="button">아시아식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0108" class="button " type="button">채식</button>
+						
+						</li>
+						<li>
+						<button name="category" value="F0109" class="button " type="button">카페&전통찻집</button>
+						
+						</li>
 					</ul>
 					
 				</div>

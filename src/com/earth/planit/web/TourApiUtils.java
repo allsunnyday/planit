@@ -202,7 +202,7 @@ public class TourApiUtils {
 		json = (JSONObject) json.get("item");
 		
 		ContentDetailIntroDTO dto = new ContentDetailIntroDTO();
-		if("12".equals(contentid)) {  //관광지 
+		if("12".equals(contenttype)) {  //관광지 
 			dto.setAccomcount(json.get("accomcount")==null ?  "" : json.get("accomcount").toString());
 			dto.setChkbabycarriage(json.get("chkbabycarriage")==null ?  "" : json.get("chkbabycarriage").toString());
 			dto.setChkcreditcard( json.get("chkcreditcard")==null ?  "" : json.get("chkcreditcard").toString());
@@ -219,7 +219,7 @@ public class TourApiUtils {
 			dto.setUseseason(json.get("useseason")==null ?  "" : json.get("useseason").toString());
 			dto.setUsetime(json.get("usetime")==null ?  "" : json.get("usetime").toString());
 		}
-		else if("14".equals(contentid)) { //문화시설
+		else if("14".equals(contenttype)) { //문화시설
 			dto.setAccomcountculture(json.get("accomcountculture")==null? "" : json.get("accomcountculture").toString());
 			dto.setChkbabycarriageculture(json.get("chkbabycarriageculture")==null? "" : json.get("chkbabycarriageculture").toString());
 			dto.setChkcreditcardculture(json.get("chkcreditcardculture")==null? "" : json.get("chkcreditcardculture").toString());
@@ -235,7 +235,7 @@ public class TourApiUtils {
 			dto.setSpendtime(json.get("spendtime")==null? "" : json.get("spendtime").toString());
 			
 		}
-		else if("15".equals(contentid)) { //행사/공연/축제
+		else if("15".equals(contenttype)) { //행사/공연/축제
 			dto.setAgelimit(json.get("agelimit")==null? "" : json.get("agelimit").toString());
 			dto.setBookingplace(json.get("bookingplace")==null? "" : json.get("bookingplace").toString());
 			dto.setDiscountinfofestival(json.get("discountinfofestival")==null? "" : json.get("discountinfofestival").toString());
@@ -257,14 +257,14 @@ public class TourApiUtils {
 			
 			
 		}
-		else if("25".equals(contentid)) { //여행코스
+		else if("25".equals(contenttype)) { //여행코스
 			dto.setDistance(json.get("distance")==null? "" : json.get("distance").toString());
 			dto.setInfocentertourcourse(json.get("infocentertourcourse")==null? "" : json.get("infocentertourcourse").toString());
 			dto.setSchedule(json.get("schedule")==null? "" : json.get("schedule").toString());
 			dto.setTaketime(json.get("taketime")==null? "" : json.get("taketime").toString());
 			dto.setTheme(json.get("theme")==null? "" : json.get("theme").toString());
 		}
-		else if("28".equals(contentid)) { //레포츠
+		else if("28".equals(contenttype)) { //레포츠
 			dto.setAccomcountleports(json.get("accomcountleports")==null? "" : json.get("accomcountleports").toString());
 			dto.setChkbabycarriageleports(json.get("chkbabycarriageleports")==null? "" : json.get("chkbabycarriageleports").toString());
 			dto.setChkcreditcardleports(json.get("chkcreditcardleports")==null? "" : json.get("chkcreditcardleports").toString());
@@ -280,44 +280,73 @@ public class TourApiUtils {
 			dto.setUsefeeleports(json.get("usefeeleports")==null? "" : json.get("usefeeleports").toString());
 			dto.setUsetimeleports(json.get("usetimeleports")==null? "" : json.get("usetimeleports").toString());
 		}
-		else if("32".equals(contentid)) { //숙박
-			dto.setAccomcountleports(json.get("accomcountleports")==null? "" : json.get("accomcountleports").toString());
-			dto.setChkbabycarriageleports(json.get("chkbabycarriageleports")==null? "" : json.get("chkbabycarriageleports").toString());
-			dto.setChkcreditcardleports(json.get("chkcreditcardleports")==null? "" : json.get("chkcreditcardleports").toString());
-			/*dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());
-			dto.set(json.get("theme")==null? "" : json.get("theme").toString());*/
+		else if("32".equals(contenttype)) { //숙박
+			dto.setAccomcountlodging(json.get("accomcountlodging")==null? "" : json.get("accomcountlodging").toString());
+			dto.setBenikia(json.get("benikia")==null? "" : json.get("benikia").toString());
+			dto.setCheckintime(json.get("checkintime")==null? "" : json.get("checkintime").toString());
+			dto.setCheckouttime(json.get("checkouttime")==null? "" : json.get("checkouttime").toString());
+			dto.setChkcooking(json.get("chkcooking")==null? "" : json.get("chkcooking").toString());
+			dto.setFoodplace(json.get("foodplace")==null? "" : json.get("foodplace").toString());
+			dto.setGoodstay(json.get("goodstay")==null? "" : json.get("goodstay").toString());
+			dto.setHanok(json.get("hanok")==null? "" : json.get("hanok").toString());
+			dto.setInfocenterlodging(json.get("infocenterlodging")==null? "" : json.get("infocenterlodging").toString());
+			dto.setParkinglodging(json.get("parkinglodging")==null? "" : json.get("parkinglodging").toString());
+			dto.setPickup(json.get("pickup")==null? "" : json.get("pickup").toString());
+			dto.setRoomcount(json.get("roomcount")==null? "" : json.get("roomcount").toString());
+			dto.setReservationlodging(json.get("reservationlodging")==null? "" : json.get("reservationlodging").toString());
+			dto.setReservationurl(json.get("reservationurl")==null? "" : json.get("reservationurl").toString());
+			dto.setRoomtype(json.get("roomtype")==null? "" : json.get("roomtype").toString());
+			dto.setScalelodging(json.get("scalelodging")==null? "" : json.get("scalelodging").toString());
+			dto.setSubfacility(json.get("subfacility")==null? "" : json.get("subfacility").toString());
+			dto.setBarbecue(json.get("barbecue")==null? "" : json.get("barbecue").toString());
+			dto.setBeauty(json.get("beauty")==null? "" : json.get("beauty").toString());
+			dto.setBeverage(json.get("beverage")==null? "" : json.get("beverage").toString());
+			dto.setCampfire(json.get("campfire")==null? "" : json.get("campfire").toString());
+			dto.setFitness(json.get("fitness")==null? "" : json.get("fitness").toString());
+			dto.setKaraoke(json.get("karaoke")==null? "" : json.get("karaoke").toString());
+			dto.setPublicbath(json.get("publicbath")==null? "" : json.get("publicbath").toString());
+			dto.setSauna(json.get("sauna")==null? "" : json.get("sauna").toString());
+			dto.setPublicpc(json.get("publicpc")==null? "" : json.get("publicpc").toString());
+			dto.setSeminar(json.get("seminar")==null? "" : json.get("seminar").toString());
+			dto.setSports(json.get("sports")==null? "" : json.get("sports").toString());
+			dto.setBicycle(json.get("bicycle")==null? "" : json.get("bicycle").toString());
 		}
-		else if("38".equals(contentid)) { //쇼핑
-			
+		else if("38".equals(contenttype)) { //쇼핑
+			dto.setChkbabycarriageshopping(json.get("chkbabycarriageshopping")==null? "" : json.get("chkbabycarriageshopping").toString());
+			dto.setChkcreditcardshopping(json.get("chkcreditcardshopping")==null? "" : json.get("chkcreditcardshopping").toString());
+			dto.setChkpetshopping(json.get("chkpetshopping")==null? "" : json.get("chkpetshopping").toString());
+			dto.setCulturecenter(json.get("culturecenter")==null? "" : json.get("culturecenter").toString());
+			dto.setFairday(json.get("fairday")==null? "" : json.get("fairday").toString());
+			dto.setInfocentershopping(json.get("infocentershopping")==null? "" : json.get("infocentershopping").toString());
+			dto.setOpendateshopping(json.get("opendateshopping")==null? "" : json.get("opendateshopping").toString());
+			dto.setOpentime(json.get("opentime")==null? "" : json.get("opentime").toString());
+			dto.setParkingshopping(json.get("parkingshopping")==null? "" : json.get("parkingshopping").toString());
+			dto.setRestdateshopping(json.get("restdateshopping")==null? "" : json.get("restdateshopping").toString());
+			dto.setRestroom(json.get("restroom")==null? "" : json.get("restroom").toString());
+			dto.setSaleitem(json.get("saleitem")==null? "" : json.get("saleitem").toString());
+			dto.setSaleitemcost(json.get("saleitemcost")==null? "" : json.get("saleitemcost").toString());
+			dto.setScaleshopping(json.get("scaleshopping")==null? "" : json.get("scaleshopping").toString());
+			dto.setShopguide(json.get("shopguide")==null? "" : json.get("shopguide").toString());
 		}
-		else if("39".equals(contentid)) { //음식점
-			
+		else if("39".equals(contenttype)) { //음식점
+			dto.setChkcreditcardfood(json.get("chkcreditcardfood")==null? "" : json.get("chkcreditcardfood").toString());
+			dto.setDiscountinfofood(json.get("discountinfofood")==null? "" : json.get("discountinfofood").toString());
+			dto.setFirstmenu(json.get("firstmenu")==null? "" : json.get("firstmenu").toString());
+			dto.setInfocenterfood(json.get("infocenterfood")==null? "" : json.get("infocenterfood").toString());
+			dto.setKidsfacility(json.get("kidsfacility")==null? "" : json.get("kidsfacility").toString());
+			dto.setOpendatefood(json.get("opendatefood")==null? "" : json.get("opendatefood").toString());
+			dto.setOpentimefood(json.get("opentimefood")==null? "" : json.get("opentimefood").toString());
+			dto.setPacking(json.get("packing")==null? "" : json.get("packing").toString());
+			dto.setParkingfood(json.get("parkingfood")==null? "" : json.get("parkingfood").toString());
+			dto.setReservationfood(json.get("reservationfood")==null? "" : json.get("reservationfood").toString());
+			dto.setRestdatefood(json.get("restdatefood")==null? "" : json.get("restdatefood").toString());
+			dto.setScalefood(json.get("scalefood")==null? "" : json.get("scalefood").toString());
+			dto.setSeat(json.get("seat")==null? "" : json.get("seat").toString());
+			dto.setSmoking(json.get("smoking")==null? "" : json.get("smoking").toString());
+			dto.setTreatmenu(json.get("treatmenu")==null? "" : json.get("treatmenu").toString());
 		}
 		
-		return null;
+		return dto;
 	}
 	
 }

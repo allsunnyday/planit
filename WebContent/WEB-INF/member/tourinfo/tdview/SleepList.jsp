@@ -109,28 +109,49 @@ max-width: 100%;
 <!-- *************************************** cat2 선택  **************************************** -->
 				<div data-type="multiple" class="form-group" style="display: inline-block;" >
 					<ul class="jetmenu ">
-						<li><button name="all" value="" class="button ov" type="button">전체</button></li>
+						<li><button name="all" value="" class="go-button ov" type="button" >전체</button></li>
 						<li>
-						<button name="category" value="A01" class="button " type="button">자연</button>
+						<button name="category" value="H0101" class="go-button " type="button">관광호텔</button>
+						
 						</li>
 						<li>
-						<button name="category" value="A03" class="button " type="button">체험</button>
+						<button name="category" value="H0103" class="go-button " type="button">콘도미니엄</button>
+						
 						</li>
 						<li>
-						<button name="category" value="B01" class="button " type="button">문화시설</button>
+						<button name="category" value="H0102" class="go-button " type="button">가족호텔</button>
+						
 						</li>
 						<li>
-						<button name="category" value="DDD" class="button " type="button">레포츠</button>
+						<button name="category" value="H0104" class="go-button " type="button">유스호스텔</button>
+						
 						</li>
 						<li>
-						<button name="category" value="A02" class="button " type="button">역사</button>
+						<button name="category" value="H0107" class="go-button " type="button">여관&모텔</button>
+						
 						</li>
 						<li>
-						<button name="category" value="J02" class="button " type="button">테마</button>
+						<button name="category" value="H0105" class="go-button " type="button">펜션</button>
+						
+						</li>
+                                                 <li>
+						<button name="category" value="kq" class="go-button " type="button" title="Korea Quality(한국관광품질인증)">KQ품질인증</button>
+						
 						</li>
 						<li>
-						<button name="category" value="E01" class="button " type="button">쇼핑</button>
+						<button name="category" value="goodstay" class="go-button " type="button">굿스테이</button>
+						
 						</li>
+						<li>
+						<button name="category" value="hanok" class="go-button " type="button">한옥스테이</button>
+						
+						</li>
+						<li>
+						<button name="category" value="benikia" class="go-button " type="button">베니키아</button>
+						
+						</li>
+						
+
 
 					</ul>
 					
