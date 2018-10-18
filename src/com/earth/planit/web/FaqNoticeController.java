@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.realm.AuthenticatedUserRealm;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -43,8 +44,6 @@ public class FaqNoticeController {
 		
 		return "tourinfo/tdview/Qna.theme";
 	}
-	
-	@ResponseBody
 	@RequestMapping(value="/planit/search/tourinfo/askQna.it",method=RequestMethod.POST)
 	public String goQna(@RequestParam Map map,Model model,
 			@ModelAttribute("id") String id,
@@ -72,6 +71,7 @@ public class FaqNoticeController {
 		dto.setStatus(status);
 		dto.setStep(step);
 		dto.setDepth(depth);
+		
 		
 		
 		

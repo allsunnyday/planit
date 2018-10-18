@@ -63,7 +63,7 @@
 	            <p>물어보세요</p>
 	                   
             <div id="normalModal" class="modal fade">
-             <form method="post" action="<c:url value='/planit/search/tourinfo/askQna.it'/>">
+             
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
@@ -71,23 +71,21 @@
 			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			        <h4 class="modal-title">질문창</h4>
 			      </div>
-			      <div class="modal-body">
-			      <textarea cols="100" rows="2" placeholder="제목을 입력하세요"></textarea>
-			      <textarea cols="100" rows="10" placeholder="내용을 입력하세요"></textarea>
-<!-- 			        <input style="height:200px" type="text"  class="form-control" > -->
-			      </div>
+			      <form method="post" action="<c:url value='/planit/search/tourinfo/askQna.it'/>">
+				      <div class="modal-body">
+					      <textarea id=title cols="100" rows="2" placeholder="제목을 입력하세요"></textarea>
+					      <textarea id=content cols="100" rows="10" placeholder="내용을 입력하세요"></textarea>
+				      </div>
+			      </form>
 			      <div class="modal-footer">
-			      <button type="button" class="btn btn-default" disabled="disabled" data-dismiss="modal">보내는 날짜 : 2018-10-16</button>
+			        <button type="button" class="btn btn-default" disabled="disabled" data-dismiss="modal">보내는 날짜 : 2018-10-16</button>
 			        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			        <button type="submit" class="btn btn-primary">전송</button>
-			     
-			    
 			 </div>
-			      
-			    </div><!-- /.modal-content -->
-			  </div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
-			 </form> 
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+			
 			</div>
 <!-- **************************************** 
 				모달창 끝
