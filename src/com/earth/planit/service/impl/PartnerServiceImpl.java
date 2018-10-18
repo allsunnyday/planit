@@ -53,6 +53,7 @@ public class PartnerServiceImpl implements PartnerService{
 	}
 	@Override
 	public int getTotalRecordforRequest(Map map) {
+	
 		return dao.getTotalRecordforRequest(map);
 
 	}
@@ -79,6 +80,7 @@ public class PartnerServiceImpl implements PartnerService{
 	@Override
 	public PartnerRoomDTO partnerRoomView(Map map) {
 		// TODO Auto-generated method stub
+		System.out.println("여기까지오냐");
 		return dao.partnerRoomView(map);
 	}
 

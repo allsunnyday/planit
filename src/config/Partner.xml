@@ -133,7 +133,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 			 VALUES
 	        (
-	            'test_10',
+	            'test_11',
 	            #{p_id},
 	            #{roomtitle}
 	        <if test="roomsize1 != null">
@@ -237,7 +237,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 	</insert>
 	<select id="PartnerRoomView" parameterType="java.util.Map" resultType="PartnerRoomDTO">
-		Select * from p_product where roomcode='test_10'
+		Select * from p_product where roomcode=#{roomcode}
 	</select>
 	<select id="PartnerRoomList" parameterType="java.util.Map" resultType="PartnerRoomDTO">
 		Select * from p_product where p_id=#{p_id}

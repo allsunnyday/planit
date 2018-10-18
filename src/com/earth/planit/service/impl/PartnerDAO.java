@@ -56,7 +56,7 @@ public class PartnerDAO implements PartnerService{
 	
 	@Override
 	public PartnerRoomDTO partnerRoomView(Map map) {
-		// TODO Auto-generated method stub
+		System.out.println("오긴오냐");
 		return template.selectOne("PartnerRoomView",map);
 	}
 	
