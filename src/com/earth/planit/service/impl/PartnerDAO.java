@@ -40,11 +40,28 @@ public class PartnerDAO implements PartnerService{
 	}
 //[기업회원 Room 등록용]
 	@Override
-	public int roomResist(PartnerRoomDTO dto) {
+	public int roomResist(Map map) {
 		// TODO Auto-generated method stub
-		return template.insert("PartnerRoomResist",dto);
+		System.out.println("여기까지 오냐1");
+		System.out.println(map.get("p_id"));
+		return template.insert("PartnerRoomResist",map);
 	}
 	
+	@Override
+	public List<PartnerRoomDTO> partnerRoomList(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("PartnerRoomList",map);
+	}
+	
+	@Override
+	public PartnerRoomDTO partnerRoomView(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("PartnerRoomView",map);
+	}
+	
+	
+	
+//지인	
 	public int getTotalRecordforRequestTotal(Map map) {
 		return template.selectOne("RequestTotal", map);
 	}
@@ -57,5 +74,7 @@ public class PartnerDAO implements PartnerService{
 	public List<PartnerDTO> selectRequestList(Map map) {
 		return template.selectList("PartnerRequestList", map);
 	}
+
+
 
 }

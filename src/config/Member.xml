@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 <!-- 마이페이지-프로필업데이트 -->	
 	<update id="MemberUpdateProfile" parameterType="java.util.Map" >
-		UPDATE member SET profile=${profile}
+		UPDATE member SET profile=#{profile} where id=#{id}
 	</update>
 	
 <!-- 선호도조사 -->

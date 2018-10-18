@@ -40,9 +40,10 @@ public class PartnerServiceImpl implements PartnerService{
 	}
 
 	@Override
-	public int roomResist(PartnerRoomDTO dto) {
+	public int roomResist(Map map) {
 		// TODO Auto-generated method stub
-		return dao.roomResist(dto);
+		System.out.println(map.get("p_id"));
+		return dao.roomResist(map);
 	}
 	
 	public int getTotalRecordforRequestTotal(Map map) {
@@ -56,6 +57,18 @@ public class PartnerServiceImpl implements PartnerService{
 	
 	public int getTotalRecordforReservation(Map map) {
 		return dao.getTotalRecordforReservation(map);
+	}
+
+	@Override
+	public PartnerRoomDTO partnerRoomView(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerRoomView(map);
+	}
+
+	@Override
+	public List<PartnerRoomDTO> partnerRoomList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerRoomList(map);
 	}
 
 }

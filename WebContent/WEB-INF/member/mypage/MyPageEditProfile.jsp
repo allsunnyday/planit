@@ -56,7 +56,7 @@ height: 100%; */
 		<!-- ------------------------------- -->
 		<!--        start Edit first         -->
 		<!-- ------------------------------- -->
-		<form class="form-horizontal" action="<c:url value='/planit/mypage/editsave.it'/>" method="post">
+		<form class="form-horizontal" action="<c:url value='/planit/mypage/editsave.it'/>" method="post" enctype="multipart/form-data">
 
 			<div class="row" id="ME-first">
 				<!--  프로필 들어갈 div -->
