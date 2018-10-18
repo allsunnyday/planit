@@ -384,9 +384,10 @@
 	var walkkTime=0; // 사람이 걷는 거리의 소요 시간
 	var carTime=0; // 자동차가 이동하는데 소요 되는 시간 
 	var plancase = 0; // 여행 상세일정 전체 카운트?
-	var removemarking= []; // 사용자가 플랜으로 등록한 마커를 삭제하기 위한 함수
-	var removepolyline; // 사용자가 플랜으로 등록한 마커삭제시 라인을 삭제하기위한 함수 
+	var planmarking= []; // 사용자가 플랜으로 등록한 마커를 삭제하기 위한 함수
+	var repolyline=[]; // 사용자가 플랜으로 등록한 마커삭제시 라인을 삭제하기위한 함수 
 	var days = document.getElementById("days").value; // location 에서 지정한 여행 일자 얻기
+	var polyline ; // 라인정보 담는 변수
 	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	function planplusActionplus(){
 		console.log("planplusActionplus() : 이상무");
@@ -395,34 +396,23 @@
 		console.log(linePath.length); // 마커 좌표가 배열로 추가 되는지 확인
 		//plancase ++; // 여행일정 추가시 카운트 증가		
 		//routeInfoPlusAction(plancase); // 버튼 클릭시 상세 여행일정에 추가 되는 함수		
+		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */		
+		planmarkingsave();
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
-		// 마커 이미지의 이미지 주소입니다
-		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 		    
-		for (var i = 0; i < positions.length; i ++) {		    
-		    // 마커 이미지의 이미지 크기 입니다
-		    var imageSize = new daum.maps.Size(24, 35); 		    
-		    // 마커 이미지를 생성합니다    
-		    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 		    
-		    // 마커를 생성합니다
-		    var marking = new daum.maps.Marker({
-		        map: map, // 마커를 표시할 지도
-		        position: positions[i].latlng, // 마커를 표시할 위치
-		        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-		        image : markerImage // 마커 이미지 
-		    });
-		    removemarking.push(marking); // 삭제를 위한 마킹 복사
-		}
 		
 		// 지도에 표시할 선을 생성합니다
-		var polyline = new daum.maps.Polyline({
+		polyline = new daum.maps.Polyline({
 		    path: linePath, // 선을 구성하는 좌표배열 입니다
 		    strokeWeight: 5, // 선의 두께 입니다
 		    strokeColor: '#FF5E00', // 선의 색깔입니다
 		    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-		    strokeStyle: 'solid' // 선의 스타일입니다
+		    strokeStyle: 'solid', // 선의 스타일입니다
+		    endArrow:true
 		});
-        removepolyline = polyline; // 삭제를 위한 라인 복사
-		
+        repolyline.push(polyline); // 삭제를 위한 라인 복사
+       console.log("polyline======"+polyline);
+        
+        
 		/* *****************사람및 자동차가 움직이는 시간 계산 ***************** */		
 		if(Math.round(polyline.getLength() ==0)){
 			distance = Math.round(polyline.getLength());
@@ -449,6 +439,33 @@
 	}
 	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	
+	
+	
+	
+	
+	/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
+	function planmarkingsave(){
+		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 		    
+		for (var i = 0; i < positions.length; i ++) {		    
+		    // 마커 이미지의 이미지 크기 입니다
+		    var imageSize = new daum.maps.Size(24, 35); 		    
+		    // 마커 이미지를 생성합니다    
+		    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 		    
+		    // 마커를 생성합니다
+		    var marking = new daum.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position: positions[i].latlng, // 마커를 표시할 위치
+		        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+		        image : markerImage // 마커 이미지 
+		    });
+		    planmarking.push(marking); // 삭제를 위한 마킹 복사
+		}
+	}
+	/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
+	
+	
+	
+	
 	/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */	
 	var diveplus; // 여행계획 추가 다이브 번호 생성
 	function routeInfoPlusAction(diveplus){
@@ -456,7 +473,7 @@
 		diveplus = plancase-1;
 		if(plancase == 0){
 			//diveplus=0; // 여행계획 추가 다이브 번호 생성
-/* 			content ='';
+			/*content ='';
 			content +=  '<div id="nocityrute" style="background-color: cyan; ">';
 				content += '<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>';
 			content +='</div>'; */
@@ -464,7 +481,7 @@
 		if(plancase != 0){		
 			$('#nocityrute').remove();
 			content ='';
-			content +='<div id="planroute_'+diveplus+'" class="planroute" style="height: 105px; width:100%;">';
+			content +='<div id="" class="planroute_'+diveplus+'" style="height: 105px; width:100%;">';
 				content += '<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="margin-top:15px; height:auto">';					
 					content += '<div class="btn-group" style="height: auto; border: 4px solid #3ad195; padding: 4px;">';
 						content += '<a href="" id="" class="dmbutton dropdown-toggle" data-toggle="dropdown" style="color:black;"> 일차 <span id="caret" class="caret"></span></a>';
@@ -482,7 +499,7 @@
 					content += '<div style="float:left; width: auto; display:block; margin-top: 8px;">';
 						content += '<div class="text-left">';
 							content += '<label>지역:</label>&nbsp;<font>'+keyword+'</font><br/>';
-							content += '<label>관광지: </label><font class="">'+ document.getElementById('plantitle').title +'</font>&nbsp;<a class="btnDel" href="javascript:" onclick="deletePlanRoute('+diveplus+')" id="deletePlanRoute" >';
+							content += '<label>관광지: </label><font class="">'+ document.getElementById('plantitle').title +'</font>&nbsp;<a class="btnDel deletePlanRoute_'+diveplus+'" href="javascript:" onclick="deletePlanRoute('+diveplus+')" id=""  title="'+diveplus+'" >';
 							content += '<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a><br/>';//<input type="hidden" id="deleteplanroute">
 							content += '<label> 거리: </label>&nbsp;<font>'+distance+'m</font> ';
 							if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄							
@@ -503,7 +520,7 @@
 		}
 		$('#cityroute').append(content);
 		console.log('diveplus(1) '+ diveplus + '// plancase(1) '+ plancase);
-		removepolyline.setMap(null);
+		//polyline.setMap(null);
 		/*  */
 		
 		/*  */
@@ -511,24 +528,43 @@
 	/* ************* 추가 버튼 클릭시 추가 되는 함수 종료 ************** */	
 	
 	/* **************** plan route div 삭제 함수 시작 ***************** */
-	function deletePlanRoute(diveplus){		
-		$('#planroute_'+diveplus).remove(); // 해당 다이브 삭제
+	function deletePlanRoute(diveplus){
+		if(diveplus == plancase){ diveplus = plancase-1; }		
+		var diveplusFortitle = $('.deletePlanRoute_'+diveplus).attr('title');
+		if(diveplus > plancase) { diveplusFortitle = plancase-1; diveplus = diveplusFortitle;}
+		console.log('diveplus(2) '+ diveplus + '//plancase(2) '+ plancase+"//diveplusFortitle※: "+ diveplusFortitle);
+		//console.log("linePath: "+ linePath[diveplusFortitle] + " positions: "+ positions[diveplusFortitle] + " planmarking: "+ planmarking[diveplusFortitle]);
 		
-		console.log('diveplus(2) '+ diveplus + '// plancase(2) '+ plancase); //<<<<<<<
-		console.log("linePath: "+ linePath[diveplus] + " positions: "+ positions[diveplus] + " removemarking: "+ removemarking[diveplus]);
-		//console.log($('#planroute_'+(diveplus+1)).children('#deletePlanRoute').attr('onclick'));
-		
-		linePath.splice(diveplus, 1); // 삭제한 여행일정 라인정보 삭제		
+		polyline.setMap(null);
+		for(var i=0; i<planmarking.length; i++){
+			planmarking[i].setMap(null);
+			
+		}
+		console.log("positions전: "+positions.length+"//positions[diveplus]: "+ positions[diveplus].title);
 		positions.splice(diveplus, 1);//좌표 삭제
-		removemarking[diveplus].setMap(null); // 지도에 표시된 마커 삭제		    
-		removemarking.splice(diveplus, 1); // 마커가 등록된 정보 삭제		
-		removepolyline.setMap(null);
-		removepolyline.setMap(map); 
+		//polyline.setMap(null);//그려진 라인 삭제
+		linePath.splice(diveplus, 1);//라인정보삭제
+		console.log("positions후: "+positions.length);		
+		/* var polyline = new daum.maps.Polyline({
+		    path: linePath, // 선을 구성하는 좌표배열 입니다
+		    strokeWeight: 5, // 선의 두께 입니다
+		    strokeColor: '#FF5E00', // 선의 색깔입니다
+		    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		    strokeStyle: 'solid' // 선의 스타일입니다
+		}); */
+		planmarkingsave();//기존 마커 재등록
+		
+				
+		
+			
 		
 		
-		plandivCountdown(diveplus) // 다이브에 부여 한 넘버를 가져감.
+		
+		//diveplus = plancase-1;
+		$('.planroute_'+diveplusFortitle).remove(); // 해당---------------- 다이브 삭제
+		plandivCountdown(diveplus, diveplusFortitle) // 다이브에 부여 한 넘버를 가져감.
 		plancase--;
-		diveplus = plancase-1;
+		//diveplus = plancase-1;
 		/* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */
 		if(plancase == 0){
 			content ='';
@@ -541,32 +577,22 @@
 	}
 	
 	/* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
-	function plandivCountdown(diveplus){
-		console.log('diveplus(3)== '+ diveplus + '// plancase(3)== '+ plancase);// 0 / 2 
-		for(var i=diveplus; i<plancase; i++){									//i=0; i < 2; i++
-			var redivcount= $('#planroute_'+(i+1));
-			var recount = $('#deletePlanRoute'+(i+1));
+	function plandivCountdown(diveplusFortitle){
+		console.log('diveplus(3)== '+ diveplus + '//plancase(3)== '+ plancase +'//title!! '+diveplusFortitle); 
+		for(var i=diveplusFortitle; i<plancase; i++){									
+			var redivcount= $('.planroute_'+(i+1));
+			var recount = $('.deletePlanRoute_'+(i+1));
 			if(redivcount != null){
 				if(i >= 0){
-					redivcount.attr('id','planroute_'+i);//id 재부여
-					console.log(recount);
-					console.log(recount.selector);		
-					//recount.attr('onclick', 'deletePlanRoute('+i+')');
+					redivcount.attr('class','planroute_'+i);//id 재부여
+					recount.attr('title',i); // title 재부여
+					recount.attr('class', 'btnDel deletePlanRoute_'+i);
 				}
 			}
 			else {continue;}
-		}
-		var ttest = document.getElementsByClassName('planroute');
-		console.log('ttest: '+ttest);
-		$('.planroute > a').change(function() {
-			for(var i=0; i<plancase; i++){
-				 $('#deletePlanRoute'+i).attr('onclick', 'deletePlanRoute'+i);
-			}
-		})
-		
-		console.log('plancase 너 감소되냐?' + plancase);  //2
-		console.log('diveplus 넌 몇이냐??' + diveplus); //0 << 너가문제구나 어떻게 해줘야하는건가
-		//updatedivnumver++;
+		}		
+		console.log('plancase: '+plancase+'/diveplus: '+diveplus+'/diveplusFortitle: '+diveplusFortitle);
+		diveplus = plancase-1
 	}
 	/* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
 	/* **************** plan route div 삭제 함수 종료 ***************** */
