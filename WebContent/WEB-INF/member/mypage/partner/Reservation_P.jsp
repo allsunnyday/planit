@@ -346,6 +346,8 @@ table.table .avatar {
 	/* 	align:right; */
 	text-indent: 10px;
 }
+
+.footer {position:absolute;bottom:0; width:100%;}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -526,9 +528,9 @@ table.table .avatar {
 						</tr>
 					</thead>
 					<tbody>
-					<c:if test="${empty requestScope.list}" var="isEmpty">
+					<c:if test="${empty list}" var="isEmpty">
 						<tr>
-							<td colspan="4">이벤트를 열어 당신의 상품을 알리는것어떠세요?</td>
+							<td colspan="7" style="text-align: center; font-size: large; font-weight: bold;">이벤트를 열어 당신의 상품을 알리는것어떠세요?</td>
 						</tr>
 					</c:if>
 					<c:if test="${not isEmpty}">
@@ -543,9 +545,9 @@ table.table .avatar {
 											class="avatar" alt="Avatar">${record.name}</a></td>
 									<td><a
 										href="<c:url value='/mypage/partner/Reservation_detail.it?reservation_id=${record.reservation_id}'/>">
-											${record.room }</a></td>
-									<td>${record.check-in}</td>
-									<td>${record.check-out}</td>
+											${record.roomtitle}</a></td>
+									<td>${record.checkin}</td>
+									<td>${record.checkout}</td>
 									<td><span class="status text-success">&bull;</span>${record.status}</td>
 									<td>${record.bookdate}</td>
 									<td><a href="#editEmployeeModal" class="edit"
@@ -568,7 +570,7 @@ table.table .avatar {
 					<div class="hint-text">
 						Showing <b>5</b> out of <b>${totalRecordCount}</b> entries
 					</div>
-					<div class="row" id="pagination">
+					<div class="row" >
 						<div class="col-md-12">${pagingString}</div>
 					</div>
 				</div>

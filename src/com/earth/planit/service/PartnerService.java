@@ -24,5 +24,16 @@ public interface PartnerService {
 	PartnerDTO selectRequestDetail(Map map);
 
 	List<PartnerDTO> selectReservationList(Map map);
+
+	PartnerDTO selectReservationDetail(Map map);
+	
+	
+	//입력/수정/삭제]
+	int insert(Map map);
+	int delete(PartnerDTO dto);
+	int update(Map map);
+
+	int reply(Map map);
+	
 	
 }

@@ -60,8 +60,31 @@ public class PartnerDAO implements PartnerService{
 	public PartnerDTO selectRequestDetail(Map map) {
 		return template.selectOne("PartnerRequestDetail", map);
 	}
+	@Override
+	public PartnerDTO selectReservationDetail(Map map) {
+		return template.selectOne("PartnerReservationDetail", map);
+	}
 
+	@Override
+	public int insert(Map map) {
+		template.insert("replyUpdate_step", map);
+		int affected = template.update("replyInsert", map);
+		return affected;
+	}
+
+	@Override
+	public int delete(PartnerDTO dto) {
+		return template.delete("replyDelete", dto);
+	}
+
+	@Override
+	public int update(Map map) {
+		return template.update("replyUpdate", map);
+	}
 	
-	
-	
+	@Override
+	public int reply(Map map) {
+		int affected = template.update("replyUpdate", map);
+		return affected;
+	}
 }

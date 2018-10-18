@@ -219,9 +219,21 @@ table.table .avatar {
 	/* 	align:right; */
 	text-indent: 10px;
 }
-
+/* footer가 꺠지는것을 방지하는 css */
 .footer {position:absolute;bottom:0; width:100%;}
 </style>
+<script>
+    $(function() {
+        setInterval(function() {
+            $("#systime").text(new Date());
+        }, 1000);
+    });
+    
+    var submit = function() {//form 안에 정보 전송
+		$('#frm').submit();
+	}
+    
+</script>
 <div class="container-fluid">
 	<div class="col-md-3" style="width: 300px">
 		<div style="padding-top: 50px;">
@@ -299,59 +311,49 @@ table.table .avatar {
 		</div>
 	</div>
 <div class="col-md-9">
-	
 	<div class="container-fluid" style="padding-top: 50px">
 		<div class="table-wrapper">
 		<div class="table-title">
 			<div class="row">
 				<div class="col-sm-4">
-					<h2>Reservation</h2>
+					<h2>${record.name}'s Request</h2>
 				</div>
 				<div class="col-sm-6" style="float: right;">
+					<a onclick="submit();" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Update</span></a>
 					<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"> <span>Delete</span></a>
 				</div>
-
 			</div>
-
 		</div>
 		<!-- table-->
 
-		<table class="table table-striped table-hover table-bordered">
-
-			<tr>
-				<th>번호</th>
-				<td>${record.reservation_id}</td>
-			</tr>
-			<tr>
-				<th>고객 정보</th>
-				<td><a href="#"> <img src="#" class="avatar" alt="Avatar"> ${record.name}</a></td>
-			</tr>
-			<tr>
-				<th>예약 상품</th>
-				<td><a href="#">${record.roomtitle}</a></td>
-			</tr>
-			<tr>
-				<th>체크인</th>
-				<td>${record.checkin}</td>
-			</tr>
-			<tr>
-				<th>체크아웃</th>
-				<td>${record.checkout}</td>
-			</tr>
-			<tr>
-				<th>status</th>
-				<td><span class="status text-success">&bull;</span>${record.status}</td>
-			</tr>
-			<tr>
-				<th>예약 날짜</th>
-				<td>${record.bookdate}</td>
-			</tr>
-			<tr>
-				<th>요청 메세지</th>
-				<td>${record.request}</td>
-			</tr>
-		</table>
-
+		<form action="<c:url value='/mypage/partner/ReplyWrite.it'/>" id="frm">
+			<table class="table table-striped table-hover table-bordered">
+						<input type="hidden" name="ask_no" value="${record.ask_no}" />
+						<tr>
+							<th>고객 정보</th>
+							<td><a href="#" name="name"> <img src="/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> ${record.name}</a></td>
+						</tr>
+						<tr>
+							<th>Title</th>
+							<td><input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요"></td>
+						</tr>
+						<tr>
+							<th>Content</th>
+							<td><textarea rows="10" class="form-control" id="content" name="content" placeholder="고객의 궁금증을 풀어볼까요?">
+			
+			
+			
+			========= ${record.name}님 이 작성한 글  ============
+			${record.content}	
+							</textarea></td>
+						</tr>
+						<tr>
+							<th>Postdate</th>
+							<td id="systime" name="replydate"></td>
+						</tr>
+			</table>
+		</form>
+		
 
 		<!--
 ***************************************************************************************
@@ -374,15 +376,15 @@ Delete Modal
 								</p>
 							</div>
 							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-danger" value="Delete">
+								<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"> 
+									<a href="<c:url value='/mypage/partner/ReplyDelete.it?ask_no=${record.ask_no}'/>">
+									<input type="button" class="btn btn-danger" value="Delete"></a>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-</div>
+		</div>
 		</div>
 		</div>
 	</div>

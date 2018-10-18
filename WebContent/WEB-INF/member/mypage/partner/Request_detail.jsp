@@ -219,7 +219,13 @@ table.table .avatar {
 	/* 	align:right; */
 	text-indent: 10px;
 }
+/* footer가 꺠지는것을 방지하는 css */
+.footer {position:absolute;bottom:0; width:100%;}
 </style>
+<script>
+
+
+</script>
 <div class="container-fluid">
 	<div class="col-md-3" style="width: 300px">
 		<div style="padding-top: 50px;">
@@ -306,44 +312,40 @@ table.table .avatar {
 					<h2>${record.name}'s Request</h2>
 				</div>
 				<div class="col-sm-6" style="float: right;">
+					<a href="<c:url value='/mypage/partner/ReplyWrite.it?ask_no=${record.ask_no}'/>" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Write Reply</span></a>
 					<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"> <span>Delete</span></a>
 				</div>
-
 			</div>
-
 		</div>
 		<!-- table-->
 
 		<table class="table table-striped table-hover table-bordered">
-
-			<tr>
-				<th>번호</th>
-				<td>${record.ask_no}</td>
-			</tr>
-			<tr>
-				<th>고객 정보</th>
-				<td><a href="#"> <img src="/examples/images/avatar/2.jpg"
-						class="avatar" alt="Avatar"> ${record.id}
-				</a></td>
-			</tr>
-			<tr>
-				<th>Title</th>
-				<td>${record.title}</td>
-			</tr>
-			<tr>
-				<th>Content</th>
-				<td>${record.content} </td>
-			</tr>
-			<tr>
-				<th>status</th>
-				<td><span class="status text-success">&bull;</span> ${record.status}</td>
-			</tr>
-			<tr>
-				<th>Postdate</th>
-				<td>${record.askdate}</td>
-			</tr>
+				<tr>
+					<th>번호</th>
+					<td>${record.ask_no}</td>
+				</tr>
+				<tr>
+					<th>고객 정보</th>
+					<td><a href="#"> <img src="/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> ${record.id}	</a></td>
+				</tr>
+				<tr>
+					<th>Title</th>
+					<td>${record.title}</td>
+				</tr>
+				<tr>
+					<th>Content</th>
+					<td>${record.content} </td>
+				</tr>
+				<tr>
+					<th>status</th>
+					<td><span class="status text-success">&bull;</span> ${record.status}</td>
+				</tr>
+				<tr>
+					<th>Postdate</th>
+					<td>${record.askdate}</td>
+				</tr>
 		</table>
-
+		
 
 		<!--
 ***************************************************************************************
@@ -367,8 +369,9 @@ Delete Modal
 							</div>
 							<div class="modal-footer">
 								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-danger" value="Delete">
+									data-dismiss="modal" value="Cancel"> 
+									<a href="<c:url value='/mypage/partner/ReplyDelete.it?ask_no=${record.ask_no}'/>"><input
+									type="button" class="btn btn-danger" value="Delete"> </a>
 							</div>
 						</form>
 					</div>

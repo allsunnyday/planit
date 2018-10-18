@@ -343,6 +343,8 @@ table.table .avatar {
 	/* 	align:right; */
 	text-indent: 10px;
 }
+
+.footer {position:absolute;bottom:0; width:100%;}
 </style>
 <script type="text/javascript">
 	
@@ -451,8 +453,8 @@ table.table .avatar {
 						</div>
 
 						<div class="teamskills">
-							<div id="Partner-First-Parter-RoomStatus" style="width: 90%;">
-								<table id="Partner-First-Roomtable" style="width: 90%;">
+							<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
+								<table id="Partner-First-Roomtable" style="width: 100%;">
 									<tr>
 										<td>Total Room</td>
 										<td>00</td>
@@ -512,8 +514,8 @@ table.table .avatar {
 							<label>Status</label> 
 							<select class="form-control" id="select_request">
 								<option>ALL</option>
-								<option>Replied</option>
-								<option>Waited</option>
+								<option>replied</option>
+								<option>waited</option>
 							</select>
 						</div>
 						<span class="filter-icon"><i class="fa fa-filter"></i></span>
@@ -537,12 +539,13 @@ table.table .avatar {
 				<tbody>
 					<c:if test="${empty list}" var="isEmpty">
 						<tr>
-							<td colspan="4">사용자에게 더 어필해주세요 !</td>
+							<td colspan="7" style="text-align: center; font-size: large; font-weight: bold;">사용자에게 더 어필해주세요 !</td>
 						</tr>
 					</c:if>
 					<c:if test="${not isEmpty}">
 						<c:forEach var="record" items="${list}" varStatus="loop">
 							<tr data-status="${record.status}">
+								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
 								<td><span class="custom-checkbox"> 
 								<input type="checkbox" id="checkbox${loop.count}" name="options[]" value="1">
 										<label></label>
@@ -554,10 +557,7 @@ table.table .avatar {
 									 >${record.title}</a></td>
 								<td>${record.askdate}</td>
 								<td><span class="status text-success">&bull;</span>${record.status}</td>
-								<td><a href="#" class="edit"
-									data-toggle="modal"><i class="material-icons"
-										data-toggle="tooltip" title="Reply">&#xE254;</i></a> 
-										<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+								<td><a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
 										class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 								</td>
 							</tr>
@@ -586,7 +586,7 @@ Delete Modal
 			<div id="deleteEmployeeModal" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
-						<form>
+						<form action="<c:url value='/mypage/partner/ReplyDelete.it?ask_no=${one.ask_no}'/>">
 							<div class="modal-header">
 								<h4 class="modal-title">Delete Client</h4>
 								<button type="button" class="close" data-dismiss="modal"
@@ -601,71 +601,14 @@ Delete Modal
 							<div class="modal-footer">
 								<input type="button" class="btn btn-default"
 									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-danger" value="Delete">
+									type="button" class="btn btn-danger" value="Delete">
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			<!--
-***************************************************************************************
-Edit Modal
-***************************************************************************************
-  -->
-			<!-- <div id="editEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Write Reply</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-
-								<div class="form-group">
-									<label>Content</label>
-									<textarea style="height: 300px;" class="form-control" required></textarea>
-								</div>
-
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-info" value="Save">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div> -->
-			<!-- **************
-			detail modal
-			************ -->
-
-			<!-- <div id="detailEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Request</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label>Content</label>
-									<textarea class="form-control" readonly="readonly" id="detailcontent"></textarea>
-								</div>
-
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"> 
-								<a href="#editEmployeeModal"><input type="submit" class="btn btn-info" value="Reply"></a>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div> -->
+		
+			
 		</div>
 
 	</div>

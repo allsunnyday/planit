@@ -58,6 +58,31 @@ public class PartnerServiceImpl implements PartnerService{
 	public List<PartnerDTO> selectReservationList(Map map) {
 		return dao.selectReservationList(map);
 	}
+	@Override
+	public PartnerDTO selectReservationDetail(Map map) {
+		return dao.selectReservationDetail(map);
+	}
+
+	/* reply용 crud */
+	@Override
+	public int insert(Map map) {
+		return dao.insert(map);
+	}
+
+	@Override
+	public int delete(PartnerDTO dto) {
+		return dao.delete(dto);
+	}
+
+	@Override
+	public int update(Map map) {
+		return dao.update(map);
+	}
+
+	@Override
+	public int reply(Map map) {
+		return dao.reply(map);
+	}
 	
 
 }
