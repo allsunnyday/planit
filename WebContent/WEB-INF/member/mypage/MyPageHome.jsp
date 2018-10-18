@@ -167,7 +167,7 @@ display: inline-block;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
           <li><a href="index.html">My Page</a></li>
-          <li>${userid }</li>
+          <li>${id }</li>
         </ul>
         <h2>MY Page Home</h2>
       </div>
@@ -194,14 +194,19 @@ display: inline-block;
         <div>
           <div class="teammembers">
             <div class="he-wrap tpl2">
+            	<c:if test="${not empty memberRecord.profile}" var="result">
+            	<img src="<c:url value='/Upload/Member/${memberRecord.profile}'/>" alt="프로필 사진">
+            	</c:if>
+            	<c:if test="${not result}">
               <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
+              </c:if>
               <div class="he-view">
             
               </div>
             </div>
             <!-- he wrap -->
             <div class="teammembers-meta">
-              <h4>${sessionScope.userid}</h4>
+              <h4>${sessionScope.id}</h4>
             </div>
             <div id="MY-first-1-self-detail">
                      <p>
@@ -209,9 +214,7 @@ display: inline-block;
                         <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
                         <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
                            님의&nbsp자기소개입니다</span>
-                     <p>어서오세요, ${userid }님!
-                     멋진 프로필을 등록해 
-                     자신만의 개성을 나타내보세요!
+                     <p>${memberRecord.self}
                      </p>
 
 
@@ -428,7 +431,8 @@ display: inline-block;
          <!--  내가 작성한 플래너 들어갈 div -->
          <div id="MY-Second-name">My Review</div>
          <div class="MY-More-Button">
-             <button type="button" class="btn btn-link"><a href="<c:url value='/planit/mypage/detail/Review.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
+             <a href="<c:url value='/planit/mypage/detail/Review.it'/>" class="btn btn-link">
+             <span class="glyphicon glyphicon-plus">더보기 </span></a>
             </div>
          <div id="Second-line">
             <div id="MY-Second-content" class="col-md-12">
@@ -553,7 +557,7 @@ display: inline-block;
          <!--  내가 작성한 플래너 들어갈 div -->
          <div id="MY-Third-name">My Liked</div>
          <div class="MY-More-Button">
-             <button type="button" class="btn btn-link"><a href="<c:url value='/planit/mypage/detail/Liked.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
+             <a href="<c:url value='/planit/mypage/detail/Liked.it'/>" class="btn btn-link" ><span class="glyphicon glyphicon-plus">더보기 </span></a>
             </div>
          <div id="Third-line">
             <div id="Third-content" class="col-md-12">
@@ -607,7 +611,7 @@ display: inline-block;
          <div id="MY-Forth-name">My Q&A</div>
          <div class="MY-More-Button">
          
-             <button type="button" class="btn btn-link" ><a href="<c:url value='/planit/mypage/detail/Q&A.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button> 
+             <a href="<c:url value='/planit/mypage/detail/Q&A.it'/>" class="btn btn-link"><span class="glyphicon glyphicon-plus">더보기 </span></a>
             </div>
          <div id="Forth-line">
             <div id="MY-Forth-content" class="col-md-12">

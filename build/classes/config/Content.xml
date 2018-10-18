@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	*변경사항*
+	mapper 파일의 완전한 경로 . xml은 생략
+	ibatis와는 다르게 id값에 '.'를 사용하지 못함
+ -->
+<mapper namespace="config.Content">
+	<!-- 상세페이지 viewcount -->
+	<update id="ContentUpdateViewcount" parameterType="java.util.Map">
+		update content set viewcount=viewcount+1 where contentid=#{contentid}
+	</update>
+	<!-- 상세페이지 좋아요 누를경우  -->
+	<insert id="contentInsertLikedTour" parameterType="java.util.Map">
+		insert into liked_tour(LIKED_T_ID,ID,CONTENTID)
+		values(SEQ_liked_tour_liked_t_id.nextval,#{id}, #{contentid})
+	</insert>
+	
+	<select id="contentIsAlreadyLiked"  parameterType="java.util.Map" resultType="int">
+		select count(*) from liked_tour where id=#{id} and contentid=#{contentid}
+	</select>
+</mapper>

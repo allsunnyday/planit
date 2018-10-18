@@ -33,7 +33,7 @@ max-width: 100%;
 		</c:choose>
         </li>
         </ul>
-        <h2>PLAN-IT에 등록되어 있는 숙소들</h2>
+        <h2>PLAN-IT에 등록되어 있는 숙소들(총 ${totalRecordCount}개)</h2>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
       </div>
@@ -47,45 +47,160 @@ max-width: 100%;
       <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
 
         <div class="divider"></div>
+	<div class="wrapper text-center">
+			<form id="justAction" action="#" method="GET" name="searchForm" class="form-inline">
+			<div class="form-group" >
+				<select name="areaCode" id="areaCode" class="dmbutton2" title="조회지역" style="display: inline-block;">
+						<option value="">지역선택</option>
+						<option value="">전체</option>
 
-        <nav class="portfolio-filter clearfix">
-          <ul>
-            <li><a href="#" class="dmbutton2" data-filter="*">모두보기(몇개인지 뿌려주기)</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".hotel">호텔</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".motel">여관/모텔</a></li>
-            <li><a href="#" class="dmbutton2" data-filter=".pension">펜션</a></li>
-          </ul>
-        </nav>
+						<option value="1" >서울</option>
+						
 
+						<option value="2" >인천</option>
+
+						<option value="3" >대전</option>
+						
+
+						<option value="4" >대구</option>
+						
+
+						<option value="5" >광주</option>
+						
+
+						<option value="6" >부산</option>
+						
+
+						<option value="7" >울산</option>
+						
+
+						<option value="8" >세종특별자치시</option>
+						
+
+						<option value="31" >경기도</option>
+						
+
+						<option value="32" >강원도</option>
+						
+
+						<option value="33" >충청북도</option>
+						
+
+						<option value="34" >충청남도</option>
+						
+
+						<option value="35" >경상북도</option>
+						
+
+						<option value="36" >경상남도</option>
+						
+
+						<option value="37" >전라북도</option>
+						
+
+						<option value="38" >전라남도</option>
+						
+
+						<option value="39" >제주도</option>
+						
+
+				</select>
+				</div>
+<!-- *************************************** cat2 선택  **************************************** -->
+				<div data-type="multiple" class="form-group" style="display: inline-block;" >
+					<ul class="jetmenu ">
+						<li><button name="all" value="" class="go-button ov" type="button" >전체</button></li>
+						<li>
+						<button name="category" value="H0101" class="go-button " type="button">관광호텔</button>
+						
+						</li>
+						<li>
+						<button name="category" value="H0103" class="go-button " type="button">콘도미니엄</button>
+						
+						</li>
+						<li>
+						<button name="category" value="H0102" class="go-button " type="button">가족호텔</button>
+						
+						</li>
+						<li>
+						<button name="category" value="H0104" class="go-button " type="button">유스호스텔</button>
+						
+						</li>
+						<li>
+						<button name="category" value="H0107" class="go-button " type="button">여관&모텔</button>
+						
+						</li>
+						<li>
+						<button name="category" value="H0105" class="go-button " type="button">펜션</button>
+						
+						</li>
+                                                 <li>
+						<button name="category" value="kq" class="go-button " type="button" title="Korea Quality(한국관광품질인증)">KQ품질인증</button>
+						
+						</li>
+						<li>
+						<button name="category" value="goodstay" class="go-button " type="button">굿스테이</button>
+						
+						</li>
+						<li>
+						<button name="category" value="hanok" class="go-button " type="button">한옥스테이</button>
+						
+						</li>
+						<li>
+						<button name="category" value="benikia" class="go-button " type="button">베니키아</button>
+						
+						</li>
+						
+
+
+					</ul>
+					
+				</div>
+				<div class="form-group" >
+					<button type="submit" class="dmbutton2" value="조회">조회</button>
+					<a class="dmbutton2 ov" href="#" onclick="">조회순</a>
+                	<a class="dmbutton2" href="#" onclick="">제목순</a>
+				</div>
+				
+				<!-- <input type="hidden" name="gotoPage" value=""/>
+				<input type="hidden" name="listType" value="cdesc"/>
+				<input type="hidden" name="cid" value=""/>
+				<input type="hidden" name="out_service" value=""/> -->
+			</form>
+		</div>
+<div class="divider"></div>
         <div class="portfolio-centered">
           <div class="recentitems portfolio">
-<!--*********************************** 
- 		각 숙박 업소 정보
- ***********************************-->
+<!--*********************************** 각 숙박 업소 정보 ***********************************-->
  <c:forEach var="record" items="${sleep}">
-            <div id="tourimage" class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 hotel">
-						<div class="he-wrap tpl6 market-item">
-							<img src='${record.firstimage}' alt="">
-							<div class="he-view">
-								<div class="bg a0" data-animate="fadeIn">
-									<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
-									<a data-rel="" 
-									href="<c:url value='/planit/search/list/SleepView.it'/> "
-										class="dmbutton a2" data-animate="bounceInLeft">
-										
-										<i class="fa fa-search"></i></a>
-									<div class="portfolio_category text-center a2"
-										data-animate="fadeIn"></div>
-									<!-- portfolio_category -->
-								</div>
-								<!-- he bg -->
-							</div>
-							<!-- he view -->
-						</div>
-						<!-- he wrap -->
-						<h3 class="title">${record.title}</h3>
-						문의: {record.tel}</p>
+       <div id="tourimage" class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 ${record.cat3}">
+			<div class="he-wrap tpl6 market-item">
+				<c:if test="${empty record.firstimage }">
+		              <img src="<c:url value='/Upload/Tour/tempimage.png'/>" alt="">
+		              </c:if>
+		              <c:if test="${not empty record.firstimage }">
+		              <img src='${record.firstimage}' alt="">
+		              </c:if>
+				<div class="he-view">
+					<div class="bg a0" data-animate="fadeIn">
+						<h3 class="big a1" data-animate="fadeInDown">자세히 보기</h3>
+						<a data-rel="" 
+						href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}&contenttype=32'/> "
+							class="dmbutton a2" data-animate="bounceInLeft">
+							
+							<i class="fa fa-search"></i></a>
+						<div class="portfolio_category text-center a2"
+							data-animate="fadeIn"></div>
+						<!-- portfolio_category -->
 					</div>
+					<!-- he bg -->
+				</div>
+				<!-- he view -->
+			</div>
+	<!-- he wrap -->
+	<h3 class="title">${record.title}</h3>
+	문의: ${record.tel}</p>
+</div>
 
 </c:forEach>
 

@@ -210,44 +210,10 @@ table.table .avatar {
 .text-danger {
 	color: #ff5b5b;
 }
-
+/* 페이징 정렬 */
 .pagination {
-	float: right;
+	float: center;
 	margin: 0 0 5px;
-}
-
-.pagination li a {
-	border: none;
-	font-size: 13px;
-	min-width: 30px;
-	min-height: 30px;
-	color: #999;
-	margin: 0 2px;
-	line-height: 30px;
-	border-radius: 2px !important;
-	text-align: center;
-	padding: 0 6px;
-}
-
-.pagination li a:hover {
-	color: #666;
-}
-
-.pagination li.active a {
-	background: #03A9F4;
-}
-
-.pagination li.active a:hover {
-	background: #0397d6;
-}
-
-.pagination li.disabled i {
-	color: #ccc;
-}
-
-.pagination li i {
-	font-size: 16px;
-	padding-top: 6px
 }
 
 .hint-text {
@@ -255,6 +221,7 @@ table.table .avatar {
 	margin-top: 10px;
 	font-size: 13px;
 }
+
 /* Modal styles */
 .modal .modal-dialog {
 	max-width: 400px;
@@ -376,6 +343,8 @@ table.table .avatar {
 	/* 	align:right; */
 	text-indent: 10px;
 }
+
+.footer {position:absolute;bottom:0; width:100%;}
 </style>
 <script type="text/javascript">
 	
@@ -419,8 +388,6 @@ table.table .avatar {
 					console.log($('#findname_request').val());
 				});
 				
-				
-				
 				// 모달창을 띄우기 전에 데이터 세팅  
 				$('.askview').click(function(){
 					console.log('clicked='+$(this).attr('title'));
@@ -441,8 +408,6 @@ table.table .avatar {
 					$(this).html(text);
 				});
 			});
-	
-		
 </script>
 <div class="container-fluid">
 	<div class="col-md-3" style="width: 300px">
@@ -488,8 +453,8 @@ table.table .avatar {
 						</div>
 
 						<div class="teamskills">
-							<div id="Partner-First-Parter-RoomStatus" style="width: 90%;">
-								<table id="Partner-First-Roomtable" style="width: 90%;">
+							<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
+								<table id="Partner-First-Roomtable" style="width: 100%;">
 									<tr>
 										<td>Total Room</td>
 										<td>00</td>
@@ -549,8 +514,8 @@ table.table .avatar {
 							<label>Status</label> 
 							<select class="form-control" id="select_request">
 								<option>ALL</option>
-								<option>Replied</option>
-								<option>Waited</option>
+								<option>replied</option>
+								<option>waited</option>
 							</select>
 						</div>
 						<span class="filter-icon"><i class="fa fa-filter"></i></span>
@@ -572,14 +537,15 @@ table.table .avatar {
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="${empty requestScope.list}" var="isEmpty">
+					<c:if test="${empty list}" var="isEmpty">
 						<tr>
-							<td colspan="4">등록된 문의가 없어요</td>
+							<td colspan="7" style="text-align: center; font-size: large; font-weight: bold;">사용자에게 더 어필해주세요 !</td>
 						</tr>
 					</c:if>
 					<c:if test="${not isEmpty}">
 						<c:forEach var="record" items="${list}" varStatus="loop">
 							<tr data-status="${record.status}">
+								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
 								<td><span class="custom-checkbox"> 
 								<input type="checkbox" id="checkbox${loop.count}" name="options[]" value="1">
 										<label></label>
@@ -587,14 +553,11 @@ table.table .avatar {
 								<td>${record.ask_no}</td>
 								<td><a href="#">
 								<img src="#" class="avatar" alt="profile"> ${record.id} </a></td>
-								<td><a href="#detailEmployeeModal" class="edit  askview" id="" title="${loop.index}"
+								<td><a href="<c:url value='/mypage/partner/Request_detail.it?ask_no=${record.ask_no}'/>" class="edit  askview" id="" title="${loop.index}"
 									 >${record.title}</a></td>
 								<td>${record.askdate}</td>
 								<td><span class="status text-success">&bull;</span>${record.status}</td>
-								<td><a href="#editEmployeeModal" class="edit"
-									data-toggle="modal"><i class="material-icons"
-										data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
-									href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+								<td><a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
 										class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 								</td>
 							</tr>
@@ -611,17 +574,9 @@ table.table .avatar {
 				<div class="hint-text">
 					Showing <b>6</b> out of <b>${totalRecordCount}</b> entries
 				</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item active"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">6</a></li>
-					<li class="page-item"><a href="#" class="page-link">7</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
+				<div class="row">
+					<div class="col-md-12">${pagingString}</div>
+				</div>
 			</div>
 			<!--
 ***************************************************************************************
@@ -631,7 +586,7 @@ Delete Modal
 			<div id="deleteEmployeeModal" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
-						<form>
+						<form action="<c:url value='/mypage/partner/ReplyDelete.it?ask_no=${one.ask_no}'/>">
 							<div class="modal-header">
 								<h4 class="modal-title">Delete Client</h4>
 								<button type="button" class="close" data-dismiss="modal"
@@ -646,72 +601,14 @@ Delete Modal
 							<div class="modal-footer">
 								<input type="button" class="btn btn-default"
 									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-danger" value="Delete">
+									type="button" class="btn btn-danger" value="Delete">
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			<!--
-***************************************************************************************
-Edit Modal
-***************************************************************************************
-  -->
-			<div id="editEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Write Reply</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-
-								<div class="form-group">
-									<label>Content</label>
-									<textarea style="height: 300px;" class="form-control" required></textarea>
-								</div>
-
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-info" value="Save">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!-- **************
-			detail modal
-			************ -->
-
-			<div id="detailEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Request</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label>Content</label>
-									<textarea class="form-control" readonly="readonly" id="detailcontent" ></textarea>
-								</div>
-
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> <input
-									type="submit" class="btn btn-info" value="confirm">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+		
+			
 		</div>
 
 	</div>

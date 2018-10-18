@@ -219,6 +219,8 @@ table.table .avatar {
 	/* 	align:right; */
 	text-indent: 10px;
 }
+
+.footer {position:absolute;bottom:0; width:100%;}
 </style>
 <div class="container-fluid">
 	<div class="col-md-3" style="width: 300px">
@@ -318,39 +320,36 @@ table.table .avatar {
 
 			<tr>
 				<th>번호</th>
-				<td>1004</td>
+				<td>${record.reservation_id}</td>
 			</tr>
 			<tr>
 				<th>고객 정보</th>
-				<td><a href="#"> <img src="/examples/images/avatar/2.jpg"
-						class="avatar" alt="Avatar"> Paula Wilson
-				</a></td>
+				<td><a href="#"> <img src="#" class="avatar" alt="Avatar"> ${record.name}</a></td>
 			</tr>
 			<tr>
 				<th>예약 상품</th>
-				<td><a href="#">하늘나라 1층 3호실</a></td>
+				<td><a href="#">${record.roomtitle}</a></td>
 			</tr>
 			<tr>
 				<th>체크인</th>
-				<td>2018/10/08 </td>
+				<td>${record.checkin}</td>
 			</tr>
 			<tr>
 				<th>체크아웃</th>
-				<td>2018/10/12</td>
+				<td>${record.checkout}</td>
 			</tr>
 			<tr>
 				<th>status</th>
-				<td><span class="status text-success">&bull;</span> paid</td>
+				<td><span class="status text-success">&bull;</span>${record.status}</td>
 			</tr>
 			<tr>
 				<th>예약 날짜</th>
-				<td>2018/10/12</td>
+				<td>${record.bookdate}</td>
 			</tr>
 			<tr>
 				<th>요청 메세지</th>
-				<td>아침에 조식 신청 하지않겠습니다. </td>
+				<td>${record.request}</td>
 			</tr>
-
 		</table>
 
 

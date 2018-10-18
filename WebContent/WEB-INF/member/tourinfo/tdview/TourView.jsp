@@ -1,16 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="topMenu.jsp" flush="false" />
 
+
+
+<script>
+	var likedThisContent=function(){
+		//로그인한 유저인지 확인
+		if('${sessionScope.id}'==''){
+			alert('로그인이 필요해요!');
+			return ;
+		}
+		console.log('즐겨찾기를 시작합니다.')
+		// 로그인한 유저인 경우에는 ajax를 이용해서 mypage로 이동하던가. 아니면 그냥 보기 
+		var contentid = ${content.contentid};
+		$.ajax({
+			url:"<c:url value='/planit/search/tourview/LikedContent.it'/> ",
+			data:{contentid:contentid},
+			type:'post',
+			dataType:'text',
+			success:function(data){
+				console.log('성공');
+				if(data=='success'){
+					
+					alert('저장 성공\r\n즐겨찾기에 추가한 이미지는 마이페이지에서 확인할 수 있어요!')					
+				}
+				else if (data=='already'){					
+					alert('이미 좋아요를 눌렀어요\r\n즐겨찾기에 추가한 이미지는 마이페이지에서 확인할 수 있어요!')					
+				}
+			},
+			error:function(request, error){
+				console.log(request,error);
+			}
+			
+		});	
+	};
+
+</script>
 <!--*******************************************************
 	관광 이미지 
 ***********************************************************  -->
 <section class="marketplace-top">
 	<div id="market-wrapper">
 		<div class="item_image">
-			<img data-effect="fade" class="aligncenter" width="90%" height="400"
-				src="<c:url value='/main_theme/img/market_single_01.png'/>" alt="">
+			<%-- <img data-effect="fade" class="aligncenter" width="90%" height="400"
+				src="${content.firstimage}" alt=""> --%>
 		</div>
 		<!-- end item_image -->
 	</div>
@@ -18,12 +54,13 @@
 <!--*******************************************************
 	관광정보 상세  
 ***********************************************************  -->
+
 <section class="section1">
 	<div class="container clearfix">
 		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 
 			<div class="general-title text-center">
-				<h3>국립양평치유의 숲</h3>
+				<h3>${content.title}</h3>
 				<p></p>
 				<hr>
 			</div>
@@ -35,16 +72,10 @@
 				<div class="col-lg-8 col-md-8 col-sm-12">
 					<div class="theme_details">
 						<div class="details_section">
-							<h3>개요</h3>
+							
 							<ul>
-								<li class="version"><span>위치: 경기도 양평군 양동면 황거길</span></li>
-
-								<li class="release"><span>문의: 031-8097-4581</span></li>
-
-								<li class="designer"><span>이용시간: [당일방문] 09:30~12:00,
-										13:30~16:00 <br> * 시설 상황 등에 따라 변동 가능(사전 문의 권장)
-								</span></li>
-								<li class="designer"><span>쉬는날:연중무휴</span></li>
+								<li class="designer"><img data-effect="fade" class="aligncenter" src="${content.firstimage}" alt=""></li>
+								
 							</ul>
 						</div>
 					</div>
@@ -59,23 +90,78 @@
 							</h3> -->
 						</div>
 						<!-- item_price -->
-						<hr>
+						
 						<div class="buttons" data-target="#myModal">
-							<a class="button btn-block large" href="https://cafe.naver.com/foresthealingyp">지자체 홈페이지</a> 
-							<a class="button btn-block large" href="#"> 
-							<i class="fa fa-pencil"></i>정보 수정</a>
-						    <a class="button btn-block large" href="#"> 
-						    <i class="fa fa-download"></i> 즐겨찾기 추가
-						    <a  class="button btn-block large" href="#target"> 
-						    <i class="fa fa-map"></i> 지도
-						    
-							</a>
+							<ul>
+								<li><h3>위치</h3>
+								 ${content.addr1}<hr></li>
+								 <!--문의 /안내  -->
+								<c:choose>
+									<c:when test="${not empty detailintro.infocenter}">
+										<li><h3>문의/안내</h3> ${detailintro.infocenter}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.infocenterculture}">
+									<li><h3>문의/안내</h3> ${detailintro.infocenterculture}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.infocenterleports}">
+									<li><h3>문의/안내</h3> ${detailintro.infocenterleports}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.infocentershopping}">
+									<li><h3>문의/안내</h3> ${detailintro.infocentershopping}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.infocenterfood}">
+									<li><h3>문의/안내</h3> ${detailintro.infocenterfood}</li>
+									</c:when>	
+								</c:choose>								 
+								<li>${content.tel}<hr></li>
+								<!-- 쉬는날 -->
+								<c:choose>
+									<c:when test="${not empty detailintro.restdate}">
+										<li><h3>쉬는날</h3> ${detailintro.restdate}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.restdateculture}">
+									<li><h3>쉬는날</h3> ${detailintro.restdateculture}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.restdateleports}">
+									<li><h3>쉬는날</h3> ${detailintro.restdateleports}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.restdateshopping}">
+									<li><h3>쉬는날</h3> ${detailintro.restdateshopping}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.restdatefood}">
+									<li><h3>쉬는날</h3> ${detailintro.restdatefood}</li>
+									</c:when>
+								</c:choose>	
+								<hr>
+								<!-- 이용시간 -->
+								<c:choose>
+									<c:when test="${not empty detailintro.usetime}">
+										<li><h3>이용시간</h3> ${detailintro.usetime}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.usetimeculture}">
+									<li><h3>이용시간</h3> ${detailintro.usetimeculture}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.usetimeleports}">
+									<li><h3>이용시간</h3> ${detailintro.usetimeleports}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.opentime}">
+									<li><h3>영업시간</h3> ${detailintro.opentime}</li>
+									</c:when>
+									<c:when test="${not empty detailintro.opentimefood}">
+									<li><h3>이용시간</h3> ${detailintro.opentimefood}</li>
+									</c:when>
+								</c:choose>	
+								<hr>
+								<li><h3>홈페이지</h3>
+								${content.homepage}<hr></li>
+							</ul>
 						</div>
 						<!-- buttons -->
-						<hr>
-						<div class="rating text-center">
-							<i class="fa fa-star-o"></i> 
-							<p>찜찜찜찜찜</p>
+						
+						<div class="buttons">
+						    <a class="dmbutton2" href="javascript:" onclick="likedThisContent();"> <i class="fa fa-star-o"></i> 즐겨찾기 추가</a>
+						    <a  class="dmbutton2" href="#target"><i class="fa fa-map"></i> 지도</a>
+							<a class="dmbutton2" href="#"> <i class="fa fa-pencil"></i>정보 수정</a>
 						</div>
 						<!-- rating -->
 					</div>
@@ -89,18 +175,14 @@
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="theme_details">
 						<div class="item-description">
-
-							<p>개요 : 립양평치유의숲은 경기도 양평군 양동면 황거길 262-10 삼각산(538m) 남쪽자락에 위치하여,
-								수도권에서 한시간 이내의 뛰어난 접근성을 가지고 있으며, 온열치유실, 명상움막, 무인건강관리시스템 등의 다양한
-								치유시설 및 대상별 전문적인 치유프로그램을 제공합니다.</p>
-							<hr>
-							<p>개장일:</p>
-							<hr>
-							<p>소요시간:</p>
-							<hr>
-							<p>등산로:</p>
-							<hr>
-							<p>야간산행 제한안내:</p>
+							<h3>개요</h3>
+							${content.overview}
+							<c:forEach var="m" items="${mMap}" >
+								<h3></h3>
+								<c:out value="${m.key}"></c:out>
+								<c:out value="${m.value}"></c:out><hr>
+							</c:forEach>
+							
 							<hr>
 						</div>
 						<!-- item-description -->
@@ -155,6 +237,7 @@
 
 		<div  class="a_1_1">
 			<div class="carousel">
+
 				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 1">
 				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 2">
 				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 3">
@@ -163,6 +246,7 @@
 				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 6">
 				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 7">
 				<img src="<c:url value='/images/list/222.jpg'/>" alt="Landscape 8">
+
 			</div>
 		</div>
 
