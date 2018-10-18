@@ -18,8 +18,36 @@ max-width: 100%;
 	}
 
 </style>
+ <script>//이걸 지우면 기능들이 안먹혀요..
+
+var search=function(){
+	$('#frm').submit();
+};
+
+$(function(){
+	$('#frm').validate({rules:{
+		searchWord:{
+			required:true
+			  //최소문자길이
+		}
+	},
+	messages:{
+		searchWord:{
+			required:'검색어를 입력하세요'
+			
+		}
+	}});
+});
+
+$(function(){
+	<c:if test="${not empty searchColumn}">
+	$(".chooseColumn").html($("option[value=${searchColumn}").html());
+	</c:if>
+	
+});
 
 
+</script>
 
 
 

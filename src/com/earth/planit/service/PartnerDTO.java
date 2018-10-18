@@ -18,7 +18,6 @@ public class PartnerDTO {
 	private String name;
 	private String p_name;
 	
-	
 	public String getName() {
 		return name;
 	}
@@ -52,6 +51,10 @@ public class PartnerDTO {
 	private java.sql.Date checkout;
 	private String options;
 	private String request;
+	private java.sql.Date bookdate;
+	
+	//방이름을 제공해주기위한 
+	private String roomtitle;
 
 	public int getReservation_id() {
 		return reservation_id;
@@ -85,11 +88,11 @@ public class PartnerDTO {
 		this.checkin = checkin;
 	}
 
-	public java.sql.Date getCheckout() {
+	public java.sql.Date getcheckout() {
 		return checkout;
 	}
 
-	public void setCheckout(java.sql.Date checkout) {
+	public void setcheckout(java.sql.Date checkout) {
 		this.checkout = checkout;
 	}
 
@@ -251,6 +254,18 @@ public class PartnerDTO {
 
 	public void setAskdate(java.sql.Date askdate) {
 		this.askdate = askdate;
+	}
+	public String getRoomtitle() {
+		return roomtitle;
+	}
+	public void setRoomtitle(String roomtitle) {
+		this.roomtitle = roomtitle;
+	}
+	public java.sql.Date getBookdate() {
+		return bookdate;
+	}
+	public void setBookdate(java.sql.Date bookdate) {
+		this.bookdate = bookdate;
 	}
 
 }

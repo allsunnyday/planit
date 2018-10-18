@@ -17,8 +17,9 @@ public interface MemberService {
 	//List<MemberDTO> memberInfo(Map map);
 	
 	//[아이디 중복검사]
-	boolean idDuplicate(Map map);
+	boolean idDuplicate(String id);
 	
-	// 
+	// [마이페이지-사진수정용]
+	int updateProfile(Map map);
 
 }

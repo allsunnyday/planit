@@ -312,9 +312,7 @@ height: 100%; */
 	**************************************** -->
 					<div id="Partner-First-name">Room Information</div>
 					<div class="Partner-More-Button">
-						<button type="button" class="btn btn-link">
-							<a href="<c:url value='#'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a>
-						</button>
+						<a href="<c:url value='/planit/member/partner/ProductList.it'/>"  class="btn btn-link"><span class="glyphicon glyphicon-plus">더보기 </span></a>
 					</div>
 					<div id="First-line">
 						<div id="Partner-First-content" class="col-md-12">

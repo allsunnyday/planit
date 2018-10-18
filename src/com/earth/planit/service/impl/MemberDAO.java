@@ -33,14 +33,19 @@ public class MemberDAO implements MemberService {
 		return template.selectOne("MemberInformation",map);
 	}
 	@Override
-	public boolean idDuplicate(Map map) {
-		int count=template.selectOne("MemberIsDuplicate",map);
+	public boolean idDuplicate(String id) {
+		int count=template.selectOne("MemberIsDuplicate",id);
 		return count==0?true:false;
 	}
 	@Override
 	public int insertPreference(Map map) {
 		// TODO Auto-generated method stub
 		return template.insert("MemberInsertPefer",map);
+	}
+	@Override
+	public int updateProfile(Map map) {
+		// TODO Auto-generated method stub
+		return template.update("MemberUpdateProfile", map);
 	}
 	
 

@@ -10,13 +10,38 @@ public interface PartnerService {
 	//회원가입_int로 해야하나..
 	int isPartnerJoin(PartnerDTO dto);
 	//아이디 중복검사
-	boolean isDuplicate(Map map);
+	boolean isDuplicate(String p_id);
 	//회원개인정보를 담을 컬렉션
 	PartnerDTO partnerInfo(Map map);
 	//List<PartnerDTO> partnerInfo(Map map);
 
-	int getTotalRecordforRequestTotal(Map map);
+	int getTotalRecordforRequest(Map map);
+	//[Room 정보 등록]
+	int roomResist(Map map);
+	
+	//[RoomView]
+	PartnerRoomDTO partnerRoomView(Map map);
+	//[RoomList]
+	List<PartnerRoomDTO> partnerRoomList(Map map);
 	
 	List<PartnerDTO> selectRequestList(Map map);
+
+	int getTotalRecordforReservation(Map map);
 		
+	PartnerDTO selectRequestDetail(Map map);
+
+	List<PartnerDTO> selectReservationList(Map map);
+
+	PartnerDTO selectReservationDetail(Map map);
+	
+	
+	//입력/수정/삭제]
+	int insert(Map map);
+	int delete(PartnerDTO dto);
+	int update(Map map);
+
+	int reply(Map map);
+	
+	
 }
+

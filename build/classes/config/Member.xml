@@ -25,7 +25,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="MemberIsDuplicate" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) FROM member WHERE id=#{id} 
 	</select>
+<!-- 마이페이지-프로필업데이트 -->	
+	<update id="MemberUpdateProfile" parameterType="java.util.Map" >
+		UPDATE member SET profile=#{profile} where id=#{id}
+	</update>
 	
+<!-- 선호도조사 -->
 	<insert id="MemberInsertPefer"  parameterType="java.util.Map" >
 	insert all
 		into preference(prefer_id, id, cat2) values
