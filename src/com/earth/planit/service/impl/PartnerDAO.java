@@ -38,10 +38,7 @@ public class PartnerDAO implements PartnerService{
 		int count=template.selectOne("partnerIsDuplicate",p_id);
 		return count==0?true:false;
 	}
-	@Override
-	public int getTotalRecordforRequest(Map map) {
-		return template.selectOne("PartnerRequestTotal", map);
-	}
+	
 		//[기업회원 Room 등록용]
 	@Override
 	public int roomResist(Map map) {
@@ -68,6 +65,11 @@ public class PartnerDAO implements PartnerService{
 //지인	
 
 	@Override
+	public int getTotalRecordforRequest(Map map) {
+		return template.selectOne("PartnerRequestTotal", map);
+	}
+	
+	@Override
 	public int getTotalRecordforReservation(Map map) {
 		return template.selectOne("PartnerReservationTotal", map);
 	}
@@ -92,25 +94,19 @@ public class PartnerDAO implements PartnerService{
 	}
 
 	@Override
-	public int insert(Map map) {
-		template.insert("replyUpdate_step", map);
-		int affected = template.update("replyInsert", map);
-		return affected;
-	}
-
-	@Override
-	public int delete(PartnerDTO dto) {
+	public int replyDelete(PartnerDTO dto) {
 		return template.delete("replyDelete", dto);
 	}
 
 	@Override
 	public int update(Map map) {
-		return template.update("replyUpdate", map);
-	}
-	
-	@Override
-	public int reply(Map map) {
 		int affected = template.update("replyUpdate", map);
+		return affected;
+	}
+
+	@Override
+	public int reservationDelete(PartnerDTO dto) {
+		int affected = template.delete("reservationDelete", dto);
 		return affected;
 	}
 

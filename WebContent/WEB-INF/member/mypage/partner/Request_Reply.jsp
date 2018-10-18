@@ -319,19 +319,19 @@ table.table .avatar {
 					<h2>${record.name}'s Request</h2>
 				</div>
 				<div class="col-sm-6" style="float: right;">
-					<a onclick="submit();" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Update</span></a>
+					<a onclick="submit();" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Update</span></a>
 					<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"> <span>Delete</span></a>
 				</div>
 			</div>
 		</div>
 		<!-- table-->
 
-		<form action="<c:url value='/mypage/partner/ReplyWrite.it'/>" id="frm">
+		<form action="<c:url value='/mypage/partner/ReplyWrite.it'/>" id="frm" method="post">
+			<input type="hidden" name="ask_no" value="${record.ask_no}"/>
 			<table class="table table-striped table-hover table-bordered">
-						<input type="hidden" name="ask_no" value="${record.ask_no}" />
 						<tr>
 							<th>고객 정보</th>
-							<td><a href="#" name="name"> <img src="/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> ${record.name}</a></td>
+							<td><a href="#"> <img src="/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> ${record.name}</a></td>
 						</tr>
 						<tr>
 							<th>Title</th>
@@ -349,7 +349,7 @@ table.table .avatar {
 						</tr>
 						<tr>
 							<th>Postdate</th>
-							<td id="systime" name="replydate"></td>
+							<td id="systime"></td>
 						</tr>
 			</table>
 		</form>
