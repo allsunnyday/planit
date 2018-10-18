@@ -243,4 +243,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		Select * from p_product where p_id=#{p_id}
 	</select>
 
+	<select id="PartnerRequestList" parameterType="java.util.Map" resultType="PartnerDTO">
+			SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT * FROM u_ask_p WHERE p_id= #{p_id})T) WHERE R BETWEEN #{start} AND #{end}	
+	</select>
+	
+	<select id="PartnerRequestTotal" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM u_ask_p WHERE p_id = #{p_id}
+	</select>
+	
+	<select id="PartnerReservationTotal" parameterType="java.util.Map" resultType="int">
+		SELECT r.*, p_id FROM reservation r JOIN p_product p ON r.roomcode=p.roomcode
+	</select>
+	
+	<select id="PartnerRequestDetail" parameterType="java.util.Map" resultType="PartnerDTO">
+		SELECT P.*,name FROM u_ask_p P JOIN member M ON P.id=M.id WHERE ask_no=#{ask_no} and p_id=#{p_id}
+	</select>
+	
+
 </mapper>

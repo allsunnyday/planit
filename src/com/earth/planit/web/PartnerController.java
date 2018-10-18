@@ -31,11 +31,20 @@ import com.earth.planit.service.impl.PagingUtil;
 
 @Controller
 public class PartnerController {
+
 	// 리소스파일(resource.properties)에서 읽어오기
+
+/*	//리소스파일(resource.properties)에서 읽어오기
+>>>>>>> refs/remotes/origin/bluejiin
 	@Value("${TABLE_PAGE_SIZE}")
 	private int pageSize;
 	@Value("${TABLE_BLOCK_PAGE}")
+<<<<<<< HEAD
 	private int blockPage;
+
+
+	private int blockPage;*/
+	
 
 	/*
 	 * PartnerController 1] 예약 관리 페이지 2] 사용자 문의 페이지 3]예약 상세보기
@@ -44,17 +53,28 @@ public class PartnerController {
 	@Resource(name = "partnerService")
 	private PartnerService service;
 
-	@RequestMapping("/mypage/partner/Reservation_P.it")
+	/*@RequestMapping("/mypage/partner/Reservation_P.it")
+>>>>>>> refs/remotes/origin/bluejiin
 	public String gotoReservation_P() throws Exception {
 		return "mypage/partner/Reservation_P.theme";
 	}
+<<<<<<< HEAD
 
-	/* 문의 */
+	/* 문의 
 	@RequestMapping(value = "/mypage/partner/Request_P.it", produces = "text/plain; charset=UTF-8")
 	public String gotoRequest_P(HttpServletRequest req, // 페이징용 메소드에 전달
 			@RequestParam Map map, Model model, HttpSession session,
 			@RequestParam(required = false, defaultValue = "1") int nowPage) throws Exception {
 		// 로그인되있는 기업 아이디받아보기
+=======
+	
+	문의 
+	@RequestMapping(value="/mypage/partner/Request_P.it", produces="text/plain; charset=UTF-8")
+	public String gotoRequest_P(HttpServletRequest req,//페이징용 메소드에 전달
+			@RequestParam Map map,Model model, HttpSession session,
+			@RequestParam(required=false, defaultValue="1") int nowPage) throws Exception {
+		//로그인되있는 기업 아이디받아보기
+>>>>>>> refs/remotes/origin/bluejiin
 		System.out.println(session.getAttribute("p_id"));
 
 		map.put("p_id", session.getAttribute("p_id"));
@@ -83,18 +103,19 @@ public class PartnerController {
 
 		return "mypage/partner/Request_P.theme";
 	}
-
+*/
 	// 예약 상세보기
 	@RequestMapping("/mypage/partner/Reservation_detail.it")
 	public String gotoRequestdetail_P() throws Exception {
 		return "mypage/partner/Reservation_detail.theme";
 	}
 
-	// [기업 로그인]
-	@RequestMapping(value = "/partner/login/LoginProcess.it", method = RequestMethod.POST)
-	public String partnerLoginProcess(@RequestParam Map map, HttpSession session, Model model) throws Exception {
-		// form 하위 데이터가 잘 온것을 확인! key= input태그의 name속성
-		System.out.println("id=" + map.get("p_id") + " pwd=" + map.get("pwd"));
+
+	//[기업 로그인]
+	@RequestMapping(value="/partner/login/LoginProcess.it", method=RequestMethod.POST)
+	public String partnerLoginProcess(@RequestParam Map map, HttpSession session, Model model)throws Exception{
+		// form 하위 데이터가 잘 온것을 확인! key= input태그의 name속성 
+		System.out.println("id="+map.get("p_id")+" pwd="+map.get("pwd"));
 
 		boolean isLogin = service.isPartnerLogin(map);
 		System.out.println(isLogin);
@@ -216,35 +237,15 @@ public class PartnerController {
 			@RequestParam Map map, Model model, HttpSession session,
 			@RequestParam(required = false, defaultValue = "1") int nowPage) throws Exception{
   
-	
-		// 전체 레코드수
-		//int totalRecordCount = service.getTotalRecordforRequestTotal(map);
-		// 시작 및 끝 rownum 구하기
-		int start = (nowPage - 1) * pageSize + 1;
-		int end = nowPage * pageSize;
-		map.put("start", start);
-		map.put("end", end);
 		map.put("p_id", session.getAttribute("p_id"));
 		
 		System.out.println(map.get("p_id"));
-		
+
 		// 페이징을 위한 로직 끝]
 		List<PartnerRoomDTO> roomlist=service.partnerRoomList(map);
-		/*for(PartnerRoomDTO list:roomlist) {
-			if(list.getRoomimg1().toString()!=null)
-			System.out.println(list.getRoomimg1().toString());
-		}*/
-
-		//System.out.println(roomlist.get(0).getContent());
-		// 페이징 문자열을 위한 로직 호출]
-	//	String pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,
-	//			req.getContextPath() + "/ReplyBBS/BBS/List.bbs?");
+	
 		// 데이타 저장]
 		model.addAttribute("roomlist", roomlist);
-
-		//model.addAttribute("pagingString", pagingString);
-		//model.addAttribute("totalRecordCount", totalRecordCount);
-		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("nowPage", nowPage);
 
 		

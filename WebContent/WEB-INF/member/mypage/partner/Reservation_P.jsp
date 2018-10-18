@@ -213,43 +213,10 @@ table.table .avatar {
 	color: #ff5b5b;
 }
 
+/* 페이징 정렬 */
 .pagination {
-	float: right;
+	float: center;
 	margin: 0 0 5px;
-}
-
-.pagination li a {
-	border: none;
-	font-size: 13px;
-	min-width: 30px;
-	min-height: 30px;
-	color: #999;
-	margin: 0 2px;
-	line-height: 30px;
-	border-radius: 2px !important;
-	text-align: center;
-	padding: 0 6px;
-}
-
-.pagination li a:hover {
-	color: #666;
-}
-
-.pagination li.active a {
-	background: #03A9F4;
-}
-
-.pagination li.active a:hover {
-	background: #0397d6;
-}
-
-.pagination li.disabled i {
-	color: #ccc;
-}
-
-.pagination li i {
-	font-size: 16px;
-	padding-top: 6px
 }
 
 .hint-text {
@@ -561,7 +528,7 @@ table.table .avatar {
 					<tbody>
 					<c:if test="${empty requestScope.list}" var="isEmpty">
 						<tr>
-							<td colspan="4">등록된 문의가 없어요</td>
+							<td colspan="4">이벤트를 열어 당신의 상품을 알리는것어떠세요?</td>
 						</tr>
 					</c:if>
 					<c:if test="${not isEmpty}">
@@ -571,16 +538,16 @@ table.table .avatar {
 											type="checkbox" id="checkbox${loop.count}" name="options[]" value="1">
 											<label for="checkbox1"></label>
 									</span></td>
-									<td>1</td>
+									<td>${record.reservation_id}</td>
 									<td><a href="#"><img src="/examples/images/avatar/1.jpg"
-											class="avatar" alt="Avatar"> Michael Holz</a></td>
+											class="avatar" alt="Avatar">${record.name}</a></td>
 									<td><a
-										href="<c:url value='/mypage/partner/Reservation_detail.it'/>">하늘나라
-											1호실</a></td>
-									<td>Jun 15, 2017</td>
-									<td>Jun 15, 2017</td>
-									<td><span class="status text-success">&bull;</span> Paid</td>
-									<td>Jun 15, 2017</td>
+										href="<c:url value='/mypage/partner/Reservation_detail.it?reservation_id=${record.reservation_id}'/>">
+											${record.room }</a></td>
+									<td>${record.check-in}</td>
+									<td>${record.check-out}</td>
+									<td><span class="status text-success">&bull;</span>${record.status}</td>
+									<td>${record.bookdate}</td>
 									<td><a href="#editEmployeeModal" class="edit"
 										data-toggle="modal"><i class="material-icons"
 											data-toggle="tooltip" title="Reply">&#xE254;</i></a> <a
@@ -599,19 +566,11 @@ table.table .avatar {
   -->
 				<div class="clearfix">
 					<div class="hint-text">
-						Showing <b>5</b> out of <b>25</b> entries
+						Showing <b>5</b> out of <b>${totalRecordCount}</b> entries
 					</div>
-					<ul class="pagination">
-						<li class="page-item disabled"><a href="#">Previous</a></li>
-						<li class="page-item"><a href="#" class="page-link">1</a></li>
-						<li class="page-item"><a href="#" class="page-link">2</a></li>
-						<li class="page-item"><a href="#" class="page-link">3</a></li>
-						<li class="page-item active"><a href="#" class="page-link">4</a></li>
-						<li class="page-item"><a href="#" class="page-link">5</a></li>
-						<li class="page-item"><a href="#" class="page-link">6</a></li>
-						<li class="page-item"><a href="#" class="page-link">7</a></li>
-						<li class="page-item"><a href="#" class="page-link">Next</a></li>
-					</ul>
+					<div class="row" id="pagination">
+						<div class="col-md-12">${pagingString}</div>
+					</div>
 				</div>
 				<!--
 ***************************************************************************************
