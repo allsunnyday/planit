@@ -16,7 +16,6 @@ review :
 	postdate
 	rating
 	firstimage
-
 ***************************************  -->
 
 <script>
