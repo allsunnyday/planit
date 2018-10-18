@@ -47,9 +47,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where r  between #{start} and #{end}
 	</select>
 	
-	
-	
-	
 	<select id="getTotalCount" parameterType="java.util.Map" resultType="int">
 		select count(*) from content where contenttype=#{contenttype}
 		<if test="searchWord != null">
