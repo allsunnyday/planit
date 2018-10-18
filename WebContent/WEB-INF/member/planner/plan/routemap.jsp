@@ -382,6 +382,7 @@
 	var distance; // 마커와 마커 사이의 거리 정보?
 	var temp=0; // 마커 와 마커 이전거리 저장용
 	var walkkTime=0; // 사람이 걷는 거리의 소요 시간
+	var carhourTime;
 	var carTime=0; // 자동차가 이동하는데 소요 되는 시간 
 	var plancase = 0; // 여행 상세일정 전체 카운트?
 	var planmarking= []; // 사용자가 플랜으로 등록한 마커를 삭제하기 위한 함수
@@ -390,16 +391,16 @@
 	var polyline ; // 라인정보 담는 변수
 	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	function planplusActionplus(){
-		console.log("planplusActionplus() : 이상무");
+		console.log("planplusActionplus() : 이상무");		
 		positions.push({title:document.getElementById('plantitle').title, latlng:planposition}); // 마크와 타이틀 저장
-		linePath.push(planposition); // 사용자가 일정 추가로 등록한 해당 마커 좌표 저장
+		linePath.push(planposition); // 사용자가 일정 추가로 등록한 일정의 라인을 구성하기 위한 좌표저장
 		console.log(linePath.length); // 마커 좌표가 배열로 추가 되는지 확인
 		//plancase ++; // 여행일정 추가시 카운트 증가		
 		//routeInfoPlusAction(plancase); // 버튼 클릭시 상세 여행일정에 추가 되는 함수		
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */		
 		planmarkingsave();
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
-		
+		if(polyline != null) polyline.setMap(null);
 		// 지도에 표시할 선을 생성합니다
 		polyline = new daum.maps.Polyline({
 		    path: linePath, // 선을 구성하는 좌표배열 입니다
@@ -501,17 +502,17 @@
 							content += '<label>지역:</label>&nbsp;<font>'+keyword+'</font><br/>';
 							content += '<label>관광지: </label><font class="">'+ document.getElementById('plantitle').title +'</font>&nbsp;<a class="btnDel deletePlanRoute_'+diveplus+'" href="javascript:" onclick="deletePlanRoute('+diveplus+')" id=""  title="'+diveplus+'" >';
 							content += '<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a><br/>';//<input type="hidden" id="deleteplanroute">
-							content += '<label> 거리: </label>&nbsp;<font>'+distance+'m</font> ';
-							if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄							
-							else {content += '&nbsp;<label> 도보: </label>&nbsp;<font> '+ walkkTime +' 분</font> <br/>';} // 도보가 한시간 미만 일때
-							if(carTime <= 0){content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> 1분 미만 </font>';}
+							content += '<label> 거리: </label>&nbsp;<font class="planroadtext">'+distance+'m</font> ';
+							if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font class="planwalktime"> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄							
+							else {content += '&nbsp;<label> 도보: </label>&nbsp;<font class="planwalktime"> '+ walkkTime +' 분</font> <br/>';} // 도보가 한시간 미만 일때
+							if(carTime <= 0){content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> 1분 미만 </font>';}
 							else if(carTime >= 60){
-								var carhourTime = Math.floor(carTime/60);
+								carhourTime = Math.floor(carTime/60);
 								carTime = carTime %60;
-								content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> '+ carhourTime +'시간 '+ carTime+'분 </font>';
+								content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> '+ carhourTime +'시간 '+ carTime+'분 </font>';
 							}
 							else 							
-								content += '&nbsp;<label> 승용차: </label>&nbsp;<font class=""> 최소'+ carTime*2 +' 분 소요 </font>';
+								content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> 최소'+ carTime*2 +' 분 소요 </font>';
 						content += '</div>';
 					content += '</div>';
 				content += '</div>';
@@ -528,37 +529,31 @@
 	/* ************* 추가 버튼 클릭시 추가 되는 함수 종료 ************** */	
 	
 	/* **************** plan route div 삭제 함수 시작 ***************** */
-	function deletePlanRoute(diveplus){
+	function deletePlanRoute(diveplus){		
 		if(diveplus == plancase){ diveplus = plancase-1; }		
 		var diveplusFortitle = $('.deletePlanRoute_'+diveplus).attr('title');
 		if(diveplus > plancase) { diveplusFortitle = plancase-1; diveplus = diveplusFortitle;}
 		console.log('diveplus(2) '+ diveplus + '//plancase(2) '+ plancase+"//diveplusFortitle※: "+ diveplusFortitle);
-		//console.log("linePath: "+ linePath[diveplusFortitle] + " positions: "+ positions[diveplusFortitle] + " planmarking: "+ planmarking[diveplusFortitle]);
-		
-		polyline.setMap(null);
+		//console.log("linePath: "+ linePath[diveplusFortitle] + " positions: "+ positions[diveplusFortitle] + " planmarking: "+ planmarking[diveplusFortitle]);		
 		for(var i=0; i<planmarking.length; i++){
-			planmarking[i].setMap(null);
-			
-		}
+			planmarking[i].setMap(null);			
+		}// 삭제할 플랜 정보의 마커 삭제
 		console.log("positions전: "+positions.length+"//positions[diveplus]: "+ positions[diveplus].title);
+		polyline.setMap(null);// 맵에 그려진 라인 삭제
 		positions.splice(diveplus, 1);//좌표 삭제
-		//polyline.setMap(null);//그려진 라인 삭제
-		linePath.splice(diveplus, 1);//라인정보삭제
+		linePath.splice(diveplus, 1);
+		//linePath =[];//라인을 구성하는 좌표 정보 삭제
+		//linePath.push(planposition);
 		console.log("positions후: "+positions.length);		
-		/* var polyline = new daum.maps.Polyline({
+		polyline = new daum.maps.Polyline({
 		    path: linePath, // 선을 구성하는 좌표배열 입니다
 		    strokeWeight: 5, // 선의 두께 입니다
 		    strokeColor: '#FF5E00', // 선의 색깔입니다
 		    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 		    strokeStyle: 'solid' // 선의 스타일입니다
-		}); */
+		});
 		planmarkingsave();//기존 마커 재등록
-		
-				
-		
-			
-		
-		
+		polyline.setMap(map);// 라인 재생성
 		
 		//diveplus = plancase-1;
 		$('.planroute_'+diveplusFortitle).remove(); // 해당---------------- 다이브 삭제
@@ -590,18 +585,30 @@
 				}
 			}
 			else {continue;}
-		}		
+		}// 여행일정 div number 재정비
+		
+		for(var = 0; i < plancase; i++){
+			if(Math.round(polyline.getLength() ==0)){
+				distance = Math.round(polyline.getLength());
+				temp = distance;
+			}
+			else if(Math.round(polyline.getLength() !=0)){
+				distance = Math.round(polyline.getLength()) - temp;
+				walkkTime = distance / 67 | 0;
+				carTime = distance / 1000 | 0;
+				temp = distance;
+			}
+			var 
+			$('.planroadtext').val(distance);
+			
+		}
 		console.log('plancase: '+plancase+'/diveplus: '+diveplus+'/diveplusFortitle: '+diveplusFortitle);
-		diveplus = plancase-1
+		diveplus = plancase-1;
 	}
 	/* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
 	/* **************** plan route div 삭제 함수 종료 ***************** */
 </script>
 <!--*********************************** plan 상세여행 정보 추가 종료***********************************-->
-
-
-<!--**************************************************************************************************************************-->
-<!--**************************************************************************************************************************-->
 <!-- ************************루트 상세 정보 계획 자바 스크립트 시작****************** -->
 <!-- ********************************* 상세 일정 페이지 달력 출력 시작 *************************************** -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
