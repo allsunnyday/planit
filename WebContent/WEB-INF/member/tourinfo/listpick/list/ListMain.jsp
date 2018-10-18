@@ -13,8 +13,8 @@
     }
     
     .tourlist-overlay .text img{
-    	width:460px;
-    	height: 300px;
+       width:460px;
+       height: 300px;
     }
     
  </style>
@@ -38,7 +38,7 @@
                  </ol>
                <div class="carousel-inner" >
                   <!--슬라이드1-->
-                 	 <!-- ------------------------------관광지-------------------------- -->
+                     <!-- ------------------------------관광지-------------------------- -->
                         <div class="item active" id="listmain-tour"  > 
                            <!--  아래 이미지는 배경이 된다. -->
                            
@@ -47,13 +47,13 @@
                            <div class="tourlist-overlay"  style="margin-left: 30px; ">
                                   <div class="text" style="background-color: rgba(0, 0, 0, 0.5); padding: 0 10px 50px 10px">
                                   <div class="general-title text-center">
-										<h3 style=""><span class="clickedArea"></span> 지금 가장 인기 있는  관광지</h3>
-										<a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
-									</div>
+                              <h3 style=""><span class="clickedArea"></span> 지금 가장 인기 있는  관광지</h3>
+                              <a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
+                           </div>
                                   <c:forEach var="record" items="${tour}" >
                                      <div class="" style="display: inline-block;">
-	                                  <img id="iii2" src="${record.firstimage}">
-	                                  </div>
+                                     <img id="iii2" src="${record.firstimage}">
+                                     </div>
                                   </c:forEach>
 
                                  </div>
@@ -69,15 +69,15 @@
                                     style="width:100%; height: 550px" height="300px" alt="First slide">
                            <div class="tourlist-overlay"  style="margin-left: 30px;">
                                   <div class="text" style="background-color: rgba(0, 0, 0, 0.5); padding: 0 10px 50px 10px" >
-									<div class="general-title text-center">
-										<h3 style=""><span class="clickedArea"></span> 지금 가장 인기 있는  음식점, </h3>
-										<a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
-									</div>
+                           <div class="general-title text-center">
+                              <h3 style=""><span class="clickedArea"></span> 지금 가장 인기 있는  음식점, </h3>
+                              <a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
+                           </div>
                                   <c:forEach var="record" items="${food}">
                                   <div class="" style="display: inline-block;">
                                   <img id="iii2" src="${record.firstimage}">
                                   </div>
-                               	</c:forEach>
+                                  </c:forEach>
 
                                   
                                  </div>
@@ -94,10 +94,10 @@
                                     style="width:100%;height: 550px" height="300px" alt="First slide">
                            <div class="tourlist-overlay"  style="margin-left: 30px;">
                                   <div class="text" style="background-color: rgba(0, 0, 0, 0.5); padding: 0 10px 50px 10px" >
- 									<div class="general-title text-center">
-										<h3 style=""><span class="clickedArea"></span>지금 가장 인기 있는  축제/행사</h3>
-										<a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
-									</div>
+                            <div class="general-title text-center">
+                              <h3 style=""><span class="clickedArea"></span>지금 가장 인기 있는  축제/행사</h3>
+                              <a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
+                           </div>
                                <c:forEach var="record" items="${sleep}">
                                   <div class="" style="display: inline-block;">
                                   <img id="iii2" src="${record.firstimage}">
@@ -111,14 +111,14 @@
                      </div>
                      
                      
-                     <<!-- a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-					    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-					    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a> -->
+                     <!-- a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                   <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                   <span class="sr-only">Previous</span>
+                 </a>
+                 <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                   <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                   <span class="sr-only">Next</span>
+                 </a> -->
                   <!--슬라이드1-->
                </div>
                
@@ -147,38 +147,39 @@
         
         <div id="popularitems" class="owl-carousel">
         <c:forEach var="record" items="${besttourlist}" >
-          		<div class="col-lg-12">
+                <div class="col-lg-12">
           
-		            <div class="he-wrap tpl6 market-item">
+                  <div class="he-wrap tpl6 market-item">
+                  
+                  <div class="hot-tour">
+                       <c:if test="${empty record.firstimage }">
+                         <img class="lazyOwl" data-src='<c:url value='/Upload/Tour/tempimage.png'/>' alt="">
+                      </c:if>
+                     <c:if test="${not empty record.firstimage }">
+                         <img class="lazyOwl" data-src='${record.firstimage }' alt="">
+                     </c:if>
+                    
+                    <div class="he-view">
+                      <div class="bg a0" data-animate="fadeIn">
+                        <h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
+                        <a href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
+                        <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
+                        
+                        <div class="rating text-center a2" data-animate="fadeIn">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </div>
+                        <!-- rating -->
+                      </div>
+                      <!-- he bg -->
+                      </div>
+                    </div>
+                    <!-- he view -->
+                  </div>
 		            
-		            <div class="hot-tour">
-		           		<c:if test="${empty record.firstimage }">
-			          		<img class="lazyOwl" data-src='<c:url value='/Upload/Tour/tempimage.png'/>' alt="">
-			             </c:if>
-			            <c:if test="${not empty record.firstimage }">
-			                <img class="lazyOwl" data-src='${record.firstimage }' alt="">
-			            </c:if>
-		              
-		              <div class="he-view">
-		                <div class="bg a0" data-animate="fadeIn">
-		                  <h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
-		                  <a href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}'/>" class="dmbutton a2" data-animate="fadeIn">Details</a>
-		                  <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
-		                  
-		                  <div class="rating text-center a2" data-animate="fadeIn">
-		                    <i class="fa fa-star"></i>
-		                    <i class="fa fa-star"></i>
-		                    <i class="fa fa-star"></i>
-		                    <i class="fa fa-star"></i>
-		                    <i class="fa fa-star"></i>
-		                  </div>
-		                  <!-- rating -->
-		                </div>
-		                <!-- he bg -->
-		                </div>
-		              </div>
-		              <!-- he view -->
-		            </div>
             
             <!-- he wrap -->
           </div>
@@ -273,7 +274,6 @@
       <!-- large-3 -->
 
       <div class="divider"></div>
-    </div>
     <!-- end container -->
   </section>
   <!-- end section -->

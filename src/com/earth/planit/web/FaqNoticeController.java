@@ -8,10 +8,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.realm.AuthenticatedUserRealm;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,39 +45,16 @@ public class FaqNoticeController {
 		
 		return "tourinfo/tdview/Qna.theme";
 	}
-	
-	@ResponseBody
 	@RequestMapping(value="/planit/search/tourinfo/askQna.it",method=RequestMethod.POST)
-	public String goQna(@RequestParam Map map,Model model,
-			@ModelAttribute("id") String id,
-			@ModelAttribute("p_id") String p_id,
-			@ModelAttribute("content") String content,
-			@ModelAttribute("ask_no") String ask_no,
-			@ModelAttribute("name") String name,
-			@ModelAttribute("askdate") Date askdate,
-			@ModelAttribute("status") String status,
-			@ModelAttribute("title") String title,
-			@ModelAttribute("step") String step,
-			@ModelAttribute("depth") String depth,
-			@ModelAttribute("emp_no") String emp_no
-			
-			)throws Exception{
-		
-		FaqNoticeDTO dto = new FaqNoticeDTO();
-		dto.setP_id(p_id);
-		dto.setAsk_no(ask_no);
-		dto.setAskdate(askdate);
-		dto.setContent(content);
+	public String goDM(@ModelAttribute("id") String id,Model model,FaqNoticeDTO dto,HttpSession session)throws Exception{
+		System.out.println("goDM call");
+		System.out.println(dto.getTitle());
+		System.out.println(dto.getContent());
+		System.out.println("id:"+id);
 		dto.setId(id);
-		dto.setEmp_no(emp_no);
-		dto.setName(name);
-		dto.setStatus(status);
-		dto.setStep(step);
-		dto.setDepth(depth);
 		
 		
-		
-		service.insert(dto);
+		int affected = service.insert(dto);
 		
 		return "tourinfo/tdview/Qna.theme";
 	}

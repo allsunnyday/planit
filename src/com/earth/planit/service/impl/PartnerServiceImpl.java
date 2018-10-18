@@ -75,26 +75,14 @@ public class PartnerServiceImpl implements PartnerService{
 	}
 
 	/* reply용 crud */
-	@Override
-	public int insert(Map map) {
-		return dao.insert(map);
-	}
+	
 
-	@Override
-	public int delete(PartnerDTO dto) {
-		return dao.delete(dto);
-	}
 
 	@Override
 	public int update(Map map) {
 		return dao.update(map);
 	}
 
-	@Override
-	public int reply(Map map) {
-		return dao.reply(map);
-	}
-	
 
 	@Override
 	public PartnerRoomDTO partnerRoomView(Map map) {
@@ -106,6 +94,17 @@ public class PartnerServiceImpl implements PartnerService{
 	public List<PartnerRoomDTO> partnerRoomList(Map map) {
 		// TODO Auto-generated method stub
 		return dao.partnerRoomList(map);
+	}
+	/*문의 삭제*/	
+	@Override
+	public int replyDelete(PartnerDTO dto) {
+		return dao.replyDelete(dto);
+	}
+
+	/*예약 삭제*/
+	@Override
+	public int reservationDelete(PartnerDTO dto) {
+		return dao.reservationDelete(dto);
 	}
 
 }

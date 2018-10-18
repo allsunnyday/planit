@@ -34,11 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-	<insert id="faqInsert" parameterType="faqNoticeDTO">
-		insert into u_ask_p 
-		values(id=#{id},p_id=#{p_id},seq_u_ask_p_ask_no.nextval,
-		title=#{title},content=#{content},seq_u_ask_p_ask_no.currval,
-		step=#{step},depth=#{dtpth},status=#{status},sysdate,sysdate)
-	
+	<insert id="faqInsert" parameterType="faqNoticeDTO" >
+		insert into u_ask_planit values
+		(seq_u_ask_planit_ask_no.nextval,#{id},#{content},
+		seq_u_ask_planit_ask_no.currval,DEFAULT,DEFAULT,DEFAULT,SYSDATE,#{title})
 	</insert>
 </mapper>

@@ -37,7 +37,6 @@ public class PartnerController {
 	private int pageSize;
 	@Value("${TABLE_BLOCK_PAGE}")
 	private int blockPage;
-	
 
 	/*
 	 * PartnerController 1] 예약 관리 페이지 2] 사용자 문의 페이지 3]예약 상세보기
@@ -47,14 +46,11 @@ public class PartnerController {
 	private PartnerService service;
 	
 	/*@RequestMapping("/mypage/partner/Reservation_P.it")
-=======
 
 	@RequestMapping("/mypage/partner/Reservation_P.it")
->>>>>>> refs/remotes/origin/yewon-03
 	public String gotoReservation_P() throws Exception {
 		return "mypage/partner/Reservation_P.theme";
 	}
-<<<<<<< HEAD
 	
 	문의 
 	@RequestMapping(value="/mypage/partner/Request_P.it", produces="text/plain; charset=UTF-8")
@@ -62,7 +58,6 @@ public class PartnerController {
 			@RequestParam Map map,Model model, HttpSession session,
 			@RequestParam(required=false, defaultValue="1") int nowPage) throws Exception {
 		//로그인되있는 기업 아이디받아보기
-=======
 
 	/* 문의 
 	@RequestMapping(value = "/mypage/partner/Request_P.it", produces = "text/plain; charset=UTF-8")

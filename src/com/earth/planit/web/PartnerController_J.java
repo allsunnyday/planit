@@ -32,7 +32,6 @@ public class PartnerController_J {
 	
 	@Resource(name="partnerService")
 	private PartnerService service;
-
 	
 	/*문의 페이지 이동 + DB뿌려주기 */
 	@RequestMapping(value="/mypage/partner/Request_P.it", produces="text/plain; charset=UTF-8")
@@ -50,9 +49,6 @@ public class PartnerController_J {
 		int end   = nowPage*pageSize;
 		map.put("start",start);
 		map.put("end",end);
-		
-		
-		
 		
 		//페이징을 위한 로직 끝]	
 		List<PartnerDTO> list=service.selectRequestList(map);
@@ -152,39 +148,46 @@ public class PartnerController_J {
 	
 	/* 입력 */
 	@RequestMapping(value = "/mypage/partner/ReplyWrite.it", produces = "text/html; charset=UTF-8", method = RequestMethod.POST)
-	public String gotoReply(@ModelAttribute("p_id") String p_id,@RequestParam Map map, Model model, HttpSession session) throws Exception {
+	public String gotoReply(HttpSession session, @RequestParam Map map, Model model, PartnerDTO dto) throws Exception {
 		System.out.println("ask_no: " + map.get("ask_no"));
-//		map.put("p_id", session.getAttribute("p_id"));
-		map.put("p_id", p_id);
+		System.out.println("p_id--------"+ session.getAttribute("p_id"));
+		map.put("p_id", session.getAttribute("p_id"));
 		// map에 ask_no / p_id필요
+		map.put("ask_no", map.get("ask_no"));
 
-		PartnerDTO need = service.selectRequestDetail(map);
-		System.out.println(need.getName());
+//		Map mMap = new HashMap();
+//		Field[] fields = need.getClass().getDeclaredFields();
+//		for (int i = 0; i < fields.length; i++) {
+//			fields[i].setAccessible(true);
+//			mMap.put(fields[i].getName(), fields[i].get(need));
+//		}
 
-		Map mMap = new HashMap();
-		Field[] fields = need.getClass().getDeclaredFields();
-		for (int i = 0; i < fields.length; i++) {
-			fields[i].setAccessible(true);
-			mMap.put(fields[i].getName(), fields[i].get(need));
-		}
-
-		int affected = service.reply(mMap);
+		int affected = service.update(map);
 		if (affected == 0) {
 			return "redirect:/mypage/partner/ReplyWrite.it?ask_no=" + map.get("ask_no");
 		}
 		return "forward:/mypage/partner/Request_P.it";
 	}
-
+	/*문의 삭제*/
 	@RequestMapping("/mypage/partner/ReplyDelete.it")
-	public String delete(PartnerDTO dto, Model model, @RequestParam Map map) throws Exception {
+	public String Replydelete(PartnerDTO dto, Model model, @RequestParam Map map) throws Exception {
 		System.out.println(map.get("ask_no"));
-		int affected = service.delete(dto);
+		int affected = service.replyDelete(dto);
 		
-//		model.addAttribute("successFail", affected);	
+		model.addAttribute("successFail", affected);	
 		
-		return "forward:/mypage/partner/Request_P.it";
+		return "/mypage/partner/Message";
 	}
 	
+	/*예약 삭제*/
+	@RequestMapping("/mypage/partner/ReservationDelete.it")
+	public String Reservationdelete(PartnerDTO dto, Model model, @RequestParam Map map) throws Exception{
+		System.out.println("reservation_id"+map.get("reservation_id"));
+		int affected = service.reservationDelete(dto);
+		model.addAttribute("successFail", affected);
+		
+		return "/mypage/partner/Message";
+	}
 	
 	
 	

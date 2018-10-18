@@ -273,5 +273,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="replyDelete" parameterType="java.util.Map" >
 		DELETE u_ask_p WHERE ask_no=#{ask_no}
 	</delete>
+	
+	<delete id="reservationDelete" parameterType="java.util.Map">
+		DELETE reservation WHERE reservation_id=#{reservation_id}
+	</delete>
 
 </mapper>
