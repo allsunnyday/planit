@@ -9,6 +9,11 @@
 		<c:set var="failMessage" value="답변 실패했어요"/>
 		<c:set var="successMoveUrl" value="/mypage/partner/Request_detail.it?ask_no=${param.ask_no}"/>
 	</c:when>
+	<c:when test="${WHERE eq 'RES' }">
+		<c:set var="successMessage" value="삭제 성공했어요"/>
+		<c:set var="failMessage" value="삭제 실패했어요"/>
+		<c:set var="successMoveUrl" value="/mypage/partner/Reservation_P.it"/>
+	</c:when>
 	<c:otherwise>
 		<c:set var="successMessage" value="삭제 성공했어요"/>
 		<c:set var="failMessage" value="삭제 실패했어요"/>

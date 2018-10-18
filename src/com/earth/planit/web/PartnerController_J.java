@@ -185,6 +185,7 @@ public class PartnerController_J {
 	public String Reservationdelete(PartnerDTO dto, Model model, @RequestParam Map map) throws Exception{
 		System.out.println("reservation_id"+map.get("reservation_id"));
 		int affected = service.reservationDelete(dto);
+		model.addAttribute("WHERE", "RES");
 		model.addAttribute("successFail", affected);
 		
 		return "/mypage/partner/Message";
