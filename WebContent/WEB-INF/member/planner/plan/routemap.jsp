@@ -559,7 +559,9 @@
 		var ttest = document.getElementsByClassName('planroute');
 		console.log('ttest: '+ttest);
 		$('.planroute > a').change(function() {
-			$(this).
+			for(var i=0; i<plancase; i++){
+				 $('#deletePlanRoute'+i).attr('onclick', 'deletePlanRoute'+i);
+			}
 		})
 		
 		console.log('plancase 너 감소되냐?' + plancase);  //2
