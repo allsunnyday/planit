@@ -163,10 +163,11 @@ public class PartnerController_J {
 //		}
 
 		int affected = service.update(map);
-		if (affected == 0) {
-			return "redirect:/mypage/partner/ReplyWrite.it?ask_no=" + map.get("ask_no");
-		}
-		return "forward:/mypage/partner/Request_P.it";
+		model.addAttribute("WHERE", "EDT");
+		model.addAttribute("successFail", affected);		
+		
+//		return "forward:/mypage/partner/Request_P.it";
+		return "/mypage/partner/Message";
 	}
 	/*문의 삭제*/
 	@RequestMapping("/mypage/partner/ReplyDelete.it")
