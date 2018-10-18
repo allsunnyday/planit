@@ -34,7 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="reviewSelectReviewContent" parameterType="java.util.Map" resultType="java.util.Map">
 		select * 
-		from (select re.* ,planner_id from review_content re join review v on re.review_id=v.review_id ) r join content c on  r.contentid=c.contentid
+		from (select re.* ,planner_id from review_content re join review v on re.review_id=v.review_id ) r 
+		join content c 
+		on  r.contentid=c.contentid
 		where r.review_id = #{review_id} and r.route_index=#{route_index}
 	</select>
 	
@@ -49,9 +51,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="ReviewInsertRating" parameterType="java.util.Map">
-		insert into review_rating(rating_id,riview_id ,id,review_rating) 
+		insert into review_rating (rating_id, riview_id ,id, review_rating) 
 		values(SEQ_review_rating_rating_id.nextval, #{review_id}, #{id}, review_rating+#{review_rating})
 	</insert>
 	
+	<!--**********************write comment ***********************-->
+	<insert id="reviewInsertComments" parameterType="java.util.Map">
+		insert into comments(COMMENT_NO, REVIEW_ID, ID, COTENT, POSTDATE, REFER, STEP, DEPTH)
+		values(SEQ_comments_comment_no.nextval, #{review_id}, #{id}, #{content}, sysdate, SEQ_comments_comment_no.currval, 0, 0)
+	</insert>
 	
+	<!--**********************select comment list **********************-->
+	<select id="reviewSelectCommentList" parameterType="java.util.Map" resultType="java.util.Map" >
+		select c.* , profile 
+		from comments c join member m on c.id=m.id
+		where review_id=#{review_id}
+		ORDER BY refer desc ,step asc 
+	</select>
 </mapper>
