@@ -211,24 +211,7 @@ public class SearchListController {
 		return "tourinfo/tdview/FoodList.theme";
 	}
 	
-	//질문답변
-	@RequestMapping("/planit/search/tourinfo/Qna.it")
-	public String goQna()throws Exception{
-		return "tourinfo/tdview/Qna.theme";
-	}
-	
-	
-	//공지사항
-	@RequestMapping("/planit/search/tourinfo/Notice.it")
-	public String goNotice()throws Exception{
-		return "tourinfo/tdview/Notice.theme";
-	}
-	//공지사항 세부
-	@RequestMapping("/planit/search/tourinfo/NoticeView.it")
-	public String noticeView()throws Exception{
-		return "tourinfo/tdview/NoticeView.theme";
-	}
-	
+
 
    
 

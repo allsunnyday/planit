@@ -49,6 +49,38 @@
                                   <div class="general-title text-center">
 										<h3 style=""><span class="clickedArea"></span> 지금 가장 인기 있는  관광지</h3>
 										<a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
+	<div class="row">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel"> 
+					<ol class="carousel-indicators">
+					    <li data-target="#carousel-example-generic" data-slide-to="0"class="active" ></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="1" ></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					  </ol>
+					<div class="carousel-inner">
+						<!--슬라이드1-->
+						<!-- --------------------------------------------관광지-------------------------- -->
+							
+								<div class="item active"> 
+									<!--  아래 이미지는 배경이 된다. -->
+									<a href="#">
+									<img src="<c:url value='https://images.unsplash.com/photo-1472387040940-3ae0cdbf127d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4aed91054fb429606c129dc3dd75acf2&auto=format&fit=crop&w=1256&q=80'/>" 
+												style="width:100%;height: 550px" height="300px" alt="First slide"></a>
+									<div class="review-overlay">
+							   			 <div class="text" >
+							   			 
+							   			 <c:forEach var="record" items="${tour}" end="1">
+							   				 <img id="iii1" src="${record.firstimage}">
+							   			 </c:forEach>
+							   				 
+							   			 <c:forEach var="record" items="${food}" end="1">
+										 	<img id="iii2" src="${record.firstimage}">
+										 </c:forEach>
+										 	
+<%-- 										 <c:forEach var="record" items="${sleep}" end="1"> --%>
+<%-- 										 	<img id="iii3" src="${record.firstimage}"> --%>
+<%-- 										 </c:forEach> --%>
+										 	
+							   			</div>
 									</div>
                                   <c:forEach var="record" items="${tour}" >
                                      <div class="" style="display: inline-block;">
@@ -124,6 +156,22 @@
                
             </div>
          </div>
+									<div class="container">
+								</div>
+							</div>
+							<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+						<!--슬라이드1-->
+					</div>
+					
+				</div>
+			</div>
   </section>
 
 <!-- ****************************************
