@@ -39,7 +39,8 @@ public class PartnerDAO implements PartnerService{
 		return count==0?true:false;
 	}
 	
-		//[기업회원 Room 등록용]
+
+//[기업회원 Room 등록용]
 	@Override
 	public int roomResist(Map map) {
 		// TODO Auto-generated method stub
@@ -56,14 +57,14 @@ public class PartnerDAO implements PartnerService{
 	
 	@Override
 	public PartnerRoomDTO partnerRoomView(Map map) {
-		// TODO Auto-generated method stub
+		System.out.println("오긴오냐");
 		return template.selectOne("PartnerRoomView",map);
 	}
 	
 	
 	
 //지인	
-
+	
 	@Override
 	public int getTotalRecordforRequest(Map map) {
 		return template.selectOne("PartnerRequestTotal", map);

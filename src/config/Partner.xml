@@ -4,278 +4,280 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 
-	*변경사항*
-	mapper 파일의 완전한 경로 . xml은 생략
-	ibatis와는 다르게 id값에 '.'를 사용하지 못함
+   *변경사항*
+   mapper 파일의 완전한 경로 . xml은 생략
+   ibatis와는 다르게 id값에 '.'를 사용하지 못함
  -->
 <mapper namespace="config.Pember">
-	<select id="PartnerIsLogin" parameterType="java.util.Map" resultType="int">
-		<!-- select count(*) from member where id='user1' and pwd='1234'; -->
-		
-		SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} AND pwd=#{pwd}
-	</select>
-	<select id="PartnerInformation" parameterType="java.util.Map" resultType="PartnerDTO" >
-		SELECT * FROM partner WHERE p_id=#{p_id}
-	</select>
+   <select id="PartnerIsLogin" parameterType="java.util.Map" resultType="int">
+      <!-- select count(*) from member where id='user1' and pwd='1234'; -->
+      
+      SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} AND pwd=#{pwd}
+   </select>
+   <select id="PartnerInformation" parameterType="java.util.Map" resultType="PartnerDTO" >
+      SELECT * FROM partner WHERE p_id=#{p_id}
+   </select>
 <!-- 중복검사 -->
-	<select id="partnerIsDuplicate" parameterType="String" resultType="int">
-	SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} 
-	</select> 
+   <select id="partnerIsDuplicate" parameterType="String" resultType="int">
+   SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} 
+   </select> 
 
-	
-	<insert id="PartnerIsJoin" parameterType="PartnerDTO">
-		<!--insert into partner(p_id,business_no,pwd,firstimage,regidate,tel,address) values  -->
-		insert into partner(p_id,business_no,pwd,email,firstimage,regidate,tel,address) values(#{p_id},#{business_no},#{pwd},#{email},'NOIMAGE',SYSDATE,#{tel},#{address})
-	
-	</insert>
+   
+   <insert id="PartnerIsJoin" parameterType="PartnerDTO">
+      <!--insert into partner(p_id,business_no,pwd,firstimage,regidate,tel,address) values  -->
+      insert into partner(p_id,business_no,pwd,email,firstimage,regidate,tel,address) values(#{p_id},#{business_no},#{pwd},#{email},'NOIMAGE',SYSDATE,#{tel},#{address})
+   
+   </insert>
 <!-- Room등록용 -->
-	<insert id="PartnerRoomResist" parameterType="java.util.Map">
-		INSERT INTO 
-			p_product
-			(
-				roomcode, p_id, roomtitle
-				
-				<if test="roomsize1 != null">,roomsize1</if>
-				<if test="roomcount != null">
-					,roomcount
-				</if>
-				<if test="roombasecount != null">
-					,roombasecount
-				</if>
-				<if test="roommaxcount != null">
-					,roommaxcount
-				</if>
-				<if test="roomoffseasonminfee1 != null">
-					,roomoffseasonminfee1
-				</if>
-				<if test="roomoffseasonminfee2 != null">
-					,roomoffseasonminfee2
-				</if>
-				<if test="roompeakseasonminfee1 != null">
-					,roompeakseasonminfee1
-				</if>
-				
-				
-				<if test="roompeakseasonminfee2 != null">
-					,roompeakseasonminfee2
-				</if>
-				<if test="roomintro != null">
-					,roomintro
-				</if>
-				<if test="roombathfacility != null">
-					,roombathfacility
-				</if>
-				<if test="roombath != null">
-					,roombath
-				</if>
-				<if test="roomhometheater != null">
-					,roomhometheater
-				</if>
-				
-				
-				<if test="roomaircondition != null">
-					,roomaircondition
-				</if>
-				<if test="roomtv != null">
-					,roomtv
-				</if>
-				<if test="roompc != null">
-					,roompc
-				</if>
-				<if test="roomcable != null">
-					,roomcable
-				</if>
-				<if test="roominternet != null">
-					,roominternet
-				</if>
-				
-				
-				<if test="roomrefrigerator != null">
-					,roomrefrigerator
-				</if>
-				<if test="roomtoiletries != null">
-					,roomtoiletries
-				</if>
-				<if test="roomsofa != null">
-					,roomsofa
-				</if>
-				<if test="roomcook != null">
-					,roomcook
-				</if>
-				<if test="roomtable != null">
-					,roomtable
-				</if>
-				
-				
-				<if test="roomhairdryer != null">
-					,roomhairdryer
-				</if>
-				<if test="roomsize2 != null">
-					,roomsize2
-				</if>
-				<if test="roomimg1 != null">
-					,roomimg1
-				</if>
-				<if test="roomimg2 != null">
-					,roomimg2
-				</if>
-				<if test="roomimg3 != null">
-					,roomimg3
-				</if>
-				
-				<if test="roomimg4 != null">
-					,roomimg4
-				</if>
-				<if test="roomimg5 != null">
-					,roomimg5
-				</if>
-			)
-			 VALUES
-	        (
-	            'test_10',
-	            #{p_id},
-	            #{roomtitle}
-	        <if test="roomsize1 != null">
-					,#{roomsize1}
-				</if>
-				<if test="roomcount != null">
-					,#{roomcount}
-				</if>
-	
-				
-				<if test="roombasecount != null">
-					,#{roombasecount}
-				</if>
-				<if test="roommaxcount != null">
-					,#{roommaxcount}
-				</if>
-				<if test="roomoffseasonminfee1 != null">
-					,#{roomoffseasonminfee1}
-				</if>
-				<if test="roomoffseasonminfee2 != null">
-					,#{roomoffseasonminfee2}
-				</if>
-				<if test="roompeakseasonminfee1 != null">
-					,#{roompeakseasonminfee1}
-				</if>
-				
-				
-				<if test="roompeakseasonminfee2 != null">
-					,#{roompeakseasonminfee2}
-				</if>
-				<if test="roomintro != null">
-					,#{roomintro}
-				</if>
-				<if test="roombathfacility != null">
-					,#{roombathfacility}
-				</if>
-				<if test="roombath != null">
-					,#{roombath}
-				</if>
-				<if test="roomhometheater != null">
-					,#{roomhometheater}
-				</if>
-				
-				
-				<if test="roomaircondition != null">
-					,#{roomaircondition}
-				</if>
-				<if test="roomtv != null">
-					,#{roomtv}
-				</if>
-				<if test="roompc != null">
-					,#{roompc}
-				</if>
-				<if test="roomcable != null">
-					,#{roomcable}
-				</if>
-				<if test="roominternet != null">
-					,#{roominternet}
-				</if>
-				
-				
-				<if test="roomrefrigerator != null">
-					,#{roomrefrigerator}
-				</if>
-				<if test="roomtoiletries != null">
-					,#{roomtoiletries}
-				</if>
-				<if test="roomsofa != null">
-					,#{roomsofa}
-				</if>
-				<if test="roomcook != null">
-					,#{roomcook}
-				</if>
-				<if test="roomtable != null">
-					,#{roomtable}
-				</if>
-				
-				
-				<if test="roomhairdryer != null">
-					,#{roomhairdryer}
-				</if>
-				<if test="roomsize2 != null">
-					,#{roomsize2}
-				</if>
-				<if test="roomimg1 != null">
-					,#{roomimg1}
-				</if>
-				<if test="roomimg2 != null">
-					,#{roomimg2}
-				</if>
-				<if test="roomimg3 != null">
-					,#{roomimg3}
-				</if>
-				
-				<if test="roomimg4 != null">
-					,#{roomimg4}
-				</if>
-				<if test="roomimg5 != null">
-					,#{roomimg5}
-				</if>
-			)
-	</insert>
-	<select id="PartnerRoomView" parameterType="java.util.Map" resultType="PartnerRoomDTO">
-		Select * from p_product where roomcode='test_10'
-	</select>
-	<select id="PartnerRoomList" parameterType="java.util.Map" resultType="PartnerRoomDTO">
-		Select * from p_product where p_id=#{p_id}
-	</select>
+   <insert id="PartnerRoomResist" parameterType="java.util.Map">
+      INSERT INTO 
+         p_product
+         (
+            roomcode, p_id, roomtitle
+            
+            <if test="roomsize1 != null">,roomsize1</if>
+            <if test="roomcount != null">
+               ,roomcount
+            </if>
+            <if test="roombasecount != null">
+               ,roombasecount
+            </if>
+            <if test="roommaxcount != null">
+               ,roommaxcount
+            </if>
+            <if test="roomoffseasonminfee1 != null">
+               ,roomoffseasonminfee1
+            </if>
+            <if test="roomoffseasonminfee2 != null">
+               ,roomoffseasonminfee2
+            </if>
+            <if test="roompeakseasonminfee1 != null">
+               ,roompeakseasonminfee1
+            </if>
+            
+            
+            <if test="roompeakseasonminfee2 != null">
+               ,roompeakseasonminfee2
+            </if>
+            <if test="roomintro != null">
+               ,roomintro
+            </if>
+            <if test="roombathfacility != null">
+               ,roombathfacility
+            </if>
+            <if test="roombath != null">
+               ,roombath
+            </if>
+            <if test="roomhometheater != null">
+               ,roomhometheater
+            </if>
+            
+            
+            <if test="roomaircondition != null">
+               ,roomaircondition
+            </if>
+            <if test="roomtv != null">
+               ,roomtv
+            </if>
+            <if test="roompc != null">
+               ,roompc
+            </if>
+            <if test="roomcable != null">
+               ,roomcable
+            </if>
+            <if test="roominternet != null">
+               ,roominternet
+            </if>
+            
+            
+            <if test="roomrefrigerator != null">
+               ,roomrefrigerator
+            </if>
+            <if test="roomtoiletries != null">
+               ,roomtoiletries
+            </if>
+            <if test="roomsofa != null">
+               ,roomsofa
+            </if>
+            <if test="roomcook != null">
+               ,roomcook
+            </if>
+            <if test="roomtable != null">
+               ,roomtable
+            </if>
+            
+            
+            <if test="roomhairdryer != null">
+               ,roomhairdryer
+            </if>
+            <if test="roomsize2 != null">
+               ,roomsize2
+            </if>
+            <if test="roomimg1 != null">
+               ,roomimg1
+            </if>
+            <if test="roomimg2 != null">
+               ,roomimg2
+            </if>
+            <if test="roomimg3 != null">
+               ,roomimg3
+            </if>
+            
+            <if test="roomimg4 != null">
+               ,roomimg4
+            </if>
+            <if test="roomimg5 != null">
+               ,roomimg5
+            </if>
+         )
+          VALUES
+           (
+               'test_11',
+               #{p_id},
+               #{roomtitle}
+           <if test="roomsize1 != null">
+               ,#{roomsize1}
+            </if>
+            <if test="roomcount != null">
+               ,#{roomcount}
+            </if>
+   
+            
+            <if test="roombasecount != null">
+               ,#{roombasecount}
+            </if>
+            <if test="roommaxcount != null">
+               ,#{roommaxcount}
+            </if>
+            <if test="roomoffseasonminfee1 != null">
+               ,#{roomoffseasonminfee1}
+            </if>
+            <if test="roomoffseasonminfee2 != null">
+               ,#{roomoffseasonminfee2}
+            </if>
+            <if test="roompeakseasonminfee1 != null">
+               ,#{roompeakseasonminfee1}
+            </if>
+            
+            
+            <if test="roompeakseasonminfee2 != null">
+               ,#{roompeakseasonminfee2}
+            </if>
+            <if test="roomintro != null">
+               ,#{roomintro}
+            </if>
+            <if test="roombathfacility != null">
+               ,#{roombathfacility}
+            </if>
+            <if test="roombath != null">
+               ,#{roombath}
+            </if>
+            <if test="roomhometheater != null">
+               ,#{roomhometheater}
+            </if>
+            
+            
+            <if test="roomaircondition != null">
+               ,#{roomaircondition}
+            </if>
+            <if test="roomtv != null">
+               ,#{roomtv}
+            </if>
+            <if test="roompc != null">
+               ,#{roompc}
+            </if>
+            <if test="roomcable != null">
+               ,#{roomcable}
+            </if>
+            <if test="roominternet != null">
+               ,#{roominternet}
+            </if>
+            
+            
+            <if test="roomrefrigerator != null">
+               ,#{roomrefrigerator}
+            </if>
+            <if test="roomtoiletries != null">
+               ,#{roomtoiletries}
+            </if>
+            <if test="roomsofa != null">
+               ,#{roomsofa}
+            </if>
+            <if test="roomcook != null">
+               ,#{roomcook}
+            </if>
+            <if test="roomtable != null">
+               ,#{roomtable}
+            </if>
+            
+            
+            <if test="roomhairdryer != null">
+               ,#{roomhairdryer}
+            </if>
+            <if test="roomsize2 != null">
+               ,#{roomsize2}
+            </if>
+            <if test="roomimg1 != null">
+               ,#{roomimg1}
+            </if>
+            <if test="roomimg2 != null">
+               ,#{roomimg2}
+            </if>
+            <if test="roomimg3 != null">
+               ,#{roomimg3}
+            </if>
+            
+            <if test="roomimg4 != null">
+               ,#{roomimg4}
+            </if>
+            <if test="roomimg5 != null">
+               ,#{roomimg5}
+            </if>
+         )
+   </insert>
+   <select id="PartnerRoomView" parameterType="java.util.Map" resultType="PartnerRoomDTO">
+      Select * from p_product where roomcode=#{roomcode}
+   </select>
+   <select id="PartnerRoomList" parameterType="java.util.Map" resultType="PartnerRoomDTO">
+      Select * from p_product where p_id=#{p_id}
+   </select>
 
-	<select id="PartnerRequestList" parameterType="java.util.Map" resultType="PartnerDTO">
-		SELECT * FROM (SELECT T.*,ROWNUM RW FROM (SELECT R.*,name FROM u_ask_p R JOIN member M ON R.id=M.id WHERE p_id= #{p_id} ORDER BY refer DESC,step) T) WHERE RW BETWEEN #{start} AND #{end}	
-	</select>
-	
-	<select id="PartnerRequestTotal" parameterType="java.util.Map" resultType="int">
-		SELECT COUNT(*) FROM u_ask_p WHERE p_id = #{p_id}
-	</select>
-	
-	<select id="PartnerReservationTotal" parameterType="java.util.Map" resultType="int">
-		SELECT COUNT(*) FROM(SELECT r.*, p_id FROM reservation r JOIN p_product p ON r.roomcode=p.roomcode WHERE p_id=#{p_id})
-	</select>
-	
-	<select id="PartnerRequestDetail" parameterType="java.util.Map" resultType="PartnerDTO">
-		SELECT P.*, M.name FROM u_ask_p P JOIN member M ON P.id=M.id WHERE ask_no=#{ask_no}
-	</select>
-	
-	<select id="PartnerReservationList" parameterType="java.util.Map" resultType="PartnerDTO">
-		SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT r.*, p_id, roomtitle FROM reservation r JOIN p_product p ON r.roomcode=p.roomcode WHERE p_id=#{p_id})T) WHERE R BETWEEN #{start} AND #{end}
-	</select>
-	
-	<select id="PartnerReservationDetail" parameterType="java.util.Map" resultType="PartnerDTO">
-		SELECT r.*, m.name as name , pp.roomtitle as roomtitle FROM planner p, member m, reservation r, p_product pp WHERE p.id=m.id AND p.planner_id=r.planner_id AND r.roomcode=pp.roomcode AND r.reservation_id=#{reservation_id} 
-	</select>
-	
-	<update id="replyUpdate" parameterType="java.util.Map" >
-		UPDATE u_ask_p SET title=#{title}, content=#{content}, status='replied', replydate=SYSDATE  WHERE ask_no=#{ask_no}
-	</update>
-	
-	<delete id="replyDelete" parameterType="java.util.Map" >
-		DELETE u_ask_p WHERE ask_no=#{ask_no}
-	</delete>
-	
-	<delete id="reservationDelete" parameterType="java.util.Map">
-		DELETE reservation WHERE reservation_id=#{reservation_id}
-	</delete>
+   <select id="PartnerRequestList" parameterType="java.util.Map" resultType="PartnerDTO">
+      SELECT * FROM (SELECT T.*,ROWNUM RW FROM (SELECT R.*,name FROM u_ask_p R JOIN member M ON R.id=M.id WHERE p_id= #{p_id} ORDER BY refer DESC,step) T) WHERE RW BETWEEN #{start} AND #{end}   
+   </select>
+   
+   <select id="PartnerRequestTotal" parameterType="java.util.Map" resultType="int">
+      SELECT COUNT(*) FROM u_ask_p WHERE p_id = #{p_id}
+   </select>
+   
+   <select id="PartnerReservationTotal" parameterType="java.util.Map" resultType="int">
+      SELECT COUNT(*) FROM(SELECT r.*, p_id FROM reservation r JOIN p_product p ON r.roomcode=p.roomcode WHERE p_id=#{p_id})
+   </select>
+   
+   <select id="PartnerRequestDetail" parameterType="java.util.Map" resultType="PartnerDTO">
+      SELECT P.*, M.name FROM u_ask_p P JOIN member M ON P.id=M.id WHERE ask_no=#{ask_no}
+   </select>
+   
+
+   <select id="PartnerReservationList" parameterType="java.util.Map" resultType="PartnerDTO">
+      SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT r.*, p_id, roomtitle FROM reservation r JOIN p_product p ON r.roomcode=p.roomcode WHERE p_id=#{p_id})T) WHERE R BETWEEN #{start} AND #{end}
+   </select>
+   
+   <select id="PartnerReservationDetail" parameterType="java.util.Map" resultType="PartnerDTO">
+      SELECT r.*, m.name as name , pp.roomtitle as roomtitle FROM planner p, member m, reservation r, p_product pp WHERE p.id=m.id AND p.planner_id=r.planner_id AND r.roomcode=pp.roomcode AND r.reservation_id=#{reservation_id} 
+   </select>
+   
+   <update id="replyUpdate" parameterType="java.util.Map" >
+      UPDATE u_ask_p SET title=#{title}, content=#{content}, status='replied', replydate=SYSDATE  WHERE ask_no=#{ask_no}
+   </update>
+   
+   <delete id="replyDelete" parameterType="java.util.Map" >
+      DELETE u_ask_p WHERE ask_no=#{ask_no}
+   </delete>
+   
+   <delete id="reservationDelete" parameterType="java.util.Map">
+      DELETE reservation WHERE reservation_id=#{reservation_id}
+   </delete>
+
 
 </mapper>
