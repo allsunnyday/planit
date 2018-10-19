@@ -132,7 +132,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          )
           VALUES
            (
-               'test_11',
+               'test_12',
                #{p_id},
                #{roomtitle}
            <if test="roomsize1 != null">
