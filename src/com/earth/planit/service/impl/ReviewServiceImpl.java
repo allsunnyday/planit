@@ -79,6 +79,21 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.selectRating(map);
 	}
 
+	@Override
+	public int insertComment(Map map) {
+		return dao.insertComment(map);
+	}
+
+	@Override
+	public int replyComment(Map map) {
+		return dao.replyComment(map);
+	}
+
+	@Override
+	public List<Map> selectCommentList(Map map) {
+		return dao.selectCommentList(map);
+	}
+
 	
 
 }

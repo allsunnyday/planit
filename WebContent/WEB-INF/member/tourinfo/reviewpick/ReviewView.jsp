@@ -16,7 +16,6 @@ review :
 	postdate
 	rating
 	firstimage
-
 ***************************************  -->
 
 <script>
@@ -38,6 +37,14 @@ review :
 		
 		//사용자 평점 
 		
+		//코멘트 함수
+		$('#submitComments').click(function(){
+			console.log('코멘트를 제출합니다.');
+			sendComments();
+		});
+		
+		//코멘트 리스트 불러오기 
+		showComments();
 		
 	});
 	
@@ -91,6 +98,78 @@ review :
 			}
 		});
 	} 
+	
+	// 코멘트 작성
+	var sendComments=function(){
+		// 내용을 입력했는지 확인한다.
+		if($('#content').val().length==0){
+			alert('내용을 입력해주세요');
+			return;
+		}
+		// 로그인을 했는지 확인
+		if('${sessionScope.id}'==''){
+			alert('로그인해주세요!');
+			return ;
+		}
+		console.log('내용을 입력받았습니다.');
+		console.log($('.comments_form').serialize()); 
+		$.ajax({
+			url:"<c:url value='/planit/review/comment/WriteComment.it'/> ",
+			type:"post",
+			dataType:'text',
+			data:$('#comments_form').serialize(),  //클래스 선택자로 선택시 값이 안넘어감. 반드시 from태그의 id값을 읽어와야 함
+			success: function(data){
+				if (data=='success'){
+					console.log('새로운 코멘트 리스트를 불러온다.');
+					showComments();
+				}
+				else{
+					console.log('실패했습니다...');
+				}
+			}
+		});
+		// texarea 다시 클린해주기
+		$('#content').val('');
+	};
+	
+	//코멘트 리스트 가져오기 
+	var showComments=function(){
+		console.log('코멘트 리스트를 가지고 오기 시작')
+		var review_id=${review.review_id};
+		$.ajax({
+			url:"<c:url value='/planit/review/comment/List.it'/> ",
+			data:{review_id:review_id},
+			dataType:'json',
+			type:'post',
+			success: displayComments
+		});
+	};
+	
+	// 코멘트 리스트를 화면에 출력하는 함수
+	var displayComments=function(data){
+		console.log(JSON.stringify(data));
+		var commentString='';
+		if(data.length==0){
+			commentString+='<li> 등록된 코멘트가 없습니다.</li>';
+		}
+		$.each(data, function(index, comment){
+			commentString+= '<li><article class="comment">'
+            +'<img src="https://blogpfthumb-phinf.pstatic.net/MjAxODA3MDJfMjk1/MDAxNTMwNTI3MTIwNjAx.XanKPuN9rA3-YNeGK_CtgsoAHQPqumlMMXkqkR_yQs8g.1CuJLtxaD7xjkeuLv-VNx4DOBfg1P6HqDUY9f2glEmgg.JPEG.gream50/1%25C2%25F7%2B%25B1%25B3%25BE%25C8.jpg?type=w161" alt="avatar" class="comment-avatar">'
+            +'<div class="comment-content">'
+            +'<h4 class="comment-author">'+comment['ID']+'<small class="comment-meta">'+comment['POSTDATE']+'</small>'
+            +'     <span class="comment-reply"><a href="javascript:" class="comment-reply button" onclick="commentShowReply();" title="'+comment['COMMENT_NO']+'" >reply</a></span>'
+            +' </h4>'+comment['CONTENT']
+            +'</div></article></li>';
+		});
+		$('.comment-list').html(commentString);
+		
+	};
+	
+	var commentShowReply=function(){
+		var comment_no = $(this).attr('title');
+		console.log('이 '+comment_no+'에 답변을 답니다.');
+		
+	};
 
 </script>
 
@@ -307,16 +386,15 @@ review :
 	<!-- changebg modal -->
 
 
-<!--***********************************************************************
-코멘트남기기 
-**************************************************************************  -->
+<!--**************** 코멘트남기기  **************************************************************************  -->
  <section class="section1">
     <div class="container clearfix">
       <div class="content col-xs-12 clearfix">    
         <div id="comments_wrapper">
           <h4 class="title">1 Comments so far</h4>
           <ul class="comment-list">
-            <li>
+            <!--*****************코멘트 하나****************************   -->
+            <!-- <li> 
               <article class="comment">
                 <img src="https://blogpfthumb-phinf.pstatic.net/MjAxODA3MDJfMjk1/MDAxNTMwNTI3MTIwNjAx.XanKPuN9rA3-YNeGK_CtgsoAHQPqumlMMXkqkR_yQs8g.1CuJLtxaD7xjkeuLv-VNx4DOBfg1P6HqDUY9f2glEmgg.JPEG.gream50/1%25C2%25F7%2B%25B1%25B3%25BE%25C8.jpg?type=w161" alt="avatar" class="comment-avatar">
                 <div class="comment-content">
@@ -325,8 +403,8 @@ review :
                    </h4> 작가님, 혹시 치킨은 어디꺼 시켜드셨나요?  
                 </div>
               </article>
-              <!-- End .comment -->
-            </li>
+            </li> -->
+            <!--*****************코멘트 하나****************************   -->
           </ul>
           <!-- End .comment-list -->
 
@@ -334,10 +412,12 @@ review :
 
           <div class="comments_form">
             <h4 class="title">Leave a Comment</h4>
-            <form id="comments_form" action="" name="comments_form" class="row" method="post">
+            <form id="comments_form"  name="comments_form" class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Your Message ..."></textarea>
-                <input type="submit" value="SEND COMMENT" id="submit" class="button small">
+              	<input type="hidden" value="${review.review_id}" name="review_id">
+              	<input type="hidden" value="${sessionScope.id}" name="id">
+                <textarea class="form-control" name="content" id="content" rows="3" placeholder="Your Message ..."></textarea>
+                <button type="button" value="SEND COMMENT" id="submitComments" class="button small">SEND COMMENT</button>
               </div>
             </form>
           </div>

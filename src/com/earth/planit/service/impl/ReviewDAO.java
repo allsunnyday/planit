@@ -78,4 +78,20 @@ public class ReviewDAO implements ReviewService {
 		return null;
 	}
 
+	@Override
+	public int insertComment(Map map) {
+		return template.insert("reviewInsertComments", map);
+	}
+
+	@Override
+	public int replyComment(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Map> selectCommentList(Map map) {
+		return template.selectList("reviewSelectCommentList", map);
+	}
+
 }
