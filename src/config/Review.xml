@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--**********************write comment ***********************-->
 	<insert id="reviewInsertComments" parameterType="java.util.Map">
-		insert into comments(COMMENT_NO, REVIEW_ID, ID, COTENT, POSTDATE, REFER, STEP, DEPTH)
+		insert into comments(COMMENT_NO, REVIEW_ID, ID, CONTENT, POSTDATE, REFER, STEP, DEPTH)
 		values(SEQ_comments_comment_no.nextval, #{review_id}, #{id}, #{content}, sysdate, SEQ_comments_comment_no.currval, 0, 0)
 	</insert>
 	

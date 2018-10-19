@@ -589,7 +589,7 @@
 		}// 여행일정 div number 재정비
 		/**************사용자가 추가한 여행일정 계획 삭제시 남아있는 div 의 번호 재정렬 ************  */
 		/* ************ 사용자가 추가한 여행 일정 계획 삭제후 남아있는 마커들의 거리 재산출*********** */
-		for(var i= 0; i < plancase; i++){
+		/* for(var i= 0; i < plancase; i++){
 			if(Math.round(polyline.getLength() ==0)){
 				distance = Math.round(polyline.getLength());
 				temp = distance;
@@ -615,7 +615,7 @@
 				else {$('.plancartime').val(carTime+' 분');}
 				
 			});			
-		}
+		} */
 		console.log('plancase: '+plancase+'/diveplus: '+diveplus+'/diveplusFortitle: '+diveplusFortitle);
 		diveplus = plancase-1;
 	}
