@@ -50,7 +50,6 @@ public class PartnerServiceImpl implements PartnerService{
 		System.out.println(map.get("p_id"));
 		return dao.roomResist(map);
 	}
-	
 
 	@Override
 	public List<PartnerDTO> selectRequestList(Map map) {
@@ -87,6 +86,7 @@ public class PartnerServiceImpl implements PartnerService{
 	@Override
 	public PartnerRoomDTO partnerRoomView(Map map) {
 		// TODO Auto-generated method stub
+		System.out.println("여기까지오냐");
 		return dao.partnerRoomView(map);
 	}
 

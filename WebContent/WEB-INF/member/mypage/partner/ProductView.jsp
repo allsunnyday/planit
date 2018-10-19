@@ -8,10 +8,10 @@
 	<div class="container">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<ul class="breadcrumb">
-				<li><a href="index.html">Partner Page</a></li>
+				<li><a href="index.html">Product</a></li>
 				<li>${partnerRecord.p_id }</li>
 			</ul>
-			<h2>Partner Page Home</h2>
+			<h2>Product Detail</h2>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<!-- search -->
@@ -30,9 +30,9 @@
 </section>
   <section class="marketplace-top">
     <div id="market-wrapper">
-      <div class="item_image">
-        <img data-effect="fade" class="aligncenter" width="1260" height="400" src="img/market_single_01.png" alt="">
-      </div>
+    <%--   <div class="item_image">
+       	 <img data-effect="fade" class="aligncenter" width="1260" height="400" src="<c:url value='/Upload/Partner/Product/${productRecord.roomimg1}'/>" alt="">
+      </div> --%>
       <!-- end item_image -->
     </div>
   </section>
@@ -42,7 +42,7 @@
       <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 
         <div class="general-title text-center">
-          <h3>Flat Pack Heritage</h3>
+          <h3>${productRecord.roomtitle }</h3>
           <p>ÜBER PREMIUM VEGETABLE TANNED ITALIAN LEATHER</p>
           <hr>
         </div>
@@ -50,52 +50,117 @@
         <div class="divider"></div>
 
         <div class="item_details">
+<!-- ****************
+		중간 사진보기 캐러샐
+		***************-->
 
-          <div class="col-lg-3 col-md-3 col-sm-12">
+		<!-- 내용 시작   -->
+		<div class="row">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel"> 
+				<!--페이지-->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				</ol>
+				<!--페이지-->
+			
+				<div class="carousel-inner">
+					<!--슬라이드1-->
+					<div class="item active"> 
+						<img src="<c:url value='/Upload/Partner/Product/${productRecord.roomimg1}'/> " style="width:100%;height: 600px" height="450px" alt="First slide">
+						<div class="container">
+							<div class="carousel-caption">
+								<h1 class="carousel-h1"></h1>
+								
+							</div>
+						</div>
+					</div>
+					<!--슬라이드1-->
+			
+					<!--슬라이드2-->
+					<div class="item"> 
+						<img src="<c:url value='/Upload/Partner/Product/${productRecord.roomimg2}'/>" style="width:100%;height: 600px" height="450px" data-src="" alt="Second slide">
+						<div class="container">
+							<div class="carousel-caption">
+								<h1 class="carousel-h1"></h1>
+							
+							</div>
+						</div>
+					</div>
+					<!--슬라이드2-->
+					
+					<!--슬라이드3-->
+					<div class="item"> 
+						<img src="<c:url value='/Upload/Partner/Product/${productRecord.roomimg3}'/>" style="width:100%;height: 600px" height="450px" data-src=""  alt="Third slide">
+						<div class="container">
+							<div class="carousel-caption">
+								<h1 class="carousel-h1"></h1>
+								
+							</div>
+						</div>
+					</div>
+					<!--슬라이드3-->
+				</div>
+				
+				<!--이전, 다음 버튼-->
+				<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> 
+				<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a> 
+			</div>
+		</div>
+		
+          <div class="col-lg-3 col-md-3 col-sm-12" style="margin-top:50px;height: 150px">
             <div class="theme_details">
-              <div class="details_section">
+            
+              <div class="details_section"  style="">
                 <h3>Item Details</h3>
                 <ul>
-                  <li class="version">Size: <span>11.8” X 7.87” X 1.57</span></li>
+                  <li class="release">Size(평수): <span>${productRecord.roomsize1 }</span></li>
+                  <li class="release">Size(평방미터): <span>${productRecord.roomsize2 }</span></li>
+                  <li class="release">Base Count: <span>${productRecord.roombasecount }</span></li>
+                  <li class="release">Max Count: <span>${productRecord.roommaxcount }</span></li>
+                  
+                 <!--  <li class="version">Size: <span>11.8” X 7.87” X 1.57</span></li>
                   <li class="release">Release Date: <span>28 February, 2014</span></li>
                   <li class="designer">Designer: <span>Matt Stinson</span></li>
-                  <li class="designer">Material: <span>Tanned Italian Leather</li>
+                  <li class="designer">Material: <span>Tanned Italian Leather</li> -->
                                     </ul>
                             </div>
                         </div>
                     </div><!-- col-lg-3 -->
-
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+		
+ 	                  
+  					<div class="col-lg-6 col-md-6 col-sm-12" style="margin-top:50px;">
                         <div class="theme_details">
-                            <div class="item-description">
-                                <p>Our über premium vegetable tanned Italian leather is hand-stained hide by hide. Skilled workmen apply natural colouring made from tree bark, etc. by hand onto the leather. This traditional technique needs a lot of time but ensures an amazing quality.</p>
-                                <p>Each hide has its own special touch and is unique in tone and texture. This is a very honest and hands-on process and sometimes colouring can be found on the back which is proof of this age-old way of crafting leather.</p>
-                                <p>This is ‘real’ leather and the natural skin structure shows through. Sometimes you can see small marks or scratches which are evidence of the über premium and untouched quality. Because of the natural character of the leather, it needs to be taken care of in order to last. Just like applying cream on dry hands - if the leather feels dry, apply a small amount of leather balm or wax.</p>
+                         <div class="details_section"  style="">
+                            <div class="item-description" style="height:215px">
+                            <h3>Room Introduce</h3>
+                            <c:if test="${productRecord.roomintro eq null}" var="result">
+                            	<p>당신의 놀라운 객실을 소개해주세요!</p>
+                            </c:if>
+                            <c:if test="${not empty productRecord.roomintro }">
+                                <p>${productRecord.roomintro }</p>
+                            </c:if>
+                              </div>
                             </div><!-- item-description -->
                         </div><!-- theme_details -->
                     </div><!-- col-lg-6 -->
-
-                    <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12" style="margin-top:50px" >
                         <div class="theme_details">
-                        	<div class="item_price">
-                            	<h3><span><small>$</small>450.00</span></h3>
+                         <div class="details_section"  style="">
+                        	<div class="item_price" style="height:215px">
+                        	 <h3>Price</h3>
+                            	<h4><span><small>$</small>60,000</span></h5>
+                            	<h4><span><small>$</small>${productRecord.roomoffseasonminfee1 }</span></h4>
+                            	<h4><span><small>$</small>${productRecord.roomoffseasonminfee2 }</span></h4>
+                            	<h4><span><small>$</small>${productRecord.roompeakseasonminfee1 }</span></h4>
+                            	<h4><span><small>$</small>${productRecord.roompeakseasonminfee2 }</span></h4>
+                            
+                            </div>
               </div>
               <!-- item_price -->
-              <hr>
-              <div class="buttons">
-                <a class="button btn-block large" href="#">SEE GALLERY</a>
-                <a class="button btn-block large" href="#"><i class="fa fa-download"></i> BUY NOW</a>
-              </div>
-              <!-- buttons -->
-              <hr>
-              <div class="rating text-center">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-                <p>Users Rating</p>
-              </div>
+         
+           
               <!-- rating -->
             </div>
             <!-- theme_details -->

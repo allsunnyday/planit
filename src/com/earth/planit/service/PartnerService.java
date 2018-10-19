@@ -16,6 +16,7 @@ public interface PartnerService {
 	//List<PartnerDTO> partnerInfo(Map map);
 
 	int getTotalRecordforRequest(Map map);
+
 	//[Room 정보 등록]
 	int roomResist(Map map);
 	
@@ -23,6 +24,7 @@ public interface PartnerService {
 	PartnerRoomDTO partnerRoomView(Map map);
 	//[RoomList]
 	List<PartnerRoomDTO> partnerRoomList(Map map);
+
 	
 	List<PartnerDTO> selectRequestList(Map map);
 
