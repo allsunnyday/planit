@@ -163,10 +163,10 @@ height: 100%; */
 	<div class="container">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<ul class="breadcrumb">
-				<li><a href="index.html">Home</a></li>
-				<li>사용자 아이디</li>
+				<li><a href="index.html">Product</a></li>
+				<li>${partnerRecord.p_id }</li>
 			</ul>
-			<h2>Planner</h2>
+			<h2>Product List</h2>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<!-- search -->
@@ -198,7 +198,7 @@ height: 100%; */
 				</div>
 				<!-- he wrap -->
 				<div class="teammembers-meta">
-					<h4>Plan:It</h4>
+					<h4>Product List</h4>
 				</div>
 				<div id="Partner-First-1-self-detail">
 					<p>
@@ -322,38 +322,48 @@ height: 100%; */
 							<div class="portfolio-centered">
 								<div class="recentitems portfolio">
 
-									<c:if test="${empty requestScope.roomlist }" var="isEmpty">
+									<c:if test="${empty roomlist }" var="isEmpty">
 										<h4>상품을 등록해주세요</h4>
 									</c:if>
 									<c:if test="${not isEmpty }">
+									
 									<c:forEach var="list" items="${roomlist}" varStatus="loop">
-									<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
-									<div class="he-wrap tpl6 market-item">
-										<img src="c:url value='/Upload/Partner/Product/${list.roomimg1}'/" alt="">
-									<div class="he-view">
-											<div class="bg a0" data-animate="fadeIn">
-												<h3 class="big a1" data-animate="fadeInDown"> ${list.roomtitle}</h3>
-												<a data-rel="prettyPhoto"
-													href="<c:url value='/images/main/slide2.jpg'/>"
-													class="dmbutton a2" data-animate="bounceInLeft"><i
-													class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
-													data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-												<div class="portfolio_category text-center a2"
-													data-animate="fadeIn"></div>
-												<!-- portfolio_category -->
+									
+										<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
+										
+										<div class="he-wrap tpl6 market-item">
+										 <c:if test="${empty list.roomimg1 }" var="result">
+				                         	<img src="<c:url value='/Upload/Tour/tempimage.png'/>" alt="" style="height:250px">
+				                     	 </c:if>
+				                      	<c:if test="${not result }">
+											<img src="<c:url value='/Upload/Partner/Product/${list.roomimg1}'/>" style="height:250px" alt="">
+										</c:if>
+										<div class="he-view">
+												<div class="bg a0" data-animate="fadeIn">
+													<h3 class="big a1" data-animate="fadeInDown"> ${list.roomtitle}</h3>
+													<a data-rel="prettyPhoto"
+														href="#"
+														class="dmbutton a2" data-animate="bounceInLeft" ><i
+														class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
+														data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+													<div class="portfolio_category text-center a2"
+														data-animate="fadeIn"></div>
+													<!-- portfolio_category -->
+												</div>
+												<!-- he bg -->
 											</div>
-											<!-- he bg -->
+											<!-- he view -->
 										</div>
-										<!-- he view -->
+										
+										<!-- he wrap -->
+										<h3 class="title"><a href="<c:url value='/planit/member/partner/ProductView.it?roomcode=${list.roomcode}'/>">${list.roomcode},${list.roomtitle}<a></a></h3>
+										<p>Lorem Ipsum is simply dummy text of the printing and
+											typesetting industry. Lorem Ipsum has been the industry"s
+											standard dummy..</p>
 									</div>
-									<!-- he wrap -->
-									<h3 class="title">${list.roomtitle}</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry"s
-										standard dummy..</p>
-								</div>
-										</c:forEach>
+								</c:forEach>
 									</c:if>
+									
 								<!-- end col-4 -->
 								</div>
 							</div>
