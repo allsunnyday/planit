@@ -25,7 +25,6 @@ public class ContentDTO {
 	private String overview ;
 	private String imagename ;
 	private String originimgurl;
-	
 	// 카테고리를 한국어로 변경한 값
 	private String cat1kor;
 	private String cat2kor;
