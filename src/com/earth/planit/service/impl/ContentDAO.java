@@ -48,4 +48,14 @@ public class ContentDAO implements ContentService {
 		return template.update("ContentUpdateViewcount", map);
 	}
 
+	@Override
+	public int insertLikedTour(Map map) {
+		return template.insert("contentInsertLikedTour", map);
+	}
+
+	@Override
+	public int isAlreadyLiked(Map map) {
+		return template.selectOne("contentIsAlreadyLiked",map);
+	}
+
 }

@@ -38,24 +38,76 @@ public class PartnerDAO implements PartnerService{
 		int count=template.selectOne("partnerIsDuplicate",p_id);
 		return count==0?true:false;
 	}
-//[기업회원 Room 등록용]
+	
+		//[기업회원 Room 등록용]
 	@Override
-	public int roomResist(PartnerRoomDTO dto) {
+	public int roomResist(Map map) {
 		// TODO Auto-generated method stub
-		return template.insert("PartnerRoomResist",dto);
+		System.out.println("여기까지 오냐1");
+		System.out.println(map.get("p_id"));
+		return template.insert("PartnerRoomResist",map);
 	}
 	
-	public int getTotalRecordforRequestTotal(Map map) {
-		return template.selectOne("RequestTotal", map);
+	@Override
+	public List<PartnerRoomDTO> partnerRoomList(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("PartnerRoomList",map);
 	}
 	
+	@Override
+	public PartnerRoomDTO partnerRoomView(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("PartnerRoomView",map);
+	}
+	
+	
+	
+//지인	
+
+	@Override
+	public int getTotalRecordforRequest(Map map) {
+		return template.selectOne("PartnerRequestTotal", map);
+	}
+	
+	@Override
 	public int getTotalRecordforReservation(Map map) {
-		return template.selectOne("ReservationTotal", map);
+		return template.selectOne("PartnerReservationTotal", map);
 	}
 
 	@Override
 	public List<PartnerDTO> selectRequestList(Map map) {
 		return template.selectList("PartnerRequestList", map);
+	}
+	
+	@Override
+	public List<PartnerDTO> selectReservationList(Map map) {
+		return template.selectList("PartnerReservationList", map);
+	}
+
+	@Override
+	public PartnerDTO selectRequestDetail(Map map) {
+		return template.selectOne("PartnerRequestDetail", map);
+	}
+	@Override
+	public PartnerDTO selectReservationDetail(Map map) {
+		return template.selectOne("PartnerReservationDetail", map);
+	}
+
+	@Override
+	public int replyDelete(PartnerDTO dto) {
+		return template.delete("replyDelete", dto);
+	}
+
+	@Override
+	public int update(Map map) {
+		int affected = template.update("replyUpdate", map);
+		return affected;
+	}
+
+	@Override
+	public int reservationDelete(PartnerDTO dto) {
+		int affected = template.delete("reservationDelete", dto);
+		return affected;
 	}
 
 }

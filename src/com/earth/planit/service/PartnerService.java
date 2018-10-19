@@ -15,16 +15,31 @@ public interface PartnerService {
 	PartnerDTO partnerInfo(Map map);
 	//List<PartnerDTO> partnerInfo(Map map);
 
+	int getTotalRecordforRequest(Map map);
 	//[Room 정보 등록]
-	int roomResist(PartnerRoomDTO dto);
-
-
-
-	int getTotalRecordforRequestTotal(Map map);
+	int roomResist(Map map);
+	
+	//[RoomView]
+	PartnerRoomDTO partnerRoomView(Map map);
+	//[RoomList]
+	List<PartnerRoomDTO> partnerRoomList(Map map);
 	
 	List<PartnerDTO> selectRequestList(Map map);
 
-	
+	int getTotalRecordforReservation(Map map);
 		
+	PartnerDTO selectRequestDetail(Map map);
+
+	List<PartnerDTO> selectReservationList(Map map);
+
+	PartnerDTO selectReservationDetail(Map map);
+	
+	
+	//입력/수정/삭제]
+	int replyDelete(PartnerDTO dto);
+	int reservationDelete(PartnerDTO dto);
+	int update(Map map);
+	
+	
 }
 

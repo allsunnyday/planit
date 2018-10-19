@@ -18,9 +18,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       SELECT * FROM partner WHERE p_id=#{p_id}
    </select>
 <!-- 중복검사 -->
+
    <select id="partnerIsDuplicate" parameterType="String" resultType="int">
    SELECT COUNT(*) FROM partner WHERE p_id=#{p_id} 
    </select> 
+
 
    
    <insert id="PartnerIsJoin" parameterType="PartnerDTO">
@@ -279,5 +281,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       DELETE reservation WHERE reservation_id=#{reservation_id}
    </delete>
 
+
+
+	<select id="PartnerRequestList" parameterType="java.util.Map" resultType="PartnerDTO">
+		SELECT * FROM (SELECT T.*,ROWNUM RW FROM (SELECT R.*,name FROM u_ask_p R JOIN member M ON R.id=M.id WHERE p_id= #{p_id} ORDER BY refer DESC,step) T) WHERE RW BETWEEN #{start} AND #{end}	
+	</select>
+	
+	<select id="PartnerRequestTotal" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM u_ask_p WHERE p_id = #{p_id}
+	</select>
+	
+	<select id="PartnerReservationTotal" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM(SELECT r.*, p_id FROM reservation r JOIN p_product p ON r.roomcode=p.roomcode WHERE p_id=#{p_id})
+	</select>
+	
+	<select id="PartnerRequestDetail" parameterType="java.util.Map" resultType="PartnerDTO">
+		SELECT P.*, M.name FROM u_ask_p P JOIN member M ON P.id=M.id WHERE ask_no=#{ask_no}
+	</select>
+	
+	<select id="PartnerReservationList" parameterType="java.util.Map" resultType="PartnerDTO">
+		SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT r.*, p_id, roomtitle FROM reservation r JOIN p_product p ON r.roomcode=p.roomcode WHERE p_id=#{p_id})T) WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="PartnerReservationDetail" parameterType="java.util.Map" resultType="PartnerDTO">
+		SELECT r.*, m.name as name , pp.roomtitle as roomtitle FROM planner p, member m, reservation r, p_product pp WHERE p.id=m.id AND p.planner_id=r.planner_id AND r.roomcode=pp.roomcode AND r.reservation_id=#{reservation_id} 
+	</select>
+	
+	<update id="replyUpdate" parameterType="java.util.Map" >
+		UPDATE u_ask_p SET title=#{title}, content=#{content}, status='replied', replydate=SYSDATE  WHERE ask_no=#{ask_no}
+	</update>
+	
+	<delete id="replyDelete" parameterType="java.util.Map" >
+		DELETE u_ask_p WHERE ask_no=#{ask_no}
+	</delete>
+	
+	<delete id="reservationDelete" parameterType="java.util.Map">
+		DELETE reservation WHERE reservation_id=#{reservation_id}
+	</delete>
 
 </mapper>

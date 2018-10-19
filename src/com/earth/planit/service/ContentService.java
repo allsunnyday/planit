@@ -15,6 +15,8 @@ public interface ContentService {
 	int totalContentCount(Map map);
 	//
 	int updateViewcount(Map map);
-	
-	
+	// liked tour 테이블에 추가 
+	int insertLikedTour(Map map);
+	// 이미 즐겨찾기에 추가했는지 검사
+	int isAlreadyLiked(Map map);
 }

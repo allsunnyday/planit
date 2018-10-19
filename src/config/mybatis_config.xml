@@ -12,15 +12,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		[아이바티스]mapperfile에서 type alias -> [마이바티스]설정파일로 위치가 변경됨
 	 -->
 	<typeAliases>
-		<!-- 회원DTO 등을 입력-->
 		<typeAlias alias="memberDTO" type="com.earth.planit.service.MemberDTO"/>
 		<typeAlias alias="partnerDTO" type="com.earth.planit.service.PartnerDTO"/>
 		<typeAlias alias="partnerRoomDTO" type="com.earth.planit.service.PartnerRoomDTO"/>
 		<typeAlias alias="reviewDTO" type="com.earth.planit.service.ReviewDTO" /> 
 		<typeAlias alias="searchMapDTO" type="com.earth.planit.service.SearchMapDTO"/>
-		<typeAlias alias="searchListDTO" type="com.earth.planit.service.SearchListDTO"/>
 		<typeAlias alias="contentDTO" type="com.earth.planit.service.ContentDTO"/>
-		
+		<typeAlias alias="faqNoticeDTO" type="com.earth.planit.service.FaqNoticeDTO"/>
 	</typeAliases>
 	
 	
@@ -55,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="config/SearchMap.xml" />
 		<mapper resource="config/SearchList.xml" />
 		<mapper resource="config/Content.xml" />
-		
+		<mapper resource="config/FaqNotice.xml" />
 	</mappers>
 	
 	

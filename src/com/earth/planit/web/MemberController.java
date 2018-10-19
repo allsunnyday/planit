@@ -79,40 +79,58 @@ public class MemberController {
 	// 프로필 수정처리
 	@RequestMapping(value = "/planit/mypage/editsave.it", method = RequestMethod.POST)
 	public String profileEdit(@RequestParam Map map, //
-			MultipartHttpServletRequest mhsr) throws Exception {
-	/*	MultipartRequest mr=FileUtils.upload(req, req.getServletContext().getRealPath("/Upload/Member"));
-		System.out.println("mr"+mr);
-		System.out.println(map.get("profile").toString());
-		String profile=mr.getFilesystemName(map.get("profile").toString());
-		*/
-		
-		   //업로드할 폴더의 물리적 경로 
-	      String phisicalPath=mhsr.getServletContext().getRealPath("/Upload");
-	      // multipartFile객체 얻기
-	      MultipartFile upload=mhsr.getFile("upload");
-	      // 파일이름 중복 체크
-	      // 동일한 이름이 있는 경우: 인덱싱 
-	      // 동일한 이름이 없는 경우 : 원래이름사용
-	      String originname = upload.getOriginalFilename();
-			String filename = FileUtils.getNewFileName(phisicalPath, originname);
-			System.out.println("저장될 파일 이름 -"+filename);
-			//파일객체 생성
-			File file = new File(phisicalPath+File.separator+filename);
-	      // 업로드 처리 
-	      upload.transferTo(file);
-	      //// 데이터 저장 
-	      mhsr.setAttribute("writer", mhsr.getParameter("writer"));
-	      mhsr.setAttribute("title", mhsr.getParameter("title"));
-	      // 파일과 관련된 정보 저장
-	      mhsr.setAttribute("original", upload.getOriginalFilename());
-	      mhsr.setAttribute("size", (int)Math.ceil(upload.getSize()/1024.0) );
-	      mhsr.setAttribute("real", filename);
-	      mhsr.setAttribute("type", upload.getContentType());
-	     
+			MultipartHttpServletRequest mhsr,
+			HttpSession session) throws Exception {
+		// 1]서버의 물리적 경로 얻기
+		String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");
+		// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
+		// MultipartFile객체 얻기
+		MultipartFile profile = mhsr.getFile("profile");
+		// 2]File객체 생성
+		// 2-1] 파일 중복시 이름 변경
+		String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
 
-		//map.put("profile", profile);
+		File file = new File(phicalPath + File.separator + newFilename);
+		// 3]업로드 처리
+		profile.transferTo(file);
+	/*	// 4]리퀘스트 영역에 데이타 저장
+		mhsr.setAttribute("writer", mhsr.getParameter("writer"));
+		mhsr.setAttribute("title", mhsr.getParameter("title"));
+		// 파일과 관련된 정보]
+		mhsr.setAttribute("original", upload.getOriginalFilename());
+		mhsr.setAttribute("size", (int) Math.ceil(upload.getSize() / 1024.0));
+		mhsr.setAttribute("type", upload.getContentType());
+		mhsr.setAttribute("real", newFilename);*/
+
+		/*
+		 * MultipartRequest mr=FileUtils.upload(req,
+		 * req.getServletContext().getRealPath("/Upload/Member"));
+		 * System.out.println("mr"+mr);
+		 * System.out.println(map.get("profile").toString()); String
+		 * profile=mr.getFilesystemName(map.get("profile").toString());
+		 * 
+		 * 
+		 * //업로드할 폴더의 물리적 경로 String
+		 * phisicalPath=mhsr.getServletContext().getRealPath("/Upload"); //
+		 * multipartFile객체 얻기 MultipartFile upload=mhsr.getFile("upload"); // 파일이름 중복 체크
+		 * // 동일한 이름이 있는 경우: 인덱싱 // 동일한 이름이 없는 경우 : 원래이름사용 String originname =
+		 * upload.getOriginalFilename(); String filename =
+		 * FileUtils.getNewFileName(phisicalPath, originname);
+		 * System.out.println("저장될 파일 이름 -"+filename); //파일객체 생성 File file = new
+		 * File(phisicalPath+File.separator+filename); // 업로드 처리
+		 * upload.transferTo(file); //// 데이터 저장 mhsr.setAttribute("writer",
+		 * mhsr.getParameter("writer")); mhsr.setAttribute("title",
+		 * mhsr.getParameter("title")); // 파일과 관련된 정보 저장 mhsr.setAttribute("original",
+		 * upload.getOriginalFilename()); mhsr.setAttribute("size",
+		 * (int)Math.ceil(upload.getSize()/1024.0) ); mhsr.setAttribute("real",
+		 * filename); mhsr.setAttribute("type", upload.getContentType());
+		 */
+
+		// map.put("profile", profile);
+		map.put("profile", newFilename.toString().trim());
+		map.put("id", session.getAttribute("id").toString());
 		int affected = service.updateProfile(map);
-		System.out.println(affected==1?"입력성공":"입력실패");
+		System.out.println(affected == 1 ? "입력성공" : "입력실패");
 		return "forward:/planit/mypage/MyPageHome.it";
 	}
 
@@ -192,11 +210,12 @@ public class MemberController {
 			// 로그인 처리 - 세션 영역에 저장
 			session.setAttribute("id", map.get("id"));
 			MemberDTO memberRecord = service.memberInfo(map);
+			//이미지 세션에 저장하기
+			System.out.println(memberRecord.getProfile());
 			session.setAttribute("memberRecord", memberRecord);
 
 			return "redirect:/";
-		}
-		else { // 비회원일경우 
+		} else { // 비회원일경우
 
 			model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
 		}
@@ -209,7 +228,6 @@ public class MemberController {
 	@RequestMapping("/member/login/Logout.it")
 	public String logoutProcess(HttpSession session) throws Exception {
 		session.invalidate();
-
 
 		return "redirect:/Plait/Planit.it";
 
@@ -235,17 +253,17 @@ public class MemberController {
 		// 선호도 체크페이지 이동
 
 	}
-	@RequestMapping(value="/planit/member/idcheck.it",method=RequestMethod.POST)
-    @ResponseBody
-    public String idcheck(@RequestBody String id) {
-        
-        int count = 0;
-        count = service.idDuplicate(id)==true?0:1;
-        System.out.println(count);
-        //map.put("cnt", count);
- 
-        return String.valueOf(count);
-    }
-	
+
+	@RequestMapping(value = "/planit/member/idcheck.it", method = RequestMethod.POST)
+	@ResponseBody
+	public String idcheck(@RequestBody String id) {
+
+		int count = 0;
+		count = service.idDuplicate(id) == true ? 0 : 1;
+		System.out.println(count);
+		// map.put("cnt", count);
+
+		return String.valueOf(count);
+	}
 
 }

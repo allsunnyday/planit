@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.SearchListDTO;
 import com.earth.planit.service.SearchListService;
 
@@ -19,17 +20,17 @@ public class SearchListDAO implements SearchListService {
 	private SqlSessionTemplate template;
 
 	@Override
-	public List<SearchListDTO> selectTourList(Map map) {
+	public List<ContentDTO> selectTourList(Map map) {
 		return template.selectList("selectTourList",map);
 	}
 
 	@Override
-	public List<SearchListDTO> selectFoodList(Map map) {
+	public List<ContentDTO> selectFoodList(Map map) {
 		return template.selectList("selectFoodList",map);
 	}
 
 	@Override
-	public List<SearchListDTO> selectSleepList(Map map) {
+	public List<ContentDTO> selectSleepList(Map map) {
 		return template.selectList("selectSleepList",map);
 	}
 
@@ -39,7 +40,7 @@ public class SearchListDAO implements SearchListService {
 	}
 
 	@Override
-	public List<SearchListDTO> selectList(Map map) {
+	public List<ContentDTO> selectList(Map map) {
 		return template.selectList("searchSelectList",map);
 	}
 

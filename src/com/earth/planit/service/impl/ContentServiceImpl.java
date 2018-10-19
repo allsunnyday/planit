@@ -47,4 +47,14 @@ public class ContentServiceImpl implements ContentService {
 		return dao.updateViewcount(map);
 	}
 
+	@Override
+	public int insertLikedTour(Map map) {
+		return dao.insertLikedTour(map);
+	}
+
+	@Override
+	public int isAlreadyLiked(Map map) {
+		return dao.isAlreadyLiked(map);
+	}
+
 }

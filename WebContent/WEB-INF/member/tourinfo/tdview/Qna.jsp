@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  <link href="https://fonts.googleapis.com/css?family=Ruda:400,900,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ruda:400,900,700" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/manifest.json">
@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/animate.min.css">
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/owl.carousel.css">
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/main.css">
-<script src="https://365ok.co.kr/theme/ok/js/jquery-2.2.4.min.js"></script>	
+<script src="https://365ok.co.kr/theme/ok/js/jquery-2.2.4.min.js"></script>
+	
   <section class="section1">
     <div class="container clearfix" >
       <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
@@ -19,7 +20,7 @@
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row d-flex align-items-center justify-content-center" >
-						<div class="about-content col-lg-12" >
+						<div class="about-content col-lg-11" >
 							<h1 class="text-white" >Q&A</h1>
 						</div>
 					</div>
@@ -28,13 +29,11 @@
 			<!-- End sub title -->
       
       
-      
-      
 <!--************************************** 
  	FAQ / 1:1문의 / ?    세개 이미지버튼
  **************************************-->
  <div style="padding-top:60px">
-        <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="col-lg-6 col-md-6 col-sm-12">
           <div class="dmbox" style="height:261px">
             <div class="service-icon" >
               <div class="dm-icon-effect-1" data-effect="slide-bottom" >
@@ -50,11 +49,11 @@
 
 
 
-        <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="col-lg-6 col-md-6 col-sm-12">
           <div class="dmbox">
             <div class="service-icon">
               <div class="dm-icon-effect-1" data-effect="slide-bottom">
-                <a class="btn btn-default" data-toggle="modal" href="#normalModal"><i class="dm-icon fa fa-envelope-o fa-3x"></i></a>
+                <a style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" class="btn btn-default" data-toggle="modal" href="#normalModal"><i class="dm-icon fa fa-envelope-o fa-3x"></i></a>
               </div>
             </div>
 <!-- **************************************** 
@@ -64,45 +63,51 @@
 	            <p>물어보세요</p>
 	                   
             <div id="normalModal" class="modal fade">
+             
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
+			     
 			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			        <h4 class="modal-title">질문창</h4>
+			        <h4 class="modal-title">v질문v</h4>
 			      </div>
-			      <div class="modal-body">
-			      <p>질문하고 싶은 내용을 적으세요!</p>
-			        <input style="height:200px" type="text" class="form-control"
-										required>
-			      </div>
+			      <form method="post" action="<c:url value='/planit/search/tourinfo/askQna.it'/>">
+			      	<input type="hidden" name="id" value="${id}"><!-- session id -->
+				      <div class="modal-body">
+					      <textarea name="title" id=title cols="100" rows="2" placeholder="제목을 입력하세요"></textarea>
+					      <textarea name="content" id=content cols="100" rows="10" placeholder="내용을 입력하세요"></textarea>
+				      </div>
+			      
+			      
 			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" disabled="disabled" data-dismiss="modal">보내는 날짜 : 2018-10-18</button>
 			        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-			        <button type="button" class="btn btn-primary">보내기</button>
-			      </div>
-			    </div><!-- /.modal-content -->
-			  </div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
+			        <button type="submit" class="btn btn-primary">전송</button>
+			 	</div>
+			 </form>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+			
 			</div>
 <!-- **************************************** 
 				모달창 끝
 **************************************** -->
-            
-            
         </div>
         <!-- end dmbox -->
 
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <div class="dmbox" style="height:261px">
-            <div class="service-icon">
-              <div class="dm-icon-effect-1" data-effect="slide-bottom">
-                <a class="" href="#"><i class="dm-icon fa fa-plane fa-3x"></i></a>
-              </div>
-            </div>
-            <a><h4>재밌는 여행을 위해</h4>
-            <p>신속한 답변을 드리겠습니다</p></a>
-          </div>
-        </div>
-        <!-- end dmbox -->
+<!--         <div class="col-lg-4 col-md-4 col-sm-12"> -->
+<!--           <div class="dmbox" style="height:261px"> -->
+<!--             <div class="service-icon"> -->
+<!--               <div class="dm-icon-effect-1" data-effect="slide-bottom"> -->
+<!--                 <a class="" href="#"><i class="dm-icon fa fa-plane fa-3x"></i></a> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--             <a><h4>재밌는 여행을 위해</h4> -->
+<!--             <p>신속한 답변을 드리겠습니다</p></a> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         end dmbox -->
 
         <div class="clearfix"></div>
         <div class="divider"></div>
@@ -111,46 +116,25 @@
 <!--************************************** 
  	FAQ 아코디언으로 
  **************************************-->
+ 
 	<nav id="target"class="accordion arrows">
+	
 		<header  class="box">
-			<label for="acc-close" class="box-title">FAQ</label>
+			<label for="acc-close" class="box-title">F A Q</label>
 		</header>
-		<input type="radio" name="accordion" id="cb1" />
-		<section class="box">
-			<label class="box-title" for="cb1">몇살이신가요</label>
-			<label class="box-close" for="acc-close"></label>
-			<div class="box-content">26살입니다</br>
-			26살입니다  </br>26살입니다  26살입니다 26살입니다 26살입니다 26살입니다 26살입니다 </br>
-			</div>
-		</section>
-		<input type="radio" name="accordion" id="cb2" />
-		<section class="box">
-			<label class="box-title" for="cb2">Read me too</label>
-			<label class="box-close" for="acc-close"></label>
-			<div class="box-content">Add the class 'arrows' to nav.accordion to add dropdown arrows.</div>
-		</section>
-		<input type="radio" name="accordion" id="cb3" />
-		<section class="box">
-			<label class="box-title" for="cb3">Item 3</label>
-			<label class="box-close" for="acc-close"></label>
-			<div class="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
-		</section>
-		<input type="radio" name="accordion" id="cb4" />
-		<section class="box">
-			<label class="box-title" for="cb4">Item 4</label>
-			<label class="box-close" for="acc-close"></label>
-			<div class="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
-		</section>
-		<input type="radio" name="accordion" id="cb5" />
-		<section class="box">
-			<label class="box-title" for="cb5">Item 5</label>
-			<label class="box-close" for="acc-close"></label>
-			<div class="box-content">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque finibus tristique nisi, maximus ullamcorper ante finibus eget.</div>
-		</section>
+		<c:forEach var="record" items="${faq}" varStatus="loop">
+			<input type="radio" name="accordion" id="cb${loop.index}" />
+			<section class="box">
+				<label class="box-title" for="cb${loop.index}">${record.title}</label>
+				<label class="box-close" for="acc-close"></label>
+				<div class="box-content">${record.content}
+				</div>
+			</section>
+		</c:forEach>
+		<input type="radio" name="accordion" id="acc-close" /> 
 
-		<input type="radio" name="accordion" id="acc-close" />
 	</nav>
-		
+			
       </div>
       <!-- end content -->
     </div>
@@ -160,7 +144,6 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script> 
  
   <div class="dmtop">Scroll to Top</div>
-
 
 <style>
 /****************************************
@@ -285,4 +268,9 @@ $(".modal-wide").on("show.bs.modal", function() {
   var height = $(window).height() - 200;
   $(this).find(".modal-body").css("max-height", height);
 });
+
+
+
+
+
 </script>

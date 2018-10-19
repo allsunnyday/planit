@@ -33,10 +33,14 @@ public interface ReviewService {
 	int hasRating(Map map);
 	//  평점
 	int insertRating(Map map);
-	//  
+	//  rating에 대해서 가지고 온다?
 	Map selectRating(Map map);
 	
-	
-	// 
+	// 코멘트 
+	int insertComment(Map map);
+	// 답변
+	int replyComment(Map map);
+	// 코멘트리스트가지고오기
+	List<Map> selectCommentList(Map map);
 	
 }

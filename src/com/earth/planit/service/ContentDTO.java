@@ -26,6 +26,30 @@ public class ContentDTO {
 	private String imagename ;
 	private String originimgurl;
 	
+	// 카테고리를 한국어로 변경한 값
+	private String cat1kor;
+	private String cat2kor;
+	private String cat3kor;
+	
+	
+	public String getCat1kor() {
+		return cat1kor;
+	}
+	public void setCat1kor(String cat1kor) {
+		this.cat1kor = cat1kor;
+	}
+	public String getCat2kor() {
+		return cat2kor;
+	}
+	public void setCat2kor(String cat2kor) {
+		this.cat2kor = cat2kor;
+	}
+	public String getCat3kor() {
+		return cat3kor;
+	}
+	public void setCat3kor(String cat3kor) {
+		this.cat3kor = cat3kor;
+	}
 	public String getContentid() {
 		return contentid;
 	}

@@ -278,8 +278,36 @@ public class ReviewController {
 		// 있는지 확인
 		int hasRating = reviewService.hasRating(map);
 		
-		
 		return (hasRating==1)?"Y":"N";
+	}
+	
+	
+	//comment 작성
+	@ResponseBody
+	@RequestMapping(value="/planit/review/comment/WriteComment.it",produces="text/plain; charset=UTF-8")
+	public String writeComment(@RequestParam Map map)throws Exception{
+		// data가 잘 넘어오는지 확인
+		System.out.println(map.get("id")+"/"+map.get("review_id"));
+		// 원본글 작성 
+		int affected = reviewService.insertComment(map);
+		if(affected==1) return "success";
+		else return "fail";
+	}
+	
+	//comment 리스트 
+	@ResponseBody
+	@RequestMapping(value="/planit/review/comment/List.it",produces="text/plain; charset=UTF-8")
+	public String getCommentList(@RequestParam Map map)throws Exception{
+		// data가 잘 넘어오는지 확인
+		System.out.println(map.get("review_id"));
+		// 리뷰 리스트 가지고 오기 
+		List<Map> comments = reviewService.selectCommentList(map);
+		// 날짜데이터를 변경하기 
+		for(Map comment:comments) {
+			comment.put("POSTDATE", comment.get("POSTDATE").toString().substring(0,10));
+		}
+		System.out.println(JSONArray.toJSONString(comments));
+		return JSONArray.toJSONString(comments);
 	}
 	
 
