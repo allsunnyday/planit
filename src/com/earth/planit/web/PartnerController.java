@@ -205,6 +205,8 @@ public class PartnerController {
       
       return "mypage/partner/ProductList.theme";
    }
+   
+   
    //상품상세페이지
    @RequestMapping("/planit/member/partner/ProductView.it")
    public String gotoRoomProductView(@RequestParam Map map,Map model) throws Exception{
@@ -216,6 +218,7 @@ public class PartnerController {
             //record.setContent(record.getContent().replace("\r\n", "<br/>"));
             model.put("productRecord", productRecord);      
             //뷰정보 반환]
-      return "mypage/partner/ProductList.theme";
+      return "mypage/partner/ProductView.theme";
    }
+   
 }
