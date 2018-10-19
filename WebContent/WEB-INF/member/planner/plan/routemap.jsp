@@ -382,11 +382,10 @@
 	var distance; // 마커와 마커 사이의 거리 정보?
 	var temp=0; // 마커 와 마커 이전거리 저장용
 	var walkkTime=0; // 사람이 걷는 거리의 소요 시간
-	var carhourTime;
-	var carTime=0; // 자동차가 이동하는데 소요 되는 시간 
+	var carhourTime; // 자동차가 이동하는데 소요 되는 시간 ( 시간)
+	var carTime=0; // 자동차가 이동하는데 소요 되는 시간 ( 분) 
 	var plancase = 0; // 여행 상세일정 전체 카운트?
-	var planmarking= []; // 사용자가 플랜으로 등록한 마커를 삭제하기 위한 함수
-	var repolyline=[]; // 사용자가 플랜으로 등록한 마커삭제시 라인을 삭제하기위한 함수 
+	var planmarking= []; // 사용자가 플랜으로 등록한 마커를 삭제하기 위한 함수	 
 	var days = document.getElementById("days").value; // location 에서 지정한 여행 일자 얻기
 	var polyline ; // 라인정보 담는 변수
 	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
@@ -410,7 +409,7 @@
 		    strokeStyle: 'solid', // 선의 스타일입니다
 		    endArrow:true
 		});
-        repolyline.push(polyline); // 삭제를 위한 라인 복사
+        
        console.log("polyline======"+polyline);
         
         
@@ -555,18 +554,65 @@
 		planmarkingsave();//기존 마커 재등록
 		polyline.setMap(map);// 라인 재생성
 		
-		//diveplus = plancase-1;
+		
 		$('.planroute_'+diveplusFortitle).remove(); // 해당---------------- 다이브 삭제
 		plandivCountdown(diveplus, diveplusFortitle) // 다이브에 부여 한 넘버를 가져감.
 		plancase--;
-		//diveplus = plancase-1;
+		/* ****************** 마커 삭제후 여행거리 재산출하여 수정 ******************* */
+//거리 font class name = planroadtext
+//도보 font class name = planwalktime
+//자동자 font class name = plancartime
+//변수 
+//	거리정보 = distance
+//	도보정보 = walkkTime
+//	승용차	  = carhourTime (시간)
+//		  = carTime (분)
+		//console.log('거리 산출을 위한 다이브 개수 파악: '+plancase);
+		//console.log('polyline 에 뭐들엇니?: '+ polyline.getPath()+'//거리가 있어?: '+polyline.getLength());
+		/* var repolyline = new daum.maps.Polyline({
+			path:
+		}) */// 사용자가 플랜으로 등록한 마커삭제시 라인을 삭제하기위한 함수
+		for(var i=1; i < plancase; i++){
+			console.log('포지션 정보로 거리 얻기..?'+i+': '+linePath[i]);
+			var twoLinePath = [];
+			twoLinePath.push(linePath[i]);
+			twoLinePath.push(linePath[i-1]);
+			var repolyline =  new daum.maps.Polyline({
+				path: twoLinePath
+			});				
+			console.log('거리나오냐?'+i+' : '+repolyline.getLength());
+			var redistance = Math.round(repolyline.getLength());
+			/* if(Math.round(polyline.getLength() ==0)){//마커와 마커 사이를 계산하기위한 변수
+				redistance = Math.round(repolyline.getLength());
+				temp = redistance;
+			} */
+			if(Math.round(repolyline.getLength() !=0)){
+				temp = 0;
+				redistance = Math.round(repolyline.getLength()) - temp;
+				walkkTime = redistance / 67 | 0;
+				carTime = redistance / 1000 | 0;
+				temp = redistance;
+			}
+			console.log('1)'+redistance+' 2) walkkTime'+walkkTime+' 3) '+carTime);
+			$('.planroute_'+i+' font.planroadtext').html(redistance+' m');
+			if(walkkTime > 60){ $('.planroute_'+i+' font.planwalktime').html('1시간 이상'); }
+			else {$('.planroute_'+i+' font.planwalktime').html(walkkTime+' 분');}
+			if(carTime >=60){
+				carhourTime = Math.floor(carTime/60);
+				carTime = carTime %60;
+				$('.planroute_'+i+' font.plancartime').html(carhourTime+'시간'+carTime+'분');
+			}
+			else { $('.planroute_'+i+' font.plancartime').html(carTime+' 분'); }
+			
+		}
+		/* ****************** 마커 삭제후 여행거리 재산출하여 수정 ******************* */
 		/* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */
 		if(plancase == 0){
 			content ='';
 			content +=  '<div id="nocityrute">';
 				content += '<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>';
 			content +='</div>';
-			$('#cityroute').append(content);
+			$('#cityroute').append(content);			
 		}
 		/* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */		
 	}
@@ -587,35 +633,8 @@
 			}
 			else {continue;}
 		}// 여행일정 div number 재정비
-		/**************사용자가 추가한 여행일정 계획 삭제시 남아있는 div 의 번호 재정렬 ************  */
-		/* ************ 사용자가 추가한 여행 일정 계획 삭제후 남아있는 마커들의 거리 재산출*********** */
-		/* for(var i= 0; i < plancase; i++){
-			if(Math.round(polyline.getLength() ==0)){
-				distance = Math.round(polyline.getLength());
-				temp = distance;
-			}
-			else if(Math.round(polyline.getLength() !=0)){
-				temp = Math.round(polyline[i].getLength());
-				distance = Math.round(polyline[i+1].getLength()) - temp;
-				walkkTime = distance / 67 | 0;
-				carTime = distance / 1000 | 0;
-				temp = distance;
-			}
-			
-			var setreroad = $('.planroute_'+i);
-			setreroad.change(function() {
-				$('.planroadtext').val(distance+'m');
-				if(walkkTime > 60){ $('.planwalktime').val('한시간 이상'); }
-				else{$('.planwalktime').val(walkkTime+' 분');}				
-				if(carTime >=60){
-					carhourTime = Math.floor(carTime/60);
-					carTime = carTime %60;
-					$('.plancartime').val(carhourTime+'시간 '+carTime+' 분');
-				}
-				else {$('.plancartime').val(carTime+' 분');}
-				
-			});			
-		} */
+		/**************사용자가 추가한 여행일정 계획 삭제시 남아있는 div 의 번호 재정렬 ************  */		
+		
 		console.log('plancase: '+plancase+'/diveplus: '+diveplus+'/diveplusFortitle: '+diveplusFortitle);
 		diveplus = plancase-1;
 	}
