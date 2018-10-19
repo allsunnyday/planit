@@ -7,7 +7,7 @@
 	/* border: 3px black solid; */
 	
 }
-
+ 
 #Partnerpage {
 	display: inline-block;
 	/*  border: 3px black solid;  */

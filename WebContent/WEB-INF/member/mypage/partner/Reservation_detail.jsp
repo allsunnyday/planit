@@ -375,7 +375,7 @@ Delete Modal
 							</div>
 							<div class="modal-footer">
 								<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"> 
-								<a href="<c:url value='/mypage/partner/ReservationDelete.it?reservation_id=${record.reservation_id}'/>"><input type="submit" class="btn btn-danger" value="Delete"></a>
+								<a href="<c:url value='/mypage/partner/ReservationDelete.it?reservation_id=${record.reservation_id}'/>"><input type="button" class="btn btn-danger" value="Delete"></a>
 							</div>
 						</form>
 					</div>
