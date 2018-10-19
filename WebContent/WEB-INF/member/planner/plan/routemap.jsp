@@ -573,7 +573,8 @@
 	
 	/* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
 	function plandivCountdown(diveplusFortitle){
-		console.log('diveplus(3)== '+ diveplus + '//plancase(3)== '+ plancase +'//title!! '+diveplusFortitle); 
+		console.log('diveplus(3)== '+ diveplus + '//plancase(3)== '+ plancase +'//title!! '+diveplusFortitle);
+		/**************사용자가 추가한 여행일적 계획 삭제시 남아있는 div 의 번호 재정렬 ************  */
 		for(var i=diveplusFortitle; i<plancase; i++){									
 			var redivcount= $('.planroute_'+(i+1));
 			var recount = $('.deletePlanRoute_'+(i+1));
@@ -586,21 +587,34 @@
 			}
 			else {continue;}
 		}// 여행일정 div number 재정비
-		
-		for(var = 0; i < plancase; i++){
+		/**************사용자가 추가한 여행일정 계획 삭제시 남아있는 div 의 번호 재정렬 ************  */
+		/* ************ 사용자가 추가한 여행 일정 계획 삭제후 남아있는 마커들의 거리 재산출*********** */
+		for(var i= 0; i < plancase; i++){
 			if(Math.round(polyline.getLength() ==0)){
 				distance = Math.round(polyline.getLength());
 				temp = distance;
 			}
 			else if(Math.round(polyline.getLength() !=0)){
-				distance = Math.round(polyline.getLength()) - temp;
+				temp = Math.round(polyline[i].getLength());
+				distance = Math.round(polyline[i+1].getLength()) - temp;
 				walkkTime = distance / 67 | 0;
 				carTime = distance / 1000 | 0;
 				temp = distance;
 			}
-			var 
-			$('.planroadtext').val(distance);
 			
+			var setreroad = $('.planroute_'+i);
+			setreroad.change(function() {
+				$('.planroadtext').val(distance+'m');
+				if(walkkTime > 60){ $('.planwalktime').val('한시간 이상'); }
+				else{$('.planwalktime').val(walkkTime+' 분');}				
+				if(carTime >=60){
+					carhourTime = Math.floor(carTime/60);
+					carTime = carTime %60;
+					$('.plancartime').val(carhourTime+'시간 '+carTime+' 분');
+				}
+				else {$('.plancartime').val(carTime+' 분');}
+				
+			});			
 		}
 		console.log('plancase: '+plancase+'/diveplus: '+diveplus+'/diveplusFortitle: '+diveplusFortitle);
 		diveplus = plancase-1;
