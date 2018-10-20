@@ -33,7 +33,7 @@ review :
 		// 일정보기 
 		
 		
-		// 시리즈 보기 처리 
+		//시리즈 보기 처리 
 		
 		//사용자 평점 
 		
@@ -156,8 +156,13 @@ review :
 			commentString+= '<li><article class="comment">'
             +'<img src="https://blogpfthumb-phinf.pstatic.net/MjAxODA3MDJfMjk1/MDAxNTMwNTI3MTIwNjAx.XanKPuN9rA3-YNeGK_CtgsoAHQPqumlMMXkqkR_yQs8g.1CuJLtxaD7xjkeuLv-VNx4DOBfg1P6HqDUY9f2glEmgg.JPEG.gream50/1%25C2%25F7%2B%25B1%25B3%25BE%25C8.jpg?type=w161" alt="avatar" class="comment-avatar">'
             +'<div class="comment-content">'
-            +'<h4 class="comment-author">'+comment['ID']+'<small class="comment-meta">'+comment['POSTDATE']+'</small>'
-            +'     <span class="comment-reply"><a href="javascript:" class="comment-reply button" onclick="commentShowReply();" title="'+comment['COMMENT_NO']+'" >reply</a></span>'
+            +'<h4 class="comment-author">'+comment['ID']+'<small class="comment-meta">'+comment['POSTDATE']+'</small>';
+            
+            if('${sessionScope.id}'==comment['ID']){
+            	commentString+='<a class="btnDel " href="javascript:" id=""  title="" ><font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a>'
+            }
+            
+            commentString+='     <span class="comment-reply"><a href="javascript:" class="comment-reply button" onclick="commentShowReply();" title="'+comment['COMMENT_NO']+'" >reply</a></span>'
             +' </h4>'+comment['CONTENT']
             +'</div></article></li>';
 		});
@@ -207,9 +212,10 @@ review :
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-		        	<div id="comments_wrapper">
+		        	<!--*****series_wrapper******  -->
+		        	<div id="series_wrapper">
 						<h4 class="title">여행 시리즈</h4>
-				          <ul class="comment-list">
+				          <ul class="series-list">
 				            <li>
 				              <article class="comment">
 				                <div class="comment-content">
@@ -233,7 +239,9 @@ review :
 				          </ul>
 				             <!-- End .comment LIst-->
 				     </div>
+		        	<!--*****series_wrapper******  -->
 		      	</div>
+		     	 
 		     	 <div class="modal-footer">
 		       	 	<button type="button" class="dmbutton2" data-dismiss="modal">닫기</button>
 		        	
@@ -356,8 +364,10 @@ review :
  <section class="section2">
     <div class="container">
       <div class="message text-center">
+        
         <h2 class="big-title-for-user-rating"><span>review</span>가 도움이 되었나요?</h2>
         <a class="button large" href="#" onclick="giveRating();" id="rating" > 평점주기 </a>
+      
       </div>
       <!-- end message -->
     </div>

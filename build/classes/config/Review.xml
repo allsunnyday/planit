@@ -68,4 +68,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where review_id=#{review_id}
 		ORDER BY refer desc ,step asc 
 	</select>
+	
+	<!--****************select reivew_conent list *****************  -->
+	<select id="reviewSelectReviewContentList" parameterType="java.util.Map" resultType="java.util.Map">
+		select * 
+		from (select re.* ,planner_id from review_content re join review v on re.review_id=v.review_id ) r 
+		join content c 
+		on  r.contentid=c.contentid
+		where r.review_id = #{review_id}
+	
+	</select>
+	
+	<!-- ***************select photobook layout ******************* -->
+	<select id="reviewGetPhotobookLayout" parameterType="java.util.Map" resultType="java.util.Map" >
+		select * from photobook where name=#{name} AND imagecount=#{imagecount}
+	</select>
+	
 </mapper>

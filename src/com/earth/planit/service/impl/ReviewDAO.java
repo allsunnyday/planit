@@ -94,4 +94,14 @@ public class ReviewDAO implements ReviewService {
 		return template.selectList("reviewSelectCommentList", map);
 	}
 
+	@Override
+	public List<Map> selectReviewContentList(Map map) {
+		return template.selectList("reviewSelectReviewContentList", map);
+	}
+
+	@Override
+	public Map getPhotobookLayouts(Map map) {
+		return template.selectOne("reviewGetPhotobookLayout", map);
+	}
+
 }

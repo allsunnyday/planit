@@ -176,7 +176,7 @@ public class ReviewController {
 	}
 	
 	
-	
+	// 리뷰 하루 일정 중에  하나의 코스에 대해서 보여준다.
 	@RequestMapping("/riveiw/write/OneSpot.it")
 	public String writeOneReview(@RequestParam Map map,  // review_id , route_index 
 								Model model,
@@ -214,16 +214,39 @@ public class ReviewController {
 	
 	//////////////////////////////////포토북
 	@RequestMapping("/photobook/step1/selectdesign.it")
-	public String selectbook()throws Exception{
-		// 사용자가 작성한 리뷰의 정보를 그대로 가져간다. 
-		// 포토북 리스트를 가지고 온다. 
-		
+	public String selectbook(@RequestParam Map map, Model model)throws Exception{
+		//사용자의 리뷰아이디가 넘어온다. 
+		System.out.println("디자인 선택하러 가는 리뷰 아이디:"+map.get("review_id"));
 		
 		return "review/photobook/SelectBook.theme";
 	}
 	
 	@RequestMapping("/photobook/step2/Preview.it")
-	public String previewBook()throws Exception{
+	public String previewBook(@RequestParam Map map, Model model)throws Exception{
+		System.out.println("리뷰아이디)"+map.get("review_id")+" 선택한 포토북)"+map.get("name"));
+		// review_id에 해당하는 일정을 불러온다.
+		List<Map> reviewList = reviewService.selectReviewContentList(map);
+		//int totalroute = reviewList.size();
+		for (Map oneReview: reviewList) {
+			//하나의 관광지에 대한 이미지 분석 
+			if (oneReview.get("IMAGE") != null) {
+				String []images = oneReview.get("IMAGE").toString().trim().replace("<*>", "&").split("&");
+				System.out.println("변경전  image"+oneReview.get("IMAGE")+"  이미지개수:"+images.length);
+				// 이미지 개수에 해당하는 포토북을 가지고 온다. 
+				map.put("imagecount", images.length);
+				Map layouts = reviewService.getPhotobookLayouts(map);
+				for(int i=0; i<images.length;i++) {
+					layouts.put("LAYOUTS", layouts.get("LAYOUTS").toString().replace("BASIC"+i+".jpg", images[i]));
+				}
+				oneReview.put("IMAGE", layouts.get("LAYOUTS"));
+				System.out.println("변경한 후에 oneReview-IMAGE키에 저장된 값:"+oneReview.get("IMAGE"));
+			}
+			else {
+				System.out.println("해당 일정에는 이미지가 없습니다.");
+			}
+		}
+		
+		model.addAttribute("listMap", reviewList );
 		return "review/photobook/PreviewBook.theme";
 	}
 	

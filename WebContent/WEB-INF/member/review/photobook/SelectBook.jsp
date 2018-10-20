@@ -86,7 +86,7 @@
                     <h3 class="a1" data-animate="fadeInDown">bagic</h3>
                     <!-- 버튼의 타이틀은 img의 클래스명과 동일하게 작성한다 (모달에서 샘플을 띄워주기 위해서)   -->
                     <button title="basic" class="dmbutton a2 sample" data-animate="bounceInLeft"><i class="fa fa-search"></i></button>
-                    <a href="<c:url value='/photobook/step2/Preview.it'/> " class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i>선택하기</a>
+                    <a href="<c:url value='/photobook/step2/Preview.it?review_id=${param.review_id}&name=BASIC'/> " class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i>선택하기</a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                       <a href="#">free</a>
                     </div>

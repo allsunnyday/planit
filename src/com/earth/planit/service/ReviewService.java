@@ -27,7 +27,8 @@ public interface ReviewService {
 	ContentDTO selectContent(Map map);
 	// review_content+content조인  가지고 온다. 
 	Map selectReviewContent(Map map);
-	
+	// review_content+content조인 리스트를 가지고 온다.
+	List<Map> selectReviewContentList(Map map);
 	
 	// 평점
 	int hasRating(Map map);
@@ -42,5 +43,9 @@ public interface ReviewService {
 	int replyComment(Map map);
 	// 코멘트리스트가지고오기
 	List<Map> selectCommentList(Map map);
+	
+	
+	//포토북정보 가지고 오기 
+	Map getPhotobookLayouts(Map map);
 	
 }
