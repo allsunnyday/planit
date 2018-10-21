@@ -1,10 +1,24 @@
 package com.earth.planit.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
+import com.earth.planit.service.PlannerDTO;
 import com.earth.planit.service.PlannerService;
 
 @Service("plannerService")
 public class PlannerServiceImpl implements PlannerService {
+
+	@Resource(name = "plannerDAO")
+	private PlannerDAO dao;
+	
+	@Override
+	public List<PlannerDTO> selectMapDataList(Map map) {
+		return dao.selectMapDataList(map);
+	}
 
 }
