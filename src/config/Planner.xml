@@ -1,1 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="config/Planner.xml">
+ 	<select id="selectPlanMapList" parameterType="java.util.Map" resultType="PlannerDTO">
+ 		select * from content 
+ 		<if test="contenttype != null">
+ 			where contenttype=#{contenttype}
+ 		</if>
+ 		<if test="contenttype == null">
+ 			where contenttype=28
+ 		</if>
+ 		<!-- select * from content where areacode=1 -->
+ 	</select> 	
+ </mapper>

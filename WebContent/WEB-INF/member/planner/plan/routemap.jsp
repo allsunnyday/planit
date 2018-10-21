@@ -1,9 +1,11 @@
+<%@page import="com.earth.planit.service.PlannerDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
-/**************************/
+/**************************/	
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션		
 			
@@ -34,15 +36,6 @@
 		// 마커 위치를 클릭한 위치로 옮깁니다
 		marker.setPosition(latlng);
 	});	
-	
-	/* daum.maps.event.addListener(marker, 'click', function() {
-	      // 마커 위에 인포윈도우를 표시합니다
-	      //infowindow.open(map, marker);
-	      console.log('클릭한 지점 정보 얻어오도록 수정해야하는곳');
-	      //displayPlaceInfo(place);
-	      
-	});
-	 */
 	
 	
 	//지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
@@ -87,7 +80,6 @@
 			
 		    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 		    ps.keywordSearch(keyword, placesSearchCB);
-		    //localkeyword = keyword;
 		    console.log("keyword: "+keyword);
 		    document.getElementById('keyword').value = "";
 	        return;
@@ -141,56 +133,47 @@
 	    /* **************** 카테 고리별 검색 *************** */
 	    
 	    for ( var i=0; i<places.length; i++ ) {
+//    	for ( var i=0; i<planmapinfo.length; i++ ) {
 	    	if(!currCategory){
 		    	/* ************************************************* 키워드로 장소검색하고 목록으로 표출하기 ***************************************** */
 		        // 마커를 생성하고 지도에 표시합니다
-		        var placePosition = new daum.maps.LatLng(places[i].y, places[i].x),
-		            marker = addMarker(placePosition, null, i); // 검색 결과 항목 Element를 생성합니다		            
+		        var placePosition = new daum.maps.LatLng(places[i].y, places[i].x)
+		    	,marker = addMarker(placePosition, null, i); // 검색 결과 항목 Element를 생성합니다		            
 		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해  LatLngBounds 객체에 좌표를 추가합니다
-		        bounds.extend(placePosition);
-		        // 마커와 검색결과 항목에 mouseover 했을때 해당 장소에 인포윈도우에 장소명을 표시합니다
-		        // mouseout 했을 때는 인포윈도우를 닫습니다
-		        /* (function(marker, title) {
-		            daum.maps.event.addListener(marker, 'mouseover', function() {
-		                displayInfowindow(marker, title);
-		            });
-		            daum.maps.event.addListener(marker, 'mouseout', function() {
-		                infowindow.close();
-		            });	            
-		        })(marker, places[i].place_name); */
+		        bounds.extend(placePosition);		       
 		        (function(marker, place) {
                 	var clickcount1 = 0;
 	                daum.maps.event.addListener(marker, 'click', function() {
 	                    //displayPlaceInfo(place);											// 포커스 아웃시 닫아야함.	                    
 	                	if(clickcount1 ==0){ 
-	                		displayPlaceInfo(place); 
-	                		//console.log("좌표 : "+ marker.getPosition());
+	                		displayPlaceInfo(place);	                		
 	                		planposition = marker.getPosition();
 	                		console.log('planposition: '+planposition);
 	                		clickcount1=1;
                 		} // 좌표 얻엇다.
 						else if(clickcount1 ==1){ displayPlaceInfo(""); clickcount1=0; }
 	                });	
-	                console.log("dmld?");
+	                //console.log("dmld?");
 	            })(marker, places[i]);
 		        //console.log(marker.getPosition());
 		        map.setBounds(bounds);	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+		       
 		        /* ************************************************* 키워드로 장소검색하고 목록으로 표출하기 ***************************************** */
     		}
-	    	if(currCategory){
+	    	if(currCategory){	    		
 		    	/* ******************************************* 카테 고리 검색 ***************************************** */
-		    	// 마커를 생성하고 지도에 표시합니다
-	            var marker = addMarker(new daum.maps.LatLng(places[i].y, places[i].x), order, null);	
+		    	// 마커를 생성하고 지도에 표시합니다		    	
+// 	            var marker = addMarker(new daum.maps.LatLng(places[i].y, places[i].x), order, null);
+		    	var marker = addMarker(new daum.maps.LatLng(mapy[i], mapx[i]), order, null);
+		    	console.log('planmapinfo///'+mapy +'//'+mapx);
 	            // 마커와 검색결과 항목을 클릭 했을 때
 	            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
 	            (function(marker, place) {
 	            	var clickcount = 0;
 	                daum.maps.event.addListener(marker, 'click', function() {	                	
 						//displayPlaceInfo(place);												// 포커스 아웃시 닫아야함.
-						if(clickcount ==0){ 
-							//console.log("place: "+place.val);
-							displayPlaceInfo(place);							
-							//console.log("좌표 : "+ marker.getPosition()); 
+						if(clickcount ==0){
+							displayPlaceInfo(place);
 							planposition = marker.getPosition();
 	                		console.log('planposition: '+planposition);
 							clickcount=1;}
@@ -198,7 +181,6 @@
 						
 	                });
 	            })(marker, places[i]);
-	            //console.log(marker.getPosition());
 	            /* ******************************************* 카테 고리 검색 ***************************************** */
 	    	}
 	    }	    	
@@ -211,21 +193,7 @@
 	    }   
 	    markers = [];
 	}
-	
-	
-	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
-	// 인포윈도우에 장소명을 표시합니다
-	/* function displayInfowindow(marker, title) {
-	    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
-	    infowindow.setContent(content);
-	    infowindow.open(map, marker);
-	}	
-	 // 검색결과 목록의 자식 Element를 제거하는 함수입니다
-	function removeAllChildNods(el) {   
-	    while (el.hasChildNodes()) {
-	        el.removeChild (el.lastChild);
-	    }
-	} */
+		
 	/******************************************** 키워드로 장소검색하고 목록으로 표출하기 종료 **************************************************/
 	/************************************************ 카테고리별 장소 검색하기 시작  **********************************************************/
 	// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
@@ -277,8 +245,7 @@
 	            marker = new daum.maps.Marker({
 	            position: position, // 마커의 위치
 	            image: markerImage 
-	        });
-		 /* console.log(order+"///"+idx); */
+	        });		 
 		if(currCategory){			
 		    var imageSrc = '/Planit/images/plan/css_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다 // http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png
 		        imageSize = new daum.maps.Size(31, 31),  // 마커 이미지의 크기
@@ -318,7 +285,6 @@
 					'</div>' +
 	                
 	                '<div class="after"></div>';  
-	                //console.log("place: "+ place[0]);
 	    contentNode.innerHTML = content;
 	    placeOverlay.setPosition(new daum.maps.LatLng(place.y, place.x));
 	    placeOverlay.setMap(map);  
@@ -442,8 +408,6 @@
 	
 	
 	
-	
-	
 	/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
 	function planmarkingsave(){
 		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 		    
@@ -533,8 +497,7 @@
 		if(diveplus == plancase){ diveplus = plancase-1; }		
 		var diveplusFortitle = $('.deletePlanRoute_'+diveplus).attr('title');
 		if(diveplus > plancase) { diveplusFortitle = plancase-1; diveplus = diveplusFortitle;}
-		console.log('diveplus(2) '+ diveplus + '//plancase(2) '+ plancase+"//diveplusFortitle※: "+ diveplusFortitle);
-		//console.log("linePath: "+ linePath[diveplusFortitle] + " positions: "+ positions[diveplusFortitle] + " planmarking: "+ planmarking[diveplusFortitle]);		
+		console.log('diveplus(2) '+ diveplus + '//plancase(2) '+ plancase+"//diveplusFortitle※: "+ diveplusFortitle);				
 		for(var i=0; i<planmarking.length; i++){
 			planmarking[i].setMap(null);			
 		}// 삭제할 플랜 정보의 마커 삭제
@@ -560,19 +523,15 @@
 		plandivCountdown(diveplus, diveplusFortitle) // 다이브에 부여 한 넘버를 가져감.
 		plancase--;
 		/* ****************** 마커 삭제후 여행거리 재산출하여 수정 ******************* */
-//거리 font class name = planroadtext
-//도보 font class name = planwalktime
-//자동자 font class name = plancartime
-//변수 
-//	거리정보 = distance
-//	도보정보 = walkkTime
-//	승용차	  = carhourTime (시간)
-//		  = carTime (분)
-		//console.log('거리 산출을 위한 다이브 개수 파악: '+plancase);
-		//console.log('polyline 에 뭐들엇니?: '+ polyline.getPath()+'//거리가 있어?: '+polyline.getLength());
-		/* var repolyline = new daum.maps.Polyline({
-			path:
-		}) */// 사용자가 플랜으로 등록한 마커삭제시 라인을 삭제하기위한 함수
+		//거리 font class name = planroadtext
+		//도보 font class name = planwalktime
+		//자동자 font class name = plancartime
+		//변수 
+		//	거리정보 = distance
+		//	도보정보 = walkkTime
+		//	승용차	  = carhourTime (시간)
+		//		  	= carTime (분)
+		// 사용자가 플랜으로 등록한 마커삭제시 라인을 삭제하기위한 함수
 		for(var i=1; i < plancase; i++){
 			console.log('포지션 정보로 거리 얻기..?'+i+': '+linePath[i]);
 			var twoLinePath = [];
@@ -583,10 +542,10 @@
 			});				
 			console.log('거리나오냐?'+i+' : '+repolyline.getLength());
 			var redistance = Math.round(repolyline.getLength());
-			/* if(Math.round(polyline.getLength() ==0)){//마커와 마커 사이를 계산하기위한 변수
+			/* if(positions.length <=1){ //마커와 마커 사이를 계산하기위한 변수
 				redistance = Math.round(repolyline.getLength());
 				temp = redistance;
-			} */
+			}  */
 			if(Math.round(repolyline.getLength() !=0)){
 				temp = 0;
 				redistance = Math.round(repolyline.getLength()) - temp;
@@ -605,6 +564,12 @@
 			}
 			else { $('.planroute_'+i+' font.plancartime').html(carTime+' 분'); }
 			
+		}
+		if(positions.length ==1){
+			$('.planroute_0 font.planroadtext').html(' 0 m');
+			$('.planroute_0 font.planwalktime').html(' 0 분');
+			$('.planroute_0 font.plancartime').html(' 0 분');
+			temp=0;
 		}
 		/* ****************** 마커 삭제후 여행거리 재산출하여 수정 ******************* */
 		/* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */
@@ -651,17 +616,15 @@
 <script>
 	
 	$(function() {
-		
-		
 		/* **************** location 의 도시 정보 검색  **************** */		
 		//searchPlaces(); //  새로 고침 시에 "키워드를 입력하세요" 라는 문구를 뜨지 않도록 함수 작성해야함.
-		searchaction();		
-		//console.log(keyword);
+		searchaction();	
 		function searchaction(){
 			ps = new daum.maps.services.Places();
 			keyword = document.getElementById('keyword').value;
 			document.getElementById('keyword').value = "";
 			//ps.keywordSearch(keyword, displayPlaces);
+			//console.log(mapy, mapx);
 			/* ******************* location 에서 사용자가 선택한 지역으로 자동 서치 ****************** */		
 			// 주소-좌표 변환 객체를 생성합니다
 			var geocoder = new daum.maps.services.Geocoder();
@@ -670,17 +633,8 @@
 			geocoder.addressSearch(keyword, function(result, status) {	
 			    // 정상적으로 검색이 완료됐으면 
 			     if (status === daum.maps.services.Status.OK) {	
-			        var coords = new daum.maps.LatLng(result[0].y, result[0].x);	
-			        // 결과값으로 받은 위치를 마커로 표시합니다
-			        /*var marker = new daum.maps.Marker({
-			            map: map,
-			            position: coords
-			        });			
-			        // 인포윈도우로 장소에 대한 설명을 표시합니다
-			        var infowindow = new daum.maps.InfoWindow({
-			            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-			        });
-			        infowindow.open(map, marker);	 */
+			        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+			       
 			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 			        map.setCenter(coords);
 			    } 
@@ -742,14 +696,42 @@
 			}
 		}
 	}
-
+	
 	addLoadEvent(function() {
 		autoDate();
 	});
 	/* ************************************* 상세정보 입력 란의 오늘 일자 정보 출력 종료 ******************************************* */
 	
-	
+	$(function() {
+		var mapx=[];
+		var mapy=[];
+		<c:forEach items="${planmapinfo}" var="planmapinfo">
+	        var map_x = '${planmapinfo.mapx}';
+	        var map_y = '${planmapinfo.mapy}';
+	        mapx.push(map_x);
+	        mapy.push(map_y);
+    	</c:forEach>
+    	console.log(mapx, mapy);
+    	
+    	$('.routecategory').click(function() {
+    		
+    		console.log('???: '+$(this).val());
+    		
+	    	$.ajax({
+				url: "<c:url value='/planner/plan/routecategory.it'/>",
+				dataType: 'json',
+				data:{contenttype:$(this).val()},
+				//success: successMapPick,
+				error: function(request, status, error){
+					console.log(request, status, error);
+				}
+			});///ajax   	
+    	});
+	});	
 	
 </script>
 <!-- ****************************************************루트 상세 정보 계획 자바 스크립트 종료************************************************************ -->
 
+<c:forEach var="planmapinfo" items="${planmapinfo}">
+	${planmapinfo.mapy } ${planmapinfo.mapx}	
+</c:forEach>
