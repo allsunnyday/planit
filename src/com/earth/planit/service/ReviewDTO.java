@@ -11,7 +11,7 @@ public class ReviewDTO {
 	private String liked;
 	private String postdate;
 	private String rating;
-	private String frirstimage;
+	private String firstimage;
 	private String route;
 	
 	private String id;  //작성한 아이디
@@ -89,12 +89,12 @@ public class ReviewDTO {
 		this.rating = rating;
 	}
 
-	public String getFrirstimage() {
-		return frirstimage;
+	public String getFirstimage() {
+		return firstimage;
 	}
 
-	public void setFrirstimage(String frirstimage) {
-		this.frirstimage = frirstimage;
+	public void setFirstimage(String firstimage) {
+		this.firstimage = firstimage;
 	}
 
 	public String getRoute() {
