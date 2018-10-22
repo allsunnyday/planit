@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -200,7 +201,12 @@ public class SearchListController {
 	}
 	
 
-
+		@RequestMapping("/Planit/tourinfo/tdview/TourInfo.it")
+		public String tourInfo() throws Exception{
+			
+			
+			return JSONArray.toJSONString(null);
+		}
    
 
 }//////////////////////////////////////////////////////////////////
