@@ -7,8 +7,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.earth.planit.service.FaqNoticeDTO;
 import com.earth.planit.service.MemberDTO;
 import com.earth.planit.service.MemberService;
+import com.earth.planit.service.ReviewDTO;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -47,8 +49,38 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int updateProfile(Map map) {
-		// TODO Auto-generated method stub
+		// [프로필 수정]
 		return dao.updateProfile(map);
+	}
+
+	@Override
+	public List<ReviewDTO> memberReviewList(Map map) {
+		//[리뷰가져오기]
+		return dao.memberReviewList(map);
+	}
+
+	@Override
+	public List<ReviewDTO> homeReviewList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.homeReviewList(map);
+	}
+
+	@Override
+	public List<FaqNoticeDTO> homeQNAList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.homeQNAList(map);
+	}
+
+	@Override
+	public List<FaqNoticeDTO> memberQnAList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberQnAList(map);
+	}
+
+	@Override
+	public int getTotalCount(Map map) {
+		// TODO Auto-generated method stub
+		return dao.getTotalCount(map);
 	}
 
 	

@@ -3,6 +3,7 @@ package com.earth.planit.web;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,9 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.earth.planit.service.FaqNoticeDTO;
 import com.earth.planit.service.MemberDTO;
 import com.earth.planit.service.MemberService;
+import com.earth.planit.service.ReviewDTO;
 import com.earth.planit.service.impl.FileUtils;
+import com.earth.planit.service.impl.PagingUtil;
 import com.oreilly.servlet.MultipartRequest;
 
 @Controller
@@ -32,7 +37,11 @@ public class MemberController {
 	 * 
 	 * 
 	 */
-
+	@Value("${PAGE_SIZE}")
+	private int pageSize;
+	@Value("${BLOCK_PAGE}")
+	private int blockPage;
+	
 	/* 서비스 주입 */
 	@Resource(name = "memberService")
 	private MemberService service;
@@ -60,13 +69,13 @@ public class MemberController {
 
 	// ***************마이페이지 이동(일반회원)
 	@RequestMapping("/planit/mypage/MyPageHome.it")
-	public String gotoMyPageHome() throws Exception {
-		// 사진 및 기타등등 노출
-		/*
-		 * System.out.println("id"+map.get("id")); session.setAttribute("userid",
-		 * map.get("id"));
-		 */
-		// @RequestParam Map map,HttpSession session
+	public String gotoMyPageHome(@RequestParam Map map,HttpSession session,Model model) throws Exception {
+		map.put("id", session.getAttribute("id"));
+		List<ReviewDTO> homeReviewList=service.homeReviewList(map);
+		List<FaqNoticeDTO> homeQnAList=service.homeQNAList(map);
+		model.addAttribute("homeReviewList", homeReviewList);
+		model.addAttribute("homeQnAList", homeQnAList);
+		
 		return "mypage/MyPageHome.theme";
 	}
 
@@ -93,40 +102,6 @@ public class MemberController {
 		File file = new File(phicalPath + File.separator + newFilename);
 		// 3]업로드 처리
 		profile.transferTo(file);
-	/*	// 4]리퀘스트 영역에 데이타 저장
-		mhsr.setAttribute("writer", mhsr.getParameter("writer"));
-		mhsr.setAttribute("title", mhsr.getParameter("title"));
-		// 파일과 관련된 정보]
-		mhsr.setAttribute("original", upload.getOriginalFilename());
-		mhsr.setAttribute("size", (int) Math.ceil(upload.getSize() / 1024.0));
-		mhsr.setAttribute("type", upload.getContentType());
-		mhsr.setAttribute("real", newFilename);*/
-
-		/*
-		 * MultipartRequest mr=FileUtils.upload(req,
-		 * req.getServletContext().getRealPath("/Upload/Member"));
-		 * System.out.println("mr"+mr);
-		 * System.out.println(map.get("profile").toString()); String
-		 * profile=mr.getFilesystemName(map.get("profile").toString());
-		 * 
-		 * 
-		 * //업로드할 폴더의 물리적 경로 String
-		 * phisicalPath=mhsr.getServletContext().getRealPath("/Upload"); //
-		 * multipartFile객체 얻기 MultipartFile upload=mhsr.getFile("upload"); // 파일이름 중복 체크
-		 * // 동일한 이름이 있는 경우: 인덱싱 // 동일한 이름이 없는 경우 : 원래이름사용 String originname =
-		 * upload.getOriginalFilename(); String filename =
-		 * FileUtils.getNewFileName(phisicalPath, originname);
-		 * System.out.println("저장될 파일 이름 -"+filename); //파일객체 생성 File file = new
-		 * File(phisicalPath+File.separator+filename); // 업로드 처리
-		 * upload.transferTo(file); //// 데이터 저장 mhsr.setAttribute("writer",
-		 * mhsr.getParameter("writer")); mhsr.setAttribute("title",
-		 * mhsr.getParameter("title")); // 파일과 관련된 정보 저장 mhsr.setAttribute("original",
-		 * upload.getOriginalFilename()); mhsr.setAttribute("size",
-		 * (int)Math.ceil(upload.getSize()/1024.0) ); mhsr.setAttribute("real",
-		 * filename); mhsr.setAttribute("type", upload.getContentType());
-		 */
-
-		// map.put("profile", profile);
 		map.put("profile", newFilename.toString().trim());
 		map.put("id", session.getAttribute("id").toString());
 		int affected = service.updateProfile(map);
@@ -173,13 +148,47 @@ public class MemberController {
 	// ***************마이페이지 상세페이지 이동(일반회원)
 
 	@RequestMapping("/planit/mypage/detail/Q&A.it")
-	public String gotoQnADetail() throws Exception {
+	public String gotoQnADetail(Model model,//리퀘스트 영역 저장용
+			HttpServletRequest req,//페이징용 메소드에 전달
+			@RequestParam Map map,//검색용 파라미터 받기
+			@RequestParam(required=false,defaultValue="1") int nowPage//페이징용 nowPage파라미터 받기용
+			,HttpSession session
+			) throws Exception {
+		map.put("id", session.getAttribute("id"));
+		//페이징을 위한 로직 시작]
+				//전체 레코드 수
+				int totalRecordCount= service.getTotalCount(map);
+				
+				//시작 및 끝 ROWNUM구하기]
+				int totalPage = (int)Math.ceil(((double)totalRecordCount/pageSize));
+				int start = (nowPage-1)*pageSize+1;
+				int end  = nowPage*pageSize;
+				map.put("start", start);
+				map.put("end", end);
+				String pagingString = CommonUtil.pagingBootStrapStyle(
+						totalRecordCount,
+						pageSize, 
+						blockPage, 
+						nowPage, 
+						req.getContextPath()+"/planit/mypage/detail/Q&A.it?");
+		List<FaqNoticeDTO> QnAListDetail=service.memberQnAList(map);
+		
+		System.out.println(session.getAttribute("id"));
+		model.addAttribute("QnAListDetail", QnAListDetail);
+		model.addAttribute("pagingString", pagingString);
+		model.addAttribute("totalRecordCount", totalRecordCount);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("nowPage", nowPage);
 		return "mypage/DetailQnA.theme";
 
 	}
 
 	@RequestMapping("/planit/mypage/detail/Review.it")
-	public String gotoReviewDetail() throws Exception {
+	public String gotoReviewDetail(@RequestParam Map map,HttpSession session,Model model) throws Exception {
+		map.put("id", session.getAttribute("id"));
+		List<ReviewDTO> reviewList=service.memberReviewList(map);
+		
+		model.addAttribute("reviewList", reviewList);
 		return "mypage/DetailReview.theme";
 
 	}
@@ -195,7 +204,6 @@ public class MemberController {
 		return "mypage/DetailPlanner.theme";
 
 	}
-	// ***************마이페이지 이동(기업회원)
 
 	/* 로그인 처리 method=RequestMethod.POST로 설정하여 get방식 접근을 막는다. */
 	@RequestMapping(value = "/member/login/LoginProcess.it", method = RequestMethod.POST)

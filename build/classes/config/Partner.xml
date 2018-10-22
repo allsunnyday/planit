@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    mapper 파일의 완전한 경로 . xml은 생략
    ibatis와는 다르게 id값에 '.'를 사용하지 못함
  -->
-<mapper namespace="config.Pember">
+<mapper namespace="config.Partner">
    <select id="PartnerIsLogin" parameterType="java.util.Map" resultType="int">
       <!-- select count(*) from member where id='user1' and pwd='1234'; -->
       
@@ -132,7 +132,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          )
           VALUES
            (
-               'test_12',
+               'test_1',
                #{p_id},
                #{roomtitle}
            <if test="roomsize1 != null">

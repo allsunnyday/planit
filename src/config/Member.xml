@@ -82,4 +82,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from dual
 	</insert>
 
+
+	<select id="MemberReviewList"  parameterType="java.util.Map" resultType="reviewDTO">
+		select id,R.*
+		from review R INNER JOIN  planner P on R.planner_id=P.planner_id
+		where id=#{id}
+		order by R.postdate desc
+	</select>
+
+	<select id="MemberHomeReviewList"  parameterType="java.util.Map" resultType="reviewDTO">
+		
+		select id,R.* 
+		from review R INNER JOIN  planner P on R.planner_id=P.planner_id
+		where rownum<![CDATA[<=]]>4 and id=#{id}
+		order by R.postdate desc
+	</select>
+	<select id="MemberAskPlanit"  parameterType="java.util.Map" resultType="FaqNoticeDTO">
+
+		select * 
+		from u_ask_planit
+		where rownum<![CDATA[<=]]>5 and id=#{id}
+		order by askdate
+	</select>
+	<select id="MemberAskPlanitDetail"  parameterType="java.util.Map" resultType="FaqNoticeDTO">
+
+		select * 
+		from u_ask_planit
+		where id=#{id}
+		order by askdate desc
+	</select>
+	<select id="getTotalCount2" parameterType="java.util.Map" resultType="int">
+		select count(*) from u_ask_planit where id=#{id}
+		<if test="searchWord != null">
+				and ${searchColumn} LIKE '%' || #{searchWord} || '%'
+		</if>
+	</select>
 </mapper>

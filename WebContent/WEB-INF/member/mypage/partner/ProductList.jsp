@@ -307,18 +307,6 @@ height: 100%; */
 
 							<div class="divider"></div>
 
-							<!-- <nav class="portfolio-filter clearfix">
-							<ul>
-								<li><a href="#" class="dmbutton2" data-filter="*">All
-										Works (6)</a></li>
-								<li><a href="#" class="dmbutton2" data-filter=".mockups">Mockups</a></li>
-								<li><a href="#" class="dmbutton2"
-									data-filter=".graphic-design">Graphics</a></li>
-								<li><a href="#" class="dmbutton2" data-filter=".web-design">Web
-										Projects</a></li>
-							</ul>
-						</nav> -->
-
 							<div class="portfolio-centered">
 								<div class="recentitems portfolio">
 
@@ -359,7 +347,7 @@ height: 100%; */
 										<h3 class="title"><a href="<c:url value='/planit/member/partner/ProductView.it?roomcode=${list.roomcode}'/>">${list.roomcode},${list.roomtitle}<a></a></h3>
 										<p>Lorem Ipsum is simply dummy text of the printing and
 											typesetting industry. Lorem Ipsum has been the industry"s
-											standard dummy..</p>
+											standad dummy..</p>
 									</div>
 								</c:forEach>
 									</c:if>
