@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/owl.carousel.css">
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/css/main.css">
 <script src="https://365ok.co.kr/theme/ok/js/jquery-2.2.4.min.js"></script>
+
+	
 	
   <section class="section1">
     <div class="container clearfix" >
@@ -47,7 +49,7 @@
         <!-- end dmbox -->
 
 
-
+<div>
 
         <div class="col-lg-6 col-md-6 col-sm-12">
           <div class="dmbox">
@@ -61,40 +63,68 @@
 **************************************** -->  
 			<h4>1:1 문의</h4>
 	            <p>물어보세요</p>
-	                   
-            <div id="normalModal" class="modal fade">
-             
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			     
-			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			        <h4 class="modal-title">v질문v</h4>
-			      </div>
-			      <form method="post" action="<c:url value='/planit/search/tourinfo/askQna.it'/>">
-			      	<input type="hidden" name="id" value="${id}"><!-- session id -->
-				      <div class="modal-body">
-					      <textarea name="title" id=title cols="100" rows="2" placeholder="제목을 입력하세요"></textarea>
-					      <textarea name="content" id=content cols="100" rows="10" placeholder="내용을 입력하세요"></textarea>
+	          
+	       
+	           <c:choose> 
+	           	<c:when test="${sessionScope.id ne null }">
+	            <div id="normalModal" class="modal fade">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				        <h4 class="modal-title">v질문v</h4>
 				      </div>
-			      
-			      
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" disabled="disabled" data-dismiss="modal">보내는 날짜 : 2018-10-18</button>
-			        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-			        <button type="submit" class="btn btn-primary">전송</button>
-			 	</div>
-			 </form>
-		    </div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+				      <form method="post" id="sendBack" action="<c:url value='/planit/search/tourinfo/askQna.it'/>">
+				      	<input type="hidden" name="id" value="${id}"><!-- session id -->
+					      <div class="modal-body">
+						      <textarea name="title" id=title cols="100" rows="2" placeholder="제목을 입력하세요"></textarea>
+						      <textarea name="content" id=content cols="100" rows="10" placeholder="내용을 입력하세요"></textarea>
+					      </div>
+				      <div class="modal-footer">
+				        <button type="time" class="btn btn-default" disabled="disabled" data-dismiss="modal">  보내는 날짜:2018-10-19</button>
+	<!-- 			        보내는 날짜&nbsp;  :&nbsp;  <input type='time' style="height:35px;" value='now' disabled="disabled"/> -->
+				        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				        <button type="submit" id="sendMessage" class="btn btn-primary">전송</button>
+				 	</div>
+				 </form>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			</c:when>
 			
+			<c:when test="${sessionScope.id eq null }">
+					<div id="normalModal" class="modal fade">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					        <h4 class="modal-title">v질문v</h4>
+					      </div>
+						      <div class="modal-body">
+						      	로그인후 이용하세요
+						      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					 	</div>
+				    </div>
+				  </div>
+				</div>
+			
+			 </c:when>
+			
+			
+		 </c:choose>
+        </div>
+        
+        
+	      
+        
+        	
 			</div>
+		  
 <!-- **************************************** 
 				모달창 끝
 **************************************** -->
-        </div>
-        <!-- end dmbox -->
 
 <!--         <div class="col-lg-4 col-md-4 col-sm-12"> -->
 <!--           <div class="dmbox" style="height:261px"> -->

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.realm.AuthenticatedUserRealm;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +36,6 @@ public class FaqNoticeController {
 	private FaqNoticeService service;
 	
 	//질문답변
-	
 	@RequestMapping("/planit/search/tourinfo/Qna.it")
 	public String goQna(@RequestParam Map map,FaqNoticeDTO dto,@ModelAttribute("no") String no ,Model model)throws Exception{
 		
@@ -45,18 +45,26 @@ public class FaqNoticeController {
 		
 		return "tourinfo/tdview/Qna.theme";
 	}
+	
+
+	
+	
+	
 	@RequestMapping(value="/planit/search/tourinfo/askQna.it",method=RequestMethod.POST)
 	public String goDM(@ModelAttribute("id") String id,Model model,FaqNoticeDTO dto,HttpSession session)throws Exception{
 		System.out.println("goDM call");
 		System.out.println(dto.getTitle());
 		System.out.println(dto.getContent());
 		System.out.println("id:"+id);
+		
 		dto.setId(id);
 		
+//		dto = (FaqNoticeDTO) session.getAttribute(id);
+//		System.out.println("dddd:"+(FaqNoticeDTO) session.getAttribute(id));
 		
 		int affected = service.insert(dto);
 		
-		return "tourinfo/tdview/Qna.theme";
+		return "forward:/planit/search/tourinfo/Qna.it";
 	}
 	
 	

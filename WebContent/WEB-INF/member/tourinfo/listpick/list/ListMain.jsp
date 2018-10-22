@@ -70,7 +70,7 @@
                            <div class="tourlist-overlay"  style="margin-left: 30px;">
                                   <div class="text" style="background-color: rgba(0, 0, 0, 0.5); padding: 0 10px 50px 10px" >
                            <div class="general-title text-center">
-                              <h3 style=""><span class="clickedArea"></span> 지금 가장 인기 있는  음식점, </h3>
+                              <h3 style=""><span class="clickedArea"></span> 지금 가장 인기 있는  음식점</h3>
                               <a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
                            </div>
                                   <c:forEach var="record" items="${food}">

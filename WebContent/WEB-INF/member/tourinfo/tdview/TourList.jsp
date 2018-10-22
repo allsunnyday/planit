@@ -18,8 +18,27 @@ max-width: 100%;
 </style>
 
 
+<script>
+$(function(){
+	$('#areaCode').change(function(){
+		$.ajax({
+			url:'<c:url value="/Planit/tourinfo/tdview/TourInfo.it"/>',
+			dataType:'json',
+			data:{areacode:$(this).val()},
+			success:function(data){
+				var optionString ="";
+				$.each(data, function(key, value){						
+					optionString +="<option value='"+key+"'>"+value+"</option>";
+				});
+				$('#choice_').html(optionString);
+				}	
+			});
+		};
+	});
 
 
+
+</script>
 
 
 <!--************************************ 상단 리스트페이지 네브바 페이지 삽입*************************************** -->
@@ -60,52 +79,21 @@ max-width: 100%;
                   <option value="">전체</option>
 
                   <option value="1" >서울</option>
-                  
-
                   <option value="2" >인천</option>
-
                   <option value="3" >대전</option>
-                  
-
                   <option value="4" >대구</option>
-                  
-
                   <option value="5" >광주</option>
-                  
-
                   <option value="6" >부산</option>
-                  
-
                   <option value="7" >울산</option>
-                  
-
                   <option value="8" >세종특별자치시</option>
-                  
-
                   <option value="31" >경기도</option>
-                  
-
                   <option value="32" >강원도</option>
-                  
-
                   <option value="33" >충청북도</option>
-                  
-
                   <option value="34" >충청남도</option>
-                  
-
                   <option value="35" >경상북도</option>
-                  
-
                   <option value="36" >경상남도</option>
-                  
-
                   <option value="37" >전라북도</option>
-                  
-
                   <option value="38" >전라남도</option>
-                  
-
                   <option value="39" >제주도</option>
                   
 
@@ -115,27 +103,13 @@ max-width: 100%;
             <div data-type="multiple" class="form-group" style="display: inline-block;" >
                <ul class="jetmenu ">
                   <li><button name="all" value="" class="button ov" type="button">전체</button></li>
-                  <li>
-                  <button name="category" value="A01" class="button " type="button">자연</button>
-                  </li>
-                  <li>
-                  <button name="category" value="A03" class="button " type="button">체험</button>
-                  </li>
-                  <li>
-                  <button name="category" value="B01" class="button " type="button">문화시설</button>
-                  </li>
-                  <li>
-                  <button name="category" value="DDD" class="button " type="button">레포츠</button>
-                  </li>
-                  <li>
-                  <button name="category" value="A02" class="button " type="button">역사</button>
-                  </li>
-                  <li>
-                  <button name="category" value="J02" class="button " type="button">테마</button>
-                  </li>
-                  <li>
-                  <button name="category" value="E01" class="button " type="button">쇼핑</button>
-                  </li>
+                  <li><button name="category" value="A01" class="button " type="button">자연</button></li>
+                  <li><button name="category" value="A03" class="button " type="button">체험</button> </li>
+                  <li><button name="category" value="B01" class="button " type="button">문화시설</button></li>
+                  <li><button name="category" value="DDD" class="button " type="button">레포츠</button></li>
+                  <li><button name="category" value="A02" class="button " type="button">역사</button></li>
+                  <li><button name="category" value="J02" class="button " type="button">테마</button></li>
+                  <li><button name="category" value="E01" class="button " type="button">쇼핑</button></li>
 
                </ul>
                
@@ -159,7 +133,7 @@ max-width: 100%;
             <div id="showBox" class="recentitems portfolio">
             
             <c:forEach var="record" items="${tour}" >
-               <div  class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               <div id="choice_" class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
                   <div class="he-wrap tpl6 market-item">
                      <c:if test="${empty record.firstimage }">
                          <img src="<c:url value='/Upload/Tour/tempimage.png'/>" alt="">
