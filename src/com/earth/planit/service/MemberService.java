@@ -22,4 +22,17 @@ public interface MemberService {
 	// [마이페이지-사진수정용]
 	int updateProfile(Map map);
 
+	//[회원의 리뷰정보를 담을 리스트]
+	List<ReviewDTO> memberReviewList(Map map);
+	
+	//[회원의 MyPageHome Review용 리스트]
+	List<ReviewDTO> homeReviewList(Map map);
+	//[회원의 MyPageHome QNA용 리스트]
+	List<FaqNoticeDTO> homeQNAList(Map map);
+	
+	//[회원 QnA정보를 담을 리스트]
+	List<FaqNoticeDTO> memberQnAList(Map map);
+	
+	//[페이징용]
+	int getTotalCount(Map map);
 }

@@ -307,16 +307,16 @@ display: inline-block;
          <!--  내가 작성한 플래너 들어갈 div -->
          <div id="MY-First-name">My Planer</div>
          <div class="MY-More-Button">
-             <button type="button" class="btn btn-link"><a href="<c:url value='/planit/mypage/detail/Planner.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a></button>
+             <a class="btn btn-link" href="<c:url value='/planit/mypage/detail/Planner.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a>
             </div>
-         <div id="First-line" >
+         <div id="First-line" style="height:300px;">
             <div id="MY-First-content" class="col-md-12">
    <!-- **********************************
       최신 플래너 요약보기/마우스 오버 추가
    **************************************** -->
                  <div class="portfolio-centered">
                    <div class="recentitems portfolio">
-         
+         			
                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
                        <div class="he-wrap tpl6 market-item">
                          <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
@@ -434,106 +434,48 @@ display: inline-block;
              <a href="<c:url value='/planit/mypage/detail/Review.it'/>" class="btn btn-link">
              <span class="glyphicon glyphicon-plus">더보기 </span></a>
             </div>
-         <div id="Second-line">
-            <div id="MY-Second-content" class="col-md-12">
+         <div id="Second-line" style="height:300px;">
+            <div id="MY-Second-content" class="col-md-12" style="height:300px;">
    <!-- **********************************
       최신 플래너 요약보기/마우스 오버 추가
    **************************************** -->
                  <div class="portfolio-centered">
                    <div class="recentitems portfolio">
-         
-                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
-                       <div class="he-wrap tpl6 market-item">
-                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-                         <div class="he-view">
-                           <div class="bg a0" data-animate="fadeIn">
-                             <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                             <a data-rel="prettyPhoto" href="img/portfolio_01.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                               <a href="gallery-portfolio.html#">Item Category</a>
-                             </div>
-                             <!-- portfolio_category -->
-                           </div>
-                           <!-- he bg -->
-                         </div>
-                         <!-- he view -->
-                       </div>
-                       <!-- he wrap -->
-                     </div>
-                     <!-- end col-12 -->
-         
-                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 web-design graphic-design">
-                       <div class="he-wrap tpl6 market-item">
-                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-                         <div class="he-view">
-                           <div class="bg a0" data-animate="fadeIn">
-                             <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                             <a data-rel="prettyPhoto" href="img/portfolio_02.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                               <a href="gallery-portfolio.html#">Item Category</a>
-                             </div>
-                             <!-- portfolio_category -->
-                           </div>
-                           <!-- he bg -->
-                         </div>
-                         <!-- he view -->
-                       </div>
-                       <!-- he wrap -->
-                     </div>
-                     <!-- end col-12 -->
-         
-                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 graphic-design">
-                       <div class="he-wrap tpl6 market-item">
-                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-                         <div class="he-view">
-                           <div class="bg a0" data-animate="fadeIn">
-                             <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                             <a data-rel="prettyPhoto" href="img/portfolio_03.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                               <a href="gallery-portfolio.html#">Item Category</a>
-                             </div>
-                             <!-- portfolio_category -->
-                           </div>
-                           <!-- he bg -->
-                         </div>
-                         <!-- he view -->
-                       </div>
-                       <!-- he wrap -->
-                     </div>
-                     <!-- end col-12 -->
-         
-                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
-                       <div class="he-wrap tpl6 market-item">
-                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-                         <div class="he-view">
-                           <div class="bg a0" data-animate="fadeIn">
-                             <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                             <a data-rel="prettyPhoto" href="img/portfolio_04.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                               <a href="gallery-portfolio.html#">Item Category</a>
-                             </div>
-                             <!-- portfolio_category -->
-                           </div>
-                           <!-- he bg -->
-                         </div>
-                         <!-- he view -->
-                       </div>
-                       <!-- he wrap -->
-                     </div>
-                     <!-- end col-12 -->
-         
-                     <!-- end col-12 -->
-         
-                     
-                     <!-- end col-12 -->
-         
-                     <!-- end col-12 -->
-         
-                   </div>
+         			<c:if test="${empty homeReviewList }">
+         				<div>
+         					<h2>당신만의 멋진 리뷰를 작성해주세요</h2>
+         				</div>
+         			</c:if>
+         			<c:if test="${not empty homeReviewList }">
+         				<c:forEach var="list" items="${homeReviewList}" varStatus="loop">
+	                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
+	                       <div class="he-wrap tpl6 market-item">
+	                       <c:if test="${empty list.frirstimage }" var="result">
+	                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+	                       </c:if>
+	                       <c:if test="${not result }">
+							<img src="<c:url value='/Upload/Review/${list.frirstimage}'/>" style="height:230px" alt="">
+	                       </c:if>
+	                         <div class="he-view">
+	                           <div class="bg a0" data-animate="fadeIn">
+	                             <h3 class="a1" data-animate="fadeInDown">${list.title}(${list.series })</h3>
+	                             <a data-rel="prettyPhoto" href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+	                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+	                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
+	                               <!-- <a href="gallery-portfolio.html#">Item Category</a> -->
+	                             </div>
+	                             <!-- portfolio_category -->
+	                           </div>
+	                           <!-- he bg -->
+	                         </div>
+	                         <!-- he view -->
+	                       </div>
+	                       <!-- he wrap -->
+	                     </div>
+	                     <!-- end col-12 -->
+                     </c:forEach>
+         			</c:if>
+                  
                    <!-- portfolio -->
                     </div> 
          
@@ -559,7 +501,7 @@ display: inline-block;
          <div class="MY-More-Button">
              <a href="<c:url value='/planit/mypage/detail/Liked.it'/>" class="btn btn-link" ><span class="glyphicon glyphicon-plus">더보기 </span></a>
             </div>
-         <div id="Third-line">
+         <div id="Third-line" style="height:300px;">
             <div id="Third-content" class="col-md-12">
                <!-- 찜해제버튼 추가 -->
                <div id="MY-Third-ZZim-table">
@@ -613,20 +555,39 @@ display: inline-block;
          
              <a href="<c:url value='/planit/mypage/detail/Q&A.it'/>" class="btn btn-link"><span class="glyphicon glyphicon-plus">더보기 </span></a>
             </div>
-         <div id="Forth-line">
+         <div id="Forth-line" style="height:300px;">
             <div id="MY-Forth-content" class="col-md-12">
                <div id="MY-Forth-Q&A-table">
-                  <table class="table">
+                  <table class="table" style="text-align: center">
                      <tr>
-                        <td class="col-md-2 ">번호</td>
+                        <td class="col-md-1 " >번호</td>
                         <!-- 찜번호 -->
-                        <td class="col-md-1 ">분류</td>
-                        <td class="col-md-3 col-md-offset-1">제목</td>
-                        <td class="col-md-2 col-md-offset-2">날짜</td>
+                        <!-- <td class="col-md-1 ">분류</td> -->
+                        <td class="col-md-3 col-md-offset-2" >제목</td>
+                        <td class="col-md-2 col-md-offset-2" >날짜</td>
                         <td class="col-md-2 col-md-offset-2">진행여부</td>
+                        
 
                      </tr>
-                     <tr>
+                     <c:if test="${empty requestScope.homeQnAList }" var="isEmpty">
+					<tr>
+						<td colspan="4" style="text-align: center">등록된 게시물이 없어요</td>
+					</tr>
+					</c:if>
+					<c:if test="${not isEmpty }">
+						<c:forEach var="list" items="${homeQnAList}" varStatus="loop">
+							<tr>
+								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
+								<td>${list.ask_no}</td>
+								<td class="text-left">
+								<a href="#">${list.title }</a>
+								</td>
+								<td>${list.askdate}</td>
+								<td>${list.status}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+           <!--           <tr>
                         <td>00</td>
                         <td>정보수정</td>
                         <td>관광지 정보수정 문의</td>
@@ -641,7 +602,7 @@ display: inline-block;
                         <td>2018.01.01</td>
                         <td>처리 중</td>
 
-                     </tr>
+                     </tr> -->
                   </table>
                </div>
 
@@ -665,6 +626,6 @@ display: inline-block;
 
 </div>
 <!--  end container --> 
-  `
+</div>  `
 </div>
 </section>

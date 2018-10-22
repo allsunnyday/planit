@@ -284,75 +284,54 @@ height: 100%;
 				<div id="Third-content" class="col-md-12">
 					<!-- 찜해제버튼 추가 -->
 					<div id="MY-Third-ZZim-table">
-						<table class="table">
-							<tr>
-								<td class="col-md-2 ">ZZim No.</td>
-								<!-- 찜번호 -->
-								<td class="col-md-1 ">분류</td>
-								<td class="col-md-3 col-md-offset-1">제목</td>
-								<td class="col-md-2 col-md-offset-2">작성자</td>
-								<td class="col-md-2 col-md-offset-2">ZZim날짜</td>
-
-							</tr>
-							<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-edit"></span></td>
-								<td>리뷰 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-							<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-calendar"></span></td>
-								<td>플래너 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
+						<table class="table" style="text-align: center">
+	                     <tr>
+	                        <td class="col-md-1 " >번호</td>
+	                        <!-- 찜번호 -->
+	                        <!-- <td class="col-md-1 ">분류</td> -->
+	                        <td class="col-md-3 col-md-offset-2" >제목</td>
+	                        <td class="col-md-2 col-md-offset-2" >날짜</td>
+	                        <td class="col-md-2 col-md-offset-2">진행여부</td>
+	                        
+	
+	                     </tr>
+	                     <c:if test="${empty requestScope.QnAListDetail }" var="isEmpty">
+						<tr>
+							<td colspan="4" style="text-align: center">등록된 게시물이 없어요</td>
+						</tr>
+						</c:if>
+						<c:if test="${not isEmpty }">
+							<c:forEach var="list" items="${QnAListDetail}" varStatus="loop">
 								<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-edit"></span></td>
-								<td>리뷰 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-							<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-calendar"></span></td>
-								<td>플래너 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-								<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-edit"></span></td>
-								<td>리뷰 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-							<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-calendar"></span></td>
-								<td>플래너 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-							
-						</table>
+									<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td>  --%>
+									<td>${list.ask_no}</td>
+									<td class="text-left">
+									<a href="#">${list.title }</a>
+									</td>
+									<td>${list.askdate}</td>
+									<td>${list.status}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+	           <!--           <tr>
+	                        <td>00</td>
+	                        <td>정보수정</td>
+	                        <td>관광지 정보수정 문의</td>
+	                        <td>2018.01.01</td>
+	                        <td>문의 접수</td>
+	
+	                     </tr>
+	                     <tr>
+	                        <td>00</td>
+	                        <td>그냥문의</td>
+	                        <td>제목뭘루하지</td>
+	                        <td>2018.01.01</td>
+	                        <td>처리 중</td>
+	
+	                     </tr> -->
+                  		</table>
 					</div>
 				</div>
-
 
 			</div>
 
@@ -378,6 +357,9 @@ height: 100%;
 
 </div>
 <!--  end container --> 
-  `
+  <div class="row">
+	<div>${pagingString}</div>
+</div>
+  
 </div>
 </section>

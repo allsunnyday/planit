@@ -185,62 +185,85 @@ height: 100%;
 	왼쪽에 달린 프로필 사진 및 기타등등 
 *****************************************  -->
   <section class="section1">
-          <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
+        <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
         <div>
           <div class="teammembers">
             <div class="he-wrap tpl2">
+            	<c:if test="${not empty memberRecord.profile}" var="result">
+            	<img src="<c:url value='/Upload/Member/${memberRecord.profile}'/>" alt="프로필 사진">
+            	</c:if>
+            	<c:if test="${not result}">
               <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
+              </c:if>
               <div class="he-view">
             
               </div>
             </div>
             <!-- he wrap -->
             <div class="teammembers-meta">
-              <h4>Plan:It</h4>
+              <h4>${sessionScope.id}</h4>
             </div>
             <div id="MY-first-1-self-detail">
-							<p>
-								<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-									Plan:It님의&nbsp자기소개입니다</span>
-							<p>어서오세요, Plan:It님!
-							멋진 프로필을 등록해 
-							자신만의 개성을 나타내보세요!
-							</p>
+                     <p>
+                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
+                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
+                           님의&nbsp자기소개입니다</span>
+                     <p>${memberRecord.self}
+                     </p>
 
 
-			</div>
+         </div>
 
             
             <div class="teamskills" >
             <div id="MY-First-TotalContent" style="width:90%;">
-             		<table id="MY-first-informtable" style="width:90%;">
-             		<tr>
-             			<td>Planner</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             		<td>Review</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             			<td>Like</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             			<td>Star Point</td>
-             			<td>00</td>
-             		</tr>
-             	
-             			
-             		</table>
-             	
-             	</div>
+                   <table id="MY-first-informtable" style="width:90%;">
+                   <tr>
+                      <td>Planner</td>
+                      <td>00</td>
+                   </tr>
+                   <tr>
+                   <td>Review</td>
+                      <td>00</td>
+                   </tr>
+                   <tr>
+                      <td>Like</td>
+                      <td>00</td>
+                   </tr>
+                   <tr>
+                      <td>Star Point</td>
+                      <td>0000</td>
+                  <!--  </tr>
+                	<tr style="border-top:1px white dashed;">
+                	<td colspan="2"> 선호사항</td>
+                	</tr>
+                       -->
+                   </table>
+                
+                </div>
               
+            </div>
+            <!-- ***********************8
+            선호도 조사 들어갈 부분
+            *****************************8 -->
+            <div id="MY-First-Preference" style="width:90%;" >
+            	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
+            		<tr>
+            			<td>1</td>
+            			<td>2</td>
+            			<td>3</td>
+            			<td>4</td>
+            		</tr>
+            	
+            	</table>
+            
             </div>
           </div>
           <!-- end teammembers -->
         </div>
-</div>
+        </div>
+  
 <!--*************************************
 	마이페이지 이동버튼
 *****************************************  -->
@@ -256,11 +279,11 @@ height: 100%;
 				<!-- <button type="submit" class="btn btn-default" id="MY-edit-button">회원정보수정</button> -->
 			<%-- 	<a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
 			<div class="dropdown">
-				  <button class="btn btn-link" type="button" id="MY-Planner-gotomypage" >
-				  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">
+				  
+				  <a class="btn btn-link" href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">
 				   돌아가기
 				    <span class="glyphicon glyphicon-log-out"></a></span>
-				  </button>
+				
 				  
 				  
 				</div><!-- dropdown -->
@@ -278,34 +301,33 @@ height: 100%;
 		<!--        start First       -->
 		<!-- ------------------------- -->
 		<div class="row" id="MY-First">
-						<div class="container-fluid">
+			<div class="container-fluid">
 					<div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
 
 						<div class="divider"></div>
 
-						<nav class="portfolio-filter clearfix">
-							<ul>
-								<li><a href="#" class="dmbutton2" data-filter="*">All
-										Works (6)</a></li>
-								<li><a href="#" class="dmbutton2" data-filter=".mockups">Mockups</a></li>
-								<li><a href="#" class="dmbutton2"
-									data-filter=".graphic-design">Graphics</a></li>
-								<li><a href="#" class="dmbutton2" data-filter=".web-design">Web
-										Projects</a></li>
-							</ul>
-						</nav>
 
 						<div class="portfolio-centered">
 							<div class="recentitems portfolio">
+								<c:if test="${empty reviewList}" var="result">
+									<h2>왜ㅑ 안되냐</h2>
+								</c:if>
 
-								<div
-									class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
+								<c:if test="${not result}">
+									<c:forEach var="list" items="${reviewList}" varStatus="loop">
+									
+								<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
 									<div class="he-wrap tpl6 market-item">
+										<c:if test="${empty list.frirstimage }" var="yesimg">
 										<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+										</c:if>
+										<c:if test="${yesimg}">
+										
+											<img src="<c:url value='/Upload/Review/${list.frirstimage}'/>" style="height:230px" alt="">
+										  </c:if>
 										<div class="he-view">
 											<div class="bg a0" data-animate="fadeIn">
-												<h3 class="big a1" data-animate="fadeInDown">Project
-													Name Here</h3>
+												<h3 class="big a1" data-animate="fadeInDown">${list.title }(${list.series })</h3>
 												<a data-rel="prettyPhoto"
 													href="<c:url value='/images/main/slide2.jpg'/>"
 													class="dmbutton a2" data-animate="bounceInLeft"><i
@@ -320,157 +342,16 @@ height: 100%;
 										<!-- he view -->
 									</div>
 									<!-- he wrap -->
-									<h3 class="title">Project Name - 1</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry"s
-										standard dummy..</p>
+									<h3 class="title"><a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>">${list.title }(${list.series })</a></h3>
+									<p>${list.hashtag }</p>
+								
+									
 								</div>
+									</c:forEach>
+								</c:if>
 								<!-- end col-4 -->
 
-								<div
-									class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 web-design graphic-design">
-									<div class="he-wrap tpl6 market-item">
-										<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-										<div class="he-view">
-											<div class="bg a0" data-animate="fadeIn">
-												<h3 class="big a1" data-animate="fadeInDown">Project
-													Name Here</h3>
-												<a data-rel="prettyPhoto"
-													href=<c:url value='/images/main/slide2.jpg'/>
-													class="dmbutton a2" data-animate="bounceInLeft"><i
-													class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
-													data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-												<div class="portfolio_category text-center a2"
-													data-animate="fadeIn"></div>
-												<!-- portfolio_category -->
-											</div>
-											<!-- he bg -->
-										</div>
-										<!-- he view -->
-									</div>
-									<!-- he wrap -->
-									<h3 class="title">Project Name - 2</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry"s
-										standard dummy..</p>
-								</div>
-								<!-- end col-4 -->
-
-								<div
-									class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 graphic-design">
-									<div class="he-wrap tpl6 market-item">
-										<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-										<div class="he-view">
-											<div class="bg a0" data-animate="fadeIn">
-												<h3 class="big a1" data-animate="fadeInDown">Project
-													Name Here</h3>
-												<a data-rel="prettyPhoto"
-													href="<c:url value='/images/main/slide2.jpg'/>"
-													class="dmbutton a2" data-animate="bounceInLeft"><i
-													class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
-													data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-												<div class="portfolio_category text-center a2"
-													data-animate="fadeIn"></div>
-												<!-- portfolio_category -->
-											</div>
-											<!-- he bg -->
-										</div>
-										<!-- he view -->
-									</div>
-									<!-- he wrap -->
-									<h3 class="title">Project Name - 3</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry"s
-										standard dummy..</p>
-								</div>
-								<!-- end col-4 -->
-
-								<div
-									class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
-									<div class="he-wrap tpl6 market-item">
-										<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-										<div class="he-view">
-											<div class="bg a0" data-animate="fadeIn">
-												<h3 class="big a1" data-animate="fadeInDown">Project
-													Name Here</h3>
-												<a data-rel="prettyPhoto"
-													href="<c:url value='/images/main/slide2.jpg'/>"
-													class="dmbutton a2" data-animate="bounceInLeft"><i
-													class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
-													data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-												<div class="portfolio_category text-center a2"
-													data-animate="fadeIn"></div>
-												<!-- portfolio_category -->
-											</div>
-											<!-- he bg -->
-										</div>
-										<!-- he view -->
-									</div>
-									<!-- he wrap -->
-									<h3 class="title">Project Name - 4</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry"s
-										standard dummy..</p>
-								</div>
-								<!-- end col-12 -->
-
-								<div
-									class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 web-design">
-									<div class="he-wrap tpl6 market-item">
-										<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-										<div class="he-view">
-											<div class="bg a0" data-animate="fadeIn">
-												<h3 class="big a1" data-animate="fadeInDown">Project
-													Name Here</h3>
-												<a data-rel="prettyPhoto"
-													href="<c:url value='/images/main/slide2.jpg'/>"
-													class="dmbutton a2" data-animate="bounceInLeft"><i
-													class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
-													data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-												<div class="portfolio_category text-center a2"
-													data-animate="fadeIn"></div>
-												<!-- portfolio_category -->
-											</div>
-											<!-- he bg -->
-										</div>
-										<!-- he view -->
-									</div>
-									<!-- he wrap -->
-									<h3 class="title">Project Name - 5</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry"s
-										standard dummy..</p>
-								</div>
-								<!-- end col-12 -->
-
-								<div
-									class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 web-design">
-									<div class="he-wrap tpl6 market-item">
-										<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-										<div class="he-view">
-											<div class="bg a0" data-animate="fadeIn">
-												<h3 class="big a1" data-animate="fadeInDown">Project
-													Name Here</h3>
-												<a data-rel="prettyPhoto"
-													href="<c:url value='/images/main/slide2.jpg'/>"
-													class="dmbutton a2" data-animate="bounceInLeft"><i
-													class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
-													data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-												<div class="portfolio_category text-center a2"
-													data-animate="fadeIn"></div>
-												<!-- portfolio_category -->
-											</div>
-											<!-- he bg -->
-										</div>
-										<!-- he view -->
-									</div>
-									<!-- he wrap -->
-									<h3 class="title">Project Name - 6</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry"s
-										standard dummy..</p>
-								</div>
-								<!-- end col-12 -->
+			
 
 							</div>
 							<!-- portfolio -->
@@ -504,4 +385,6 @@ height: 100%;
 <!--  end container --> 
   `
 </div>
+</div>
+
 </section>
