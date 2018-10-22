@@ -85,6 +85,7 @@ public class PlannerController {
 			record.put("mapy", dto.getMapy());
 			planmapdata.add(record);
 		}
+		
 		return JSONArray.toJSONString(planmapdata);
 	}
 	
