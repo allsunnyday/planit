@@ -350,6 +350,9 @@ table.table .avatar {
 				<th>요청 메세지</th>
 				<td>${record.request}</td>
 			</tr>
+			<tr>
+				<td colspan="2" align="center"><a class="btn btn-primary" href="<c:url value='/mypage/partner/Request_P.it'/>">목록</a></td>
+			</tr>
 		</table>
 
 

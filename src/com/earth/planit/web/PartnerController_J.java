@@ -52,7 +52,6 @@ public class PartnerController_J {
 		
 		//페이징을 위한 로직 끝]	
 		List<PartnerDTO> list=service.selectRequestList(map);
-	
 		//페이징 문자열을 위한 로직 호출]
 		String pagingString=PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, 
 				nowPage,req.getContextPath()+ "/mypage/partner/Request_P.it?");

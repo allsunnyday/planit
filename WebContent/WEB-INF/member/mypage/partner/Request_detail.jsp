@@ -222,12 +222,6 @@ table.table .avatar {
 /* footer가 꺠지는것을 방지하는 css */
 .footer {position:absolute;bottom:0; width:100%;}
 
-/* .btn-list{
-	text-decoration: none;
-	color: white;
-	background-color: #888;
-	
-} */
 </style>
 <script>
 
@@ -352,7 +346,7 @@ table.table .avatar {
 					<td>${record.askdate}</td>
 				</tr>
 				<tr>
-					<td colspan="2"><a class="btn btn-primary" href="<c:url value='/mypage/partner/Request_P.it'/>">목록</a></td>
+					<td colspan="2" align="center"><a class="btn btn-primary" href="<c:url value='/mypage/partner/Request_P.it'/>">목록</a></td>
 				</tr>
 		</table>
 
