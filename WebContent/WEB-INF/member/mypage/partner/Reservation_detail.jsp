@@ -226,74 +226,74 @@ table.table .avatar {
 	<div class="col-md-3" style="width: 300px">
 		<div style="padding-top: 50px;">
 			<div>
-				<div class="teammembers" style="background-color: white;">
-					<div class="he-wrap tpl2">
-						<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
-							alt="프로필 사진">
-						<div class="he-view"></div>
-					</div>
-					<!-- he wrap -->
-					<div class="teammembers-meta">
-						<h4>Plan:It</h4>
-					</div>
-					<div id="Partner-First-1-self-detail">
-						<p>
-							<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-								(주)Plan:It</span>
-						</p>
+				<div class="teammembers">
+				<div class="he-wrap tpl2">
+					<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
+						alt="프로필 사진">
+					<div class="he-view"></div>
+				</div>
+				<!-- he wrap -->
+				<div class="teammembers-meta">
+					<h4>Plan:It</h4>
+				</div>
+				<div id="Partner-First-1-self-detail">
+					<p>
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+							(주)회사이름추가하기</span>
+					<div class="Partner-First-PartnerInform">
 
-						<div class="Partner-First-PartnerInform">
+						<table id="Partner-First-informtable" style="width: 110%;">
+							<tr>
+								<td>사업자번호</td>
+								<td>${partnerRecord.business_no }</td>
+							</tr>
+							<tr>
+								<td>대표자</td>
+								<td>${partnerRecord.name }</td>
+							</tr>
+							<tr>
+								<td>주소</td>
+								<td>${partnerRecord.address }</td>
+							</tr>
+							<tr>
+								<td>전화</td>
+								<td>${partnerRecord.tel }</td>
+							</tr>
+							
 
-							<table id="Partner-First-informtable" style="width: 110%;">
+
+						</table>
+
+					</div>
+
+
+					<div class="teamskills">	
+						<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
+							<table id="Partner-First-Roomtable" style="width: 100%;">
 								<tr>
-									<td>사업자번호</td>
-									<td>123-45-678900</td>
+									<td>Total Room</td>
+									<td>00</td>
 								</tr>
 								<tr>
-									<td>대표자</td>
-									<td>김잇잇</td>
+									<td>Resting room</td>
+									<td>00</td>
 								</tr>
 								<tr>
-									<td>주소</td>
-									<td>서울특별시 디지털로 123 311호</td>
+									<td>Reserved room</td>
+									<td>00</td>
 								</tr>
 								<tr>
-									<td>전화</td>
-									<td>02-0000-0000</td>
+									<td>Star Point</td>
+									<td>00</td>
 								</tr>
-								<tr>
-									<td>업종</td>
-									<td>숙박업</td>
-								</tr>
+
+
 							</table>
 						</div>
-
-						<div class="teamskills">
-							<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
-								<table id="Partner-First-Roomtable" style="width: 100%;">
-									<tr>
-										<td>Total Room</td>
-										<td>00</td>
-									</tr>
-									<tr>
-										<td>Resting room</td>
-										<td>00</td>
-									</tr>
-									<tr>
-										<td>Reserved room</td>
-										<td>00</td>
-									</tr>
-									<tr>
-										<td>Star Point</td>
-										<td>00</td>
-									</tr>
-
-								</table>
-							</div>
-						</div>
-
 					</div>
+
 				</div>
+			</div>
 				<!-- end teammembers -->
 			</div>
 		</div>
@@ -349,6 +349,9 @@ table.table .avatar {
 			<tr>
 				<th>요청 메세지</th>
 				<td>${record.request}</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><a class="btn btn-primary" href="<c:url value='/mypage/partner/Request_P.it'/>">목록</a></td>
 			</tr>
 		</table>
 
