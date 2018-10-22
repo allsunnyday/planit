@@ -104,6 +104,16 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.getPhotobookLayouts(map);
 	}
 
+	@Override
+	public int alreadyLikeReview(Map map) {
+		return dao.alreadyLikeReview(map);
+	}
+
+	@Override
+	public int insertLikedReview(Map map) {
+		return dao.insertLikedReview(map);
+	}
+
 	
 
 }

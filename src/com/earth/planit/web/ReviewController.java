@@ -334,4 +334,24 @@ public class ReviewController {
 	}
 	
 
+	@ResponseBody
+	@RequestMapping(value="/planit/review/LikedView.it",produces="text/plain; charset=UTF-8")
+	public String userLikedContent(@RequestParam Map map, HttpSession session) throws Exception{
+		
+		System.out.println(map.get("review_id")+" "+session.getAttribute("id"));
+		map.put("id", session.getAttribute("id"));
+//		//// 이미  좋아요한 것인지 판단
+		int isAlreadyLiked = reviewService.alreadyLikeReview(map); 
+	
+		if(isAlreadyLiked!=0) {
+			// 이미 사용자가 좋아요를 눌렀다.
+			return "already";
+		}
+//		// 사용자가 아직 좋아요 한 것이 아니라면
+		int affected = reviewService.insertLikedReview(map);
+		
+		return "success";
+	}
+	
+	
 }

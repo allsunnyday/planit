@@ -48,4 +48,9 @@ public interface ReviewService {
 	//포토북정보 가지고 오기 
 	Map getPhotobookLayouts(Map map);
 	
+	//review_좋아요를 이미 눌렀는지 판단 
+	int alreadyLikeReview(Map map);
+	//review_좋아요를 insert
+	int insertLikedReview(Map map);
+	
 }

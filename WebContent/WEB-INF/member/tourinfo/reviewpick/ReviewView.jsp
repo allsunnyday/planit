@@ -175,6 +175,37 @@ review :
 		console.log('이 '+comment_no+'에 답변을 답니다.');
 		
 	};
+	
+	var likedThisReview=function(){
+		//로그인한 유저인지 확인
+		if('${sessionScope.id}'==''){
+			alert('로그인이 필요해요!');
+			return ;
+		}
+		console.log('즐겨찾기를 시작합니다.')
+		// 로그인한 유저인 경우에는 ajax를 이용해서 mypage로 이동하던가. 아니면 그냥 보기 
+		var review_id =${review.review_id};
+		$.ajax({
+			url:"<c:url value='/planit/review/LikedView.it'/> ",
+			data:{review_id:review_id},
+			type:'post',
+			dataType:'text',
+			success:function(data){
+				console.log('성공');
+				if(data=='success'){
+					
+					alert('저장 성공\r\n좋아요한 리뷰는 마이페이지에서 확인할 수 있어요!')					
+				}
+				else if (data=='already'){					
+					alert('이미 좋아요를 눌렀어요\r\n즐겨찾기에 추가한 리뷰는 마이페이지에서 확인할 수 있어요!')					
+				}
+			},
+			error:function(request, error){
+				console.log(request,error);
+			}
+			
+		});	
+	};
 
 </script>
 
@@ -196,7 +227,9 @@ review :
 			<nav class="portfolio-filter clearfix">
 				<ul>
 					<li><a href="#" class="dmbutton" >일정보기</a></li>
-					<li><a href="#" class="dmbutton" >즐겨찾기</a></li>
+					<c:if test="${not (sessionScope.id eq review.id)}">
+					<li><a  href="javascript:" onclick="likedThisReview();" class="dmbutton"  >즐겨찾기</a></li>
+					</c:if>
 					<li><a href="#" class="dmbutton showSeriesbtn" data-toggle="modal" data-target="#seriesmodal" >시리즈보기</a></li>
 					<c:if test="${sessionScope.id eq review.id}">
 					<li><a href="<c:url value='/review/myreview/Write.it?planner_id=${review.planner_id}&review_id=${review.review_id}'/> " class="dmbutton" >수정하기</a></li>

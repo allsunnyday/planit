@@ -104,4 +104,16 @@ public class ReviewDAO implements ReviewService {
 		return template.selectOne("reviewGetPhotobookLayout", map);
 	}
 
+	@Override
+	public int alreadyLikeReview(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insertLikedReview(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
