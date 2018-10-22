@@ -428,9 +428,6 @@
 	}
 	/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
 	
-	
-	
-	
 	/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */	
 	var diveplus; // 여행계획 추가 다이브 번호 생성
 	function routeInfoPlusAction(diveplus){
@@ -705,29 +702,46 @@
 	$(function() {
 		var mapx=[];
 		var mapy=[];
-		<c:forEach items="${planmapinfo}" var="planmapinfo">
+		/* <c:forEach items="${planmapinfo}" var="planmapinfo">
 	        var map_x = '${planmapinfo.mapx}';
 	        var map_y = '${planmapinfo.mapy}';
 	        mapx.push(map_x);
 	        mapy.push(map_y);
     	</c:forEach>
-    	console.log(mapx, mapy);
+    	console.log(mapx, mapy); */
     	
-    	$('.routecategory').click(function() {
-    		
-    		console.log('???: '+$(this).val());
-    		
+    	$('.routecategory').click(function() {    		
+    		console.log('들어옴1: '+$(this).val());    		
 	    	$.ajax({
 				url: "<c:url value='/planner/plan/routecategory.it'/>",
 				dataType: 'json',
 				data:{contenttype:$(this).val()},
-				//success: successMapPick,
+				success: successPlanmapdata,
 				error: function(request, status, error){
 					console.log(request, status, error);
 				}
 			});///ajax   	
     	});
+    	
+    	var successPlanmapdata = function(data){
+    		//console.log(JSON.stringify(data));
+    		$.each(data, function(index, content) {
+    			//console.log(content['mapx']+'//'+content['mapy']);
+    			mapx.push(content['mapx']);
+    			mapy.push(content['mapy']);
+    		});
+    	};
 	});	
+	
+/* 
+	17000
+	$.each(list,function(index,value){
+		if(value.contentypte==14){
+			addmakers()...
+		}
+		맵에 마커 셋팅
+	})
+	 */
 	
 </script>
 <!-- ****************************************************루트 상세 정보 계획 자바 스크립트 종료************************************************************ -->

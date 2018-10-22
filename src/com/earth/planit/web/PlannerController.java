@@ -3,9 +3,11 @@ package com.earth.planit.web;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.annotation.Resource;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,18 +57,35 @@ public class PlannerController {
 		List<PlannerDTO> planmapinfo = service.selectMapDataList(map);		
 		System.out.println("값 넘어오나요?: " + planmapinfo.size());
 		model.addAttribute("planmapinfo", planmapinfo);
-				
+		
 		return "planner/plan/route.theme";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/planner/plan/routecategory.it", produces="text/plain; charset=UTF-8")
-	public String getcategorynum(@RequestParam Map map) throws Exception{
-		System.out.println(map.get("contenttype"));
+	public String getcategorynum(@RequestParam Map map, Model model) throws Exception{
+		System.out.println("들어옴2: "+map.get("contenttype"));
 		Map mapcategory = new HashMap();		
 		mapcategory.put("contenttype", map.get("contenttype"));
 		List<PlannerDTO> planmapinfo1 = service.selectMapDataList(mapcategory);
-		return " ";
+		List<Map> planmapdata = new Vector<Map>();
+		
+		for(PlannerDTO dto : planmapinfo1) {
+			Map record = new HashMap<>();
+			record.put("contentid", dto.getContentid());
+			record.put("contenttype", dto.getContenttype());
+			record.put("tel", dto.getTel());
+			record.put("title", dto.getTitle());
+			record.put("areacode", dto.getAreacode());
+			record.put("sigungucode", dto.getSigungucode());
+			record.put("addr1", dto.getAddr1());
+			record.put("addr2", dto.getAddr2());
+			record.put("zipcode", dto.getZipcode());
+			record.put("mapx", dto.getMapx());
+			record.put("mapy", dto.getMapy());
+			planmapdata.add(record);
+		}
+		return JSONArray.toJSONString(planmapdata);
 	}
 	
 	@RequestMapping("/planner/plan/schedule.it")
