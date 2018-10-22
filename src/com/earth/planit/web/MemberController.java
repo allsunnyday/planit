@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.FaqNoticeDTO;
 import com.earth.planit.service.MemberDTO;
 import com.earth.planit.service.MemberService;
@@ -73,6 +74,11 @@ public class MemberController {
 		map.put("id", session.getAttribute("id"));
 		List<ReviewDTO> homeReviewList=service.homeReviewList(map);
 		List<FaqNoticeDTO> homeQnAList=service.homeQNAList(map);
+		List<MemberDTO> memberPreferList=service.memberPreferList(map);
+		
+	
+		
+		model.addAttribute("memberPreferList", memberPreferList);
 		model.addAttribute("homeReviewList", homeReviewList);
 		model.addAttribute("homeQnAList", homeQnAList);
 		
@@ -155,30 +161,29 @@ public class MemberController {
 			,HttpSession session
 			) throws Exception {
 		map.put("id", session.getAttribute("id"));
-		//페이징을 위한 로직 시작]
-				//전체 레코드 수
-				int totalRecordCount= service.getTotalCount(map);
-				
-				//시작 및 끝 ROWNUM구하기]
-				int totalPage = (int)Math.ceil(((double)totalRecordCount/pageSize));
-				int start = (nowPage-1)*pageSize+1;
-				int end  = nowPage*pageSize;
-				map.put("start", start);
-				map.put("end", end);
-				String pagingString = CommonUtil.pagingBootStrapStyle(
-						totalRecordCount,
-						pageSize, 
-						blockPage, 
-						nowPage, 
-						req.getContextPath()+"/planit/mypage/detail/Q&A.it?");
-		List<FaqNoticeDTO> QnAListDetail=service.memberQnAList(map);
 		
-		System.out.println(session.getAttribute("id"));
+		int totalCount = service.getTotalCount(map);
+		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
+		int start = (nowPage-1)*pageSize+1;
+		int end  = nowPage*pageSize;
+		map.put("start", start);
+		map.put("end", end);
+		List<FaqNoticeDTO> QnAListDetail=service.memberQnAList(map);
+		String pagingString = CommonUtil.pagingBootStrapStyle(
+							totalCount,
+							pageSize, 
+							blockPage, 
+							nowPage, 
+							req.getContextPath()+"/planit/mypage/detail/Q&A.it?");
+		
 		model.addAttribute("QnAListDetail", QnAListDetail);
 		model.addAttribute("pagingString", pagingString);
-		model.addAttribute("totalRecordCount", totalRecordCount);
+		model.addAttribute("totalRecordCount", totalCount);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("nowPage", nowPage);
+		
+		
+		
 		return "mypage/DetailQnA.theme";
 
 	}
@@ -237,7 +242,7 @@ public class MemberController {
 	public String logoutProcess(HttpSession session) throws Exception {
 		session.invalidate();
 
-		return "redirect:/Plait/Planit.it";
+		return "redirect:/";
 
 	}
 
@@ -260,6 +265,30 @@ public class MemberController {
 
 		// 선호도 체크페이지 이동
 
+	}
+	// [회원가입 처리]
+	@RequestMapping(value = "/plnait/member/preference/survey.it", method = RequestMethod.POST)
+	public String userPrefernectProcess(MemberDTO dto, @RequestParam Map map, HttpSession session) throws Exception {
+		
+		int count=0;
+		int index=0;
+		String[] prefer=new String[4];
+		prefer[0]=map.get("radio_theme").toString();
+		prefer[1]=map.get("radio_tour").toString();
+		prefer[2]=map.get("radio_Activity").toString();
+		prefer[3]=map.get("radio_distinct").toString();
+		map.put("id", session.getAttribute("id"));
+		while(count<4) {
+			map.put("cat2", prefer[count]);
+			int updateCount=service.updateProference(map);
+			count++;
+			if(updateCount==1)
+				index++;
+			
+		}
+		count=0;
+	
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/planit/member/idcheck.it", method = RequestMethod.POST)

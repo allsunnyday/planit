@@ -35,4 +35,13 @@ public interface MemberService {
 	
 	//[페이징용]
 	int getTotalCount(Map map);
+	
+	//[Liked Tour]
+	Map memberLikedTour(Map map);
+	
+	//[선호도 노출]
+	List<MemberDTO> memberPreferList(Map map);
+	
+	//[회원가입 후 선호도 업데이트]
+	int updateProference(Map map);
 }

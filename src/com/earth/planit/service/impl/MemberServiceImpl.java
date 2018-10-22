@@ -83,6 +83,24 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getTotalCount(map);
 	}
 
+	@Override
+	public Map memberLikedTour(Map map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MemberDTO> memberPreferList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberPreferList(map);
+	}
+
+	@Override
+	public int updateProference(Map map) {
+		// TODO Auto-generated method stub
+		return dao.updateProference(map);
+	}
+
 	
 
 }

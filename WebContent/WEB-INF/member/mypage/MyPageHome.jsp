@@ -170,6 +170,7 @@ display: inline-block;
           <li>${id }</li>
         </ul>
         <h2>MY Page Home</h2>
+        
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <!-- search -->
@@ -255,10 +256,15 @@ display: inline-block;
             <div id="MY-First-Preference" style="width:90%;" >
             	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
             		<tr>
-            			<td>1</td>
-            			<td>2</td>
-            			<td>3</td>
-            			<td>4</td>
+            		<c:if test="${empty memberPreferList }" var="result">
+            			<td>플래닛을 즐겨주세요</td>
+            		</c:if>	
+            		<c:if test="${not result }">
+            			<c:forEach var="list" items="${memberPreferList}" varStatus="loop">
+            				<td>${list.kor }</td><!-- 왜 안나오지 -->
+            			
+            			</c:forEach>
+            		</c:if>
             		</tr>
             	
             	</table>
@@ -292,7 +298,6 @@ display: inline-block;
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditProfile.it' />">프로필 수정</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditPassword.it' />">비밀번호 변경</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPagePassCheck.it' />">비밀번호 확인 페이지(임시)</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/Preference.it' />">선호도조사(임시)</a></li>
                 
               </ul>
               
@@ -443,7 +448,7 @@ display: inline-block;
                    <div class="recentitems portfolio">
          			<c:if test="${empty homeReviewList }">
          				<div>
-         					<h2>당신만의 멋진 리뷰를 작성해주세요</h2>
+         					<h4 style="text-align: center">당신만의 멋진 리뷰를 작성해주세요</h2>
          				</div>
          			</c:if>
          			<c:if test="${not empty homeReviewList }">
@@ -533,6 +538,7 @@ display: inline-block;
                         <td>2018.01.01</td>
 
                      </tr>
+                
                   </table>
                </div>
             </div>

@@ -76,6 +76,21 @@ public class MemberDAO implements MemberService {
 		// TODO Auto-generated method stub
 		return template.selectOne("getTotalCount2",map);
 	}
-	
+
+	@Override
+	public Map memberLikedTour(Map map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<MemberDTO> memberPreferList(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberPreferList",map);
+	}
+	@Override
+	public int updateProference(Map map) {
+		// TODO Auto-generated method stub
+		return template.update("MemberUpdatePrefer",map);
+	}
 
 }

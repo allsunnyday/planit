@@ -3,7 +3,7 @@ package com.earth.planit.service;
 import java.sql.Date;
 
 public class MemberDTO {
-	
+	//[기본정보]
 	private String id;
 	private String pwd;
 	private String email;
@@ -16,11 +16,19 @@ public class MemberDTO {
 	private String star;
 	private String name;
 	
-
+	//[선호도]
+	private String kor ;
 	
 	
 	
 	
+	
+	public String getKor() {
+		return kor;
+	}
+	public void setKor(String kor) {
+		this.kor = kor;
+	}
 	public String getName() {
 		return name;
 	}
