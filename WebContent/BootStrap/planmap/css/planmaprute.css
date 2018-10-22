@@ -90,7 +90,7 @@ html, body {width:100%; height:100%;margin:0;padding:0;}
 #category li .culture {background-position: -2px -34px;  }							/* background:url(https://image.flaticon.com/icons/svg/675/675235.svg) */
 #category li .lodge {background-position: -2px -66px; }							/*background:url(https://image.flaticon.com/icons/svg/262/262594.svg)*/
 #category li.on .category_bg {background-position-x:-37px;}
-.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
+.placeinfo_wrap {position:absolute;bottom:1px;left:-2px;width:300px;}
 .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
 .placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
 .placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:12px;background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
@@ -118,5 +118,6 @@ ul #peopletype{ list-style:none; margin:0; padding:0; }
 			 padding-top: 0px; overflow: auto; background: rgb(255, 255, 255); height: 100%;}
 /* ******************************************* 상세정보 추가 div  ******************************************** */
 
+.contentinfo { }
 
 /* *************************************** */

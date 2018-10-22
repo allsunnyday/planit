@@ -431,6 +431,7 @@
 		//displayPlaceInfo(""); //계획 일정 추가후 상세보기 닫기
 		currCategory = keyword; // 사용자가 선택한 지역유지를 위한 변수 설정
         //changeCategoryClass(); // on 상태인 카테고리 마크를 off 설정
+		infowindow.close(); //인포윈도우 닫기
 	}
 	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	
@@ -800,10 +801,15 @@
 	            marker.setMap(map);
 	           // console.log('index?'+index);
 	         	// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-	            var iwContent = '<div style="padding:5px;"><span id="titleforNewInfo_'+index+'" title="'+content['title']+'">'+content['title']
+	            var iwContent = '<div class="placeinfo_wrap placeinfo">'
+	            +'<div style="padding:5px;"><span id="titleforNewInfo_'+index+'" title="'+content['title']+'">'+content['title']
+	            +'<span title="' + content['addr1'] + '">' + content['addr1'] + '</span>'
+	            +'  <span class="jibun" title="' + content['zipcode'] + '">(지번 : ' + content['zipcode'] + ')</span>'
+	            if(content['tel'] != null){ +'<span class="tel">' + content['tel']+ '</span>'}
 	            +'</span><a href="javascript:planplusActionplus('+index+')" id="planplus"><img src="/Planit/images/plan/planplus.png" id="planrouteplusimg"></a>'
+	            +'</div>'
 	            +'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-	                iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+	            iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
 	            // 인포윈도우를 생성합니다
 	            var infowindow = new daum.maps.InfoWindow({
@@ -818,8 +824,7 @@
 	            	console.log('planposition: '+planposition);
 	            	// 마커 위에 인포윈도우를 표시합니다
 	                infowindow.open(map, marker);  
-	            });
-	            
+	            });	            
 	            /////////////////////////
     		});
     	};
@@ -831,6 +836,3 @@
 </script>
 <!-- ****************************************************루트 상세 정보 계획 자바 스크립트 종료************************************************************ -->
 
-<c:forEach var="planmapinfo" items="${planmapinfo}">
-	${planmapinfo.mapy } ${planmapinfo.mapx}	
-</c:forEach>
