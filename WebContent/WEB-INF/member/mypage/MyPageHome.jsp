@@ -450,11 +450,11 @@ display: inline-block;
          				<c:forEach var="list" items="${homeReviewList}" varStatus="loop">
 	                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
 	                       <div class="he-wrap tpl6 market-item">
-	                       <c:if test="${empty list.frirstimage }" var="result">
+	                       <c:if test="${empty list.firstimage }" var="result">
 	                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
 	                       </c:if>
 	                       <c:if test="${not result }">
-							<img src="<c:url value='/Upload/Review/${list.frirstimage}'/>" style="height:230px" alt="">
+							<img src="<c:url value='/Upload/Review/${list.firstimage}'/>" style="height:230px" alt="">
 	                       </c:if>
 	                         <div class="he-view">
 	                           <div class="bg a0" data-animate="fadeIn">

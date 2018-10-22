@@ -318,12 +318,12 @@ height: 100%;
 									
 								<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
 									<div class="he-wrap tpl6 market-item">
-										<c:if test="${empty list.frirstimage }" var="yesimg">
+										<c:if test="${empty list.firstimage }" var="yesimg">
 										<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
 										</c:if>
 										<c:if test="${yesimg}">
 										
-											<img src="<c:url value='/Upload/Review/${list.frirstimage}'/>" style="height:230px" alt="">
+											<img src="<c:url value='/Upload/Review/${list.firstimage}'/>" style="height:230px" alt="">
 										  </c:if>
 										<div class="he-view">
 											<div class="bg a0" data-animate="fadeIn">
