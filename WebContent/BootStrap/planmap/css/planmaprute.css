@@ -1,11 +1,11 @@
 /* ***********************footer 하단에 위치 시작 스타일************************ */
 /* 네비게이션 바가 2개가 삽입 되므로 "헤더-바디-푸터-헤더-바디-푸터" 순으로 적용되는것을 하단으로 강제 고정 */
-.footer {position:absolute; bottom:0; width:100%;}
+.footer {display:none; position:absolute; bottom:0; width:100%;}
 /* ***********************footer 하단에 위치 종료***************************** */
 
 /* 웹 페이지 배치 상, 하, 좌, 우 빈공 백 제거 시작*/	
-#leftrute{margin: 0;padding: 0; height: 85%}
-#rightrute{margin: 0; padding: 0; height: 85%;}
+#leftrute{margin: 0;padding: 0; height: 100%}
+#rightrute{margin: 0; padding: 0; height: 100%;}
 .container-fluid{margin: 0;padding: 0;}
 /* 웹 페이지 배치 상, 하, 좌, 우 빈공 백 제거 종료*/	
 
