@@ -1,7 +1,5 @@
 package com.earth.planit.web;
 
-import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,8 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -190,6 +186,106 @@ public class PartnerController_J {
 		return "/mypage/partner/Message";
 	}
 	
+//	이벤트 문의 요청리스트
+	@RequestMapping("/mypage/partner/RequestEvent_P.it")
+	public String gotoRequestEvent_P(@RequestParam Map map, Model model, HttpServletRequest req, 
+			HttpSession session, @RequestParam(required=false, defaultValue="1") int nowPage ) throws Exception{
+		System.out.println("p_id"+session.getAttribute("p_id"));
+		map.put("p_id", session.getAttribute("p_id"));
+		//전체 레코드수
+		int totalRecordCount = service.getTotalRecordforRequest(map);
+		//시작 및 끝 rownum 구하기
+		int start = (nowPage-1)*pageSize+1;
+		int end   = nowPage*pageSize;
+		map.put("start",start);
+		map.put("end",end);
+		
+		List<PartnerDTO> list = service.selectRequestEventList(map);
+		//페이징 문자열을 위한 로직 호출]
+		String pagingString=PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, 
+				nowPage,req.getContextPath()+ "/mypage/partner/RequestEvent_P.it?");
+		//데이타 저장]		
+		model.addAttribute("list", list);
+		model.addAttribute("pagingString", pagingString);
+		model.addAttribute("totalRecordCount", totalRecordCount);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("nowPage", nowPage);
+		
+		return "mypage/partner/RequestEvent_P.theme";
+	}
+	
+//	이벤트 요청 쓰기폼으로 이동
+	@RequestMapping(value="/mypage/partner/Write_RequestEvent.it",method=RequestMethod.GET)
+	public String gotoWriteRequestEvent() throws Exception{
+		System.out.println("gotoWriteRequestEvent()호출");                                                
+		return "mypage/partner/Write_RequestEvent.theme";
+	}
+	
+//	이벤트 요청 입력 처리
+	@RequestMapping(value="/mypage/partner/Write_RequestEvent.it", method=RequestMethod.POST)
+	public String writeRequestEvent(@RequestParam Map map, HttpSession session, PartnerDTO dto) throws Exception{
+		System.out.println("writeRequestEvent()호출");                                                
+		System.out.println("이벤트 쓰기 회사아이디:"+map.get("p_id"));
+		System.out.println("이벤트 쓰기 회사이름:"+map.get("p_name"));
+		System.out.println("getContent"+dto.getContent());
+		System.out.println("getTitle"+dto.getTitle());
+		
+		System.out.println(session.getAttribute("p_id"));
+		map.put("p_id",session.getAttribute("p_id"));
+		
+		service.requestEventWrite(map);
+		
+		//뷰정보 반환:입력된 내용 확인
+		return "forward:mypage/partner/ReqeustEvent_detail.theme";	
+	}///////////////////////////
+
+	//수정폼으로 이동 및 수정 처리]
+	@RequestMapping("/mypage/partner/Update_RequestEvent.it")
+	public String updateRequestEvent(Model model,@RequestParam Map map, HttpServletRequest req, PartnerDTO dto) throws Exception{
+		if(req.getMethod().equals("GET")) {
+			System.out.println("GET방식으로 온 메소드");
+			//서비스 호출]
+			PartnerDTO record= service.requestEventDetail(map);
+			//데이타 저장]
+			model.addAttribute("record", record);
+			//수정 폼으로 이동]			
+			return "mypage/partner/Update_RequestEvent.theme";		
+			
+		}
+		else {
+			System.out.println("post방식으로 온 메소드");
+			System.out.println("req_no"+map.get("req_no"));
+			//수정처리후 메시지 뿌려주는 페이지(Message.jsp)로 이동
+			int affected =service.requestEventupdate(map);
+			model.addAttribute("WHERE","EVEDT");
+			model.addAttribute("successFail", affected);
+			return "/mypage/partner/Message";
+		}
+	}//////////////////	
+	
+//	이벤트 요청 상세보기
+	@RequestMapping("/mypage/partner/ReqeustEvent_detail.it")
+	public String RequestEventDetail(@RequestParam Map map, Model model) throws Exception{
+		
+		System.out.println("req_no"+map.get("req_no"));
+		PartnerDTO record = service.requestEventDetail(map);
+		record.setContent(record.getContent().replace("\r\n", "</br>"));
+		
+		System.out.println(record.getContent());
+		model.addAttribute("record", record);
+		
+		return "mypage/partner/ReqeustEvent_detail.theme";
+	}
+//	이벤트 요청 삭제
+	@RequestMapping("/mypage/partner/ReqeustEvent_delete.it")
+	public String RequestEventDelete(@RequestParam Map map, Model model, PartnerDTO dto) throws Exception{
+		int affected = service.requestEventDelete(dto);
+		
+		model.addAttribute("WHERE", "EVDEL");
+		model.addAttribute("successFail", affected);
+		
+		return "/mypage/partner/Message"; //다시 목록으로 돌아가기
+	}
 	
 	
 	

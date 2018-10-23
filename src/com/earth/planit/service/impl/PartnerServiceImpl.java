@@ -74,9 +74,6 @@ public class PartnerServiceImpl implements PartnerService{
 	}
 
 	/* reply용 crud */
-	
-
-
 	@Override
 	public int update(Map map) {
 		return dao.update(map);
@@ -105,6 +102,32 @@ public class PartnerServiceImpl implements PartnerService{
 	@Override
 	public int reservationDelete(PartnerDTO dto) {
 		return dao.reservationDelete(dto);
+	}
+	
+	/*이벤트 문의 리스트*/
+	@Override
+	public List<PartnerDTO> selectRequestEventList(Map map) {
+		return dao.selectRequestEventList(map);
+	}
+	
+	@Override
+	public int requestEventDelete(PartnerDTO dto) {
+		return dao.requestEventDelete(dto);
+	}
+
+	@Override
+	public int requestEventupdate(Map map) {
+		return dao.requestEventupdate(map);
+	}
+
+	@Override
+	public int requestEventWrite(Map map) {
+		return dao.requestEventWrite(map);
+	}
+
+	@Override
+	public PartnerDTO requestEventDetail(Map map) {
+		return dao.requestEventDetail(map);
 	}
 
 }

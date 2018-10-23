@@ -41,7 +41,13 @@ public interface PartnerService {
 	int replyDelete(PartnerDTO dto);
 	int reservationDelete(PartnerDTO dto);
 	int update(Map map);
-	
+
+	List<PartnerDTO> selectRequestEventList(Map map);
+	PartnerDTO requestEventDetail(Map map);
+	int requestEventDelete(PartnerDTO dto);
+	int requestEventupdate(Map map);
+	int requestEventWrite(Map map);
+
 	
 }
 

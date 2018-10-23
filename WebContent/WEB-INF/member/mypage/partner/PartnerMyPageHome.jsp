@@ -451,7 +451,7 @@ height: 100%; */
 					<!--  내가 작성한 플래너 들어갈 div -->
 					<div id="Partner-Second-name">Partner Review</div>
 					<div class="Partner-More-Button">
-							<a href="<c:url value='#'/>"  class="btn btn-link"><span
+							<a href="<c:url value='/mypage/partner/RequestEvent_P.it'/>"  class="btn btn-link"><span
 								class="glyphicon glyphicon-plus">더보기 </span></a>
 					</div>
 					<div id="Third-line">
