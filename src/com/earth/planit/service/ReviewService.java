@@ -52,5 +52,5 @@ public interface ReviewService {
 	int alreadyLikeReview(Map map);
 	//review_좋아요를 insert
 	int insertLikedReview(Map map);
-	
+
 }

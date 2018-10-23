@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,17 +34,48 @@ public class ReviewController {
 	@Resource(name="reviewService")
 	private ReviewService reviewService;
 	
-	
+	@Value("${REVIEW_PAGE_SIZE}")
+	private int pageSize;
+	//블락페이지
+	@Value("${REVIEW_PAGE_SIZE}")
+	private int blockPage;
 	
 	
 	//리뷰 리스트로 이동
 	@RequestMapping("/planit/review/ReviewList.it")
-	public String reviewList(@RequestParam Map map, Model model)throws Exception{
+	public String reviewList(@RequestParam Map map, 
+								Model model,
+								HttpServletRequest req,
+								HttpServletResponse resp,
+								@RequestParam(required=false, defaultValue="1") int nowPage	)throws Exception{
+		
+		// 페이징 로직 시작
+		// 전체 리뷰수
+		int totalReviewCount = reviewService.getTotalReviewCount(map);
+		// 전체 페이지수 
+		int totalPage = (int)Math.ceil(((double)totalReviewCount/pageSize));
+		// 시작 끝 rownum 구하기
+		int start = (nowPage-1)*pageSize+1;
+		int end   = nowPage*pageSize;
+		map.put("start", start);
+		map.put("end", end);
+		
+		
+		
 		//리뷰 리스트를 가지고 온다. 
-		
 		List<Map> list = reviewService.selectReviewList(map);
-		System.out.println(list.size());
 		
+		//페이징 스트링
+		String pagingString 
+				= CommonUtil.pagingBootStrapStyle(totalReviewCount,
+													pageSize, 
+													blockPage, 
+													nowPage, 
+													req.getContextPath()+"/planit/review/ReviewList.it?");
+		
+		model.addAttribute("pagingString", pagingString);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("list", list);
 		return "tourinfo/reviewpick/ReviewList.theme";
 	}
@@ -335,7 +367,7 @@ public class ReviewController {
 	
 
 	@ResponseBody
-	@RequestMapping(value="/planit/review/LikedView.it",produces="text/plain; charset=UTF-8")
+	@RequestMapping(value="/planit/review/LikedreView.it",produces="text/plain; charset=UTF-8")
 	public String userLikedContent(@RequestParam Map map, HttpSession session) throws Exception{
 		
 		System.out.println(map.get("review_id")+" "+session.getAttribute("id"));

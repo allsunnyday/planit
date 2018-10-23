@@ -176,6 +176,8 @@ review :
 		
 	};
 	
+	
+	// 리뷰 좋아요 
 	var likedThisReview=function(){
 		//로그인한 유저인지 확인
 		if('${sessionScope.id}'==''){
@@ -186,7 +188,7 @@ review :
 		// 로그인한 유저인 경우에는 ajax를 이용해서 mypage로 이동하던가. 아니면 그냥 보기 
 		var review_id =${review.review_id};
 		$.ajax({
-			url:"<c:url value='/planit/review/LikedView.it'/> ",
+			url:"<c:url value='/planit/review/LikedreView.it'/> ",
 			data:{review_id:review_id},
 			type:'post',
 			dataType:'text',

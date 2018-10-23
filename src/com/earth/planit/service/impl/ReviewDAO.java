@@ -106,14 +106,12 @@ public class ReviewDAO implements ReviewService {
 
 	@Override
 	public int alreadyLikeReview(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return template.selectOne("reviewAlreadyLikedReview",map);
 	}
 
 	@Override
 	public int insertLikedReview(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return template.insert("reviewInsertLikedReview", map);
 	}
 
 }

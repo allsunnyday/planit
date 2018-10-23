@@ -108,7 +108,7 @@
 	          <header class="page-header blog-title">
 	            <div class="author-wrap">
 	              <span class="inside">
-					<a href="#"><img class="img-responsive" alt="" src="<c:url value='/main_theme/img/team_02.png'/> " ></a>
+					<a href="#"><img class="img-responsive" alt="" src="<c:url value='/Upload/Member/${review.PROFILE}'/> " ></a>
 				</span>
 	            </div>
 	            <h3 class="general-title">${review.TITLE} (${review.SERIES})</h3>
@@ -135,13 +135,14 @@
         <hr>
 
         <div class=" text-center">
-          <ul class="pagination">
+          <!-- <ul class="pagination">
             <li><a href="#">«</a></li>
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>
             <li><a href="#">3</a></li>
             <li><a href="#">»</a></li>
-          </ul>
+          </ul> -->
+          ${pagingString}
         </div>
       </div>
       <!-- end content -->

@@ -8,10 +8,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	mapper 파일의 완전한 경로 . xml은 생략
 	ibatis와는 다르게 id값에 '.'를 사용하지 못함
  -->
-<mapper namespace="config.Pember">
+<mapper namespace="config.Review">
 
 	<select id="reviewSelectList" parameterType="java.util.Map" resultType="java.util.Map">
-		select r.*, id from review r join planner p on r.planner_id=p.planner_id
+		select * from 
+		(select t.*, rownum r from 
+		(select r.*, m.id, m.PROFILE   
+		from review r, planner p,member m
+		where r.planner_id=p.planner_id and p.id=m.id order by r.postdate desc) t ) where r between #{start} and #{end}
 	</select>
 	
 	<select id="reviewSelectOne"  parameterType="java.util.Map" resultType="reviewDTO" >
@@ -29,7 +33,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="reviewGetTotal" parameterType="java.util.Map" resultType="int">
-		select count(*) from review where planner_id=#{planner_id}
+		select count(*) from review 
+		<if test="planner_id != null">
+		where planner_id=#{planner_id}
+		</if>
 	</select>
 	
 	<select id="reviewSelectReviewContent" parameterType="java.util.Map" resultType="java.util.Map">
@@ -83,5 +90,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="reviewGetPhotobookLayout" parameterType="java.util.Map" resultType="java.util.Map" >
 		select * from photobook where name=#{name} AND imagecount=#{imagecount}
 	</select>
+	
+	<select id="reviewAlreadyLikedReview"  parameterType="java.util.Map" resultType="int" >
+		select count(*) from liked_review where review_id=#{review_id} and id=#{id}
+	</select>
+	
+	<insert id="reviewInsertLikedReview" parameterType="java.util.Map" >
+		insert into liked_review(LIKED_R_NO, ID, REVIEW_ID)
+		values(SEQ_liked_review_liked_r_no.nextval, #{id}, #{review_id} )
+	</insert>
 	
 </mapper>
