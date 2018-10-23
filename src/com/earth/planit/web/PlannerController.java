@@ -1,5 +1,9 @@
 package com.earth.planit.web;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +13,7 @@ import javax.annotation.Resource;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,9 +59,9 @@ public class PlannerController {
 		
 		
 //		map 에 표시할 카테고리 정보들 얻어오기
-		List<PlannerDTO> planmapinfo = service.selectMapDataList(map);		
-		System.out.println("값 넘어오나요?: " + planmapinfo.size());
-		model.addAttribute("planmapinfo", planmapinfo);
+		//List<PlannerDTO> planmapinfo = service.selectMapDataList(map);		
+		//System.out.println("값 넘어오나요?: " + planmapinfo.size());
+		//model.addAttribute("planmapinfo", planmapinfo);
 		
 		return "planner/plan/route.theme";
 	}
@@ -65,28 +70,66 @@ public class PlannerController {
 	@RequestMapping(value="/planner/plan/routecategory.it", produces="text/plain; charset=UTF-8")
 	public String getcategorynum(@RequestParam Map map, Model model) throws Exception{
 		System.out.println("들어옴2: "+map.get("contenttype"));
-		Map mapcategory = new HashMap();		
-		mapcategory.put("contenttype", map.get("contenttype"));
-		List<PlannerDTO> planmapinfo1 = service.selectMapDataList(mapcategory);
-		List<Map> planmapdata = new Vector<Map>();
 		
-		for(PlannerDTO dto : planmapinfo1) {
-			Map record = new HashMap<>();
-			record.put("contentid", dto.getContentid());
-			record.put("contenttype", dto.getContenttype());
-			record.put("tel", dto.getTel());
-			record.put("title", dto.getTitle());
-			record.put("areacode", dto.getAreacode());
-			record.put("sigungucode", dto.getSigungucode());
-			record.put("addr1", dto.getAddr1());
-			record.put("addr2", dto.getAddr2());
-			record.put("zipcode", dto.getZipcode());
-			record.put("mapx", dto.getMapx());
-			record.put("mapy", dto.getMapy());
-			planmapdata.add(record);
+		String httpaddr = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?"
+						+"ServiceKey="+key
+						+"&contentTypeId="+map.get("contenttype")
+						+"&content="+"&tel="+"&title="+"&areacode="+"&sigungucode="+"&addr1="+"&addr2="
+						+"&zipcode="+"&mapx="+"&mapy="
+						+"&listYN=Y"   //목록 구분 (Y=목록, N=개수)
+						+"&MobileOS=ETC"  //IOS (아이폰), AND (안드로이드), WIN (윈도우폰), ETC
+						+"&MobileApp=TourAPI3.0_Guide" //서비스명=어플명
+						+"&_type=json"  //json타입으로 결과를 받음 
+						+"&arrange=A"  //정렬구분(A=제목순, B=조회순, C=수정일순, D=생성일순)
+						+"&numOfRows=9800"
+						;
+		
+		URL url = new URL(httpaddr);
+		InputStream in = url.openStream();
+		// 데이터 읽어 오기 
+		StringBuffer result=new StringBuffer();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"));
+		String data;
+		//결과값을 한줄씩 읽어옴
+		while((data=reader.readLine())!=null) {
+			result.append(data); 
+		}
+		reader.close();
+		in.close();
+		System.out.println(result.toString()); // 이상무
+		
+		// 결과값을 jsonparser를 이용하여
+		JSONParser jsonparser = new JSONParser();		
+		JSONObject jsonobject = (JSONObject) jsonparser.parse(result.toString());
+		JSONObject json = (JSONObject) jsonobject.get("response");
+		json = (JSONObject) json.get("body");
+		json = (JSONObject) json.get("items");
+		JSONArray list = (JSONArray) json.get("item");
+		
+		System.out.println(list.toString());
+		List<Map> collections = new Vector<Map>();
+		List<PlannerDTO> content = new Vector();
+		for(int i=0; i<list.size(); i++) {
+			JSONObject jsonobj = (JSONObject)list.get(i);
+			//System.out.println(jsonobj.get("contentid"));
+			Map record = new HashMap();
+			record.put("contentid", jsonobj.get("contentid"));
+			record.put("contenttype", map.get("contenttype"));
+			record.put("tel", jsonobj.get("tel"));
+			record.put("title", jsonobj.get("title"));
+			record.put("areacode", jsonobj.get("title"));			
+			record.put("sigunguCode", jsonobj.get("sigunguCode"));
+			record.put("addr1", jsonobj.get("addr1"));
+			record.put("addr2", jsonobj.get("addr2"));
+			record.put("zipcode", jsonobj.get("zipcode"));
+			record.put("mapx", jsonobj.get("mapx"));
+			record.put("mapy", jsonobj.get("mapy"));
+			
+			collections.add(record);
 		}
 		
-		return JSONArray.toJSONString(planmapdata);
+		System.out.println("collections크기:"+collections.size());
+		return JSONArray.toJSONString(collections);
 	}
 	
 	@RequestMapping("/planner/plan/schedule.it")

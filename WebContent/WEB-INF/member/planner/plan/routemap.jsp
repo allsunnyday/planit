@@ -760,6 +760,7 @@
     		console.log('들어옴1: '+$(this).val());    		
 	    	$.ajax({
 				url: "<c:url value='/planner/plan/routecategory.it'/>",
+				//url:"<c:url value='http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=NCPqTyv3znqjQjXg0mr6tqFnxmLBJcm10iYsAe66egVkZa%2F28tT1iJSvoKaq9Y8P92LAcQaoxcD5I5kTY%2Bn%2Buw%3D%3D&contentTypeId=&areaCode=&sigunguCode=&MobileOS=ETC&MobileApp=TEST&type=_json'/>",
 				dataType: 'json',
 				data:{contenttype:$(this).val()},
 				success: successPlanmapdata,
@@ -771,12 +772,11 @@
     	
     	var successPlanmapdata = function(data){
     		console.log(JSON.stringify(data));
-    		jsonforTourInfo = data;
-    		///
-    		$.each(data, function(index, content) {
-    			//console.log(content['mapx']+'//'+content['mapy']);
+    		//jsonforTourInfo = data;
+    		$.each(data, function(index, content) {    			
     			mapx.push(content['mapx']);
     			mapy.push(content['mapy']);
+    			//console.log('mapx.size: '+mapx.size+'//mapy.size: '+mapy.size);
     			//////////////////////////////////////////
     			var order = 1;
     			var marker = addMarker(new daum.maps.LatLng(content['mapy'], content['mapx']), order, null);
@@ -802,11 +802,11 @@
 	           // console.log('index?'+index);
 	         	// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
 	            var iwContent = '<div class="placeinfo_wrap placeinfo">'
-	            +'<div style="padding:5px;"><span id="titleforNewInfo_'+index+'" title="'+content['title']+'">'+content['title']
+	            +'<div style="padding:5px;"><span id="titleforNewInfo_'+index+'" title="'+content['title']+'">'+content['title'] +'</span>'
 	            +'<span title="' + content['addr1'] + '">' + content['addr1'] + '</span>'
-	            +'  <span class="jibun" title="' + content['zipcode'] + '">(지번 : ' + content['zipcode'] + ')</span>'
-	            if(content['tel'] != null){ +'<span class="tel">' + content['tel']+ '</span>'}
-	            +'</span><a href="javascript:planplusActionplus('+index+')" id="planplus"><img src="/Planit/images/plan/planplus.png" id="planrouteplusimg"></a>'
+	            +'  <span class="jibun" title="' + content['zipcode'] + '">(지번 : ' + content['zipcode'] + ')</span>';
+	            if(content['tel'] != null){ iwContent += '<span class="tel">' + content['tel']+ '</span>';}
+	            iwContent += '<a href="javascript:planplusActionplus('+index+')" id="planplus"><img src="/Planit/images/plan/planplus.png" id="planrouteplusimg"></a>'
 	            +'</div>'
 	            +'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 	            iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
@@ -816,7 +816,6 @@
 	                content : iwContent,
 	                removable : iwRemoveable
 	            });
-
 	            // 마커에 클릭이벤트를 등록합니다
 	            daum.maps.event.addListener(marker, 'click', function() {	            	
 	            
@@ -826,7 +825,7 @@
 	                infowindow.open(map, marker);  
 	            });	            
 	            /////////////////////////
-    		});
+    		});            
     	};
     	
     	
