@@ -69,7 +69,9 @@ public class PlannerController {
 	@ResponseBody
 	@RequestMapping(value="/planner/plan/routecategory.it", produces="text/plain; charset=UTF-8")
 	public String getcategorynum(@RequestParam Map map, Model model) throws Exception{
-		System.out.println("들어옴2: "+map.get("contenttype"));
+		System.out.println("contenttype controller: "+map.get("contenttype"));
+		System.out.println("areacode controller: "+map.get("areacode"));
+		System.out.println("sigungucode controller: "+map.get("areacodesub"));
 		
 		String httpaddr = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?"
 						+"ServiceKey="+key

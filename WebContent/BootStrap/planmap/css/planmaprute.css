@@ -4,8 +4,8 @@
 /* ***********************footer 하단에 위치 종료***************************** */
 
 /* 웹 페이지 배치 상, 하, 좌, 우 빈공 백 제거 시작*/	
-#leftrute{margin: 0;padding: 0; height: 100%}
-#rightrute{margin: 0; padding: 0; height: 100%;}
+#leftrute{margin: 0;padding: 0; height: 90%}
+#rightrute{margin: 0; padding: 0; height: 90%;}
 .container-fluid{margin: 0;padding: 0;}
 /* 웹 페이지 배치 상, 하, 좌, 우 빈공 백 제거 종료*/	
 
@@ -64,7 +64,21 @@ html, body {width:100%; height:100%;margin:0;padding:0;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 /* -----------------------------------------지도 검색 정보 출력 종료 --------------------------------------- */
-
+/* ****** 지역 선택 박스 추가 ****** */
+#areaSelectBoxmenu { position:absolute; top:12px; left:270px; bottom:0; width:160px; height:50px; z-index: 1;}
+select { -webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; outline: 0;
+	box-shadow: none; border: 0 !important; background: #4A5C78; background-image: none; }
+/* Custom Select */
+.select { position: relative; display: block; line-height: 2.5; background: #4A5C78; overflow: hidden; border-radius: .25em;}
+select { width: 100%; height: 100%; margin: 0; padding: 0 0 0 .5em; color: #fff; cursor: pointer; }
+select::-ms-expand {   display: none; }
+/* Arrow */
+.select::after { content: '\25bc'; position: absolute; color: white; top: 0; right: 0; bottom: 0; padding: 0 .3em; 
+	background: #4A5C78; pointer-events: none; }
+/* Transition */
+.select:hover::after { color: #f39c12; }
+.select::after { -webkit-transition: .25s all ease; -o-transition: .25s all ease; transition: .25s all ease; }
+/* ****** 지역 선택 박스 추가 ****** */
 /* -----------------------------------------지도 거리 계산 시작 ------------------------------------------ */
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
 .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
@@ -115,7 +129,7 @@ ul #peopletype{ list-style:none; margin:0; padding:0; }
 
 /* ******************************************* 상세정보 추가 div  ******************************************** */
 #cityroute{position: relative; text-align: center; width: 100%; margin-left: 0px; padding-left: 0px; 
-			 padding-top: 0px; overflow: auto; background: rgb(255, 255, 255); height: 100%;}
+			 padding-top: 0px; overflow: auto; background: rgb(255, 255, 255); height: 85%;}
 /* ******************************************* 상세정보 추가 div  ******************************************** */
 
 

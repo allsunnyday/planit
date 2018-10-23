@@ -7,10 +7,9 @@
 <script>
 /**************************/	
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션		
-			
-			center: new daum.maps.LatLng(37.47868488487008, 126.87946377805068), //지도의 중심좌표.
-			level: 3 //지도의 레벨(확대, 축소 정도)
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new daum.maps.LatLng(37.47868488487008, 126.87946377805068), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
 	};				
 	var map = new daum.maps.Map(container, options);//지도를 생성합니다
 	//container.style.height = '800px';/* map 의 레이아웃 설정 */
@@ -114,8 +113,7 @@
 	    }
 	}	 
 	
-	var planposition;	// 플랜 좌표를 담을 포지션 객체
-	
+	var planposition;	// 플랜 좌표를 담을 포지션 객체	
 	// 검색 결과 목록과 마커를 표출하는 함수입니다
 	function displayPlaces(places) {
 		/* **************** 검색 키워드 출력 *************** */
@@ -705,7 +703,7 @@
 		/********************  이미지 선택 박스 출력 시작 *******************/
 		
 	});
-
+	
 		
 
 	/* ************************************* 상세정보 입력 란의 오늘 일자 정보 출력 시작 ******************************************* */
@@ -779,6 +777,7 @@
     			//console.log('mapx.size: '+mapx.size+'//mapy.size: '+mapy.size);
     			//////////////////////////////////////////
     			var order = 1;
+    			console.log($('.routecategory').attr("data-order"));
     			var marker = addMarker(new daum.maps.LatLng(content['mapy'], content['mapx']), order, null);
 		    	//console.log('planmapinfo///'+mapy +'//'+mapx);
 	            // 마커와 검색결과 항목을 클릭 했을 때
@@ -826,11 +825,40 @@
 	            });	            
 	            /////////////////////////
     		});            
-    	};
+    	};    	
     	
     	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	$('#paldoNcity').change(function(){
+			$.ajax({
+				url:'<c:url value="/planner/ajax/location.it"/>',
+				type:'post',
+				data:{paldoNcity:$('#paldoNcity').val()},
+				dataType:'json',
+				success:function(data){
+					var optionString ="";
+					//{d01:'C#', d02:'ASP.NET',d03:'WPF4'}
+					$.each(data, function(key, value){						
+						optionString +="<option value='"+key+"'>"+value+"</option>";
+					});
+					$('#paldoNcityColumn').html(optionString);
+				},
+				error:function(request, error){
+					console.log('상태코드: ',request.status);
+					console.log('서버로 부터 받은 데이터: ',request.responseText);
+					console.log('에러: ',error);
+				}
+			});
+		});    	
 	});	
 
+	
 	
 </script>
 <!-- ****************************************************루트 상세 정보 계획 자바 스크립트 종료************************************************************ -->
