@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -51,12 +50,15 @@ public class ReviewController {
 
 	// 리뷰 리스트로 이동
 	@RequestMapping("/planit/review/ReviewList.it")
-	public String reviewList(@RequestParam Map map, Model model, HttpServletRequest req, HttpServletResponse resp,
-			@RequestParam(required = false, defaultValue = "1") int nowPage) throws Exception {
+	public String reviewList(@RequestParam Map map, 
+							Model model, 
+							HttpServletRequest req, // 물리적 경로를 얻기 위해서 
+							HttpServletResponse resp,
+							@RequestParam(required = false, defaultValue = "1") int nowPage) throws Exception {
 
 		// 페이징 로직 시작
 		// 전체 리뷰수
-		int totalReviewCount = reviewService.getTotalReviewCount(map);
+		int totalReviewCount = reviewService.getReviewListTotal(map);
 		// 전체 페이지수
 		int totalPage = (int) Math.ceil(((double) totalReviewCount / pageSize));
 		// 시작 끝 rownum 구하기
@@ -146,7 +148,9 @@ public class ReviewController {
 
 		// 하나의 리뷰를 화면에 보여준다.
 		ReviewDTO review = reviewService.selectReviewOne(map);
-
+		// 시리즈로 접근했을 시에 review_id가 없기 때문에 
+		map.put("review_id", review.getReview_id());
+		
 		// --- route 분석 로직 ----//
 		// 1:12:126508:경복궁:한복대여:한복대여2만원:0#1:12:126512:광화문:교보문고:책사기:0#1:32:2504463:L7명동:::1
 		String beforeParsing = review.getRoute();
@@ -198,6 +202,12 @@ public class ReviewController {
 		}
 
 		// 데이터 저장
+		// planner_id로 리뷰시리즈 개수를 가지고온다. 
+		map.put("planner_id", review.getPlanner_id());
+		int series = reviewService.getTotalReviewCount(map);
+		System.out.println("[ series 시리즈는 1부터 시작한다.]="+series);
+		model.addAttribute("series", series);
+		model.addAttribute("planner_id", map.get("planner_id"));
 		model.addAttribute("day", schedule[0]);
 		model.addAttribute("review", review);// review는 전체적인 내용이 담겨있음
 		model.addAttribute("oneRoute", oneRoute);
@@ -376,6 +386,8 @@ public class ReviewController {
 				System.out.println("해당 일정에는 이미지가 없습니다.");
 			}
 		}
+		
+		
 		model.addAttribute("listSize", reviewList.size());
 		model.addAttribute("listMap", reviewList);
 		return "review/photobook/PreviewBook.theme";

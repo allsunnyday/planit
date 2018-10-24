@@ -1,9 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<style>
+	
+	
+
+</style>
+
+
 <script type="text/javascript">
 	console.log('${list}');
+	$(function(){
+		$('.list-order').click(function(){
+			console.log('here!!'+$(this).html());
+			
+		});
+	});
 </script>
+
+
+
 <div style="padding-top: 70px"></div>
  <section class="post-wrapper-top">
     <div class="container">
@@ -44,10 +61,8 @@
           </h4>
            <div class="text-center">
           <form id="subscribe" class="form-inline">
-            <input type="text" class="form-control" placeholder="Search on support forums">
-            <div class="">
-              <input type="submit" value="찾기" id="submit" class="button">
-            </div>
+            <input type="text" class="form-control" placeholder="키워드를 입력하세요">
+            <input type="submit" value="찾기" id="submit" class="button">
           </form>
         </div>
           
@@ -58,15 +73,15 @@
                         <span>카테고리</span>
                     </h4>
           <ul class="categories">
-            <li><a href="#">베스트 리뷰</a></li>
-            <li><a href="#">최신 리뷰</a></li>
+            <li><a href="<c:url value='/planit/review/ReviewList.it'/>" class="list-order">최신 리뷰</a></li>
+            <li><a href="<c:url value='/planit/review/ReviewList.it?order=liked'/>" class="list-order"> 베스트 리뷰</a></li>
           </ul>
         </div>
 
         <div class="widget">
           <h4 class="title">
-                        <span>인기 Tags</span>
-                    </h4>
+               <span>인기 Tags</span>
+          </h4>
 
           <div class="tagcloud">
             <a href="#" class="" title="12 topics">advice</a>
@@ -116,7 +131,7 @@
 	              <p>
 	             	   여행일자: <span class="publish-on">${review.POSTDATE}</span>
 	                <span class="sep">/</span> rating: <a href="#">${review.RATING}</a>
-	                <span class="sep">/</span> Comments: <a href="#"> 4 Comments</a>
+	                <span class="sep">/</span> 좋아요♥: <a href="#"> ${review.LIKED}</a>
 	              </p>
 	            </div>
 	          </header>

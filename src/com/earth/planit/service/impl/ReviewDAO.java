@@ -111,7 +111,15 @@ public class ReviewDAO implements ReviewService {
 
 	@Override
 	public int insertLikedReview(Map map) {
+		// insert liked_review 
+		
+		// update review -> rating 
 		return template.insert("reviewInsertLikedReview", map);
+	}
+
+	@Override
+	public int getReviewListTotal(Map map) {
+		return template.selectOne("reviewGetReviewlistTotal", map);
 	}
 
 }
