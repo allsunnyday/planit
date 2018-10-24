@@ -56,7 +56,7 @@
 							<!-- *************  루트 시작 일자 선택 시작  ************ -->							
 						</div>
 						<!-- **********************  여행 타입 선택 이미지 박스 시작  ********************* -->
-						<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="width: 120px; height: 80px;">
+						<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="width: auto; height: 80px; float: right;">
 							<div class="btn-group" style="margin-top: 8px;">
 								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" id="tourtype">
 									<img id="tourtypeimage" alt="타입" src="" style=""><span id="caret" class="caret"></span></a>
@@ -70,8 +70,7 @@
 							</div>												
 						</div>
 						<!-- **********************  여행 타입 선택 이미지 박스 종료  ********************* -->
-					</div>	
-					
+					</div>
 					<div style="clear: both"></div>
 				</div>	
 				<div id="cityroute">
@@ -105,7 +104,6 @@
 				        <div class="option">
 				        	<div>
 				                <form onsubmit="searchPlaces(); return false;" style="display: inline-flex;">
-				                	<%-- <input type="hidden" value="${areacodename } ${areacodesubname}" id="localkeyword"> --%>
 									<input type="text" class="form-control" placeholder="장소 검색" id="keyword" style="width: 60%;"
 									value='${areacodename} ${areacodesubname}'> 
 									<input type="hidden" value="${days }" id="days">        	
@@ -115,14 +113,74 @@
 				        </div>
 				    </div>
 				    <!-- *********************************지도 검색창 출력 및 검색정보 출력 시작 **************************************-->
+				    <!-- ************** 지역 선택박스 추가 ************** -->
+				    <div id="areaSelectBoxmenu">
+					    <div class="select">
+							<select name="paldoNcity" id="paldoNcity" style="width: 100%">
+								<option value="${areacode}"selected>${areacodename} </option>								
+						    	<option value="1">서울 특별시</option>
+						    	<option value="2">인천 광역시</option>
+						    	<option value="3">대전 광역시</option>
+						    	<option value="4">대구 광역시</option>
+						    	<option value="5">광주 광역시</option>
+						    	<option value="6">부산 광역시</option>
+						    	<option value="7">울산 광역시</option>
+						    	<option value="8">세종 특별 자치시</option>
+						    	<option value="31">경기도</option>
+						    	<option value="32">강원도</option>
+						    	<option value="33">충청북도</option>
+						    	<option value="34">충청남도</option>
+						    	<option value="35">경상북도</option>
+						    	<option value="36">경상남도</option>
+						    	<option value="37">전라북도</option>
+						    	<option value="38">전라남도</option>
+						    	<option value="39">제주도</option>
+						    </select>
+					    </div>
+					    <div style="margin-top: 8px;"></div>
+					    <div class="select">						
+							<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%" >
+						    	<option value="${areacodesub }" selected>${areacodesubname } </option>
+						    	<option value="1">강남구</option>
+						    	<option value="2">강동구</option>
+						    	<option value="3">강북구</option>
+						    	<option value="4">강서구</option>
+						    	<option value="5">관악구</option>
+						    	<option value="6">광진구</option>
+						    	<option value="7">구로구</option>
+						    	<option value="8">금천구</option>
+						    	<option value="9">노원구</option>
+						    	<option value="10">도봉구</option>
+						    	<option value="11">동대문구</option>
+						    	<option value="12">동작구</option>
+						    	<option value="13">마포구</option>
+						    	<option value="14">서대문구</option>
+						    	<option value="15">서초구</option>
+						    	<option value="16">성동구</option>
+						    	<option value="17">성북구</option>
+						    	<option value="18">송파구</option>
+						    	<option value="19">양천구</option>
+						    	<option value="20">영등포구</option>
+						    	<option value="21">용산구</option>
+						    	<option value="22">은평구</option>
+						    	<option value="23">종로구</option>
+						    	<option value="24">중구</option>
+						    	<option value="25">중랑구</option>
+						    </select>
+					    </div>
+				    </div>
+				    <!-- ************** 지역 선택박스 추가 ************** -->
 				    <!-- ********************************** 카테고리 버튼  시작 ****************************************** --> 
 				    <!-- 여기 투어 api 정보가 버튼이랑 연결되어야 하는 부분 -->	    
 				    <ul id="category">				    	
-				        <li id="FD6" data-order="0" ><span class="category_bg eatery routecategory"></span>음식점</li>
+				        <!-- <li id="FD6" data-order="0" ><span class="category_bg eatery routecategory"></span>음식점</li>
+				        <li id="CT1" data-order="1"><span class="category_bg culture"></span>문화 </li>
+				        <li id="AD5" data-order="2"><span class="category_bg lodge"></span>숙박</li>		
+				        <li id="AT4" data-order="3"><span class="category_bg tourist"></span>관광</li> -->
+				        <li id="39" data-order="0" class="routecategory" value="39"><span class="category_bg eatery"></span>음식점</li>		        
 				        <li id="14" data-order="1" class="routecategory" value="14"><span class="category_bg culture"></span>문화 </li>
-				        <!-- <li id="CT1" data-order="1"><span class="category_bg culture"></span>문화 </li> -->				        
-				        <li id="AD5" data-order="2"><span class="category_bg lodge"></span>숙박</li>  
-				        <li id="AT4" data-order="3"><span class="category_bg tourist"></span>관광</li>
+				        <li id="32" data-order="2" class="routecategory" value="32"><span class="category_bg lodge"></span>숙박</li>  
+				        <li id="12" data-order="3" class="routecategory" value="12"><span class="category_bg tourist"></span>관광</li>				        
 				    </ul>				    
 				    <!-- ********************************** 카테고리 버튼  시작 ****************************************** -->
 				</div>
