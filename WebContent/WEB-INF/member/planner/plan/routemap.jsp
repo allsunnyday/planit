@@ -402,10 +402,10 @@
 		routeInfoPlusAction( index, diveplus); // 버튼 클릭시 상세 여행정보에 추가 되는 함수
 		polyline.setMap(map);  
 		//infowindow.close(); //인포윈도우 닫기 --> 함수로 만들지 않으면 안먹는듯 함. 시간적 여유가 될때 함수로 만들어서 자동적으로 닫히게 구현해야 할듯 아니면 현재 시스템도 괜찬은듯 함
-		removeMarker(); // 계획 일정 추가시 지도에 표시된 카테고리 마커 삭제
+		//removeMarker(); // 계획 일정 추가시 지도에 표시된 카테고리 마커 삭제
 		//displayPlaceInfo(""); //계획 일정 추가후 상세보기 닫기
 		currCategory = keyword; // 사용자가 선택한 지역유지를 위한 변수 설정
-        changeCategoryClass(); // on 상태인 카테고리 마크를 off 설정
+        //changeCategoryClass(); // on 상태인 카테고리 마크를 off 설정
 	}
 	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	
@@ -495,13 +495,13 @@
 	
 	/* **************** plan route div 삭제 함수 시작 ***************** */
 	function deletePlanRoute(diveplus){	
-		
+		console.log('diveplus(2전) '+ diveplus + '//plancase(2전) '+ plancase);
 		if(diveplus == plancase){ diveplus = plancase-1; }		
-		var diveplusFortitle = $('.deletePlanRoute_'+diveplus).attr('title');  // 
+		var diveplusFortitle = $('.deletePlanRoute_'+diveplus).attr('title');  //
 		
 		if(diveplus > plancase) { diveplusFortitle = plancase-1; diveplus = diveplusFortitle;}
 		
-		console.log('diveplus(2) '+ diveplus + '//plancase(2) '+ plancase+"//diveplusFortitle※: "+ diveplusFortitle);				
+		console.log('diveplus(2후) '+ diveplus + '//plancase(2후) '+ plancase+"//diveplusFortitle※: "+ diveplusFortitle);				
 		
 		for(var i=0; i<planmarking.length; i++){
 			planmarking[i].setMap(null);			
@@ -523,7 +523,7 @@
 		});
 		planmarkingsave();//기존 마커 재등록
 		polyline.setMap(map);// 라인 재생성
-		
+		//var delnumber = diveplus;
 		
 		$('.planroute_'+diveplusFortitle).remove(); // 해당---------------- 다이브 삭제
 		plandivCountdown(diveplus, diveplusFortitle) // 다이브에 부여 한 넘버를 가져감.
@@ -596,17 +596,31 @@
 		console.log('//plancase(3)== '+ plancase +'//title!! '+diveplusFortitle);
 		/**************사용자가 추가한 여행일적 계획 삭제시 남아있는 div 의 번호 재정렬 ************  */
 		
-		for(var i=diveplusFortitle; i<plancase; i++){									
+		for(var i=0; i<plancase; i++){									
 			var redivcount= $('.planroute_'+(i+1));
-			var recount = $('.deletePlanRoute_'+(i+1));
-			if(redivcount != null){
-				if(i >= 0){
+			var recount = $('.deletePlanRoute_'+(i+1));			
+			console.log('recount: 변경전?'+$('.planroute_'+(i))+'///'+$('.planroute_'+(i)).attr('class')+'///'+$('.planroute_'+(i)).prop('class'));			
+			//var redivcountnext= $('.planroute_'+(i+1));
+			//var recountnext = $('.deletePlanRoute_'+(i+1));
+			if(typeof $('.planroute_'+(i)).attr('class') == "undefined" || $('.planroute_'+(i)).attr('class')==null || $('.planroute_'+(i)).attr('class')==undefined || typeof $('.planroute_'+(i)).attr('class') === "undefined" || $('.planroute_'+(i)).attr('class')===undefined){
+				console.log('undefined 인식함?');
+				$('.planroute_'+(i+1)).attr('class','planroute_'+i);
+				$('.deletePlanRoute_'+(i+1)).attr('title',i);
+				$('.deletePlanRoute_'+(i+1)).attr('class', 'btnDel deletePlanRoute_'+i);
+			}
+			else {
+				continue;
+			}			
+			/* if(redivcount != null){
+				if(i = 0){
+					continue;
+				}
+				else if(i>0){
 					redivcount.attr('class','planroute_'+i);//id 재부여
 					recount.attr('title',i); // title 재부여
-					recount.attr('class', 'btnDel deletePlanRoute_'+i);
+					recount.attr('class', 'btnDel deletePlanRoute_'+i);					
 				}
-			}
-			else {continue;}
+			} */
 		}// 여행일정 div number 재정비
 		/**************사용자가 추가한 여행일정 계획 삭제시 남아있는 div 의 번호 재정렬 ************  */		
 		
