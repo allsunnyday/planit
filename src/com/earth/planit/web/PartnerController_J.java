@@ -1,21 +1,30 @@
 package com.earth.planit.web;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.earth.planit.service.PartnerDTO;
 import com.earth.planit.service.PartnerService;
+import com.earth.planit.service.impl.FileUtils;
 import com.earth.planit.service.impl.PagingUtil;
 
 @Controller
@@ -193,7 +202,7 @@ public class PartnerController_J {
 		System.out.println("p_id"+session.getAttribute("p_id"));
 		map.put("p_id", session.getAttribute("p_id"));
 		//전체 레코드수
-		int totalRecordCount = service.getTotalRecordforRequest(map);
+		int totalRecordCount = service.getTotalRecordforRequestEventList(map);
 		//시작 및 끝 rownum 구하기
 		int start = (nowPage-1)*pageSize+1;
 		int end   = nowPage*pageSize;
@@ -217,7 +226,8 @@ public class PartnerController_J {
 //	이벤트 요청 쓰기폼으로 이동
 	@RequestMapping(value="/mypage/partner/Write_RequestEvent.it",method=RequestMethod.GET)
 	public String gotoWriteRequestEvent() throws Exception{
-		System.out.println("gotoWriteRequestEvent()호출");                                                
+		System.out.println("gotoWriteRequestEvent()호출");  
+		
 		return "mypage/partner/Write_RequestEvent.theme";
 	}
 	
@@ -225,10 +235,6 @@ public class PartnerController_J {
 	@RequestMapping(value="/mypage/partner/Write_RequestEvent.it", method=RequestMethod.POST)
 	public String writeRequestEvent(@RequestParam Map map, HttpSession session, PartnerDTO dto) throws Exception{
 		System.out.println("writeRequestEvent()호출");                                                
-		System.out.println("이벤트 쓰기 회사아이디:"+map.get("p_id"));
-		System.out.println("이벤트 쓰기 회사이름:"+map.get("p_name"));
-		System.out.println("getContent"+dto.getContent());
-		System.out.println("getTitle"+dto.getTitle());
 		
 		System.out.println(session.getAttribute("p_id"));
 		map.put("p_id",session.getAttribute("p_id"));
@@ -236,7 +242,7 @@ public class PartnerController_J {
 		service.requestEventWrite(map);
 		
 		//뷰정보 반환:입력된 내용 확인
-		return "forward:mypage/partner/ReqeustEvent_detail.theme";	
+		return "forward:/mypage/partner/RequestEvent_P.it";	
 	}///////////////////////////
 
 	//수정폼으로 이동 및 수정 처리]
@@ -288,5 +294,24 @@ public class PartnerController_J {
 	}
 	
 	
-	
+	@ResponseBody
+	@RequestMapping(value="/planit/summernote/UploadImage.it", method=RequestMethod.POST ,produces = "text/plain; charset=UTF-8")
+	public String profileUpload(MultipartHttpServletRequest mhsr) throws Exception {
+		// 1]서버의 물리적 경로 얻기
+		String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Partner");
+		// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
+		// MultipartFile객체 얻기
+		MultipartFile profile = mhsr.getFile("file");
+		// 2]File객체 생성
+		// 2-1] 파일 중복시 이름 변경
+		String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
+
+		File file = new File(phicalPath + File.separator + newFilename);
+		// 3]업로드 처리
+		profile.transferTo(file);
+		System.out.println("name============"+newFilename);
+		JSONObject json = new JSONObject();
+		json.put("filename", newFilename);
+		return json.toJSONString();
+	}
 }

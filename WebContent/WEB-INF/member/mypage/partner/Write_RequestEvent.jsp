@@ -230,11 +230,44 @@ table.table .avatar {
 	  $('#summernote').summernote({
 		  lang: 'ko-KR',
 		  height: 100,
-		  placeholder: "얼마나 멋진 이벤트인지 설명해주세요! SummerNote의 멋진 기능을 사용하면 더 멋지겠죠 ^_^"
-		  
-		  });
+		  placeholder: "얼마나 멋진 이벤트인지 설명해주세요! SummerNote의 멋진 기능을 사용하면 더 멋지겠죠 ^_^",
+		  focus: true,
+	        callbacks: {
+	          onImageUpload: function(files, editor, welEditable) {
+	            for (var i = files.length - 1; i >= 0; i--) {
+	              sendFile(files[i], this);
+	            }
+	          }
+	        }
+		});
 	});
-    
+	
+	function sendFile(file, el) {
+	      var form_data = new FormData();
+	      form_data.append('file', file);
+	      $.ajax({
+	        data: form_data,
+	        type: "POST",
+	        url: '<c:url value="/planit/summernote/UploadImage.it"/> ',
+	        cache: false,
+	        contentType: false,
+	        enctype: 'multipart/form-data',
+	        processData: false,
+	        dataType:'text',
+	        success: function(data) {
+	        	var json = JSON.parse(data);
+	        	console.log(json.filename);
+	          $(el).summernote('editor.insertImage', "/Planit/Upload/Partner/"+json.filename);
+	        },
+	        error:function(request, status, error){
+	        	console.log(request, status, error);
+	        }
+	      });
+	    }
+
+	
+	
+	
 	$.ajax({
 		  url: 'https://api.github.com/emojis',
 		  async: false 
@@ -268,6 +301,16 @@ table.table .avatar {
 		  }
 		});
 		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* 실시간 띄워주기용 */
     $(function() {    	
         setInterval(function() {
@@ -372,25 +415,24 @@ table.table .avatar {
 		<!-- table-->
 
 		<form action="<c:url value='/mypage/partner/Write_RequestEvent.it'/>" id="frm" method="post">
-			<input type="hidden" name="p_id" value="${record.p_id}"/>
 			<table class="table table-striped table-hover table-bordered">
-						<tr>
-							<th>Title</th>
-							<td><input type="text" class="form-control" id="title" name="title" placeholder="열고싶은 이벤트 제목을 입력하세요"></td>
-						</tr>
-						<tr>
-							<th>Content</th>
-							<td><textarea class="form-control" name="content" id="summernote" placeholder="얼마나 멋진 이벤트인지 설명해주세요! SummerNote의 멋진 기능을 사용하면 더 멋지겠죠 ^_^" style="width: 900px"></textarea>
-							</td>
-						</tr>
-						<tr>
-							<th>Period</th>
-							<td><input type="text" class="form-control" id="title" name="title" placeholder="원하는 이벤트기간을 적어주세요"></td>
-						</tr>
-						<tr>
-							<th>ReqDate</th>
-							<td id="systime"></td>
-						</tr>
+				<tr>
+					<th>Title</th>
+					<td><input type="text" class="form-control" id="title" name="title" placeholder="열고싶은 이벤트 제목을 입력하세요"></td>
+				</tr>
+				<tr>
+					<th>Content</th>
+					<td><textarea class="form-control" name="content" id="summernote" placeholder="얼마나 멋진 이벤트인지 설명해주세요! SummerNote의 멋진 기능을 사용하면 더 멋지겠죠 ^_^" style="width: 900px"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>Period</th>
+					<td><input type="text" class="form-control" id="period" name="period" placeholder="원하는 이벤트기간을 적어주세요"></td>
+				</tr>
+				<tr>
+					<th>ReqDate</th>
+					<td id="systime"></td>
+				</tr>
 			</table>
 		</form>
 				

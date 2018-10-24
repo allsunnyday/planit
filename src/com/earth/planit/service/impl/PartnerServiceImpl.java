@@ -130,4 +130,9 @@ public class PartnerServiceImpl implements PartnerService{
 		return dao.requestEventDetail(map);
 	}
 
+	@Override
+	public int getTotalRecordforRequestEventList(Map map) {
+		return dao.getTotalRecordforRequestEventList(map);
+	}
+
 }

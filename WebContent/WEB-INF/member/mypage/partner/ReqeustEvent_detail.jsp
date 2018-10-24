@@ -333,10 +333,7 @@ table.table .avatar {
 						<th>내용</th>
 						<td>${record.content}</td>
 					</tr>
-					<tr>
-						<th>첨부된 이미지</th>
-						<td>${record.sampleimage}</td>
-					</tr>
+					
 					<tr>
 						<th>status</th>
 						<td><span class="status text-success">&bull;</span>${record.status}</td>
@@ -353,8 +350,17 @@ table.table .avatar {
 						<td colspan="2" align="center"><a class="btn btn-primary"
 							href="<c:url value='/mypage/partner/RequestEvent_P.it'/>">목록</a></td>
 					</tr>
-				</table>
 
+				</table>
+<!--  이미지 업로드 확인을 위한 --> -->
+					<div id="imageBoard">
+						<ul>
+							<c:forEach items="${files}" var="file">
+								<li><img src="/images/${file}" width="480" height="auto" /></li>
+							</c:forEach>
+						</ul>
+					</div>
+				
 
 				<!--
 ***************************************************************************************

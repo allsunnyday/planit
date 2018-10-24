@@ -48,6 +48,8 @@ public interface PartnerService {
 	int requestEventupdate(Map map);
 	int requestEventWrite(Map map);
 
+	int getTotalRecordforRequestEventList(Map map);
+
 	
 }
 

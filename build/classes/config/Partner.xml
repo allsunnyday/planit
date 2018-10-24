@@ -287,11 +287,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </delete>
    
    <insert id="requestEventWrite" parameterType="java.util.Map">
-		INSERT INTO event_request VALUES(SEQ_event_request_req_no.nextval, #{p_id},#{title},#{content},#{sampleimage},'waited',#{period}, SYSDATE)
+		INSERT INTO event_request VALUES(SEQ_event_request_req_no.nextval, #{p_id},#{title},#{content},'waited',#{period}, SYSDATE)
    </insert>
 	
 	<update id="requestEventUpdate" parameterType="java.util.Map">
 		 UPDATE event_request SET title=#{title}, content=#{content}, status='waited', reqdate=SYSDATE  WHERE req_no=#{req_no}
 	</update>
+	
+	<select id="getTotalRecordforRequestEventList" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM event_request WHERE p_id = #{p_id}
+	</select>
+	
 	
 </mapper>

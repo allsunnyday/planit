@@ -229,10 +229,44 @@ table.table .avatar {
 	  $('#summernote').summernote({
 		  lang: 'ko-KR',
 		  height: 100,
-		  placeholder: "얼마나 멋진 이벤트인지 설명해주세요! SummerNote의 멋진 기능을 사용하면 더 멋지겠죠 ^_^"
-	  });
+		  placeholder: "얼마나 멋진 이벤트인지 설명해주세요! SummerNote의 멋진 기능을 사용하면 더 멋지겠죠 ^_^",
+		  focus: true,
+	        callbacks: {
+	          onImageUpload: function(files, editor, welEditable) {
+	            for (var i = files.length - 1; i >= 0; i--) {
+	              sendFile(files[i], this);
+	            }
+	          }
+	        }
+		});
 	});
-    
+	
+	function sendFile(file, el) {
+	      var form_data = new FormData();
+	      form_data.append('file', file);
+	      $.ajax({
+	        data: form_data,
+	        type: "POST",
+	        url: '<c:url value="/planit/summernote/UploadImage.it"/> ',
+	        cache: false,
+	        contentType: false,
+	        enctype: 'multipart/form-data',
+	        processData: false,
+	        dataType:'text',
+	        success: function(data) {
+	        	var json = JSON.parse(data);
+	        	console.log(json.filename);
+	          $(el).summernote('editor.insertImage', "/Planit/Upload/Partner/"+json.filename);
+	        },
+	        error:function(request, status, error){
+	        	console.log(request, status, error);
+	        }
+	      });
+	    }
+
+	
+	
+	
 	$.ajax({
 		  url: 'https://api.github.com/emojis',
 		  async: false 
@@ -384,7 +418,7 @@ table.table .avatar {
 						</tr>
 						<tr>
 							<th>Period</th>
-							<td><input type="text" class="form-control" id="title" name="title" placeholder="원하는 이벤트기간을 적어주세요" value="${record.period}"></td>
+							<td><input type="text" class="form-control" id="period" name="period" placeholder="원하는 이벤트기간을 적어주세요" value="${record.period}"></td>
 						</tr>
 						<tr>
 							<th>ReqDate</th>
