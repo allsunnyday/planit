@@ -32,7 +32,7 @@
 		</header><!-- end header -->						
 		<%-- <jsp:include page="plantop.jsp"></jsp:include> --%>
 	<!--**************************** 오른쪽 맵과 상단 네비 게이션 바 구성 종료*********************************-->
-		<div class="container-fluid" style="height: 100%; overflow: scroll;"> 
+		<div class="container-fluid" style="height: 100%;"> 
 			<!--********************************왼쪽 여행 상세정보 출력 정보 시작**********************************-->
 			 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" id="leftrute" >
 				<div id="planroutetop" style="background: #1abc9c; text-align: center; height: auto" >
@@ -115,13 +115,15 @@
 				        </div>
 				    </div>
 				    <!-- *********************************지도 검색창 출력 및 검색정보 출력 시작 **************************************-->
-				    <!-- ********************************** 카테고리 버튼  시작 ****************************************** -->	    
-				    <ul id="category">
-				        <li id="CT1" data-order="1"><span class="category_bg culture"></span>문화 </li>       
-				        <li id="AT4" data-order="3"><span class="category_bg tourist"></span>관광</li>  
+				    <!-- ********************************** 카테고리 버튼  시작 ****************************************** --> 
+				    <!-- 여기 투어 api 정보가 버튼이랑 연결되어야 하는 부분 -->	    
+				    <ul id="category">				    	
+				        <li id="FD6" data-order="0" ><span class="category_bg eatery routecategory"></span>음식점</li>
+				        <li id="14" data-order="1" class="routecategory" value="14"><span class="category_bg culture"></span>문화 </li>
+				        <!-- <li id="CT1" data-order="1"><span class="category_bg culture"></span>문화 </li> -->				        
 				        <li id="AD5" data-order="2"><span class="category_bg lodge"></span>숙박</li>  
-				        <li id="FD6" data-order="0"><span class="category_bg eatery"></span>음식점</li>			    
-				    </ul>	
+				        <li id="AT4" data-order="3"><span class="category_bg tourist"></span>관광</li>
+				    </ul>				    
 				    <!-- ********************************** 카테고리 버튼  시작 ****************************************** -->
 				</div>
 			</div>	

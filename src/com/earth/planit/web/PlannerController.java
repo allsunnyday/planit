@@ -1,7 +1,13 @@
 package com.earth.planit.web;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
+import javax.annotation.Resource;
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,23 +15,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.earth.planit.service.PlannerDTO;
+import com.earth.planit.service.PlannerService;
+
 @Controller
 public class PlannerController {
 	
 //	투어 api 키값
 	private String key ="NCPqTyv3znqjQjXg0mr6tqFnxmLBJcm10iYsAe66egVkZa%2F28tT1iJSvoKaq9Y8P92LAcQaoxcD5I5kTY%2Bn%2Buw%3D%3D";
 	
+	@Resource(name="plannerService")
+	private PlannerService service;
 	
 	@RequestMapping("/Planit/Before/LocationMain.it")
-	public String gotoLocationMain() throws Exception{
-		
+	public String gotoLocationMain() throws Exception{		
 		return "planner/before/LocationMain.theme";
 	}
 	
 	@RequestMapping("/Planit/Before/Location.it")
-	public String gotoLocation() throws Exception{
-
-		
+	public String gotoLocation() throws Exception{		
 		return "planner/before/Location.theme";
 	}
 	
@@ -40,11 +48,44 @@ public class PlannerController {
 		model.addAttribute("areacode", map.get("areacode")); // 사용자가 선택한 여행 지역 얻어오기
 		model.addAttribute("areacodename", map.get("areacodename"));
 		model.addAttribute("areacodesub", map.get("areacodesub")); // 사용자가 선택한 여행 지역 얻어오기2
-		model.addAttribute("areacodesubname", map.get("areacodesubname"));
+		model.addAttribute("areacodesubname", map.get("areacodesubname"));		
 		
-		model.addAttribute("days", map.get("days")); // 사용자가 선택한 여행일수 넘기기	
+		model.addAttribute("days", map.get("days")); // 사용자가 선택한 여행일수 넘기기
+		
+		
+//		map 에 표시할 카테고리 정보들 얻어오기
+		List<PlannerDTO> planmapinfo = service.selectMapDataList(map);		
+		System.out.println("값 넘어오나요?: " + planmapinfo.size());
+		model.addAttribute("planmapinfo", planmapinfo);
 		
 		return "planner/plan/route.theme";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/planner/plan/routecategory.it", produces="text/plain; charset=UTF-8")
+	public String getcategorynum(@RequestParam Map map, Model model) throws Exception{
+		System.out.println("들어옴2: "+map.get("contenttype"));
+		Map mapcategory = new HashMap();		
+		mapcategory.put("contenttype", map.get("contenttype"));
+		List<PlannerDTO> planmapinfo1 = service.selectMapDataList(mapcategory);
+		List<Map> planmapdata = new Vector<Map>();
+		
+		for(PlannerDTO dto : planmapinfo1) {
+			Map record = new HashMap<>();
+			record.put("contentid", dto.getContentid());
+			record.put("contenttype", dto.getContenttype());
+			record.put("tel", dto.getTel());
+			record.put("title", dto.getTitle());
+			record.put("areacode", dto.getAreacode());
+			record.put("sigungucode", dto.getSigungucode());
+			record.put("addr1", dto.getAddr1());
+			record.put("addr2", dto.getAddr2());
+			record.put("zipcode", dto.getZipcode());
+			record.put("mapx", dto.getMapx());
+			record.put("mapy", dto.getMapy());
+			planmapdata.add(record);
+		}
+		return JSONArray.toJSONString(planmapdata);
 	}
 	
 	@RequestMapping("/planner/plan/schedule.it")
