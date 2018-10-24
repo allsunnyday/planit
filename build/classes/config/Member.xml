@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 <!-- 마이페이지-프로필업데이트 -->	
 	<update id="MemberUpdateProfile" parameterType="java.util.Map" >
-		UPDATE member SET profile=#{profile} where id=#{id}
+		UPDATE member SET profile=#{profile}, self=#{self}, name=#{name},email=#{email} where id=#{id}
 	</update>
 	
 <!-- 선호도조사 -->
@@ -120,8 +120,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	<select id="MemberLikedTour" parameterType="java.util.Map" resultType="java.util.Map">
-		select * from liked_tour
-		where id=#{id}
+		select T.*,C.title,C.addr1
+		from liked_tour T INNER JOIN  content c on T.contentid=C.contentid
+		where rownum<![CDATA[<=]]>5 and id=#{id}
+		order by LIKED_T_ID desc
+	</select>
+	<select id="MemberLikedReview" parameterType="java.util.Map" resultType="java.util.Map">
+		select L.*,R.*
+		from review R INNER JOIN liked_review L on R.review_id=L.review_id
+		where rownum<![CDATA[<=]]>5 and id=#{id}
+	</select>
+	<select id="MemberLikedPlanner" parameterType="java.util.Map" resultType="java.util.Map">
+		select * from liked_planner
+		where rownum<![CDATA[<=]]>5 and id=#{id}
 	</select>
 	<select id="MemberPreferList" parameterType="java.util.Map" resultType="memberDTO">
 		select T.id,T.kor
@@ -135,4 +146,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update preference set rating=rating+10
 		where id=#{id} and cat2=#{cat2}
 	</update>
+	
 </mapper>

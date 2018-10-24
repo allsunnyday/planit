@@ -158,6 +158,17 @@ display: inline-block;
    color:rgb(53, 181, 157);
    
 }
+#liked_ul{
+	 margin-left: 40%;
+  margin-right: auto;
+}
+#liked_ul li{
+	border:none;
+	display:inline;
+	color: rgb(110,112,118);
+	margin-right:20px;
+	font-size: 1.2em;
+}
 </style>
 <!-- *******************************************
    베이지색 검색창 달린 거
@@ -320,100 +331,44 @@ display: inline-block;
       최신 플래너 요약보기/마우스 오버 추가
    **************************************** -->
                  <div class="portfolio-centered">
-                   <div class="recentitems portfolio">
-         			
-                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
-                       <div class="he-wrap tpl6 market-item">
-                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-                         <div class="he-view">
-                           <div class="bg a0" data-animate="fadeIn">
-                             <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                             <a data-rel="prettyPhoto" href="img/portfolio_01.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                               <a href="gallery-portfolio.html#">Item Category</a>
-                             </div>
-                             <!-- portfolio_category -->
-                           </div>
-                           <!-- he bg -->
-                         </div>
-                         <!-- he view -->
-                       </div>
-                       <!-- he wrap -->
-                     </div>
-                     <!-- end col-12 -->
-         
-                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 web-design graphic-design">
-                       <div class="he-wrap tpl6 market-item">
-                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-                         <div class="he-view">
-                           <div class="bg a0" data-animate="fadeIn">
-                             <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                             <a data-rel="prettyPhoto" href="img/portfolio_02.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                               <a href="gallery-portfolio.html#">Item Category</a>
-                             </div>
-                             <!-- portfolio_category -->
-                           </div>
-                           <!-- he bg -->
-                         </div>
-                         <!-- he view -->
-                       </div>
-                       <!-- he wrap -->
-                     </div>
-                     <!-- end col-12 -->
-         
-                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 graphic-design">
-                       <div class="he-wrap tpl6 market-item">
-                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-                         <div class="he-view">
-                           <div class="bg a0" data-animate="fadeIn">
-                             <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                             <a data-rel="prettyPhoto" href="img/portfolio_03.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                               <a href="gallery-portfolio.html#">Item Category</a>
-                             </div>
-                             <!-- portfolio_category -->
-                           </div>
-                           <!-- he bg -->
-                         </div>
-                         <!-- he view -->
-                       </div>
-                       <!-- he wrap -->
-                     </div>
-                     <!-- end col-12 -->
-         
-                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
-                       <div class="he-wrap tpl6 market-item">
-                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-                         <div class="he-view">
-                           <div class="bg a0" data-animate="fadeIn">
-                             <h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-                             <a data-rel="prettyPhoto" href="img/portfolio_04.jpg" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
-                               <a href="gallery-portfolio.html#">Item Category</a>
-                             </div>
-                             <!-- portfolio_category -->
-                           </div>
-                           <!-- he bg -->
-                         </div>
-                         <!-- he view -->
-                       </div>
-                       <!-- he wrap -->
-                     </div>
-                     <!-- end col-12 -->
-         
-                     <!-- end col-12 -->
-         
-                     
-                     <!-- end col-12 -->
-         
-                     <!-- end col-12 -->
-         
-                   </div>
+	                <div class="recentitems portfolio">
+	         			<c:if test="${empty homePlannerList }">
+	         				<div>
+	         					<h4 style="text-align: center">당신만의 여행플래너를 작성해주세요</h4>
+	         				</div>
+	         			</c:if>
+	         			<c:if test="${not empty homePlannerList }">
+	         				<c:forEach var="list" items="${homePlannerList}" varStatus="loop">
+		                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
+		                       <div class="he-wrap tpl6 market-item">
+		                       <c:if test="${empty list.frirstimage }" var="result">
+		                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+		                       </c:if>
+		                       <c:if test="${not result }">
+								<img src="<c:url value='/Upload/Review/${list.frirstimage}'/>" style="height:230px" alt="">
+		                       </c:if>
+		                         <div class="he-view">
+		                           <div class="bg a0" data-animate="fadeIn">
+		                             <h3 class="a1" data-animate="fadeInDown">${list.title}(${list.series })</h3>
+		                             <a data-rel="prettyPhoto" href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+		                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+		                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
+		                               <!-- <a href="gallery-portfolio.html#">Item Category</a> -->
+		                             </div>
+		                             <!-- portfolio_category -->
+		                           </div>
+		                           <!-- he bg -->
+		                         </div>
+		                         <!-- he view -->
+		                       </div>
+		                       <!-- he wrap -->
+		                     </div>
+		                     <!-- end col-12 -->
+	                     </c:forEach>
+	         			</c:if>
+	                  
+	                   <!-- portfolio -->
+	                    </div> 
                    <!-- portfolio -->
                     </div> 
          
@@ -448,7 +403,7 @@ display: inline-block;
                    <div class="recentitems portfolio">
          			<c:if test="${empty homeReviewList }">
          				<div>
-         					<h4 style="text-align: center">당신만의 멋진 리뷰를 작성해주세요</h2>
+         					<h4 style="text-align: center">당신만의 멋진 리뷰를 작성해주세요</h4>
          				</div>
          			</c:if>
          			<c:if test="${not empty homeReviewList }">
@@ -510,10 +465,10 @@ display: inline-block;
             <div id="Third-content" class="col-md-12">
                <!-- 찜해제버튼 추가 -->
                <div id="MY-Third-ZZim-table">
-                  <table class="table">
+                  <!-- <table class="table">
                      <tr>
                         <td class="col-md-2 ">ZZim No.</td>
-                        <!-- 찜번호 -->
+                       
                         <td class="col-md-1 ">분류</td>
                         <td class="col-md-3 col-md-offset-1">제목</td>
                         <td class="col-md-2 col-md-offset-2">작성자</td>
@@ -522,7 +477,7 @@ display: inline-block;
                      </tr>
                      <tr>
                         <td>00</td>
-                        <!-- 찜번호 -->
+                        찜번호
                         <td><span class="glyphicon glyphicon-edit"></span></td>
                         <td>리뷰 ZZim</td>
                         <td>Plan:It</td>
@@ -531,7 +486,7 @@ display: inline-block;
                      </tr>
                      <tr>
                         <td>00</td>
-                        <!-- 찜번호 -->
+                        찜번호
                         <td><span class="glyphicon glyphicon-calendar"></span></td>
                         <td>플래너 ZZim</td>
                         <td>Plan:It</td>
@@ -539,7 +494,144 @@ display: inline-block;
 
                      </tr>
                 
-                  </table>
+                  </table> -->
+                   <div class="tabbable servicetab tabs-left">
+          <ul id="liked_ul"class=" col-md-offset-4">
+            <li><a style="color: rgb(110,112,118)" href="services.html#webdesign" data-toggle="tab"><i class="glyphicon glyphicon-queen"></i>Tour</a></li>
+            <li><a style="color: rgb(110,112,118)" href="services.html#webdevelopment" data-toggle="tab"><i class="glyphicon glyphicon-calendar"></i> Planner</a></li>
+            <li><a style="color: rgb(110,112,118)" href="services.html#webdevelopment2" data-toggle="tab"><i class="glyphicon glyphicon-edit"></i> Review</a></li>
+          </ul>
+          <div class="tab-content" style="">
+            <div class="tab-pane active" id="webdesign">
+              <!-- <h5 class="title"><i class="fa fa-laptop"></i> Web Design Services</h5> -->
+              <div class="row">
+                
+                 <table class="table">
+                     <tr style="text-align: center">
+                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
+                       
+                        <td class="col-md-1 " >분류</td>
+                        <td class="col-md-3 col-md-offset-2">이름</td>
+                        <td class="col-md-2 col-md-offset-2">관광지번호</td>
+                        <td class="col-md-4 col-md-offset-2">주소</td>
+                     </tr>
+                     <c:if test="${empty requestScope.memberLiked_Tour }" var="isEmpty">
+					<tr>
+						<td colspan="5" style="text-align: center">등록된 좋아요가 없습니다:)</td>
+					</tr>
+					</c:if>
+					<c:if test="${not isEmpty }">
+						<c:forEach var="list" items="${memberLiked_Tour}" varStatus="loop">
+							<tr style="text-align: center">
+								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
+								<td>${list.LIKED_T_ID}</td>
+								<td>여행지</td>
+								<td class="text-left"  data-toggle="modal" data-target="#myModal">
+								<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
+								</td>
+								<!-- Modal -->
+								<td>${list.CONTENTID}</td>
+								<td>${list.ADDR1}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</table>
+                 
+
+                <div class="col-lg-6">
+                  <img class="img-responsive" src="img/slider_01.png" alt="">
+                </div>
+              </div>
+            </div>
+            
+            <!-- 두번째 탭 -->
+            <div class="tab-pane" id="webdevelopment">
+           <!--    <h5 class="title"><i class="fa fa-cogs"></i> Web Development Services</h5> -->
+              <div class="row">
+               <table class="table">
+                     <tr style="text-align: center">
+                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
+                       
+                        <td class="col-md-1 " >분류</td>
+                        <td class="col-md-2 col-md-offset-1">이름</td>
+                        <td class="col-md-3 col-md-offset-1">해쉬태그</td>
+                        <td class="col-md-1 col-md-offset-1">시리즈</td>
+                        <td class="col-md-1 col-md-offset-1">작성일</td>
+                       
+                     </tr>
+                     <c:if test="${empty requestScope.memberLiked_Planner }" var="isEmpty">
+					<tr>
+						<td colspan="6" style="text-align: center">등록된 좋아요가 없습니다:)</td>
+					</tr>
+					</c:if>
+					<c:if test="${not isEmpty }">
+						<c:forEach var="list" items="${memberLiked_Planner}" varStatus="loop">
+							<tr style="text-align: center">
+								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
+								<td>${list.LIKED_R_NO}</td>
+								<td>리뷰</td>
+								<td class="text-left"  data-toggle="modal" data-target="#myModal">
+								<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
+								</td>
+								<!-- Modal -->
+								<td>${list.HASHTAG}</td>
+								<td>${list.SERIES}</td>
+								<td>${list.POSTDATE}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</table>
+
+                <div class="col-lg-6">
+                  
+                </div>
+              </div>
+            </div>
+              <div class="tab-pane" id="webdevelopment2">
+           <!--    <h5 class="title"><i class="fa fa-cogs"></i> Web Development Services</h5> -->
+              <div class="row">
+	          <table class="table">
+	                     <tr style="text-align: center">
+	                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
+	                       
+	                        <td class="col-md-1 " >분류</td>
+	                        <td class="col-md-2 col-md-offset-1">이름</td>
+	                        <td class="col-md-3 col-md-offset-1">해쉬태그</td>
+	                        <td class="col-md-1 col-md-offset-1">시리즈</td>
+	                        <td class="col-md-1 col-md-offset-1">작성일</td>
+	                       
+	                     </tr>
+	                     <c:if test="${empty requestScope.memberLiked_Review }" var="isEmpty">
+						<tr>
+							<td colspan="6" style="text-align: center">등록된 좋아요가 없습니다:)</td>
+						</tr>
+						</c:if>
+						<c:if test="${not isEmpty }">
+							<c:forEach var="list" items="${memberLiked_Review}" varStatus="loop">
+								<tr style="text-align: center">
+									<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
+									<td>${list.LIKED_R_NO}</td>
+									<td>리뷰</td>
+									<td class="text-left"  data-toggle="modal" data-target="#myModal">
+									<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
+									</td>
+									<!-- Modal -->
+									<td>${list.HASHTAG}</td>
+									<td>${list.SERIES}</td>
+									<td>${list.POSTDATE}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</table>
+
+         <!-- 내용 -->
+          </div>
+          </div>
+          </div>
+        </div>
+     
+
+        <div class="clearfix"></div>
                </div>
             </div>
 
@@ -577,7 +669,7 @@ display: inline-block;
                      </tr>
                      <c:if test="${empty requestScope.homeQnAList }" var="isEmpty">
 					<tr>
-						<td colspan="4" style="text-align: center">등록된 게시물이 없어요</td>
+						<td colspan="4" style="text-align: center">등록된 문의사항이 없어요</td>
 					</tr>
 					</c:if>
 					<c:if test="${not isEmpty }">
@@ -585,9 +677,10 @@ display: inline-block;
 							<tr>
 								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
 								<td>${list.ask_no}</td>
-								<td class="text-left">
-								<a href="#">${list.title }</a>
+								<td class="text-left"  data-toggle="modal" data-target="#myModal">
+								<a style="color: rgb(110,112,118)"href="#"  >${list.title }</a>
 								</td>
+								<!-- Modal -->
 								<td>${list.askdate}</td>
 								<td>${list.status}</td>
 							</tr>

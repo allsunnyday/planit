@@ -37,7 +37,12 @@ public interface MemberService {
 	int getTotalCount(Map map);
 	
 	//[Liked Tour]
-	Map memberLikedTour(Map map);
+	List<Map> memberLikedTour(Map map);
+	
+	//[Liked Tour]
+	List<Map> memberLikedReview(Map map);
+	//[Liked Tour]
+	List<Map> memberLikedPlanner(Map map);
 	
 	//[선호도 노출]
 	List<MemberDTO> memberPreferList(Map map);

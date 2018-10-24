@@ -84,9 +84,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Map memberLikedTour(Map map) {
+	public List<Map> memberLikedTour(Map map) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.memberLikedTour(map);
 	}
 
 	@Override
@@ -99,6 +99,18 @@ public class MemberServiceImpl implements MemberService {
 	public int updateProference(Map map) {
 		// TODO Auto-generated method stub
 		return dao.updateProference(map);
+	}
+
+	@Override
+	public List<Map> memberLikedReview(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedReview(map);
+	}
+
+	@Override
+	public List<Map> memberLikedPlanner(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedPlanner(map);
 	}
 
 	

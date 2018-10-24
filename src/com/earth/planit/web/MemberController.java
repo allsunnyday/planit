@@ -75,9 +75,13 @@ public class MemberController {
 		List<ReviewDTO> homeReviewList=service.homeReviewList(map);
 		List<FaqNoticeDTO> homeQnAList=service.homeQNAList(map);
 		List<MemberDTO> memberPreferList=service.memberPreferList(map);
-		
-	
-		
+		List<Map> memberLiked_Tour=service.memberLikedTour(map);
+		List<Map> memberLiked_Review=service.memberLikedReview(map);
+		List<Map> memberLiked_Planner=service.memberLikedPlanner(map);
+			
+		model.addAttribute("memberLiked_Planner", memberLiked_Planner);
+		model.addAttribute("memberLiked_Review", memberLiked_Review);
+		model.addAttribute("memberLiked_Tour", memberLiked_Tour);
 		model.addAttribute("memberPreferList", memberPreferList);
 		model.addAttribute("homeReviewList", homeReviewList);
 		model.addAttribute("homeQnAList", homeQnAList);
@@ -96,20 +100,38 @@ public class MemberController {
 	public String profileEdit(@RequestParam Map map, //
 			MultipartHttpServletRequest mhsr,
 			HttpSession session) throws Exception {
+		
+		if(map.get("isExistProfile") ==null) {
 		// 1]서버의 물리적 경로 얻기
-		String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");
-		// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
-		// MultipartFile객체 얻기
-		MultipartFile profile = mhsr.getFile("profile");
-		// 2]File객체 생성
-		// 2-1] 파일 중복시 이름 변경
-		String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
-
-		File file = new File(phicalPath + File.separator + newFilename);
-		// 3]업로드 처리
-		profile.transferTo(file);
-		map.put("profile", newFilename.toString().trim());
+			String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");
+			// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
+			// MultipartFile객체 얻기
+			MultipartFile profile = mhsr.getFile("profile");
+			// 2]File객체 생성
+			// 2-1] 파일 중복시 이름 변경
+			
+			String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
+	
+			File file = new File(phicalPath + File.separator + newFilename);
+			// 3]업로드 처리
+			profile.transferTo(file);
+			map.put("profile", newFilename.toString().trim());
+		}
+		else {
+			System.out.println("이미지 값을 이미 가지고 있습니다.");
+			map.put("profile", map.get("isExistProfile"));
+		}
+		
+		
 		map.put("id", session.getAttribute("id").toString());
+		
+		
+		System.out.println(map.get("self"));
+		System.out.println(map.get("id"));
+		System.out.println(map.get("email"));
+		System.out.println(map.get("name"));
+		
+		
 		int affected = service.updateProfile(map);
 		System.out.println(affected == 1 ? "입력성공" : "입력실패");
 		return "forward:/planit/mypage/MyPageHome.it";

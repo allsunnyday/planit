@@ -78,9 +78,9 @@ public class MemberDAO implements MemberService {
 	}
 
 	@Override
-	public Map memberLikedTour(Map map) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map> memberLikedTour(Map map) {
+		System.out.println("DAOTOUR 아이디:"+map.get("id"));
+		return template.selectList("MemberLikedTour",map);
 	}
 	@Override
 	public List<MemberDTO> memberPreferList(Map map) {
@@ -91,6 +91,16 @@ public class MemberDAO implements MemberService {
 	public int updateProference(Map map) {
 		// TODO Auto-generated method stub
 		return template.update("MemberUpdatePrefer",map);
+	}
+	@Override
+	public List<Map> memberLikedReview(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberLikedReview",map);
+	}
+	@Override
+	public List<Map> memberLikedPlanner(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberLikedPlanner",map);
 	}
 
 }
