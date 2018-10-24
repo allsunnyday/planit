@@ -3,13 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <script>
 /**************************/	
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 		center: new daum.maps.LatLng(37.47868488487008, 126.87946377805068), //지도의 중심좌표.
-		level: 3 //지도의 레벨(확대, 축소 정도)
+		level: 6 //지도의 레벨(확대, 축소 정도)
 	};				
 	var map = new daum.maps.Map(container, options);//지도를 생성합니다
 	//container.style.height = '800px';/* map 의 레이아웃 설정 */
@@ -19,13 +18,10 @@
 	var marker = new daum.maps.Marker({ 
 		// 지도 중심좌표에 마커를 생성합니다 
  		//position: map.getCenter() 		
-		//displayPlaceInfo(place);
-	
+		//displayPlaceInfo(place);	
 	}); 
 	marker.setMap(map);		//지도에 마커를 표시합니다
-	marker.setDraggable(true); // 마커 드래그 가능하도록 설정
-	
-	
+	marker.setDraggable(true); // 마커 드래그 가능하도록 설정	
 	
 	//지도에 클릭 이벤트를 등록합니다
 	//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
@@ -34,8 +30,7 @@
 		var latlng = mouseEvent.latLng; 		
 		// 마커 위치를 클릭한 위치로 옮깁니다
 		marker.setPosition(latlng);
-	});	
-	
+	});
 	
 	//지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
 	function setMapType(maptype) { 
@@ -75,8 +70,7 @@
 		    if (!keyword.replace(/^\s+|\s+$/g, '')) {
 		        alert('키워드를 입력해주세요!');	        
 		        return false;
-		    }
-			
+		    }			
 		    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 		    ps.keywordSearch(keyword, placesSearchCB);
 		    //ps.keywordSearch(keyword);
@@ -86,28 +80,23 @@
 	    }
 		/* ******************************검색 관련 함수*******************************/
 		/* ******************************카테고리 관련 함수*******************************/
-		ps = new daum.maps.services.Places(map);
+		ps = new daum.maps.services.Places(map);		
 	    // 커스텀 오버레이를 숨깁니다 
 	    placeOverlay.setMap(null);
 	    // 지도에 표시되고 있는 마커를 제거합니다
 	    removeMarker();
-	    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true});	    
-	   // ps.categorySearch(currCategory, {useMapBounds:true});
+	    //ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true});	    
+	    ps.categorySearch(currCategory, {useMapBounds:true});
 	    /* ******************************카테고리 관련 함수*******************************/
 	}
-	
-	
-	
 	
 	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 	function placesSearchCB(data, status, pagination) {
 		//console.log('data: '+ data); // 뭐들음?
 	    if (status === daum.maps.services.Status.OK) {
 	        displayPlaces(data);	        // 정상적으로 검색이 완료됐으면 검색 목록과 마커를 표출합니다
-	    } else if (status === daum.maps.services.Status.ZERO_RESULT) {
-	        
+	    } else if (status === daum.maps.services.Status.ZERO_RESULT || order == null) {	        
 	    	alert('검색 결과가 존재하지 않습니다.');       return;
-
 	    } else if (status === daum.maps.services.Status.ERROR) { 
 	        alert('검색 결과 중 오류가 발생했습니다.');	        return;
 	    }
@@ -126,15 +115,14 @@
 	    /* **************** 검색 키워드 출력 *************** */
 		
 		    /* **************** 카테 고리별 검색 *************** */
-	    if(currCategory){	
+	    /* if(currCategory){	
 		    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
 		    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
 		    var order = document.getElementById(currCategory).getAttribute('data-order');
-	    }
+	    } */
 	    /* **************** 카테 고리별 검색 *************** */
 	    
 	    for ( var i=0; i<places.length; i++ ) {
-//    	for ( var i=0; i<planmapinfo.length; i++ ) {
 	    	if(!currCategory){
 		    	/* ************************************************* 키워드로 장소검색하고 목록으로 표출하기 ***************************************** */
 		        // 마커를 생성하고 지도에 표시합니다
@@ -269,22 +257,6 @@
 		            image: markerImage 
 		        });		
 		}
-		/////////////////////////////////////////////////////////////
-		else{
-			var imageSrc = '/Planit/images/plan/css_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다 // http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png
-	        imageSize = new daum.maps.Size(31, 31),  // 마커 이미지의 크기
-	        imgOptions =  {
-	            spriteSize : new daum.maps.Size(70, 197), // 스프라이트 이미지의 크기
-	            spriteOrigin : new daum.maps.Point(38, (order*33)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-	            offset: new daum.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-	        },
-	        markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-	            marker = new daum.maps.Marker({
-	            position: position, // 마커의 위치
-	            image: markerImage 
-	        });	
-		}
-		///////////////////////////////////////////
 		 
 		    marker.setMap(map); // 지도 위에 마커를 표출합니다
 		    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
@@ -305,7 +277,7 @@
 	    }                
 	   
 	    content += '    <span class="tel">' + place.phone + '</span>' +
-	    			'<a href="javascript:planplusActionplus()" id="planplus"><img src="/Planit/images/plan/planplus.png" id="planrouteplusimg"></a>'+				//상세보기 + 버튼구현 // <img src="/Planit/images/plan/planplus.png" id="planrouteplusimg">
+	    			//'<a href="javascript:planplusActionplus()" id="planplus"><img src="/Planit/images/plan/planplus.png" id="planrouteplusimg"></a>'+				//상세보기 + 버튼구현 // <img src="/Planit/images/plan/planplus.png" id="planrouteplusimg">
 					'</div>' +
 	                
 	                '<div class="after"></div>';  
@@ -377,8 +349,12 @@
 	var carTime=0; // 자동차가 이동하는데 소요 되는 시간 ( 분) 
 	var plancase = 0; // 여행 상세일정 전체 카운트?
 	var planmarking= []; // 사용자가 플랜으로 등록한 마커를 삭제하기 위한 함수	 
-	var days = document.getElementById("days").value; // location 에서 지정한 여행 일자 얻기
+	var days = document.getElementById("days").value; // location 에서 지정한 여행 일자 얻기	
 	var polyline ; // 라인정보 담는 변수
+	if(document.getElementById("days").value == ""){
+		alert('세션정보가 만료 되었습니다.');
+		location.replace("<c:url value='/Planit/Before/Location.it'/>");		
+	}
 	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	function planplusActionplus(index){
 		console.log("planplusActionplus() : 이상무");		
@@ -425,11 +401,11 @@
 		var diveplus=plancase-1;
 		routeInfoPlusAction( index, diveplus); // 버튼 클릭시 상세 여행정보에 추가 되는 함수
 		polyline.setMap(map);  
-		//removeMarker(); // 계획 일정 추가시 지도에 표시된 카테고리 마커 삭제
+		//infowindow.close(); //인포윈도우 닫기 --> 함수로 만들지 않으면 안먹는듯 함. 시간적 여유가 될때 함수로 만들어서 자동적으로 닫히게 구현해야 할듯 아니면 현재 시스템도 괜찬은듯 함
+		removeMarker(); // 계획 일정 추가시 지도에 표시된 카테고리 마커 삭제
 		//displayPlaceInfo(""); //계획 일정 추가후 상세보기 닫기
 		currCategory = keyword; // 사용자가 선택한 지역유지를 위한 변수 설정
-        //changeCategoryClass(); // on 상태인 카테고리 마크를 off 설정
-		infowindow.close(); //인포윈도우 닫기
+        changeCategoryClass(); // on 상태인 카테고리 마크를 off 설정
 	}
 	/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	
@@ -650,8 +626,7 @@
 <script>
 	
 	$(function() {
-		/* **************** location 의 도시 정보 검색  **************** */		
-		//searchPlaces(); //  새로 고침 시에 "키워드를 입력하세요" 라는 문구를 뜨지 않도록 함수 작성해야함.
+		/* **************** location 의 도시 정보 검색  **************** */
 		searchaction();	
 		function searchaction(){
 			ps = new daum.maps.services.Places();
@@ -734,73 +709,70 @@
 	addLoadEvent(function() {
 		autoDate();
 	});
+	
 	/* ************************************* 상세정보 입력 란의 오늘 일자 정보 출력 종료 ******************************************* */
 	
 	var jsonforTourInfo;
 	$(function() {
 		var mapx=[];
 		var mapy=[];
-		/* <c:forEach items="${planmapinfo}" var="planmapinfo">
-	        var map_x = '${planmapinfo.mapx}';
-	        var map_y = '${planmapinfo.mapy}';
-	        mapx.push(map_x);
-	        mapy.push(map_y);
-    	</c:forEach>
-    	console.log(mapx, mapy); */
-    	
-    
-    	//console.log('check info for  first !!!!!!!!!!!'+checkInfo);
-    	//var jsonInfo = JSON.parse(checkInfo);
-    	
-   
-    	
-    	$('.routecategory').click(function() {    		
-    		console.log('들어옴1: '+$(this).val());    		
+		
+    	$('.routecategory').click(function() {
+    		console.log('들어옴1: '+$(this).val());
+    		var areacode = $('#paldoNcity option:selected').val(); // 여행 지역 코드 저장
+    		var sigungucode = $('#paldoNcityColumn option:selected').val(); // 여행 시군구 코드 저장
+    		var areacodename = $('#paldoNcity option:selected').html(); // 여행 지역 이름 저장
+			var sigungucodename = $('#paldoNcityColumn option:selected').html(); // 여행 지역 시군구 이름 저장
+			categoryaction();
+			function categoryaction(){
+				ps = new daum.maps.services.Places();
+				keyword = areacodename +' '+sigungucodename;
+				document.getElementById('keyword').value = "";				
+				/* ******************* location 에서 사용자가 선택한 지역으로 자동 서치 ****************** */		
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new daum.maps.services.Geocoder();
+				console.log(keyword);
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch(keyword, function(result, status) {	
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === daum.maps.services.Status.OK) {	
+				        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+				       
+				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				        map.setCenter(coords);
+				    } 
+				});
+				/* ******************* location 에서 사용자가 선택한 지역으로 자동 서치 ****************** */
+			}
+			
 	    	$.ajax({
-				url: "<c:url value='/planner/plan/routecategory.it'/>",
-				//url:"<c:url value='http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=NCPqTyv3znqjQjXg0mr6tqFnxmLBJcm10iYsAe66egVkZa%2F28tT1iJSvoKaq9Y8P92LAcQaoxcD5I5kTY%2Bn%2Buw%3D%3D&contentTypeId=&areaCode=&sigunguCode=&MobileOS=ETC&MobileApp=TEST&type=_json'/>",
+				url: "<c:url value='/planner/plan/routecategory.it?areacode="+areacode+"&sigungucode="+sigungucode+"&areacodename="+areacodename+"&sigungucodename="+sigungucodename+"'/>",				
 				dataType: 'json',
 				data:{contenttype:$(this).val()},
 				success: successPlanmapdata,
 				error: function(request, status, error){
 					console.log(request, status, error);
 				}
-			});///ajax   	
+			});///ajax
+	    		
+			
     	});
     	
     	var successPlanmapdata = function(data){
     		console.log(JSON.stringify(data));
-    		//jsonforTourInfo = data;
+   			var order = document.getElementById(currCategory).getAttribute('data-order');
+   			console.log("order 순서 확인하자: "+document.getElementById(currCategory).getAttribute('data-order'));
     		$.each(data, function(index, content) {    			
     			mapx.push(content['mapx']);
-    			mapy.push(content['mapy']);
-    			//console.log('mapx.size: '+mapx.size+'//mapy.size: '+mapy.size);
+    			mapy.push(content['mapy']);    			
     			//////////////////////////////////////////
-    			var order = 1;
-    			console.log($('.routecategory').attr("data-order"));
-    			var marker = addMarker(new daum.maps.LatLng(content['mapy'], content['mapx']), order, null);
-		    	//console.log('planmapinfo///'+mapy +'//'+mapx);
-	            // 마커와 검색결과 항목을 클릭 했을 때
-	            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
-	             /* (function(marker, place) {
-	            	var clickcount = 0;
-	                daum.maps.event.addListener(marker, 'click', function() {	                	
-						//displayPlaceInfo(place);												// 포커스 아웃시 닫아야함.
-						if(clickcount ==0){
-							displayPlaceInfo(place);
-							planposition = marker.getPosition();
-	                		console.log('planposition: '+planposition);
-							clickcount=1;}
-						else if(clickcount ==1){ displayPlaceInfo(""); clickcount=0; }
-						
-	                });
-	            })(marker, places[i]);  */
-	            
-	            
+    			//마커 생성
+    			var marker = addMarker(new daum.maps.LatLng(content['mapy'], content['mapx']), order, null);		    		            
 	            marker.setMap(map);
-	           // console.log('index?'+index);
+	            
+	           	// console.log('index?'+index);
 	         	// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-	            var iwContent = '<div class="placeinfo_wrap placeinfo">'
+	            var iwContent = '<div class="categoryinfo_wrap categoryinfo">'
 	            +'<div style="padding:5px;"><span id="titleforNewInfo_'+index+'" title="'+content['title']+'">'+content['title'] +'</span>'
 	            +'<span title="' + content['addr1'] + '">' + content['addr1'] + '</span>'
 	            +'  <span class="jibun" title="' + content['zipcode'] + '">(지번 : ' + content['zipcode'] + ')</span>';
@@ -809,32 +781,26 @@
 	            +'</div>'
 	            +'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 	            iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-
+				
 	            // 인포윈도우를 생성합니다
 	            var infowindow = new daum.maps.InfoWindow({
 	                content : iwContent,
 	                removable : iwRemoveable
 	            });
-	            // 마커에 클릭이벤트를 등록합니다
-	            daum.maps.event.addListener(marker, 'click', function() {	            	
 	            
+	            // 마커에 클릭이벤트를 등록합니다
+	            daum.maps.event.addListener(marker, 'click', function() {
 	            	planposition = marker.getPosition();
 	            	console.log('planposition: '+planposition);
 	            	// 마커 위에 인포윈도우를 표시합니다
 	                infowindow.open(map, marker);  
 	            });	            
 	            /////////////////////////
-    		});            
+    		});
+    		
     	};    	
     	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+    	/* ********** 카테고리 범위 영역 선택을 위한 ajax ********** */
     	$('#paldoNcity').change(function(){
 			$.ajax({
 				url:'<c:url value="/planner/ajax/location.it"/>',
@@ -855,7 +821,8 @@
 					console.log('에러: ',error);
 				}
 			});
-		});    	
+		});
+    	/* ********** 카테고리 범위 영역 선택을 위한 ajax ********** */
 	});	
 
 	

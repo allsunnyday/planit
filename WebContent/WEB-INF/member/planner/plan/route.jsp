@@ -104,7 +104,6 @@
 				        <div class="option">
 				        	<div>
 				                <form onsubmit="searchPlaces(); return false;" style="display: inline-flex;">
-				                	<%-- <input type="hidden" value="${areacodename } ${areacodesubname}" id="localkeyword"> --%>
 									<input type="text" class="form-control" placeholder="장소 검색" id="keyword" style="width: 60%;"
 									value='${areacodename} ${areacodesubname}'> 
 									<input type="hidden" value="${days }" id="days">        	
@@ -118,7 +117,7 @@
 				    <div id="areaSelectBoxmenu">
 					    <div class="select">
 							<select name="paldoNcity" id="paldoNcity" style="width: 100%">
-								<option selected> - - - - </option>
+								<option value="${areacode}"selected>${areacodename} </option>								
 						    	<option value="1">서울 특별시</option>
 						    	<option value="2">인천 광역시</option>
 						    	<option value="3">대전 광역시</option>
@@ -141,7 +140,7 @@
 					    <div style="margin-top: 8px;"></div>
 					    <div class="select">						
 							<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%" >
-						    	<option selected> - - - - </option>
+						    	<option value="${areacodesub }" selected>${areacodesubname } </option>
 						    	<option value="1">강남구</option>
 						    	<option value="2">강동구</option>
 						    	<option value="3">강북구</option>
@@ -181,7 +180,7 @@
 				        <li id="39" data-order="0" class="routecategory" value="39"><span class="category_bg eatery"></span>음식점</li>		        
 				        <li id="14" data-order="1" class="routecategory" value="14"><span class="category_bg culture"></span>문화 </li>
 				        <li id="32" data-order="2" class="routecategory" value="32"><span class="category_bg lodge"></span>숙박</li>  
-				        <li id="12" data-order="3" class="routecategory" value="12"><span class="category_bg tourist"></span>관광</li>
+				        <li id="12" data-order="3" class="routecategory" value="12"><span class="category_bg tourist"></span>관광</li>				        
 				    </ul>				    
 				    <!-- ********************************** 카테고리 버튼  시작 ****************************************** -->
 				</div>

@@ -3,6 +3,7 @@ package com.earth.planit.web;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +58,11 @@ public class PlannerController {
 		
 		model.addAttribute("days", map.get("days")); // 사용자가 선택한 여행일수 넘기기
 		
+//		if(map.get("days") == null || map.get("days") == "") {
+//			
+//			println("<script> alert('계정이 등록 되었습니다'); location.href='이동주소'; </script>");
+//			return "planner/before/Location.theme"; 
+//		}
 		
 //		map 에 표시할 카테고리 정보들 얻어오기
 		//List<PlannerDTO> planmapinfo = service.selectMapDataList(map);		
@@ -71,20 +77,24 @@ public class PlannerController {
 	public String getcategorynum(@RequestParam Map map, Model model) throws Exception{
 		System.out.println("contenttype controller: "+map.get("contenttype"));
 		System.out.println("areacode controller: "+map.get("areacode"));
-		System.out.println("sigungucode controller: "+map.get("areacodesub"));
+		System.out.println("sigungucode controller: "+map.get("sigungucode"));
+		System.out.println("areacodename controller: "+map.get("areacodename"));
+		System.out.println("sigungucodename controller: "+map.get("sigungucodename"));
 		
 		String httpaddr = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?"
 						+"ServiceKey="+key
 						+"&contentTypeId="+map.get("contenttype")
-						+"&content="+"&tel="+"&title="+"&areacode="+"&sigungucode="+"&addr1="+"&addr2="
-						+"&zipcode="+"&mapx="+"&mapy="
-						+"&listYN=Y"   //목록 구분 (Y=목록, N=개수)
-						+"&MobileOS=ETC"  //IOS (아이폰), AND (안드로이드), WIN (윈도우폰), ETC
-						+"&MobileApp=TourAPI3.0_Guide" //서비스명=어플명
-						+"&_type=json"  //json타입으로 결과를 받음 
-						+"&arrange=A"  //정렬구분(A=제목순, B=조회순, C=수정일순, D=생성일순)
-						+"&numOfRows=9800"
+						+"&areaCode="+map.get("areacode")
+						+"&sigunguCode="+map.get("sigungucode")
+						+"&cat1=&cat2=&cat3="
+						+"&listYN=Y"
+						+"&MobileOS=ETC"
+						+"&MobileApp=TourAPI3.0_Guide"
+						+"&arrange=A&numOfRows=300"
+						+"&pageNo=1"						
+						+"&_type=json"  //json타입으로 결과를 받음						
 						;
+		
 		
 		URL url = new URL(httpaddr);
 		InputStream in = url.openStream();
@@ -119,8 +129,8 @@ public class PlannerController {
 			record.put("contenttype", map.get("contenttype"));
 			record.put("tel", jsonobj.get("tel"));
 			record.put("title", jsonobj.get("title"));
-			record.put("areacode", jsonobj.get("title"));			
-			record.put("sigunguCode", jsonobj.get("sigunguCode"));
+			record.put("areacode", map.get("areacode"));			
+			record.put("sigunguCode", map.get("sigungucode"));
 			record.put("addr1", jsonobj.get("addr1"));
 			record.put("addr2", jsonobj.get("addr2"));
 			record.put("zipcode", jsonobj.get("zipcode"));
