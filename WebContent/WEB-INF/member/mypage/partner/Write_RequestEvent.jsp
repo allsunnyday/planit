@@ -2,7 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 아이콘을 위한 css -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <style type="text/css">
 .table-wrapper {
 	background: #fff;
@@ -14,7 +16,6 @@
 
 .table-wrapper .btn {
 	float: right;
-	color: #fff;
 	border-radius: 3px;
 	border: none;
 	outline: none !important;
@@ -71,7 +72,8 @@ table.table tr th, table.table tr td {
 }
 
 table.table tr th {
-	width: 200px;}
+	width: 200px;
+}
 
 table.table tr th:first-child {
 	width: 60px;
@@ -215,15 +217,102 @@ table.table .avatar {
 #Partner-First-Roomtable td:nth-child(2n) {
 	font-weight: lighter;
 	font-size: 1.0em;;
-	color: white;
+	color: white;  
 	/* 	align:right; */
 	text-indent: 10px;
 }
 /* footer가 꺠지는것을 방지하는 css */
-.footer {position:absolute;bottom:0; width:100%;}
+.footer {position:relative;bottom:0; width:100%;}
 </style>
 <script>
-    $(function() {
+	/* summernote를 위한 */
+	$(document).ready(function() {
+	  $('#summernote').summernote({
+		  lang: 'ko-KR',
+		  height: 100,
+		  placeholder: "얼마나 멋진 이벤트인지 설명해주세요! SummerNote의 멋진 기능을 사용하면 더 멋지겠죠 ^_^",
+		  focus: true,
+	        callbacks: {
+	          onImageUpload: function(files, editor, welEditable) {
+	            for (var i = files.length - 1; i >= 0; i--) {
+	              sendFile(files[i], this);
+	            }
+	          }
+	        }
+		});
+	});
+	
+	function sendFile(file, el) {
+	      var form_data = new FormData();
+	      form_data.append('file', file);
+	      $.ajax({
+	        data: form_data,
+	        type: "POST",
+	        url: '<c:url value="/planit/summernote/UploadImage.it"/> ',
+	        cache: false,
+	        contentType: false,
+	        enctype: 'multipart/form-data',
+	        processData: false,
+	        dataType:'text',
+	        success: function(data) {
+	        	var json = JSON.parse(data);
+	        	console.log(json.filename);
+	          $(el).summernote('editor.insertImage', "/Planit/Upload/Partner/"+json.filename);
+	        },
+	        error:function(request, status, error){
+	        	console.log(request, status, error);
+	        }
+	      });
+	    }
+
+	
+	
+	
+	$.ajax({
+		  url: 'https://api.github.com/emojis',
+		  async: false 
+		}).then(function(data) {
+		  window.emojis = Object.keys(data);
+		  window.emojiUrls = data; 
+		});
+	
+	$(".hint2emoji").summernote({
+		  height: 100,
+		  toolbar: false,
+		  placeholder: 'type starting with : and any alphabet',
+		  hint: {
+		    match: /:([\-+\w]+)$/,
+		    search: function (keyword, callback) {
+		      callback($.grep(emojis, function (item) {
+		        return item.indexOf(keyword)  === 0;
+		      }));
+		    },
+		    template: function (item) {
+		      var content = emojiUrls[item];
+		      return '<img src="' + content + '" width="20" /> :' + item + ':';
+		    },
+		    content: function (item) {
+		      var url = emojiUrls[item];
+		      if (url) {
+		        return $('<img />').attr('src', url).css('width', 20)[0];
+		      }
+		      return '';
+		    }
+		  }
+		});
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* 실시간 띄워주기용 */
+    $(function() {    	
         setInterval(function() {
             $("#systime").text(new Date());
         }, 1000);
@@ -316,74 +405,37 @@ table.table .avatar {
 		<div class="table-title">
 			<div class="row">
 				<div class="col-sm-4">
-					<h2>${record.name}'s Request</h2>
+					<h2>이벤트하는것만큼 행복한것이 어딧어!</h2>
 				</div>
 				<div class="col-sm-6" style="float: right;">
-					<a onclick="submit();" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Update</span></a>
-					<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"> <span>Delete</span></a>
+					<a onclick="submit();" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Confirm</span></a>
 				</div>
 			</div>
 		</div>
 		<!-- table-->
 
-		<form action="<c:url value='/mypage/partner/ReplyWrite.it'/>" id="frm" method="post">
-			<input type="hidden" name="ask_no" value="${record.ask_no}"/>
+		<form action="<c:url value='/mypage/partner/Write_RequestEvent.it'/>" id="frm" method="post">
 			<table class="table table-striped table-hover table-bordered">
-						<tr>
-							<th>고객 정보</th>
-							<td><a href="#"> <img src="/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> ${record.name}</a></td>
-						</tr>
-						<tr>
-							<th>Title</th>
-							<td><input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요"></td>
-						</tr>
-						<tr>
-							<th>Content</th>
-							<td><textarea rows="10" class="form-control" id="content" name="content" placeholder="고객의 궁금증을 풀어볼까요?">
-			
-			
-			
-			========= ${record.name}님 이 작성한 글  ============
-			${record.content}	
-							</textarea></td>
-						</tr>
-						<tr>
-							<th>Postdate</th>
-							<td id="systime"></td>
-						</tr>
+				<tr>
+					<th>Title</th>
+					<td><input type="text" class="form-control" id="title" name="title" placeholder="열고싶은 이벤트 제목을 입력하세요"></td>
+				</tr>
+				<tr>
+					<th>Content</th>
+					<td><textarea class="form-control" name="content" id="summernote" placeholder="얼마나 멋진 이벤트인지 설명해주세요! SummerNote의 멋진 기능을 사용하면 더 멋지겠죠 ^_^" style="width: 900px"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>Period</th>
+					<td><input type="text" class="form-control" id="period" name="period" placeholder="원하는 이벤트기간을 적어주세요"></td>
+				</tr>
+				<tr>
+					<th>ReqDate</th>
+					<td id="systime"></td>
+				</tr>
 			</table>
 		</form>
-		
-
-		<!--
-***************************************************************************************
-Delete Modal
-***************************************************************************************
-  -->
-			<div id="deleteEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Delete Client</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-								<p>Are you sure you want to delete these Records?</p>
-								<p class="text-warning">
-									<small>This action cannot be undone.</small>
-								</p>
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"> 
-									<a href="<c:url value='/mypage/partner/ReplyDelete.it?ask_no=${record.ask_no}'/>">
-									<input type="button" class="btn btn-danger" value="Delete"></a>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+				
 		</div>
 		</div>
 		</div>

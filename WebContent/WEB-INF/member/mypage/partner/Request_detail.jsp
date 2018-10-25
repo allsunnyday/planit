@@ -220,7 +220,8 @@ table.table .avatar {
 	text-indent: 10px;
 }
 /* footer가 꺠지는것을 방지하는 css */
-.footer {position:absolute;bottom:0; width:100%;}
+.footer {position:relative;bottom:0; width:100%;}
+
 </style>
 <script>
 
@@ -230,7 +231,7 @@ table.table .avatar {
 	<div class="col-md-3" style="width: 300px">
 		<div style="padding-top: 50px;">
 			<div>
-				<div class="teammembers" style="background-color: white;">
+				<div class="teammembers">
 					<div class="he-wrap tpl2">
 						<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
 							alt="프로필 사진">
@@ -243,34 +244,33 @@ table.table .avatar {
 					<div id="Partner-First-1-self-detail">
 						<p>
 							<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-								(주)Plan:It</span>
-						</p>
-
+								(주)회사이름추가하기</span>
 						<div class="Partner-First-PartnerInform">
 
 							<table id="Partner-First-informtable" style="width: 110%;">
 								<tr>
 									<td>사업자번호</td>
-									<td>123-45-678900</td>
+									<td>${partnerRecord.business_no }</td>
 								</tr>
 								<tr>
 									<td>대표자</td>
-									<td>김잇잇</td>
+									<td>${partnerRecord.name }</td>
 								</tr>
 								<tr>
 									<td>주소</td>
-									<td>서울특별시 디지털로 123 311호</td>
+									<td>${partnerRecord.address }</td>
 								</tr>
 								<tr>
 									<td>전화</td>
-									<td>02-0000-0000</td>
+									<td>${partnerRecord.tel }</td>
 								</tr>
-								<tr>
-									<td>업종</td>
-									<td>숙박업</td>
-								</tr>
+
+
+
 							</table>
+
 						</div>
+
 
 						<div class="teamskills">
 							<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
@@ -302,84 +302,94 @@ table.table .avatar {
 			</div>
 		</div>
 	</div>
-<div class="col-md-9">
-	
-	<div class="container-fluid" style="padding-top: 50px">
-		<div class="table-wrapper">
-		<div class="table-title">
-			<div class="row">
-				<div class="col-sm-4">
-					<h2>${record.name}'s Request</h2>
-				</div>
-				<div class="col-sm-6" style="float: right;">
-					<a href="<c:url value='/mypage/partner/ReplyWrite.it?ask_no=${record.ask_no}'/>" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Write Reply</span></a>
-					<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"> <span>Delete</span></a>
-				</div>
-			</div>
-		</div>
-		<!-- table-->
+	<div class="col-md-9">
 
-		<table class="table table-striped table-hover table-bordered">
-				<tr>
-					<th>번호</th>
-					<td>${record.ask_no}</td>
-				</tr>
-				<tr>
-					<th>고객 정보</th>
-					<td><a href="#"> <img src="/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> ${record.id}	</a></td>
-				</tr>
-				<tr>
-					<th>Title</th>
-					<td>${record.title}</td>
-				</tr>
-				<tr>
-					<th>Content</th>
-					<td>${record.content} </td>
-				</tr>
-				<tr>
-					<th>status</th>
-					<td><span class="status text-success">&bull;</span> ${record.status}</td>
-				</tr>
-				<tr>
-					<th>Postdate</th>
-					<td>${record.askdate}</td>
-				</tr>
-		</table>
-		
+		<div class="container-fluid" style="padding-top: 50px">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-4">
+							<h2>${record.name}'sRequest</h2>
+						</div>
+						<div class="col-sm-6" style="float: right;">
+							<a
+								href="<c:url value='/mypage/partner/ReplyWrite.it?ask_no=${record.ask_no}'/>"
+								class="btn btn-success" data-toggle="modal"><i
+								class="material-icons">&#xE147;</i> <span>Write Reply</span></a> <a
+								href="#deleteEmployeeModal" class="btn btn-danger"
+								data-toggle="modal"> <span>Delete</span></a>
+						</div>
+					</div>
+				</div>
+				<!-- table-->
 
-		<!--
+				<table class="table table-striped table-hover table-bordered">
+					<tr>
+						<th>번호</th>
+						<td>${record.ask_no}</td>
+					</tr>
+					<tr>
+						<th>고객 정보</th>
+						<td><a href="#"> <img src="/examples/images/avatar/2.jpg"
+								class="avatar" alt="Avatar"> ${record.id}
+						</a></td>
+					</tr>
+					<tr>
+						<th>Title</th>
+						<td>${record.title}</td>
+					</tr>
+					<tr>
+						<th>Content</th>
+						<td>${record.content}</td>
+					</tr>
+					<tr>
+						<th>status</th>
+						<td><span class="status text-success">&bull;</span>
+							${record.status}</td>
+					</tr>
+					<tr>
+						<th>Postdate</th>
+						<td>${record.askdate}</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><a class="btn btn-primary"
+							href="<c:url value='/mypage/partner/Request_P.it'/>">목록</a></td>
+					</tr>
+				</table>
+
+				<!--
 ***************************************************************************************
 Delete Modal
 ***************************************************************************************
   -->
-			<div id="deleteEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Delete Client</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-								<p>Are you sure you want to delete these Records?</p>
-								<p class="text-warning">
-									<small>This action cannot be undone.</small>
-								</p>
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default"
-									data-dismiss="modal" value="Cancel"> 
-									<a href="<c:url value='/mypage/partner/ReplyDelete.it?ask_no=${record.ask_no}'/>"><input
+				<div id="deleteEmployeeModal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<form>
+								<div class="modal-header">
+									<h4 class="modal-title">Delete Client</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<p>Are you sure you want to delete these Records?</p>
+									<p class="text-warning">
+										<small>This action cannot be undone.</small>
+									</p>
+								</div>
+								<div class="modal-footer">
+									<input type="button" class="btn btn-default"
+										data-dismiss="modal" value="Cancel"> 
+										<a href="<c:url value='/mypage/partner/ReplyDelete.it?ask_no=${record.ask_no}'/>"><input
 									type="button" class="btn btn-danger" value="Delete"> </a>
-							</div>
-						</form>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		</div>
-		</div>
 	</div>
+</div>
 </body>
 </html>

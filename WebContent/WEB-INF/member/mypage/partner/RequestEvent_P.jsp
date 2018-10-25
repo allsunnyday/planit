@@ -393,13 +393,7 @@ table.table .avatar {
 					console.log('clicked='+$(this).attr('title'));
 					var text = $(this).html();
 					//data-toggle="modal"
-					/* 
-					$.each(json, function(index, element){
-						if(element['ask_no']==$(this).attr('title')){
-							$('#detailcontent').html(element['content']);
-							return;
-						}
-					}); */
+					
 					$.each(list, function( index, value ) {
 						alert( index + ": " + value );
 					});
@@ -415,8 +409,7 @@ table.table .avatar {
 			<div>
 				<div class="teammembers">
 				<div class="he-wrap tpl2">
-					<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
-						alt="프로필 사진">
+					<img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
 					<div class="he-view"></div>
 				</div>
 				<!-- he wrap -->
@@ -493,14 +486,17 @@ table.table .avatar {
 				<div class="row">
 					<div class="col-sm-4">
 						<h2>
-							Managing <b>Questions</b>
+							Event <b>Requests</b>
 						</h2>
 					</div>
 					<div class="col-sm-6" style="float: right;">
-
-						<a href="#deleteEmployeeModal" class="btn btn-danger"
-							data-toggle="modal"> <i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
-					</div>
+							<a
+								href="<c:url value='/mypage/partner/Write_RequestEvent.it'/>"
+								class="btn btn-success" data-toggle="modal"><i
+								class="material-icons">&#xE147;</i> <span>Write Request</span></a> <a
+								href="#deleteEmployeeModal" class="btn btn-danger"
+								data-toggle="modal"> <span>Delete</span></a>
+						</div>
 				</div>
 			</div>
 			<div class="table-filter">
@@ -529,21 +525,19 @@ table.table .avatar {
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th><span class="custom-checkbox"> 
-						<input type="checkbox" id="selectAll"> <label for="selectAll"></label>
-						</span></th>
+						<th><span class="custom-checkbox"> <input type="checkbox" id="selectAll"> <label for="selectAll"></label></span></th>
 						<th>#</th>
-						<th>Customer</th>
-						<th>Topic</th>
-						<th>PostDate</th>
-						<th>Status</th>
-						<th>Action</th>
+						<th>TITLE</th>
+						<th>PERIOD</th>
+						<th>REQDATE</th>
+						<th>STATUS</th>
+						<th>ACTION</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:if test="${empty list}" var="isEmpty">
 						<tr>
-							<td colspan="7" style="text-align: center; font-size: large; font-weight: bold;">사용자에게 더 어필해주세요 !</td>
+							<td colspan="7" style="text-align: center; font-size: large; font-weight: bold;">관리자와 함께 파티를 준비해볼까요?</td>
 						</tr>
 					</c:if>
 					<c:if test="${not isEmpty}">
@@ -554,12 +548,10 @@ table.table .avatar {
 								<input type="checkbox" id="checkbox${loop.count}" name="options[]" value="1">
 										<label></label>
 								</span></td>
-								<td>${record.ask_no}</td>
-								<td><a href="#">
-								<img src="#" class="avatar" alt="profile"> ${record.id} </a></td>
-								<td><a href="<c:url value='/mypage/partner/Request_detail.it?ask_no=${record.ask_no}'/>" class="edit  askview" id="" title="${loop.index}"
-									 >${record.title}</a></td>
-								<td>${record.askdate}</td>
+								<td>${record.req_no}</td>
+								<td><a href="<c:url value='/mypage/partner/ReqeustEvent_detail.it?req_no=${record.req_no}'/>" class="edit askview" id="" title="${loop.index}">${record.title}</a></td>
+								<td>${record.period}</td>
+								<td>${record.reqdate}</td>
 								<td><span class="status text-success">&bull;</span>${record.status}</td>
 								<td><a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
 										class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -582,7 +574,7 @@ table.table .avatar {
 					<div class="col-md-12">${pagingString}</div>
 				</div>
 			</div>
-			<!--
+<!--
 ***************************************************************************************
 Delete Modal
 ***************************************************************************************
@@ -590,7 +582,7 @@ Delete Modal
 			<div id="deleteEmployeeModal" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
-						<form action="<c:url value='/mypage/partner/ReplyDelete.it?ask_no=${one.ask_no}'/>">
+						<form action="<c:url value='/mypage/partner/RequestEventDelete.it?req_no=${one.req_no}'/>">
 							<div class="modal-header">
 								<h4 class="modal-title">Delete Client</h4>
 								<button type="button" class="close" data-dismiss="modal"

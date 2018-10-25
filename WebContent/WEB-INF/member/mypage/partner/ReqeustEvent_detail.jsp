@@ -7,7 +7,7 @@
 .table-wrapper {
 	background: #fff;
 	padding: 20px 25px;
-	margin: 30px auto;
+	margin: auto auto;
 	border-radius: 3px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
@@ -219,24 +219,12 @@ table.table .avatar {
 	/* 	align:right; */
 	text-indent: 10px;
 }
-/* footer가 꺠지는것을 방지하는 css */
-.footer {position:absolute;bottom:0; width:100%;}
+
+.footer {position:relative; bottom:0; width:100%;}
 </style>
-<script>
-    $(function() {
-        setInterval(function() {
-            $("#systime").text(new Date());
-        }, 1000);
-    });
-    
-    var submit = function() {//form 안에 정보 전송
-		$('#frm').submit();
-	}
-    
-</script>
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top: 30px">
 	<div class="col-md-3" style="width: 300px">
-		<div style="padding-top: 50px;">
+		<div style="padding-top: 23px;">
 			<div>
 				<div class="teammembers">
 				<div class="he-wrap tpl2">
@@ -310,83 +298,103 @@ table.table .avatar {
 			</div>
 		</div>
 	</div>
-<div class="col-md-9">
-	<div class="container-fluid" style="padding-top: 50px">
-		<div class="table-wrapper">
-		<div class="table-title">
-			<div class="row">
-				<div class="col-sm-4">
-					<h2>${record.name}'s Request</h2>
-				</div>
-				<div class="col-sm-6" style="float: right;">
-					<a onclick="submit();" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Update</span></a>
-					<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"> <span>Delete</span></a>
-				</div>
-			</div>
-		</div>
-		<!-- table-->
+	<div class="col-md-9">
+		<div class="container-fluid" style="padding-top: 50px">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-4">
+							<h2>Event Request</h2>
+						</div>
+						<div class="col-sm-6" style="float: right;">
+							<a
+								href="<c:url value='/mypage/partner/Update_RequestEvent.it?req_no=${record.req_no}'/>"
+								class="btn btn-success" data-toggle="modal"><i
+								class="material-icons">&#xE147;</i> <span>Edit</span></a> <a
+								href="#deleteEmployeeModal" class="btn btn-danger"
+								data-toggle="modal"> <span>Delete</span></a>
+						</div>
 
-		<form action="<c:url value='/mypage/partner/ReplyWrite.it'/>" id="frm" method="post">
-			<input type="hidden" name="ask_no" value="${record.ask_no}"/>
-			<table class="table table-striped table-hover table-bordered">
-						<tr>
-							<th>고객 정보</th>
-							<td><a href="#"> <img src="/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> ${record.name}</a></td>
-						</tr>
-						<tr>
-							<th>Title</th>
-							<td><input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요"></td>
-						</tr>
-						<tr>
-							<th>Content</th>
-							<td><textarea rows="10" class="form-control" id="content" name="content" placeholder="고객의 궁금증을 풀어볼까요?">
-			
-			
-			
-			========= ${record.name}님 이 작성한 글  ============
-			${record.content}	
-							</textarea></td>
-						</tr>
-						<tr>
-							<th>Postdate</th>
-							<td id="systime"></td>
-						</tr>
-			</table>
-		</form>
-		
+					</div>
 
-		<!--
+				</div>
+				<!-- table-->
+
+				<table class="table table-striped table-hover table-bordered">
+					<tr>
+						<th>번호</th>
+						<td>${record.req_no}</td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td>${record.title}</td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td>${record.content}</td>
+					</tr>
+					
+					<tr>
+						<th>status</th>
+						<td><span class="status text-success">&bull;</span>${record.status}</td>
+					</tr>
+					<tr>
+						<th>이벤트 기간</th>
+						<td>${record.period}</td>
+					</tr>
+					<tr>
+						<th>요청 날짜</th>
+						<td>${record.reqdate}</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><a class="btn btn-primary"
+							href="<c:url value='/mypage/partner/RequestEvent_P.it'/>">목록</a></td>
+					</tr>
+
+				</table>
+<!--  이미지 업로드 확인을 위한 --> -->
+					<div id="imageBoard">
+						<ul>
+							<c:forEach items="${files}" var="file">
+								<li><img src="/images/${file}" width="480" height="auto" /></li>
+							</c:forEach>
+						</ul>
+					</div>
+				
+
+				<!--
 ***************************************************************************************
 Delete Modal
 ***************************************************************************************
   -->
-			<div id="deleteEmployeeModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form>
-							<div class="modal-header">
-								<h4 class="modal-title">Delete Client</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-							</div>
-							<div class="modal-body">
-								<p>Are you sure you want to delete these Records?</p>
-								<p class="text-warning">
-									<small>This action cannot be undone.</small>
-								</p>
-							</div>
-							<div class="modal-footer">
-								<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"> 
-									<a href="<c:url value='/mypage/partner/ReplyDelete.it?ask_no=${record.ask_no}'/>">
-									<input type="button" class="btn btn-danger" value="Delete"></a>
-							</div>
-						</form>
+				<div id="deleteEmployeeModal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<form>
+								<div class="modal-header">
+									<h4 class="modal-title">Delete Client</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<p>Are you sure you want to delete these Records?</p>
+									<p class="text-warning">
+										<small>This action cannot be undone.</small>
+									</p>
+								</div>
+								<div class="modal-footer">
+									<input type="button" class="btn btn-default"
+										data-dismiss="modal" value="Cancel"> <a
+										href="<c:url value='/mypage/partner/ReqeustEvent_delete.it?req_no=${record.req_no}'/>"><input
+										type="button" class="btn btn-danger" value="Delete"></a>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		</div>
-		</div>
 	</div>
+</div>
 </body>
 </html>
