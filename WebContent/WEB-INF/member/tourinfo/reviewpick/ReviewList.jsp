@@ -155,24 +155,16 @@
 	        
 	        <article class="blog-wrap text-center">
 	          <div class="blog-media">
-	            <div id="myCarousel" class="carousel slide">
+	            <div id="myCarousel">
 	              <div class="carousel-inner">
 	                <div class="item active">
-	                  <img src=https://images.unsplash.com/photo-1532649097480-b67d52743b69?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8bc9e7a65c3e8e9049d621c3e88ffc9a&auto=format&fit=crop&w=1189&q=80 " alt="">
+	                  <img src="<c:url value='/Upload/Review/${review.FIRSTIMAGE}'/>" alt="">
 	                </div>
 	                <!-- end item -->
-	                <div class="item">
-	                  <img src="https://images.unsplash.com/photo-1521022887356-1db35c7bbf1f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1a82096f5863af5285990f03390bd1cf&auto=format&fit=crop&w=1189&q=80" alt="">
-	                </div>
+	                
 	                <!-- end item -->
 	              </div>
-	              <!-- carousel inner -->
-	              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-						<span class="icon-prev"></span>
-					</a>
-	              <a class="right carousel-control" href="#myCarousel" data-slide="next">
-						<span class="icon-next"></span>
-					</a>
+	       
 	            </div>
 	            <!-- end carousel -->
 	          </div>
@@ -180,7 +172,7 @@
 	          <header class="page-header blog-title">
 	            <div class="author-wrap">
 	              <span class="inside">
-					<a href="#"><img class="img-responsive" alt="" src="<c:url value='/Upload/Member/${review.PROFILE}'/> " ></a>
+					<a href="#"><img class="img-responsive" alt="" src="<c:url value='/Upload/Member/${review.PROFILE}'/> "></a>
 				</span>
 	            </div>
 	            <h3 class="general-title">${review.TITLE} (${review.SERIES})</h3>
