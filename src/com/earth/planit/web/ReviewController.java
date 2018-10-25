@@ -56,6 +56,14 @@ public class ReviewController {
 							HttpServletResponse resp,
 							@RequestParam(required = false, defaultValue = "1") int nowPage) throws Exception {
 
+		if(map.get("areacode")!=null) {
+			System.out.println(map.get("areacode")+" 지역을 선택했습니다."+map.get("areacodeKor"));
+			System.out.println(map.get("keyword")+" 키워드를 입력했습니다."+map.get("keyword").toString().length());
+			model.addAttribute("areacode", map.get("areacode"));
+			model.addAttribute("keyword", map.get("keyword"));
+			model.addAttribute("areacodeKor", map.get("areacodeKor"));
+		}
+		
 		// 페이징 로직 시작
 		// 전체 리뷰수
 		int totalReviewCount = reviewService.getReviewListTotal(map);
@@ -81,6 +89,10 @@ public class ReviewController {
 		return "tourinfo/reviewpick/ReviewList.theme";
 	}
 
+	
+	
+	
+	//리뷰 작성 
 	@RequestMapping("/review/myreview/Write.it")
 	public String reviewDetail(@RequestParam Map map, // review_id, planner_id
 			Model model) throws Exception {

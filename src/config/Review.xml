@@ -16,6 +16,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select r.*, m.id, m.PROFILE   
 		from review r, planner p,member m
 		where r.planner_id=p.planner_id and p.id=m.id 
+		<if test="areacode != null">
+		and p.areacode=#{areacode}
+		</if>
+		<if test="keyword != null and !keyword.equals('')">
+		and r.hashtag LIKE '%' || #{keyword} || '%'
+		</if>
 		order by 
 		<if test="order != null">
 		r.${order} desc,
@@ -25,8 +31,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="reviewGetReviewlistTotal" parameterType="java.util.Map" resultType="int">
 		select count(*)
-		from review r
-		order by postdate desc
+		from review r,planner p
+		where r.planner_id=p.planner_id
+		<if test="areacode != null">
+		and p.areacode=#{areacode}
+		</if>
+		<if test="keyword != null and title != ''">
+		and r.hashtag LIKE '%' || #{keyword} || '%'
+		</if>
+		order by r.postdate desc
 	</select>
 	
 	<!-- (1) reviewlist >review_id>reviewview     (2) reveiwview-series > planner_id / series > reviewview  -->
