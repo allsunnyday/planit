@@ -23,6 +23,7 @@ public class TourApiUtils {
 
 	public static String serviceKey ="NCPqTyv3znqjQjXg0mr6tqFnxmLBJcm10iYsAe66egVkZa%2F28tT1iJSvoKaq9Y8P92LAcQaoxcD5I5kTY%2Bn%2Buw%3D%3D";
 	//관광 공통 정보를 조회하는 메소드 
+	
 	public static ContentDTO getdetailCommon(String contenttype, String contentid) throws Exception {
 		
 		String addr="http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey="+serviceKey +

@@ -183,7 +183,7 @@ oneRoute
                 <li class="release">추가사항: <span>28 February, 2014</span></li> -->
               </ul>
               <ul>
-					<li><a href="<c:url value='/photobook/step1/selectdesign.it'/> " class="dmbutton2" data-filter="*">포토북만들기</a></li>
+					<li><a href="<c:url value='/photobook/step1/selectdesign.it?review_id=${review.review_id}'/> " class="dmbutton2" data-filter="*">포토북만들기</a></li>
 				</ul>
             </div>
             <!-- details section -->

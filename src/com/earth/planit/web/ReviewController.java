@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,17 +34,48 @@ public class ReviewController {
 	@Resource(name="reviewService")
 	private ReviewService reviewService;
 	
-	
+	@Value("${REVIEW_PAGE_SIZE}")
+	private int pageSize;
+	//블락페이지
+	@Value("${REVIEW_PAGE_SIZE}")
+	private int blockPage;
 	
 	
 	//리뷰 리스트로 이동
 	@RequestMapping("/planit/review/ReviewList.it")
-	public String reviewList(@RequestParam Map map, Model model)throws Exception{
+	public String reviewList(@RequestParam Map map, 
+								Model model,
+								HttpServletRequest req,
+								HttpServletResponse resp,
+								@RequestParam(required=false, defaultValue="1") int nowPage	)throws Exception{
+		
+		// 페이징 로직 시작
+		// 전체 리뷰수
+		int totalReviewCount = reviewService.getTotalReviewCount(map);
+		// 전체 페이지수 
+		int totalPage = (int)Math.ceil(((double)totalReviewCount/pageSize));
+		// 시작 끝 rownum 구하기
+		int start = (nowPage-1)*pageSize+1;
+		int end   = nowPage*pageSize;
+		map.put("start", start);
+		map.put("end", end);
+		
+		
+		
 		//리뷰 리스트를 가지고 온다. 
-		
 		List<Map> list = reviewService.selectReviewList(map);
-		System.out.println(list.size());
 		
+		//페이징 스트링
+		String pagingString 
+				= CommonUtil.pagingBootStrapStyle(totalReviewCount,
+													pageSize, 
+													blockPage, 
+													nowPage, 
+													req.getContextPath()+"/planit/review/ReviewList.it?");
+		
+		model.addAttribute("pagingString", pagingString);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("list", list);
 		return "tourinfo/reviewpick/ReviewList.theme";
 	}
@@ -176,7 +208,7 @@ public class ReviewController {
 	}
 	
 	
-	
+	// 리뷰 하루 일정 중에  하나의 코스에 대해서 보여준다.
 	@RequestMapping("/riveiw/write/OneSpot.it")
 	public String writeOneReview(@RequestParam Map map,  // review_id , route_index 
 								Model model,
@@ -214,16 +246,39 @@ public class ReviewController {
 	
 	//////////////////////////////////포토북
 	@RequestMapping("/photobook/step1/selectdesign.it")
-	public String selectbook()throws Exception{
-		// 사용자가 작성한 리뷰의 정보를 그대로 가져간다. 
-		// 포토북 리스트를 가지고 온다. 
-		
+	public String selectbook(@RequestParam Map map, Model model)throws Exception{
+		//사용자의 리뷰아이디가 넘어온다. 
+		System.out.println("디자인 선택하러 가는 리뷰 아이디:"+map.get("review_id"));
 		
 		return "review/photobook/SelectBook.theme";
 	}
 	
 	@RequestMapping("/photobook/step2/Preview.it")
-	public String previewBook()throws Exception{
+	public String previewBook(@RequestParam Map map, Model model)throws Exception{
+		System.out.println("리뷰아이디)"+map.get("review_id")+" 선택한 포토북)"+map.get("name"));
+		// review_id에 해당하는 일정을 불러온다.
+		List<Map> reviewList = reviewService.selectReviewContentList(map);
+		//int totalroute = reviewList.size();
+		for (Map oneReview: reviewList) {
+			//하나의 관광지에 대한 이미지 분석 
+			if (oneReview.get("IMAGE") != null) {
+				String []images = oneReview.get("IMAGE").toString().trim().replace("<*>", "&").split("&");
+				System.out.println("변경전  image"+oneReview.get("IMAGE")+"  이미지개수:"+images.length);
+				// 이미지 개수에 해당하는 포토북을 가지고 온다. 
+				map.put("imagecount", images.length);
+				Map layouts = reviewService.getPhotobookLayouts(map);
+				for(int i=0; i<images.length;i++) {
+					layouts.put("LAYOUTS", layouts.get("LAYOUTS").toString().replace("BASIC"+i+".jpg", images[i]));
+				}
+				oneReview.put("IMAGE", layouts.get("LAYOUTS"));
+				System.out.println("변경한 후에 oneReview-IMAGE키에 저장된 값:"+oneReview.get("IMAGE"));
+			}
+			else {
+				System.out.println("해당 일정에는 이미지가 없습니다.");
+			}
+		}
+		
+		model.addAttribute("listMap", reviewList );
 		return "review/photobook/PreviewBook.theme";
 	}
 	
@@ -311,4 +366,24 @@ public class ReviewController {
 	}
 	
 
+	@ResponseBody
+	@RequestMapping(value="/planit/review/LikedreView.it",produces="text/plain; charset=UTF-8")
+	public String userLikedContent(@RequestParam Map map, HttpSession session) throws Exception{
+		
+		System.out.println(map.get("review_id")+" "+session.getAttribute("id"));
+		map.put("id", session.getAttribute("id"));
+//		//// 이미  좋아요한 것인지 판단
+		int isAlreadyLiked = reviewService.alreadyLikeReview(map); 
+	
+		if(isAlreadyLiked!=0) {
+			// 이미 사용자가 좋아요를 눌렀다.
+			return "already";
+		}
+//		// 사용자가 아직 좋아요 한 것이 아니라면
+		int affected = reviewService.insertLikedReview(map);
+		
+		return "success";
+	}
+	
+	
 }

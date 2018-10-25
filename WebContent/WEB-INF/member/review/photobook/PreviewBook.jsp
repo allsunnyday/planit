@@ -4,6 +4,78 @@
 <!--**********************************************************
 포토북 디자인을 고르는 페이지   
 ************************************************************** -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
+<style>
+.grid {
+	background:silver;
+	-webkit-column-count:1;
+	-webkit-column-gap:10px;
+	-webkit-column-fill:auto;
+	-moz-column-count:1;
+	-moz-column-gap:10px;
+	-moz-column-fill:auto;
+	column-count:1;
+	column-gap:15px;
+	column-fill:auto;
+}
+
+.grid-item {
+	display:inline-block;
+	background:#F8F8F8;
+	margin:0 0 10px;
+	padding:15px;
+	padding-bottom:5px;
+	-webkit-column-break-inside:avoid;
+	-moz-column-break-inside:avoid;
+	column-break-inside:avoid;
+}
+
+hr {
+	display:block;
+	height:1px;
+	border:0;
+	border-top:1px solid #ccc;
+	margin:.5em 10px;
+	padding:0;
+}
+
+img {
+	width:100%
+}
+
+p {
+	margin:10px;
+	font-size:.8em;
+	font-family:arial;
+  line-height:1.5em;
+}
+
+@media (min-width: 450px) {
+  .grid {
+    -webkit-column-count:2;
+	  -moz-column-count:2;
+	  column-count:2; 
+  }
+}
+
+@media (min-width: 650px) {
+  .grid {
+    -webkit-column-count:3;
+	  -moz-column-count:3;
+	  column-count:3; 
+  }
+}
+
+@media (min-width: 960px) {
+  .grid {
+    -webkit-column-count:4;
+	  -moz-column-count:4;
+	  column-count:4; 
+  }
+}
+
+
+</style>
 <div style="padding-top: 60px"></div>
 <section class="section1">
 	<div class="container clearfix">
@@ -66,6 +138,8 @@
 		border: 1px pink dotted;
 	}
 </style>
+
+
 <section class="section1">
 	<div class="container clearfix">
 	    <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
@@ -112,92 +186,69 @@
 			<div class="preview-wrapper">
 				
 				<!-- 포토북 페이지 디자인1  -->
+				<c:forEach var="item" items="${listMap}">
+				
+				<!-- 디자인 1 - 텍스트  -->
+				<div class="preview-item-text" >
+					<div class="col-xs-12">
+						<div class="col-xs-12 text-center" style="margin-top: 90px;">
+							<h2>${item.TITLE}</h2>
+							<h2><small>${item.ADDR1}</small></h2>
+							
+							<img alt="이미지" src="${item.FIRSTIMAGE}" style="width:200px;height: 180px">
+						</div>
+						<br>
+						<div class="col-sm-offset-2 col-sm-8">
+						${item.CONTENT}
+						</div>
+					
+					</div>
+				</div>
+				<c:if test="${not empty item.IMAGE }">
 				<!-- 디자인 1 - 이미지  -->
 				<div class="preview-item" >
 					<div class="col-xs-12">
-						<div class="col-xs-10 col-xs-offset-1" style="background-color: pink; margin-top: 30px;height: 200px "></div>
-						<div class="col-xs-5 col-xs-offset-1" style="background-color: pink; margin-top: 10px;height: 230px"></div>
-						<div class="col-xs-5 " style="width:40%;background-color: pink; margin-top: 10px; margin-left:10px; height:  230px"></div>
-						<div class="col-xs-10 col-xs-offset-1" style="background-color: pink; margin-top: 10px;height: 200px "></div>
-						<div class="col-xs-12 text-center"><h2>한강 대교 </h2></div>
+						 ${item.IMAGE} 
+						
 					</div>
 				</div>
-				<!-- 디자인 1 - 텍스트  -->
-				<div class="preview-item-text" >
-				</div>
+				</c:if>
+				</c:forEach>
+			
+			
+			<div>
+			<%-- <img alt="이미지" src="<c:url value='/Upload/Review/P20150430_155712109_5B5FAF3B-0F67-4FC0-AF5B-D1B2DFF42676.JPG'/>"> --%>
+			
+			<button id="downpdf" >pdf만들기</button>
+			</div>
 				
-				
-				<!-- 포토북 페이지 디자인2  -->
-				<div class="preview-item">
-					<!-- 디자인 2 - 이미지  -->
-					<div class="col-xs-12" style="padding: 0;">
-						<div class="col-xs-5" style="background-color: pink;height: 200px; margin: 0; "></div>
-						<div class="col-xs-5 col-xs-offset-1"  style="background-color: #fff;  ">
-							<h2 class="title">서울, 구석구석</h2>
-							<p>sdjkhfs djhfskfha sdfjhkalsdkj fsjdhfakdhlakfjhs fjhsdfk s'
-							dfhskjhask fdjhfskhfskhfakjsh dhjks d jshkf asjd fas fsjkfha;
-							sdhksjdhf sjdf sjdhf kajhdskjfh asjdhfskjhfkjs djdfja;skdh'
-							djhfskjhdfskjd jdhfadk</p>
-						</div>
-						<div class="col-xs-offset-4 col-xs-5" style="width:60%;background-color: pink; height:  280px"></div>
-						<div class="col-xs-4 col-xs-offset-1" style="background-color: pink; margin-top: 10px;height: 180px "></div>
-						<div class="col-xs-4 col-xs-offset-1" style="background-color: white; margin-top: 10px;height: 180px ">
-							<h5>halo</h5>
-							<p>djhfsk dsjhfskhf jdhfksjhfkdjhfskjhfskfjhksdjhfskdhjfks
-							djfhskdjfhskjdhf skdjfhskjdhfdjhf djhfsk hfdskhfksjhfdksdhf'djfhs
-							dkfsjkhdf sjd fsjdhfkshdfkjdhfskhfskjdhfskdjhfk</p>
-						</div>
-					</div>
-				</div>
-				<!-- 디자인 2 - 텍스트  -->
-				<div class="preview-item-text" >
-				</div>
-				
-				
-				<!-- 포토북 페이지 디자인3  -->
-				<div class="preview-item" >
-					<!-- 디자인 3 - 이미지  -->
-					<div class="col-xs-12">
-						<div class="col-xs-5 col-xs-offset-1" style="background-color: pink; margin-top: 100px;height: 275px "></div>
-						<div class="col-xs-5 " style="background-color: skyblue;margin-top: 100px;height: 275px"></div>
-						<div class="col-xs-5 col-xs-offset-1" style="background-color: skyblue; height:  275px"></div>
-						<div class="col-xs-5" style="background-color: pink; height: 275px "></div>
-					</div>
-				</div>
-				<!-- 디자인 3 - 텍스트  -->
-				<div class="preview-item-text" >
-				</div>
-				
-				
-				<!-- 포토북 페이지 디자인4  -->
-				<div class="preview-item">
-					<!-- 디자인 4 - 이미지  -->
-					<div class="col-xs-12" style="padding: 0;">
-						<div class="col-xs-5" style="background-color: pink;height: 275px; margin: 0; "></div>
-						<div class="col-xs-7 " style="background-color:skyblue; margin:0; padding-left:10px; height: 275px"></div>
-						<div class="col-xs-7" style="background-color: skyblue; margin-top: 200px; height:  275px"></div>
-						<div class="col-xs-5" style="background-color: pink;margin-top: 200px;  height: 275px "></div>
-					</div>
-				</div>
-				<!-- 디자인 4 - 텍스트  -->
-				<div class="preview-item-text" >
-				</div>
-				
-				
-				<!-- 포토북 페이지 디자인5  -->
-				<div class="preview-item" >
-					<div class="col-xs-12">
-						<div class="col-xs-10 col-xs-offset-1" style="background-color: pink; margin-top: 30px;height: 200px "></div>
-						<div class="col-xs-5 col-xs-offset-1" style="background-color: pink; margin-top: 10px;height: 230px"></div>
-						<div class="col-xs-5 " style="width:40%;background-color: pink; margin-top: 10px; margin-left:10px; height:  230px"></div>
-						<div class="col-xs-10 col-xs-offset-1" style="background-color: pink; margin-top: 10px;height: 200px "></div>
-						<div class="col-xs-12 text-center"><h2>한강 대교 </h2></div>
-					</div>
-				</div>
-				<!-- 디자인 1 - 텍스트  -->
-				<div class="preview-item-text" >
-				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+
+<script>
+ $(function(){
+	 /// 
+	 var src = $('.preview-item div div img:last').attr('src')
+	 console.log(src);
+ 
+	 $('#downpdf').click(function(){
+		 console.log('clicked button');
+		 downloadPdf();
+	 });
+ 
+ 
+ });
+ 
+ var downloadPdf=function(){
+	 
+	 
+
+	 
+ };
+
+
+ 
+</script>

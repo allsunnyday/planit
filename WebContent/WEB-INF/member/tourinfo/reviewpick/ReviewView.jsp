@@ -33,7 +33,7 @@ review :
 		// 일정보기 
 		
 		
-		// 시리즈 보기 처리 
+		//시리즈 보기 처리 
 		
 		//사용자 평점 
 		
@@ -156,8 +156,13 @@ review :
 			commentString+= '<li><article class="comment">'
             +'<img src="https://blogpfthumb-phinf.pstatic.net/MjAxODA3MDJfMjk1/MDAxNTMwNTI3MTIwNjAx.XanKPuN9rA3-YNeGK_CtgsoAHQPqumlMMXkqkR_yQs8g.1CuJLtxaD7xjkeuLv-VNx4DOBfg1P6HqDUY9f2glEmgg.JPEG.gream50/1%25C2%25F7%2B%25B1%25B3%25BE%25C8.jpg?type=w161" alt="avatar" class="comment-avatar">'
             +'<div class="comment-content">'
-            +'<h4 class="comment-author">'+comment['ID']+'<small class="comment-meta">'+comment['POSTDATE']+'</small>'
-            +'     <span class="comment-reply"><a href="javascript:" class="comment-reply button" onclick="commentShowReply();" title="'+comment['COMMENT_NO']+'" >reply</a></span>'
+            +'<h4 class="comment-author">'+comment['ID']+'<small class="comment-meta">'+comment['POSTDATE']+'</small>';
+            
+            if('${sessionScope.id}'==comment['ID']){
+            	commentString+='<a class="btnDel " href="javascript:" id=""  title="" ><font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a>'
+            }
+            
+            commentString+='     <span class="comment-reply"><a href="javascript:" class="comment-reply button" onclick="commentShowReply();" title="'+comment['COMMENT_NO']+'" >reply</a></span>'
             +' </h4>'+comment['CONTENT']
             +'</div></article></li>';
 		});
@@ -169,6 +174,39 @@ review :
 		var comment_no = $(this).attr('title');
 		console.log('이 '+comment_no+'에 답변을 답니다.');
 		
+	};
+	
+	
+	// 리뷰 좋아요 
+	var likedThisReview=function(){
+		//로그인한 유저인지 확인
+		if('${sessionScope.id}'==''){
+			alert('로그인이 필요해요!');
+			return ;
+		}
+		console.log('즐겨찾기를 시작합니다.')
+		// 로그인한 유저인 경우에는 ajax를 이용해서 mypage로 이동하던가. 아니면 그냥 보기 
+		var review_id =${review.review_id};
+		$.ajax({
+			url:"<c:url value='/planit/review/LikedreView.it'/> ",
+			data:{review_id:review_id},
+			type:'post',
+			dataType:'text',
+			success:function(data){
+				console.log('성공');
+				if(data=='success'){
+					
+					alert('저장 성공\r\n좋아요한 리뷰는 마이페이지에서 확인할 수 있어요!')					
+				}
+				else if (data=='already'){					
+					alert('이미 좋아요를 눌렀어요\r\n즐겨찾기에 추가한 리뷰는 마이페이지에서 확인할 수 있어요!')					
+				}
+			},
+			error:function(request, error){
+				console.log(request,error);
+			}
+			
+		});	
 	};
 
 </script>
@@ -191,7 +229,9 @@ review :
 			<nav class="portfolio-filter clearfix">
 				<ul>
 					<li><a href="#" class="dmbutton" >일정보기</a></li>
-					<li><a href="#" class="dmbutton" >즐겨찾기</a></li>
+					<c:if test="${not (sessionScope.id eq review.id)}">
+					<li><a  href="javascript:" onclick="likedThisReview();" class="dmbutton"  >즐겨찾기</a></li>
+					</c:if>
 					<li><a href="#" class="dmbutton showSeriesbtn" data-toggle="modal" data-target="#seriesmodal" >시리즈보기</a></li>
 					<c:if test="${sessionScope.id eq review.id}">
 					<li><a href="<c:url value='/review/myreview/Write.it?planner_id=${review.planner_id}&review_id=${review.review_id}'/> " class="dmbutton" >수정하기</a></li>
@@ -207,9 +247,10 @@ review :
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-		        	<div id="comments_wrapper">
+		        	<!--*****series_wrapper******  -->
+		        	<div id="series_wrapper">
 						<h4 class="title">여행 시리즈</h4>
-				          <ul class="comment-list">
+				          <ul class="series-list">
 				            <li>
 				              <article class="comment">
 				                <div class="comment-content">
@@ -233,7 +274,9 @@ review :
 				          </ul>
 				             <!-- End .comment LIst-->
 				     </div>
+		        	<!--*****series_wrapper******  -->
 		      	</div>
+		     	 
 		     	 <div class="modal-footer">
 		       	 	<button type="button" class="dmbutton2" data-dismiss="modal">닫기</button>
 		        	
@@ -356,8 +399,10 @@ review :
  <section class="section2">
     <div class="container">
       <div class="message text-center">
+        
         <h2 class="big-title-for-user-rating"><span>review</span>가 도움이 되었나요?</h2>
         <a class="button large" href="#" onclick="giveRating();" id="rating" > 평점주기 </a>
+      
       </div>
       <!-- end message -->
     </div>
