@@ -91,8 +91,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="ReviewInsertRating" parameterType="java.util.Map">
-		insert into review_rating (rating_id, riview_id ,id, review_rating) 
-		values(SEQ_review_rating_rating_id.nextval, #{review_id}, #{id}, review_rating+#{review_rating})
+		insert into review_rating (rating_id, review_id ,id, rating) 
+		values(SEQ_review_rating_rating_id.nextval, #{review_id}, #{id}, #{rating})
 	</insert>
 	
 	<!--**********************write comment ***********************-->

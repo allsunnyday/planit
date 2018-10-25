@@ -18,53 +18,10 @@ review :
 	firstimage
 ***************************************  -->
 <style>
-//Child 1
-.ratings {
-  width: 100%;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
- 
-  align-items: center;
-  background-color: pink
+.stars{
+	display: inline-block;
 }
 
-.stars {
-  display: inline-block;
-  font-size: 2em * 6;
-  color: white;
-}
-
-label {
-  cursor: pointer;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-.selected {
-  color: blue;
-  transition: color .3s ease-out;
-}
-
-.secondary{
-  color: red;
-}
-
-
-.explosion {
-  animation: explosion 1s ease-in-out alternate;
-}
-
-
-
-//Animations
-@keyframes explosion {
-  0% { transform: scale(0); opacity: 0; margin: 5em; }
-  50% { transform: scale(2); opacity: .5; }
-  100% {transform: scale(1); opacity: 1; }
-}
 </style>
 <script>
 
@@ -136,32 +93,43 @@ input[type="radio"] {
 					console.log('평점을 줘야합니다.');
 					$('#rating').attr('data-target', '#ratingmodal');
 					$('#ratingmodal').modal('show');
-					
-					showRating();
-					
-					
 				}
 			}
 		});
 	} 
 	
-	var showRating = function(){
-		var stars = $('li');
-		var result = $("#result");
-
-
-		stars.on("click", function(){
-		  $(stars).removeClass("selected");
-		  $(stars).removeClass("secondary");
-		  $(this).addClass("selected");
-		  $(this).prevAll().addClass("secondary");
-		  result.css("display", "block");
-		  
-		  let x = $( "input[type=radio][name=star]:checked" ).val();
-		  result.html(`You picked ${x} stars`);
-
+	// 이미지를 
+	function ratingReview(){
+		console.log('ratingReview 함수를 시작합니다.');
+		
+		var rating = $(':radio:checked').val();
+		console.log('사용자가 선택한 값='+rating);
+		
+		$.ajax({
+			url:"<c:url value='/planit/review/RatingReview.it'/> ",
+			data:{rating:rating, review_id:${review.review_id}},
+			type:'post',
+			dataType:'text',
+			success:function(data){
+				if(data == 'success'){
+					alert('저장에 성공했습니다.');
+					location.replace("<c:url value='/planit/review/ReviewView.it?review_id=${review.review_id}'/>");
+				}else{
+					alert('저장 실패 .. ');
+				}
+			},
+			error:function(request, error){
+				console.log(request,error);
+			}
+			
 		});
-	};	
+		
+	}
+	
+	
+	
+	
+	
 	// 코멘트 작성
 	var sendComments=function(){
 		// 내용을 입력했는지 확인한다.
@@ -475,22 +443,22 @@ input[type="radio"] {
 		        	<div id="comments_wrapper">
 						<h4 class="title">이 리뷰에 대한 평점을 남겨주세요!</h4>
 						<div class="rating-wrapper">
-						  <div class="rating">
+						  <div class="rating text-center">
 						   <ul class="explosion">
 						        <li class="stars"><label for="star-1"><i class="fa fa-star" aria-hidden="true"></i></label>  
-						          <input type="radio" name="star" id="star-1" value="1">
+						          <input type="radio" name="rating" id="star-1" value="1">
 						        </li >
 						        <li class="stars"><label for="star-2"><i class="fa fa-star" aria-hidden="true"></i></label>  
-						          <input type="radio" name="star" id="star-2" value="2">
+						          <input type="radio" name="rating" id="star-2" value="2">
 						        </li>
 						        <li class="stars"><label for="star-3"><i class="fa fa-star" aria-hidden="true"></i></label>  
-						          <input type="radio" name="star" id="star-3" value="3">
+						          <input type="radio" name="rating" id="star-3" value="3">
 						        </li>
 						        <li class="stars"><label for="star-4"><i class="fa fa-star" aria-hidden="true"></i></label>  
-						          <input type="radio" name="star" id="star-4" value="4">
+						          <input type="radio" name="rating" id="star-4" value="4">
 						        </li>
 						        <li class="stars"><label for="star-5"><i class="fa fa-star" aria-hidden="true"></i></label>  
-						          <input type="radio" name="star" id="star-5" value="5">
+						          <input type="radio" name="rating" id="star-5" value="5">
 						        </li>
 						      </ul>
 						  </div>
@@ -499,7 +467,7 @@ input[type="radio"] {
 		      	</div>
 		     	 <div class="modal-footer">
 		       	 	<button type="button" class="dmbutton2" data-dismiss="modal">닫기</button>
-		       	 	<button type="button" class="dmbutton2" >확인</button>
+		       	 	<button type="button" class="dmbutton2" onclick="ratingReview();" >확인</button>
 		      	</div>
 			</div>
 		</div>

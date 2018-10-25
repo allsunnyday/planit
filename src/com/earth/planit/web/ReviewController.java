@@ -495,4 +495,20 @@ public class ReviewController {
 		FileUtils.downloadForSpring(req, resp, "/Upload/Review", filename);
 		//return "review/photobook/DownloadBook.theme";
 	}
+	
+	
+	/// rating
+	@ResponseBody
+	@RequestMapping(value="/planit/review/RatingReview.it",produces = "text/plain; charset=UTF-8")
+	public String ratingReview(@RequestParam Map map, HttpSession session)throws Exception{
+		// 값이 잘 넘어 오는지 확인
+		System.out.println(map.get("rating")+","+map.get("review_id"));
+		// 사용자의 아이디 저장
+		map.put("id", session.getAttribute("id"));
+		int affected = reviewService.insertRating(map);
+		if (affected == 1)
+			return "success";
+		else
+			return "fail";
+	}
 }
