@@ -27,11 +27,23 @@ public interface MemberService {
 	
 	//[회원의 MyPageHome Review용 리스트]
 	List<ReviewDTO> homeReviewList(Map map);
+	
+	//[회원의 MyPageHome Planner용 리스트]
+	List<Map> homePlannerList(Map map);
+	List<Map> memberPlannerList(Map map);
 	//[회원의 MyPageHome QNA용 리스트]
 	List<FaqNoticeDTO> homeQNAList(Map map);
 	
 	//[회원 QnA정보를 담을 리스트]
 	List<FaqNoticeDTO> memberQnAList(Map map);
+	
+	//[회원 QnA정보를 담을 리스트]
+	List<Map> memberLikedTourDetail(Map map);
+	
+	//[회원 QnA정보를 담을 리스트]
+	List<Map> memberLikedReviewDetail(Map map);
+	//[회원 QnA정보를 담을 리스트]
+	List<Map> memberLikedPlannerDetail(Map map);
 	
 	//[페이징용]
 	int getTotalCount(Map map);
@@ -39,9 +51,9 @@ public interface MemberService {
 	//[Liked Tour]
 	List<Map> memberLikedTour(Map map);
 	
-	//[Liked Tour]
+	//[Liked Review]
 	List<Map> memberLikedReview(Map map);
-	//[Liked Tour]
+	//[Liked Planner]
 	List<Map> memberLikedPlanner(Map map);
 	
 	//[선호도 노출]
@@ -49,4 +61,7 @@ public interface MemberService {
 	
 	//[회원가입 후 선호도 업데이트]
 	int updateProference(Map map);
+	
+	//[프로필이 널인지 아닌지 체킹]
+	int profilecheck(Map map);
 }

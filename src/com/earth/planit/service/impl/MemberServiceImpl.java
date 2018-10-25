@@ -113,6 +113,42 @@ public class MemberServiceImpl implements MemberService {
 		return dao.memberLikedPlanner(map);
 	}
 
+	@Override
+	public List<Map> homePlannerList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.homePlannerList(map);
+	}
+
+	@Override
+	public List<Map> memberPlannerList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberPlannerList(map);
+	}
+
+	@Override
+	public List<Map> memberLikedTourDetail(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedTourDetail(map);
+	}
+
+	@Override
+	public List<Map> memberLikedReviewDetail(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedReviewDetail(map);
+	}
+
+	@Override
+	public List<Map> memberLikedPlannerDetail(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedPlannerDetail(map);
+	}
+
+	@Override
+	public int profilecheck(Map map) {
+		// TODO Auto-generated method stub
+		return dao.profilecheck(map);
+	}
+
 	
 
 }

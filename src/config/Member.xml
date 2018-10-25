@@ -89,6 +89,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id=#{id}
 		order by R.postdate desc
 	</select>
+	<select id="MemberPlannerList"  parameterType="java.util.Map" resultType="java.util.Map">
+		select * from planner
+		where id=#{id} 
+	</select>
 
 	<select id="MemberHomeReviewList"  parameterType="java.util.Map" resultType="reviewDTO">
 		
@@ -96,6 +100,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from review R INNER JOIN  planner P on R.planner_id=P.planner_id
 		where rownum<![CDATA[<=]]>4 and id=#{id}
 		order by R.postdate desc
+	</select>
+	<select id="MemberHomePlannerList"  parameterType="java.util.Map" resultType="java.util.Map">
+		
+		select * from planner
+		where id=#{id} and rownum<![CDATA[<=]]>4
 	</select>
 	<select id="MemberAskPlanit"  parameterType="java.util.Map" resultType="FaqNoticeDTO">
 
@@ -134,6 +143,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from liked_planner
 		where rownum<![CDATA[<=]]>5 and id=#{id}
 	</select>
+	<select id="MemberLikedTourDetail" parameterType="java.util.Map" resultType="java.util.Map">
+		select T.*,C.title,C.addr1
+		from liked_tour T INNER JOIN  content c on T.contentid=C.contentid
+		where id=#{id}
+		order by LIKED_T_ID desc
+	</select>
+	<select id="MemberLikedReviewDetail" parameterType="java.util.Map" resultType="java.util.Map">
+		select L.*,R.*
+		from review R INNER JOIN liked_review L on R.review_id=L.review_id
+		where id=#{id}
+	</select>
+	<select id="MemberLikedPlannerDetail" parameterType="java.util.Map" resultType="java.util.Map">
+		select * from liked_planner
+		where id=#{id}
+	</select>
+	
+	<select id="profilecheck" parameterType="java.util.Map" resultType="int">
+		select profile
+		from member
+		where id=#{id}
+	</select>
+	
+	
+	
+	
+	
+	
+	
 	<select id="MemberPreferList" parameterType="java.util.Map" resultType="memberDTO">
 		select T.id,T.kor
 		from (select *
@@ -142,6 +179,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by rating desc)T
 		where rownum <![CDATA[<=]]>4
 	</select>
+	
 	<update id="MemberUpdatePrefer"  >
 		update preference set rating=rating+10
 		where id=#{id} and cat2=#{cat2}

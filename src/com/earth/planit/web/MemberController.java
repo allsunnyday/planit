@@ -71,18 +71,24 @@ public class MemberController {
 	// ***************마이페이지 이동(일반회원)
 	@RequestMapping("/planit/mypage/MyPageHome.it")
 	public String gotoMyPageHome(@RequestParam Map map,HttpSession session,Model model) throws Exception {
+		//[세션에서 아이디 얻어서 map에 저장]
 		map.put("id", session.getAttribute("id"));
+		//[홈에 뿌려줄 리뷰리스트(5)]
 		List<ReviewDTO> homeReviewList=service.homeReviewList(map);
+		//[홈에 뿌려줄 QnA리스트(5)]
 		List<FaqNoticeDTO> homeQnAList=service.homeQNAList(map);
-		List<MemberDTO> memberPreferList=service.memberPreferList(map);
+		
+		//[홈에 뿌려줄 Liked리스트(5,5,5)]
 		List<Map> memberLiked_Tour=service.memberLikedTour(map);
 		List<Map> memberLiked_Review=service.memberLikedReview(map);
 		List<Map> memberLiked_Planner=service.memberLikedPlanner(map);
+		//[홈에 뿌려줄 Planner리스트(5)]
+		List<Map> homePlannerList=service.homePlannerList(map);
 			
+		model.addAttribute("homePlannerList", homePlannerList);
 		model.addAttribute("memberLiked_Planner", memberLiked_Planner);
 		model.addAttribute("memberLiked_Review", memberLiked_Review);
 		model.addAttribute("memberLiked_Tour", memberLiked_Tour);
-		model.addAttribute("memberPreferList", memberPreferList);
 		model.addAttribute("homeReviewList", homeReviewList);
 		model.addAttribute("homeQnAList", homeQnAList);
 		
@@ -101,7 +107,12 @@ public class MemberController {
 			MultipartHttpServletRequest mhsr,
 			HttpSession session) throws Exception {
 		
-		if(map.get("isExistProfile") ==null) {
+		map.put("id", session.getAttribute("id").toString());
+		int profilecheck=service.profilecheck(map);
+		
+		System.out.println("프로필 있니 없니:"+profilecheck);
+		System.out.println(map.get("profile")==null?"프로필 있음":"프로필 없음");
+		if(map.get("isExistProfile") ==null&&map.get("profile")!=null) {
 		// 1]서버의 물리적 경로 얻기
 			String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");
 			// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
@@ -123,7 +134,6 @@ public class MemberController {
 		}
 		
 		
-		map.put("id", session.getAttribute("id").toString());
 		
 		
 		System.out.println(map.get("self"));
@@ -221,13 +231,25 @@ public class MemberController {
 	}
 
 	@RequestMapping("/planit/mypage/detail/Liked.it")
-	public String gotoLikedDetail() throws Exception {
+	public String gotoLikedDetail(@RequestParam Map map,HttpSession session,Model model) throws Exception {
+		map.put("id", session.getAttribute("id"));
+		List<Map> likedPlannerAll=service.memberLikedPlannerDetail(map);
+		List<Map> likeReviewAll=service.memberLikedReviewDetail(map);
+		List<Map> likedTourAll=service.memberLikedTourDetail(map);
+		
+		model.addAttribute("likedPlannerAll",likedPlannerAll);
+		model.addAttribute("likeReviewAll",likeReviewAll);
+		model.addAttribute("likedTourAll",likedTourAll);
 		return "mypage/DetailLiked.theme";
 
 	}
 
 	@RequestMapping("/planit/mypage/detail/Planner.it")
-	public String gotoPlannerDetail() throws Exception {
+	public String gotoPlannerDetail(@RequestParam Map map,HttpSession session,Model model) throws Exception {
+		map.put("id", session.getAttribute("id"));
+		List<Map> plannerList=service.memberPlannerList(map);
+		
+		model.addAttribute("plannerList", plannerList);
 		return "mypage/DetailPlanner.theme";
 
 	}
@@ -245,6 +267,10 @@ public class MemberController {
 			// 로그인 처리 - 세션 영역에 저장
 			session.setAttribute("id", map.get("id"));
 			MemberDTO memberRecord = service.memberInfo(map);
+			//[선호사항 세션저장]
+			map.put("id", session.getAttribute("id"));
+			List<MemberDTO> memberPreferList=service.memberPreferList(map);
+			session.setAttribute("memberPreferList", memberPreferList);
 			//이미지 세션에 저장하기
 			System.out.println(memberRecord.getProfile());
 			session.setAttribute("memberRecord", memberRecord);

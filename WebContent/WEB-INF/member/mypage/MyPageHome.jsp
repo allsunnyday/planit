@@ -267,11 +267,11 @@ display: inline-block;
             <div id="MY-First-Preference" style="width:90%;" >
             	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
             		<tr>
-            		<c:if test="${empty memberPreferList }" var="result">
+            		<c:if test="${empty sessionScope.memberPreferList }" var="result">
             			<td>플래닛을 즐겨주세요</td>
             		</c:if>	
             		<c:if test="${not result }">
-            			<c:forEach var="list" items="${memberPreferList}" varStatus="loop">
+            			<c:forEach var="list" items="${sessionScope.memberPreferList}" varStatus="loop">
             				<td>${list.kor }</td><!-- 왜 안나오지 -->
             			
             			</c:forEach>
@@ -341,15 +341,10 @@ display: inline-block;
 	         				<c:forEach var="list" items="${homePlannerList}" varStatus="loop">
 		                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
 		                       <div class="he-wrap tpl6 market-item">
-		                       <c:if test="${empty list.frirstimage }" var="result">
-		                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-		                       </c:if>
-		                       <c:if test="${not result }">
-								<img src="<c:url value='/Upload/Review/${list.frirstimage}'/>" style="height:230px" alt="">
-		                       </c:if>
+		                     	<div  style="border:1px grey solid;width:208px; height:170px; text-align: center"><h2>서울</h2></div>
 		                         <div class="he-view">
 		                           <div class="bg a0" data-animate="fadeIn">
-		                             <h3 class="a1" data-animate="fadeInDown">${list.title}(${list.series })</h3>
+		                             <h3 class="a1" data-animate="fadeInDown">${list.POSTDATE}</h3>
 		                             <a data-rel="prettyPhoto" href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
 		                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
 		                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
