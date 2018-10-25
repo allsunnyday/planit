@@ -1,6 +1,9 @@
+<%@page import="com.earth.planit.service.impl.FaqNoticeDAO"%>
+<%@page import="com.earth.planit.service.FaqNoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <link rel="shortcut icon" href="https://365ok.co.kr/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://365ok.co.kr/theme/ok/skin/board/basic/style.css?ver=171222">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -69,14 +72,20 @@
 <div>
 <div class="col-md-10">
   			<table width=28%>
-             	<tr >
-	             	<td style="font-size:1.6em"><i class="fa fa-caret-up"></i>  이전글 &nbsp; :</td>
-	             	<td style="font-size:1.6em"><a href="<c:url value='#'/>">${noticeview.title}</a></td>
-             	</tr>
-				<tr>
-					<td style="font-size:1.6em"><i class="fa fa-caret-down"></i>  다음글 &nbsp; :</td>
-	             	<td style="font-size:1.6em"><a href="<c:url value='#'/>">${noticeview.title}</a></td>
-             	</tr>             
+<!--              	<tr > -->
+<!-- 	             	<td style="font-size:1.6em"><i class="fa fa-caret-up"></i>  이전글 &nbsp; :</td> -->
+<%-- 	             	<td style="font-size:1.6em"><a href="<c:url value='#'/>">${noticeview.title}</a></td> --%>
+<!--              	</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td style="font-size:1.6em"><i class="fa fa-caret-down"></i>  다음글 &nbsp; :</td> -->
+<%-- 	             	<td style="font-size:1.6em"><a href="<c:url value='#'/>">${noticeview.title}</a></td> --%>
+<!--              	</tr>              -->
+ <img src="<c:url value='/images/mic.png'/>" style=" height: 100px" height="100px">
+  <img src="<c:url value='/images/mic.png'/>" style=" height: 100px" height="100px">
+   <img src="<c:url value='/images/mic.png'/>" style=" height: 100px" height="100px">
+    <img src="<c:url value='/images/mic.png'/>" style=" height: 100px" height="100px">
+     <img src="<c:url value='/images/mic.png'/>" style=" height: 100px" height="100px">
+      <img src="<c:url value='/images/mic.png'/>" style=" height: 100px" height="100px">
              </table>
 </div>
 
@@ -89,12 +98,10 @@
 	            	</ul>
 	           </ul>
            </div>
-</div>
+	</div>
     
   </div>         
  
-    
-
 </section>
 <!-- } 게시판 읽기 끝 -->
 

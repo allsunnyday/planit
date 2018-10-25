@@ -201,6 +201,7 @@
 			var contentid=content['contentid'];
 			var href= " <c:url value='/planit/search/list/TourView.it?contentid="+contentid+"'/> ";
 			
+			
 			if(index < 6 ){ //012 345
 				if(index <3){ //0 1 2
 					firstString+=''

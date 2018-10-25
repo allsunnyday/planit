@@ -23,7 +23,7 @@
                 </li>
                 <li><a href="#">어디로 갈까</a>
                   <ul class="dropdown">
-                    <li><a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>">관광지 정보</a></li>
+                    <li><a href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12'/>">관광지 정보</a></li>
                     <li><a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=event'/>">축제/행사</a></li>
                     <%-- <li><a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=best'/>">한국관광 100선</a></li>
                     <li><a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=well'/>">웰니스 관광 25선</a></li>
@@ -32,14 +32,14 @@
                 </li>
                 <li><a href="#">무엇을 먹을까</a>
                   <ul class="dropdown">
-                    <li><a href="<c:url value='/tourinfo/tdview/FoodList.it?food=foodinfo'/>">음식점 정보</a></li>
+                    <li><a href="<c:url value='/tourinfo/tdview/FoodList.it?contenttype=39'/>">음식점 정보</a></li>
                     <%-- <li><a href="<c:url value='/tourinfo/tdview/FoodList.it?food=foodrank'/>">맛집 랭킹!</a></li>
                     <li><a href="<c:url value='/tourinfo/tdview/FoodList.it?food=foodstreet'/>">구석구석 맛골목</a></li> --%>
                   </ul>
                 </li>
                 <li><a href="#">어디서 잘까</a>
                   <ul class="dropdown">
-                    <li><a href="<c:url value='/tourinfo/tdview/SleepList.it?sleep=sleepinfo'/>">숙박업소 정보</a></li>
+                    <li><a href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=36'/>">숙박업소 정보</a></li>
                     <%-- <li><a href="<c:url value='/tourinfo/tdview/SleepList.it?sleep=sleeprank'/>">숙박업소 랭킹!</a></li> --%>
                   </ul>
                 </li>
