@@ -68,6 +68,7 @@
           <form id="subscribe" class="form-inline" action="<c:url value='/planit/review/ReviewList.it'/> " >
           	<select name="areacode" id="areacode" class="dmbutton2" title="조회지역" style="display: inline-block;">
                   <option value="">지역선택</option>
+                  <option value="">전체</option>
                   <option value="1" >서울</option>
                   <option value="2" >인천</option>
                   <option value="3" >대전</option>
