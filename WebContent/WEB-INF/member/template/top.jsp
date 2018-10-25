@@ -40,7 +40,7 @@
 				<li><a href="<c:url value='/planit/review/ReviewList.it'/> ">reviews</a></li>
 				<!-- 예원 -->
 				<li class="dropdown">
-						<c:choose>
+							<c:choose>
 						<c:when test="${empty sessionScope.id and empty sessionScope.p_id}">
 							<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">시작하기<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu" >
@@ -52,7 +52,7 @@
 							<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">${id} 님<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu" >
 								<li><a href="<c:url value='/planit/mypage/MyPageHome.it'/> " style="color:#888;">마이페이지</a></li>
-								 <li><a href="<c:url value='#'/> " style="color:#888;">문의</a></li> 
+								 <li><a href="<c:url value='/planit/search/tourinfo/Qna.it'/> " style="color:#888;">문의</a></li> 
 								<li><a href="<c:url value='/member/login/Logout.it'/> " style="color:#888;">로그아웃</a></li>
 							</ul>
 						
@@ -60,14 +60,15 @@
 						<c:otherwise>
 							<a class="btn btn-link-3 dropdown-toggle"  data-toggle="dropdown" role="button" href="#">${p_id}님<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu" >
-							<li>${partnerRecord.business_no}</li>
-							<li><a href="<c:url value='/planit/mypage/partner/PartnerMyPageHome.it'/> " style="color:#888;">마이페이지</a></li>
-							 <li><a href="<c:url value='/member/login/Join.it'/> " style="color:#888;">문의</a></li> 
+							<li><a href="<c:url value='#'/> " style="color:#888;">${partnerRecord.business_no}</a></li>
+							<li><a href="<c:url value='"/planit/mypage/partner/PartnerMyPageHome.it'/> " style="color:#888;">마이페이지</a></li>
+							 <li><a href="<c:url value='/planit/search/tourinfo/Qna.it'/> " style="color:#888;">문의</a></li> 
 							<li><a href="<c:url value='/member/login/Logout.it'/> " style="color:#888;">로그아웃</a></li>
-							<li><a href="<c:url value='#'/> " style="color:#888;">문의</a></li>
+							<%-- <li><a href="<c:url value='#'/> " style="color:#888;">문의</a></li> --%>
 						</ul>
 						</c:otherwise>
 					</c:choose>
+					
 				</li>
 			</ul>
 		</div>

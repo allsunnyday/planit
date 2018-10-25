@@ -50,6 +50,7 @@ public interface PartnerService {
 
 	int getTotalRecordforRequestEventList(Map map);
 
-	
+	//[Partner MyPage Home]
+	List<Map> userAskPartner(Map map);
 }
 

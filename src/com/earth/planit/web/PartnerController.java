@@ -65,7 +65,7 @@ public class PartnerController {
          // model.addAttribute("record", partnerRecord);
          session.setAttribute("partnerRecord", partnerRecord);
 
-         return "mypage/partner/PartnerMyPageHome.theme";
+         return "forward:/planit/mypage/partner/PartnerMyPageHome.it";
       } else { // 비회원일경우
          model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
          return "forward:/planit/login/Login.it";
@@ -104,7 +104,14 @@ public class PartnerController {
 
    // [기업_마이페이지]
    @RequestMapping("/planit/mypage/partner/PartnerMyPageHome.it")
-   public String gotoPartnerMyPageHome() throws Exception {
+   public String gotoPartnerMyPageHome(@RequestParam Map map,Model model,HttpSession session) throws Exception {
+	   map.put("p_id",session.getAttribute("p_id"));
+	   List<Map> userAskPartner=service.userAskPartner(map);
+	   
+	   model.addAttribute("userAskPartner", userAskPartner);
+	   
+	   
+	   
       return "mypage/partner/PartnerMyPageHome.theme";
    }
 

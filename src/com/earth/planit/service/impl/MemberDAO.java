@@ -76,6 +76,61 @@ public class MemberDAO implements MemberService {
 		// TODO Auto-generated method stub
 		return template.selectOne("getTotalCount2",map);
 	}
-	
+
+	@Override
+	public List<Map> memberLikedTour(Map map) {
+		System.out.println("DAOTOUR 아이디:"+map.get("id"));
+		return template.selectList("MemberLikedTour",map);
+	}
+	@Override
+	public List<MemberDTO> memberPreferList(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberPreferList",map);
+	}
+	@Override
+	public int updateProference(Map map) {
+		// TODO Auto-generated method stub
+		return template.update("MemberUpdatePrefer",map);
+	}
+	@Override
+	public List<Map> memberLikedReview(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberLikedReview",map);
+	}
+	@Override
+	public List<Map> memberLikedPlanner(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberLikedPlanner",map);
+	}
+	@Override
+	public List<Map> homePlannerList(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberHomePlannerList",map);
+	}
+	@Override
+	public List<Map> memberPlannerList(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberPlannerList",map);
+	}
+	@Override
+	public List<Map> memberLikedTourDetail(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberLikedTourDetail",map);
+	}
+	@Override
+	public List<Map> memberLikedReviewDetail(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberLikedReviewDetail",map);
+	}
+	@Override
+	public List<Map> memberLikedPlannerDetail(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("MemberLikedPlannerDetail",map);
+	}
+	@Override
+	public int profilecheck(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("profilecheck",map);
+	}
 
 }

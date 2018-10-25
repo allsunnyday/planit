@@ -5,7 +5,6 @@
 .Partnerpage-content {
 	/* margin-top: 100px; */
 	/* border: 3px black solid; */
-	
 }
 
 #Partnerpage {
@@ -546,39 +545,69 @@ height: 100%; */
 							<a href="<c:url value='/mypage/partner/Request_P.it'/>" class="btn btn-link">
 							<span class="glyphicon glyphicon-plus">더보기 </span></a>
 					</div>
-					<div id="Forth-line">
-						<div id="Partner-Forth-content" class="col-md-12">
-							<div id="Partner-Forth-Q&A-table">
-								<table class="table">
-									<tr>
-										<td class="col-md-2 ">번호</td>
-										<!-- 찜번호 -->
-										<td class="col-md-1 ">분류</td>
-										<td class="col-md-3 col-md-offset-1">제목</td>
-										<td class="col-md-2 col-md-offset-2">날짜</td>
-										<td class="col-md-2 col-md-offset-2">진행여부</td>
+					<div id="Forth-line" style="height:300px;">
+            <div id="MY-Forth-content" class="col-md-12">
+               <div id="MY-Forth-Q&A-table">
+                  <table class="table" style="text-align: center">
+                     <tr>
+                        <td class="col-md-1 " >번호</td>
+                        <!-- 찜번호 -->
+                        <!-- <td class="col-md-1 ">분류</td> -->
+                        <td class="col-md-3 col-md-offset-2" >제목</td>
+                        <td class="col-md-2 col-md-offset-2" >작성자</td>
+                        <td class="col-md-2 col-md-offset-2">진행여부</td>
+                        <td class="col-md-2 col-md-offset-2" >작성일</td>
+                        <td class="col-md-2 col-md-offset-2">답변일</td>
+                        
 
-									</tr>
-									<tr>
-										<td>00</td>
-										<td>정보수정</td>
-										<td>관광지 정보수정 문의</td>
-										<td>2018.01.01</td>
-										<td>문의 접수</td>
+                     </tr>
+                     <c:if test="${empty requestScope.userAskPartner }" var="isEmpty">
+					<tr>
+						<td colspan="6" style="text-align: center">등록된 문의사항이 없어요</td>
+					</tr>
+					</c:if>
+					<c:if test="${not isEmpty }">
+						<c:forEach var="list" items="${userAskPartner}" varStatus="loop">
+							<tr>
+								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
+								<td>${list.ASK_NO}</td>
+								<td class="text-left" >
+								<a style="color: rgb(110,112,118)" href="#"  >${list.TITLE }</a>
+								</td>
+								<!-- Modal -->
+								<td>${list.ID}</td>
+								<td>${list.STATUS}</td>
+								<td>${list.ASKDATE}</td>
+								<td>${list.REPLYDATE}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+           <!--           <tr>
+                        <td>00</td>
+                        <td>정보수정</td>
+                        <td>관광지 정보수정 문의</td>
+                        <td>2018.01.01</td>
+                        <td>문의 접수</td>
 
-									</tr>
-									<tr>
-										<td>00</td>
-										<td>그냥문의</td>
-										<td>제목뭘루하지</td>
-										<td>2018.01.01</td>
-										<td>처리 중</td>
+                     </tr>
+                     <tr>
+                        <td>00</td>
+                        <td>그냥문의</td>
+                        <td>제목뭘루하지</td>
+                        <td>2018.01.01</td>
+                        <td>처리 중</td>
 
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
+                     </tr> -->
+                  </table>
+               </div>
+
+
+
+
+            </div>
+
+
+         </div>
 				</div>
 				<!-- ---------------------- -->
 				<!--       end Forth         -->
