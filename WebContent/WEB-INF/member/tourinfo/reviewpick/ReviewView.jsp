@@ -228,7 +228,7 @@ review :
 		<div class="col-md-2">
 			<nav class="portfolio-filter clearfix">
 				<ul>
-					<li><a href="#" class="dmbutton" >일정보기</a></li>
+					<!-- <li><a href="#" class="dmbutton" >일정보기</a></li> -->
 					<c:if test="${not (sessionScope.id eq review.id)}">
 					<li><a  href="javascript:" onclick="likedThisReview();" class="dmbutton"  >즐겨찾기</a></li>
 					</c:if>
@@ -251,26 +251,18 @@ review :
 		        	<div id="series_wrapper">
 						<h4 class="title">여행 시리즈</h4>
 				          <ul class="series-list">
+				            <c:forEach begin="1" end="${series}" varStatus="loop">
 				            <li>
 				              <article class="comment">
 				                <div class="comment-content">
 				                  <h4 class="comment-author">사진작가의 서울 유랑기 
-				                       <span class="comment-reply"><a href="# " class="comment-reply dmbutton2" >1</a></span>
+				                       <span class="comment-reply"><a href="<c:url value='/planit/review/ReviewView.it?planner_id=${planner_id}&series=${loop.index}'/> " class="comment-reply dmbutton2" >${loop.index}</a></span>
 				                   </h4>  
 				                </div>
 				              </article>
 				              <!-- End .comment -->
 				            </li>
-				            <li>
-				              <article class="comment">
-				                <div class="comment-content">
-				                  <h4 class="comment-author">사진작가의 서울 유랑기 
-				                       <span class="comment-reply"><a href="#" class="comment-reply dmbutton2">2</a></span>
-				                   </h4>    
-				                </div>
-				              </article>
-				              <!-- End .comment -->
-				            </li>
+				            </c:forEach>
 				          </ul>
 				             <!-- End .comment LIst-->
 				     </div>

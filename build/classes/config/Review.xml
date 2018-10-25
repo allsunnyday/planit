@@ -15,13 +15,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select t.*, rownum r from 
 		(select r.*, m.id, m.PROFILE   
 		from review r, planner p,member m
-		where r.planner_id=p.planner_id and p.id=m.id order by r.postdate desc) t ) where r between #{start} and #{end}
+		where r.planner_id=p.planner_id and p.id=m.id 
+		<if test="areacode != null">
+		and p.areacode=#{areacode}
+		</if>
+		<if test="keyword != null and !keyword.equals('')">
+		and r.hashtag LIKE '%' || #{keyword} || '%'
+		</if>
+		order by 
+		<if test="order != null">
+		r.${order} desc,
+		</if>
+		r.postdate desc) t ) where r between #{start} and #{end}
 	</select>
 	
+	<select id="reviewGetReviewlistTotal" parameterType="java.util.Map" resultType="int">
+		select count(*)
+		from review r,planner p
+		where r.planner_id=p.planner_id
+		<if test="areacode != null">
+		and p.areacode=#{areacode}
+		</if>
+		<if test="keyword != null and title != ''">
+		and r.hashtag LIKE '%' || #{keyword} || '%'
+		</if>
+		order by r.postdate desc
+	</select>
+	
+	<!-- (1) reviewlist >review_id>reviewview     (2) reveiwview-series > planner_id / series > reviewview  -->
 	<select id="reviewSelectOne"  parameterType="java.util.Map" resultType="reviewDTO" >
 		select r.*, id from review r join planner p on r.planner_id=p.planner_id
+		<if test="review_id != null">
 		where r.review_id=#{review_id}
-		
+		</if>
+		<if test="planner_id != null">
+		where r.planner_id=#{planner_id} and SERIES=#{series}		
+		</if>		
 	</select>
 	
 	<select id="reviewSelectPlanner"  parameterType="java.util.Map" resultType="java.util.Map">
@@ -83,7 +112,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join content c 
 		on  r.contentid=c.contentid
 		where r.review_id = #{review_id}
-	
 	</select>
 	
 	<!-- ***************select photobook layout ******************* -->
@@ -99,5 +127,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into liked_review(LIKED_R_NO, ID, REVIEW_ID)
 		values(SEQ_liked_review_liked_r_no.nextval, #{id}, #{review_id} )
 	</insert>
+	
+	<update id="reviewUpdateReveiwRating" parameterType="java.util.Map">
+		update review set liked =( rating + (select count(*) from liked_review where review_id=#{review_id})) where review_id=#{review_id}
+	</update>
 	
 </mapper>

@@ -114,6 +114,11 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.insertLikedReview(map);
 	}
 
+	@Override
+	public int getReviewListTotal(Map map) {
+		return dao.getReviewListTotal(map);
+	}
+
 	
 
 }

@@ -15,29 +15,65 @@ max-width: 100%;
 .ov{
    filter:grayscale(100%) 
    }
+   
+#aaa{
+	background-color:red;
+	font-weight: bold;
+	color:white;
+}
+#bbb{
+	background-color:yellow;
+}
+#aaa{
+	-webkit-animation:blink 1.0s ease-in-out infinite alternate;
+    -moz-animation:blink 1.0s ease-in-out infinite alternate;
+    animation:blink 0.5s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    40% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+   40% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    10% {opacity:1;}
+}
+
+
 </style>
 
 
 <script>
+
+/*
 $(function(){
-	$('#areaCode').change(function(){
-		$.ajax({
-			url:'<c:url value="/Planit/tourinfo/tdview/TourInfo.it"/>',
-			dataType:'json',
-			data:{areacode:$(this).val()},
-			success:function(data){
-				var optionString ="";
-				$.each(data, function(key, value){						
-					optionString +="<option value='"+key+"'>"+value+"</option>";
-				});
-				$('#choice_').html(optionString);
-				}	
+		$('#areaCode').click(function(){
+			$.ajax({
+				url:'<c:url value="/Planit/tourinfo/tdview/TourInfo.it"/>',
+				dataType:'json',
+				data:{areacode:$(this).val()},
+				success:showArea(),
+				error:function(data){
+					console.log('에러: ',data)
+				}
 			});
-		};
+		});
 	});
 
-
-
+	var showArea =function(data){
+		switch('#areaCode' != null){
+		case 1:
+			$('#showbox').val();
+			break;
+		
+		
+		}
+		
+	};
+	*/
 </script>
 
 
@@ -49,11 +85,11 @@ $(function(){
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
         <li>
-      <c:choose>
-            <c:when test="${cat1 == 'total'}">관광지정보</c:when>
-            <c:when test="${cat1 == 'event'}">축제/행사</c:when>
-            <c:otherwise>error!</c:otherwise>
-      </c:choose>7
+<%--       <c:choose> --%>
+<%--             <c:when test="${cat1 == 'total'}">관광지정보</c:when> --%>
+<%--             <c:when test="${cat1 == 'event'}">축제/행사</c:when> --%>
+<%--             <c:otherwise>error!</c:otherwise> --%>
+<%--       </c:choose>7 --%>
       </li>
         </ul>
         <h2>PLAN-IT에 등록되어 있는 관광지(총 ${totalRecordCount}개)</h2>
@@ -72,9 +108,10 @@ $(function(){
          
 <!-- ****************************************지역별 버튼 areacode 선택**************************************** -->
          <div class="wrapper text-center">
-         <form id="justAction" action="#" method="GET" name="searchForm" class="form-inline">
+         <form id="justAction" action="<c:url value='/tourinfo/tdview/TourList.it?'/> " method="GET" name="searchForm" class="form-inline">
+         <input type="hidden" name="contenttype" value="12"> 
          <div class="form-group" >
-            <select name="areaCode" id="areaCode" class="dmbutton2" title="조회지역" style="display: inline-block;">
+            <select name="areacode" id="areacode" class="dmbutton2" title="조회지역" style="display: inline-block;">
                   <option value="">지역선택</option>
                   <option value="">전체</option>
 
@@ -95,29 +132,30 @@ $(function(){
                   <option value="37" >전라북도</option>
                   <option value="38" >전라남도</option>
                   <option value="39" >제주도</option>
-                  
-
             </select>
             </div>
 <!-- *************************************** cat2 선택  **************************************** -->
-            <div data-type="multiple" class="form-group" style="display: inline-block;" >
-               <ul class="jetmenu ">
-                  <li><button name="all" value="" class="button ov" type="button">전체</button></li>
-                  <li><button name="category" value="A01" class="button " type="button">자연</button></li>
-                  <li><button name="category" value="A03" class="button " type="button">체험</button> </li>
-                  <li><button name="category" value="B01" class="button " type="button">문화시설</button></li>
-                  <li><button name="category" value="DDD" class="button " type="button">레포츠</button></li>
-                  <li><button name="category" value="A02" class="button " type="button">역사</button></li>
-                  <li><button name="category" value="J02" class="button " type="button">테마</button></li>
-                  <li><button name="category" value="E01" class="button " type="button">쇼핑</button></li>
-
-               </ul>
-               
-            </div>
+<!--             <div data-type="multiple" class="form-group" style="display: inline-block;" > -->
+<!--                <ul class="jetmenu "> -->
+<!--                   <li><button name="all" value="*" class="button ov" type="button">전체</button></li> -->
+<!--                   <li><button name="category" value="A01" class="button " type="button">자연</button></li> -->
+<!--                   <li><button name="category" value="A03" class="button " type="button">체험</button> </li> -->
+<!--                   <li><button name="category" value="B01" class="button " type="button">문화시설</button></li> -->
+<!--                   <li><button name="category" value="DDD" class="button " type="button">레포츠</button></li> -->
+<!--                   <li><button name="category" value="A02" class="button " type="button">역사</button></li> -->
+<!--                   <li><button name="category" value="J02" class="button " type="button">테마</button></li> -->
+<!--                   <li><button name="category" value="E01" class="button " type="button">쇼핑</button></li> -->
+<!--                </ul> -->
+<!--             </div> -->
             <div class="form-group" >
                <button type="submit" class="dmbutton2" value="조회">조회</button>
-               <a class="dmbutton2 ov" href="#" onclick="">조회순</a>
-                   <a class="dmbutton2" href="#" onclick="">제목순</a>
+               <a class="dmbutton2 " id="aaa" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12'/>" >조회순</a>
+               <c:if test="${not empty areacode}">
+               <a class="dmbutton2" id="bbb" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12&areacode=${areacode}&orderColumn=title'/>" >제목순</a>
+               </c:if>
+               <c:if test="${empty areacode }">
+               <a class="dmbutton2" id="bbb" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12&orderColumn=title'/>" >제목순</a>
+               </c:if>
             </div>
             
             <!-- <input type="hidden" name="gotoPage" value=""/>
@@ -167,7 +205,9 @@ $(function(){
          </div>
          <!-- portfolio container -->
       <!-- end container -->
-</div></div></div>
+		</div>
+	</div>
+</div>
 
 
    <div class="row">
@@ -176,8 +216,11 @@ $(function(){
 
 <div class="row">
    <div class="text-center">
+  
       <form class="form-inline" method="post"
-         action="<c:url value='#'/>">
+         action="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12&searchColumn=title&searchColumn=tel'/>">
+         <input type="hidden" name="title">
+         <input type="hidden" name="tel">
          <div class="form-group">
             <select name="searchColumn" class="form-control">
                <option value="all">전체검색</option>
@@ -191,6 +234,7 @@ $(function(){
          <button style="margin-bottom: 10px"type="submit" class="btn btn-primary">검색</button>
 
       </form>
+     
    </div>
 </div>
 
@@ -198,7 +242,7 @@ $(function(){
 
 <!-- end section -->
 
- <script>//이걸 지우면 기능들이 안먹혀요..
+ <script>
    var search=function(){
       $('#frm').submit();
    };

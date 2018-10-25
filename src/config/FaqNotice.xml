@@ -7,11 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="config.FaqNotice" >
 	
 	<select id="showFaq" parameterType="java.util.Map" resultType="faqNoticeDTO">
-		select * from faq
+		select * from faq 
 	</select>
 	
 	<select id="showNotice" parameterType="java.util.Map" resultType="faqNoticeDTO">
-		select * from notice n join emp e on n.emp_no = e.emp_no
+		select * from notice n join emp e on n.emp_no = e.emp_no order by n.no desc
 	</select>
 	
 	<select id="totalCount" parameterType="java.util.Map" resultType="int">
@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="noticeView" parameterType="java.util.Map" resultType="faqNoticeDTO">
-		select r.*,name from notice r join emp e on r.emp_no = e.emp_no where no=#{no} order by no desc 
+		select r.*,name from notice r join emp e on r.emp_no = e.emp_no where no=#{no}  
 	</select>
 	
 	
