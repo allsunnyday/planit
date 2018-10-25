@@ -141,6 +141,12 @@ public class PartnerDAO implements PartnerService{
 		return template.selectOne("getTotalRecordforRequestEventList",map);
 	}
 
+	@Override
+	public List<Map> userAskPartner(Map map) {
+		
+		return template.selectList("PartnerU_Ask_P",map);
+	}
+
 	
 	
 	

@@ -135,4 +135,10 @@ public class PartnerServiceImpl implements PartnerService{
 		return dao.getTotalRecordforRequestEventList(map);
 	}
 
+	@Override
+	public List<Map> userAskPartner(Map map) {
+		// TODO Auto-generated method stub
+		return dao.userAskPartner(map);
+	}
+
 }

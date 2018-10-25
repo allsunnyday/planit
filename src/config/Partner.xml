@@ -296,6 +296,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTotalRecordforRequestEventList" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) FROM event_request WHERE p_id = #{p_id}
 	</select>
+	<select id="PartnerU_Ask_P" parameterType="java.util.Map" resultType="java.util.Map">
+		select * from u_ask_p where p_id=#{p_id} and rownum <![CDATA[<=]]> 5
+	</select>
+	
 	
 	
 </mapper>
