@@ -178,7 +178,7 @@
 				success: successMapPick,
 				error: function(request, status, error){
 					console.log(request, status, error);
-				}
+				}f
 			});///ajax
 		});
 	});

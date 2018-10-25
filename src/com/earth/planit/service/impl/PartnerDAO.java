@@ -110,5 +110,38 @@ public class PartnerDAO implements PartnerService{
 		int affected = template.delete("reservationDelete", dto);
 		return affected;
 	}
+	
+	@Override
+	public List<PartnerDTO> selectRequestEventList(Map map) {
+		return template.selectList("requestEventList", map);
+	}
 
+	@Override
+	public int requestEventDelete(PartnerDTO dto) {
+		return template.delete("requestEventDelete", dto);
+	}
+
+	@Override
+	public int requestEventupdate(Map map) {
+		return template.update("requestEventUpdate", map);
+	}
+
+	@Override
+	public int requestEventWrite(Map map) {
+		return template.insert("requestEventWrite", map);
+	}
+
+	@Override
+	public PartnerDTO requestEventDetail(Map map) {
+		return template.selectOne("requestEventDetail", map);
+	}
+
+	@Override
+	public int getTotalRecordforRequestEventList(Map map) {
+		return template.selectOne("getTotalRecordforRequestEventList",map);
+	}
+
+	
+	
+	
 }

@@ -7,7 +7,7 @@
 .table-wrapper {
 	background: #fff;
 	padding: 20px 25px;
-	margin: 30px auto;
+	margin: auto auto;
 	border-radius: 3px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
@@ -219,143 +219,148 @@ table.table .avatar {
 	/* 	align:right; */
 	text-indent: 10px;
 }
-/* footer가 꺠지는것을 방지하는 css */
-.footer {position:relative;bottom:0; width:100%;}
 
+.footer {position:relative; bottom:0; width:100%;}
 </style>
-<script>
-
-
-</script>
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top: 30px">
 	<div class="col-md-3" style="width: 300px">
-		<div style="padding-top: 50px;">
+		<div style="padding-top: 23px;">
 			<div>
 				<div class="teammembers">
-					<div class="he-wrap tpl2">
-						<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
-							alt="프로필 사진">
-						<div class="he-view"></div>
-					</div>
-					<!-- he wrap -->
-					<div class="teammembers-meta">
-						<h4>Plan:It</h4>
-					</div>
-					<div id="Partner-First-1-self-detail">
-						<p>
-							<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-								(주)회사이름추가하기</span>
-						<div class="Partner-First-PartnerInform">
+				<div class="he-wrap tpl2">
+					<img src="<c:url value='/images/mypage/default-profille.jpg'/>"
+						alt="프로필 사진">
+					<div class="he-view"></div>
+				</div>
+				<!-- he wrap -->
+				<div class="teammembers-meta">
+					<h4>Plan:It</h4>
+				</div>
+				<div id="Partner-First-1-self-detail">
+					<p>
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+							(주)회사이름추가하기</span>
+					<div class="Partner-First-PartnerInform">
 
-							<table id="Partner-First-informtable" style="width: 110%;">
-								<tr>
-									<td>사업자번호</td>
-									<td>${partnerRecord.business_no }</td>
-								</tr>
-								<tr>
-									<td>대표자</td>
-									<td>${partnerRecord.name }</td>
-								</tr>
-								<tr>
-									<td>주소</td>
-									<td>${partnerRecord.address }</td>
-								</tr>
-								<tr>
-									<td>전화</td>
-									<td>${partnerRecord.tel }</td>
-								</tr>
+						<table id="Partner-First-informtable" style="width: 110%;">
+							<tr>
+								<td>사업자번호</td>
+								<td>${partnerRecord.business_no }</td>
+							</tr>
+							<tr>
+								<td>대표자</td>
+								<td>${partnerRecord.name }</td>
+							</tr>
+							<tr>
+								<td>주소</td>
+								<td>${partnerRecord.address }</td>
+							</tr>
+							<tr>
+								<td>전화</td>
+								<td>${partnerRecord.tel }</td>
+							</tr>
+							
 
+
+						</table>
+
+					</div>
+
+
+					<div class="teamskills">	
+						<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
+							<table id="Partner-First-Roomtable" style="width: 100%;">
+								<tr>
+									<td>Total Room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Resting room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Reserved room</td>
+									<td>00</td>
+								</tr>
+								<tr>
+									<td>Star Point</td>
+									<td>00</td>
+								</tr>
 
 
 							</table>
-
 						</div>
-
-
-						<div class="teamskills">
-							<div id="Partner-First-Parter-RoomStatus" style="width: 100%;">
-								<table id="Partner-First-Roomtable" style="width: 100%;">
-									<tr>
-										<td>Total Room</td>
-										<td>00</td>
-									</tr>
-									<tr>
-										<td>Resting room</td>
-										<td>00</td>
-									</tr>
-									<tr>
-										<td>Reserved room</td>
-										<td>00</td>
-									</tr>
-									<tr>
-										<td>Star Point</td>
-										<td>00</td>
-									</tr>
-
-								</table>
-							</div>
-						</div>
-
 					</div>
+
 				</div>
+			</div>
 				<!-- end teammembers -->
 			</div>
 		</div>
 	</div>
 	<div class="col-md-9">
-
 		<div class="container-fluid" style="padding-top: 50px">
 			<div class="table-wrapper">
 				<div class="table-title">
 					<div class="row">
 						<div class="col-sm-4">
-							<h2>${record.name}'sRequest</h2>
+							<h2>Event Request</h2>
 						</div>
 						<div class="col-sm-6" style="float: right;">
 							<a
-								href="<c:url value='/mypage/partner/ReplyWrite.it?ask_no=${record.ask_no}'/>"
+								href="<c:url value='/mypage/partner/Update_RequestEvent.it?req_no=${record.req_no}'/>"
 								class="btn btn-success" data-toggle="modal"><i
-								class="material-icons">&#xE147;</i> <span>Write Reply</span></a> <a
+								class="material-icons">&#xE147;</i> <span>Edit</span></a> <a
 								href="#deleteEmployeeModal" class="btn btn-danger"
 								data-toggle="modal"> <span>Delete</span></a>
 						</div>
+
 					</div>
+
 				</div>
 				<!-- table-->
 
 				<table class="table table-striped table-hover table-bordered">
 					<tr>
 						<th>번호</th>
-						<td>${record.ask_no}</td>
+						<td>${record.req_no}</td>
 					</tr>
 					<tr>
-						<th>고객 정보</th>
-						<td><a href="#"> <img src="/examples/images/avatar/2.jpg"
-								class="avatar" alt="Avatar"> ${record.id}
-						</a></td>
-					</tr>
-					<tr>
-						<th>Title</th>
+						<th>제목</th>
 						<td>${record.title}</td>
 					</tr>
 					<tr>
-						<th>Content</th>
+						<th>내용</th>
 						<td>${record.content}</td>
 					</tr>
+					
 					<tr>
 						<th>status</th>
-						<td><span class="status text-success">&bull;</span>
-							${record.status}</td>
+						<td><span class="status text-success">&bull;</span>${record.status}</td>
 					</tr>
 					<tr>
-						<th>Postdate</th>
-						<td>${record.askdate}</td>
+						<th>이벤트 기간</th>
+						<td>${record.period}</td>
+					</tr>
+					<tr>
+						<th>요청 날짜</th>
+						<td>${record.reqdate}</td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><a class="btn btn-primary"
-							href="<c:url value='/mypage/partner/Request_P.it'/>">목록</a></td>
+							href="<c:url value='/mypage/partner/RequestEvent_P.it'/>">목록</a></td>
 					</tr>
+
 				</table>
+<!--  이미지 업로드 확인을 위한 --> -->
+					<div id="imageBoard">
+						<ul>
+							<c:forEach items="${files}" var="file">
+								<li><img src="/images/${file}" width="480" height="auto" /></li>
+							</c:forEach>
+						</ul>
+					</div>
+				
 
 				<!--
 ***************************************************************************************
@@ -379,9 +384,9 @@ Delete Modal
 								</div>
 								<div class="modal-footer">
 									<input type="button" class="btn btn-default"
-										data-dismiss="modal" value="Cancel"> 
-										<a href="<c:url value='/mypage/partner/ReplyDelete.it?ask_no=${record.ask_no}'/>"><input
-									type="button" class="btn btn-danger" value="Delete"> </a>
+										data-dismiss="modal" value="Cancel"> <a
+										href="<c:url value='/mypage/partner/ReqeustEvent_delete.it?req_no=${record.req_no}'/>"><input
+										type="button" class="btn btn-danger" value="Delete"></a>
 								</div>
 							</form>
 						</div>

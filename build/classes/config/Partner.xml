@@ -3,11 +3,6 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 
-   *변경사항*
-   mapper 파일의 완전한 경로 . xml은 생략
-   ibatis와는 다르게 id값에 '.'를 사용하지 못함
- -->
 <mapper namespace="config.Partner">
    <select id="PartnerIsLogin" parameterType="java.util.Map" resultType="int">
       <!-- select count(*) from member where id='user1' and pwd='1234'; -->
@@ -241,7 +236,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="PartnerRoomList" parameterType="java.util.Map" resultType="PartnerRoomDTO">
       Select * from p_product where p_id=#{p_id}
    </select>
-
    <select id="PartnerRequestList" parameterType="java.util.Map" resultType="PartnerDTO">
       SELECT * FROM (SELECT T.*,ROWNUM RW FROM (SELECT R.*,name FROM u_ask_p R JOIN member M ON R.id=M.id WHERE p_id= #{p_id} ORDER BY refer DESC,step) T) WHERE RW BETWEEN #{start} AND #{end}   
    </select>
@@ -279,5 +273,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       DELETE reservation WHERE reservation_id=#{reservation_id}
    </delete>
 
-
+   <select id="requestEventList" parameterType="java.util.Map" resultType="PartnerDTO">
+      SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT E.*,P.p_name,P.email FROM event_request E JOIN partner P ON E.p_id=P.p_id WHERE E.p_id=#{p_id})T) WHERE R BETWEEN #{start} AND #{end}
+   </select>
+   
+   <select id="requestEventDetail" parameterType="java.util.Map" resultType="PartnerDTO">
+      SELECT E.*,P.p_name,P.email FROM event_request E JOIN partner P ON E.p_id=P.p_id WHERE E.req_no=#{req_no}
+   </select>
+   
+   <delete id="requestEventDelete" parameterType="java.util.Map">
+         DELETE event_request WHERE req_no=#{req_no}
+   </delete>
+   
+   <insert id="requestEventWrite" parameterType="java.util.Map">
+      INSERT INTO event_request VALUES(SEQ_event_request_req_no.nextval, #{p_id},#{title},#{content},'waited',#{period}, SYSDATE)
+   </insert>
+   
+   <update id="requestEventUpdate" parameterType="java.util.Map">
+       UPDATE event_request SET title=#{title}, content=#{content}, status='waited', reqdate=SYSDATE  WHERE req_no=#{req_no}
+   </update>
+   
+   <select id="getTotalRecordforRequestEventList" parameterType="java.util.Map" resultType="int">
+      SELECT COUNT(*) FROM event_request WHERE p_id = #{p_id}
+   </select>
+   <select id="PartnerU_Ask_P" parameterType="java.util.Map" resultType="java.util.Map">
+      select * from u_ask_p where p_id=#{p_id} and rownum <![CDATA[<=]]> 5
+   </select>
+   
+   
+   
 </mapper>
