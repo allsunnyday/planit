@@ -5,7 +5,6 @@
 .Partnerpage-content {
 	/* margin-top: 100px; */
 	/* border: 3px black solid; */
-	
 }
 
 #Partnerpage {
