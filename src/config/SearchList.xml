@@ -13,37 +13,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectTourList" parameterType="java.util.Map" resultType="contentDTO">
 		select * from
 		(select a.*,rownum r from
-          	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor from content c, cat2 c2, cat3 c3  
-           		 where c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=12
-           		 order by
-           		 <if test="orderColumn != null">
-           		 	 #{orderColumn} desc,
+          	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor 
+          	  from content c, cat2 c2, cat3 c3  
+           	where  c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=12 
+           		 <if test="areacode != null ">
+           		 and areacode = #{areacode}
            		 </if>
-           		 viewcount desc, contentid desc )   a )
+           		 <if test="searchColumn !=null">
+           		 	and ${searchColumn} like '%' || #{searchWord} || '%'
+           		 </if>
+           		  order by
+           		 <if test="orderColumn != null">
+           		 	  title asc,
+           		 </if>
+           		 viewcount desc) a )
 		where r  between #{start} and #{end}
 	</select>
+	
+	
 	<select id="selectFoodList" parameterType="java.util.Map" resultType="contentDTO">
 		select * from
 		(select a.*,rownum r from
           	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor from content c, cat2 c2, cat3 c3  
            		 where c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=39
+           		 <if test="areacode != null ">
+           		 and areacode = #{areacode}
+           		 </if>
+           		
+           		  <if test="searchColumn !=null">
+           		 	and ${searchColumn} like '%' || #{searchWord} || '%'
+           		 </if>
            		  order by
            		 <if test="orderColumn != null">
-           		 	 #{orderColumn} desc,
+           		 	  title asc,
            		 </if>
-           		 viewcount desc, contentid desc )   a )
+           		
+           		 viewcount desc)   a )
 		where r  between #{start} and #{end}
 	</select>
+	
 	<select id="selectSleepList" parameterType="java.util.Map" resultType="contentDTO">
 		select * from
 			(select a.*,rownum r from
           	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor from content c, cat2 c2, cat3 c3  
            		 where c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=32
+           		 <if test="areacode != null ">
+           		 and areacode = #{areacode}
+           		 </if>
+           		  <if test="searchColumn !=null">
+           		 	and ${searchColumn} like '%' || #{searchWord} || '%'
+           		 </if>
            		  order by
            		 <if test="orderColumn != null">
-           		 	 #{orderColumn} desc,
+           		 	  title asc,
            		 </if>
-           		 viewcount desc, contentid desc )   a )
+           		 viewcount desc)   a )
 		where r  between #{start} and #{end}
 	</select>
 	
@@ -52,6 +76,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="searchWord != null">
 				and ${searchColumn} LIKE '%' || #{searchWord} || '%'
 		</if>
+		<if test="areacode != null">
+           		 and areacode=#{areacode}
+        </if>
+        order by
+        <if test="orderColumn != null">
+            #{orderColumn} desc,
+        </if>
+        viewcount desc, contentid desc
 	</select>
 	
 	<select id="searchSelectList" parameterType="java.util.Map" resultType="contentDTO">

@@ -48,64 +48,31 @@ max-width: 100%;
 
         <div class="divider"></div>
 	<div class="wrapper text-center">
-			<form id="justAction" action="#" method="GET" name="searchForm" class="form-inline">
+			<form id="justAction" action="<c:url value='/tourinfo/tdview/SleepList.it?'/>" method="GET" name="searchForm" class="form-inline">
+			<input type="hidden" name="contenttype" value="32">
 			<div class="form-group" >
-				<select name="areaCode" id="areaCode" class="dmbutton2" title="조회지역" style="display: inline-block;">
+				<select name="areacode" id="areacode" class="dmbutton2" title="조회지역" style="display: inline-block;">
 						<option value="">지역선택</option>
 						<option value="">전체</option>
-
 						<option value="1" >서울</option>
-						
-
 						<option value="2" >인천</option>
-
 						<option value="3" >대전</option>
-						
-
 						<option value="4" >대구</option>
-						
-
 						<option value="5" >광주</option>
-						
-
 						<option value="6" >부산</option>
-						
-
 						<option value="7" >울산</option>
-						
-
 						<option value="8" >세종특별자치시</option>
-						
-
 						<option value="31" >경기도</option>
-						
-
 						<option value="32" >강원도</option>
-						
-
 						<option value="33" >충청북도</option>
-						
-
 						<option value="34" >충청남도</option>
-						
-
 						<option value="35" >경상북도</option>
-						
-
 						<option value="36" >경상남도</option>
-						
-
 						<option value="37" >전라북도</option>
-						
-
 						<option value="38" >전라남도</option>
-						
-
 						<option value="39" >제주도</option>
-						
-
 				</select>
-				</div>
+			</div>
 <!-- *************************************** cat2 선택  **************************************** -->
 				<div data-type="multiple" class="form-group" style="display: inline-block;" >
 					<ul class="jetmenu ">
@@ -158,8 +125,13 @@ max-width: 100%;
 				</div>
 				<div class="form-group" >
 					<button type="submit" class="dmbutton2" value="조회">조회</button>
-					<a class="dmbutton2 ov" href="#" onclick="">조회순</a>
-                	<a class="dmbutton2" href="#" onclick="">제목순</a>
+					<a class="dmbutton2 ov" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=32'/>" >조회순</a>
+			   <c:if test="${not empty areacode}">
+               <a class="dmbutton2" href="<c:url value='/tourinfo/tdview/SleepLsit.it?contenttype=32&areacode=${areacode}&orderColumn=title'/>" >제목순</a>
+               </c:if>
+               <c:if test="${empty areacode }">
+               <a class="dmbutton2" href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32&orderColumn=title'/>" >제목순</a>
+               </c:if>
 				</div>
 				
 				<!-- <input type="hidden" name="gotoPage" value=""/>
@@ -199,6 +171,7 @@ max-width: 100%;
 			</div>
 	<!-- he wrap -->
 	<h3 class="title">${record.title}</h3>
+	<p>${record.addr1}</p>
 	문의: ${record.tel}</p>
 </div>
 
@@ -222,19 +195,21 @@ max-width: 100%;
 <div class="row">
 	<div class="text-center">
 		<form class="form-inline" method="post"
-			action="<c:url value='#'/>">
-			<div class="form-group">
-				<select name="searchColumn" class="form-control">
-					<option value="all">전체검색</option>
-					<option value="title">업소명</option>
-					<option value="tel">전화번호</option>
-				</select>
-			</div>
-			<div class="form-group" >
-				<input type="text" name="searchWord" class="form-control" />
-			</div>
-			<button style="margin-bottom: 10px"type="submit" class="btn btn-primary">검색</button>
+         action="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32&searchColumn=title&searchColumn=tel'/>">
+         <input type="hidden" name="title">
+         <input type="hidden" name="tel">
+         <div class="form-group">
+            <select name="searchColumn" class="form-control">
+               <option value="all">전체검색</option>
+               <option value="title">숙박업소명</option>
+               <option value="tel">전화번호</option>
+            </select>
+         </div>
+         <div class="form-group" >
+            <input type="text" name="searchWord" class="form-control" />
+         </div>
+         <button style="margin-bottom: 10px"type="submit" class="btn btn-primary">검색</button>
 
-		</form>
+      </form>
 	</div>
 </div>

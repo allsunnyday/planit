@@ -77,11 +77,11 @@
 				      <form method="post" id="sendBack" action="<c:url value='/planit/search/tourinfo/askQna.it'/>">
 				      	<input type="hidden" name="id" value="${id}"><!-- session id -->
 					      <div class="modal-body">
-						      <textarea name="title" id=title cols="100" rows="2" placeholder="제목을 입력하세요"></textarea>
-						      <textarea name="content" id=content cols="100" rows="10" placeholder="내용을 입력하세요"></textarea>
+						      <textarea style="resize: none;" name="title" id=title cols="100" rows="2" placeholder="제목을 입력하세요"></textarea>
+						      <textarea style="resize: none;" name="content" id=content cols="100" rows="10" placeholder="내용을 입력하세요"></textarea>
 					      </div>
 				      <div class="modal-footer">
-				        <button type="time" class="btn btn-default" disabled="disabled" data-dismiss="modal">  보내는 날짜:2018-10-19</button>
+				        <button type="time" class="btn btn-default" disabled="disabled" data-dismiss="modal">  보내는 날짜:${session.askdate}</button>
 	<!-- 			        보내는 날짜&nbsp;  :&nbsp;  <input type='time' style="height:35px;" value='now' disabled="disabled"/> -->
 				        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				        <button type="submit" id="sendMessage" class="btn btn-primary">전송</button>
