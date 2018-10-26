@@ -315,122 +315,44 @@ height: 100%; */
 					</div>
 					<div id="First-line">
 						<div id="Partner-First-content" class="col-md-12">
-							<div class="portfolio-centered">
-								<div class="recentitems portfolio">
-
-									<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
-										<div class="he-wrap tpl6 market-item">
-											<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-											<div class="he-view">
-												<div class="bg a0" data-animate="fadeIn">
-													<h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-													<a data-rel="prettyPhoto" href="img/portfolio_01.jpg"
-														class="dmbutton a2" data-animate="bounceInLeft"><i
-														class="fa fa-search"></i></a> <a
-														href="single-portfolio-2.html" class="dmbutton a2"
-														data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-													<div class="portfolio_category text-center a2"
-														data-animate="fadeIn">
-														<a href="gallery-portfolio.html#">Item Category</a>
-													</div>
-													<!-- portfolio_category -->
-												</div>
-												<!-- he bg -->
-											</div>
-											<!-- he view -->
-										</div>
-										<!-- he wrap -->
-									</div>
-									<!-- end col-12 -->
-
-									<div
-										class="col-lg-3 col-md-3 col-sm-6 col-xs-12 web-design graphic-design">
-										<div class="he-wrap tpl6 market-item">
-											<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-											<div class="he-view">
-												<div class="bg a0" data-animate="fadeIn">
-													<h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-													<a data-rel="prettyPhoto" href="img/portfolio_02.jpg"
-														class="dmbutton a2" data-animate="bounceInLeft"><i
-														class="fa fa-search"></i></a> <a
-														href="single-portfolio-2.html" class="dmbutton a2"
-														data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-													<div class="portfolio_category text-center a2"
-														data-animate="fadeIn">
-														<a href="gallery-portfolio.html#">Item Category</a>
-													</div>
-													<!-- portfolio_category -->
-												</div>
-												<!-- he bg -->
-											</div>
-											<!-- he view -->
-										</div>
-										<!-- he wrap -->
-									</div>
-									<!-- end col-12 -->
-
-									<div
-										class="col-lg-3 col-md-3 col-sm-6 col-xs-12 graphic-design">
-										<div class="he-wrap tpl6 market-item">
-											<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-											<div class="he-view">
-												<div class="bg a0" data-animate="fadeIn">
-													<h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-													<a data-rel="prettyPhoto" href="img/portfolio_03.jpg"
-														class="dmbutton a2" data-animate="bounceInLeft"><i
-														class="fa fa-search"></i></a> <a
-														href="single-portfolio-2.html" class="dmbutton a2"
-														data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-													<div class="portfolio_category text-center a2"
-														data-animate="fadeIn">
-														<a href="gallery-portfolio.html#">Item Category</a>
-													</div>
-													<!-- portfolio_category -->
-												</div>
-												<!-- he bg -->
-											</div>
-											<!-- he view -->
-										</div>
-										<!-- he wrap -->
-									</div>
-									<!-- end col-12 -->
-
-									<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
-										<div class="he-wrap tpl6 market-item">
-											<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-											<div class="he-view">
-												<div class="bg a0" data-animate="fadeIn">
-													<h3 class="a1" data-animate="fadeInDown">Project Name</h3>
-													<a data-rel="prettyPhoto" href="img/portfolio_04.jpg"
-														class="dmbutton a2" data-animate="bounceInLeft"><i
-														class="fa fa-search"></i></a> <a
-														href="single-portfolio-2.html" class="dmbutton a2"
-														data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-													<div class="portfolio_category text-center a2"
-														data-animate="fadeIn">
-														<a href="gallery-portfolio.html#">Item Category</a>
-													</div>
-													<!-- portfolio_category -->
-												</div>
-												<!-- he bg -->
-											</div>
-											<!-- he view -->
-										</div>
-										<!-- he wrap -->
-									</div>
-									<!-- end col-12 -->
-
-									<!-- end col-12 -->
-
-
-									<!-- end col-12 -->
-
-									<!-- end col-12 -->
-
-								</div>
-								<!-- portfolio -->
-							</div>
-
+							 <div class="recentitems portfolio">
+         			<c:if test="${empty partnerRoom }">
+         				<div>
+         					<h4 style="text-align: center">당신만의 멋진 리뷰를 작성해주세요</h4>
+         				</div>
+         			</c:if>
+         			<c:if test="${not empty partnerRoom }">
+         				<c:forEach var="list" items="${partnerRoom}" varStatus="loop">
+	                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
+	                       <div class="he-wrap tpl6 market-item">
+	                       <c:if test="${empty list.roomimg1 }" var="result">
+	                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
+	                       </c:if>
+	                       <c:if test="${not result }">
+							<img src="<c:url value='/Upload/Partner/Product/${list.roomimg1}'/>" style="height:173px" alt="">
+	                       </c:if>
+	                         <div class="he-view">
+	                           <div class="bg a0" data-animate="fadeIn">
+	                             <h3 class="a1" data-animate="fadeInDown">${list.roomtitle}</h3>
+	                             <a data-rel="prettyPhoto" href="<c:url value='/planit/member/partner/ProductView.it?roomcode=${list.roomcode}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+	                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+	                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
+	                               <!-- <a href="gallery-portfolio.html#">Item Category</a> -->
+	                             </div>
+	                             <!-- portfolio_category -->
+	                           </div>
+	                           <!-- he bg -->
+	                         </div>
+	                         <!-- he view -->
+	                       </div>
+	                       <!-- he wrap -->
+	                     </div>
+	                     <!-- end col-12 -->
+                     </c:forEach>
+         			</c:if>
+                  
+                   <!-- portfolio -->
+                    </div> 
 
 
 						</div>

@@ -23,7 +23,7 @@ public interface PartnerService {
 	//[RoomView]
 	PartnerRoomDTO partnerRoomView(Map map);
 	//[RoomList]
-	List<PartnerRoomDTO> partnerRoomList(Map map);
+	List<PartnerRoomDTO> partnerRoomListDetail(Map map);
 
 	
 	List<PartnerDTO> selectRequestList(Map map);
@@ -52,5 +52,8 @@ public interface PartnerService {
 
 	//[Partner MyPage Home]
 	List<Map> userAskPartner(Map map);
+	
+	//[Partner MyPage Home_RoomList]
+	List<PartnerRoomDTO> partnerRoomList(Map map);
 }
 
