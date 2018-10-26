@@ -8,9 +8,7 @@ review :
 oneRoute
 ************************************************************** -->
 <div id="nav" style="padding-top: 60px"></div>
-<!--*********************************
-리뷰 제목부분 (제목/즐겨찾기 /사용자보기) 
-***************************************  -->
+<!--******************리뷰 제목부분 (제목/즐겨찾기 /사용자보기) ***************************************  -->
 <script type="text/javascript">
 	var json;
 	
@@ -26,7 +24,7 @@ oneRoute
 		json = JSON.parse(data);
 		var routestr='';
 		var routecount = 0;
-		console.log(routestr+'여기에서 찍히면 되는거 아니냐');
+		//console.log(routestr+'여기에서 찍히면 되는거 아니냐');
 		$.each(json, function(index, element){
 			routecount=routecount+1;
 			if(index===0){
@@ -83,7 +81,7 @@ oneRoute
 </script>
 
 <section id="intro"
-	style="background: url( <c:url value='/images/main/slide1.jpg'/> ) center center no-repeat fixed;">
+	style="background: url( <c:url value='/Upload/Review/${review.firstimage}'/> ) center center no-repeat fixed;">
 	<div class="container">
 
 		<div class="ror">

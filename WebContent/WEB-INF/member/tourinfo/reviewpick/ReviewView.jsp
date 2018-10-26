@@ -17,7 +17,12 @@ review :
 	rating
 	firstimage
 ***************************************  -->
+<style>
+.stars{
+	display: inline-block;
+}
 
+</style>
 <script>
 
 	
@@ -26,17 +31,7 @@ review :
 		
 		//사용자 별점 반영하기
 		reviewRating('${review.rating}');
-		
-		
-		//즐겨찾기 
-		
-		// 일정보기 
-		
-		
-		//시리즈 보기 처리 
-		
-		//사용자 평점 
-		
+
 		//코멘트 함수
 		$('#submitComments').click(function(){
 			console.log('코멘트를 제출합니다.');
@@ -45,6 +40,11 @@ review :
 		
 		//코멘트 리스트 불러오기 
 		showComments();
+		
+		
+		
+		
+		
 		
 	});
 	
@@ -91,13 +91,44 @@ review :
 				}
 				else{
 					console.log('평점을 줘야합니다.');
-					$('#rating').attr('data-toggle', 'modal');
-					$('#rating').attr('data-target', 'ratingmodal');
-					$('#rating').toggle();
+					$('#rating').attr('data-target', '#ratingmodal');
+					$('#ratingmodal').modal('show');
 				}
 			}
 		});
 	} 
+	
+	// 이미지를 
+	function ratingReview(){
+		console.log('ratingReview 함수를 시작합니다.');
+		
+		var rating = $(':radio:checked').val();
+		console.log('사용자가 선택한 값='+rating);
+		
+		$.ajax({
+			url:"<c:url value='/planit/review/RatingReview.it'/> ",
+			data:{rating:rating, review_id:${review.review_id}},
+			type:'post',
+			dataType:'text',
+			success:function(data){
+				if(data == 'success'){
+					alert('저장에 성공했습니다.');
+					location.replace("<c:url value='/planit/review/ReviewView.it?review_id=${review.review_id}'/>");
+				}else{
+					alert('저장 실패 .. ');
+				}
+			},
+			error:function(request, error){
+				console.log(request,error);
+			}
+			
+		});
+		
+	}
+	
+	
+	
+	
 	
 	// 코멘트 작성
 	var sendComments=function(){
@@ -153,8 +184,10 @@ review :
 			commentString+='<li> 등록된 코멘트가 없습니다.</li>';
 		}
 		$.each(data, function(index, comment){
+			var userimage = '<c:url value="/Upload/Member/'+comment['PROFILE']+'"/>';
+			
 			commentString+= '<li><article class="comment">'
-            +'<img src="https://blogpfthumb-phinf.pstatic.net/MjAxODA3MDJfMjk1/MDAxNTMwNTI3MTIwNjAx.XanKPuN9rA3-YNeGK_CtgsoAHQPqumlMMXkqkR_yQs8g.1CuJLtxaD7xjkeuLv-VNx4DOBfg1P6HqDUY9f2glEmgg.JPEG.gream50/1%25C2%25F7%2B%25B1%25B3%25BE%25C8.jpg?type=w161" alt="avatar" class="comment-avatar">'
+            +'<img src="'+userimage+'" alt="avatar" class="comment-avatar">'
             +'<div class="comment-content">'
             +'<h4 class="comment-author">'+comment['ID']+'<small class="comment-meta">'+comment['POSTDATE']+'</small>';
             
@@ -213,7 +246,7 @@ review :
 
 <!--********************************************상단 제목************************************************** -->
 <section id="intro"
-	style="background: url( <c:url value='/images/main/slide1.jpg'/> ) center center no-repeat fixed;">
+	style="background: url( <c:url value='/Upload/Review/${review.firstimage}'/> ) center center no-repeat fixed;">
 	<div class="container" >
 		<div class="ror">
 			<div class="col-md-8 col-md-offset-2">
@@ -326,11 +359,11 @@ review :
 					
 					<!-- carousel container -->
 					<div class="container clearfix">
-						<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
+						<div class="content col-sm-12 clearfix">
 							<!-- carousel start -->
 							<div id="mycarousel${outerloop.index}" class="carousel slide" data-ride="carousel">
 								<!-- wrapper for slides -->
-								<div class="carousel-inner">
+								<div class="carousel-inner text-center" style="height: 600px;margin:5px;">
 									
 									<c:forEach var="images" items="${review.image}" varStatus="loop">
 										<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
@@ -340,13 +373,13 @@ review :
 										<c:if test="${not isFirst}">
 										<div class="item">
 										</c:if>
-											<div id="" class="">
-												<div class="col-sm-10">
-													<img class=""
-														src="<c:url value='/Upload/Review/${images}'/> "
-														alt="${images}" >
-												</div>
-											</div>
+											
+											<img class=""
+												src="<c:url value='/Upload/Review/${images}'/> "
+												alt="${images}"
+												style="width: 100%"
+												 >
+											
 										</div>
 									</c:forEach>
 								</div>
@@ -388,19 +421,19 @@ review :
 2. 평점을 내린 사람은 평점주기 클릭- 평점
 3. 평점을 이미 내린 사람은 평점주기 클릭 - 이미 평점을 내렸습니다.
 **************************************************************************  -->
- <section class="section2">
-    <div class="container">
-      <div class="message text-center">
-        
-        <h2 class="big-title-for-user-rating"><span>review</span>가 도움이 되었나요?</h2>
-        <a class="button large" href="#" onclick="giveRating();" id="rating" > 평점주기 </a>
-      
-      </div>
-      <!-- end message -->
-    </div>
-    <!-- end container -->
-  </section>
+ <c:if test="${empty sessionScope.id or  not (sessionScope.id eq review.id) }">
+	<section class="section2">
+	    <div class="container">
+	      <div class="message text-center">
+	        <h2 class="big-title-for-user-rating"><span>review</span>가 도움이 되었나요?</h2>
+	        <a class="button large" href="javascript:giveRating();" id="rating" data-toggle="modal"> 평점주기 </a>
+	      </div>
+	      <!-- end message -->
+	    </div>
+	    <!-- end container -->
+	</section>
   <!-- end section2 -->
+</c:if>
 
 
 <div class="modal fade" id="ratingmodal" tabindex="-1" role="dialog">
@@ -408,12 +441,33 @@ review :
 			<div class="modal-content">
 				<div class="modal-body">
 		        	<div id="comments_wrapper">
-						<h4 class="title">여행 시리즈</h4>
+						<h4 class="title">이 리뷰에 대한 평점을 남겨주세요!</h4>
+						<div class="rating-wrapper">
+						  <div class="rating text-center">
+						   <ul class="explosion">
+						        <li class="stars"><label for="star-1"><i class="fa fa-star" aria-hidden="true"></i></label>  
+						          <input type="radio" name="rating" id="star-1" value="1">
+						        </li >
+						        <li class="stars"><label for="star-2"><i class="fa fa-star" aria-hidden="true"></i></label>  
+						          <input type="radio" name="rating" id="star-2" value="2">
+						        </li>
+						        <li class="stars"><label for="star-3"><i class="fa fa-star" aria-hidden="true"></i></label>  
+						          <input type="radio" name="rating" id="star-3" value="3">
+						        </li>
+						        <li class="stars"><label for="star-4"><i class="fa fa-star" aria-hidden="true"></i></label>  
+						          <input type="radio" name="rating" id="star-4" value="4">
+						        </li>
+						        <li class="stars"><label for="star-5"><i class="fa fa-star" aria-hidden="true"></i></label>  
+						          <input type="radio" name="rating" id="star-5" value="5">
+						        </li>
+						      </ul>
+						  </div>
+						</div>
 				     </div>
 		      	</div>
 		     	 <div class="modal-footer">
 		       	 	<button type="button" class="dmbutton2" data-dismiss="modal">닫기</button>
-		       	 	<button type="button" class="dmbutton2" >확인</button>
+		       	 	<button type="button" class="dmbutton2" onclick="ratingReview();" >확인</button>
 		      	</div>
 			</div>
 		</div>
@@ -426,7 +480,7 @@ review :
     <div class="container clearfix">
       <div class="content col-xs-12 clearfix">    
         <div id="comments_wrapper">
-          <h4 class="title">1 Comments so far</h4>
+          <h4 class="title"> Comments so far</h4>
           <ul class="comment-list">
             <!--*****************코멘트 하나****************************   -->
             <!-- <li> 
