@@ -145,5 +145,8 @@ ul #peopletype{ list-style:none; margin:0; padding:0; }
 			 padding-top: 0px; overflow: auto; background: rgb(255, 255, 255); height: 85%;}
 /* ******************************************* 상세정보 추가 div  ******************************************** */
 
-
 /* *************************************** */
+#planselect:hover{ background: #a5d8ca}
+#planselectday li:hover{ background: #a5d8ca}
+
+

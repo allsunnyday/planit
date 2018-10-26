@@ -455,17 +455,21 @@
          $('#nocityrute').remove();
          content ='';
          content +='<div id="" class="planroute_'+diveplus+'" style="height: 105px; width:100%;">';
+         content +='<div class="row">';
             content += '<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="margin-top:15px; height:auto">';               
                content += '<div class="btn-group" style="height: auto; border: 4px solid #3ad195; padding: 4px;">';
-                  content += '<a href="" id="" class="dmbutton dropdown-toggle" data-toggle="dropdown" style="color:black;"> 일차 <span id="caret" class="caret"></span></a>';
+               if(days==1){ 
+				  content += '<a href="#" id="planselect" class="dmbutton" style="color:black;"> 당일치기 </a>';
+               }
+               else {
+            	  content += '<a href="#" id="planselect" class="dmbutton dropdown-toggle" data-toggle="dropdown" style="color:black;"> 1일차 </a>';               
                   content += '<ul class="dropdown-menu" id="planselectday">';
-                  for(var i=1; i<=days; i++){
-                     if(days==1){
-                        content += '<li> 당일치기 </li>';
-                     }
-                     else {content += '<li>'+i+'일차</li>';}
+                  for(var i=2; i<=days; i++){                     
+                     content += '<li>'+i+'일차</li>';
                   }
+                  content += '<li>숙박</li>';
                   content += '</ul>';
+               }
                content +='</div>';
             content += '</div>';
             content += '<div class="col-md-8 col-sm-8 col-xs-12">';
@@ -487,6 +491,7 @@
                         content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> 최소'+ carTime*2 +' 분 소요 </font>';
                   content += '</div>';
                content += '</div>';
+               content += '</div>';
             content += '</div>';
          content += '</div>';
          //diveplus++; // div 생성 번호         
@@ -501,12 +506,10 @@
 	  console.log('○○○○○○○○○○○○○○○○○○○○○○ deletePlanRoute 시작 ○○○○○○○○○○○○○○○○○○○○○');
       console.log('deletePlanRoute // diveplus = delete함수로 보낸 값(2전) '+ diveplus + '//plancase(2전) '+ plancase);
       var diveplusFortitle = $('.deletePlanRoute_'+diveplus).attr('title');      
-      console.log('제발 원하는 숫자를 가져왓으면1..: '+ $('.deletePlanRoute_'+diveplus).prop('title'));
-      console.log('제발 원하는 숫자를 가져왓으면2..: '+ $('.deletePlanRoute_'+diveplus).attr('title'));
-      console.log('후.....'+ $('.planroute_'+diveplus).attr('class'));
-      
-      //if(diveplus == plancase){ diveplus = plancase-1; } // 지워야 할듯한데..
-      //if(diveplus > plancase) { diveplusFortitle = plancase-1; diveplus = diveplusFortitle;} // 지워야 할듯함..      
+      //console.log('제발 원하는 숫자를 가져왓으면1..: '+ $('.deletePlanRoute_'+diveplus).prop('title'));
+      //console.log('제발 원하는 숫자를 가져왓으면2..: '+ $('.deletePlanRoute_'+diveplus).attr('title'));
+      //console.log('후.....'+ $('.planroute_'+diveplus).attr('class'));
+            
       
       console.log('diveplus(2후) '+ diveplus + '//plancase(2후) '+ plancase+"//diveplusFortitle※: "+ diveplusFortitle);
       for(var i=0; i<planmarking.length; i++){
@@ -529,7 +532,6 @@
       });
       planmarkingsave();//기존 마커 재등록
       polyline.setMap(map);// 라인 재생성
-      //var delnumber = diveplus;
       
       $('.planroute_'+diveplusFortitle).remove(); // 해당---------------- 다이브 삭제
       
@@ -584,12 +586,12 @@
          else { $('.planroute_'+i+' font.plancartime').html(carTime+' 분'); }
          
       }
-      if(positions.length ==1){
+      if(positions.length ==1 || $('.planroute_0')){
          $('.planroute_0 font.planroadtext').html(' 0 m');
          $('.planroute_0 font.planwalktime').html(' 0 분');
          $('.planroute_0 font.plancartime').html(' 0 분');
          temp=0;
-      }
+      }      
       /* ****************** 마커 삭제후 여행거리 재산출하여 수정 ******************* */
       /* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */
       if(plancase == 0){
@@ -604,18 +606,12 @@
    
    /* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
    function plandivCountdown(diveplus, diveplusFortitle){
-	  console.log('○○○○○○○○○○○○○○○○○○○○○○ plandivCountdown 시작 ○○○○○○○○○○○○○○○○○○○○○')
-      //console.log('diveplus(3)== '+ diveplus + '//plancase(3)== '+ plancase +'//title!! '+diveplusFortitle);
+	  console.log('○○○○○○○○○○○○○○○○○○○○○○ plandivCountdown 시작 ○○○○○○○○○○○○○○○○○○○○○')      
       console.log('plandivCountdown//plancase(3)== '+ plancase +'//diveplusFortitle!! '+diveplusFortitle+"diveplus"+diveplus);
       /**************사용자가 추가한 여행일적 계획 삭제시 남아있는 div 의 번호 재정렬 ************  */
       
       for(var i=0; i<plancase-1; i++){                           
          console.log('planidvCountdown 변경되어야할 다이브의 인덱스 번호 i]'+i+'★');
-         //var redivcount= $('.planroute_'+(i+1));
-         //var recount = $('.deletePlanRoute_'+(i+1));         
-         //console.log('recount: 변경전?'+$('.planroute_'+(i))+'///'+$('.planroute_'+(i)).attr('class')+'///'+$('.planroute_'+(i)).prop('class'));         
-         //var redivcountnext= $('.planroute_'+(i+1));
-         //var recountnext = $('.deletePlanRoute_'+(i+1));
          if(typeof $('.planroute_'+(i)).attr('class') == "undefined" || 
         		 $('.planroute_'+(i)).attr('class')==null || 
         		 $('.planroute_'+(i)).attr('class')==undefined || 
@@ -643,10 +639,7 @@
          }         
         
       }// 여행일정 div number 재정비
-      /**************사용자가 추가한 여행일정 계획 삭제시 남아있는 div 의 번호 재정렬 ************  */      
-      
-      //console.log('plancase: '+plancase+'/diveplus: '+diveplus+'/diveplusFortitle: '+diveplusFortitle);
-      //diveplus = plancase-1;
+      /**************사용자가 추가한 여행일정 계획 삭제시 남아있는 div 의 번호 재정렬 ************  */
       plancase--;
    }
    /* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
@@ -858,6 +851,14 @@
          });
       });
        /* ********** 카테고리 범위 영역 선택을 위한 ajax ********** */
+       
+       /* ******************** */
+       //a 태그 id: planselect
+       //ul 태그 id: planselectday
+       $('#planselectday li').on('click',function(){
+     	  console.log($(this).text());
+    		//$('#planselect').html($(this).html());
+       });      
    });   
 
    

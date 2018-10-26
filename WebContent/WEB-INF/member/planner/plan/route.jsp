@@ -21,7 +21,7 @@
 									<li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
 									<li class="active" style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
 									<li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
-									<li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>
+									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li> --%>
 									<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>
 								</ul>
 							<!-- </div> -->
