@@ -79,6 +79,9 @@ select::-ms-expand {   display: none; }
 .select:hover::after { color: #f39c12; }
 .select::after { -webkit-transition: .25s all ease; -o-transition: .25s all ease; transition: .25s all ease; }
 /* ****** 지역 선택 박스 추가 ****** */
+
+.dayselect { position: relative; display: block; line-height: 2.5; background: #4A5C78; overflow: hidden; border-radius: .25em; color:#fff;}
+.dmbutton{text-align: left;}
 /* -----------------------------------------지도 거리 계산 시작 ------------------------------------------ */
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
 .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
@@ -146,7 +149,8 @@ ul #peopletype{ list-style:none; margin:0; padding:0; }
 /* ******************************************* 상세정보 추가 div  ******************************************** */
 
 /* *************************************** */
-#planselect:hover{ background: #a5d8ca}
+#planselect:hover{ background: #a5d8ca;}
+#planselect option{color:black;}
 #planselectday li:hover{ background: #a5d8ca}
 
 

@@ -415,8 +415,7 @@
         //changeCategoryClass(); // on 상태인 카테고리 마크를 off 설정
    }
    /* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
-   
-   
+	
    
    /* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
    function planmarkingsave(){
@@ -439,58 +438,65 @@
    /* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
    
    /* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
-   function routeInfoPlusAction(index,diveplus){
-      console.log('○○○○○○○○○○○○○○○○○○○○○○ routeInfoPlusAction 시작 ○○○○○○○○○○○○○○○○○○○○○')
-      var content;
-      //console.log('routeInfoPlusAtion 463] plancase]'+plancase+'   diveplus]'+diveplus);
-      if(plancase == 0){
-         //diveplus=0; // 여행계획 추가 다이브 번호 생성
-         /*content ='';
-         content +=  '<div id="nocityrute" style="background-color: cyan; ">';
-            content += '<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>';
-         content +='</div>'; */
+	function routeInfoPlusAction(index,diveplus){
+		console.log('○○○○○○○○○○○○○○○○○○○○○○ routeInfoPlusAction 시작 ○○○○○○○○○○○○○○○○○○○○○')
+		var content;
+		//console.log('routeInfoPlusAtion 463] plancase]'+plancase+'   diveplus]'+diveplus);
+		/* if(plancase == 0){
+        //diveplus=0; // 여행계획 추가 다이브 번호 생성
+        content ='';
+        content +=  '<div id="nocityrute" style="background-color: cyan; ">';
+           content += '<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>';
+        content +='</div>';
          
-      }      
+      }  */     
       if(plancase != 0){      
          $('#nocityrute').remove();
          content ='';
          content +='<div id="" class="planroute_'+diveplus+'" style="height: 105px; width:100%;">';
-         content +='<div class="row">';
-            content += '<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="margin-top:15px; height:auto">';               
-               content += '<div class="btn-group" style="height: auto; border: 4px solid #3ad195; padding: 4px;">';
-               if(days==1){ 
-				  content += '<a href="#" id="planselect" class="dmbutton" style="color:black;"> 당일치기 </a>';
-               }
-               else {
-            	  content += '<a href="#" id="planselect" class="dmbutton dropdown-toggle" data-toggle="dropdown" style="color:black;"> 1일차 </a>';               
-                  content += '<ul class="dropdown-menu" id="planselectday">';
-                  for(var i=2; i<=days; i++){                     
-                     content += '<li>'+i+'일차</li>';
-                  }
-                  content += '<li>숙박</li>';
-                  content += '</ul>';
-               }
-               content +='</div>';
-            content += '</div>';
-            content += '<div class="col-md-8 col-sm-8 col-xs-12">';
-               content += '<div style="float:left; width: auto; display:block; margin-top: 8px;">';
-                  content += '<div class="text-left">';
-                     content += '<label>지역:</label>&nbsp;<font>'+keyword+'</font><br/>';
-                     content += '<label>관광지: </label><font class="">'+ document.getElementById('titleforNewInfo_'+index).title +'</font>&nbsp;<a class="btnDel deletePlanRoute_'+diveplus+'" href="javascript:deletePlanRoute('+diveplus+')" id=""  title="'+diveplus+'" >'; // <a class="btnDel deletePlanRoute_'+diveplus+'" href="javascript:" onclick="deletePlanRoute('+diveplus+')" id=""  title="'+diveplus+'" >';
-                     content += '<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a><br/>';//<input type="hidden" id="deleteplanroute">
-                     content += '<label> 거리: </label>&nbsp;<font class="planroadtext">'+distance+'m</font> ';
-                     if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font class="planwalktime"> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄                     
-                     else {content += '&nbsp;<label> 도보: </label>&nbsp;<font class="planwalktime"> '+ walkkTime +' 분</font> <br/>';} // 도보가 한시간 미만 일때
-                     if(carTime <= 0){content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> 1분 미만 </font>';}
-                     else if(carTime >= 60){
-                        carhourTime = Math.floor(carTime/60);
-                        carTime = carTime %60;
-                        content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> '+ carhourTime +'시간 '+ carTime+'분 </font>';
-                     }
-                     else                      
-                        content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> 최소'+ carTime*2 +' 분 소요 </font>';
-                  content += '</div>';
-               content += '</div>';
+	         content +='<div class="row">';
+	            content += '<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="margin-top:15px; height:auto">';               
+	               /* content += '<div class="btn-group" style="height: auto; border: 4px solid #3ad195; padding: 4px;">';
+	               if(days==1){ 
+					  content += '<a href="#" id="planselect" class="dmbutton" style="color:black;"> 당일치기 </a>';				  
+					  //content += '<select id="planselect" class="dmbutton"><option value="1">당일치기</option></select>';
+	               }
+	               else {
+	            	  content += '<a href="#" id="planselect" class="dmbutton dropdown-toggle" data-toggle="dropdown" style="color:black;"> 1일차 </a>';               
+	                  content += '<ul class="dropdown-menu" id="planselectday">';
+	                  for(var i=2; i<=days; i++){                     
+	                     content += '<li>'+i+'일차</li>';
+	                  }
+	                  	content += '<li> 숙박</li>';
+	                  content += '</ul>';
+	               }
+	               content +='</div>'; */
+	               content += '<div class="dayselect text-center" style="height: 75px; border: 4px solid #3ad195; padding: 4px; ">';	               
+	            	   content +='<select name="dayselect" id="dayselect" class="dmbutton">';
+	            	   for(var i=1; i<=days; i++){ content += '<option value="'+i+'">♬ '+i+'일차</option>'; }
+	            	   if(days!=1){ content += '<option value="">숙 박</option>'; }
+	            	   content +='</select>';	               
+	               content += '</div>';
+	            content += '</div>';
+	            content += '<div class="col-md-8 col-sm-8 col-xs-12">';
+	               content += '<div style="float:left; width: auto; display:block; margin-top: 8px;">';
+	                  content += '<div class="text-left">';
+	                     content += '<label>지역:</label>&nbsp;<font>'+keyword+'</font><br/>';
+	                     content += '<label>관광지: </label><font class="">'+ document.getElementById('titleforNewInfo_'+index).title +'</font>&nbsp;<a class="btnDel deletePlanRoute_'+diveplus+'" href="javascript:deletePlanRoute('+diveplus+')" id=""  title="'+diveplus+'" >'; // <a class="btnDel deletePlanRoute_'+diveplus+'" href="javascript:" onclick="deletePlanRoute('+diveplus+')" id=""  title="'+diveplus+'" >';
+	                     content += '<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a><br/>';//<input type="hidden" id="deleteplanroute">
+	                     content += '<label> 거리: </label>&nbsp;<font class="planroadtext">'+distance+'m</font> ';
+	                     if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font class="planwalktime"> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄                     
+	                     else {content += '&nbsp;<label> 도보: </label>&nbsp;<font class="planwalktime"> '+ walkkTime +' 분</font> <br/>';} // 도보가 한시간 미만 일때
+	                     if(carTime <= 0){content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> 0분 </font>';}
+	                     else if(carTime >= 60){
+	                        carhourTime = Math.floor(carTime/60);
+	                        carTime = carTime %60;
+	                        content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> '+ carhourTime +'시간 '+ carTime+'분 </font>';
+	                     }
+	                     else                      
+	                        content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> 최소'+ carTime*2 +' 분 소요 </font>';
+	                  content += '</div>';
+	               content += '</div>';
                content += '</div>';
             content += '</div>';
          content += '</div>';
@@ -630,9 +636,7 @@
             $('a.deletePlanRoute_'+i).prop('title',i);
             $('a.deletePlanRoute_'+i).prop('href', 'javascript:deletePlanRoute('+i+');');
             console.log('■ ■ ■ ■ ■ deletePlanRoute의 href ]'+$('a.deletePlanRoute_'+i).prop('href')+"■ ■ ■ ■ ■");
-            
-            
-            
+              
          }
          else {
             continue;
@@ -644,6 +648,7 @@
    }
    /* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
    /* **************** plan route div 삭제 함수 종료 ***************** */
+   
 </script>
 <!--*********************************** plan 상세여행 정보 추가 종료***********************************-->
 <!-- ************************루트 상세 정보 계획 자바 스크립트 시작****************** -->
@@ -680,6 +685,9 @@
       }
       /* **************** location 의 도시 정보 검색  **************** */
       
+    	  
+       
+      
    /* ************************************* 상세정보 입력 란의 달력 정보 출력 시작 ******************************************* */
        $.datepicker.setDefaults({
               dateFormat: 'yy년 mm월 dd일',
@@ -699,12 +707,20 @@
       /********************  이미지 선택 박스 출력 시작 *******************/      
       $('#peopletype li > a > img').on('click', function(){
          //alert($(this).attr('alt'));//오 읽어온다.
+         //ui 태그 id: peopletype, 표시할 image태그 id: tourtypeimage 
          $('#tourtypeimage').attr('src',$(this).attr('src')).attr('alt',$(this).attr('alt')).css('height',80);
          $('#caret').attr('class','');
          $('#tourtype').css('padding',0).css( 'height' ,'auto');
       });
       /********************  이미지 선택 박스 출력 시작 *******************/
       
+      /* $("#dayselect").change(function(){
+    	  for(var i=0;i<plancase; i++){    		  
+    	  }
+      }); */
+      $(document).on('change','#dayselect',function(){
+    	 console.log("읽음..?"+plancase) 
+      });
    });
    
       
@@ -852,16 +868,11 @@
       });
        /* ********** 카테고리 범위 영역 선택을 위한 ajax ********** */
        
-       /* ******************** */
-       //a 태그 id: planselect
-       //ul 태그 id: planselectday
-       $('#planselectday li').on('click',function(){
-     	  console.log($(this).text());
-    		//$('#planselect').html($(this).html());
-       });      
-   });   
-
+      
+   });     
    
+   /* ******************** */
    
+    
 </script>
 <!-- ****************************************************루트 상세 정보 계획 자바 스크립트 종료************************************************************ -->

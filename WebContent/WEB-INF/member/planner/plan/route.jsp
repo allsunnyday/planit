@@ -139,7 +139,7 @@
 					    </div>
 					    <div style="margin-top: 8px;"></div>
 					    <div class="select">						
-							<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%" >
+							<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%">
 						    	<option value="${areacodesub }" selected>${areacodesubname } </option>
 						    	<option value="1">강남구</option>
 						    	<option value="2">강동구</option>
