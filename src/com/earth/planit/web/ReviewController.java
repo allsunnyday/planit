@@ -473,8 +473,6 @@ public class ReviewController {
 			}
 			
 		}
-		
-		
 
 		out.close();
 		return zipname+".zip";
@@ -511,4 +509,30 @@ public class ReviewController {
 		else
 			return "fail";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/planit/review/myreview/ChangeBackground.it",produces = "text/plain; charset=UTF-8" )
+	public String changeBackground(MultipartHttpServletRequest mhsr, @RequestParam Map map)throws Exception{
+		// 1]서버의 물리적 경로 얻기
+		String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Review");
+		// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
+		// MultipartFile객체 얻기
+		MultipartFile profile = mhsr.getFile("file");
+		// 2]File객체 생성
+		// 2-1] 파일 중복시 이름 변경
+		String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
+
+		File file = new File(phicalPath + File.separator + newFilename);
+		// 3]업로드 처리
+		profile.transferTo(file);
+		System.out.println("name============"+newFilename);
+		// DB의 FIRST이미지 수정
+		System.out.println(map.get("review_id"));
+		map.put("review_id",map.get("review_id"));
+		map.put("updateColumn", "firstimage");
+		map.put("updateValue", newFilename);
+		reviewService.updateOneReviewColumn(map);
+		return "success";
+	}
+	
 }

@@ -112,7 +112,7 @@ review :
 			dataType:'text',
 			success:function(data){
 				if(data == 'success'){
-					alert('저장에 성공했습니다.');
+					//alert('저장에 성공했습니다.');
 					location.replace("<c:url value='/planit/review/ReviewView.it?review_id=${review.review_id}'/>");
 				}else{
 					alert('저장 실패 .. ');
