@@ -867,8 +867,8 @@
 
 	
 	/* ****** route 정보 저장 및 schedule 페이지 이동 ****** */		
-	function movescheduleAction() {
-		//console.log('시작일 판단: '+$("#thedate").val());
+	function movescheduleAction() {	
+		var formdata = new FormData();
 		//여행 타입 및 여행 일정 작성 미진행시 팝업창 출력
 		if(($('#thedate').val() == null || $('#thedate').val()=='') && $('#tourtypeimage').attr('alt') =='타입'){
 			alert('여행 출발일과 여행인원 타입이 선택되지 않았습니다. ')
@@ -877,8 +877,7 @@
 		else if($('#tourtypeimage').attr('alt') =='타입'){ alert('여행 인원 타입을 선택해주세요') }
 		else if(plancase ==0){alert('작성된 여행 일정이 없습니다.')}
 		//일정 페이지로 이동 + 데이터 전달할것 작성
-		else{			
-			var formdata = new FormData(); 
+		else{	
 			//날짜 변환
 			var userplandate = $('#thedate').val()
 			var year = userplandate.substr(2, 2);
@@ -899,7 +898,7 @@
 					routeCase += "#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .sigungucode').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
 					+$('.planroute_'+i+' .contentTitle').text()+":todo:todomemo:";
-					if($('.planroute_'+i+' .contenttype').val()==32){route+='1';}
+					if($('.planroute_'+i+' .contenttype').val()==32){routeCase+='1';}
 					else{routeCase+='0';}					
 					console.log(routeCase);
 				}
@@ -907,7 +906,7 @@
 					routeCase += "#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .sigungucode').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
 					+$('.planroute_'+i+' .contentTitle').text()+":todo:todomemo:";
-					if($('.planroute_'+i+' .contenttype').val()==32){route+='1';}
+					if($('.planroute_'+i+' .contenttype').val()==32){routeCase+='1';}
 					else{routeCase+='0';}					
 					console.log(routeCase);
 				}
@@ -915,7 +914,7 @@
 					routeCase +="@"+ $('.planroute_'+i+' #dayselect').val()+"#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .sigungucode').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
 					+$('.planroute_'+i+' .contentTitle').text()+":todo:todomemo:";
-					if($('.planroute_'+i+' .contenttype').val()==32){route+='1';}
+					if($('.planroute_'+i+' .contenttype').val()==32){routeCase+='1';}
 					else{routeCase+='0';}						
 					console.log(routeCase);
 				}
@@ -924,35 +923,34 @@
 			}
 			
 			//스케줄 페이지로 데이터 전달
-			formdata.append("days", days); // 여행 총 일수  저장
-			formdata.append("depart",depart); // 사용자가 선택한 여행 출발 일자 저장			
-			formdata.append("formdata",formdata); // 사용자가 선택한 지역코드저장
+			formdata.append("days", days); // 여행 총 일수  저장			
+			formdata.append("depart",depart); // 사용자가 선택한 여행 출발 일자 저장
 			formdata.append("tourtype", tourtype); //사용자가 선택한 여행 타입 저장
 			formdata.append("plancase", plancase); // 총일정 개수
-			formdata.append("areacode", areacode);
-			//console.log("post 여행 인원타입: "+tourtype);
+			formdata.append("areacode", areacode);// 사용자가 선택한 지역코드저장
 			
+			console.log(formdata);
 			$.ajax({
-				type:'post',
-				url: '<c:url value="/planner/plan/schedule.it"/>',
-				dataType:'text',
-				data: formdata,
-				//contentType:false,
-				//processData: false,  //중요!!
-				 success: function(data){
-					 console.log(data);
-					 if(confirm('성공적으로 저장되었습니다.')){
-						 //location.replace('<c:url value="/planner/plan/scheduleUpload.it"/>');
-					 }
-				 },
-				 error:function(data){
-					/*
-						서버로부터 비정상적인 응답을 받았을 때 호출되는 콜백함수
-						data : 에러 메세지 
-					*/
-					console.log('error!'+data);
-				}
-			});
+				url:"<c:url value='/planner/plan/scheduleUpload.it'/>",
+	            data:formdata,scheduledata,
+	            type:'post',
+	            processData: false,
+	            contentType: false,
+	            dataType:'text',
+	            success:function(data){	            
+	            	console.log(data);
+	                   if(confirm('성공적으로 저장되었습니다.')){
+	                      location.replace('<c:url value="/planner/plan/schedule.it"/>');
+	                   }
+	            },
+	            error:function(error, request){
+	               console.log(error);
+	            }
+	            
+	         });
+			var request = new XMLHttpRequest();
+			request.open("POST", '<c:url value="/planner/plan/schedule.it"/>');
+			request.send(formData);
 		}
 		
 	}
