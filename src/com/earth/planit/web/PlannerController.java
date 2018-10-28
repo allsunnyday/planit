@@ -145,24 +145,27 @@ public class PlannerController {
 		return JSONArray.toJSONString(collections);
 	}
 	
-	@RequestMapping(value="/planner/plan/scheduleUpload.it", method={RequestMethod.GET, RequestMethod.POST})
-	public String scheduleUpload(@RequestParam Map map, Model model) throws Exception{
-		System.out.println("days: "+map.get("days"));
-		System.out.println("areacode: " + map.get("areacode"));
-		System.out.println("depart: "+map.get("depart"));
+	@RequestMapping(value = "/planner/plan/schedule.it", method = { RequestMethod.GET, RequestMethod.POST })
+	public String scheduleUpload(@RequestParam Map map, Model model) throws Exception {
+		System.out.println("Upload days: " + map.get("days"));
+		System.out.println("Upload areacode: " + map.get("areacode"));
+		System.out.println("Upload depart: " + map.get("depart"));
+
 		
+		return "planner/plan/schedule.theme";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/planner/plan/scheduleUpload.it", produces = "text/plain; charset=UTF-8") // 저장 버튼 클릭시 파라미터가 넘어와서 일정과 함께 저장되어야 한다
+	public String schedule(@RequestParam Map map, Model model) throws Exception {
+		System.out.println("days: " + map.get("days"));
+		System.out.println("areacode: " + map.get("areacode"));
+		System.out.println("depart: " + map.get("depart"));
+		
+		model.addAttribute("days",map.get("days"));
 		return "planner/plan/schedule.theme";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/planner/plan/schedule.it", produces = "text/plain; charset=UTF-8") //저장 버튼 클릭시 파라미터가 넘어와서 일정과 함께 저장되어야 한다
-	public String schedule(@RequestParam Map map, Model model) throws Exception{
-		System.out.println("days: "+map.get("days"));
-		System.out.println("areacode: " + map.get("areacode"));
-		System.out.println("depart: "+map.get("depart"));
-		
-		return "planner/plan/schedule.theme";
-	}
 	
 	@RequestMapping("/planner/plan/reservation.it")
 	public String reservation() throws Exception{
