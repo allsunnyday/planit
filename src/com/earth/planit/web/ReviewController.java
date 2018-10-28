@@ -424,6 +424,7 @@ public class ReviewController {
 
 	}
 
+	// 사용자가 preview book 페이지에서 pdf 만들기 버튼/ 혹은 내보내기 버튼을 누른 경우 각 div를 이미지로 생성- zip파일로 다운로드 한다.  
 	@ResponseBody
 	@RequestMapping(value = "/planit/photobook/downloadByAjax.it", method = RequestMethod.POST,produces = "text/plain; charset=UTF-8")
 	public String downloadPhotobookByAjax(@RequestParam Map map, 
@@ -440,7 +441,7 @@ public class ReviewController {
 		ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zip));
 		byte[] buf = new byte[1024];
 		for (int i=0; i<total; i++) {
-			String binaryData = map.get("imgdata"+i).toString();
+			String binaryData = map.get("imgdata"+i).toString();  //이미지가 byteString으로 전달된다. 
 			System.out.println("i)"+i);
 			if (binaryData != null || binaryData != "") {
 			
@@ -478,24 +479,27 @@ public class ReviewController {
 		return zipname+".zip";
 	}
 
+	// 사용자가 preview book 페이지에서 pdf 만들기 버튼/ 혹은 내보내기 버튼을 누른후 성공했을 경우에 다음페이지로 넘기낟. 
 	@RequestMapping("/planit/photobook/makeDownload.it")
 	public String downloadComplete(@RequestParam String filename, Model model,HttpServletRequest req, HttpServletResponse resp)throws Exception{
-		System.out.println("여기 왔지롱 filename:"+filename);
+		System.out.println("downloadComplete() 메소드에서 다음 페이지로 생성한 파일을 넘긴다"+filename);
 		model.addAttribute("filename",filename);
 		//FileUtils.downloadForSpring(req, resp, "/Upload/Review", filename);
 		return "review/photobook/DownloadBook.theme";
 	}
 	
+	
+	// 사용자가 review downloadbook 페이지에서  다운로드버튼을 누를 경우  zip파일이 다운로드 된다. 
 	@RequestMapping("/download/book.it")
 	public void downloadprocess(@RequestParam String filename,HttpServletRequest req, HttpServletResponse resp)throws Exception{
-		System.out.println("여기 왔지롱2222222filename:"+filename);
+		System.out.println("filename: 파일을 다운로드하는 컨트롤러 들어왔다. downloadprocess()"+filename);
 		
 		FileUtils.downloadForSpring(req, resp, "/Upload/Review", filename);
 		//return "review/photobook/DownloadBook.theme";
 	}
 	
 	
-	/// rating
+	/// 사용자가 review view 페이지에서  rating하는 경우  
 	@ResponseBody
 	@RequestMapping(value="/planit/review/RatingReview.it",produces = "text/plain; charset=UTF-8")
 	public String ratingReview(@RequestParam Map map, HttpSession session)throws Exception{
@@ -510,6 +514,7 @@ public class ReviewController {
 			return "fail";
 	}
 	
+	// review wirte 페이지에서 배경 이미지를 변경할 경우. 
 	@ResponseBody
 	@RequestMapping(value="/planit/review/myreview/ChangeBackground.it",produces = "text/plain; charset=UTF-8" )
 	public String changeBackground(MultipartHttpServletRequest mhsr, @RequestParam Map map)throws Exception{
@@ -521,7 +526,7 @@ public class ReviewController {
 		// 2]File객체 생성
 		// 2-1] 파일 중복시 이름 변경
 		String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
-
+		// 2-2] 파일 객체 생성 
 		File file = new File(phicalPath + File.separator + newFilename);
 		// 3]업로드 처리
 		profile.transferTo(file);

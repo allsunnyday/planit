@@ -44,7 +44,7 @@ oneRoute
 						console.log('success');
 						// 새로 바뀐 이름을 가지고 배경화면을 설정한다.
 						var newbg = "<c:url value='/Upload/Review/"+data+"'/> ";
-						jQuery('#intro').css({"background":"url("+newbg+")",'background-repeat' : 'no-repeat', 'background-position':'center center'});
+						jQuery('#intro').css({"background":"url("+newbg+")",'background-repeat' : 'no-repeat', 'background-position':'center center','background-size':'cover'});
 						//location.replace("<c:url value='/review/myreview/Write.it?review_id=${review.review_id}&planner_id=${review.planner_id}'/> ");
 					},
 					error: function(request, error){
@@ -120,7 +120,7 @@ oneRoute
 	};
 </script>
 
-<section id="intro" style="background: url( <c:url value='/Upload/Review/${review.firstimage}'/> ) center center no-repeat fixed;">
+<section id="intro" style="background: url( <c:url value='/Upload/Review/${review.firstimage}'/> ) center center no-repeat fixed; background-size:cover;">
 	<div class="container">
 
 		<div class="ror">
