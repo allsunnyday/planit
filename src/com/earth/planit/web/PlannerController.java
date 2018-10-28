@@ -18,6 +18,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -118,7 +119,7 @@ public class PlannerController {
 		json = (JSONObject) json.get("items");
 		JSONArray list = (JSONArray) json.get("item");
 		
-		System.out.println(list.toString());
+		System.out.println(list.toString()+"///"+list.size());		
 		List<Map> collections = new Vector<Map>();
 		List<PlannerDTO> content = new Vector();
 		for(int i=0; i<list.size(); i++) {
@@ -144,9 +145,22 @@ public class PlannerController {
 		return JSONArray.toJSONString(collections);
 	}
 	
-	@RequestMapping("/planner/plan/schedule.it")
-	public String schedule() throws Exception{ 
+	@RequestMapping(value="/planner/plan/scheduleUpload.it", method={RequestMethod.GET, RequestMethod.POST})
+	public String scheduleUpload(@RequestParam Map map, Model model) throws Exception{
+		System.out.println("days: "+map.get("days"));
+		System.out.println("areacode: " + map.get("areacode"));
+		System.out.println("depart: "+map.get("depart"));
+		
+		return "planner/plan/schedule.theme";
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="/planner/plan/schedule.it", produces = "text/plain; charset=UTF-8") //저장 버튼 클릭시 파라미터가 넘어와서 일정과 함께 저장되어야 한다
+	public String schedule(@RequestParam Map map, Model model) throws Exception{
+		System.out.println("days: "+map.get("days"));
+		System.out.println("areacode: " + map.get("areacode"));
+		System.out.println("depart: "+map.get("depart"));
+		
 		return "planner/plan/schedule.theme";
 	}
 	
