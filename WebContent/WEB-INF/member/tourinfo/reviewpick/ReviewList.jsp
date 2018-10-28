@@ -90,7 +90,7 @@
             <input type="submit" value="찾기" id="submit" class="button">
           </form>
         </div>
-          
+    
         </div>
 
         <div class="widget">
