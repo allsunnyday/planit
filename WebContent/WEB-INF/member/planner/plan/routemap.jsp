@@ -932,7 +932,7 @@
 			console.log(formdata);
 			$.ajax({
 				url:"<c:url value='/planner/plan/scheduleUpload.it'/>",
-	            data:formdata,scheduledata,
+	            data:formdata,
 	            type:'post',
 	            processData: false,
 	            contentType: false,
@@ -948,9 +948,9 @@
 	            }
 	            
 	         });
-			var request = new XMLHttpRequest();
-			request.open("POST", '<c:url value="/planner/plan/schedule.it"/>');
-			request.send(formData);
+			/* var request = new XMLHttpRequest();
+			request.open("post", '<c:url value="/planner/plan/schedule.it"/>');
+			request.send(formdata); */
 		}
 		
 	}
