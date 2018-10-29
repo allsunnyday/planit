@@ -2,7 +2,9 @@ package com.earth.planit.service;
 
 public class PartnerRoomDTO {
 	private String p_id;//not null_FK
+	private String contentid;
 	
+
 	private String roomcode;//not null_PK
 	private String roomtitle;//not null
 	private String roomsize1;//룸 사이즈
@@ -239,7 +241,12 @@ public class PartnerRoomDTO {
 	public void setRoomimg5(String roomimg5) {
 		this.roomimg5 = roomimg5;
 	}
-	
+	public String getContentid() {
+		return contentid;
+	}
+	public void setContentid(String contentid) {
+		this.contentid = contentid;
+	}
 	
 	
 }

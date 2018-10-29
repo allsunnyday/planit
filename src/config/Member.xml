@@ -165,12 +165,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id=#{id}
 	</select>
 	
-	
-	
-	
-	
-	
-	
 	<select id="MemberPreferList" parameterType="java.util.Map" resultType="memberDTO">
 		select T.id,T.kor
 		from (select *
@@ -185,4 +179,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id=#{id} and cat2=#{cat2}
 	</update>
 	
+	<select id="MemberQnAView" parameterType="java.util.Map" resultType="java.util.Map">
+	select * from u_ask_p where ask_no=#{ask_no}
+	</select>
 </mapper>

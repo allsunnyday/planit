@@ -350,5 +350,16 @@ public class MemberController {
 
 		return String.valueOf(count);
 	}
-
+	// [로그아웃 처리]
+		@RequestMapping("/member/qna/view.it")
+		public String gotoQnAView(@RequestParam Map map,Model model) throws Exception {
+			
+			System.out.println("ask_no"+map.get("ask_no"));
+			Map memberQnAView =service.memberQnAView(map);
+			
+			model.addAttribute("memberQnAView", memberQnAView);
+			return "mypage/QnAView.theme";
+		}
+	
+	
 }

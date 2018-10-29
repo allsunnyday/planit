@@ -108,8 +108,11 @@ public class PartnerController {
 	   map.put("p_id",session.getAttribute("p_id"));
 	   List<Map> userAskPartner=service.userAskPartner(map);
 	   List<PartnerRoomDTO> partnerRoom=service.partnerRoomList(map);
+	   List<Map> partnerReservation=service.partnerReservationList(map);
+	   List<Map> partnerEventRequest=service.partnerEventRequestList(map);
 	   
-	   
+	   model.addAttribute("partnerEventRequest", partnerEventRequest);
+	   model.addAttribute("partnerReservation", partnerReservation);
 	   model.addAttribute("partnerRoom", partnerRoom);
 	   model.addAttribute("userAskPartner", userAskPartner);
 	   
@@ -176,7 +179,6 @@ public class PartnerController {
       
      
       List<PartnerRoomDTO> roomlist=service.partnerRoomListDetail(map);
-
       model.addAttribute("roomlist", roomlist);
 
       
@@ -190,12 +192,33 @@ public class PartnerController {
    
       //서비스 호출]
          PartnerRoomDTO productRecord=service.partnerRoomView(map);
-            //데이타 저장]   
-            //줄바꿈
-            //record.setContent(record.getContent().replace("\r\n", "<br/>"));
-            model.put("productRecord", productRecord);      
-            //뷰정보 반환]/planit/WebContent/WEB-INF/member/tourinfo/tdview/ProductView.jsp
-      return "tourinfo/tdview/ProductView.theme";
+         
+         model.put("productRecord", productRecord);      
+         
+      return "mypage/partner/ProductView.theme";
+      
    }
    
+   @RequestMapping("/tourinfo/tdview/sleepList/Reservation.it")
+   public String gotoUserReservation(@RequestParam Map map,Model model, HttpSession session) throws Exception{
+	  
+	   System.out.println("contentid:"+map.get("contentid"));
+	   List<Map> tourRoomList=service.tourRoomList(map);
+	   System.out.println(tourRoomList==null?"없다":"있다");
+	   model.addAttribute("tourRoomList", tourRoomList);
+	   return "tourinfo/tdview/reservation/UserviewProductList.theme";
+   }
+   @RequestMapping("/partner/product/Reservation.it")
+   public String gotoReservationPage(@RequestParam Map map,Model model, HttpSession session) throws Exception{
+	  
+	   return "mypage/partner/ProductReservation.theme";
+   }
+   @RequestMapping("/partner/product/view/DeleteProduct")
+   public String productDelete(@RequestParam Map map,Model model, HttpSession session) throws Exception{
+	   
+	   int isDelete=service.productDelte(map);
+	   
+	   return "mypage/partner/ProductReservation.theme";
+   }
+
 }

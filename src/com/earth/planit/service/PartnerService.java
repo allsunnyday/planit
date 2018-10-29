@@ -55,5 +55,18 @@ public interface PartnerService {
 	
 	//[Partner MyPage Home_RoomList]
 	List<PartnerRoomDTO> partnerRoomList(Map map);
+	
+	//[숙박페이지 객실보기 ]
+	List<Map> tourRoomList(Map map);
+	
+	//[숙박상세 삭제]
+	int productDelte(Map map);
+	
+	//[Partner MyPage ReservationList]
+	List<Map> partnerReservationList(Map map);
+	
+	//[Partner MyPage ReservationList]
+	List<Map> partnerEventRequestList(Map map);
+
 }
 

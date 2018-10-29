@@ -149,6 +149,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.profilecheck(map);
 	}
 
+	@Override
+	public Map memberQnAView(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberQnAView(map);
+	}
+
 	
 
 }
