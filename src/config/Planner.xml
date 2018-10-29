@@ -13,4 +13,10 @@
  		</if>
  		<!-- select * from content where areacode=1 -->
  	</select> 	
+ 	
+ 	<!-- planner 계획 저장 -->
+ 	<insert id="insertPlanSave" parameterType="java.util.Map">
+ 		insert into planner(planner_id, id, route, days, depart, areacode, postdate, tourtype) 
+ 		values(SEQ_planner_planner_id.nextval, 'user1', #{route}, #{days}, #{depart}, #{areacode}, sysdate, #{tourtype})
+ 	</insert>
  </mapper>

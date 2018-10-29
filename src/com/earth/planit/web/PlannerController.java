@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.earth.planit.service.PlannerDTO;
 import com.earth.planit.service.PlannerService;
@@ -147,31 +149,47 @@ public class PlannerController {
 		return JSONArray.toJSONString(collections);
 	}
 	
-	@RequestMapping(value = "/planner/plan/schedule.it", method = { RequestMethod.GET, RequestMethod.POST }, produces = "text/plain; charset=UTF-8")
-	public String scheduleUpload(@RequestParam Map map, Model model, HttpServletRequest req) throws Exception {
-		System.out.println("days: " + req.getAttribute("days"));
-		System.out.println("areacode: " + map.get("areacode"));
-		System.out.println("depart: " + map.get("depart"));
+	@RequestMapping(value = "/planner/plan/schedule.it", method = { RequestMethod.POST })
+	public String scheduleUpload(@RequestParam Map map, Model model, HttpServletRequest req ) throws Exception {
+//		System.out.println("days: " + map.get("days"));
+//		System.out.println("depart: " + map.get("depart"));
+//		System.out.println("areacode: " + map.get("areacode"));
+//		System.out.println("plancase: " + map.get("plancase"));
+//		System.out.println("tourtype: " + map.get("tourtype"));
 		
+		int plancase = Integer.valueOf((String) map.get("plancase")); // 일정 갯수
+		System.out.println("plancase: "+ plancase);
+		String route = "";
+		for(int i=0; i<plancase; i++) {
+			System.out.println( i+"번: "+map.get("route_"+i));
+			route += map.get("route_"+i);
+		}		
+		
+		model.addAttribute("route" , route);
+		model.addAttribute("depart", map.get("depart"));
+		model.addAttribute("days",map.get("days"));
+		model.addAttribute("tourtype", map.get("tourtype"));
+		model.addAttribute("areacode",map.get("areacode"));
+		model.addAttribute("plancase", map.get("plancase"));
 		return "planner/plan/schedule.theme";
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/planner/plan/scheduleUpload.it", produces = "text/plain; charset=UTF-8") // 저장 버튼 클릭시 파라미터가 넘어와서 일정과 함께 저장되어야 한다
-	public String schedule(@RequestParam Map map, Model model, HttpServletRequest req) throws Exception {
-		System.out.println("Upload days: " + map.get("days"));
-		System.out.println("Upload areacode: " + map.get("areacode"));
-		System.out.println("Upload depart: " + map.get("depart"));
+	/*@RequestMapping("")
+	public String planSave() throws Exception{
 		
-		//Map map2 = new HashMap();
-		//map2.put("days", map.get("days"));
-		req.setAttribute("days", map.get("days"));
-		return "planner/plan/schedule.theme"; //map2.toString();//
-	}
+		return " ";
+	}*/
 	
 	
-	@RequestMapping("/planner/plan/reservation.it")
-	public String reservation() throws Exception{
+	@RequestMapping(value="/planner/plan/reservation.it", method = { RequestMethod.POST })
+	public String reservation(@RequestParam Map map, Model model, PlannerDTO dto) throws Exception{
+		System.out.println("days: " +map.get("days"));
+		System.out.println("depart: " +map.get("depart"));
+		System.out.println("route: " +map.get("route"));
+		System.out.println("tourtype: " +map.get("tourtype"));
+		System.out.println("areacode: " +map.get("areacode"));
+		
+		int affected = service.insertPlanner(dto);
 		
 		return "planner/plan/reservation.theme";
 	}

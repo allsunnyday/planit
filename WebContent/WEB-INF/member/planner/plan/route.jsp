@@ -18,13 +18,14 @@
 							<!-- <div class="text-right" > -->
 								<ul id="jetmenu" class="jetmenu blue" style="text-align: right;">
 									<!-- <li style="display: block;"><a href=""> 저 장 </a></li> -->
-									<li style="display: block;"><a href="javascript:" onclick="movescheduleAction();">저장</a></li>									
-									<li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
+									<li style="display: block;"><a href="javascript:" onclick="movescheduleAction();"> Next </a></li>									
+									<%-- <li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li> --%>
 									<li class="active" style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
-									<li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
+									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li> --%>
 									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li> --%>
-									<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>
+									<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>									
 								</ul>
+								<form id="scheduleData" name="scheduleData" method="post" ></form> <!-- action="<c:url value='/planner/plan/schedule.it'/>" -->
 							<!-- </div> -->
 						</div><!-- nav -->
 					</div><!-- title area -->
