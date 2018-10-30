@@ -357,6 +357,7 @@
 		location.replace("<c:url value='/Planit/Before/Location.it'/>");      
 	}
    /* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
+   	
 	function planplusActionplus(index){
 		console.log("planplusActionplus() : 이상무");      
 		//positions.push({title:document.getElementById('plantitle').title, latlng:planposition}); // 마크와 타이틀 저장
@@ -404,10 +405,9 @@
 		console.log('■■■■■ planplusActionplus ■■■> index]'+index+'  diveplus]'+diveplus);
 		//버튼을 추가하는 함수
 		routeInfoPlusAction( index, diveplus); // 버튼 클릭시 상세 여행정보에 추가 되는 함수
-      
-      
-		polyline.setMap(map);  
-		//infowindow.close(); //인포윈도우 닫기 --> 함수로 만들지 않으면 안먹는듯 함. 시간적 여유가 될때 함수로 만들어서 자동적으로 닫히게 구현해야 할듯 아니면 현재 시스템도 괜찬은듯 함
+
+		polyline.setMap(map);		
+		infowindowexit.close();//인포윈도우 닫기		
 		//removeMarker(); // 계획 일정 추가시 지도에 표시된 카테고리 마커 삭제
 		//displayPlaceInfo(""); //계획 일정 추가후 상세보기 닫기
 		currCategory = keyword; // 사용자가 선택한 지역유지를 위한 변수 설정
@@ -433,8 +433,19 @@
 				});
 				planmarking.push(marking); // 삭제를 위한 마킹 복사
 			}
+			daum.maps.event.addListener(marking, 'mouseover', function() {
+				// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+			    infowindowexit.open(map, marking);
+			});
+
+			// 마커에 마우스아웃 이벤트를 등록합니다
+			daum.maps.event.addListener(marking, 'mouseout', function() {
+			    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+			    infowindowexit.close();
+			});
 		}
-		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
+		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */		
+		
 		
 		/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
 		function routeInfoPlusAction(index,diveplus){
@@ -754,10 +765,11 @@
 	/* ************************************* 상세정보 입력 란의 오늘 일자 정보 출력 종료 ******************************************* */
    
 	var jsonforTourInfo;
+	var infowindowexit;
 	$(function() {
 		var mapx=[];
 		var mapy=[];
-        
+		
 		$('.routecategory').click(function() {
 			if(days==1 && $(this).val()==32){
 				alert('당일 여행은 숙박지를 선택할수 없습니다.'); 
@@ -835,8 +847,10 @@
 					planposition = marker.getPosition();
 					console.log('planposition: '+planposition);
 					// 마커 위에 인포윈도우를 표시합니다
-					infowindow.open(map, marker);  
-				});               
+					infowindow.open(map, marker);
+					infowindowexit = infowindow;
+				});
+				
 			});
 		};       
        
