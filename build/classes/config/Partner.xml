@@ -233,7 +233,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="PartnerRoomView" parameterType="java.util.Map" resultType="PartnerRoomDTO">
       Select * from p_product where roomcode=#{roomcode}
    </select>
-   <select id="PartnerRoomList" parameterType="java.util.Map" resultType="PartnerRoomDTO">
+   <select id="PartnerRoomListDetail" parameterType="java.util.Map" resultType="PartnerRoomDTO">
       Select * from p_product where p_id=#{p_id}
    </select>
    <select id="PartnerRequestList" parameterType="java.util.Map" resultType="PartnerDTO">
@@ -298,6 +298,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
    <select id="PartnerU_Ask_P" parameterType="java.util.Map" resultType="java.util.Map">
       select * from u_ask_p where p_id=#{p_id} and rownum <![CDATA[<=]]> 5
+   </select>
+   <select id="PartnerRoomList" parameterType="java.util.Map" resultType="PartnerRoomDTO">
+     select * from p_product where rownum <![CDATA[<=]]>4 and p_id=#{p_id}
    </select>
    
    

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:include page="topMenu.jsp" flush="false" />
 <!-- *******************************************
 	베이지색 검색창 달린 거
 ************************************************ -->
-<section class="post-wrapper-top" style="margin-top: 65px;">
+<%-- <section class="post-wrapper-top" style="margin-top: 65px;">
 	<div class="container">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<ul class="breadcrumb">
@@ -27,7 +29,7 @@
 			<!-- / end div .search-bar -->
 		</div>
 	</div>
-</section>
+</section> --%>
   <section class="marketplace-top">
     <div id="market-wrapper">
     <%--   <div class="item_image">

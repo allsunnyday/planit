@@ -83,11 +83,81 @@ public class MemberServiceImpl implements MemberService {
       return dao.getTotalCount(map);
    }
 
+<<<<<<< HEAD
    @Override
    public List<Map> memberLikedTour(Map map) {
       // TODO Auto-generated method stub
       return dao.memberLikedTour(map);
    }
+=======
+	@Override
+	public List<Map> memberLikedTour(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedTour(map);
+	}
+
+	@Override
+	public List<MemberDTO> memberPreferList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberPreferList(map);
+	}
+
+	@Override
+	public int updateProference(Map map) {
+		// TODO Auto-generated method stub
+		return dao.updateProference(map);
+	}
+
+	@Override
+	public List<Map> memberLikedReview(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedReview(map);
+	}
+
+	@Override
+	public List<Map> memberLikedPlanner(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedPlanner(map);
+	}
+
+	@Override
+	public List<Map> homePlannerList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.homePlannerList(map);
+	}
+
+	@Override
+	public List<Map> memberPlannerList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberPlannerList(map);
+	}
+
+	@Override
+	public List<Map> memberLikedTourDetail(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedTourDetail(map);
+	}
+
+	@Override
+	public List<Map> memberLikedReviewDetail(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedReviewDetail(map);
+	}
+
+	@Override
+	public List<Map> memberLikedPlannerDetail(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedPlannerDetail(map);
+	}
+
+	@Override
+	public int profilecheck(Map map) {
+		// TODO Auto-generated method stub
+		return dao.profilecheck(map);
+	}
+
+	
+>>>>>>> refs/remotes/origin/yewon-03
 
    @Override
    public List<MemberDTO> memberPreferList(Map map) {
