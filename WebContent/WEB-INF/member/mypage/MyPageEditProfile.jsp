@@ -62,16 +62,16 @@ height: 100%; */
 				<!--  프로필 들어갈 div -->
 				<div id="ME-first-name">Edit My Information</div>
 				<div id="ME-first-EditForm" class="col-md-8 col-md-offset-2">
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="userID"
-							value="Plan:It" disabled>
+					<div class="col-md-10 col-md-offset-1">
+						<input type="text" class="form-control" id="userID" name="userID"
+							value="${memberRecord.id }" disabled>
 					</div>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="userename"
+					<div class="col-md-10 col-md-offset-1">
+						<input type="text" class="form-control" id="name" name="name"
 							placeholder="이름을 입력해주세요" value="">
 					</div>
-					<div class="col-sm-10">
-						<input type="email" class="form-control" id="useremail"
+					<div class="col-md-10 col-md-offset-1">
+						<input type="email" class="form-control" id="email" name="email"
 							placeholder="이메일을 입력해주세요" value="">
 					</div>
 
@@ -86,13 +86,15 @@ height: 100%; */
 			<div class="row" id="ME-second">
 				<div id="ME-second-name">Edit My Profile</div>
 				<div id="ME-second-EditForm" class="col-md-8 col-md-offset-2">
-					<div>
+					<div class="col-md-10 col-md-offset-1">
 						<!-- 사진 업로드 할 부분 -->
+						
 						<input type="file" name="profile" id="profile" >
+						<input type="hidden" name="isExistProfile" value="${memberRecord.profile}">
 					</div>
-					<div>${memberRecord.profile}</div>
-					<div>
-						<textarea class="form-control" rows="3" placeholder="자기소개를 입력해주세요"></textarea>
+					<div class="col-md-10 col-md-offset-1">${memberRecord.profile}</div>
+					<div class="col-md-10 col-md-offset-1">
+<textarea class="form-control" name="self" id="self" value="${memberRecord.self }" rows="3" placeholder="자기소개를 입력해주세요"></textarea>
 
 					</div>
 				</div>
@@ -105,7 +107,7 @@ height: 100%; */
 			<!-- ------------------------------- -->
 			<!--        start Edit third         -->
 			<!-- ------------------------------- -->
-			<div class="row" id="ME-third">
+		<!-- 	<div class="row" id="ME-third">
 				<div id="ME-third-name">Edit My Favorite</div>
 				<div id="ME-third-EditForm" class="col-md-8 col-md-offset-2">
 					<div>선호사항 들어갈 자리</div>
@@ -113,7 +115,7 @@ height: 100%; */
 				</div>
 
 
-			</div>
+			</div> -->
 			<!-- ------------------------------- -->
 			<!--          end Edit third         -->
 			<!-- ------------------------------- -->

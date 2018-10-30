@@ -50,9 +50,9 @@ public class PartnerDAO implements PartnerService{
 	}
 	
 	@Override
-	public List<PartnerRoomDTO> partnerRoomList(Map map) {
+	public List<PartnerRoomDTO> partnerRoomListDetail(Map map) {
 		// TODO Auto-generated method stub
-		return template.selectList("PartnerRoomList",map);
+		return template.selectList("PartnerRoomListDetail",map);
 	}
 	
 	@Override
@@ -139,6 +139,18 @@ public class PartnerDAO implements PartnerService{
 	@Override
 	public int getTotalRecordforRequestEventList(Map map) {
 		return template.selectOne("getTotalRecordforRequestEventList",map);
+	}
+
+	@Override
+	public List<Map> userAskPartner(Map map) {
+		
+		return template.selectList("PartnerU_Ask_P",map);
+	}
+
+	@Override
+	public List<PartnerRoomDTO> partnerRoomList(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("PartnerRoomList",map);
 	}
 
 	
