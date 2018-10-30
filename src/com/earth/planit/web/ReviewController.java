@@ -92,7 +92,7 @@ public class ReviewController {
 	
 	
 	
-	//리뷰 작성 
+	//리뷰 작성 : 수정하기 버튼을 눌렀을 경우 
 	@RequestMapping("/review/myreview/Write.it")
 	public String reviewDetail(@RequestParam Map map, // review_id, planner_id
 			Model model) throws Exception {
@@ -109,13 +109,17 @@ public class ReviewController {
 		// 몇일차를 뿌려줄것인지 선택
 		int day = 1;
 		/* if(map.get("review_id")!=null) { */
+		
 		ReviewDTO record = reviewService.selectReviewOne(map);
 		day = Integer.parseInt(record.getSeries().toString()) - 1;
 		model.addAttribute("review", record);
 
 		/* } */
 		// dayRoute[day]=
-		// 1#1:12:126508:경복궁:한복대여:한복대여2만원:0#1:12:126512:광화문:교보문고:책사기:0#1:32:2504463:L7명동:::1
+		// 1
+		//#1:12:126508:경복궁:한복대여:한복대여2만원:0
+		//#1:12:126512:광화문:교보문고:책사기:0
+		//#1:32:2504463:L7명동:::1
 //		String route[] = dayRoute[day].split("#");
 		String route[] = record.getRoute().split("#");
 		System.out.println("route[0]" + route[0]);
@@ -423,6 +427,7 @@ public class ReviewController {
 
 	}
 
+	// 사용자가 preview book 페이지에서 pdf 만들기 버튼/ 혹은 내보내기 버튼을 누른 경우 각 div를 이미지로 생성- zip파일로 다운로드 한다.  
 	@ResponseBody
 	@RequestMapping(value = "/planit/photobook/downloadByAjax.it", method = RequestMethod.POST,produces = "text/plain; charset=UTF-8")
 	public String downloadPhotobookByAjax(@RequestParam Map map, 
@@ -439,7 +444,7 @@ public class ReviewController {
 		ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zip));
 		byte[] buf = new byte[1024];
 		for (int i=0; i<total; i++) {
-			String binaryData = map.get("imgdata"+i).toString();
+			String binaryData = map.get("imgdata"+i).toString();  //이미지가 byteString으로 전달된다. 
 			System.out.println("i)"+i);
 			if (binaryData != null || binaryData != "") {
 			
@@ -472,26 +477,70 @@ public class ReviewController {
 			}
 			
 		}
-		
-		
 
 		out.close();
 		return zipname+".zip";
 	}
 
+	// 사용자가 preview book 페이지에서 pdf 만들기 버튼/ 혹은 내보내기 버튼을 누른후 성공했을 경우에 다음페이지로 넘기낟. 
 	@RequestMapping("/planit/photobook/makeDownload.it")
 	public String downloadComplete(@RequestParam String filename, Model model,HttpServletRequest req, HttpServletResponse resp)throws Exception{
-		System.out.println("여기 왔지롱 filename:"+filename);
+		System.out.println("downloadComplete() 메소드에서 다음 페이지로 생성한 파일을 넘긴다"+filename);
 		model.addAttribute("filename",filename);
 		//FileUtils.downloadForSpring(req, resp, "/Upload/Review", filename);
 		return "review/photobook/DownloadBook.theme";
 	}
 	
+	
+	// 사용자가 review downloadbook 페이지에서  다운로드버튼을 누를 경우  zip파일이 다운로드 된다. 
 	@RequestMapping("/download/book.it")
 	public void downloadprocess(@RequestParam String filename,HttpServletRequest req, HttpServletResponse resp)throws Exception{
-		System.out.println("여기 왔지롱2222222filename:"+filename);
+		System.out.println("filename: 파일을 다운로드하는 컨트롤러 들어왔다. downloadprocess()"+filename);
 		
 		FileUtils.downloadForSpring(req, resp, "/Upload/Review", filename);
 		//return "review/photobook/DownloadBook.theme";
 	}
+	
+	
+	/// 사용자가 review view 페이지에서  rating하는 경우  
+	@ResponseBody
+	@RequestMapping(value="/planit/review/RatingReview.it",produces = "text/plain; charset=UTF-8")
+	public String ratingReview(@RequestParam Map map, HttpSession session)throws Exception{
+		// 값이 잘 넘어 오는지 확인
+		System.out.println(map.get("rating")+","+map.get("review_id"));
+		// 사용자의 아이디 저장
+		map.put("id", session.getAttribute("id"));
+		int affected = reviewService.insertRating(map);
+		if (affected == 1)
+			return "success";
+		else
+			return "fail";
+	}
+	
+	// review wirte 페이지에서 배경 이미지를 변경할 경우. 
+	@ResponseBody
+	@RequestMapping(value="/planit/review/myreview/ChangeBackground.it",produces = "text/plain; charset=UTF-8" )
+	public String changeBackground(MultipartHttpServletRequest mhsr, @RequestParam Map map)throws Exception{
+		// 1]서버의 물리적 경로 얻기
+		String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Review");
+		// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
+		// MultipartFile객체 얻기
+		MultipartFile profile = mhsr.getFile("file");
+		// 2]File객체 생성
+		// 2-1] 파일 중복시 이름 변경
+		String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
+		// 2-2] 파일 객체 생성 
+		File file = new File(phicalPath + File.separator + newFilename);
+		// 3]업로드 처리
+		profile.transferTo(file);
+		System.out.println("name============"+newFilename);
+		// DB의 FIRST이미지 수정
+		System.out.println(map.get("review_id"));
+		map.put("review_id",map.get("review_id"));
+		map.put("updateColumn", "firstimage");
+		map.put("updateValue", newFilename);
+		reviewService.updateOneReviewColumn(map);
+		return "success";
+	}
+	
 }

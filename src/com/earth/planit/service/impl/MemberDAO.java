@@ -132,10 +132,10 @@ public class MemberDAO implements MemberService {
 		// TODO Auto-generated method stub
 		return template.selectOne("profilecheck",map);
 	}
+
 	@Override
 	public Map memberQnAView(Map map) {
 		// TODO Auto-generated method stub
 		return template.selectOne("MemberQnAView",map);
 	}
-
 }

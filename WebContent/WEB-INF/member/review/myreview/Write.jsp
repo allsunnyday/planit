@@ -2,8 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%-- 
 <style>
-.review-left {
+review-left {
 	position: absolute;
 	background-image: url(<c:url value = '/images/main/slide1.jpg'/>);
 	z-index: -1;
@@ -334,3 +335,4 @@ li {
     });
     
 </script>
+ --%>

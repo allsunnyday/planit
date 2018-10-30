@@ -5,181 +5,182 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="config.Member">
 <!-- 로그인처리 -->
-	<select id="MemberIsLogin" parameterType="java.util.Map" resultType="int">
-		SELECT COUNT(*) FROM member WHERE id=#{id} AND pwd=#{pwd}
+   <select id="MemberIsLogin" parameterType="java.util.Map" resultType="int">
+      SELECT COUNT(*) FROM member WHERE id=#{id} AND pwd=#{pwd}
 
-	</select>
+   </select>
 
 <!-- 멤버디테일 담는 거-->
-	<select id="MemberInformation" parameterType="java.util.Map" resultType="memberDTO">
-		SELECT * FROM member WHERE id=#{id}
-	</select>
+   <select id="MemberInformation" parameterType="java.util.Map" resultType="memberDTO">
+      SELECT * FROM member WHERE id=#{id}
+   </select>
 <!-- 회원가입처리 -->
 
-	<insert id="MemberIsJoin" parameterType="MemberDTO">
-		INSERT INTO member(id, email,pwd,verified,regidate,gender,age,star,name) values(#{id},#{email},#{pwd},'Y',SYSDATE,#{gender},#{age},0,#{name})
-		
-	</insert>
+   <insert id="MemberIsJoin" parameterType="MemberDTO">
+      INSERT INTO member(id, email,pwd,verified,regidate,gender,age,star,name) values(#{id},#{email},#{pwd},'Y',SYSDATE,#{gender},#{age},0,#{name})
+   </insert>
 
-<!-- 중복검사 -->
-	<select id="MemberIsDuplicate" parameterType="java.util.Map" resultType="int">
-		SELECT COUNT(*) FROM member WHERE id=#{id} 
-	</select>
-<!-- 마이페이지-프로필업데이트 -->	
-	<update id="MemberUpdateProfile" parameterType="java.util.Map" >
-		UPDATE member SET profile=#{profile}, self=#{self}, name=#{name},email=#{email} where id=#{id}
-	</update>
-	
+   <select id="MemberIsDuplicate" parameterType="java.util.Map" resultType="int">
+      SELECT COUNT(*) FROM member WHERE id=#{id} 
+   </select>
+<!-- 마이페이지-프로필업데이트 -->   
+   <update id="MemberUpdateProfile" parameterType="java.util.Map" >
+      UPDATE member SET profile=#{profile}, self=#{self}, name=#{name},email=#{email} where id=#{id}
+   </update>
+
 <!-- 선호도조사 -->
-	<insert id="MemberInsertPefer"  parameterType="java.util.Map" >
-	insert all
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0102')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0201')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0202')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0203')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0204')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0205')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0206')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0207')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0208')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0301')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0302')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0303')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0304')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0305')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0401')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'A0502')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'B0201')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'C0112')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'C0113')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'C0114')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'C0115')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'C0116')
-		into preference(prefer_id, id, cat2) values
-		(get_prefer_seq,#{id}, 'C0117')
-		select * from dual
-	</insert>
+   <insert id="MemberInsertPefer"  parameterType="java.util.Map" >
+   insert all
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0102')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0201')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0202')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0203')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0204')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0205')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0206')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0207')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0208')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0301')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0302')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0303')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0304')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0305')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0401')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'A0502')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'B0201')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'C0112')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'C0113')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'C0114')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'C0115')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'C0116')
+      into preference(prefer_id, id, cat2) values
+      (get_prefer_seq,#{id}, 'C0117')
+      select * from dual
+   </insert>
 
 
-	<select id="MemberReviewList"  parameterType="java.util.Map" resultType="reviewDTO">
-		select id,R.*
-		from review R INNER JOIN  planner P on R.planner_id=P.planner_id
-		where id=#{id}
-		order by R.postdate desc
-	</select>
-	<select id="MemberPlannerList"  parameterType="java.util.Map" resultType="java.util.Map">
-		select * from planner
-		where id=#{id} 
-	</select>
+   <select id="MemberReviewList"  parameterType="java.util.Map" resultType="reviewDTO">
+      select id,R.*
+      from review R INNER JOIN  planner P on R.planner_id=P.planner_id
+      where id=#{id}
+      order by R.postdate desc
+   </select>
+   <select id="MemberPlannerList"  parameterType="java.util.Map" resultType="java.util.Map">
+      select * from planner
+      where id=#{id} 
+   </select>
 
-	<select id="MemberHomeReviewList"  parameterType="java.util.Map" resultType="reviewDTO">
-		
-		select id,R.* 
-		from review R INNER JOIN  planner P on R.planner_id=P.planner_id
-		where rownum<![CDATA[<=]]>4 and id=#{id}
-		order by R.postdate desc
-	</select>
-	<select id="MemberHomePlannerList"  parameterType="java.util.Map" resultType="java.util.Map">
-		
-		select * from planner
-		where id=#{id} and rownum<![CDATA[<=]]>4
-	</select>
-	<select id="MemberAskPlanit"  parameterType="java.util.Map" resultType="FaqNoticeDTO">
 
-		select * 
-		from u_ask_planit
-		where rownum<![CDATA[<=]]>5 and id=#{id}
-		order by askdate
-	</select>
-	<select id="MemberAskPlanitDetail"  parameterType="java.util.Map" resultType="FaqNoticeDTO">
-		
-			select * from
-		(select a.*,rownum r from(select * 
-		from u_ask_planit
-		where id=#{id}
-		order by askdate desc)a)
-		where  r between #{start} and #{end}
-	</select>
-	<select id="getTotalCount2" parameterType="java.util.Map" resultType="int">
-		select count(*) from u_ask_planit where id=#{id}
-		<if test="searchWord != null">
-				and ${searhColumn} LIKE '%' || #{searchWord} || '%'
-		</if>
-	</select>
-	<select id="MemberLikedTour" parameterType="java.util.Map" resultType="java.util.Map">
-		select T.*,C.title,C.addr1
-		from liked_tour T INNER JOIN  content c on T.contentid=C.contentid
-		where rownum<![CDATA[<=]]>5 and id=#{id}
-		order by LIKED_T_ID desc
-	</select>
-	<select id="MemberLikedReview" parameterType="java.util.Map" resultType="java.util.Map">
-		select L.*,R.*
-		from review R INNER JOIN liked_review L on R.review_id=L.review_id
-		where rownum<![CDATA[<=]]>5 and id=#{id}
-	</select>
-	<select id="MemberLikedPlanner" parameterType="java.util.Map" resultType="java.util.Map">
-		select * from liked_planner
-		where rownum<![CDATA[<=]]>5 and id=#{id}
-	</select>
-	<select id="MemberLikedTourDetail" parameterType="java.util.Map" resultType="java.util.Map">
-		select T.*,C.title,C.addr1
-		from liked_tour T INNER JOIN  content c on T.contentid=C.contentid
-		where id=#{id}
-		order by LIKED_T_ID desc
-	</select>
-	<select id="MemberLikedReviewDetail" parameterType="java.util.Map" resultType="java.util.Map">
-		select L.*,R.*
-		from review R INNER JOIN liked_review L on R.review_id=L.review_id
-		where id=#{id}
-	</select>
-	<select id="MemberLikedPlannerDetail" parameterType="java.util.Map" resultType="java.util.Map">
-		select * from liked_planner
-		where id=#{id}
-	</select>
-	
-	<select id="profilecheck" parameterType="java.util.Map" resultType="int">
-		select profile
-		from member
-		where id=#{id}
-	</select>
-	
-	<select id="MemberPreferList" parameterType="java.util.Map" resultType="memberDTO">
-		select T.id,T.kor
-		from (select *
-		from preference P inner join cat2 C on P.cat2=C.cat2
-		where id=#{id}
-		order by rating desc)T
-		where rownum <![CDATA[<=]]>4
-	</select>
-	
-	<update id="MemberUpdatePrefer"  >
-		update preference set rating=rating+10
-		where id=#{id} and cat2=#{cat2}
-	</update>
-	
-	<select id="MemberQnAView" parameterType="java.util.Map" resultType="java.util.Map">
-	select * from u_ask_p where ask_no=#{ask_no}
-	</select>
+   <select id="MemberHomeReviewList"  parameterType="java.util.Map" resultType="reviewDTO">
+      
+      select id,R.* 
+      from review R INNER JOIN  planner P on R.planner_id=P.planner_id
+      where rownum<![CDATA[<=]]>4 and id=#{id}
+      order by R.postdate desc
+   </select>
+   <select id="MemberHomePlannerList"  parameterType="java.util.Map" resultType="java.util.Map">
+      
+      select * from planner
+      where id=#{id} and rownum<![CDATA[<=]]>4
+   </select>
+   <select id="MemberAskPlanit"  parameterType="java.util.Map" resultType="FaqNoticeDTO">
+      select * 
+      from u_ask_planit
+      where rownum<![CDATA[<=]]>5 and id=#{id}
+      order by askdate
+   </select>
+   <select id="MemberAskPlanitDetail"  parameterType="java.util.Map" resultType="FaqNoticeDTO">
+      
+         select * from
+      (select a.*,rownum r from(select * 
+      from u_ask_planit
+      where id=#{id}
+      order by askdate desc)a)
+      where  r between #{start} and #{end}
+   </select>
+   <select id="getTotalCount2" parameterType="java.util.Map" resultType="int">
+      select count(*) from u_ask_planit where id=#{id}
+      <if test="searchWord != null">
+            and ${searhColumn} LIKE '%' || #{searchWord} || '%'
+      </if>
+   </select>
+   <select id="MemberLikedTour" parameterType="java.util.Map" resultType="java.util.Map">
+      select T.*,C.title,C.addr1
+      from liked_tour T INNER JOIN  content c on T.contentid=C.contentid
+      where rownum<![CDATA[<=]]>5 and id=#{id}
+      order by LIKED_T_ID desc
+   </select>
+   <select id="MemberLikedReview" parameterType="java.util.Map" resultType="java.util.Map">
+      select L.*,R.*
+      from review R INNER JOIN liked_review L on R.review_id=L.review_id
+      where rownum<![CDATA[<=]]>5 and id=#{id}
+   </select>
+   <select id="MemberLikedPlanner" parameterType="java.util.Map" resultType="java.util.Map">
+      select * from liked_planner
+      where rownum<![CDATA[<=]]>5 and id=#{id}
+   </select>
+   <select id="MemberLikedTourDetail" parameterType="java.util.Map" resultType="java.util.Map">
+      select T.*,C.title,C.addr1
+      from liked_tour T INNER JOIN  content c on T.contentid=C.contentid
+      where id=#{id}
+      order by LIKED_T_ID desc
+   </select>
+   <select id="MemberLikedReviewDetail" parameterType="java.util.Map" resultType="java.util.Map">
+      select L.*,R.*
+      from review R INNER JOIN liked_review L on R.review_id=L.review_id
+      where id=#{id}
+   </select>
+   <select id="MemberLikedPlannerDetail" parameterType="java.util.Map" resultType="java.util.Map">
+      select * from liked_planner
+      where id=#{id}
+   </select>
+   
+   <select id="profilecheck" parameterType="java.util.Map" resultType="int">
+      select profile
+      from member
+      where id=#{id}
+   </select>
+   
+   
+   
+   
+   
+   
+   
+   <select id="MemberPreferList" parameterType="java.util.Map" resultType="memberDTO">
+      select T.id,T.kor
+      from (select *
+      from preference P inner join cat2 C on P.cat2=C.cat2
+      where id=#{id}
+      order by rating desc)T
+      where rownum <![CDATA[<=]]>4
+   </select>
+   
+   <update id="MemberUpdatePrefer"  >
+      update preference set rating=rating+10
+      where id=#{id} and cat2=#{cat2}
+   </update>
+ 
 </mapper>

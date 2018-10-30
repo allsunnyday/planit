@@ -8,14 +8,52 @@ review :
 oneRoute
 ************************************************************** -->
 <div id="nav" style="padding-top: 60px"></div>
-<!--*********************************
-리뷰 제목부분 (제목/즐겨찾기 /사용자보기) 
-***************************************  -->
+<!--******************리뷰 제목부분 (제목/즐겨찾기 /사용자보기) ***************************************  -->
 <script type="text/javascript">
 	var json;
 	
 	$(function(){
 		showDayRoute('${oneRoute}');
+		
+		// 배경변경 - 파일변경을 할경우 
+		$('#bgchange').click(function(){
+			
+			var file = $('#bgfile').get(0).files.length;
+			if(file == 0){
+				console.log('file이 없습니다.');
+				alter('파일을 선택해 주세요! ');
+				return ;
+			}
+			else{
+				$('#changebg').modal('hide');
+				console.log('file이 있습니다.');
+				var data = new FormData();
+				data.append('file', $('#bgfile').get(0).files[0]);
+				var review_id ='${review.review_id}';
+				console.log(review_id);
+				data.append('review_id', review_id);
+				$.ajax({
+					url:"<c:url value='/planit/review/myreview/ChangeBackground.it'/> ",
+					type:'post',
+					data: data,
+					cache: false,
+				    contentType: false,
+				    processData: false,
+					dataType:"text",
+					success:function(data){
+						console.log('success');
+						// 새로 바뀐 이름을 가지고 배경화면을 설정한다.
+						var newbg = "<c:url value='/Upload/Review/"+data+"'/> ";
+						jQuery('#intro').css({"background":"url("+newbg+")",'background-repeat' : 'no-repeat', 'background-position':'center center','background-size':'cover'});
+						//location.replace("<c:url value='/review/myreview/Write.it?review_id=${review.review_id}&planner_id=${review.planner_id}'/> ");
+					},
+					error: function(request, error){
+						console.log(request.error);
+					}
+				});
+			}
+		});
+		
 	});
 	
 	
@@ -26,7 +64,7 @@ oneRoute
 		json = JSON.parse(data);
 		var routestr='';
 		var routecount = 0;
-		console.log(routestr+'여기에서 찍히면 되는거 아니냐');
+		//console.log(routestr+'여기에서 찍히면 되는거 아니냐');
 		$.each(json, function(index, element){
 			routecount=routecount+1;
 			if(index===0){
@@ -82,8 +120,7 @@ oneRoute
 	};
 </script>
 
-<section id="intro"
-	style="background: url( <c:url value='/images/main/slide1.jpg'/> ) center center no-repeat fixed;">
+<section id="intro" style="background: url( <c:url value='/Upload/Review/${review.firstimage}'/> ) center center no-repeat fixed; background-size:cover;">
 	<div class="container">
 
 		<div class="ror">
@@ -140,13 +177,14 @@ oneRoute
 				<div class="modal-body">
 		        	<div class="input-group">
 					  <div class="custom-file text-center">
-					    <input type="file" class="custom-file-input" id="inputGroupFile04">
+					
+					    <input type="file" class="custom-file-input" id="bgfile" name="bgfile">
 					  </div>
 					</div>
 		      	</div>
 		     	 <div class="modal-footer">
 		       	 	<button type="button" class="dmbutton2" data-dismiss="modal">닫기</button>
-		        	<button type="button" class="dmbutton2">저장</button>
+		        	<button type="button" class="dmbutton2" id="bgchange">저장</button>
 		      	</div>
 			</div>
 		</div>

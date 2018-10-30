@@ -38,24 +38,7 @@ $(function(){
     	    ['height', ['height']]
     	  ]
     });
-    /* 
-    function sendFile(file, el) {
-    	var form_data = new FormData();
-    	form_data.append('file', file);
-    	$.ajax({
-    		data: form_data,
-	    	type: "POST",
-	    	url: '/image',
-    		cache: false,
-    		contentType: false,
-    		enctype: 'multipart/form-data',
-	    	processData: false,
-	    	success: function(url) {
-    			$(el).summernote('editor.insertImage', url);
-    			$('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
-    		}
-		});
-	} */ 
+    
 });
 </script>
 
@@ -172,62 +155,7 @@ $(function(){
 		</div>
 	</div>
 </section>
-<section class="section1">
-	<div class="container">
-		<div class="row" style="height: 700px;">
-			<div class="col-sm-12 col-md-12 col-xs-12 portfolio wow fadeIn text-center">
-	        	<h2> 전체 여행일정표 </h2>
-	            <hr/>
-	        </div>
-	        <div class="col-sm-12 col-md-12 col-xs-12">
-		        <table class="table table-striped" id="plantable">
-		        	<tr class="info">
-		        		<td>시간</td><td>1일차</td><td>2일차</td><td>3일차</td><td>4일차</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">00:00</td><td>일정 입력</td><td>휴식</td><td>??</td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">01:00</td><td></td><td>??</td><td>??</td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">02:00</td><td>??</td><td></td><td></td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">03:00</td><td>??</td><td>??</td><td>??</td><td></td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">04:00</td><td>??</td><td>??</td><td>??</td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">05:00</td><td>??</td><td>??</td><td>??</td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">06:00</td><td>??</td><td>??</td><td>??</td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">07:00</td><td>??</td><td>??</td><td>??</td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">08:00</td><td>??</td><td>??</td><td>??</td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">09:00</td><td>??</td><td>??</td><td>??</td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">10:00</td><td>??</td><td>??</td><td>??</td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">11:00</td><td>??</td><td>??</td><td>??</td><td>??</td>
-		        	</tr>
-		        	<tr>
-		        		<td class="info">12:00</td><td>??</td><td>??</td><td>??</td><td>??</td>
-		        	</tr>
-		        </table>
-	        </div>
-		</div>
-	</div>
-</section>
+
 <style>
 	span #monthfontsize{
 		width: 100px;  
@@ -237,4 +165,5 @@ $(function(){
 	#plantable {
 		text-align: center;
 	}
+	.footer {position:fixed; bottom:0; width:100%;}
 </style>
