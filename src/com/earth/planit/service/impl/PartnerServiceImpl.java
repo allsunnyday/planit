@@ -147,4 +147,29 @@ public class PartnerServiceImpl implements PartnerService{
 		return dao.partnerRoomList(map);
 	}
 
+	@Override
+	public List<Map> tourRoomList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.tourRoomList(map);
+	}
+
+	@Override
+	public int productDelte(Map map) {
+		// TODO Auto-generated method stub
+		return dao.productDelte(map);
+	}
+
+	@Override
+	public List<Map> partnerReservationList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerReservationList(map);
+	}
+
+	@Override
+	public List<Map> partnerEventRequestList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerEventRequestList(map);
+	}
+
+
 }

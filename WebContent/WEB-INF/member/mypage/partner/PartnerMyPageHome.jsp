@@ -202,7 +202,7 @@ height: 100%; */
 				<div id="Partner-First-1-self-detail">
 					<p>
 						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-							(주)회사이름추가하기</span>
+							${partnerRecord.p_name }</span>
 					<div class="Partner-First-PartnerInform">
 
 						<table id="Partner-First-informtable" style="width: 110%;">
@@ -281,7 +281,7 @@ height: 100%; */
 								aria-expanded="true">
 								회원정보수정 <span class="caret"></span>
 							</button>
-							<ul class="dropdown-menu" role="menu"
+							<ul style="" class="dropdown-menu" role="menu"
 								aria-labelledby="Partner-edit-button">
 								<li role="presentation"><a role="menuitem" tabindex="-1"
 									href="<c:url value='/plantit/mypage/partner/productResist.it' />">상품등록</a></li>
@@ -318,7 +318,7 @@ height: 100%; */
 							 <div class="recentitems portfolio">
          			<c:if test="${empty partnerRoom }">
          				<div>
-         					<h4 style="text-align: center">당신만의 멋진 리뷰를 작성해주세요</h4>
+         					<h4 style="text-align: center">객실을 등록해주세요!</h4>
          				</div>
          			</c:if>
          			<c:if test="${not empty partnerRoom }">
@@ -370,13 +370,51 @@ height: 100%; */
 				<!-- ---------------------- -->
 				<div class="row" id="Partner-Second">
 					<!--  내가 작성한 플래너 들어갈 div -->
-					<div id="Partner-Second-name">Partner Review</div>
+					<div id="Partner-Second-name">Event Request</div>
 					<div class="Partner-More-Button">
 							<a href="<c:url value='/mypage/partner/RequestEvent_P.it'/>"  class="btn btn-link"><span
 								class="glyphicon glyphicon-plus">더보기 </span></a>
 					</div>
 					<div id="Third-line">
-						<div id="Partner-Second-content" class="col-md-12">주간 예약 통계
+						<div id="Partner-Second-content" class="col-md-12">
+							 <table class="table" style="text-align: center">
+		                     <tr>
+		                        <td class="col-md-1 ">No.</td>
+								
+								<td class="col-md-1 col-md-offset-1">이름</td>
+								<td class="col-md-1 col-md-offset-1">기간</td>
+								<td class="col-md-1 col-md-offset-1">상태</td>
+								<td class="col-md-1 col-md-offset-1">요청일자</td>
+								
+		                        
+		
+		                     </tr>
+		                     <c:if test="${empty requestScope.partnerEventRequest }" var="isEmpty">
+							<tr>
+								<td colspan="6" style="text-align: center">이벤트 신청 목록이 없습니다</td>
+							</tr>
+							</c:if>
+							<c:if test="${not isEmpty }">
+								<c:forEach var="list" items="${partnerEventRequest}" varStatus="loop">
+									<tr>
+										<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
+										<td>${list.REQ_NO}</td>
+										
+										<td class="text-left" >
+										<a style="color: rgb(110,112,118)" href="#"  >${list.TITLE }</a>
+										</td>
+										<!-- Modal -->
+										<td>${list.PERIOD}</td>
+										<td>${list.STATUS}</td>
+										<td>${list.REQDATE}</td>
+									
+									</tr>
+								</c:forEach>
+							</c:if>
+		     
+		                  </table>
+									
+							
 						</div>
 
 
@@ -401,51 +439,45 @@ height: 100%; */
 						<div id="Forth-content" class="col-md-12">
 							<!-- 찜해제버튼 추가 -->
 							<div id="Partner-Third-ZZim-table">
-								<table class="table">
-									<tr>
-										<td class="col-md-1 ">No.</td>
-										<!-- 찜번호 -->
-										<td class="col-md-1 ">이름</td>
+				
+								 <table class="table" style="text-align: center">
+                     <tr>
+                        <td class="col-md-1 ">No.</td>
+						<td class="col-md-1 ">이름</td>
+						<td class="col-md-1 col-md-offset-1">객실</td>
+						<td class="col-md-1 col-md-offset-1">예약일자</td>
+						<td class="col-md-1 col-md-offset-1">Check-Out</td>
+						<td class="col-md-1 col-md-offset-1">Check-Out</td>
+					
+                        
 
-										<td class="col-md-1 col-md-offset-1">객실</td>
-										<td class="col-md-1 col-md-offset-1">Check-In</td>
-										<td class="col-md-1 col-md-offset-1">Check-Out</td>
-										<td class="col-md-1 col-md-offset-1">추가사항</td>
-
-									</tr>
-									<tr>
-										<td>00</td>
-										<!-- 찜번호 -->
-										<td><span>김플랜</span></td>
-										<td>Standard A</td>
-										<td>2018.01.01</td>
-										<td>2018.01.03</td>
-										<td>X</td>
-
-									</tr>
-									<tr>
-										<td>00</td>
-										<!-- 찜번호 -->
-										<td><span>이플랜</span></td>
-										<td>Standard B</td>
-										<td>2018.01.01</td>
-										<td>2018.01.03</td>
-										<td>추가 침구</td>
-
-
-									</tr>
-									<tr>
-										<td>00</td>
-										<!-- 찜번호 -->
-										<td><span>박플랜</span></td>
-										<td>Standard C</td>
-										<td>2018.01.01</td>
-										<td>2018.01.03</td>
-										<td>조식추가</td>
-
-
-									</tr>
-								</table>
+                     </tr>
+                     <c:if test="${empty requestScope.partnerReservation }" var="isEmpty">
+					<tr>
+						<td colspan="6" style="text-align: center">예약목록이 없습니다</td>
+					</tr>
+					</c:if>
+					<c:if test="${not isEmpty }">
+						<c:forEach var="list" items="${partnerReservation}" varStatus="loop">
+							<tr>
+								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
+								<td>${list.RESERVATION_ID}</td>
+								<td>${list.ID}</td>
+								<td class="text-left" >
+								<a style="color: rgb(110,112,118)" href="#"  >${list.ROOMTITLE }</a>
+								</td>
+								<!-- Modal -->
+								<td>${list.BOOKDATE}</td>
+								<td>${list.CHECKIN}</td>
+								<td>${list.CHECKOUT}</td>
+							
+							</tr>
+						</c:forEach>
+					</c:if>
+     
+                  </table>
+									
+								
 							</div>
 						</div>
 
@@ -504,22 +536,7 @@ height: 100%; */
 							</tr>
 						</c:forEach>
 					</c:if>
-           <!--           <tr>
-                        <td>00</td>
-                        <td>정보수정</td>
-                        <td>관광지 정보수정 문의</td>
-                        <td>2018.01.01</td>
-                        <td>문의 접수</td>
-
-                     </tr>
-                     <tr>
-                        <td>00</td>
-                        <td>그냥문의</td>
-                        <td>제목뭘루하지</td>
-                        <td>2018.01.01</td>
-                        <td>처리 중</td>
-
-                     </tr> -->
+     
                   </table>
                </div>
 

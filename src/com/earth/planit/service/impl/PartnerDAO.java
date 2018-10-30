@@ -153,7 +153,31 @@ public class PartnerDAO implements PartnerService{
 		return template.selectList("PartnerRoomList",map);
 	}
 
-	
+	@Override
+	public List<Map> tourRoomList(Map map) {
+		System.out.println("여기까지 오냐 ContentRoomView");
+		return template.selectList("ContentRoomView",map);
+	}
+
+	@Override
+	public int productDelte(Map map) {
+		// TODO Auto-generated method stub
+		return template.delete("PartnerProductDelete", map);
+	}
+
+	@Override
+	public List<Map> partnerReservationList(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("PartnerReservation", map);
+	}
+
+	@Override
+	public List<Map> partnerEventRequestList(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectList("PartnerEventRequest",map);
+	}
+
+
 	
 	
 }

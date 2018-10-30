@@ -158,11 +158,13 @@
 						</div>
 						<!-- buttons -->
 						
+							<input type="hidden" value="${content.title }" name="title">
+							<input type="hidden" value="${content.contentid }" name="contentid">
 						<div class="buttons">
 						    <a style="margin-right: 7px;"class="dmbutton2" href="javascript:" onclick="likedThisContent();"> <i class="fa fa-star-o"></i> 즐겨찾기 추가</a>
 						    <a style="margin-right: 7px;" class="dmbutton2" href="#target"><i class="fa fa-map"></i> 지도</a>
 							<a class="dmbutton2" href="#"> <i class="fa fa-pencil"></i>정보 수정</a>
-							<a class="button large btn-block" href="#"> <i class="fa fa-pencil"></i>예약</a>
+							<a class="button large btn-block" href="<c:url value='/tourinfo/tdview/sleepList/Reservation.it?contentid=${content.contentid}&contenttype=32'/>"> <i class="fa fa-pencil"></i>객실정보</a>
 						</div>
 						<!-- rating -->
 					</div>
