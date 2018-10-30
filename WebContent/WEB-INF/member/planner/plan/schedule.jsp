@@ -1,46 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 섬머노트 -->
-<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> -->
-<!-- 섬머노트 -->
-<script>
-$(function(){
+<style>
+	span #monthfontsize{
+		width: 100px;  
+		margin: 0 auto;
+	}
 	
-    $(document).ready(function() {
-        $('#plancontent').summernote();
-    });
-    
-    $('#plancontent').summernote({
-    	height: 300,                 // set editor height
-    	minHeight: null,             // set minimum height of editor
-    	maxHeight: null,             // set maximum height of editor
-    	focus: true,                  // set focus to editable area after initializing summernote
-    	onImageUpload: function(files, editor, welEditable) {
-    		for (var i = files.length - 1; i >= 0; i--) {
-    			sendFile(files[i], this);
-    		}
-    	}
-	});
-    
-    $('#plancontent').summernote({
-    	  toolbar: [
-    	    // [groupName, [list of button]]
-    	    ['style', ['bold', 'italic', 'underline', 'clear']],
-    	    ['font', ['strikethrough', 'superscript', 'subscript']],
-    	    ['fontsize', ['fontsize']],
-    	    ['color', ['color']],
-    	    ['para', ['ul', 'ol', 'paragraph']],
-    	    ['height', ['height']]
-    	  ]
-    });
-    
-});
-</script>
+	#plantable {
+		text-align: center;
+	}
+	.footer {position:fixed; bottom:0; width:100%;}
+</style>
 
 <!-- 달력 부트 스트랩 css 적용 시작  -->
 <!-- 
@@ -58,16 +29,16 @@ $(function(){
 			</ul>
 			<h2> 추억을 남길 나의 여행 일정 작성하기 </h2>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: 61px;">
+		<%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: 61px;">
 			<ul class="nav nav-tabs" style="float: right;">
 				<li style="display: block;"><a href="#"> 저 장 </a></li>
 				<li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
 				<li  style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
 				<li class="active" style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
 				<li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>
-				<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>				
+				<!-- <li style="display: block;"><a href="#"> 즐겨 찾기 </a></li> -->				
 			</ul>						
-		</div>		
+		</div> --%>		
 	</div>
 </section>
 
@@ -78,7 +49,7 @@ $(function(){
 <!-- 상단 내부 네비게이션바 시작 -->
 	<%-- <jsp:include page="plantop.jsp"></jsp:include> --%>
 <!-- 상단 내부 네비게이션바 종료 -->
-	<div class="container">
+	<div class="container" style="margin-bottom: 50px;">
 		<div class="row">
 			<div class="col-md-6 col-sm-6 col-xs-12" style="float: left; height: 600px;">
 				<div class="col-sm-12 col-md-12 col-xs-12 portfolio  wow fadeIn text-center">
@@ -115,55 +86,104 @@ $(function(){
 				<!-- 달력 출력 종료 -->
 			</div>
 			<!--  -->
-			<div class="col-md-6 col-sm-6 col-xs-12" style="float: center; height: 640px;">
-				<div class="col-sm-12 col-md-12 col-xs-12 portfolio wow fadeIn text-center">
-		        	<h3> 일자별 여행 일정 입력 </h3>
-		            <hr/>	           
-		        </div>	        			
-				<!-- 우측 일정 입력 시작 -->
-				<!-- 여행 일자, 정보 출력 시작 -->
-				<div class="row" >
-					<div class="col-md-2 col-sm-2 col-xs-12" >
-						<img alt="plandest" src="/Planit/images/plan/plandest.png" style="height: 40px; width: 50px;">					
+			<div class="col-md-6 col-sm-6 col-xs-12 portfolio wow fadeIn text-center">
+	        	<h3> 일자별 여행 일정 입력 </h3>
+	            <hr/>	           
+	        </div>
+			<hr/>			
+			<div class="col-md-6 col-sm-6 col-xs-12" style="overflow: auto; float: center; height: 600px;">
+				<form method="post" action="#" id="plansave" style="height: 500px;">
+					<div class="schedulehiddendata">
+						<input type="hidden" id="days" name="days" value="${days }"> <!-- 총 여행일수 저장 -->
+						<input type="hidden" id="depart" name="depart" value="${depart }"> <!-- 여행 출발일자 -->
+						<input type="hidden" id="areacode" name="areacode" value="${areacode }"> <!-- 여행 여행 지역 코드 -->
+						<input type="hidden" id="tourtype" name="tourtype" value="${tourtype }"> <!-- 여행 인원 타입-->
+						<input type="hidden" id="plancase" name="plancase" value="${plancase }"><!-- 여행 일정 계획 작성을 위한 총개수 판단 -->
+						<input type="hidden" id="routedata" name="routedata" value="${route }"><!-- 여행 일정 계획 작성을 위한 총개수 판단 -->
 					</div>
-					<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="padding: 1.75%;">2018년 9월 아무일 </div>
-					
-					<div class="col-md-4 col-sm-4 col-xs-12 text-center" style=" padding: 1.75%;">여행지 + 여행일차 출력 </div>
-					<div class="col-md-2 col-sm-2 col-xs-12">
-						<img alt="calendaticon" src="/Planit/images/plan/calendaticon.png" style="height: 40px; width: 50px;">					
-					</div>				
-				</div>
-				<!-- 여행 일자, 정보 출력 종료 -->
-				<hr/>
-				<!-- 내용 입력란 시작  - 섬머 노트 적용 -->			
-				<form method="post" action="#">
-					<div class="form-group">
-						<input type="text" class="form-control" id="title" name="title" placeholder="일정명을 기입해주세요" style="font-size: 1em;">					
-					</div>				
-					<div class="form-group">
-						<textarea rows="15" class="form-control" id="plancontent" name="plancontent" placeholder="내용을 입력해주세요"></textarea>
+					<div class="form-group" style="">
+						<div id="comments_wrapper" >
+							<h4 class="title"> (<span class="routecount">${plancase }</span>)개 일정 </h4>
+
+							<ul class="comment-list" >
+								<!-- <li>
+									<article class="comment">
+										<div class="comment-content">
+											<h4 class="comment-author" > 한강 <small class="comment-meta"></small>
+												<span class="comment-reply">
+													<a href="#" class="comment-reply dmbutton2 small">일정 작성</a>
+												</span>												
+											</h4>
+											<input type="text" class="form-control" id="todo" name="todo" placeholder="일정명을 입력해주세요" style="font-size: 1em;">
+											<textarea rows="2" class="form-control" id="todomemo" name="todomemo" placeholder="일정내용을 입력해주세요"></textarea>
+										</div>
+									</article>
+								</li> -->
+							</ul> <!-- End .comment LIst-->
+						</div> <!-- end col-lg 8 -->
 					</div>
-					<div class="form-group">
-						<div class="col-sm-12 col-md-12 col-sc-12 text-center">
-							<button type="submit" class="btn btn-info"> 등 록 </button>
-						</div>
+					<div class="col-sm-12 col-md-12 col-sc-12 text-center">
+						<button type="submit" id="selectplanbtn" name="selectplanbtn" class="btn btn-info"> 저 장 </button>
 					</div>
 				</form>
-				<!-- 내용 입력란 종료  - 섬머노트 적용  -->
 			</div>
 			<!-- 우측 일정 입력 종료 -->
 		</div>
 	</div>
 </section>
-
-<style>
-	span #monthfontsize{
-		width: 100px;  
-		margin: 0 auto;
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	var plancase = $('#plancase').val();
+	console.log(plancase)/* 총  여행 일정 개수*/	
+	
+	console.log($('#routedata').val()); //총 루트
+	var route = $('#routedata').val();
+	var scheduledays = route.split('@'); // 일차 별로 자름
+	console.log(scheduledays) // 일자별로 자른값임
+	
+	var scheduledaysplan; // 하루일정수 담기
+	
+	var scheduletitle; // 타이틀 찾기
+	for(var i=0; i<scheduledays.length;i++){
+		scheduledaysplan = scheduledays[i].split('#');		
+		//console.log(scheduledaysplan); // 하루 일정 수		
+		for(var k=1; k<scheduledaysplan.length; k++){			
+			//console.log([k]+"dma. : "+scheduledaysplan[k]);
+			scheduletitle = scheduledaysplan[k].split(':');
+			
+			console.log('scheduletitle: '+ scheduletitle);
+			for(var j=1; j<scheduletitle.length; j++){
+				console.log([j]+': '+scheduletitle[j]);
+				var routememocontent ='';
+				routememocontent+= '<li>'
+					+ '<article class="comment">'
+						+'<div class="comment-content">'
+							+'<h4 class="comment-author" > '+scheduletitle[3]+'<small class="comment-meta"></small>'
+								//+'<span class="comment-reply">'
+									//+'<a href="#" class="comment-reply dmbutton2 small">일정 작성</a>'
+								//+'</span>'												
+							+'</h4>'
+							+'<input type="text" class="form-control" id="'+scheduletitle[4]+'" name="'+scheduletitle[4]+'" placeholder="일정명을 입력해주세요" style="font-size: 1em;">'
+							+'<textarea rows="2" class="form-control" id="'+scheduletitle[5]+'" name="'+scheduletitle[5]+'" placeholder="일정내용을 입력해주세요"></textarea>'
+						+'</div>'
+					+'</article>'
+				+'</li>';
+			}
+			$('.comment-list').append(routememocontent);
+		}		
 	}
 	
-	#plantable {
-		text-align: center;
-	}
-	.footer {position:fixed; bottom:0; width:100%;}
-</style>
+	$('#selectplanbtn').click(function(){
+		for(var i=0; i<plancase;i++){
+			route = route.replace('todo_'+i, $('#todo_'+i).val());
+			route = route.replace('todomemo_'+i, $('#todomemo_'+i).val());
+		}
+		//alert('route 치환후: '+ route);
+		var content = '<input type="hidden" name="route" id="route" value="'+route+'">';
+		$('#route').val(route);
+		$('.schedulehiddendata').append(content);		
+		$('#plansave').attr("action","<c:url value='/planner/plan/reservation.it'/>");
+	});
+	
+</script>

@@ -868,7 +868,7 @@
 	
 	/* ****** route 정보 저장 및 schedule 페이지 이동 ****** */		
 	function movescheduleAction() {	
-		var formdata = new FormData();
+		//var formdata = new FormData();
 		//여행 타입 및 여행 일정 작성 미진행시 팝업창 출력
 		if(($('#thedate').val() == null || $('#thedate').val()=='') && $('#tourtypeimage').attr('alt') =='타입'){
 			alert('여행 출발일과 여행인원 타입이 선택되지 않았습니다. ')
@@ -890,6 +890,7 @@
 			var tourtype = $('#tourtypeimage').attr('alt');
 			//여행 플랜 저장			
 			var route=[];
+			var schedulecontent ='';
 			for(var i=0; i<plancase; i++){
 				var routeCase='';
 				//console.log('일수들어오나?: '+days);
@@ -897,7 +898,7 @@
 					routeCase += $('.planroute_'+i+' #dayselect').val();
 					routeCase += "#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .sigungucode').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
-					+$('.planroute_'+i+' .contentTitle').text()+":todo:todomemo:";
+					+$('.planroute_'+i+' .contentTitle').text()+":todo_0:todomemo_0:";
 					if($('.planroute_'+i+' .contenttype').val()==32){routeCase+='1';}
 					else{routeCase+='0';}					
 					console.log(routeCase);
@@ -905,34 +906,45 @@
 				else if($('.planroute_'+(i-1)+' #dayselect').val() == $('.planroute_'+i+' #dayselect').val()){					
 					routeCase += "#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .sigungucode').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
-					+$('.planroute_'+i+' .contentTitle').text()+":todo:todomemo:";
-					if($('.planroute_'+i+' .contenttype').val()==32){routeCase+='1';}
-					else{routeCase+='0';}					
+					+$('.planroute_'+i+' .contentTitle').text()+":todo_"+i+":todomemo_"+i+":";
+					if($('.planroute_'+i+' .contenttype').val()==32){ routeCase+='1'; }
+					else{ routeCase+='0'; }					
 					console.log(routeCase);
 				}
 				else if($('.planroute_'+(i-1)+' #dayselect').val() != $('.planroute_'+i+' #dayselect').val()){
 					routeCase +="@"+ $('.planroute_'+i+' #dayselect').val()+"#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .sigungucode').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
-					+$('.planroute_'+i+' .contentTitle').text()+":todo:todomemo:";
-					if($('.planroute_'+i+' .contenttype').val()==32){routeCase+='1';}
+					+$('.planroute_'+i+' .contentTitle').text()+":todo_"+i+":todomemo_"+i+":";
+					if($('.planroute_'+i+' .contenttype').val()==32){ routeCase+='1'; }
 					else{routeCase+='0';}						
 					console.log(routeCase);
 				}
 				console.log('route_'+i);
-				formdata.append("route_"+i,routeCase);
+				//formdata.append("route_"+i,routeCase);
+				schedulecontent +='<input type="hidden" id="route_'+i+'" name="route_'+i+'" value="'+routeCase+'">';
 			}
 			
-			//스케줄 페이지로 데이터 전달
-			formdata.append("days", days); // 여행 총 일수  저장			
-			formdata.append("depart",depart); // 사용자가 선택한 여행 출발 일자 저장
-			formdata.append("tourtype", tourtype); //사용자가 선택한 여행 타입 저장
-			formdata.append("plancase", plancase); // 총일정 개수
-			formdata.append("areacode", areacode);// 사용자가 선택한 지역코드저장
 			
-			console.log(formdata);
-			$.ajax({
+			/* formdata.append("days", days); 			
+			formdata.append("depart",depart); 
+			formdata.append("tourtype", tourtype);
+			formdata.append("plancase", plancase); 
+			formdata.append("areacode", areacode); */
+			
+			//스케줄 페이지로 데이터 전달
+			schedulecontent +='<input type="hidden" id="days" name="days" value="'+days+'">'; // 여행 총 일수  저장
+			schedulecontent +='<input type="hidden" id="depart" name="depart" value="'+depart+'">';// 사용자가 선택한 여행 출발 일자 저장
+			schedulecontent +='<input type="hidden" id="tourtype" name="tourtype" value="'+tourtype+'">'; //사용자가 선택한 여행 타입 저장
+			schedulecontent +='<input type="hidden" id="plancase" name="plancase" value="'+plancase+'">';// 총일정 개수
+			schedulecontent +='<input type="hidden" id="areacode" name="areacode" value="'+areacode+'">';// 사용자가 선택한 지역코드저장
+			
+			$('#scheduleData').append(schedulecontent);
+			$('#scheduleData').attr("action", "<c:url value='/planner/plan/schedule.it'/>");
+			//alert('저장 되엇습니다.')
+			//console.log($('#scheduleData').html());
+			/* $.ajax({
 				url:"<c:url value='/planner/plan/scheduleUpload.it'/>",
-	            data:formdata,scheduledata,
+	            data:formdata,
 	            type:'post',
 	            processData: false,
 	            contentType: false,
@@ -940,17 +952,17 @@
 	            success:function(data){	            
 	            	console.log(data);
 	                   if(confirm('성공적으로 저장되었습니다.')){
-	                      location.replace('<c:url value="/planner/plan/schedule.it"/>');
+	                      //location.replace('<c:url value="/planner/plan/schedule.it"/>');
+	                      $('#scheduleData').attr("action", "<c:url value='/planner/plan/schedule.it'/>");
+	                      $('#scheduleData').submit();
 	                   }
 	            },
 	            error:function(error, request){
 	               console.log(error);
 	            }
 	            
-	         });
-			var request = new XMLHttpRequest();
-			request.open("POST", '<c:url value="/planner/plan/schedule.it"/>');
-			request.send(formData);
+	         }); */
+			$('#scheduleData').submit();
 		}
 		
 	}

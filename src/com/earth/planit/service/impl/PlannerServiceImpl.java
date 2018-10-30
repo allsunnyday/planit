@@ -21,4 +21,9 @@ public class PlannerServiceImpl implements PlannerService {
 		return dao.selectMapDataList(map);
 	}
 
+	@Override
+	public int insertPlanner(PlannerDTO dto) {
+		return dao.insertPlanner(dto);
+	}
+
 }
