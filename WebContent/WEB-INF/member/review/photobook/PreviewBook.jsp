@@ -325,7 +325,7 @@ p {
 		$.ajax({
             type: "post",
             /* data : $("form").serialize(), */
-             data : frm, 
+            data : frm, 
             url:'<c:url value="/planit/photobook/downloadByAjax.it"/>',
             error: function(request, error, status){        
                 console.log(request,error,status);

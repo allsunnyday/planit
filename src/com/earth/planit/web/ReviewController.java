@@ -116,7 +116,10 @@ public class ReviewController {
 
 		/* } */
 		// dayRoute[day]=
-		// 1#1:12:126508:경복궁:한복대여:한복대여2만원:0#1:12:126512:광화문:교보문고:책사기:0#1:32:2504463:L7명동:::1
+		// 1
+		//#1:12:126508:경복궁:한복대여:한복대여2만원:0
+		//#1:12:126512:광화문:교보문고:책사기:0
+		//#1:32:2504463:L7명동:::1
 //		String route[] = dayRoute[day].split("#");
 		String route[] = record.getRoute().split("#");
 		System.out.println("route[0]" + route[0]);
