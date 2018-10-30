@@ -10,10 +10,12 @@
 </style>
 
 <script type="text/javascript">
-$(window).load(function() {    
-     $('#loading').hide();  
-    });
+	$(window).load(function() {    
+		$('#loading').hide();  
+	});
 </script>
 
 
-<div id="loading"><img id="loading-image" src="/Planit/images/plan/loading.gif" alt="Loading..." /></div>
+<div id="loading">
+	<img id="loading-image" src="/Planit/images/plan/loading.gif" alt="Loading..." />
+</div>

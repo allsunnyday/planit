@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %> --%>
 <script>
 /**************************/   
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -429,20 +430,21 @@
 					map: map, // 마커를 표시할 지도
 					position: positions[i].latlng, // 마커를 표시할 위치
 					title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-					image : markerImage // 마커 이미지 
+					image : markerImage // 마커 이미지
 				});
 				planmarking.push(marking); // 삭제를 위한 마킹 복사
+				
+				daum.maps.event.addListener(marking, 'mouseover', function() {
+					// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+				    infowindowexit.open(map, marking);
+				});
+	
+				// 마커에 마우스아웃 이벤트를 등록합니다
+				daum.maps.event.addListener(marking, 'mouseout', function() {
+				    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+				    infowindowexit.close();
+				});
 			}
-			daum.maps.event.addListener(marking, 'mouseover', function() {
-				// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-			    infowindowexit.open(map, marking);
-			});
-
-			// 마커에 마우스아웃 이벤트를 등록합니다
-			daum.maps.event.addListener(marking, 'mouseout', function() {
-			    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-			    infowindowexit.close();
-			});
 		}
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */		
 		
@@ -809,6 +811,8 @@
 	            success: successPlanmapdata,
 	            error: function(request, status, error){
 					console.log(request, status, error);
+					alert('검색 결과가 없습니다.')
+					changeCategoryClass();
 				}
 			});///ajax
 		});
@@ -816,7 +820,7 @@
 		var successPlanmapdata = function(data){
 			console.log(JSON.stringify(data));
             var order = document.getElementById(currCategory).getAttribute('data-order');
-            console.log("order 순서 확인하자: "+document.getElementById(currCategory).getAttribute('data-order'));
+			console.log("order 순서 확인하자: "+document.getElementById(currCategory).getAttribute('data-order'));
 			$.each(data, function(index, content) {             
 				mapx.push(content['mapx']);
 				mapy.push(content['mapy']);             
