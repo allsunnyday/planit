@@ -22,8 +22,18 @@ public class PlannerServiceImpl implements PlannerService {
 	}
 
 	@Override
-	public int insertPlanner(PlannerDTO dto) {
-		return dao.insertPlanner(dto);
+	public int insertPlanner(Map map) {
+		return dao.insertPlanner(map);
+	}
+
+	@Override
+	public int insertReview(Map map) {
+		return dao.insertReview(map);
+	}
+
+	@Override
+	public int insertReviewContent(Map map) {
+		return dao.insertReviewContent(map);
 	}
 
 }

@@ -23,7 +23,17 @@ public class PlannerDAO implements PlannerService {
 	}
 
 	@Override
-	public int insertPlanner(PlannerDTO dto) {		
-		return template.insert("insertPlanSave", dto);
+	public int insertPlanner(Map map) {		
+		return template.insert("insertPlanSave", map);
+	}
+
+	@Override
+	public int insertReview(Map map) {
+		return template.insert("insertPlanReview", map);
+	}
+
+	@Override
+	public int insertReviewContent(Map map) {
+		return template.insert("insertReviewContent", map);
 	}
 }

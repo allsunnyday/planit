@@ -7,8 +7,12 @@ public interface PlannerService {
 	
 //	지도에 뿌려줄 정보 호출
 	List<PlannerDTO> selectMapDataList(Map map);
-//	insert
-	int insertPlanner(PlannerDTO dto);
+//	planner insert
+	int insertPlanner(Map map);
+//	review insert
+	int insertReview(Map map);
+//	review_content insert
+	int insertReviewContent(Map map);
 	
 	
 }

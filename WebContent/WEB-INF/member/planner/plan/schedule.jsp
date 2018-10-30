@@ -10,7 +10,7 @@
 	#plantable {
 		text-align: center;
 	}
-	.footer {position:fixed; bottom:0; width:100%;}
+	.footer {position:none; bottom:0; width:100%;}
 </style>
 
 <!-- 달력 부트 스트랩 css 적용 시작  -->
@@ -91,7 +91,7 @@
 	            <hr/>	           
 	        </div>
 			<hr/>			
-			<div class="col-md-6 col-sm-6 col-xs-12" style="overflow: auto; float: center; height: 600px;">
+			<div class="col-md-6 col-sm-6 col-xs-12" style="overflow: auto; float: center; height: 600px;">			
 				<form method="post" action="#" id="plansave" style="height: 500px;">
 					<div class="schedulehiddendata">
 						<input type="hidden" id="days" name="days" value="${days }"> <!-- 총 여행일수 저장 -->
@@ -101,10 +101,12 @@
 						<input type="hidden" id="plancase" name="plancase" value="${plancase }"><!-- 여행 일정 계획 작성을 위한 총개수 판단 -->
 						<input type="hidden" id="routedata" name="routedata" value="${route }"><!-- 여행 일정 계획 작성을 위한 총개수 판단 -->
 					</div>
-					<div class="form-group" style="">
-						<div id="comments_wrapper" >
-							<h4 class="title"> (<span class="routecount">${plancase }</span>)개 일정 </h4>
-
+					<div class="form-group">
+						<div id="comments_wrapper" style="margin-top: 0;">
+							<h4 style="display: inline-block; margin-right: 8px; "><span>나만의 여행기 제목  </span></h4>
+							<input type="text" class="form-control" id="reviewtitle" name="reviewtitle" placeholder="여행기 제목을 입력해주세요" style="font-size: 1em; width: 360px;display: inline-block; float: right;">
+							<h4 class="title" style="margin-bottom: -40px;"> (<span class="routecount">${plancase }</span>)개 일정 </h4>
+							<button type="submit" id="selectplanbtn" name="selectplanbtn" class="btn btn-info" style="float: right;"> 저 장 </button>
 							<ul class="comment-list" >
 								<!-- <li>
 									<article class="comment">
@@ -122,9 +124,9 @@
 							</ul> <!-- End .comment LIst-->
 						</div> <!-- end col-lg 8 -->
 					</div>
-					<div class="col-sm-12 col-md-12 col-sc-12 text-center">
+					<!-- <div class="col-sm-12 col-md-12 col-sc-12 text-center">
 						<button type="submit" id="selectplanbtn" name="selectplanbtn" class="btn btn-info"> 저 장 </button>
-					</div>
+					</div> -->
 				</form>
 			</div>
 			<!-- 우측 일정 입력 종료 -->
