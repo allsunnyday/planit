@@ -103,6 +103,7 @@ public class CommonController {
 		else {
 			json.put("isLogin","N");
 		}
+		
 		System.out.println(json.get("isLogin"));
 		return json.toJSONString();
 	}
