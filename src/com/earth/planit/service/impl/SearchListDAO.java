@@ -23,6 +23,11 @@ public class SearchListDAO implements SearchListService {
 	public List<ContentDTO> selectTourList(Map map) {
 		return template.selectList("selectTourList",map);
 	}
+	
+	@Override
+	public List<ContentDTO> selectFestivalList(Map map) {
+		return template.selectList("selectFestivalList",map);
+	}
 
 	@Override
 	public List<ContentDTO> selectFoodList(Map map) {
@@ -43,6 +48,8 @@ public class SearchListDAO implements SearchListService {
 	public List<ContentDTO> selectList(Map map) {
 		return template.selectList("searchSelectList",map);
 	}
+
+
 
 
 	

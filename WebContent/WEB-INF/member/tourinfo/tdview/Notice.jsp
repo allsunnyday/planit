@@ -57,7 +57,7 @@ tbody{
 		<!-- 게시판 페이지 정보 및 버튼 시작 { -->
 		<div id="bo_btn_top">
 			<div id="bo_list_total">
-				<span style="font-size:1.1em">Total : &nbsp${totalRecordCount}개 </span>
+				<span style="font-size:1.1em">Total : &nbsp${totalEventCount}개 </span>
 
 			</div>
 				<br/>
@@ -112,25 +112,25 @@ tbody{
 			<div class="col-md-12">${pagingString}</div>
 		</div>
 
-		<div class="row">
-			<div class="text-center">
-				<form class="form-inline" method="post" action="<c:url value='/planit/search/tourinfo/Notice.it'/>">
-					<div class="form-group">
-						<select name="searchColumn" class="form-control">
-							<option value="all">전체검색</option>
-							<option value="title">제목</option>
-							<option value="tel">작성자</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<input type="text" name="searchWord" class="form-control" />
-					</div>
-					<button style="margin-bottom: 10px" type="submit"
-						class="btn btn-primary">검색</button>
+<!-- 		<div class="row"> -->
+<!-- 			<div class="text-center"> -->
+<%-- 				<form class="form-inline" method="post" action="<c:url value='/planit/search/tourinfo/Notice.it'/>"> --%>
+<!-- 					<div class="form-group"> -->
+<!-- 						<select name="searchColumn" class="form-control"> -->
+<!-- 							<option value="all">전체검색</option> -->
+<!-- 							<option value="title">제목</option> -->
+<!-- 							<option value="tel">작성자</option> -->
+<!-- 						</select> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<input type="text" name="searchWord" class="form-control" /> -->
+<!-- 					</div> -->
+<!-- 					<button style="margin-bottom: 10px" type="submit" -->
+<!-- 						class="btn btn-primary">검색</button> -->
 
-				</form>
-			</div>
-		</div>
+<!-- 				</form> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 	</section>
 
 

@@ -66,6 +66,12 @@ public class CommonController {
 			}
 		}
 		
+		
+		
+		
+		
+		
+		
 		//
 		model.addAttribute("mMap", mMap);
 		

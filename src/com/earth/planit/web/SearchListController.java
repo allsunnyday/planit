@@ -132,6 +132,48 @@ public class SearchListController {
 	}
 	
 
+	//공연/축제/행사
+	@RequestMapping("/tourinfo/tdview/FestivalList.it")
+	public String festival(@RequestParam Map map, Model model
+			,HttpServletRequest req,
+			@RequestParam(required=false,defaultValue="1") int nowPage)throws Exception{
+		
+		
+		if(map.get("areacode")!=null)
+			System.out.println(map.get("areacode"));
+		if(map.get("searchColumn")!= null) {
+			model.addAttribute("searchColumn",map.get("searchColumn"));
+			model.addAttribute("searchWord",map.get("searchWord"));
+		}
+		int totalCount = service.getTotalCount(map);
+		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
+		int start = (nowPage-1)*pageSize+1;
+		int end  = nowPage*pageSize;
+		map.put("start", start);
+		map.put("end", end);
+		List<ContentDTO> festivalList = service.selectFestivalList(map);
+		String pagingString = CommonUtil.pagingBootStrapStyle(
+							totalCount,
+							pageSize, 
+							blockPage, 
+							nowPage, 
+							req.getContextPath()+"/tourinfo/tdview/FestivalList.it?contenttype=15&");
+		
+		model.addAttribute("list", festivalList);
+		model.addAttribute("pagingString", pagingString);
+		model.addAttribute("totalRecordCount", totalCount);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("nowPage", nowPage);
+		
+		model.addAttribute("areacode",map.get("areacode"));
+		model.addAttribute("festival",festivalList);
+		
+		return "tourinfo/tdview/FestivalList.theme";
+	}
+	
+	
+	
+	
 	
 	//숙박 리스트
 	@RequestMapping("/tourinfo/tdview/SleepList.it")

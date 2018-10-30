@@ -30,6 +30,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where r  between #{start} and #{end}
 	</select>
 	
+	<select id="selectFestivalList" parameterType="java.util.Map" resultType="contentDTO">
+		select * from
+		(select a.*,rownum r from
+          	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor 
+          	  from content c, cat2 c2, cat3 c3  
+           	where  c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=15
+           		 <if test="areacode != null ">
+           		 and areacode = #{areacode}
+           		 </if>
+           		 <if test="searchColumn !=null">
+           		 	and ${searchColumn} like '%' || #{searchWord} || '%'
+           		 </if>
+           		  order by
+           		 <if test="orderColumn != null">
+           		 	  title asc,
+           		 </if>
+           		 viewcount desc) a )
+		where r  between #{start} and #{end}
+	</select>
+	
 	
 	<select id="selectFoodList" parameterType="java.util.Map" resultType="contentDTO">
 		select * from
@@ -93,7 +113,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where  r between #{start} and #{end}
 	</select>
 
-	
 	
 	
 
