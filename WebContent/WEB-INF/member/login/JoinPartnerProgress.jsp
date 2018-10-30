@@ -120,7 +120,7 @@ $(function() {
 	          </div>
 		     <div>
 	          <label for="fname">Name <span class="required">*</span></label>
-	          <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+	          <input type="text" name="p_name" id="p_name" class="form-control" placeholder="Name">
 	      </div>
 	
 	        <div class="clearfix"></div>

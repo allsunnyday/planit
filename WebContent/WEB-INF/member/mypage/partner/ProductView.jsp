@@ -1,33 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- *******************************************
-	베이지색 검색창 달린 거
-************************************************ -->
-<section class="post-wrapper-top" style="margin-top: 65px;">
-	<div class="container">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<ul class="breadcrumb">
-				<li><a href="index.html">Product</a></li>
-				<li>${partnerRecord.p_id }</li>
-			</ul>
-			<h2>Product Detail</h2>
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<!-- search -->
-			<div class="search-bar">
-				<form action="" method="get">
-					<fieldset>
-						<input type="image" src="img/pixel.gif" class="searchsubmit"
-							alt="" /> <input type="text" class="search_text showtextback"
-							name="s" id="s" value="Search..." />
-					</fieldset>
-				</form>
-			</div>
-			<!-- / end div .search-bar -->
-		</div>
-	</div>
-</section>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%-- <jsp:include page="topMenu.jsp" flush="false" /> --%>
+<jsp:include page="/WEB-INF/member/tourinfo/tdview/topMenu.jsp" flush="false" />
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+<script>
+	var isDelete = function(){
+		
+		if(confirm("정말로 삭제 하시겠습니까?"))
+			location.replace("<c:url value='/partner/product/view/DeleteProduct?roomcode=${productRecord.roomcode}'/>");
+	};  	
+</script>
   <section class="marketplace-top">
     <div id="market-wrapper">
     <%--   <div class="item_image">
@@ -43,7 +36,7 @@
 
         <div class="general-title text-center">
           <h3>${productRecord.roomtitle }</h3>
-          <p>ÜBER PREMIUM VEGETABLE TANNED ITALIAN LEATHER</p>
+          <!-- <p>ÜBER PREMIUM VEGETABLE TANNED ITALIAN LEATHER</p> -->
           <hr>
         </div>
 
@@ -150,12 +143,13 @@
                          <div class="details_section"  style="">
                         	<div class="item_price" style="height:215px">
                         	 <h3>Price</h3>
-                            	<h4><span><small>$</small>60,000</span></h5>
+                            	<h4><span><small>$</small>60,000</span></h4>
                             	<h4><span><small>$</small>${productRecord.roomoffseasonminfee1 }</span></h4>
                             	<h4><span><small>$</small>${productRecord.roomoffseasonminfee2 }</span></h4>
                             	<h4><span><small>$</small>${productRecord.roompeakseasonminfee1 }</span></h4>
                             	<h4><span><small>$</small>${productRecord.roompeakseasonminfee2 }</span></h4>
-                            
+                            <a class="button large btn-block" href="<c:url value='/partner/product/Reservation.it?contentid=${productRecord.roomcode}'/>"> <i class="fa fa-pencil"></i>객실정보</a> 
+                           		
                             </div>
               </div>
               <!-- item_price -->
@@ -174,87 +168,97 @@
 
         <div class="general-title text-center">
           <h3>Product Features</h3>
-          <p>More information about your product</p>
+         <!--  <p>More information about your product</p> -->
+         <br/>
           <hr>
         </div>
 
         <div class="divider"></div>
         <div class="theme_overviews clearfix">
-          <div class="col-lg-4 col-md-4 col-sm-12 first">
-            <div class="services">
-              <div class="icon-container">
-                <i class="fa fa-arrows"></i>
-              </div>
-              <header>
-                <h3>Different Sizes</h3>
-              </header>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4 col-sm-12">
-            <div class="services">
-              <div class="icon-container">
-                <i class="fa fa-heart"></i>
-              </div>
-              <header>
-                <h3>HandMade in Italy</h3>
-              </header>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4 col-sm-12 last">
-            <div class="services">
-              <div class="icon-container">
-                <i class="fa fa-lock"></i>
-              </div>
-              <header>
-                <h3>Secure Metal Zip</h3>
-              </header>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4 col-sm-12 first">
-            <div class="services">
-              <div class="icon-container">
-                <i class="fa fa-trophy"></i>
-              </div>
-              <header>
-                <h3>Premium Design</h3>
-              </header>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4 col-sm-12">
-            <div class="services">
-              <div class="icon-container">
-                <i class="fa fa-cloud"></i>
-              </div>
-              <header>
-                <h3>Softly Padded</h3>
-              </header>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4 col-sm-12 last">
-            <div class="services">
-              <div class="icon-container">
-                <i class="fa fa-pencil"></i>
-              </div>
-              <header>
-                <h3>Signed Product</h3>
-              </header>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
-          </div>
-
+      		<div class="col-md-4">
+      			<table class="table table-striped" >
+      				<tr> 
+      					<td>목욕시실</td>
+      					<td>${productRecord.roombathfacility}</td>
+      				</tr>
+      				<tr> 
+      					<td>욕조</td>
+      					<td>${productRecord.roombath}</td>
+      				</tr>
+      				<tr> 
+      					<td>홈시어터</td>
+      					<td>${productRecord.roomhometheater}</td>
+      				</tr>
+      				<tr> 
+      					<td>에어컨</td>
+      					<td>${productRecord.roombathfacility}</td>
+      				</tr>
+      				<tr> 
+      					<td>TV</td>
+      					<td>${productRecord.roomtv}</td>
+      				</tr>
+      			</table> 
+      		</div>
+      				
+      		<div class="col-md-4">
+      			<table class="table table-striped" >
+      				<tr> 
+      					<td>PC</td>
+      					<td>${productRecord.roompc}</td>
+      				</tr>
+      				<tr> 
+      					<td>케이블</td>
+      					<td>${productRecord.roomcable}</td>
+      				</tr>
+      				<tr> 
+      					<td>인터넷</td>
+      					<td>${productRecord.roominternet}</td>
+      				</tr>
+      				<tr> 
+      					<td>냉장고</td>
+      					<td>${productRecord.roomrefrigerator}</td>
+      				</tr>
+      				<tr> 
+      					<td>세면도구</td>
+      					<td>${productRecord.roomtoiletries}</td>
+      				</tr>
+      			
+      			</table>
+      			</div>
+      		<div class="col-md-4">
+      			<table class="table table-striped">
+      			
+      				<tr> 
+      					<td>소파</td>
+      					<td>${productRecord.roomsofa}</td>
+      				</tr>
+      				<tr> 
+      					<td>취사용품</td>
+      					<td>${productRecord.roomcook}</td>
+      				</tr>
+      				<tr> 
+      					<td>테이블</td>
+      					<td>${productRecord.roomtable}</td>
+      				</tr>
+      				<tr> 
+      					<td>드라이기</td>
+      					<td>${productRecord.roomhairdryer}</td>
+      				</tr>
+      			
+      			
+      			</table>
+      		
+      		</div>
+      
         </div>
         <!-- theme / Products overview -->
-
+		<c:if test="${sessionScope.id==partnerRecord.p_id }">
+			<%-- 	<a href="<c:url value='/ReplyBBS/BBS/Edit.bbs?no=${record.no}'/>"
+					class="btn btn-success">수정</a> --%>
+					
+				<a href="javascript:isDelete()" class="btn btn-default">삭제</a>
+				<input type="hidden" value="${productRecord.roomcode }" name="roomcode"/>
+				</c:if>
       </div>
       <!-- end content -->
     </div>

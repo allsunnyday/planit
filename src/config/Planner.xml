@@ -13,4 +13,28 @@
  		</if>
  		<!-- select * from content where areacode=1 -->
  	</select> 	
+ 	
+ 	<!-- planner 계획 저장 -->
+ 	<insert id="insertPlanSave" parameterType="java.util.Map">
+ 		<selectKey order="BEFORE" resultType="int" keyProperty="planner_id">
+			select SEQ_planner_planner_id.nextval FROM DUAL
+		</selectKey>
+ 		insert into planner(planner_id, id, route, days, depart, areacode, postdate, tourtype) 
+ 		values(#{planner_id}, 'user1', #{route}, #{days}, #{depart}, #{areacode}, sysdate, #{tourtype})
+ 	</insert>
+ 	
+ 	<!-- review 테이블 저장 -->
+ 	<insert id="insertPlanReview" parameterType="java.util.Map">
+ 		<selectKey order="BEFORE" resultType="int" keyProperty="review_id">
+			select SEQ_review_review_id.nextval FROM DUAL
+		</selectKey>		
+		insert into review(review_id, planner_id, series, title, route) 
+		values(#{review_id}, #{planner_id}, #{series}, #{reviewtitle}, #{reviewroute})
+ 	</insert>
+ 	
+ 	<!-- revies_content table 저장 -->
+ 	<insert id="insertReviewContent" parameterType="java.util.Map">
+ 		insert into review_content(re_co_id, review_id, route_index)
+ 		values(SEQ_review_content_re_co_id.nextval,#{review_id}, #{route_index})
+ 	</insert>
  </mapper>

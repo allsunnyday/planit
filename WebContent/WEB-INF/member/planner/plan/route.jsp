@@ -17,13 +17,15 @@
 						<div id="nav" class="right" style=" float: right;">
 							<!-- <div class="text-right" > -->
 								<ul id="jetmenu" class="jetmenu blue" style="text-align: right;">
-									<li style="display: block;"><a href="#"> 저 장 </a></li>
-									<li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
+									<!-- <li style="display: block;"><a href=""> 저 장 </a></li> -->
+									<li style="display: block;"><a href="javascript:" onclick="movescheduleAction();"> Next </a></li>									
+									<%-- <li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li> --%>
 									<li class="active" style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
-									<li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
-									<li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li>
-									<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>
+									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li> --%>
+									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li> --%>
+									<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>									
 								</ul>
+								<form id="scheduleData" name="scheduleData" method="post" ></form> <!-- action="<c:url value='/planner/plan/schedule.it'/>" -->
 							<!-- </div> -->
 						</div><!-- nav -->
 					</div><!-- title area -->
@@ -61,11 +63,11 @@
 								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" id="tourtype">
 									<img id="tourtypeimage" alt="타입" src="" style=""><span id="caret" class="caret"></span></a>
 								<ul class="dropdown-menu" id="peopletype">
-									<li id="single"><a href="#"><img src="/Planit/images/member/Preference/Preference_alone.JPG" alt="혼자서"></a></li>
-									<li id="couple"><a href="#"><img src="/Planit/images/member/Preference/Preference_couple.JPG" alt="연인끼리"></a></li>
-									<li id="friend"><a href="#"><img src="/Planit/images/plan/friend1.png" alt="친구끼리"></a></li>
-									<li id="family"><a href="#"><img src="/Planit/images/member/Preference/Preference_family.JPG" alt="가족끼리"></a></li>
-									<li id="club"><a href="#" ><img src="/Planit/images/plan/club1.png" alt="동호회" ></a></li>
+									<li id="single"><a href="#"><img src="/Planit/images/member/Preference/Preference_alone.JPG" alt="single"></a></li>
+									<li id="couple"><a href="#"><img src="/Planit/images/member/Preference/Preference_couple.JPG" alt="couple"></a></li>
+									<li id="friend"><a href="#"><img src="/Planit/images/plan/friend1.png" alt="friend"></a></li>
+									<li id="family"><a href="#"><img src="/Planit/images/member/Preference/Preference_family.JPG" alt="family"></a></li>
+									<li id="club"><a href="#" ><img src="/Planit/images/plan/club1.png" alt="club" ></a></li>
 								</ul>
 							</div>												
 						</div>
@@ -73,8 +75,7 @@
 					</div>
 					<div style="clear: both"></div>
 				</div>	
-				<div id="cityroute">
-					
+				<div id="cityroute">					
 						<!-- 사용자가 추가한 여행정보가 없을때 -->
 						<div id="nocityrute">
 							<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>
@@ -139,7 +140,7 @@
 					    </div>
 					    <div style="margin-top: 8px;"></div>
 					    <div class="select">						
-							<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%" >
+							<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%">
 						    	<option value="${areacodesub }" selected>${areacodesubname } </option>
 						    	<option value="1">강남구</option>
 						    	<option value="2">강동구</option>
@@ -178,8 +179,8 @@
 				        <li id="AD5" data-order="2"><span class="category_bg lodge"></span>숙박</li>		
 				        <li id="AT4" data-order="3"><span class="category_bg tourist"></span>관광</li> -->
 				        <li id="39" data-order="0" class="routecategory" value="39"><span class="category_bg eatery"></span>음식점</li>		        
-				        <li id="14" data-order="1" class="routecategory" value="14"><span class="category_bg culture"></span>문화 </li>
-				        <li id="32" data-order="2" class="routecategory" value="32"><span class="category_bg lodge"></span>숙박</li>  
+				        <li id="14" data-order="1" class="routecategory" value="14"><span class="category_bg culture"></span>문화 </li>				        
+				        <li id="32" data-order="2" class="routecategory" value="32"><span class="category_bg lodge"></span>숙박</li>				          
 				        <li id="12" data-order="3" class="routecategory" value="12"><span class="category_bg tourist"></span>관광</li>				        
 				    </ul>				    
 				    <!-- ********************************** 카테고리 버튼  시작 ****************************************** -->

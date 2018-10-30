@@ -428,7 +428,7 @@ height: 100%; */
 	-수정폼이동,플래너 및 리뷰 요약, 기타 등등
 ***************************************** -->
 	<div class="container-fluid ">
-		<div class="content col-md-7">
+		<div class="content col-md-8">
 			<div class="Partnerpage-content"></div>
 			<!-- end container -->
 			<section class="section1">

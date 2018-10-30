@@ -345,9 +345,9 @@ height: 100%; */
 										
 										<!-- he wrap -->
 										<h3 class="title"><a href="<c:url value='/planit/member/partner/ProductView.it?roomcode=${list.roomcode}'/>">${list.roomcode},${list.roomtitle}<a></a></h3>
-										<p>Lorem Ipsum is simply dummy text of the printing and
+									<!-- 	<p>Lorem Ipsum is simply dummy text of the printing and
 											typesetting industry. Lorem Ipsum has been the industry"s
-											standad dummy..</p>
+											standad dummy..</p> -->
 									</div>
 								</c:forEach>
 									</c:if>
