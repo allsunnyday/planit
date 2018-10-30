@@ -64,9 +64,15 @@ public class CommonController {
 		for ( int i=0; i<fields.length; i++) {
 			fields[i].setAccessible(true);
 			if(fields[i].get(detailIntro)!= null &&  // 숙박상세보기를 눌렀을 경우에 nullpoint에러를 방지하기 위해서 
-					fields[i].get(detailIntro).toString().length()==0)
-				mMap.put(fields[i].getName(), fields[i].get(detailIntro));
+					fields[i].get(detailIntro).toString().length()==0) {
+				String korName = CommonUtil.getTourDetailIntroKorean(fields[i].getName());
+				System.out.println("변경한 이름:"+korName);
+				//mMap.put(fields[i].getName(), fields[i].get(detailIntro));
+				mMap.put(korName, fields[i].get(detailIntro));
+			}
 		}
+		
+		//
 		model.addAttribute("mMap", mMap);
 		
 		return "tourinfo/tdview/TourView.theme";
