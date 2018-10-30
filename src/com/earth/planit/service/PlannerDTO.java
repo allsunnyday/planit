@@ -22,6 +22,17 @@ public class PlannerDTO {
 	private String depart; // 여행 출발 일자
 	private String tourtype; // 여행 타입
 	
+//	review table db 저장용
+	private String planner_id;
+	private String reviewtitle; // review title 저장용
+	private String reviewroute; // review 루트 저장용
+	private String series; // 몇일차 인지 저장용
+	
+//	review_content db 저장용
+	private String review_id; // 
+	
+//	사용자 id
+	private String id;
 	
 	
 //	**************    컨텐츠 map api 와 연동할 db 목록들 게터 세터

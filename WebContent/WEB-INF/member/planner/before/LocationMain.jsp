@@ -3,7 +3,8 @@
 
 <!-- ************************************** style 시작 ***************************************** -->
 <style>
-	.footer {position:fixed; bottom:0; width:100%;}
+	/* .footer {position:fixed; bottom:0; width:100%;} */
+	.footer {position:none; bottom:0; width:100%;}
 </style>
 <!-- ************************************** style 종료 ***************************************** -->
 
