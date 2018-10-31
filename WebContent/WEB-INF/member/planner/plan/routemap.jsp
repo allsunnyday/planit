@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %> --%>
 <script>
 /**************************/   
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -358,15 +357,15 @@
 		location.replace("<c:url value='/Planit/Before/Location.it'/>");      
 	}
    /* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
-   	
+	var infowindowarr =[];
 	function planplusActionplus(index){
 		console.log("planplusActionplus() : 이상무");      
 		//positions.push({title:document.getElementById('plantitle').title, latlng:planposition}); // 마크와 타이틀 저장
-		positions.push({title:document.getElementById('titleforNewInfo_'+index).html,latlng:planposition}); // 마크와 타이틀 저장
+		positions.push({title:document.getElementById('titleforNewInfo_'+index).title,latlng:planposition}); // 마크와 타이틀 저장
+		infowindowarr.push({content:infowindowexit.Ub}); //
+		
 		linePath.push(planposition); // 사용자가 일정 추가로 등록한 일정의 라인을 구성하기 위한 좌표저장
-		console.log(linePath.length); // 마커 좌표가 배열로 추가 되는지 확인
-		//plancase ++; // 여행일정 추가시 카운트 증가      
-		//routeInfoPlusAction(plancase); // 버튼 클릭시 상세 여행일정에 추가 되는 함수      
+		console.log(linePath.length); // 마커 좌표가 배열로 추가 되는지 확인      
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */      
 		planmarkingsave();
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
@@ -434,7 +433,13 @@
 				});
 				planmarking.push(marking); // 삭제를 위한 마킹 복사
 				
-				daum.maps.event.addListener(marking, 'mouseover', function() {
+				
+				var markinginfowindow = new daum.maps.InfoWindow({
+			        content: infowindowarr[i].content // 인포윈도우에 표시할 내용
+			    });
+				
+				//infowindowarr.push(infowindowexit);
+				/* daum.maps.event.addListener(marking, 'mouseover', function() {
 					// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
 				    infowindowexit.open(map, marking);
 				});
@@ -443,10 +448,25 @@
 				daum.maps.event.addListener(marking, 'mouseout', function() {
 				    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
 				    infowindowexit.close();
-				});
+				}); */
+				daum.maps.event.addListener(marking, 'mouseover', makeOverListener(map, marking, markinginfowindow));
+			    daum.maps.event.addListener(marking, 'mouseout', makeOutListener(markinginfowindow));				
 			}
 		}
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */		
+		// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+		function makeOverListener(map, marking, markinginfowindow) {
+		    return function() {
+		    	markinginfowindow.open(map, marking);
+		    };
+		}
+
+		// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+		function makeOutListener(markinginfowindow) {
+		    return function() {
+		    	markinginfowindow.close();
+		    };
+		}
 		
 		
 		/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
@@ -533,7 +553,8 @@
 		console.log("positions전: "+positions.length+"//positions[diveplus]: "+ positions[diveplus].title);
 		polyline.setMap(null);// 맵에 그려진 라인 삭제
 		positions.splice(diveplus, 1);//좌표 삭제
-		linePath.splice(diveplus, 1);
+		linePath.splice(diveplus, 1); // 라인 삭제
+		infowindowarr.splice(diveplus,1); // infowindow 삭제 
 		//linePath =[];//라인을 구성하는 좌표 정보 삭제
 		//linePath.push(planposition);
 		console.log("positions후: "+positions.length);      
@@ -767,7 +788,7 @@
 	/* ************************************* 상세정보 입력 란의 오늘 일자 정보 출력 종료 ******************************************* */
    
 	var jsonforTourInfo;
-	var infowindowexit;
+	var infowindowexit; // 마커 생성 이후 infowindow를 닫기 위한 변수
 	$(function() {
 		var mapx=[];
 		var mapy=[];

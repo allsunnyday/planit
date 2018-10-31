@@ -13,6 +13,14 @@
 	$(window).load(function() {    
 		$('#loading').hide();  
 	});
+	
+	window.onbeforeunload = function(e){
+	    /* if(e != null && e != undefined){
+	        jQuery(spinner).css('display','');
+	    } */
+		$('#loading').hide();
+	}; 
+	$('#loading').hide();
 </script>
 
 

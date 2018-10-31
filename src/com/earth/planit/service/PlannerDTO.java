@@ -35,7 +35,43 @@ public class PlannerDTO {
 	private String id;
 	
 	
-//	**************    컨텐츠 map api 와 연동할 db 목록들 게터 세터
+	//	**************    컨텐츠 map api 와 연동할 db 목록들 게터 세터
+	public String getPlanner_id() {
+		return planner_id;
+	}
+	public void setPlanner_id(String planner_id) {
+		this.planner_id = planner_id;
+	}
+	public String getReviewtitle() {
+		return reviewtitle;
+	}
+	public void setReviewtitle(String reviewtitle) {
+		this.reviewtitle = reviewtitle;
+	}
+	public String getReviewroute() {
+		return reviewroute;
+	}
+	public void setReviewroute(String reviewroute) {
+		this.reviewroute = reviewroute;
+	}
+	public String getSeries() {
+		return series;
+	}
+	public void setSeries(String series) {
+		this.series = series;
+	}
+	public String getReview_id() {
+		return review_id;
+	}
+	public void setReview_id(String review_id) {
+		this.review_id = review_id;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getRoute() {
 		return route;
 	}

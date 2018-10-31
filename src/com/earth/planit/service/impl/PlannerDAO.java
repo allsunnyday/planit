@@ -36,4 +36,9 @@ public class PlannerDAO implements PlannerService {
 	public int insertReviewContent(Map map) {
 		return template.insert("insertReviewContent", map);
 	}
+
+	@Override
+	public List<PlannerDTO> selectBookMark(Map map) {
+		return template.selectList("selectBookMarkList", map);
+	}
 }

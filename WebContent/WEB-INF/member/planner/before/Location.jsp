@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %> <!-- /planit/WebContent/WEB-INF/member/planner/after/loading.jsp -->
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
+<%@ include file="/WEB-INF/member/planner/after/logincheck.jsp" %>
 <!--*************************************** location 상단 메뉴 부분 수정 시작 *********************************************-->
 
 <section class="post-wrapper-top" style="margin-top: 70px;">

@@ -51,7 +51,8 @@ public class CommonController {
 		if( "12".equals(dto.getContenttype())){
 			System.out.println(detailIntro.getRestdate()+","+detailIntro.getChkbabycarriage()+","+detailIntro.getExpguide());
 		}
-		
+		model.addAttribute("mapy", dto.getMapy());
+		model.addAttribute("mapx", dto.getMapx());
 		// dto객체를 map으로 변경하는 로직 
 		Map mMap = new HashMap();
 		Field[] fields = detailIntro.getClass().getDeclaredFields();

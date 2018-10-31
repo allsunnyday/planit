@@ -180,13 +180,6 @@ public class PlannerController {
 		model.addAttribute("plancase", map.get("plancase"));
 		return "planner/plan/schedule.theme";
 	}
-
-	/*@RequestMapping("")
-	public String planSave() throws Exception{
-		
-		return " ";
-	}*/
-	
 	
 	@RequestMapping(value="/planner/plan/reservation.it", method = { RequestMethod.POST })
 	public String reservation(@RequestParam Map map, Model model, PlannerDTO dto, HttpSession session) throws Exception{
@@ -200,8 +193,8 @@ public class PlannerController {
 		map.put("id", session.getAttribute("id"));
 		
 		if(map.get("reviewtitle") == null || map.get("reviewtitle") =="") {
-			String reviewtitle = "user1님의 여행기";
-//			String reviewtitle = map.get("id")+"님의 여행기";
+//			String reviewtitle = "user1님의 여행기";
+			String reviewtitle = map.get("id")+"님의 여행기";
 			map.remove("reviewtitle");
 			map.put("reviewtitle", reviewtitle);
 		}
@@ -237,6 +230,22 @@ public class PlannerController {
 		return "planner/plan/reservation.theme";
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value="/planner/ajax/bookmark.it", produces="text/html; charset=UTF-8")
+	public String ajaxbookmarklist(@RequestParam Map map, Model model, HttpSession session) throws Exception{
+		System.out.println("controller - areacode: "+map.get("areacode")); // 출력확인
+		map.put("id", session.getAttribute("id"));
+		System.out.println(map.get("id"));
+		//검색해서 가져와서
+		List<PlannerDTO> selectbookmark = service.selectBookMark(map);
+		//뿌려주기위한 변수를 나눠서
+		//전달하고
+		//가져와서 만들어주고
+		//만들어준거마크에 넣어주면 된다.
+		//이미지가져오고, totle , 좌표, 가져오면 될듯함.
+		return "";
+	}
 	
 	/* ********************************************** select option ajax 시작 *********************************************/
 	@ResponseBody
