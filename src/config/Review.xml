@@ -144,4 +144,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update review set ${updateColumn} = #{updateValue} where review_id=#{review_id}
 	</update>
 	
+	<select id="reviewSelectListForAndroid" parameterType="java.util.Map" resultType="java.util.Map">
+		select r.* , m.profile 
+		from review r, planner p, member m
+		where r.planner_id=p.planner_id 
+		and p.id=m.id
+		and m.id = #{id}
+	</select>
+	
 </mapper>

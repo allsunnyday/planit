@@ -24,10 +24,7 @@
                 <li><a href="#">어디로 갈까</a>
                   <ul class="dropdown">
                     <li><a href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12'/>">관광지 정보</a></li>
-                    <li><a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=event'/>">축제/행사</a></li>
-                    <%-- <li><a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=best'/>">한국관광 100선</a></li>
-                    <li><a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=well'/>">웰니스 관광 25선</a></li>
-                    <li><a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=citytour'/>">방방곡곡 시티투어</a></li> --%>
+                    <li><a href="<c:url value='/tourinfo/tdview/FestivalList.it?contenttype=15'/>">축제/행사/공연</a></li>
                   </ul>
                 </li>
                 <li><a href="#">무엇을 먹을까</a>

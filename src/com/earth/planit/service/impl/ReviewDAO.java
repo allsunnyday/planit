@@ -131,4 +131,9 @@ public class ReviewDAO implements ReviewService {
 		template.update("ReviewUpdateOneColumn", map);
 	}
 
+	@Override
+	public List<Map> selectListForAndroid(Map map) {
+		return template.selectList("reviewSelectListForAndroid", map);
+	}
+
 }
