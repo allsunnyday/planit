@@ -1008,3 +1008,108 @@
 	/* ****** route 정보 저장 및 schedule 페이지 이동 ****** */
 </script>
 <!-- ****************************************************루트 상세 정보 계획 자바 스크립트 종료************************************************************ -->
+
+<!-- 모달 팝업 -->
+<div class="modal fade" id="bookmarkmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"> 나의 즐겨 찾기 목록 </h4>
+			</div>
+			<div class="modal-body">
+				<div class="row" style="float: inherit;">
+					<label> ${bookmark.size } ?? </label>
+					<div class="select" style="width: 75%; margin-left: 20px; display: inline-block;">
+						<select name="bookmarklocation" id="bookmarklocation" style="width: 100%">													
+					    	<option value="1">서울 특별시</option>
+					    	<option value="2">인천 광역시</option>
+					    	<option value="3">대전 광역시</option>
+					    	<option value="4">대구 광역시</option>
+					    	<option value="5">광주 광역시</option>
+					    	<option value="6">부산 광역시</option>
+					    	<option value="7">울산 광역시</option>
+					    	<option value="8">세종 특별 자치시</option>
+					    	<option value="31">경기도</option>
+					    	<option value="32">강원도</option>
+					    	<option value="33">충청북도</option>
+					    	<option value="34">충청남도</option>
+					    	<option value="35">경상북도</option>
+					    	<option value="36">경상남도</option>
+					    	<option value="37">전라북도</option>
+					    	<option value="38">전라남도</option>
+					    	<option value="39">제주도</option>
+					    </select>
+				    </div>				    				    
+			    </div>
+			    <hr/>
+			    <div class="row">
+				    <div class="bookmarklist" style="height: 400px; overflow: auto;">
+			    		<!-- <div class="col-md-2 text-center">
+					    	<img alt="사진사진" src="" style="display: inline-block; border: 1px gray solid; width: 80px; height: 80px; text-align: center;">
+				    		<label>타이틀</label>
+			    		</div> -->
+				    </div>
+			    </div>
+			</div>
+			<!-- <div class="modal-footer" style="border: 0">
+				<button type="button" class="btn btn-primary">확인</button>
+				<button type="button" class="btn btn-default" style="flex: unset;" data-dismiss="modal">닫기</button>
+			</div> -->
+		</div>
+	</div>
+</div>
+<!-- ******** 즐겨찾기 모달 페이지 ********* -->
+
+<!-- ************** 즐겨 찾기 자바 스크립트 ************ -->
+<script>
+	$('#bookmarklocation').change(function(){
+		//alert($('#bookmarklocation option:selected').attr('value'));
+		$.ajax({
+			url:"<c:url value='/planner/ajax/bookmark.it'/> ",
+			data:{areacode:$('#bookmarklocation option:selected').attr('value')},
+			type:'post',
+			dataType:'json',
+			success: successbookmark,
+			error: function(request, error){
+				//console.log(request,error);
+				alert('즐겨 찾기로 추가한 목록이 존재하지 않습니다.');
+			}
+			
+		});		
+		
+		
+		/* <div class="col-md-2 text-center">
+	    	<img alt="사진사진" src="" style="display: inline-block; border: 1px gray solid; width: 80px; height: 80px; text-align: center;">
+			<label>타이틀</label>
+		</div> */
+	});
+	var bookmarkString="";			
+	var successbookmark = function(data){
+		console.log('1: '+data);
+		console.log('2: '+JSON.stringify(data));
+		$.each(data, function(index, bookmark) {
+			bookmarkString += '<div class="col-md-2 text-center">'
+	    					+ '<a class="button" href="" onclick="addbookmark('+index+')"><img alt="이미지 없음" src="'+bookmark['firstimage']+'" style="display: inline-block; border: 1px gray solid; width: 80px; height: 80px; text-align: center;"></a>'
+							+ '<span >'+bookmark['title']+'</span>' // id="titleforNewInfo_'+index+'" title="'+bookmark['title']+'"
+							+ '</div>'
+							+ '<input type="hidden" id="contentid" name="contentid" value="'+bookmark['contentid']+'" >'
+							+ '<input type="hidden" id="contenttype" name="contenttype" value="'+bookmark['contenttype']+'">'
+							+ '<input type="hidden" id="areacode" name="areacode" value="'+bookmark['areacode']+'">'
+							+ '<input type="hidden" id="addr1" name="addr1" value="'+bookmark['addr1']+'">'
+							+ '<input type="hidden" id="mapx" name="mapx" value="'+bookmark['mapx']+'">'
+							+ '<input type="hidden" id="mapy" name="mapy" value="'+bookmark['mapy']+'">'
+							;				
+		});			
+		$('.bookmarklist').append(bookmarkString);
+	};
+	
+	function addbookmark(){
+		alert('와핫')
+	}
+</script>
+<!-- ************** 즐겨 찾기 자바 스크립트 ************ -->
+

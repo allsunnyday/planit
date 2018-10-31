@@ -238,13 +238,30 @@ public class PlannerController {
 		map.put("id", session.getAttribute("id"));
 		System.out.println(map.get("id"));
 		//검색해서 가져와서
-		List<PlannerDTO> selectbookmark = service.selectBookMark(map);
+		List<PlannerDTO> selectbookmark = service.selectBookMark(map);		
 		//뿌려주기위한 변수를 나눠서
-		//전달하고
-		//가져와서 만들어주고
-		//만들어준거마크에 넣어주면 된다.
+		if(selectbookmark.size() ==0) {
+			return "notbookmark";
+		}
+		//System.out.println(selectbookmark.get(0).getAddr1());
+		List<Map> bookmark = new Vector();
+		for(int i=0; i<selectbookmark.size(); i++ ) {
+			Map record = new HashMap();
+			record.put("addr1", selectbookmark.get(i).getAddr1()); //주소 가져오기
+			record.put("contentid", selectbookmark.get(i).getContentid()); // contentid
+			record.put("contenttype", selectbookmark.get(i).getContenttype());
+			record.put("firstimage", selectbookmark.get(i).getFirstimage());
+			record.put("areacode", selectbookmark.get(i).getAreacode());
+			record.put("mapx", selectbookmark.get(i).getMapx());
+			record.put("mapy", selectbookmark.get(i).getMapy());
+			record.put("title", selectbookmark.get(i).getTitle());
+			
+			bookmark.add(record);			
+		}
+		//model.addAttribute("selectbookmark",selectbookmark);
 		//이미지가져오고, totle , 좌표, 가져오면 될듯함.
-		return "";
+		System.out.println(bookmark.size());
+		return JSONArray.toJSONString(bookmark);
 	}
 	
 	/* ********************************************** select option ajax 시작 *********************************************/

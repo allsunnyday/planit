@@ -33,11 +33,27 @@ public class PlannerDTO {
 	
 //	사용자 id
 	private String id;
-	
+
+//	이미지정보 호출
+	private String firstimage;
+	private String firstimage2;
 	
 	//	**************    컨텐츠 map api 와 연동할 db 목록들 게터 세터
+	
 	public String getPlanner_id() {
 		return planner_id;
+	}
+	public String getFirstimage() {
+		return firstimage;
+	}
+	public void setFirstimage(String firstimage) {
+		this.firstimage = firstimage;
+	}
+	public String getFirstimage2() {
+		return firstimage2;
+	}
+	public void setFirstimage2(String firstimage2) {
+		this.firstimage2 = firstimage2;
 	}
 	public void setPlanner_id(String planner_id) {
 		this.planner_id = planner_id;

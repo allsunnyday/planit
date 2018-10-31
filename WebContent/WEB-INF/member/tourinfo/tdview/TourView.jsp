@@ -24,8 +24,7 @@
 			dataType:'text',
 			success:function(data){
 				console.log('성공');
-				if(data=='success'){
-					
+				if(data=='success'){					
 					alert('저장 성공\r\n즐겨찾기에 추가한 이미지는 마이페이지에서 확인할 수 있어요!')					
 				}
 				else if (data=='already'){					
