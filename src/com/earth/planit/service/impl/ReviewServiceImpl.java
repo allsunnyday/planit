@@ -125,6 +125,11 @@ public class ReviewServiceImpl implements ReviewService {
 		
 	}
 
+	@Override
+	public List<Map> selectListForAndroid(Map map) {
+		return dao.selectListForAndroid(map);
+	}
+
 	
 
 }

@@ -2,11 +2,14 @@ package com.earth.planit.web;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +21,9 @@ import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.ContentDetailIntroDTO;
 import com.earth.planit.service.ContentService;
 import com.earth.planit.service.MemberService;
+import com.earth.planit.service.ReviewDTO;
 import com.earth.planit.service.ReviewService;
+import com.earth.planit.service.SearchListService;
 /**
  * 
  * @author JHS
@@ -34,6 +39,9 @@ public class CommonController {
 	
 	@Resource(name="contentService")
 	private ContentService contentService;
+	
+   @Resource(name="searchListService")
+   private SearchListService searchListService;
 	
 	/* 서비스 주입 */
 	   @Resource(name = "memberService")
@@ -71,12 +79,6 @@ public class CommonController {
 				mMap.put(korName, fields[i].get(detailIntro));
 			}
 		}
-		
-		
-		
-		
-		
-		
 		
 		//
 		model.addAttribute("mMap", mMap);
@@ -119,6 +121,145 @@ public class CommonController {
 		System.out.println(json.get("isLogin"));
 		return json.toJSONString();
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/Ajax/android/reviewList.it",produces="text/plain;charset=UTF-8")
+	public String androidSelectReviewList(@RequestParam Map map) throws Exception{
+		System.out.println(map.get("id")+"님의 리뷰를 조회합니다.");
+		List<Map> list = reviewService.selectListForAndroid(map);
+		for (Map comment : list) {
+			comment.put("POSTDATE", comment.get("POSTDATE").toString().substring(0, 10));
+		}
+		return JSONArray.toJSONString(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/Ajax/android/reviewContentList.it", produces="text/plain;charset=UTF-8")
+	public String androidSelectReviewContentList(@RequestParam Map map)throws Exception{
+		int day = 1;
+		/* if(map.get("review_id")!=null) { */
+		
+		ReviewDTO record = reviewService.selectReviewOne(map);
+		day = Integer.parseInt(record.getSeries().toString()) - 1;
+		String route[] = record.getRoute().split("#");
+		System.out.println("route[0]" + route[0]);
+		List<Map> oneRoute = new Vector();
+		for (int i = 1; i < route.length; i++) { // i로 review의 사용자 글/그림을 가지고올수있다.
+			Map rmap = new HashMap<>();
+			String items[] = route[i].split(":");
+			System.out.println(i + "번째 " + items.length + "개");
+			rmap.put("areacode", items[0]); // 지역코드
+			rmap.put("contenttype", items[1]);
+			rmap.put("contentid", items[2]);
+			rmap.put("title", items[3]); // 관광지이름
+			rmap.put("todo", items[4]); // 할일
+			rmap.put("todomemo", items[5]); // 할일 메모
+			rmap.put("stayNY", items[6]); // 숙박인지 여부
+			// ContentDTO dto = TourApiUtils.getdetailCommon(items[1], items[2]);
+			// 관광데이터 가지고 오기
+			// rmap.put("overview", dto.getOverview());
+			// System.out.println(dto.getOverview());
+			// 주소읽어오기
+
+			ContentDTO dto = reviewService.selectContent(rmap);
+			rmap.put("addr1", dto.getAddr1());
+			rmap.put("firstimage2", dto.getFirstimage2());
+			rmap.put("cat1", dto.getCat1kor());
+			rmap.put("cat2", dto.getCat2kor());
+			rmap.put("cat3", dto.getCat3kor());
+			rmap.put("mapx", dto.getMapx());
+			rmap.put("mapy", dto.getMapy());
+			//
+			oneRoute.add(rmap);
+		}
+
+		int totalReview = reviewService.getTotalReviewCount(map);
+		return JSONArray.toJSONString(oneRoute);
+	}
+	
+
+	   @ResponseBody
+	   @RequestMapping(value = "/Ajax/android/TourList.it", produces = "text/plain; charset=UTF-8")
+	   public String androidTourList(@RequestParam Map map) throws Exception {
+	      System.out.println("tourlist안드로이드 ");
+	      
+	      JSONObject json = new JSONObject();
+	      
+	      map.put("start", 1);
+	      map.put("end", 8);
+	      
+	      // areacode를 선택하지않았을떄
+	         List<ContentDTO> tourlist = searchListService.selectTourList(map);
+	         System.out.println("tourlist.size()"+tourlist.size());
+	         List<Map> collections = new Vector<Map>();
+	         for (ContentDTO dto : tourlist) {
+	            Map record = new HashMap();
+	            record.put("title", dto.getTitle());
+	            record.put("firstimage", dto.getFirstimage());
+	            record.put("contentid", dto.getContentid());
+	            record.put("contenttype", dto.getContenttype());
+	            record.put("areacode", dto.getAreacode());
+	            collections.add(record);
+	         }
+	         System.out.println("ddddddddddd"+JSONArray.toJSONString(collections));
+	         return JSONArray.toJSONString(collections);
+	      
+	   }
+	   @ResponseBody
+	   @RequestMapping(value = "/Ajax/android/RestaurantList.it", produces = "text/plain; charset=UTF-8")
+	   public String androidRestaurantList(@RequestParam Map map) throws Exception {
+	      System.out.println("RestaurantList안드로이드 ");
+	      
+	      JSONObject json = new JSONObject();
+	      
+	      map.put("start", 1);
+	      map.put("end", 8);
+	      
+	      // areacode를 선택하지않았을떄
+	      List<ContentDTO> foodlist = searchListService.selectFoodList(map);
+	      System.out.println("foodlist.size()"+foodlist.size());
+	      List<Map> collections = new Vector<Map>();
+	      for (ContentDTO dto : foodlist) {
+	         Map record = new HashMap();
+	         record.put("title", dto.getTitle());
+	         record.put("firstimage", dto.getFirstimage());
+	         record.put("contentid", dto.getContentid());
+	         record.put("contenttype", dto.getContenttype());
+	         record.put("areacode", dto.getAreacode());
+	         collections.add(record);
+	      }
+	      System.out.println("ddddddddddd"+JSONArray.toJSONString(collections));
+	      return JSONArray.toJSONString(collections);
+	      
+	   }
+	   @ResponseBody
+	   @RequestMapping(value = "/Ajax/android/LodgementList.it", produces = "text/plain; charset=UTF-8")
+	   public String androidLodgementList(@RequestParam Map map) throws Exception {
+	      System.out.println("LodgementList안드로이드 ");
+	      
+	      JSONObject json = new JSONObject();
+	      
+	      map.put("start", 1);
+	      map.put("end", 8);
+	      
+	      // areacode를 선택하지않았을떄
+	      List<ContentDTO> sleeplist = searchListService.selectSleepList(map);
+	      System.out.println("tourlist.size()"+sleeplist.size());
+	      List<Map> collections = new Vector<Map>();
+	      for (ContentDTO dto : sleeplist) {
+	         Map record = new HashMap();
+	         record.put("title", dto.getTitle());
+	         record.put("firstimage", dto.getFirstimage());
+	         record.put("contentid", dto.getContentid());
+	         record.put("contenttype", dto.getContenttype());
+	         record.put("areacode", dto.getAreacode());
+	         collections.add(record);
+	      }
+	      System.out.println("ddddddddddd"+JSONArray.toJSONString(collections));
+	      return JSONArray.toJSONString(collections);
+	      
+	   }
+	
 	
 	
 }

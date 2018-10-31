@@ -193,8 +193,13 @@ public class ReviewController {
 			map.put("route_index", i - 1);
 			map.put("contentid", items[2]);
 			Map reviewContent = reviewService.selectReviewContent(map);
-
-			rmap.put("content", reviewContent.get("CONTENT"));
+			
+			if(! reviewContent.containsKey("CONTENT")) {
+				rmap.put("content", "no-content");
+			}
+			else {
+				rmap.put("content", reviewContent.get("CONTENT"));
+			}                            
 			// rmap.put("image",
 			// reviewContent.get("IMAGE")==null?"no-image":reviewContent.get("IMAGE").toString().replace("<*>",
 			// "&"));
