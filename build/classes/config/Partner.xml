@@ -127,7 +127,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          )
           VALUES
            (
-               'test_1',
+               'test_15',
                #{p_id},
                #{roomtitle}
            <if test="roomsize1 != null">
@@ -233,7 +233,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="PartnerRoomView" parameterType="java.util.Map" resultType="PartnerRoomDTO">
       Select * from p_product where roomcode=#{roomcode}
    </select>
-   <select id="PartnerRoomList" parameterType="java.util.Map" resultType="PartnerRoomDTO">
+   <select id="PartnerRoomListDetail" parameterType="java.util.Map" resultType="PartnerRoomDTO">
       Select * from p_product where p_id=#{p_id}
    </select>
    <select id="PartnerRequestList" parameterType="java.util.Map" resultType="PartnerDTO">
@@ -299,7 +299,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="PartnerU_Ask_P" parameterType="java.util.Map" resultType="java.util.Map">
       select * from u_ask_p where p_id=#{p_id} and rownum <![CDATA[<=]]> 5
    </select>
-   
-   
-   
+   <select id="PartnerRoomList" parameterType="java.util.Map" resultType="PartnerRoomDTO">
+     select * from p_product where rownum <![CDATA[<=]]>4 and p_id=#{p_id}
+   </select>
+    <select id="ContentRoomView" parameterType="java.util.Map" resultType="java.util.Map">
+      	select P.*,Q.contentid
+		from p_product P join partner Q on p.p_id=Q.p_id
+		where contentid =#{contentid}
+   </select>
+ 
+   <delete id="PartnerProductDelete" parameterType="java.util.Map" >
+   delete from p_product where roomcode=#{roomcode}
+   </delete>
+   <select id="PartnerReservation" parameterType="java.util.Map" resultType="java.util.Map" >
+  	select R.* ,P.*
+	from reservation R join p_product P on R.roomcode=P.roomcode
+	where rownum <![CDATA[<=]]> 5 and p_id=#{p_id}
+   </select>
+   <select id="PartnerEventRequest" parameterType="java.util.Map" resultType="java.util.Map" >
+  	select * from event_request
+	where rownum <![CDATA[<=]]> 5 and p_id=#{p_id}
+   </select>
 </mapper>

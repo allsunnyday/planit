@@ -107,7 +107,13 @@ public class PartnerController {
    public String gotoPartnerMyPageHome(@RequestParam Map map,Model model,HttpSession session) throws Exception {
 	   map.put("p_id",session.getAttribute("p_id"));
 	   List<Map> userAskPartner=service.userAskPartner(map);
+	   List<PartnerRoomDTO> partnerRoom=service.partnerRoomList(map);
+	   List<Map> partnerReservation=service.partnerReservationList(map);
+	   List<Map> partnerEventRequest=service.partnerEventRequestList(map);
 	   
+	   model.addAttribute("partnerEventRequest", partnerEventRequest);
+	   model.addAttribute("partnerReservation", partnerReservation);
+	   model.addAttribute("partnerRoom", partnerRoom);
 	   model.addAttribute("userAskPartner", userAskPartner);
 	   
 	   
@@ -155,17 +161,6 @@ public class PartnerController {
       }
       for(int i=0;i<roomimages.size();i++)
          map.put("roomimg"+i, nameArr[i]);
-   /*   map.put("roomimg1", nameArr[0]);
-      map.put("roomimg2", nameArr[1]);
-      map.put("roomimg3", nameArr[2]);
-      map.put("roomimg4", nameArr[3]);
-      map.put("roomimg5", nameArr[4]);*/
-/*      
-      dto.setRoomimg1(nameArr[0]);
-      dto.setRoomimg2(nameArr[1]);
-      dto.setRoomimg3(nameArr[2]);
-      dto.setRoomimg4(nameArr[3]);
-      dto.setRoomimg5(nameArr[4]);*/
       
       service.roomResist(map);
       
@@ -174,40 +169,17 @@ public class PartnerController {
    }
    //상품리스트페이지
    @RequestMapping("/planit/member/partner/ProductList.it")
-   public String gotoRoomProductList(HttpServletRequest req, // 페이징용 메소드에 전달
-         @RequestParam Map map, Model model, HttpSession session,
-         @RequestParam(required = false, defaultValue = "1") int nowPage) throws Exception{
+   public String gotoRoomProductList( // 페이징용 메소드에 전달
+         @RequestParam Map map, Model model, HttpSession session) throws Exception{
   
    
-      // 전체 레코드수
-      //int totalRecordCount = service.getTotalRecordforRequestTotal(map);
-      // 시작 및 끝 rownum 구하기
-      int start = (nowPage - 1) * pageSize + 1;
-      int end = nowPage * pageSize;
-      map.put("start", start);
-      map.put("end", end);
       map.put("p_id", session.getAttribute("p_id"));
       
       System.out.println(map.get("p_id"));
       
-      // 페이징을 위한 로직 끝]
-      List<PartnerRoomDTO> roomlist=service.partnerRoomList(map);
-      /*for(PartnerRoomDTO list:roomlist) {
-         if(list.getRoomimg1().toString()!=null)
-         System.out.println(list.getRoomimg1().toString());
-      }*/
-
-      //System.out.println(roomlist.get(0).getContent());
-      // 페이징 문자열을 위한 로직 호출]
-   //   String pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,
-   //         req.getContextPath() + "/ReplyBBS/BBS/List.bbs?");
-      // 데이타 저장]
+     
+      List<PartnerRoomDTO> roomlist=service.partnerRoomListDetail(map);
       model.addAttribute("roomlist", roomlist);
-
-      //model.addAttribute("pagingString", pagingString);
-      //model.addAttribute("totalRecordCount", totalRecordCount);
-      model.addAttribute("pageSize", pageSize);
-      model.addAttribute("nowPage", nowPage);
 
       
       return "mypage/partner/ProductList.theme";
@@ -220,12 +192,33 @@ public class PartnerController {
    
       //서비스 호출]
          PartnerRoomDTO productRecord=service.partnerRoomView(map);
-            //데이타 저장]   
-            //줄바꿈
-            //record.setContent(record.getContent().replace("\r\n", "<br/>"));
-            model.put("productRecord", productRecord);      
-            //뷰정보 반환]
+         
+         model.put("productRecord", productRecord);      
+         
       return "mypage/partner/ProductView.theme";
+      
    }
    
+   @RequestMapping("/tourinfo/tdview/sleepList/Reservation.it")
+   public String gotoUserReservation(@RequestParam Map map,Model model, HttpSession session) throws Exception{
+	  
+	   System.out.println("contentid:"+map.get("contentid"));
+	   List<Map> tourRoomList=service.tourRoomList(map);
+	   System.out.println(tourRoomList==null?"없다":"있다");
+	   model.addAttribute("tourRoomList", tourRoomList);
+	   return "tourinfo/tdview/reservation/UserviewProductList.theme";
+   }
+   @RequestMapping("/partner/product/Reservation.it")
+   public String gotoReservationPage(@RequestParam Map map,Model model, HttpSession session) throws Exception{
+	  
+	   return "mypage/partner/ProductReservation.theme";
+   }
+   @RequestMapping("/partner/product/view/DeleteProduct")
+   public String productDelete(@RequestParam Map map,Model model, HttpSession session) throws Exception{
+	   
+	   int isDelete=service.productDelte(map);
+	   
+	   return "mypage/partner/ProductReservation.theme";
+   }
+
 }

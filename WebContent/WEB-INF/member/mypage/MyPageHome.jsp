@@ -672,8 +672,8 @@ display: inline-block;
 							<tr>
 								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
 								<td>${list.ask_no}</td>
-								<td class="text-left"  data-toggle="modal" data-target="#myModal">
-								<a style="color: rgb(110,112,118)"href="#"  >${list.title }</a>
+								<td class="text-left" >
+								<a style="color: rgb(110,112,118)" href="<c:url value='/member/qna/view.it?ask_no=${list.ask_no}'/>">${list.title }</a>
 								</td>
 								<!-- Modal -->
 								<td>${list.askdate}</td>

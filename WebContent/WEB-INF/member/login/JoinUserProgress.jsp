@@ -1,6 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 제이쿼리 유효성검증용 플러그인 -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+  <script>
+
+	$(function(){
+		$('#userjoinform').validate({rules:{
+			
+			  userTermCheck:{required:true,minlength:1}
+	
+			      
+			  },messages:{
+			
+				  userTermCheck:{required:'이용약관에 동의해주세요',minlength:'이용약관에 동의해주세요'}
+		
+			  }});
+	});  
+
+  </script>
 <!--*****************************************
 	
 *********************************************  -->
@@ -148,7 +166,7 @@ $(function() {
 <div class="row">
 	<div
 		class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
-		<form role="form"  action="<c:url value='/member/login/UserJoinFormProcess.it'></c:url>" method="post" class="f1">
+		<form role="form" id="userjoinform" action="<c:url value='/member/login/UserJoinFormProcess.it'></c:url>" method="post" class="f1">
 			<div>
 			<h3>Register To Our App</h3>
 			<p style="display:inline-block">Fill in the form to get instant access</p>
@@ -459,7 +477,7 @@ $(function() {
 				</div>
 				<div class="form-group">
 			                  <div class="checkbox">
-			                     <label> <input type="checkbox"> 이용약관 동의(필수)
+			                     <label> <input name="userTermCheck" type="checkbox"> 이용약관 동의(필수)
 			                     </label>
 			                  </div>
 			               </div>

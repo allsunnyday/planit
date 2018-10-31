@@ -98,7 +98,7 @@
 		               </div>
 		               <div class="form-group">
 		                  <button type="submit" class="button">Sign in</button>
-		                  <a href="<c:url value='/planit/mypage/partner/PartnerMyPageHome.it'></c:url>">기업 마이페이지 임시 이동</a>
+		                  
 		               </div>
 		            </form>
 		              </div>

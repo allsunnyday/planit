@@ -88,9 +88,9 @@ public class PartnerServiceImpl implements PartnerService{
 	}
 
 	@Override
-	public List<PartnerRoomDTO> partnerRoomList(Map map) {
+	public List<PartnerRoomDTO> partnerRoomListDetail(Map map) {
 		// TODO Auto-generated method stub
-		return dao.partnerRoomList(map);
+		return dao.partnerRoomListDetail(map);
 	}
 	/*문의 삭제*/	
 	@Override
@@ -140,5 +140,36 @@ public class PartnerServiceImpl implements PartnerService{
 		// TODO Auto-generated method stub
 		return dao.userAskPartner(map);
 	}
+
+	@Override
+	public List<PartnerRoomDTO> partnerRoomList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerRoomList(map);
+	}
+
+	@Override
+	public List<Map> tourRoomList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.tourRoomList(map);
+	}
+
+	@Override
+	public int productDelte(Map map) {
+		// TODO Auto-generated method stub
+		return dao.productDelte(map);
+	}
+
+	@Override
+	public List<Map> partnerReservationList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerReservationList(map);
+	}
+
+	@Override
+	public List<Map> partnerEventRequestList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.partnerEventRequestList(map);
+	}
+
 
 }

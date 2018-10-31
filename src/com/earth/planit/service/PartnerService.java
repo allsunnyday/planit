@@ -23,7 +23,7 @@ public interface PartnerService {
 	//[RoomView]
 	PartnerRoomDTO partnerRoomView(Map map);
 	//[RoomList]
-	List<PartnerRoomDTO> partnerRoomList(Map map);
+	List<PartnerRoomDTO> partnerRoomListDetail(Map map);
 
 	
 	List<PartnerDTO> selectRequestList(Map map);
@@ -52,5 +52,21 @@ public interface PartnerService {
 
 	//[Partner MyPage Home]
 	List<Map> userAskPartner(Map map);
+	
+	//[Partner MyPage Home_RoomList]
+	List<PartnerRoomDTO> partnerRoomList(Map map);
+	
+	//[숙박페이지 객실보기 ]
+	List<Map> tourRoomList(Map map);
+	
+	//[숙박상세 삭제]
+	int productDelte(Map map);
+	
+	//[Partner MyPage ReservationList]
+	List<Map> partnerReservationList(Map map);
+	
+	//[Partner MyPage ReservationList]
+	List<Map> partnerEventRequestList(Map map);
+
 }
 

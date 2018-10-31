@@ -125,7 +125,7 @@ max-width: 100%;
 				</div>
 				<div class="form-group" >
 					<button type="submit" class="dmbutton2" value="조회">조회</button>
-					<a class="dmbutton2 ov" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=32'/>" >조회순</a>
+					<a class="dmbutton2 ov" href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32'/>" >조회순</a>
 			   <c:if test="${not empty areacode}">
                <a class="dmbutton2" href="<c:url value='/tourinfo/tdview/SleepLsit.it?contenttype=32&areacode=${areacode}&orderColumn=title'/>" >제목순</a>
                </c:if>

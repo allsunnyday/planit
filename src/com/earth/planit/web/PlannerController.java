@@ -5,12 +5,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,8 +22,10 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.earth.planit.service.PlannerDTO;
 import com.earth.planit.service.PlannerService;
@@ -118,7 +124,7 @@ public class PlannerController {
 		json = (JSONObject) json.get("items");
 		JSONArray list = (JSONArray) json.get("item");
 		
-		System.out.println(list.toString());
+		System.out.println(list.toString()+"///"+list.size());		
 		List<Map> collections = new Vector<Map>();
 		List<PlannerDTO> content = new Vector();
 		for(int i=0; i<list.size(); i++) {
@@ -144,14 +150,90 @@ public class PlannerController {
 		return JSONArray.toJSONString(collections);
 	}
 	
-	@RequestMapping("/planner/plan/schedule.it")
-	public String schedule() throws Exception{ 
-	
+	@RequestMapping(value = "/planner/plan/schedule.it", method = { RequestMethod.POST })
+	public String scheduleUpload(@RequestParam Map map, Model model, HttpServletRequest req ) throws Exception {
+//		System.out.println("days: " + map.get("days"));
+//		System.out.println("depart: " + map.get("depart"));
+//		System.out.println("areacode: " + map.get("areacode"));
+//		System.out.println("plancase: " + map.get("plancase"));
+//		System.out.println("tourtype: " + map.get("tourtype"));
+		
+		int plancase = Integer.valueOf((String) map.get("plancase")); // 일정 갯수
+		System.out.println("plancase: "+ plancase);
+		String route = "";
+		for(int i=0; i<plancase; i++) {
+			System.out.println( i+"번: "+map.get("route_"+i));
+			route += map.get("route_"+i);
+		}		
+		
+		model.addAttribute("route" , route);
+		model.addAttribute("depart", map.get("depart"));
+		model.addAttribute("days",map.get("days"));
+		model.addAttribute("tourtype", map.get("tourtype"));
+		model.addAttribute("areacode",map.get("areacode"));
+		model.addAttribute("plancase", map.get("plancase"));
 		return "planner/plan/schedule.theme";
 	}
+
+	/*@RequestMapping("")
+	public String planSave() throws Exception{
+		
+		return " ";
+	}*/
 	
-	@RequestMapping("/planner/plan/reservation.it")
-	public String reservation() throws Exception{
+	
+	@RequestMapping(value="/planner/plan/reservation.it", method = { RequestMethod.POST })
+	public String reservation(@RequestParam Map map, Model model, PlannerDTO dto, HttpSession session) throws Exception{
+//		데이터 넘어오는지 확인
+		System.out.println("days: " +map.get("days"));
+		System.out.println("depart: " +map.get("depart"));
+		System.out.println("route: " +map.get("route"));
+		System.out.println("tourtype: " +map.get("tourtype"));
+		System.out.println("areacode: " +map.get("areacode"));
+		System.out.println("reviewtitle: " + map.get("reviewtitle"));
+		map.put("id", session.getAttribute("id"));
+		
+		if(map.get("reviewtitle") == null || map.get("reviewtitle") =="") {
+			String reviewtitle = "user1님의 여행기";
+//			String reviewtitle = map.get("id")+"님의 여행기";
+			map.remove("reviewtitle");
+			map.put("reviewtitle", reviewtitle);
+		}
+//		planner table data 입력
+		int affected = service.insertPlanner(map);
+		System.out.println("[1이면 planner입력성공] : "+ affected);
+		
+//		review table data 입력
+//		필요한 데이타 컬럼은?
+//		 SEQ_review_review_id.nextval | <selectKey ~~~> | SERIES (일차수 number) '@' 로 쪼갠 0번방 | reviewtitle | reviewroute << '@' 로 쪼개서
+//		controller 에서 구해야 하는값
+//		series (일차수 number) '@' 로 쪼갠 0번방 | reviewtitle | reviewroute << '@' 로 쪼개서
+		
+		//1#1:1:987720:신사동 가로수길:ㄱㄱ:ㄱㄱ:0#1:1:2452135:스페이스 씨:ㄴㄴ:ㄴㄴ:0@2#1:1:142712:선샤인호텔:ㄷㄷ:ㄷㄷ:1#1:1:129931:영동 예맥화랑:ㄹㄹ:ㄹㄹ:0#1:1:2049289:해랑:ㅁㅁ:ㅁㅁ:0
+		int days = Integer.valueOf((String) map.get("days"));
+		String routedays[] = new String[days];
+		String route = (String) map.get("route");
+		System.out.println(route);
+		routedays = route.split("@");
+		
+		
+		for(int i=0; i<days; i++) {
+			int series = (i+1);			
+			String reviewroute = routedays[i];
+			map.put("series", series);
+			map.put("reviewroute", reviewroute);			
+			int reviewaffected = service.insertReview(map);
+			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);
+			String[] routedayscase = null;// = new String[][];
+			routedayscase = routedays[i].split("#");
+			for(int k=0; k<routedayscase.length; k++) {
+				int route_index = k;
+				//System.out.println(k + ": " + routedayscase[k]);
+				map.put("route_index", route_index);
+				int reviewcontentaffected = service.insertReviewContent(map);				
+				System.out.println("[1이면 reviewcontent  입력성공]: "+ reviewcontentaffected);
+			}
+		}
 		
 		return "planner/plan/reservation.theme";
 	}

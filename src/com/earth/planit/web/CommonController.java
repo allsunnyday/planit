@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.ContentDetailIntroDTO;
 import com.earth.planit.service.ContentService;
+import com.earth.planit.service.MemberService;
 import com.earth.planit.service.ReviewService;
 /**
  * 
@@ -32,6 +34,10 @@ public class CommonController {
 	
 	@Resource(name="contentService")
 	private ContentService contentService;
+	
+	/* 서비스 주입 */
+	   @Resource(name = "memberService")
+	   private MemberService memberService;
 	
 	@RequestMapping("/planit/search/list/TourView.it")
 	public String tourView(@RequestParam Map map,
@@ -58,9 +64,15 @@ public class CommonController {
 		for ( int i=0; i<fields.length; i++) {
 			fields[i].setAccessible(true);
 			if(fields[i].get(detailIntro)!= null &&  // 숙박상세보기를 눌렀을 경우에 nullpoint에러를 방지하기 위해서 
-					fields[i].get(detailIntro).toString().length()==0)
-				mMap.put(fields[i].getName(), fields[i].get(detailIntro));
+					fields[i].get(detailIntro).toString().length()==0) {
+				String korName = CommonUtil.getTourDetailIntroKorean(fields[i].getName());
+				System.out.println("변경한 이름:"+korName);
+				//mMap.put(fields[i].getName(), fields[i].get(detailIntro));
+				mMap.put(korName, fields[i].get(detailIntro));
+			}
 		}
+		
+		//
 		model.addAttribute("mMap", mMap);
 		
 		return "tourinfo/tdview/TourView.theme";
@@ -83,4 +95,24 @@ public class CommonController {
 		
 		return "success";
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/Ajax/android/Login.it",produces="text/html;charset=UTF-8")
+	public String androidLogin(@RequestParam Map map) throws Exception{
+		boolean isLogin = memberService.isLogin(map);
+		JSONObject json = new JSONObject();
+		if(isLogin) {
+			json.put("isLogin","Y");
+			json.put("id", map.get("id"));
+		}
+		else {
+			json.put("isLogin","N");
+		}
+		
+		System.out.println(json.get("isLogin"));
+		return json.toJSONString();
+	}
+	
+	
 }
