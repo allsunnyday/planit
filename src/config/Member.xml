@@ -162,13 +162,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       from member
       where id=#{id}
    </select>
-   
-   
-   
-   
-   
-   
-   
+
    <select id="MemberPreferList" parameterType="java.util.Map" resultType="memberDTO">
       select T.id,T.kor
       from (select *
@@ -182,9 +176,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       update preference set rating=rating+10
       where id=#{id} and cat2=#{cat2}
    </update>
-<<<<<<< HEAD
- 
-=======
- 
->>>>>>> refs/remotes/origin/sunki
+
 </mapper>
