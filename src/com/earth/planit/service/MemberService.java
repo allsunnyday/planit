@@ -7,6 +7,7 @@ public interface MemberService {
 
    //[로그인 처리]
    boolean isLogin(Map map);
+   boolean isNaverLogin(Map map);
    
    //[회원가입]_int로 해야하나..
    int isJoin(MemberDTO dto);

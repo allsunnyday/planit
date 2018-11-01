@@ -137,4 +137,9 @@ public class MemberDAO implements MemberService {
 		// TODO Auto-generated method stub
 		return template.selectOne("MemberQnAView",map);
 	}
+	@Override
+	public boolean isNaverLogin(Map map) {
+		int count=template.selectOne("NaverIsLogin",map);
+		return count==1?true:false;
+	}
 }

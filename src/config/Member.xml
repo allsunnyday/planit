@@ -127,7 +127,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       </if>
    </select>
    <select id="MemberLikedTour" parameterType="java.util.Map" resultType="java.util.Map">
-      select T.*,C.title,C.addr1
+      select T.*,C.*
       from liked_tour T INNER JOIN  content c on T.contentid=C.contentid
       where rownum<![CDATA[<=]]>5 and id=#{id}
       order by LIKED_T_ID desc
@@ -176,5 +176,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       update preference set rating=rating+10
       where id=#{id} and cat2=#{cat2}
    </update>
+	<select id="NaverIsLogin" parameterType="java.util.Map" resultType="int">
+      SELECT COUNT(*) FROM member WHERE id=#{id}
 
+   </select>
 </mapper>

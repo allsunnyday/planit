@@ -61,9 +61,12 @@
 			                  </div>
 			               </div>
 			               <div class="form-group">
-			                  <button type="submit" class="button">Sign in</button>
-						<%--  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" >회원 마이페이지 임시 이동</a> --%>
-			               </div>
+			                  <button type="submit" class="button">Sign in</button><!-- <div id="naver_id_login" style="text-align:center"> -->
+			                  <a href="<c:url value='${url}'/>"><img style="width:16%" src="<c:url value='/images/member/Log in with NAVER_Short_Green.PNG'/>"/></a>
+			                  </div>
+			                  
+						
+			              
 			            </form>
 			            
 		              </div>
