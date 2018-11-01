@@ -155,6 +155,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.memberQnAView(map);
 	}
 
+	@Override
+	public boolean isNaverLogin(Map map) {
+		// TODO Auto-generated method stub
+		return dao.isNaverLogin(map);
+	}
+
    
 
 }

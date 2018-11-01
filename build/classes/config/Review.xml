@@ -144,7 +144,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="ReviewUpdateOneColumn"  parameterType="java.util.Map">
 		update review set ${updateColumn} = #{updateValue} where review_id=#{review_id}
 	</update>
-	
+
 	<select id="reviewSelectListForAndroid" parameterType="java.util.Map" resultType="java.util.Map">
 		select r.* , m.profile 
 		from review r, planner p, member m
@@ -160,4 +160,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where review_id=#{review_id} and route_index=#{route_index}
 	</update>
 	
+
 </mapper>

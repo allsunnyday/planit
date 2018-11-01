@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <jsp:include page="topMenu.jsp" flush="false" />
-
-
 
 <script>
 	var likedThisContent=function(){

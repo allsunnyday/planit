@@ -39,6 +39,12 @@ public class PlannerController {
 	@Resource(name="plannerService")
 	private PlannerService service;
 	
+	@RequestMapping("/Planit/Before/login.it")
+	public String plannerlogin() throws Exception{
+		
+		return "login/LoginForm.theme";
+	}
+	
 	@RequestMapping("/Planit/Before/LocationMain.it")
 	public String gotoLocationMain() throws Exception{		
 		return "planner/before/LocationMain.theme";
@@ -174,13 +180,6 @@ public class PlannerController {
 		model.addAttribute("plancase", map.get("plancase"));
 		return "planner/plan/schedule.theme";
 	}
-
-	/*@RequestMapping("")
-	public String planSave() throws Exception{
-		
-		return " ";
-	}*/
-	
 	
 	@RequestMapping(value="/planner/plan/reservation.it", method = { RequestMethod.POST })
 	public String reservation(@RequestParam Map map, Model model, PlannerDTO dto, HttpSession session) throws Exception{
@@ -194,48 +193,83 @@ public class PlannerController {
 		map.put("id", session.getAttribute("id"));
 		
 		if(map.get("reviewtitle") == null || map.get("reviewtitle") =="") {
-			String reviewtitle = "user1님의 여행기";
-//			String reviewtitle = map.get("id")+"님의 여행기";
+//			String reviewtitle = "user1님의 여행기";
+			String reviewtitle = map.get("id")+"님의 여행기";
 			map.remove("reviewtitle");
 			map.put("reviewtitle", reviewtitle);
 		}
 //		planner table data 입력
-		int affected = service.insertPlanner(map);
-		System.out.println("[1이면 planner입력성공] : "+ affected);
+//		int affected = service.insertPlanner(map);
+//		System.out.println("[1이면 planner입력성공] : "+ affected);
 		
-//		review table data 입력
-//		필요한 데이타 컬럼은?
-//		 SEQ_review_review_id.nextval | <selectKey ~~~> | SERIES (일차수 number) '@' 로 쪼갠 0번방 | reviewtitle | reviewroute << '@' 로 쪼개서
-//		controller 에서 구해야 하는값
-//		series (일차수 number) '@' 로 쪼갠 0번방 | reviewtitle | reviewroute << '@' 로 쪼개서
-		
-		//1#1:1:987720:신사동 가로수길:ㄱㄱ:ㄱㄱ:0#1:1:2452135:스페이스 씨:ㄴㄴ:ㄴㄴ:0@2#1:1:142712:선샤인호텔:ㄷㄷ:ㄷㄷ:1#1:1:129931:영동 예맥화랑:ㄹㄹ:ㄹㄹ:0#1:1:2049289:해랑:ㅁㅁ:ㅁㅁ:0
 		int days = Integer.valueOf((String) map.get("days"));
 		String routedays[] = new String[days];
 		String route = (String) map.get("route");
 		System.out.println(route);
 		routedays = route.split("@");
-		
-		
 		for(int i=0; i<days; i++) {
 			int series = (i+1);			
 			String reviewroute = routedays[i];
 			map.put("series", series);
 			map.put("reviewroute", reviewroute);			
-			int reviewaffected = service.insertReview(map);
-			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);
+//			review table data 입력
+//			int reviewaffected = service.insertReview(map);
+//			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);
 			String[] routedayscase = null;// = new String[][];
 			routedayscase = routedays[i].split("#");
 			for(int k=0; k<routedayscase.length; k++) {
 				int route_index = k;
 				//System.out.println(k + ": " + routedayscase[k]);
 				map.put("route_index", route_index);
-				int reviewcontentaffected = service.insertReviewContent(map);				
-				System.out.println("[1이면 reviewcontent  입력성공]: "+ reviewcontentaffected);
+//				review_content table data 입력
+//				int reviewcontentaffected = service.insertReviewContent(map);				
+//				System.out.println("[1이면 reviewcontent  입력성공]: "+ reviewcontentaffected);
 			}
 		}
 		
 		return "planner/plan/reservation.theme";
+	}
+	
+	@RequestMapping(value="/planner/plan/routeResuleview.it")
+	public String routeResultview() throws Exception {
+		
+		return "planner/after/routeResult.theme";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/planner/ajax/bookmark.it", produces="text/html; charset=UTF-8")
+	public String ajaxbookmarklist(@RequestParam Map map, Model model, HttpSession session) throws Exception{
+		System.out.println("controller - areacode: "+map.get("areacode")); // 출력확인
+		map.put("id", session.getAttribute("id"));
+		System.out.println(map.get("id"));
+		//검색해서 가져와서
+		List<PlannerDTO> selectbookmark = service.selectBookMark(map);		
+		//뿌려주기위한 변수를 나눠서
+		if(selectbookmark.size() ==0) {
+			return "notbookmark";
+		}
+		//System.out.println(selectbookmark.get(0).getAddr1());
+		List<Map> bookmark = new Vector();
+		for(int i=0; i<selectbookmark.size(); i++ ) {
+			Map record = new HashMap();
+			record.put("addr1", selectbookmark.get(i).getAddr1()); //주소 가져오기
+			record.put("contentid", selectbookmark.get(i).getContentid()); // contentid
+			record.put("contenttype", selectbookmark.get(i).getContenttype());
+			record.put("firstimage", selectbookmark.get(i).getFirstimage());
+			record.put("areacode", selectbookmark.get(i).getAreacode());
+			record.put("mapx", selectbookmark.get(i).getMapx());
+			record.put("mapy", selectbookmark.get(i).getMapy());
+			record.put("title", selectbookmark.get(i).getTitle());
+			record.put("zipcode", selectbookmark.get(i).getZipcode());
+			record.put("tel", selectbookmark.get(i).getTel());
+			
+			bookmark.add(record);			
+		}
+		//model.addAttribute("selectbookmark",selectbookmark);
+		//이미지가져오고, totle , 좌표, 가져오면 될듯함.
+		System.out.println(bookmark.size());
+		return JSONArray.toJSONString(bookmark);
 	}
 	
 	

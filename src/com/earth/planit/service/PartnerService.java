@@ -24,7 +24,6 @@ public interface PartnerService {
 	PartnerRoomDTO partnerRoomView(Map map);
 	//[RoomList]
 	List<PartnerRoomDTO> partnerRoomListDetail(Map map);
-
 	
 	List<PartnerDTO> selectRequestList(Map map);
 
