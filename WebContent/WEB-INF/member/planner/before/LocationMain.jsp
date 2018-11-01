@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <!-- ************************************** style 시작 ***************************************** -->
 <style>
-	.footer {position:fixed; bottom:0; width:100%;}
+	/* .footer {position:fixed; bottom:0; width:100%;} */
+	.footer {position:none; bottom:0; width:100%;}
 </style>
 <!-- ************************************** style 종료 ***************************************** -->
 
@@ -61,18 +62,32 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 clearfix">
 					<div class="text-center">
-						<img src="/Planit/images/plan/plan.jpeg" alt="plan메인 이미지">		
-						<img src="" alt="">	
+						<img src="/Planit/images/plan/plan.jpeg" alt="plan메인 이미지">
 					</div>
 				</div>
 			</div>
 			<div class="row" style="display:block; margin-top: 50px;">
-				<div class="col-lg-12 col-md-12 col-sm-12 clearfix text-center">
-					<form action="<c:url value='/Planit/Before/Location.it'/>">
-						<button type="submit" class="btn btn-large btn-primary"> 나만의 여행 계획 작성하러 가기 </button>
-					</form>		
+				<div class="col-lg-12 col-md-12 col-sm-12 clearfix text-center">					
+					<form class="locationmove"action="">
+						<button class="locationcheck" type="submit" class="btn btn-large btn-primary"> 나만의 여행 계획 작성하러 가기 </button>
+					</form>											
 				</div>
 			</div>
 		</div>
-	</section>
+	</section>	
 </div>
+
+<script>
+	console.log('${sessionScope.id}');
+	$('.locationcheck').click(function(){
+		if('${sessionScope.id}' == null || '${sessionScope.id}' =="" ){ // 로그인 안햇을떄
+			alert('로그인 후에 사용할수 있습니다.');
+			console.log('${sessionScope.id}');
+			$('.locationmove').attr('action', "<c:url value='/Planit/Before/login.it'/>");			
+		}
+		else{ // 로그인 시
+			console.log('${sessionScope.id}');
+			$('.locationmove').attr('action', "<c:url value='/Planit/Before/Location.it'/>");
+		}
+	});
+</script>

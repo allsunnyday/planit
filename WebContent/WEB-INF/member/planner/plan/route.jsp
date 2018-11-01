@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
+<%@ include file="/WEB-INF/member/planner/after/logincheck.jsp" %>
 <!-- *****************************map 관련 css 및 map api 호출  시작 *********************************-->
 <link href="<c:url value='/BootStrap/planmap/css/planmaprute.css'/>" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437&libraries=services,clusterer,drawing"></script>
@@ -13,18 +14,19 @@
 			<div class="container-fluid">
 				<div class="site-header" >
 					<!-- title area -->
-					<div class="col-md-12 col-sm-12 col-xs-12" >
-						<div id="nav" class="right" style=" float: right;">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div id="nav" class="right" style=" float: right;">						
 							<!-- <div class="text-right" > -->
 								<ul id="jetmenu" class="jetmenu blue" style="text-align: right;">
 									<!-- <li style="display: block;"><a href=""> 저 장 </a></li> -->
-									<li style="display: block;"><a href="javascript:" onclick="movescheduleAction();">저장</a></li>									
-									<li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>
-									<li class="active" style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li>
-									<li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li>
+									<li style="display: block; "><a class="dmbutton" href="javascript:" onclick="movescheduleAction();"> Next </a></li>									
+									<%-- <li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li> --%>
+									<%-- <li class="active" style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li> --%>
+									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li> --%>
 									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li> --%>
-									<li style="display: block;"><a href="#"> 즐겨 찾기 </a></li>
+									<li style="display: block;"><a class="dmbutton" id="bookmark" href="#" data-toggle="modal" data-target="#bookmarkmodal"> 즐겨 찾기 </a></li>									
 								</ul>
+								<form id="scheduleData" name="scheduleData" method="post" ></form> <!-- action="<c:url value='/planner/plan/schedule.it'/>" -->
 							<!-- </div> -->
 						</div><!-- nav -->
 					</div><!-- title area -->
@@ -117,55 +119,59 @@
 				    <div id="areaSelectBoxmenu">
 					    <div class="select">
 							<select name="paldoNcity" id="paldoNcity" style="width: 100%">
-								<option value="${areacode}"selected>${areacodename} </option>								
-						    	<option value="1">서울 특별시</option>
-						    	<option value="2">인천 광역시</option>
-						    	<option value="3">대전 광역시</option>
-						    	<option value="4">대구 광역시</option>
-						    	<option value="5">광주 광역시</option>
-						    	<option value="6">부산 광역시</option>
-						    	<option value="7">울산 광역시</option>
-						    	<option value="8">세종 특별 자치시</option>
-						    	<option value="31">경기도</option>
-						    	<option value="32">강원도</option>
-						    	<option value="33">충청북도</option>
-						    	<option value="34">충청남도</option>
-						    	<option value="35">경상북도</option>
-						    	<option value="36">경상남도</option>
-						    	<option value="37">전라북도</option>
-						    	<option value="38">전라남도</option>
-						    	<option value="39">제주도</option>
+								<option value="${areacode}" selected >${areacodename} </option>
+								<optgroup  LABEL="* * * * * *" style="background-color: #4A5C78">							
+							    	<option value="1">서울 특별시</option>
+							    	<option value="2">인천 광역시</option>
+							    	<option value="3">대전 광역시</option>
+							    	<option value="4">대구 광역시</option>
+							    	<option value="5">광주 광역시</option>
+							    	<option value="6">부산 광역시</option>
+							    	<option value="7">울산 광역시</option>
+							    	<option value="8">세종 특별 자치시</option>
+							    	<option value="31">경기도</option>
+							    	<option value="32">강원도</option>
+							    	<option value="33">충청북도</option>
+							    	<option value="34">충청남도</option>
+							    	<option value="35">경상북도</option>
+							    	<option value="36">경상남도</option>
+							    	<option value="37">전라북도</option>
+							    	<option value="38">전라남도</option>
+							    	<option value="39">제주도</option>
+						    	</optgroup>
 						    </select>
 					    </div>
 					    <div style="margin-top: 8px;"></div>
 					    <div class="select">						
 							<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%">
-						    	<option value="${areacodesub }" selected>${areacodesubname } </option>
-						    	<option value="1">강남구</option>
-						    	<option value="2">강동구</option>
-						    	<option value="3">강북구</option>
-						    	<option value="4">강서구</option>
-						    	<option value="5">관악구</option>
-						    	<option value="6">광진구</option>
-						    	<option value="7">구로구</option>
-						    	<option value="8">금천구</option>
-						    	<option value="9">노원구</option>
-						    	<option value="10">도봉구</option>
-						    	<option value="11">동대문구</option>
-						    	<option value="12">동작구</option>
-						    	<option value="13">마포구</option>
-						    	<option value="14">서대문구</option>
-						    	<option value="15">서초구</option>
-						    	<option value="16">성동구</option>
-						    	<option value="17">성북구</option>
-						    	<option value="18">송파구</option>
-						    	<option value="19">양천구</option>
-						    	<option value="20">영등포구</option>
-						    	<option value="21">용산구</option>
-						    	<option value="22">은평구</option>
-						    	<option value="23">종로구</option>
-						    	<option value="24">중구</option>
-						    	<option value="25">중랑구</option>
+						    	<option value="${areacodesub }" selected >${areacodesubname } </option>
+						    	<optgroup  LABEL="* * * * * * *" style="background: #4A5C78;">
+							    	<option value="1">강남구</option>
+							    	<option value="2">강동구</option>
+							    	<option value="3">강북구</option>
+							    	<option value="4">강서구</option>
+							    	<option value="5">관악구</option>
+							    	<option value="6">광진구</option>
+							    	<option value="7">구로구</option>
+							    	<option value="8">금천구</option>
+							    	<option value="9">노원구</option>
+							    	<option value="10">도봉구</option>
+							    	<option value="11">동대문구</option>
+							    	<option value="12">동작구</option>
+							    	<option value="13">마포구</option>
+							    	<option value="14">서대문구</option>
+							    	<option value="15">서초구</option>
+							    	<option value="16">성동구</option>
+							    	<option value="17">성북구</option>
+							    	<option value="18">송파구</option>
+							    	<option value="19">양천구</option>
+							    	<option value="20">영등포구</option>
+							    	<option value="21">용산구</option>
+							    	<option value="22">은평구</option>
+							    	<option value="23">종로구</option>
+							    	<option value="24">중구</option>
+							    	<option value="25">중랑구</option>
+						    	</optgroup>
 						    </select>
 					    </div>
 				    </div>
@@ -193,6 +199,5 @@
 <!-- ********************************** map script 호출 시작 *************************************** -->
 <%@ include file="routemap.jsp" %>
 <!-- ********************************** map script 호출 종료 *************************************** -->
-
 
 

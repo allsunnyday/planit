@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<<<<<<< HEAD
+=======
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
+>>>>>>> refs/remotes/origin/sunki
 <!-- 제이쿼리 유효성검증용 플러그인 -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
   <script>

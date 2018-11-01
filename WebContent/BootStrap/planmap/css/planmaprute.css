@@ -1,6 +1,7 @@
 /* ***********************footer 하단에 위치 시작 스타일************************ */
 /* 네비게이션 바가 2개가 삽입 되므로 "헤더-바디-푸터-헤더-바디-푸터" 순으로 적용되는것을 하단으로 강제 고정 */
-.footer {display:none; position:absolute; bottom:0; width:100%;}
+/* .footer {display:none; position:absolute; bottom:0; width:100%;} */
+.footer {position:none; bottom:0; width:100%;}
 /* ***********************footer 하단에 위치 종료***************************** */
 
 /* 웹 페이지 배치 상, 하, 좌, 우 빈공 백 제거 시작*/	
@@ -139,6 +140,10 @@ ul #peopletype{ list-style:none; margin:0; padding:0; }
 #peopletype li{ background-color: white; margin: 0; padding: 0; border : 0; }
 #peopletype li:hover{ background-color: #3498db; }
 /* *************************************** 상세정보 출력 관련 스타일 종료 ************************************************* */
+
+/* *********************** */
+#jetmenu > li > a { color: #fff }
+/* *********************** */
 
 #jetmenu li{margin-right: 150px;}
 #jetmenu li a{ font-size: 1.6ex;}

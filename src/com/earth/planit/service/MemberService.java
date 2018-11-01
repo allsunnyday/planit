@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface MemberService {
+
    //[로그인 처리]
    boolean isLogin(Map map);
    
@@ -68,4 +69,5 @@ public interface MemberService {
 	//[문의 view]
 	Map memberQnAView(Map map);
 }
+
 

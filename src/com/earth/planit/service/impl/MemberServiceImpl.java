@@ -82,12 +82,21 @@ public class MemberServiceImpl implements MemberService {
       // TODO Auto-generated method stub
       return dao.getTotalCount(map);
    }
+<<<<<<< HEAD
 
 	@Override
 	public List<Map> memberLikedTour(Map map) {
 		// TODO Auto-generated method stub
 		return dao.memberLikedTour(map);
 	}
+=======
+
+	@Override
+	public List<Map> memberLikedTour(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedTour(map);
+	}
+>>>>>>> refs/remotes/origin/sunki
 
    @Override
    public List<MemberDTO> memberPreferList(Map map) {

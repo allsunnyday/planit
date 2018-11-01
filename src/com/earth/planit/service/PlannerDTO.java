@@ -16,7 +16,102 @@ public class PlannerDTO {
 	private String mapx; //  (y, x )배치해야함
 	private String mapy; //  ( y, x ) 배치해야함
 	
-//	**************    컨텐츠 map api 와 연동할 db 목록들 게터 세터
+//	planner 계획 저장db
+	private String route; //루트 저장	
+	private String days; // 총 여행 일정 
+	private String depart; // 여행 출발 일자
+	private String tourtype; // 여행 타입
+	
+//	review table db 저장용
+	private String planner_id;
+	private String reviewtitle; // review title 저장용
+	private String reviewroute; // review 루트 저장용
+	private String series; // 몇일차 인지 저장용
+	
+//	review_content db 저장용
+	private String review_id; // 
+	
+//	사용자 id
+	private String id;
+
+//	이미지정보 호출
+	private String firstimage;
+	private String firstimage2;
+	
+	//	**************    컨텐츠 map api 와 연동할 db 목록들 게터 세터
+	
+	public String getPlanner_id() {
+		return planner_id;
+	}
+	public String getFirstimage() {
+		return firstimage;
+	}
+	public void setFirstimage(String firstimage) {
+		this.firstimage = firstimage;
+	}
+	public String getFirstimage2() {
+		return firstimage2;
+	}
+	public void setFirstimage2(String firstimage2) {
+		this.firstimage2 = firstimage2;
+	}
+	public void setPlanner_id(String planner_id) {
+		this.planner_id = planner_id;
+	}
+	public String getReviewtitle() {
+		return reviewtitle;
+	}
+	public void setReviewtitle(String reviewtitle) {
+		this.reviewtitle = reviewtitle;
+	}
+	public String getReviewroute() {
+		return reviewroute;
+	}
+	public void setReviewroute(String reviewroute) {
+		this.reviewroute = reviewroute;
+	}
+	public String getSeries() {
+		return series;
+	}
+	public void setSeries(String series) {
+		this.series = series;
+	}
+	public String getReview_id() {
+		return review_id;
+	}
+	public void setReview_id(String review_id) {
+		this.review_id = review_id;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getRoute() {
+		return route;
+	}
+	public void setRoute(String route) {
+		this.route = route;
+	}
+	public String getDays() {
+		return days;
+	}
+	public void setDays(String days) {
+		this.days = days;
+	}
+	public String getDepart() {
+		return depart;
+	}
+	public void setDepart(String depart) {
+		this.depart = depart;
+	}
+	public String getTourtype() {
+		return tourtype;
+	}
+	public void setTourtype(String tourtype) {
+		this.tourtype = tourtype;
+	}
 	public String getContentid() {
 		return contentid;
 	}

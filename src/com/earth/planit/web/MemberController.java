@@ -63,7 +63,6 @@ public class MemberController {
       return "login/JoinUserProgress.theme";
    }
 
-
    // ***************마이페이지 이동(일반회원)
    @RequestMapping("/planit/mypage/MyPageHome.it")
    public String gotoMyPageHome(@RequestParam Map map,HttpSession session,Model model) throws Exception {
@@ -90,6 +89,7 @@ public class MemberController {
       
       return "mypage/MyPageHome.theme";
    }
+
 
 
    @RequestMapping("/planit/mypage/MyPageEditProfile.it")
@@ -146,6 +146,7 @@ public class MemberController {
 
    @RequestMapping("/planit/mypage/MyPageEditPassword.it")
    public String gotoMyPageEditPassword() throws Exception {
+
 
 
       return "mypage/MyPageEditPassword.theme";
@@ -217,6 +218,7 @@ public class MemberController {
       return "mypage/DetailQnA.theme";
 
    }
+
 
 
    @RequestMapping("/planit/mypage/detail/Review.it")

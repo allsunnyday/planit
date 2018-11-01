@@ -143,5 +143,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="ReviewUpdateOneColumn"  parameterType="java.util.Map">
 		update review set ${updateColumn} = #{updateValue} where review_id=#{review_id}
 	</update>
-	
+
 </mapper>

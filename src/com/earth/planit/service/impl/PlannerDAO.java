@@ -21,4 +21,24 @@ public class PlannerDAO implements PlannerService {
 	public List<PlannerDTO> selectMapDataList(Map map) {
 		return template.selectList("selectPlanMapList",map);
 	}
+
+	@Override
+	public int insertPlanner(Map map) {		
+		return template.insert("insertPlanSave", map);
+	}
+
+	@Override
+	public int insertReview(Map map) {
+		return template.insert("insertPlanReview", map);
+	}
+
+	@Override
+	public int insertReviewContent(Map map) {
+		return template.insert("insertReviewContent", map);
+	}
+
+	@Override
+	public List<PlannerDTO> selectBookMark(Map map) {
+		return template.selectList("selectBookMarkList", map);
+	}
 }

@@ -5,12 +5,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.earth.planit.service.PlannerDTO;
 import com.earth.planit.service.PlannerService;
@@ -33,6 +38,12 @@ public class PlannerController {
 	
 	@Resource(name="plannerService")
 	private PlannerService service;
+	
+	@RequestMapping("/Planit/Before/login.it")
+	public String plannerlogin() throws Exception{
+		
+		return "login/LoginForm.theme";
+	}
 	
 	@RequestMapping("/Planit/Before/LocationMain.it")
 	public String gotoLocationMain() throws Exception{		
@@ -145,32 +156,120 @@ public class PlannerController {
 		return JSONArray.toJSONString(collections);
 	}
 	
-	@RequestMapping(value = "/planner/plan/schedule.it", method = { RequestMethod.GET, RequestMethod.POST })
-	public String scheduleUpload(@RequestParam Map map, Model model) throws Exception {
-		System.out.println("Upload days: " + map.get("days"));
-		System.out.println("Upload areacode: " + map.get("areacode"));
-		System.out.println("Upload depart: " + map.get("depart"));
-
+	@RequestMapping(value = "/planner/plan/schedule.it", method = { RequestMethod.POST })
+	public String scheduleUpload(@RequestParam Map map, Model model, HttpServletRequest req ) throws Exception {
+//		System.out.println("days: " + map.get("days"));
+//		System.out.println("depart: " + map.get("depart"));
+//		System.out.println("areacode: " + map.get("areacode"));
+//		System.out.println("plancase: " + map.get("plancase"));
+//		System.out.println("tourtype: " + map.get("tourtype"));
 		
-		return "planner/plan/schedule.theme";
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/planner/plan/scheduleUpload.it", produces = "text/plain; charset=UTF-8") // 저장 버튼 클릭시 파라미터가 넘어와서 일정과 함께 저장되어야 한다
-	public String schedule(@RequestParam Map map, Model model) throws Exception {
-		System.out.println("days: " + map.get("days"));
-		System.out.println("areacode: " + map.get("areacode"));
-		System.out.println("depart: " + map.get("depart"));
+		int plancase = Integer.valueOf((String) map.get("plancase")); // 일정 갯수
+		System.out.println("plancase: "+ plancase);
+		String route = "";
+		for(int i=0; i<plancase; i++) {
+			System.out.println( i+"번: "+map.get("route_"+i));
+			route += map.get("route_"+i);
+		}		
 		
+		model.addAttribute("route" , route);
+		model.addAttribute("depart", map.get("depart"));
 		model.addAttribute("days",map.get("days"));
+		model.addAttribute("tourtype", map.get("tourtype"));
+		model.addAttribute("areacode",map.get("areacode"));
+		model.addAttribute("plancase", map.get("plancase"));
 		return "planner/plan/schedule.theme";
 	}
 	
-	
-	@RequestMapping("/planner/plan/reservation.it")
-	public String reservation() throws Exception{
+	@RequestMapping(value="/planner/plan/reservation.it", method = { RequestMethod.POST })
+	public String reservation(@RequestParam Map map, Model model, PlannerDTO dto, HttpSession session) throws Exception{
+//		데이터 넘어오는지 확인
+		System.out.println("days: " +map.get("days"));
+		System.out.println("depart: " +map.get("depart"));
+		System.out.println("route: " +map.get("route"));
+		System.out.println("tourtype: " +map.get("tourtype"));
+		System.out.println("areacode: " +map.get("areacode"));
+		System.out.println("reviewtitle: " + map.get("reviewtitle"));
+		map.put("id", session.getAttribute("id"));
+		
+		if(map.get("reviewtitle") == null || map.get("reviewtitle") =="") {
+//			String reviewtitle = "user1님의 여행기";
+			String reviewtitle = map.get("id")+"님의 여행기";
+			map.remove("reviewtitle");
+			map.put("reviewtitle", reviewtitle);
+		}
+//		planner table data 입력
+//		int affected = service.insertPlanner(map);
+//		System.out.println("[1이면 planner입력성공] : "+ affected);
+		
+		int days = Integer.valueOf((String) map.get("days"));
+		String routedays[] = new String[days];
+		String route = (String) map.get("route");
+		System.out.println(route);
+		routedays = route.split("@");
+		for(int i=0; i<days; i++) {
+			int series = (i+1);			
+			String reviewroute = routedays[i];
+			map.put("series", series);
+			map.put("reviewroute", reviewroute);			
+//			review table data 입력
+//			int reviewaffected = service.insertReview(map);
+//			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);
+			String[] routedayscase = null;// = new String[][];
+			routedayscase = routedays[i].split("#");
+			for(int k=0; k<routedayscase.length; k++) {
+				int route_index = k;
+				//System.out.println(k + ": " + routedayscase[k]);
+				map.put("route_index", route_index);
+//				review_content table data 입력
+//				int reviewcontentaffected = service.insertReviewContent(map);				
+//				System.out.println("[1이면 reviewcontent  입력성공]: "+ reviewcontentaffected);
+			}
+		}
 		
 		return "planner/plan/reservation.theme";
+	}
+	
+	@RequestMapping(value="/planner/plan/routeResuleview.it")
+	public String routeResultview() throws Exception {
+		
+		return "planner/after/routeResult.theme";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/planner/ajax/bookmark.it", produces="text/html; charset=UTF-8")
+	public String ajaxbookmarklist(@RequestParam Map map, Model model, HttpSession session) throws Exception{
+		System.out.println("controller - areacode: "+map.get("areacode")); // 출력확인
+		map.put("id", session.getAttribute("id"));
+		System.out.println(map.get("id"));
+		//검색해서 가져와서
+		List<PlannerDTO> selectbookmark = service.selectBookMark(map);		
+		//뿌려주기위한 변수를 나눠서
+		if(selectbookmark.size() ==0) {
+			return "notbookmark";
+		}
+		//System.out.println(selectbookmark.get(0).getAddr1());
+		List<Map> bookmark = new Vector();
+		for(int i=0; i<selectbookmark.size(); i++ ) {
+			Map record = new HashMap();
+			record.put("addr1", selectbookmark.get(i).getAddr1()); //주소 가져오기
+			record.put("contentid", selectbookmark.get(i).getContentid()); // contentid
+			record.put("contenttype", selectbookmark.get(i).getContenttype());
+			record.put("firstimage", selectbookmark.get(i).getFirstimage());
+			record.put("areacode", selectbookmark.get(i).getAreacode());
+			record.put("mapx", selectbookmark.get(i).getMapx());
+			record.put("mapy", selectbookmark.get(i).getMapy());
+			record.put("title", selectbookmark.get(i).getTitle());
+			record.put("zipcode", selectbookmark.get(i).getZipcode());
+			record.put("tel", selectbookmark.get(i).getTel());
+			
+			bookmark.add(record);			
+		}
+		//model.addAttribute("selectbookmark",selectbookmark);
+		//이미지가져오고, totle , 좌표, 가져오면 될듯함.
+		System.out.println(bookmark.size());
+		return JSONArray.toJSONString(bookmark);
 	}
 	
 	
