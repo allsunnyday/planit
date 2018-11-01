@@ -230,6 +230,12 @@ public class PlannerController {
 		return "planner/plan/reservation.theme";
 	}
 	
+	@RequestMapping(value="/planner/plan/routeResuleview.it")
+	public String routeResultview() throws Exception {
+		
+		return "planner/after/routeResult.theme";
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value="/planner/ajax/bookmark.it", produces="text/html; charset=UTF-8")
@@ -265,6 +271,7 @@ public class PlannerController {
 		System.out.println(bookmark.size());
 		return JSONArray.toJSONString(bookmark);
 	}
+	
 	
 	/* ********************************************** select option ajax 시작 *********************************************/
 	@ResponseBody

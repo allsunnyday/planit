@@ -74,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="reviewSelectReviewContent" parameterType="java.util.Map" resultType="java.util.Map">
 		select * 
-		from (select re.* ,planner_id from review_content re join review v on re.review_id=v.review_id ) r 
+		from (select re.* ,planner_id, v.firstimage as reviewfirstimage from review_content re join review v on re.review_id=v.review_id ) r 
 		join content c 
 		on  r.contentid=c.contentid
 		where r.review_id = #{review_id} and r.route_index=#{route_index}
@@ -82,7 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="ReviewUpdateContent" parameterType="java.util.Map">
 		update review_content set content=#{content} , image=#{image} where re_co_id=#{re_co_id}
-	
+		
 	</update>
 	
 	<!-- review -->
@@ -134,6 +134,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="reviewUpdateReveiwRating" parameterType="java.util.Map">
 		update review set liked =( rating + (select count(*) from liked_review where review_id=#{review_id})) where review_id=#{review_id}
+	</update>
+	
+	<update id="reviewUpdateReviewAvgRating"  parameterType="java.util.Map">
+		update review set rating = (select avg(rating) from review_rating where review_id=#{review_id}) where review_id=#{review_id}
+	</update>
+	<!-- update one column in review table  -->
+	<update id="ReviewUpdateOneColumn"  parameterType="java.util.Map">
+		update review set ${updateColumn} = #{updateValue} where review_id=#{review_id}
 	</update>
 	
 </mapper>

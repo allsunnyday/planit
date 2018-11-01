@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.FaqNoticeDTO;
 import com.earth.planit.service.MemberDTO;
 import com.earth.planit.service.MemberService;
@@ -62,6 +63,7 @@ public class MemberController {
       return "login/JoinUserProgress.theme";
    }
 
+
    // ***************마이페이지 이동(일반회원)
    @RequestMapping("/planit/mypage/MyPageHome.it")
    public String gotoMyPageHome(@RequestParam Map map,HttpSession session,Model model) throws Exception {
@@ -88,6 +90,7 @@ public class MemberController {
       
       return "mypage/MyPageHome.theme";
    }
+
 
    @RequestMapping("/planit/mypage/MyPageEditProfile.it")
    public String gotoMyPageEditProfile() throws Exception {
@@ -143,6 +146,7 @@ public class MemberController {
 
    @RequestMapping("/planit/mypage/MyPageEditPassword.it")
    public String gotoMyPageEditPassword() throws Exception {
+
 
       return "mypage/MyPageEditPassword.theme";
    }
@@ -214,6 +218,7 @@ public class MemberController {
 
    }
 
+
    @RequestMapping("/planit/mypage/detail/Review.it")
    public String gotoReviewDetail(@RequestParam Map map,HttpSession session,Model model) throws Exception {
       map.put("id", session.getAttribute("id"));
@@ -247,7 +252,6 @@ public class MemberController {
       return "mypage/DetailPlanner.theme";
 
    }
-
    /* 로그인 처리 method=RequestMethod.POST로 설정하여 get방식 접근을 막는다. */
    @RequestMapping(value = "/member/login/LoginProcess.it", method = RequestMethod.POST)
    public String loginProcess(@RequestParam Map map, HttpSession session, Model model) throws Exception {
@@ -269,9 +273,9 @@ public class MemberController {
          System.out.println(memberRecord.getProfile());
          session.setAttribute("memberRecord", memberRecord);
 
+
          return "redirect:/";
       } else { // 비회원일경우
-
          model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
       }
 
@@ -286,8 +290,8 @@ public class MemberController {
 
       return "redirect:/";
 
-   }
 
+   }
    // [회원가입 처리]
    @RequestMapping(value = "/member/login/UserJoinFormProcess.it", method = RequestMethod.POST)
    public String userJoinFormProcess(MemberDTO dto, @RequestParam Map map, HttpSession session) throws Exception {
@@ -333,6 +337,7 @@ public class MemberController {
       return "redirect:/";
    }
 
+
    @RequestMapping(value = "/planit/member/idcheck.it", method = RequestMethod.POST)
    @ResponseBody
    public String idcheck(@RequestBody String id) {
@@ -345,4 +350,16 @@ public class MemberController {
       return String.valueOf(count);
    }
 
+   //왜 못찾니..
+		@RequestMapping("/member/qna/view.it")
+		public String gotoQnAView(@RequestParam Map map,Model model) throws Exception {
+			
+			System.out.println("ask_no"+map.get("ask_no"));
+			Map memberQnAView =service.memberQnAView(map);
+			
+			model.addAttribute("memberQnAView", memberQnAView);
+			return "mypage/QnAView.theme";
+		}
+	
+	
 }

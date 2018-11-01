@@ -70,7 +70,11 @@ public class ReviewDAO implements ReviewService {
 
 	@Override
 	public int insertRating(Map map) {
-		return template.insert("ReviewInsertRating", map);
+		//review_rating 테이블에  insert
+		template.insert("ReviewInsertRating", map);
+		//review 테이블에 평균을 다시 update
+		return template.update("reviewUpdateReviewAvgRating", map);
+		
 	}
 
 	@Override
@@ -120,6 +124,11 @@ public class ReviewDAO implements ReviewService {
 	@Override
 	public int getReviewListTotal(Map map) {
 		return template.selectOne("reviewGetReviewlistTotal", map);
+	}
+
+	@Override
+	public void updateOneReviewColumn(Map map) {
+		template.update("ReviewUpdateOneColumn", map);
 	}
 
 }

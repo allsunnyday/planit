@@ -119,6 +119,12 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.getReviewListTotal(map);
 	}
 
+	@Override
+	public void updateOneReviewColumn(Map map) {
+		dao.updateOneReviewColumn(map);
+		
+	}
+
 	
 
 }

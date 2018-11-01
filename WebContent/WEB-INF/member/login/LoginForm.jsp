@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
+
 <div style="padding-top: 70px;"></div>
 <section class="section1">
 	<div class="container clearfix">
@@ -97,7 +98,7 @@
 		               </div>
 		               <div class="form-group">
 		                  <button type="submit" class="button">Sign in</button>
-		                  <a href="<c:url value='/planit/mypage/partner/PartnerMyPageHome.it'></c:url>">기업 마이페이지 임시 이동</a>
+		                  
 		               </div>
 		            </form>
 		              </div>
@@ -114,9 +115,3 @@
 	<!-- end container -->
 </section>
 <!-- end section -->
-
-
-
- <style>
- 	.footer {position:fixed; bottom:0; width:100%;}
- </style>

@@ -83,11 +83,11 @@ public class MemberServiceImpl implements MemberService {
       return dao.getTotalCount(map);
    }
 
-   @Override
-   public List<Map> memberLikedTour(Map map) {
-      // TODO Auto-generated method stub
-      return dao.memberLikedTour(map);
-   }
+	@Override
+	public List<Map> memberLikedTour(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedTour(map);
+	}
 
    @Override
    public List<MemberDTO> memberPreferList(Map map) {
@@ -148,6 +148,12 @@ public class MemberServiceImpl implements MemberService {
       // TODO Auto-generated method stub
       return dao.profilecheck(map);
    }
+
+	@Override
+	public Map memberQnAView(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberQnAView(map);
+	}
 
    
 
