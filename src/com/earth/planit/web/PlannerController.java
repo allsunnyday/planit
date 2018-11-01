@@ -255,6 +255,8 @@ public class PlannerController {
 			record.put("mapx", selectbookmark.get(i).getMapx());
 			record.put("mapy", selectbookmark.get(i).getMapy());
 			record.put("title", selectbookmark.get(i).getTitle());
+			record.put("zipcode", selectbookmark.get(i).getZipcode());
+			record.put("tel", selectbookmark.get(i).getTel());
 			
 			bookmark.add(record);			
 		}

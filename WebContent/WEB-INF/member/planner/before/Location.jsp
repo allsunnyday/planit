@@ -498,7 +498,7 @@
 						<div class="col-md-4 col-sm-4 col-xs-12 text-right" >
 							<div class="select" style="width: 100%">
 								<select role="menu"  id="planday" name="planday" aria-labelledby="planday">
-									<option value="" id=""> -- 여행 일수 -- </option>
+									<option value="0"> -- 여행 일수 -- </option>
 									<option value="1"> 1일 (당일치기) </option>
 									<option value="2"> 2일 (1박 2일) </option>
 									<option value="3"> 3일 (2박 3일) </option>

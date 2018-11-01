@@ -20,16 +20,16 @@
 		//position: map.getCenter()       
 		//displayPlaceInfo(place);   
 	}); 
-	marker.setMap(map);      //지도에 마커를 표시합니다
+	//marker.setMap(map);      //지도에 마커를 표시합니다
 	marker.setDraggable(true); // 마커 드래그 가능하도록 설정   
    
 	//지도에 클릭 이벤트를 등록합니다
 	//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 	daum.maps.event.addListener(map, 'click', function(mouseEvent) {
 		// 클릭한 위도, 경도 정보를 가져옵니다 
-		var latlng = mouseEvent.latLng;       
+		//var latlng = mouseEvent.latLng;       
 		// 마커 위치를 클릭한 위치로 옮깁니다
-		marker.setPosition(latlng);
+		//marker.setPosition(latlng);
 	});
    
 	//지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
@@ -359,6 +359,7 @@
    /* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	var infowindowarr =[];
 	function planplusActionplus(index){
+		bookmarkmarker.setMap(null);      //즐겨찾기 마커 제거
 		console.log("planplusActionplus() : 이상무");      
 		//positions.push({title:document.getElementById('plantitle').title, latlng:planposition}); // 마크와 타이틀 저장
 		positions.push({title:document.getElementById('titleforNewInfo_'+index).title,latlng:planposition}); // 마크와 타이틀 저장
@@ -1021,11 +1022,13 @@
 				<h4 class="modal-title" id="myModalLabel"> 나의 즐겨 찾기 목록 </h4>
 			</div>
 			<div class="modal-body">
-				<div class="row" style="float: inherit;">
-					<label> ${bookmark.size } ?? </label>
-					<div class="select" style="width: 75%; margin-left: 20px; display: inline-block;">
-						<select name="bookmarklocation" id="bookmarklocation" style="width: 100%">													
-					    	<option value="1">서울 특별시</option>
+				<div class="row" style="float: inherit; display: block; text-align: center; padding-top: 10px;">
+					<h4 style="margin-left: 20px; margin-top:-10px; display: inline-block;"><span id="bookmarkarea"> 검색지역 </span></h4>
+					<h4 style="margin-left: 20px; margin-top:-20px; display: inline-block;"><span id="bookmarknum"> 검색결과 </span></h4>
+					<div class="select" style="width: 50%; margin-left: 20px; display: inline-block;">
+						<select name="bookmarklocation" id="bookmarklocation" style="width: 100%">
+							<option value="0" selected>검색 지역 선택 </option>													
+					    	<option value="1">서울 특별시</option>					    	
 					    	<option value="2">인천 광역시</option>
 					    	<option value="3">대전 광역시</option>
 					    	<option value="4">대구 광역시</option>
@@ -1066,8 +1069,14 @@
 
 <!-- ************** 즐겨 찾기 자바 스크립트 ************ -->
 <script>
+	$('#bookmark').click(function(){
+		$('#bookmarklocation option:first').prop('selected', 'selected');
+	})
+
 	$('#bookmarklocation').change(function(){
 		//alert($('#bookmarklocation option:selected').attr('value'));
+		bookmarkString=""; 
+		$('.bookmarklist').html(bookmarkString); // 기존 검색 정보 삭제 
 		$.ajax({
 			url:"<c:url value='/planner/ajax/bookmark.it'/> ",
 			data:{areacode:$('#bookmarklocation option:selected').attr('value')},
@@ -1089,26 +1098,83 @@
 	});
 	var bookmarkString="";			
 	var successbookmark = function(data){
-		console.log('1: '+data);
-		console.log('2: '+JSON.stringify(data));
+		//console.log('1: '+data);		
+		//console.log('2: '+JSON.stringify(data));
 		$.each(data, function(index, bookmark) {
+			//console.log(bookmark.size)
 			bookmarkString += '<div class="col-md-2 text-center">'
-	    					+ '<a class="button" href="" onclick="addbookmark('+index+')"><img alt="이미지 없음" src="'+bookmark['firstimage']+'" style="display: inline-block; border: 1px gray solid; width: 80px; height: 80px; text-align: center;"></a>'
-							+ '<span >'+bookmark['title']+'</span>' // id="titleforNewInfo_'+index+'" title="'+bookmark['title']+'"
+	    					+ '<a class="button" id="bookmarkimgbtn" href="javascript:addbookmark('+index+')"><img alt="이미지 없음" src="'+bookmark['firstimage']+'" style="display: inline-block; border: 1px gray solid; width: 80px; height: 80px; text-align: center;"></a>'
+							+ '<span id="title_'+index+'">'+bookmark['title']+'</span>' // id="titleforNewInfo_'+index+'" title="'+bookmark['title']+'"
 							+ '</div>'
-							+ '<input type="hidden" id="contentid" name="contentid" value="'+bookmark['contentid']+'" >'
-							+ '<input type="hidden" id="contenttype" name="contenttype" value="'+bookmark['contenttype']+'">'
-							+ '<input type="hidden" id="areacode" name="areacode" value="'+bookmark['areacode']+'">'
-							+ '<input type="hidden" id="addr1" name="addr1" value="'+bookmark['addr1']+'">'
-							+ '<input type="hidden" id="mapx" name="mapx" value="'+bookmark['mapx']+'">'
-							+ '<input type="hidden" id="mapy" name="mapy" value="'+bookmark['mapy']+'">'
-							;				
-		});			
+							+ '<input type="hidden" id="contentid_'+index+'" name="contentid_'+index+'" value="'+bookmark['contentid']+'" >'
+							+ '<input type="hidden" id="contenttype_'+index+'" name="contenttype_'+index+'" value="'+bookmark['contenttype']+'">'
+							+ '<input type="hidden" id="areacode_'+index+'" name="areacode_'+index+'" value="'+bookmark['areacode']+'">'
+							+ '<input type="hidden" id="addr1_'+index+'" name="addr1_'+index+'" value="'+bookmark['addr1']+'">'
+							+ '<input type="hidden" id="mapx_'+index+'" name="mapx_'+index+'" value="'+bookmark['mapx']+'">'
+							+ '<input type="hidden" id="mapy_'+index+'" name="mapy_'+index+'" value="'+bookmark['mapy']+'">'
+							+ '<input type="hidden" id="zipcode_'+index+'" name="zipcode_'+index+'" value="'+bookmark['zipcode']+'">'
+							+ '<input type="hidden" id="tel'+index+'" name="tel_'+index+'" value="'+bookmark['tel']+'">'
+							;
+			
+		});
 		$('.bookmarklist').append(bookmarkString);
+		$('#bookmarknum').text(data.length +'개의 즐겨찾기');
+		$('#bookmarkarea').text($('#bookmarklocation option:selected').text())
+		
 	};
-	
-	function addbookmark(){
-		alert('와핫')
+	function modalexit(){
+		document.getElementById('bookmarkmodal').click();
+	}
+	var bookmarkmarker
+	function addbookmark(index){ 
+		// 모달창 자동으로 닫기
+		//$('#bookmarkmodal')
+		if(bookmarkmarker != null || bookmarkmarker != undefined){
+			bookmarkmarker.setMap(null);
+		}
+		var bookmarkmarkerPosition = new daum.maps.LatLng($('#mapy_'+index).val(), $('#mapx_'+index).val()); // 마커가 표시될 위치입니다
+		console.log('즐겨찾기 마커 위치가 잘못됫다.: '+bookmarkmarkerPosition)
+		
+		bookmarkmarker = new daum.maps.Marker({ 
+			// 지도 중심좌표에 마커를 생성합니다 
+			position: bookmarkmarkerPosition   
+		});
+		function setCenter() {            
+		    // 이동할 위도 경도 위치를 생성합니다 
+		    var moveLatLon = new daum.maps.LatLng($('#mapy_'+index).val(), $('#mapx_'+index).val());		    
+		    // 지도 중심을 이동 시킵니다
+		    map.setCenter(moveLatLon);
+		}
+		bookmarkmarker.setMap(map);      //지도에 마커를 표시합니다
+		setCenter();  // 지도 가운데로 이동 시키기
+		var bookmarkiwContent=""
+		bookmarkiwContent += '<div class="categoryinfo_wrap categoryinfo">'
+			+'<div style="padding:5px;"><span id="titleforNewInfo_'+index+'" title="'+$('#title_'+index).text()+'">'+$('#title_'+index).text() +'</span>'
+			+'<span title="'+ $('#addt1_'+index).val() +'">' + $('#addr1_'+index).val() + '</span><input type="hidden" id="contentid_'+index+'" title="'+$('#contentid_'+index).val()+'" value="'+$('#contentid_'+index).val()+'"> '
+			+'  <span class="jibun" title="' + $('#zipcode_'+index).val() + '">(지번 : ' + $('#zipcode_'+index).val() + ')</span><input type="hidden" id=contenttype value="'+$('#contenttype_'+index).val()+'">';
+			if($('#tel_'+index).val() != null){ bookmarkiwContent += '<span class="tel">' + $('#tel_'+index).val() + '</span>';}
+			bookmarkiwContent += '<a href="javascript:planplusActionplus('+index+')" id="planplus"><img src="/Planit/images/plan/planplus.png" id="planrouteplusimg"></a>'
+			+'</div>'
+			+'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+			bookmarkiwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+			
+		// 인포윈도우를 생성합니다
+		var infowindow = new daum.maps.InfoWindow({
+		content : bookmarkiwContent,
+		removable : bookmarkiwRemoveable
+		});
+					
+					
+		// 마커에 클릭이벤트를 등록합니다
+		daum.maps.event.addListener(bookmarkmarker, 'click', function() {
+		planposition = bookmarkmarker.getPosition();
+		console.log('planposition: '+planposition);
+		// 마커 위에 인포윈도우를 표시합니다
+		infowindow.open(map, bookmarkmarker);
+		infowindowexit = infowindow;
+		});
+		
+		window.onbeforeunload = modalexit();
 	}
 </script>
 <!-- ************** 즐겨 찾기 자바 스크립트 ************ -->
