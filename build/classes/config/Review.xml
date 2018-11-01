@@ -53,7 +53,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="series != null">
 		and SERIES=#{series}
-		</if>	
+		</if>
+		order by series	
 	</select>
 		<!-- 	 -->
 	
@@ -150,6 +151,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where r.planner_id=p.planner_id 
 		and p.id=m.id
 		and m.id = #{id}
+		order by r.review_id desc
 	</select>
+	
+	<update id="reviewUpdateReviewContent" parameterType="java.util.Map">
+		update review_content
+		set image=concat(image, #{filename}) , content = concat(content,#{content})
+		where review_id=#{review_id} and route_index=#{route_index}
+	</update>
 	
 </mapper>

@@ -1,5 +1,9 @@
 package com.earth.planit.web;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +11,10 @@ import java.util.Map;
 import java.util.Vector;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -169,6 +175,7 @@ public class CommonController {
 			rmap.put("cat3", dto.getCat3kor());
 			rmap.put("mapx", dto.getMapx());
 			rmap.put("mapy", dto.getMapy());
+			rmap.put("review_id", record.getReview_id());
 			//
 			oneRoute.add(rmap);
 		}
@@ -259,7 +266,74 @@ public class CommonController {
 	      return JSONArray.toJSONString(collections);
 	      
 	   }
-	
-	
+	   
+	   @ResponseBody
+	   @RequestMapping(value="/Ajax/android/reviewConetent.it",produces = "text/plain; charset=UTF-8")
+	   public String anroidSelectReviewContent(@RequestParam Map map)throws Exception{
+		   System.out.println("review_id=" + map.get("review_id") 
+		   + " route_index=" + map.get("route_index") + "contentid="
+					);
+			// review_content와 content를 조인해서 가지고 오기
+			Map reviewContent = reviewService.selectReviewContent(map);
+			Map imageMap = new HashMap();
+			int imageCount = 0;
+			if (reviewContent.get("IMAGE") != null) {
+				System.out.println(reviewContent.get("IMAGE"));
+				String[] images = reviewContent.get("IMAGE").toString().trim().replace("<*>", "&").split("&");
+				for (String img : images) {
+					System.out.println(img);
+					// ring name = (phisicalPath+File.separator+img);
+					imageMap.put("" + imageCount++, img);
+				}
+			}
+			imageMap.put("imagecount",imageCount);
+			List<Map> list = new Vector();
+			list.add(reviewContent);
+			list.add(imageMap);
+		   return JSONArray.toJSONString(list);
+	   }
+	   
+	   
+	   @ResponseBody
+	   @RequestMapping(value="/Ajax/android/UploadImage.it",produces = "text/plain; charset=UTF-8")
+	   public String androidUploadImage(@RequestParam Map<String,String> map, HttpServletRequest req )throws Exception{
+		   System.out.println(map.get("filename"));
+		   System.out.println("androidUploadImage() 서버에 이미지 전송 시작");
+		   
+		   String imgData = req.getParameter("image");
+		   //imgData = imgData.replace("data:image/png;base64,", "");
+		   byte[] file = Base64.decodeBase64(imgData);
+		   
+		   ByteArrayInputStream is = new ByteArrayInputStream(file);
+		   String filename = req.getParameter("filename")+".png";
+		   String phisicalPath = req.getServletContext().getRealPath("/Upload/Review");
+		   File targetFile = new File(phisicalPath+File.separator+filename);
+		   OutputStream out = new FileOutputStream(targetFile);
+		   out.write(file);
+		   out.flush();
+		   out.close();
+		   is.close();
+		   System.out.println("성공!");
+		  
+		  // int affected = reviewService.updateReviewContentFromAndroid(map);
+		   
+		   return filename;
+	   }
+	   
+	   @ResponseBody
+	   @RequestMapping(value="/Ajax/android/UpdatereviewConetent.it",produces = "text/plain; charset=UTF-8")
+	   public String androidUpdateReviewContent(@RequestParam Map map) throws Exception{
+		   System.out.println("리뷰컨테트 업데이트 하러 왔습니다.");
+		   System.out.println("review_id=" + map.get("review_id") 
+		   + " route_index=" + map.get("route_index") + " filenamne="+map.get("filename")
+					);
+		   int affected = reviewService.updateReviewContentFromAndroid(map);
+		   if (affected == 1) {
+			   return "success";
+		   }
+		   return "fail";
+	   }
+	   
+	   
 	
 }
