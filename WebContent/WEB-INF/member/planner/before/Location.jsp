@@ -10,8 +10,9 @@
 			<ul class="breadcrumb">
 				<li>여행 플래너</li>
 			</ul>
-			<h2> 추억을 남길 나의 여행 지역 선택하기 </h2>
-		</div>
+			<h2> 추억을 남길 나의 여행 지역 선택하기 </h2> 
+		</div>		
+		<a href="<c:url value='/planner/plan/routeresult.it'/>"> 결과 확인 페이지 테스팅 </a>
 		<%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: 61px;">
 			<ul class="nav nav-tabs" style="float: right;">
 				<li class="active" style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>

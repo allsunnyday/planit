@@ -137,6 +137,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+	/* ************ 여행 상세 일정 및 일정명 등록 ************* */
 	var plancase = $('#plancase').val();
 	console.log(plancase)/* 총  여행 일정 개수*/	
 	
@@ -188,5 +189,6 @@
 		$('.schedulehiddendata').append(content);		
 		$('#plansave').attr("action","<c:url value='/planner/plan/reservation.it'/>");
 	});
-	
+	/* ************ 여행 상세 일정 및 일정명 등록 ************* */
+	/* ************************** */
 </script>

@@ -230,6 +230,12 @@ public class PlannerController {
 		return "planner/plan/reservation.theme";
 	}
 	
+	@RequestMapping(value="/planner/plan/routeresult.it")
+	public String routeresult() throws Exception{
+		
+		return "planner/after/routeresult.theme";
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value="/planner/ajax/bookmark.it", produces="text/html; charset=UTF-8")
