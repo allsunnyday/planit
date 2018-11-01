@@ -199,8 +199,8 @@ public class PlannerController {
 			map.put("reviewtitle", reviewtitle);
 		}
 //		planner table data 입력
-//		int affected = service.insertPlanner(map);
-//		System.out.println("[1이면 planner입력성공] : "+ affected);
+		int affected = service.insertPlanner(map);
+		System.out.println("[1이면 planner입력성공] : "+ affected);
 		
 		int days = Integer.valueOf((String) map.get("days"));
 		String routedays[] = new String[days];
@@ -213,8 +213,8 @@ public class PlannerController {
 			map.put("series", series);
 			map.put("reviewroute", reviewroute);			
 //			review table data 입력
-//			int reviewaffected = service.insertReview(map);
-//			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);
+			int reviewaffected = service.insertReview(map);
+			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);
 			String[] routedayscase = null;// = new String[][];
 			routedayscase = routedays[i].split("#");
 			for(int k=0; k<routedayscase.length; k++) {
@@ -222,8 +222,8 @@ public class PlannerController {
 				//System.out.println(k + ": " + routedayscase[k]);
 				map.put("route_index", route_index);
 //				review_content table data 입력
-//				int reviewcontentaffected = service.insertReviewContent(map);				
-//				System.out.println("[1이면 reviewcontent  입력성공]: "+ reviewcontentaffected);
+				int reviewcontentaffected = service.insertReviewContent(map);				
+				System.out.println("[1이면 reviewcontent  입력성공]: "+ reviewcontentaffected);
 			}
 		}
 		
