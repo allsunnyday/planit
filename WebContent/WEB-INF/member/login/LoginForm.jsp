@@ -54,15 +54,17 @@
 			                     <input type="password" class="form-control" name="pwd" placeholder="Password">
 			                  </div>
 			               </div>
-			               <div class="form-group">
+			               <!-- <div class="form-group">
 			                  <div class="checkbox">
 			                     <label> <input type="checkbox"> Remember me
 			                     </label>
 			                  </div>
-			               </div>
+			               </div> -->
 			               <div class="form-group">
-			                  <button type="submit" class="button">Sign in</button><!-- <div id="naver_id_login" style="text-align:center"> -->
-			                  <a href="<c:url value='${url}'/>"><img style="width:16%" src="<c:url value='/images/member/Log in with NAVER_Short_Green.PNG'/>"/></a>
+			               <div class="row">
+			                  <button type="submit" class="button" style="margin-top: 10px;">Sign in</button><!-- <div id="naver_id_login" style="text-align:center"> -->
+			                  <a href="<c:url value='${url}'/>"><img style="width: 16%; margin-top: -20px" src="<c:url value='/images/member/Log in with NAVER_Short_Green.PNG'/>"/></a>
+			                  </div>
 			                  </div>
 			                  
 						
@@ -71,7 +73,6 @@
 			            
 		              </div>
 	                <!-- 일반회원 가입-->
-	                
 	                
 	                <!--기업회원 가입-->
 		              <div class="tab-pane" id="partner-login">
@@ -93,12 +94,12 @@
 		                        placeholder="Password">
 		                  </div>
 		               </div>
-		               <div class="form-group">
+		               <!-- <div class="form-group">
 		                  <div class="checkbox">
 		                     <label> <input type="checkbox"> Remember me
 		                     </label>
 		                  </div>
-		               </div>
+		               </div> -->
 		               <div class="form-group">
 		                  <button type="submit" class="button">Sign in</button>
 		                  
@@ -109,6 +110,7 @@
 		            </div>
 		          </div>
 		          <!-- tabbable -->
+		          
 				<!-- login tabs -->
 			</div>
 			<!-- end login -->
@@ -118,3 +120,6 @@
 	<!-- end container -->
 </section>
 <!-- end section -->
+ <style>
+    .footer {position:fixed; bottom:0; width:100%;}
+ </style>

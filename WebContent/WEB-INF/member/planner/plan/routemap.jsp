@@ -359,13 +359,15 @@
    /* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	var infowindowarr =[];
 	function planplusActionplus(index){
-		bookmarkmarker.setMap(null);      //즐겨찾기 마커 제거
+		if(bookmarkmarker != null || bookmarkmarker != undefined){
+			bookmarkmarker.setMap(null);
+		}
 		console.log("planplusActionplus() : 이상무");      
 		//positions.push({title:document.getElementById('plantitle').title, latlng:planposition}); // 마크와 타이틀 저장
 		positions.push({title:document.getElementById('titleforNewInfo_'+index).title,latlng:planposition}); // 마크와 타이틀 저장
 		infowindowarr.push({content:infowindowexit.Ub}); //
 		
-		linePath.push(planposition); // 사용자가 일정 추가로 등록한 일정의 라인을 구성하기 위한 좌표저장
+		linePath.push(planposition); // 사용자가 일정 가로 등록한 일정의 라인을 구성하기 위한 좌표저장
 		console.log(linePath.length); // 마커 좌표가 배열로 추가 되는지 확인      
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */      
 		planmarkingsave();
