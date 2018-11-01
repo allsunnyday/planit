@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%-- <jsp:include page="topMenu.jsp" flush="false" /> --%>
 <jsp:include page="/WEB-INF/member/tourinfo/tdview/topMenu.jsp" flush="false" />
@@ -22,36 +22,8 @@
 			location.replace("<c:url value='/partner/product/view/DeleteProduct?roomcode=${productRecord.roomcode}'/>");
 	};  	
 </script>
-=======
-<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
-<!-- *******************************************
-	베이지색 검색창 달린 거
-************************************************ -->
-<section class="post-wrapper-top" style="margin-top: 65px;">
-	<div class="container">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<ul class="breadcrumb">
-				<li><a href="index.html">Product</a></li>
-				<li>${partnerRecord.p_id }</li>
-			</ul>
-			<h2>Product Detail</h2>
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<!-- search -->
-			<div class="search-bar">
-				<form action="" method="get">
-					<fieldset>
-						<input type="image" src="img/pixel.gif" class="searchsubmit"
-							alt="" /> <input type="text" class="search_text showtextback"
-							name="s" id="s" value="Search..." />
-					</fieldset>
-				</form>
-			</div>
-			<!-- / end div .search-bar -->
-		</div>
-	</div>
-</section>
->>>>>>> refs/remotes/origin/sunki
+
+
   <section class="marketplace-top">
     <div id="market-wrapper">
     <%--   <div class="item_image">
