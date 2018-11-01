@@ -230,12 +230,6 @@ public class PlannerController {
 		return "planner/plan/reservation.theme";
 	}
 	
-<<<<<<< HEAD
-	@RequestMapping(value="/planner/plan/routeresult.it")
-	public String routeresult() throws Exception{
-		
-		return "planner/after/routeresult.theme";
-=======
 	@RequestMapping(value="/planner/plan/routeResuleview.it")
 	public String routeResultview(@RequestParam Map map, Model model) throws Exception {
 		System.out.println("route: "+ map.get("route"));
@@ -259,7 +253,6 @@ public class PlannerController {
 		
 		
 		return "planner/after/routeResult.theme";
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
 	}
 	
 	

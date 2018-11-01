@@ -66,16 +66,9 @@ public interface MemberService {
    
    //[프로필이 널인지 아닌지 체킹]
    int profilecheck(Map map);
-<<<<<<< HEAD
-   
-   //[문의 view]
-   Map memberQnAView(Map map);
-}
-=======
 
 	//[문의 view]
 	Map memberQnAView(Map map);
 }
 
 
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git

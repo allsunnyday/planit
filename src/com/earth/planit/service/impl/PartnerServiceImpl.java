@@ -170,10 +170,5 @@ public class PartnerServiceImpl implements PartnerService{
 		// TODO Auto-generated method stub
 		return dao.partnerEventRequestList(map);
 	}
-<<<<<<< HEAD
-	
-=======
 
-
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
 }

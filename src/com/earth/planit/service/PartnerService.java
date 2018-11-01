@@ -19,19 +19,11 @@ public interface PartnerService {
 
 	//[Room 정보 등록]
 	int roomResist(Map map);
-	
-<<<<<<< HEAD
-	//[RoomView]
-	PartnerRoomDTO partnerRoomView(Map map);
-	//[RoomList]
-	List<PartnerRoomDTO> partnerRoomListDetail(Map map);
 
-=======
 	//[RoomView]
 	PartnerRoomDTO partnerRoomView(Map map);
 	//[RoomList]
 	List<PartnerRoomDTO> partnerRoomListDetail(Map map);
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
 	
 	List<PartnerDTO> selectRequestList(Map map);
 

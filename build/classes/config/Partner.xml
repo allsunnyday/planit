@@ -320,9 +320,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	select * from event_request
 	where rownum <![CDATA[<=]]> 5 and p_id=#{p_id}
    </select>
-<<<<<<< HEAD
-   
-   
-=======
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
+
 </mapper>

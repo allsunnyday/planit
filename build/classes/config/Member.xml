@@ -17,17 +17,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 회원가입처리 -->
 
    <insert id="MemberIsJoin" parameterType="MemberDTO">
-<<<<<<< HEAD
-      INSERT INTO member(id, email,pwd,verified,regidate,gender,age,star,name) values(#{id},#{email},#{pwd},'Y',SYSDATE,#{gender},#{age},0,#{name})      
-=======
       INSERT INTO member(id, email,pwd,verified,regidate,gender,age,star,name) values(#{id},#{email},#{pwd},'Y',SYSDATE,#{gender},#{age},0,#{name})
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    </insert>
-<<<<<<< HEAD
 
-=======
-
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    <select id="MemberIsDuplicate" parameterType="java.util.Map" resultType="int">
       SELECT COUNT(*) FROM member WHERE id=#{id} 
    </select>
@@ -99,12 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select * from planner
       where id=#{id} 
    </select>
-<<<<<<< HEAD
 
-
-=======
-
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    <select id="MemberHomeReviewList"  parameterType="java.util.Map" resultType="reviewDTO">
       
       select id,R.* 
@@ -117,12 +104,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select * from planner
       where id=#{id} and rownum<![CDATA[<=]]>4
    </select>
-<<<<<<< HEAD
-   <select id="MemberAskPlanit"  parameterType="java.util.Map" resultType="FaqNoticeDTO">
-=======
 
    <select id="MemberAskPlanit"  parameterType="java.util.Map" resultType="FaqNoticeDTO">
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
       select * 
       from u_ask_planit
       where rownum<![CDATA[<=]]>5 and id=#{id}

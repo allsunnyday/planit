@@ -80,12 +80,7 @@ public class MemberController {
 
       return "login/JoinUserProgress.theme";
    }
-<<<<<<< HEAD
 
-
-=======
-
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    // ***************마이페이지 이동(일반회원)
    @RequestMapping("/planit/mypage/MyPageHome.it")
    public String gotoMyPageHome(@RequestParam Map map,HttpSession session,Model model) throws Exception {
@@ -301,11 +296,6 @@ public class MemberController {
          System.out.println(memberRecord.getProfile());
          session.setAttribute("memberRecord", memberRecord);
 
-<<<<<<< HEAD
-
-=======
-
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
          return "redirect:/";
       } else { // 비회원일경우
          model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
@@ -321,12 +311,6 @@ public class MemberController {
       session.invalidate();
 
       return "redirect:/";
-
-<<<<<<< HEAD
-
-=======
-
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    }
    // [회원가입 처리]
    @RequestMapping(value = "/member/login/UserJoinFormProcess.it", method = RequestMethod.POST)
@@ -373,11 +357,6 @@ public class MemberController {
       return "redirect:/";
    }
 
-<<<<<<< HEAD
-
-=======
-
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    @RequestMapping(value = "/planit/member/idcheck.it", method = RequestMethod.POST)
    @ResponseBody
    public String idcheck(@RequestBody String id) {
@@ -390,24 +369,13 @@ public class MemberController {
       return String.valueOf(count);
    }
 
-   //왜 못찾니..
-		@RequestMapping("/member/qna/view.it")
-		public String gotoQnAView(@RequestParam Map map,Model model) throws Exception {
-			
-			System.out.println("ask_no"+map.get("ask_no"));
-			Map memberQnAView =service.memberQnAView(map);
-			
-			model.addAttribute("memberQnAView", memberQnAView);
-			return "mypage/QnAView.theme";
-		}
-	
 	//++++++++++++++++++++++++[네이버 아이디로 로그인]+++++++++++++++++++++++++
 		@Resource(name = "naverLoginBO")
 		private NaverLoginBO naverLoginBO;
 		
 		private String apiResult = null;
 
-<<<<<<< HEAD
+
    //왜 못찾니..
 		@RequestMapping("/member/qna/view.it")
 		public String gotoQnAView(@RequestParam Map map,Model model) throws Exception {
@@ -420,7 +388,6 @@ public class MemberController {
 		}
 	
 	
-=======
 	   
 		// 네이버 로그인 성공시 callback호출 메소드
 		@RequestMapping(value = "/planit/naver/callback.it", method = { RequestMethod.GET, RequestMethod.POST })
@@ -517,8 +484,4 @@ public class MemberController {
 	       
 	    }
 	
-
-
-		  
->>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
 }
