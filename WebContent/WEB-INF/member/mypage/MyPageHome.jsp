@@ -47,7 +47,7 @@
           <li><a href="index.html">My Page</a></li>
           <li>${id }</li>
         </ul>
-        <h2>MY Page Home</h2>
+        <h2>MY Page Home </h2>
         
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
