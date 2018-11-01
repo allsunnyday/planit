@@ -35,6 +35,7 @@
 #myedit li:hover{background: #3498DB }
 #myedit li:focus{background: #3498DB }
 </style>
+
 <!-- *******************************************
    베이지색 검색창 달린 거
 ************************************************ -->
@@ -47,6 +48,7 @@
         </ul>
         <h2>MY Page Home</h2>        
       </div>      
+      </div>
     </div>
   </section>
   <!-- end post-wrapper-top -->
@@ -157,7 +159,8 @@
                 회원정보수정
                 <span class="caret"></span>
               </button>
-              <ul class="dropdown-menu" id="myedit" role="menu" aria-labelledby="MY-edit-button">
+
+              <ul id="myedit"class="dropdown-menu" role="menu" aria-labelledby="MY-edit-button" id="myedit">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditProfile.it' />">프로필 수정</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditPassword.it' />">비밀번호 변경</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPagePassCheck.it' />">비밀번호 확인 페이지(임시)</a></li>
@@ -216,7 +219,6 @@
 	                  
 	                   <!-- portfolio -->
 	                    </div> 
-                   <!-- portfolio -->
                     </div> 
          
                
@@ -367,8 +369,9 @@
 								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
 								<td>${list.LIKED_T_ID}</td>
 								<td>여행지</td>
-								<td class="text-left"  data-toggle="modal" data-target="#myModal">
-								<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
+								<td class="text-left">
+								<a style="color: rgb(110,112,118)"href="<c:url value='/planit/search/list/TourView.it?contentid=${list.CONTENTID}'/> "  >${list.TITLE }</a>
+
 								</td>
 								<!-- Modal -->
 								<td>${list.CONTENTID}</td>

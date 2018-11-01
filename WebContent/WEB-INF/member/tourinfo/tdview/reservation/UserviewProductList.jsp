@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>s
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <jsp:include page="/WEB-INF/member/tourinfo/tdview/topMenu.jsp" flush="false" />
 <style>
 .Partnerpage-content {

@@ -47,37 +47,6 @@ max-width: 100%;
 </style>
 
 
-<script>
-
-/*
-$(function(){
-		$('#areaCode').click(function(){
-			$.ajax({
-				url:'<c:url value="/Planit/tourinfo/tdview/TourInfo.it"/>',
-				dataType:'json',
-				data:{areacode:$(this).val()},
-				success:showArea(),
-				error:function(data){
-					console.log('에러: ',data)
-				}
-			});
-		});
-	});
-
-	var showArea =function(data){
-		switch('#areaCode' != null){
-		case 1:
-			$('#showbox').val();
-			break;
-		
-		
-		}
-		
-	};
-	*/
-</script>
-
-
 <!--************************************ 상단 리스트페이지 네브바 페이지 삽입*************************************** -->
 <jsp:include page="topMenu.jsp" flush="false" />
 <!--************************************ 실제 컨텐츠  section 시작*************************************** -->

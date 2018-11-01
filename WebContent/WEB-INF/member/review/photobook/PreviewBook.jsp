@@ -94,7 +94,7 @@ p {
 					</div>
 					<h4>디자인 고르기</h4>
 				</div>
-				<div class="f1-step active">
+				<div class="f1-step activated">
 					<div class="services_lists_boxes_icon_none text-center">
 						<i class="fa fa-film fa-2x"></i>
 					</div>
@@ -173,7 +173,8 @@ p {
 					<h3 class="title">
 						<i class="fa fa-cogs"></i> 포토북 만들기
 					</h3>
-					<a class="button small" href="#">내보내기</a>
+					<!-- <a class="button small" href="#">내보내기</a> -->
+					<button id="downpdf">내보내기</button>
 				</div>
 				<!-- end widget -->
 			</div>
@@ -198,9 +199,9 @@ p {
 								<h2>
 									<small>${item.ADDR1}</small>
 								</h2>
-
-								<img alt="이미지" src="${item.FIRSTIMAGE}"
-									style="width: 200px; height: 180px">
+								<!-- 관광지에 관한 이미지. 다른 사이트에 있는 이미지는 저장되지 않는다.  -->
+								<%-- <img alt="이미지" src="${item.FIRSTIMAGE}"
+									style="width: 200px; height: 180px"> --%>
 							</div>
 							<br>
 							<div class="col-sm-offset-2 col-sm-8">${item.CONTENT}</div>
@@ -224,7 +225,7 @@ p {
 			</form>
 				<div>
 
-			<button id="downpdf">pdf만들기</button>
+			
 
 		</div>
 	</div>
@@ -233,6 +234,7 @@ p {
 
 
 <script>
+	
 	var size = ${listSize};
 	console.log('size' + size);
 	$(function() {
@@ -324,7 +326,7 @@ p {
 		$.ajax({
             type: "post",
             /* data : $("form").serialize(), */
-             data : frm, 
+            data : frm, 
             url:'<c:url value="/planit/photobook/downloadByAjax.it"/>',
             error: function(request, error, status){        
                 console.log(request,error,status);

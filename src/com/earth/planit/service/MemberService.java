@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface MemberService {
+
    //[로그인 처리]
    boolean isLogin(Map map);
+   boolean isNaverLogin(Map map);
    
    //[회원가입]_int로 해야하나..
    int isJoin(MemberDTO dto);
@@ -64,7 +66,16 @@ public interface MemberService {
    
    //[프로필이 널인지 아닌지 체킹]
    int profilecheck(Map map);
+<<<<<<< HEAD
    
    //[문의 view]
    Map memberQnAView(Map map);
 }
+=======
+
+	//[문의 view]
+	Map memberQnAView(Map map);
+}
+
+
+>>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git

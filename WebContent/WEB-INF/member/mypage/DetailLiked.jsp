@@ -155,6 +155,23 @@ height: 100%;
 	color:rgb(53, 181, 157);
 	
 }
+#liked_ul{
+	 margin-left: 40%;
+  margin-right: auto;
+}
+#liked_ul li{
+	border:none;
+	display:inline;
+	color: rgb(110,112,118);
+	margin-right:20px;
+	font-size: 1.2em;
+}
+#MY-First-Preference{
+display: inline-block;
+   border-radius: 10px;
+   border:1px rgb(109, 213, 193) dashed;
+}
+
 </style>
 <!-- *******************************************
 	베이지색 검색창 달린 거
@@ -179,53 +196,80 @@ height: 100%;
         <div>
           <div class="teammembers">
             <div class="he-wrap tpl2">
+            	<c:if test="${not empty memberRecord.profile}" var="result">
+            	<img src="<c:url value='/Upload/Member/${memberRecord.profile}'/>" alt="프로필 사진">
+            	</c:if>
+            	<c:if test="${not result}">
               <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
+              </c:if>
               <div class="he-view">
             
               </div>
             </div>
             <!-- he wrap -->
             <div class="teammembers-meta">
-              <h4>Plan:It</h4>
+              <h4>${sessionScope.id}</h4>
             </div>
             <div id="MY-first-1-self-detail">
-							<p>
-								<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-									Plan:It님의&nbsp자기소개입니다</span>
-							<p>어서오세요, Plan:It님!
-							멋진 프로필을 등록해 
-							자신만의 개성을 나타내보세요!
-							</p>
+                     <p>
+                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
+                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
+                           님의&nbsp자기소개입니다</span>
+                     <p>${memberRecord.self}
+                     </p>
 
 
-			</div>
+         </div>
 
             
             <div class="teamskills" >
             <div id="MY-First-TotalContent" style="width:90%;">
-             		<table id="MY-first-informtable" style="width:90%;">
-             		<tr>
-             			<td>Planner</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             		<td>Review</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             			<td>Like</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             			<td>Star Point</td>
-             			<td>00</td>
-             		</tr>
-             	
-             			
-             		</table>
-             	
-             	</div>
+                   <table id="MY-first-informtable" style="width:90%;">
+                   <tr>
+                      <td>Planner</td>
+                      <td>00</td>
+                   </tr>
+                   <tr>
+                   <td>Review</td>
+                      <td>00</td>
+                   </tr>
+                   <tr>
+                      <td>Like</td>
+                      <td>00</td>
+                   </tr>
+                   <tr>
+                      <td>Star Point</td>
+                      <td>0000</td>
+                  <!--  </tr>
+                	<tr style="border-top:1px white dashed;">
+                	<td colspan="2"> 선호사항</td>
+                	</tr>
+                       -->
+                   </table>
+                
+                </div>
               
+            </div>
+            <!-- ***********************8
+            선호도 조사 들어갈 부분
+            *****************************8 -->
+            <div id="MY-First-Preference" style="width:90%;" >
+            	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
+            		<tr>
+            		<c:if test="${empty sessionScope.memberPreferList }" var="result">
+            			<td>플래닛을 즐겨주세요</td>
+            		</c:if>	
+            		<c:if test="${not result }">
+            			<c:forEach var="list" items="${sessionScope.memberPreferList}" varStatus="loop">
+            				<td>${list.kor }</td><!-- 왜 안나오지 -->
+            			
+            			</c:forEach>
+            		</c:if>
+            		</tr>
+            	
+            	</table>
+            
             </div>
           </div>
           <!-- end teammembers -->
@@ -272,72 +316,140 @@ height: 100%;
 				<div id="Third-content" class="col-md-12">
 					<!-- 찜해제버튼 추가 -->
 					<div id="MY-Third-ZZim-table">
-						<table class="table">
-							<tr>
-								<td class="col-md-2 ">ZZim No.</td>
-								<!-- 찜번호 -->
-								<td class="col-md-1 ">분류</td>
-								<td class="col-md-3 col-md-offset-1">제목</td>
-								<td class="col-md-2 col-md-offset-2">작성자</td>
-								<td class="col-md-2 col-md-offset-2">ZZim날짜</td>
+						<div class="tabbable servicetab tabs-left">
+					          <ul id="liked_ul"class=" col-md-offset-4">
+					            <li><a style="color: rgb(110,112,118)" href="services.html#webdesign" data-toggle="tab"><i class="glyphicon glyphicon-queen"></i>Tour</a></li>
+					            <li><a style="color: rgb(110,112,118)" href="services.html#webdevelopment" data-toggle="tab"><i class="glyphicon glyphicon-calendar"></i> Planner</a></li>
+					            <li><a style="color: rgb(110,112,118)" href="services.html#webdevelopment2" data-toggle="tab"><i class="glyphicon glyphicon-edit"></i> Review</a></li>
+					          </ul>
+					          <div class="tab-content" style="">
+					            <div class="tab-pane active" id="webdesign">
+					              <!-- <h5 class="title"><i class="fa fa-laptop"></i> Web Design Services</h5> -->
+					              <div class="row">
+					                
+					                 <table class="table">
+					                     <tr style="text-align: center">
+					                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
+					                       
+					                        <td class="col-md-1 " >분류</td>
+					                        <td class="col-md-3 col-md-offset-2">이름</td>
+					                        <td class="col-md-2 col-md-offset-2">관광지번호</td>
+					                        <td class="col-md-4 col-md-offset-2">주소</td>
+					                     </tr>
+					                     <c:if test="${empty requestScope.likedTourAll }" var="isEmpty">
+										<tr>
+											<td colspan="5" style="text-align: center">등록된 좋아요가 없습니다:)</td>
+										</tr>
+										</c:if>
+										<c:if test="${not isEmpty }">
+											<c:forEach var="list" items="${likedTourAll}" varStatus="loop">
+												<tr style="text-align: center">
+													<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
+													<td>${list.LIKED_T_ID}</td>
+													<td>여행지</td>
+													<td class="text-left"  data-toggle="modal" data-target="#myModal">
+													<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
+													</td>
+													<!-- Modal -->
+													<td>${list.CONTENTID}</td>
+													<td>${list.ADDR1}</td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</table>
+					                 
+					
+					                <div class="col-lg-6">
+					                  <img class="img-responsive" src="img/slider_01.png" alt="">
+					                </div>
+					              </div>
+					            </div>
+					            
+					            <!-- 두번째 탭 -->
+					            <div class="tab-pane" id="webdevelopment">
+					           <!--    <h5 class="title"><i class="fa fa-cogs"></i> Web Development Services</h5> -->
+					              <div class="row">
+					               <table class="table">
+					                     <tr style="text-align: center">
+					                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
+					                       
+					                        <td class="col-md-1 " >분류</td>
+					                        <td class="col-md-2 col-md-offset-1">이름</td>
+					                        <td class="col-md-3 col-md-offset-1">해쉬태그</td>
+					                        <td class="col-md-1 col-md-offset-1">시리즈</td>
+					                        <td class="col-md-1 col-md-offset-1">작성일</td>
+					                       
+					                     </tr>
+					                     <c:if test="${empty requestScope.likedPlannerAll }" var="isEmpty">
+										<tr>
+											<td colspan="6" style="text-align: center">등록된 좋아요가 없습니다:)</td>
+										</tr>
+										</c:if>
+										<c:if test="${not isEmpty }">
+											<c:forEach var="list" items="${likedPlannerAll}" varStatus="loop">
+												<tr style="text-align: center">
+													<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
+													<td>${list.LIKED_R_NO}</td>
+													<td>플래너</td>
+													<td class="text-left"  data-toggle="modal" data-target="#myModal">
+													<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
+													</td>
+													<!-- Modal -->
+													<td>${list.HASHTAG}</td>
+													<td>${list.SERIES}</td>
+													<td>${list.POSTDATE}</td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</table>
+					
+					                <div class="col-lg-6">
+					                  
+					                </div>
+					              </div>
+					            </div>
+					              <div class="tab-pane" id="webdevelopment2">
+					           <!--    <h5 class="title"><i class="fa fa-cogs"></i> Web Development Services</h5> -->
+					              <div class="row">
+						          <table class="table">
+						                     <tr style="text-align: center">
+						                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
+						                       
+						                        <td class="col-md-1 " >분류</td>
+						                        <td class="col-md-2 col-md-offset-1">이름</td>
+						                        <td class="col-md-3 col-md-offset-1">해쉬태그</td>
+						                        <td class="col-md-1 col-md-offset-1">시리즈</td>
+						                        <td class="col-md-1 col-md-offset-1">작성일</td>
+						                       
+						                     </tr>
+						                     <c:if test="${empty requestScope.likeReviewAll }" var="isEmpty">
+											<tr>
+												<td colspan="6" style="text-align: center">등록된 좋아요가 없습니다:)</td>
+											</tr>
+											</c:if>
+											<c:if test="${not isEmpty }">
+												<c:forEach var="list" items="${likeReviewAll}" varStatus="loop">
+													<tr style="text-align: center">
+														<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
+														<td>${list.LIKED_R_NO}</td>
+														<td>리뷰</td>
+														<td class="text-left"  data-toggle="modal" data-target="#myModal">
+														<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
+														</td>
+														<!-- Modal -->
+														<td>${list.HASHTAG}</td>
+														<td>${list.SERIES}</td>
+														<td>${list.POSTDATE}</td>
+													</tr>
+												</c:forEach>
+											</c:if>
+										</table>
 
-							</tr>
-							<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-edit"></span></td>
-								<td>리뷰 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-							<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-calendar"></span></td>
-								<td>플래너 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-								<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-edit"></span></td>
-								<td>리뷰 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-							<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-calendar"></span></td>
-								<td>플래너 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-								<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-edit"></span></td>
-								<td>리뷰 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-							<tr>
-								<td>00</td>
-								<!-- 찜번호 -->
-								<td><span class="glyphicon glyphicon-calendar"></span></td>
-								<td>플래너 ZZim</td>
-								<td>Plan:It</td>
-								<td>2018.01.01</td>
-
-							</tr>
-							
-						</table>
+         <!-- 내용 -->
+          </div>
+          </div>
+          </div>
+        </div>
 					</div>
 				</div>
 

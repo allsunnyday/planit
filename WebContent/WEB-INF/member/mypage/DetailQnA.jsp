@@ -143,9 +143,9 @@ height: 100%;
 	height: 170px;
 }
 #MY-First-name,#MY-Second-name,
-#MY-Third-name,#MY-Forth-name{
+/* #MY-Third-name,#MY-Forth-name{
 	display:inline-block;
-}
+} */
 .MY-More-Button{
 	display:inline-block;
 	float: right;
@@ -188,57 +188,84 @@ height: 100%;
 	왼쪽에 달린 프로필 사진 및 기타등등 
 *****************************************  -->
   <section class="section1">
-          <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
+     <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
         <div>
           <div class="teammembers">
             <div class="he-wrap tpl2">
+            	<c:if test="${not empty memberRecord.profile}" var="result">
+            	<img src="<c:url value='/Upload/Member/${memberRecord.profile}'/>" alt="프로필 사진">
+            	</c:if>
+            	<c:if test="${not result}">
               <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
+              </c:if>
               <div class="he-view">
             
               </div>
             </div>
             <!-- he wrap -->
             <div class="teammembers-meta">
-              <h4>Plan:It</h4>
+              <h4>${sessionScope.id}</h4>
             </div>
             <div id="MY-first-1-self-detail">
-							<p>
-								<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-									Plan:It님의&nbsp자기소개입니다</span>
-							<p>어서오세요, Plan:It님!
-							멋진 프로필을 등록해 
-							자신만의 개성을 나타내보세요!
-							</p>
+                     <p>
+                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
+                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
+                           님의&nbsp자기소개입니다</span>
+                     <p>${memberRecord.self}
+                     </p>
 
 
-			</div>
+         </div>
 
             
             <div class="teamskills" >
             <div id="MY-First-TotalContent" style="width:90%;">
-             		<table id="MY-first-informtable" style="width:90%;">
-             		<tr>
-             			<td>Planner</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             		<td>Review</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             			<td>Like</td>
-             			<td>00</td>
-             		</tr>
-             		<tr>
-             			<td>Star Point</td>
-             			<td>00</td>
-             		</tr>
-             	
-             			
-             		</table>
-             	
-             	</div>
+                   <table id="MY-first-informtable" style="width:90%;">
+                   <tr>
+                      <td>Planner</td>
+                      <td>00</td>
+                   </tr>
+                   <tr>
+                   <td>Review</td>
+                      <td>00</td>
+                   </tr>
+                   <tr>
+                      <td>Like</td>
+                      <td>00</td>
+                   </tr>
+                   <tr>
+                      <td>Star Point</td>
+                      <td>0000</td>
+                  <!--  </tr>
+                	<tr style="border-top:1px white dashed;">
+                	<td colspan="2"> 선호사항</td>
+                	</tr>
+                       -->
+                   </table>
+                
+                </div>
               
+            </div>
+            <!-- ***********************8
+            선호도 조사 들어갈 부분
+            *****************************8 -->
+            <div id="MY-First-Preference" style="width:90%;" >
+            	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
+            		<tr>
+            		<c:if test="${empty memberPreferList }" var="result">
+            			<td>플래닛을 즐겨주세요</td>
+            		</c:if>	
+            		<c:if test="${not result }">
+            			<c:forEach var="list" items="${memberPreferList}" varStatus="loop">
+            				<td>${list.kor }</td><!-- 왜 안나오지 -->
+            			
+            			</c:forEach>
+            		</c:if>
+            		</tr>
+            	
+            	</table>
+            
             </div>
           </div>
           <!-- end teammembers -->
@@ -247,10 +274,10 @@ height: 100%;
 <!--*************************************
 	마이페이지 이동버튼
 *****************************************  -->
-<div class="container-fluid ">
-      <div class="content col-md-7">
-	<div class="mypage-content">
-		<div class="mypagemenu">
+<!-- <div class="container-fluid "> -->
+     <!--  <div class="content col-md-7"> -->
+	<div class="mypage-content col-md-7">
+		<div class="mypagemenu col ">
 			<div id="mypage">
 				<!-- <h2>MY PAGE</h2> -->
 			</div>
@@ -259,11 +286,11 @@ height: 100%;
 				<!-- <button type="submit" class="btn btn-default" id="MY-edit-button">회원정보수정</button> -->
 			<%-- 	<a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
 			<div class="dropdown">
-				  <button class="btn btn-link" type="button" id="MY-Planner-gotomypage" >
-				  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">
+				  
+				  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" class="btn btn-link">
 				   돌아가기
 				    <span class="glyphicon glyphicon-log-out"></a></span>
-				  </button>
+				
 				  
 				  
 				</div><!-- dropdown -->
@@ -277,14 +304,13 @@ height: 100%;
 <!--*************************************
 	Q&A 모아보기 뿌려주는 영역
 *****************************************  -->		
-		<div class="row" id="MY-Third">
+		<div class="col-sm-12" id="MY-Third">
 			<!--  내가 작성한 플래너 들어갈 div -->
 			<div id="MY-Third-name">My ZZim</div>
 			
-			<div id="Third-line">
-				<div id="Third-content" class="col-md-12">
+			
 					<!-- 찜해제버튼 추가 -->
-					<div id="MY-Third-ZZim-table">
+					<div id="col-sm-12" >
 						<table class="table" style="text-align: center">
 	                     <tr>
 	                        <td class="col-md-1 " >번호</td>
@@ -314,30 +340,21 @@ height: 100%;
 								</tr>
 							</c:forEach>
 						</c:if>
-	           <!--           <tr>
-	                        <td>00</td>
-	                        <td>정보수정</td>
-	                        <td>관광지 정보수정 문의</td>
-	                        <td>2018.01.01</td>
-	                        <td>문의 접수</td>
-	
-	                     </tr>
-	                     <tr>
-	                        <td>00</td>
-	                        <td>그냥문의</td>
-	                        <td>제목뭘루하지</td>
-	                        <td>2018.01.01</td>
-	                        <td>처리 중</td>
-	
-	                     </tr> -->
+	        
                   		</table>
 					</div>
 				</div>
+			 <div class="col-sm-12">
+				 <div class="row">
+					<div>${pagingString}</div>
+				</div>
+	</div>	
+				
 
 			</div>
 
 
-		</div>
+
 		
 	<!--****************************** *******
 	페이징 들어갈 영역
@@ -353,14 +370,14 @@ height: 100%;
 		<!-- ---------------------- -->
 		
 
-	</div>
+
+
 	<!--  end mypage-content -->
 
-</div>
+<!-- </div> -->
 <!--  end container --> 
-  <div class="row">
-	<div>${pagingString}</div>
-</div>
-  
-</div>
+<!-- </div> -->
+
+
 </section>
+

@@ -119,6 +119,22 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.getReviewListTotal(map);
 	}
 
+	@Override
+	public void updateOneReviewColumn(Map map) {
+		dao.updateOneReviewColumn(map);
+		
+	}
+
+	@Override
+	public List<Map> selectListForAndroid(Map map) {
+		return dao.selectListForAndroid(map);
+	}
+
+	@Override
+	public int updateReviewContentFromAndroid(Map map) {
+		return dao.updateReviewContentFromAndroid(map);
+	}
+
 	
 
 }

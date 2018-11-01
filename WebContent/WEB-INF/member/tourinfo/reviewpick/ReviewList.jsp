@@ -19,9 +19,11 @@
 			
 		});
 		
-		
-		
+<<<<<<< HEAD
 	});
+=======
+	});
+>>>>>>> refs/remotes/origin/sunki
 </script>
 
 
@@ -126,7 +128,9 @@
 	      	</div>
       	</c:if>
         <!-- SLIDE POST :: 블로그 포스팅 한개  -->
+        <!--############# 리스트가 존재하지 않을 경우 #####################  -->
         <c:if test="${empty list}">
+        
         	
 	        <article class="blog-wrap text-center">
 	          <div class="blog-media">
@@ -150,15 +154,15 @@
 	        </article>
         </c:if>
         
-        
+        <!--################### 리스트 결과가 존재할 경우#####################  -->
         <c:forEach var="review" items="${list}" varStatus="loop">
 	        
 	        <article class="blog-wrap text-center">
 	          <div class="blog-media">
 	            <div id="myCarousel">
 	              <div class="carousel-inner">
-	                <div class="item active">
-	                  <img src="<c:url value='/Upload/Review/${review.FIRSTIMAGE}'/>" alt="">
+	                <div class="item active" style="height: 400px;">
+	                  <img src="<c:url value='/Upload/Review/${review.FIRSTIMAGE}'/>" alt="" height="100%" width="100%" >
 	                </div>
 	                <!-- end item -->
 	                

@@ -9,7 +9,7 @@ public class FaqNoticeDTO {
 	private String content;
 	private String emp_no;
 	private Date postdate;
-	
+	 
 	private String ask_no;
 	private String id;
 	private String refer;

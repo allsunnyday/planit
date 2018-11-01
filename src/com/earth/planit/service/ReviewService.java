@@ -53,5 +53,13 @@ public interface ReviewService {
 	int alreadyLikeReview(Map map);
 	//review_좋아요를 insert
 	int insertLikedReview(Map map);
+	
+	// review테이블에서 컬럼을 하나만 변경할 경우에 사용하는  함수
+	void updateOneReviewColumn(Map map);
 
+	
+	// android에서 리뷰 리스트를 조회한다. 
+	List<Map> selectListForAndroid(Map map);
+	// android에서 리뷰 컨텐트를 업데이트 한다. 
+	int updateReviewContentFromAndroid(Map map);
 }

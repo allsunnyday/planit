@@ -123,7 +123,7 @@
 			 success: function(data){
 				 console.log(data);
 				 if(confirm('성공적으로 저장되었습니다.')){
-					 location.replace(success_action);
+					 location.href(success_action);
 				 }
 			 },
 			 error:function(data){
@@ -165,7 +165,7 @@
 ************************************************************** -->
 <div id="nav" style="padding-top: 60px"></div>
 <section id="intro"
-	style="background: url( <c:url value='/images/main/slide1.jpg'/> ) center center no-repeat fixed;">
+	style="background: url( <c:url value='/Upload/Review/${reviewContent.REVIEWFIRSTIMAGE}'/> ) center center no-repeat fixed;background-size:cover;">
 	<div class="container">
 		<div class="ror">
 			<div class="col-md-8 col-md-offset-2">

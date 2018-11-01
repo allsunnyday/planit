@@ -188,7 +188,7 @@ max-width: 100%;
 <div class="row">
 	<div class="text-center">
 		<form class="form-inline" method="post"
-         action="<c:url value='/tourinfo/tdview/FoodList.it?contenttype=39&searchColumn=title&searchColumn=tel'/>">
+         action="<c:url value='/tourinfo/tdview/FoodList.it?contenttype=39&searchColumn=title&'/>">
          <input type="hidden" name="title">
          <input type="hidden" name="tel">
          <div class="form-group">

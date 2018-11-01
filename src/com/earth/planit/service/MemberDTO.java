@@ -2,8 +2,13 @@ package com.earth.planit.service;
 
 import java.sql.Date;
 
+<<<<<<< HEAD
 public class MemberDTO {
 	
+=======
+public class MemberDTO {
+
+>>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    //[기본정보]
    private String id;
    private String pwd;
@@ -98,5 +103,7 @@ public class MemberDTO {
       this.star = star;
    }
 
+
    
 }
+

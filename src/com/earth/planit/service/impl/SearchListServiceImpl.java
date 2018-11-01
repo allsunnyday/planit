@@ -25,6 +25,11 @@ public class SearchListServiceImpl implements SearchListService{
 		return dao.selectTourList(map);
 	}
 	@Override
+	public List<ContentDTO> selectFestivalList(Map map) {
+		return dao.selectFestivalList(map);
+	}
+	
+	@Override
 	public List<ContentDTO> selectFoodList(Map map) {
 		return dao.selectFoodList(map);
 	}
@@ -40,6 +45,6 @@ public class SearchListServiceImpl implements SearchListService{
 	public List<ContentDTO> selectList(Map map) {
 		return dao.selectList(map);
 	}
-	
+
 	
 }

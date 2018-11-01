@@ -23,6 +23,18 @@ review :
 	display: inline-block;
 }
 
+div.item {
+	display: flex;
+    height: 300px; /* Or whatever */
+    background-color: #fff;
+   
+}
+
+div.item .item-image{
+	max-width: 100%;
+  max-height: 100%;
+    margin: auto;  /* Magic! */
+}
 </style>
 <script>
 
@@ -113,7 +125,7 @@ review :
 			dataType:'text',
 			success:function(data){
 				if(data == 'success'){
-					alert('저장에 성공했습니다.');
+					//alert('저장에 성공했습니다.');
 					location.replace("<c:url value='/planit/review/ReviewView.it?review_id=${review.review_id}'/>");
 				}else{
 					alert('저장 실패 .. ');
@@ -247,7 +259,7 @@ review :
 
 <!--********************************************상단 제목************************************************** -->
 <section id="intro"
-	style="background: url( <c:url value='/Upload/Review/${review.firstimage}'/> ) center center no-repeat fixed;">
+	style="background: url( <c:url value='/Upload/Review/${review.firstimage}'/> ) center center no-repeat fixed;background-size:cover;">
 	<div class="container" >
 		<div class="ror">
 			<div class="col-md-8 col-md-offset-2">
@@ -364,21 +376,22 @@ review :
 							<!-- carousel start -->
 							<div id="mycarousel${outerloop.index}" class="carousel slide" data-ride="carousel">
 								<!-- wrapper for slides -->
-								<div class="carousel-inner text-center" style="height: 600px;margin:5px;">
+								<!-- <div class="carousel-inner text-center" style="height: 600px;margin:5px;"> -->
+								<div class="carousel-inner text-center" style="margin:10px;">
 									
 									<c:forEach var="images" items="${review.image}" varStatus="loop">
 										<!-- carousel slide 1 (총 3개의 이미지를 보여준다.)   -->
 										<c:if test="${loop.first}" var="isFirst">
-										<div class="item active">
+										<div class="item active" >
 										</c:if>
 										<c:if test="${not isFirst}">
-										<div class="item">
+										<div class="item"  >
 										</c:if>
 											
-											<img class=""
+											<img class="item-image"
 												src="<c:url value='/Upload/Review/${images}'/> "
 												alt="${images}"
-												style="width: 100%"
+												
 												 >
 											
 										</div>

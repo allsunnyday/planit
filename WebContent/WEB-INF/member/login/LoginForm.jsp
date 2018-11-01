@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
+
 <div style="padding-top: 70px;"></div>
 <section class="section1">
 	<div class="container clearfix">
@@ -53,21 +54,28 @@
 			                     <input type="password" class="form-control" name="pwd" placeholder="Password">
 			                  </div>
 			               </div>
-			               <div class="form-group">
+			               <!-- <div class="form-group">
 			                  <div class="checkbox">
 			                     <label> <input type="checkbox"> Remember me
 			                     </label>
 			                  </div>
-			               </div>
-			               <div class="form-group">
-			                  <button type="submit" class="button">Sign in</button>
-						<%--  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" >회원 마이페이지 임시 이동</a> --%>
-			               </div>
-			            </form>
+			               </div> -->
+							<div class="form-group" >
+								<div class="row" style="display: inline;">
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<button type="submit" class="button" style=" display: inline-block; width:90px; height: 34px; float: right;">Sign in</button>
+										<!-- <div id="naver_id_login" style="text-align:center"> -->
+									</div>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<a href="<c:url value='${url}'/>" >
+											<img style="width: 90px;" src="<c:url value='/images/member/Log in with NAVER_Short_Green.PNG'/>" /></a>
+									</div>
+								</div>
+							</div>
+						</form>
 			            
 		              </div>
 	                <!-- 일반회원 가입-->
-	                
 	                
 	                <!--기업회원 가입-->
 		              <div class="tab-pane" id="partner-login">
@@ -89,15 +97,15 @@
 		                        placeholder="Password">
 		                  </div>
 		               </div>
-		               <div class="form-group">
+		               <!-- <div class="form-group">
 		                  <div class="checkbox">
 		                     <label> <input type="checkbox"> Remember me
 		                     </label>
 		                  </div>
-		               </div>
+		               </div> -->
 		               <div class="form-group">
 		                  <button type="submit" class="button">Sign in</button>
-		                  <a href="<c:url value='/planit/mypage/partner/PartnerMyPageHome.it'></c:url>">기업 마이페이지 임시 이동</a>
+		                  
 		               </div>
 		            </form>
 		              </div>
@@ -105,6 +113,7 @@
 		            </div>
 		          </div>
 		          <!-- tabbable -->
+		          
 				<!-- login tabs -->
 			</div>
 			<!-- end login -->
@@ -114,9 +123,6 @@
 	<!-- end container -->
 </section>
 <!-- end section -->
-
-
-
  <style>
- 	.footer {position:fixed; bottom:0; width:100%;}
+    .footer {position:fixed; bottom:0; width:100%;}
  </style>

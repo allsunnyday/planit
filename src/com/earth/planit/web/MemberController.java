@@ -1,6 +1,7 @@
 package com.earth.planit.web;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +26,10 @@ import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.FaqNoticeDTO;
 import com.earth.planit.service.MemberDTO;
 import com.earth.planit.service.MemberService;
+import com.earth.planit.service.NaverLoginBO;
 import com.earth.planit.service.ReviewDTO;
 import com.earth.planit.service.impl.FileUtils;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 public class MemberController {
@@ -43,7 +48,20 @@ public class MemberController {
    private MemberService service;
 
    @RequestMapping("/planit/login/Login.it")
-   public String gotoLogin() throws Exception {
+   public String gotoLogin(HttpSession session,Model model) throws Exception {
+	   /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		
+		//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+		//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+		System.out.println("네이버:" + naverAuthUrl);
+		
+		//네이버 
+		model.addAttribute("url", naverAuthUrl);
+
+		/* 생성한 인증 URL을 View로 전달 */
+
+
       return "login/LoginForm.theme";
    }
 
@@ -62,8 +80,12 @@ public class MemberController {
 
       return "login/JoinUserProgress.theme";
    }
+<<<<<<< HEAD
 
 
+=======
+
+>>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    // ***************마이페이지 이동(일반회원)
    @RequestMapping("/planit/mypage/MyPageHome.it")
    public String gotoMyPageHome(@RequestParam Map map,HttpSession session,Model model) throws Exception {
@@ -90,6 +112,8 @@ public class MemberController {
       
       return "mypage/MyPageHome.theme";
    }
+
+
 
 
    @RequestMapping("/planit/mypage/MyPageEditProfile.it")
@@ -146,6 +170,8 @@ public class MemberController {
 
    @RequestMapping("/planit/mypage/MyPageEditPassword.it")
    public String gotoMyPageEditPassword() throws Exception {
+
+
 
 
       return "mypage/MyPageEditPassword.theme";
@@ -219,6 +245,8 @@ public class MemberController {
    }
 
 
+
+
    @RequestMapping("/planit/mypage/detail/Review.it")
    public String gotoReviewDetail(@RequestParam Map map,HttpSession session,Model model) throws Exception {
       map.put("id", session.getAttribute("id"));
@@ -273,7 +301,11 @@ public class MemberController {
          System.out.println(memberRecord.getProfile());
          session.setAttribute("memberRecord", memberRecord);
 
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
          return "redirect:/";
       } else { // 비회원일경우
          model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
@@ -290,7 +322,11 @@ public class MemberController {
 
       return "redirect:/";
 
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    }
    // [회원가입 처리]
    @RequestMapping(value = "/member/login/UserJoinFormProcess.it", method = RequestMethod.POST)
@@ -312,7 +348,7 @@ public class MemberController {
       // 선호도 체크페이지 이동
 
    }
-   // [회원가입 처리]
+   // [선호도조사 처리]
    @RequestMapping(value = "/plnait/member/preference/survey.it", method = RequestMethod.POST)
    public String userPrefernectProcess(MemberDTO dto, @RequestParam Map map, HttpSession session) throws Exception {
       
@@ -337,7 +373,11 @@ public class MemberController {
       return "redirect:/";
    }
 
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    @RequestMapping(value = "/planit/member/idcheck.it", method = RequestMethod.POST)
    @ResponseBody
    public String idcheck(@RequestBody String id) {
@@ -361,5 +401,124 @@ public class MemberController {
 			return "mypage/QnAView.theme";
 		}
 	
+	//++++++++++++++++++++++++[네이버 아이디로 로그인]+++++++++++++++++++++++++
+		@Resource(name = "naverLoginBO")
+		private NaverLoginBO naverLoginBO;
+		
+		private String apiResult = null;
+
+<<<<<<< HEAD
+   //왜 못찾니..
+		@RequestMapping("/member/qna/view.it")
+		public String gotoQnAView(@RequestParam Map map,Model model) throws Exception {
+			
+			System.out.println("ask_no"+map.get("ask_no"));
+			Map memberQnAView =service.memberQnAView(map);
+			
+			model.addAttribute("memberQnAView", memberQnAView);
+			return "mypage/QnAView.theme";
+		}
 	
+	
+=======
+	   
+		// 네이버 로그인 성공시 callback호출 메소드
+		@RequestMapping(value = "/planit/naver/callback.it", method = { RequestMethod.GET, RequestMethod.POST })
+	    public String callback(MemberDTO dto,@RequestParam Map map,Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+	            throws Exception  {
+	        System.out.println("여기는 callback");
+	        OAuth2AccessToken oauthToken;
+	        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+	        //로그인 사용자 정보를 읽어온다.
+	        apiResult = naverLoginBO.getUserProfile(oauthToken);
+	        System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
+	        model.addAttribute("result", apiResult);
+	        System.out.println("result"+apiResult);
+	        /* 네이버 로그인 성공 페이지 View 호출 */
+	        /*
+		       * {"resultcode":"00","message":"success","response":
+		       * {"id":"47126902","nickname":"\ucd08\uc2ec\uc790",
+		       * "gender":"M","email":"wmffkdla@naver.com",
+		       * "name":"\ucd5c\uc131\uc6b1","birthday":"02-28"} }
+		       */
+
+		      JSONParser jsonParser = new JSONParser();
+		      JSONObject jsonObject = (JSONObject) jsonParser.parse(apiResult);
+		      JSONObject jsonResult = (JSONObject) jsonObject.get("response");
+		  
+		      map.put("id", jsonResult.get("id").toString());
+		      map.put("pwd", 1234);
+		      map.put("gender", jsonResult.get("gender").toString());
+		      map.put("name", jsonResult.get("name").toString());
+		      map.put("age", jsonResult.get("age").toString());
+		      map.put("email", jsonResult.get("email").toString());
+		      System.out.println(map.get("id"));
+		    	System.out.println(map.get("email"));
+		    	System.out.println(map.get("gender"));
+		    	System.out.println(map.get("age"));
+		    	System.out.println(map.get("name"));
+		      System.out.println("===============================");
+		      System.out.println(jsonResult.get("gender").toString());
+		      System.out.println(jsonResult.get("id").toString());
+		      String[] naverID=jsonResult.get("email").toString().split("@");
+		      System.out.println("스플릿한 아이디"+naverID[0]);
+		      map.put("id", naverID[0]);
+		      System.out.println(jsonResult.get("name").toString());
+		      System.out.println(jsonResult.get("age").toString());
+		      System.out.println(jsonResult.get("email").toString());
+		      boolean isNaverLogin = service.isNaverLogin(map);
+				     
+				      
+		    System.out.println(isNaverLogin);
+		    System.out.println();
+		    if (isNaverLogin) { // 회원일경우
+		       // 로그인 처리 - 세션 영역에 저장
+		       session.setAttribute("id", map.get("id"));
+		       MemberDTO memberRecord = service.memberInfo(map);
+		       //[선호사항 세션저장]
+		       map.put("id", session.getAttribute("id"));
+		       List<MemberDTO> memberPreferList=service.memberPreferList(map);
+		       session.setAttribute("memberPreferList", memberPreferList);
+		       //이미지 세션에 저장하기
+		       System.out.println(memberRecord.getProfile());
+		       session.setAttribute("memberRecord", memberRecord);
+		
+		
+		       return "redirect:/";
+		    } else { // 처음인 경우
+		    	dto.setPwd("0000");
+		    	dto.setId(map.get("id").toString());
+		    	dto.setEmail(map.get("email").toString());
+		    	dto.setAge(map.get("age").toString());
+		    	dto.setGender(map.get("gender").toString());
+		    	dto.setName(map.get("name").toString());
+		    	System.out.println(map.get("id"));
+		    	System.out.println(map.get("email"));
+		    	System.out.println(map.get("gender"));
+		    	System.out.println(map.get("age"));
+		    	System.out.println(map.get("name"));
+		    	int isJoin = service.isJoin(dto);
+		        //
+		        System.out.println(isJoin);
+		        if (isJoin == 1) {
+		           session.setAttribute("id", map.get("id"));
+		           // 시용자 선호도를 하기 위한 preference 테이블에 추가 (총 23개가 insert되야한다)
+		           int insertPrefer = service.insertPreference(map);
+		           System.out.println("선호도 추가된 행 개수 " + insertPrefer);
+		        }
+		        return "mypage/UserPreference.theme";
+
+		        // 선호도 체크페이지 이동
+
+		    }
+		
+
+	        
+	       
+	    }
+	
+
+
+		  
+>>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
 }

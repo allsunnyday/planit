@@ -154,6 +154,12 @@ height: 100%;
 	color:rgb(53, 181, 157);
 	
 }
+#MY-First-Preference{
+display: inline-block;
+   border-radius: 10px;
+   border:1px rgb(109, 213, 193) dashed;
+}
+
 </style>
 <!-- *******************************************
 	베이지색 검색창 달린 거
@@ -239,10 +245,15 @@ height: 100%;
             <div id="MY-First-Preference" style="width:90%;" >
             	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
             		<tr>
-            			<td>1</td>
-            			<td>2</td>
-            			<td>3</td>
-            			<td>4</td>
+            		<c:if test="${empty sessionScope.memberPreferList }" var="result">
+            			<td>플래닛을 즐겨주세요</td>
+            		</c:if>	
+            		<c:if test="${not result }">
+            			<c:forEach var="list" items="${sessionScope.memberPreferList}" varStatus="loop">
+            				<td>${list.kor }</td><!-- 왜 안나오지 -->
+            			
+            			</c:forEach>
+            		</c:if>
             		</tr>
             	
             	</table>
@@ -251,7 +262,7 @@ height: 100%;
           </div>
           <!-- end teammembers -->
         </div>
-        </div>
+</div>
   
 <!--*************************************
 	마이페이지 이동버튼
@@ -311,8 +322,9 @@ height: 100%;
 										<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
 										</c:if>
 										<c:if test="${yesimg}">
-										
+
 											<img src="<c:url value='/Upload/Review/${list.firstimage}'/>" style="height:230px" alt="">
+
 										  </c:if>
 										<div class="he-view">
 											<div class="bg a0" data-animate="fadeIn">

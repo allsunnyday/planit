@@ -359,7 +359,6 @@
    /* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	var infowindowarr =[];
 	function planplusActionplus(index){
-		
 		if(bookmarkmarker != null || bookmarkmarker != undefined){ //즐겨찾기 마커 제거
 			bookmarkmarker.setMap(null);
 		}
@@ -368,7 +367,7 @@
 		positions.push({title:document.getElementById('titleforNewInfo_'+index).title,latlng:planposition}); // 마크와 타이틀 저장
 		infowindowarr.push({content:infowindowexit.Ub}); //
 		
-		linePath.push(planposition); // 사용자가 일정 추가로 등록한 일정의 라인을 구성하기 위한 좌표저장
+		linePath.push(planposition); // 사용자가 일정 가로 등록한 일정의 라인을 구성하기 위한 좌표저장
 		console.log(linePath.length); // 마커 좌표가 배열로 추가 되는지 확인      
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */      
 		planmarkingsave();

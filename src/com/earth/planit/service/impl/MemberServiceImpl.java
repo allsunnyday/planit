@@ -81,6 +81,7 @@ public class MemberServiceImpl implements MemberService {
    public int getTotalCount(Map map) {
       // TODO Auto-generated method stub
       return dao.getTotalCount(map);
+<<<<<<< HEAD
    }
 
 	@Override
@@ -88,6 +89,15 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.memberLikedTour(map);
 	}
+=======
+   }
+
+	@Override
+	public List<Map> memberLikedTour(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberLikedTour(map);
+	}
+>>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
 
    @Override
    public List<MemberDTO> memberPreferList(Map map) {
@@ -155,6 +165,15 @@ public class MemberServiceImpl implements MemberService {
 		return dao.memberQnAView(map);
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public boolean isNaverLogin(Map map) {
+		// TODO Auto-generated method stub
+		return dao.isNaverLogin(map);
+	}
+
+>>>>>>> branch 'sunki' of https://github.com/allsunnyday/planit.git
    
 
 }
