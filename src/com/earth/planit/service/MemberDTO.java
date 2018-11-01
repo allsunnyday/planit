@@ -3,6 +3,7 @@ package com.earth.planit.service;
 import java.sql.Date;
 
 public class MemberDTO {
+	
    //[기본정보]
    private String id;
    private String pwd;

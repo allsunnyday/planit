@@ -64,4 +64,7 @@ public interface MemberService {
    
    //[프로필이 널인지 아닌지 체킹]
    int profilecheck(Map map);
+   
+   //[문의 view]
+   Map memberQnAView(Map map);
 }
