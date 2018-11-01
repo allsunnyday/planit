@@ -12,7 +12,7 @@
 			</ul>
 			<h2> 추억을 남길 나의 여행 지역 선택하기 </h2>
 		</div>
-			<a href="<c:url value='/planner/plan/routeResuleview.it'/>">결과 페이지 테스팅 </a>
+			<%-- <a href="<c:url value='/planner/plan/routeResuleview.it'/>">결과 페이지 테스팅 </a> --%>
 		<%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top: 61px;">
 			<ul class="nav nav-tabs" style="float: right;">
 				<li class="active" style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li>

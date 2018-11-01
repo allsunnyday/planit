@@ -9,9 +9,11 @@
     .item .text{
     position:absolute;
     top:50px;
-    margin-left:50px;
+    /* margin-left:50px; */
     color:#FFF;
     }
+    
+    .text{margin-left: 230px;}
     
     .tourlist-overlay .text img{
        width:460px;
