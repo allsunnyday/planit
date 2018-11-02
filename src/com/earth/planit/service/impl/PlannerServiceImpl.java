@@ -36,4 +36,9 @@ public class PlannerServiceImpl implements PlannerService {
 		return dao.insertReviewContent(map);
 	}
 
+	@Override
+	public List<PlannerDTO> selectBookMark(Map map) {
+		return dao.selectBookMark(map);
+	}
+
 }

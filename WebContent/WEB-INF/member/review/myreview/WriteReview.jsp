@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@  taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <!--**********************************************************
 리뷰작성페이지 step1
 작성하고자 하는 날짜를 선택한다. 

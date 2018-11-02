@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 
 <div style="padding-top: 70px;"></div>
 <section class="section1">
@@ -54,21 +54,25 @@
 			                     <input type="password" class="form-control" name="pwd" placeholder="Password">
 			                  </div>
 			               </div>
-			               <div class="form-group">
+			               <!-- <div class="form-group">
 			                  <div class="checkbox">
 			                     <label> <input type="checkbox"> Remember me
 			                     </label>
 			                  </div>
-			               </div>
+			               </div> -->
 			               <div class="form-group">
-			                  <button type="submit" class="button">Sign in</button>
-						<%--  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" >회원 마이페이지 임시 이동</a> --%>
-			               </div>
+			               <div class="row">
+			                  <button type="submit" class="button" style="margin-top: 10px;">Sign in</button><!-- <div id="naver_id_login" style="text-align:center"> -->
+			                  <a href="<c:url value='${url}'/>"><img style="width: 16%; margin-top: -20px" src="<c:url value='/images/member/Log in with NAVER_Short_Green.PNG'/>"/></a>
+			                  </div>
+			                  </div>
+			                  
+						
+			              
 			            </form>
 			            
 		              </div>
 	                <!-- 일반회원 가입-->
-	                
 	                
 	                <!--기업회원 가입-->
 		              <div class="tab-pane" id="partner-login">
@@ -90,12 +94,12 @@
 		                        placeholder="Password">
 		                  </div>
 		               </div>
-		               <div class="form-group">
+		               <!-- <div class="form-group">
 		                  <div class="checkbox">
 		                     <label> <input type="checkbox"> Remember me
 		                     </label>
 		                  </div>
-		               </div>
+		               </div> -->
 		               <div class="form-group">
 		                  <button type="submit" class="button">Sign in</button>
 		                  
@@ -106,6 +110,7 @@
 		            </div>
 		          </div>
 		          <!-- tabbable -->
+		          
 				<!-- login tabs -->
 			</div>
 			<!-- end login -->
@@ -115,3 +120,6 @@
 	<!-- end container -->
 </section>
 <!-- end section -->
+ <style>
+    .footer {position:fixed; bottom:0; width:100%;}
+ </style>

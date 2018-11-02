@@ -98,6 +98,7 @@ public class MemberDTO {
       this.star = star;
    }
 
+
    
 }
 

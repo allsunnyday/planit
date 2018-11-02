@@ -33,9 +33,61 @@ public class PlannerDTO {
 	
 //	사용자 id
 	private String id;
+
+//	이미지정보 호출
+	private String firstimage;
+	private String firstimage2;
 	
+	//	**************    컨텐츠 map api 와 연동할 db 목록들 게터 세터
 	
-//	**************    컨텐츠 map api 와 연동할 db 목록들 게터 세터
+	public String getPlanner_id() {
+		return planner_id;
+	}
+	public String getFirstimage() {
+		return firstimage;
+	}
+	public void setFirstimage(String firstimage) {
+		this.firstimage = firstimage;
+	}
+	public String getFirstimage2() {
+		return firstimage2;
+	}
+	public void setFirstimage2(String firstimage2) {
+		this.firstimage2 = firstimage2;
+	}
+	public void setPlanner_id(String planner_id) {
+		this.planner_id = planner_id;
+	}
+	public String getReviewtitle() {
+		return reviewtitle;
+	}
+	public void setReviewtitle(String reviewtitle) {
+		this.reviewtitle = reviewtitle;
+	}
+	public String getReviewroute() {
+		return reviewroute;
+	}
+	public void setReviewroute(String reviewroute) {
+		this.reviewroute = reviewroute;
+	}
+	public String getSeries() {
+		return series;
+	}
+	public void setSeries(String series) {
+		this.series = series;
+	}
+	public String getReview_id() {
+		return review_id;
+	}
+	public void setReview_id(String review_id) {
+		this.review_id = review_id;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getRoute() {
 		return route;
 	}

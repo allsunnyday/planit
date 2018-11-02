@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <jsp:include page="topMenu.jsp" flush="false" />
-
-
 
 <script>
 	var likedThisContent=function(){
@@ -163,8 +162,19 @@
 						<div class="buttons">
 						    <a style="margin-right: 7px;"class="dmbutton2" href="javascript:" onclick="likedThisContent();"> <i class="fa fa-star-o"></i> 즐겨찾기 추가</a>
 						    <a style="margin-right: 7px;" class="dmbutton2" href="#target"><i class="fa fa-map"></i> 지도</a>
+							
+							
+							<!--  -->
+							<!-- 
 							<a class="dmbutton2" href="#"> <i class="fa fa-pencil"></i>정보 수정</a>
-							<a class="button large btn-block" href="<c:url value='/tourinfo/tdview/sleepList/Reservation.it?contentid=${content.contentid}&contenttype=32'/>"> <i class="fa fa-pencil"></i>객실정보</a>
+							 -->
+							
+							
+							
+							
+							<c:if test="${content.contenttype eq 32}">
+								<a class="button large btn-block" href="<c:url value='/tourinfo/tdview/sleepList/Reservation.it?contentid=${content.contentid}&contenttype=32'/>"> <i class="fa fa-pencil"></i>객실정보</a>
+							</c:if>
 						</div>
 						<!-- rating -->
 					</div>
@@ -207,7 +217,7 @@
 <!-- *****************************************
 	관련리뷰 캐러셀
 ***************************************** -->
-	<section style="background:white;">
+	<%-- <section style="background:white;">
 	<div class="general-title text-center" >
 		<h3>보고계신 여행지와 관련된 </h3>
 		<p>다른관광지들!</p>
@@ -254,9 +264,9 @@
 		</div>
 
 	</div>
-</section>
+</section> --%>
 <style>
- .a_1 {
+ /* .a_1 {
 		width: 500px;
 		margin: 50px auto;
 		text-align: center;
@@ -346,7 +356,7 @@
 		input[value="5"]:checked ~ .a_1_1 .carousel img:nth-child(5) { -webkit-transform: rotateY(180deg) translateZ(540px) scale(1); opacity: 1; }
 		input[value="6"]:checked ~ .a_1_1 .carousel img:nth-child(6) { -webkit-transform: rotateY(225deg) translateZ(540px) scale(1); opacity: 1; }
 		input[value="7"]:checked ~ .a_1_1 .carousel img:nth-child(7) { -webkit-transform: rotateY(270deg) translateZ(540px) scale(1); opacity: 1; }
-		input[value="8"]:checked ~ .a_1_1 .carousel img:nth-child(8) { -webkit-transform: rotateY(315deg) translateZ(540px) scale(1); opacity: 1; }
+		input[value="8"]:checked ~ .a_1_1 .carousel img:nth-child(8) { -webkit-transform: rotateY(315deg) translateZ(540px) scale(1); opacity: 1; } */
 </style>
 
 
@@ -354,49 +364,71 @@
  		지도
 ************************************************ -->
 
-<section id="target" style="background-color: white;">
-	<div  class="general-title text-center" >
-		<h3> 지도</h3>
-		<p>지도보여줄 곳</p>
-		<hr>
-	</div>
+<section id="target" style="background-color: white; width: 100%">
+   <div  class="general-title text-center" >
+      <h3> 지도</h3>
+      <p>지도보여줄 곳</p>
+      <hr>
+   </div>
+   <div class="divider" style="width: 100%; height: 100%"></div>
+   <div  class="theme_overviews clearfix" style="width: 100%; height: 100%">
+         <div  id="one">
+            <div class="text-center" style="width: 100%; height:570px;">
+               <!-- <div class="container-fluid" style="margin-top: 60px; width: 100%; height: 40px; float: right;"> -->
+               <div id="planmap"  style="background-color:cyan; width:100%; height:570px; float: inherit; text-align: center; display: inline-block;">
+               <!-- 다음 map 시작 -->
+                  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437"></script>
+                  <script>
+                     var container = document.getElementById('planmap'); //지도를 담을 영역의 DOM 레퍼런스
+                     var options = { //지도를 생성할 때 필요한 기본 옵션
+                        center: new daum.maps.LatLng(${mapy}, ${mapx}), //지도의 중심좌표.
+                        level: 5 //지도의 레벨(확대, 축소 정도)
+                     };            
+                     var map = new daum.maps.Map(container, options);
+                     
+                     var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+                      imageSize = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
+                      imageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-	<div class="divider"></div>
-	<div  class="theme_overviews clearfix">
-		
-<div class="wrapper">
-  <div  id="one">
-  <div style="width: 100%;">
-	<!-- <div class="container-fluid" style="margin-top: 60px; width: 100%; height: 40px; float: right;"> -->
-		<div id="planmap"  style="background-color:cyan; width:100%; height:570px; float: inherit; text-align: center;">
-			<!-- 다음 map 시작 -->
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437"></script>
-			<script>
-				var container = document.getElementById('planmap'); //지도를 담을 영역의 DOM 레퍼런스
-				var options = { //지도를 생성할 때 필요한 기본 옵션
-					center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-					level: 3 //지도의 레벨(확대, 축소 정도)
-				};				
-				var map = new daum.maps.Map(container, options);
-			</script>
-			<!-- 다음 map 종료 -->
-		</div>
-	<!-- </div> -->
-</div>
-  </div>
-</div>
-
-	</div>
-	<!-- theme / Products overview -->
-
+                      // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                      var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption),
+                          markerPosition = new daum.maps.LatLng(${mapy}, ${mapx}); // 마커가 표시될 위치입니다
+                     
+                     var marker = new daum.maps.Marker({ 
+                        position: markerPosition,
+                        image: markerImage // 마커이미지 설정 
+                     }); 
+                     marker.setMap(map);      //지도에 마커를 표시합니다
+                     
+                     var content = '<div class="text-left"style="height:60px; width:300px; padding:5px;">'+
+                                   '지명: <span> ${content.title} </span><br/>'+
+                                      '위치: <span> ${content.addr1} </span><br/>' +
+                                   '</div>';
+                     
+                        var iwPosition = new daum.maps.LatLng(${mapy}, ${mapx}); //인포윈도우 표시 위치입니다
+                     // 인포윈도우를 생성합니다
+                        var infowindow = new daum.maps.InfoWindow({
+                            position : iwPosition, 
+                            content : content 
+                        });
+                        infowindow.open(map, marker);
+                  </script>
+               <!-- 다음 map 종료 -->
+               </div> <!-- </div> -->
+            </div>
+         </div>
+      <div class="wrapper" style="height: 100%; width: 100%; display: inline-block;">
+      </div>
+   </div> <!-- theme / Products overview -->
 </section>
 
 <style>
+html, body {width:100%; height:100%;margin:0;padding:0;}
 #one{
 float:left;
 margin-left:5px;
-width:1000px;
-height:700px;
+width: 100%;
+height: 100%;
 /* background-color: red; */
 }
 #two{

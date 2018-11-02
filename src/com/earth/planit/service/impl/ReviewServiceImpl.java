@@ -130,6 +130,11 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.selectListForAndroid(map);
 	}
 
+	@Override
+	public int updateReviewContentFromAndroid(Map map) {
+		return dao.updateReviewContentFromAndroid(map);
+	}
+
 	
 
 }

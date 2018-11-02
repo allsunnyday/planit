@@ -141,6 +141,10 @@ ul #peopletype{ list-style:none; margin:0; padding:0; }
 #peopletype li:hover{ background-color: #3498db; }
 /* *************************************** 상세정보 출력 관련 스타일 종료 ************************************************* */
 
+/* *********************** */
+#jetmenu > li > a { color: #fff }
+/* *********************** */
+
 #jetmenu li{margin-right: 150px;}
 #jetmenu li a{ font-size: 1.6ex;}
 

@@ -76,7 +76,6 @@ public class MemberDAO implements MemberService {
 		// TODO Auto-generated method stub
 		return template.selectOne("getTotalCount2",map);
 	}
-
 	@Override
 	public List<Map> memberLikedTour(Map map) {
 		System.out.println("DAOTOUR 아이디:"+map.get("id"));
@@ -137,5 +136,10 @@ public class MemberDAO implements MemberService {
 	public Map memberQnAView(Map map) {
 		// TODO Auto-generated method stub
 		return template.selectOne("MemberQnAView",map);
+	}
+	@Override
+	public boolean isNaverLogin(Map map) {
+		int count=template.selectOne("NaverIsLogin",map);
+		return count==1?true:false;
 	}
 }

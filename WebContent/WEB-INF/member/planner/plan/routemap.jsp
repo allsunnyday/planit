@@ -20,16 +20,16 @@
 		//position: map.getCenter()       
 		//displayPlaceInfo(place);   
 	}); 
-	marker.setMap(map);      //지도에 마커를 표시합니다
+	//marker.setMap(map);      //지도에 마커를 표시합니다
 	marker.setDraggable(true); // 마커 드래그 가능하도록 설정   
    
 	//지도에 클릭 이벤트를 등록합니다
 	//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 	daum.maps.event.addListener(map, 'click', function(mouseEvent) {
 		// 클릭한 위도, 경도 정보를 가져옵니다 
-		var latlng = mouseEvent.latLng;       
+		//var latlng = mouseEvent.latLng;       
 		// 마커 위치를 클릭한 위치로 옮깁니다
-		marker.setPosition(latlng);
+		//marker.setPosition(latlng);
 	});
    
 	//지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
@@ -357,14 +357,18 @@
 		location.replace("<c:url value='/Planit/Before/Location.it'/>");      
 	}
    /* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
+	var infowindowarr =[];
 	function planplusActionplus(index){
+		if(bookmarkmarker != null || bookmarkmarker != undefined){
+			bookmarkmarker.setMap(null);
+		}
 		console.log("planplusActionplus() : 이상무");      
 		//positions.push({title:document.getElementById('plantitle').title, latlng:planposition}); // 마크와 타이틀 저장
-		positions.push({title:document.getElementById('titleforNewInfo_'+index).html,latlng:planposition}); // 마크와 타이틀 저장
-		linePath.push(planposition); // 사용자가 일정 추가로 등록한 일정의 라인을 구성하기 위한 좌표저장
-		console.log(linePath.length); // 마커 좌표가 배열로 추가 되는지 확인
-		//plancase ++; // 여행일정 추가시 카운트 증가      
-		//routeInfoPlusAction(plancase); // 버튼 클릭시 상세 여행일정에 추가 되는 함수      
+		positions.push({title:document.getElementById('titleforNewInfo_'+index).title,latlng:planposition}); // 마크와 타이틀 저장
+		infowindowarr.push({content:infowindowexit.Ub}); //
+		
+		linePath.push(planposition); // 사용자가 일정 가로 등록한 일정의 라인을 구성하기 위한 좌표저장
+		console.log(linePath.length); // 마커 좌표가 배열로 추가 되는지 확인      
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */      
 		planmarkingsave();
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
@@ -404,10 +408,9 @@
 		console.log('■■■■■ planplusActionplus ■■■> index]'+index+'  diveplus]'+diveplus);
 		//버튼을 추가하는 함수
 		routeInfoPlusAction( index, diveplus); // 버튼 클릭시 상세 여행정보에 추가 되는 함수
-      
-      
-		polyline.setMap(map);  
-		//infowindow.close(); //인포윈도우 닫기 --> 함수로 만들지 않으면 안먹는듯 함. 시간적 여유가 될때 함수로 만들어서 자동적으로 닫히게 구현해야 할듯 아니면 현재 시스템도 괜찬은듯 함
+
+		polyline.setMap(map);		
+		infowindowexit.close();//인포윈도우 닫기		
 		//removeMarker(); // 계획 일정 추가시 지도에 표시된 카테고리 마커 삭제
 		//displayPlaceInfo(""); //계획 일정 추가후 상세보기 닫기
 		currCategory = keyword; // 사용자가 선택한 지역유지를 위한 변수 설정
@@ -429,12 +432,45 @@
 					map: map, // 마커를 표시할 지도
 					position: positions[i].latlng, // 마커를 표시할 위치
 					title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-					image : markerImage // 마커 이미지 
+					image : markerImage // 마커 이미지
 				});
 				planmarking.push(marking); // 삭제를 위한 마킹 복사
+				
+				
+				var markinginfowindow = new daum.maps.InfoWindow({
+			        content: infowindowarr[i].content // 인포윈도우에 표시할 내용
+			    });
+				
+				//infowindowarr.push(infowindowexit);
+				/* daum.maps.event.addListener(marking, 'mouseover', function() {
+					// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+				    infowindowexit.open(map, marking);
+				});
+	
+				// 마커에 마우스아웃 이벤트를 등록합니다
+				daum.maps.event.addListener(marking, 'mouseout', function() {
+				    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+				    infowindowexit.close();
+				}); */
+				daum.maps.event.addListener(marking, 'mouseover', makeOverListener(map, marking, markinginfowindow));
+			    daum.maps.event.addListener(marking, 'mouseout', makeOutListener(markinginfowindow));				
 			}
 		}
-		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
+		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */		
+		// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+		function makeOverListener(map, marking, markinginfowindow) {
+		    return function() {
+		    	markinginfowindow.open(map, marking);
+		    };
+		}
+
+		// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+		function makeOutListener(markinginfowindow) {
+		    return function() {
+		    	markinginfowindow.close();
+		    };
+		}
+		
 		
 		/* ************* 추가 버튼 클릭시 추가 되는 함수 시작  ************** */
 		function routeInfoPlusAction(index,diveplus){
@@ -520,7 +556,8 @@
 		console.log("positions전: "+positions.length+"//positions[diveplus]: "+ positions[diveplus].title);
 		polyline.setMap(null);// 맵에 그려진 라인 삭제
 		positions.splice(diveplus, 1);//좌표 삭제
-		linePath.splice(diveplus, 1);
+		linePath.splice(diveplus, 1); // 라인 삭제
+		infowindowarr.splice(diveplus,1); // infowindow 삭제 
 		//linePath =[];//라인을 구성하는 좌표 정보 삭제
 		//linePath.push(planposition);
 		console.log("positions후: "+positions.length);      
@@ -754,10 +791,11 @@
 	/* ************************************* 상세정보 입력 란의 오늘 일자 정보 출력 종료 ******************************************* */
    
 	var jsonforTourInfo;
+	var infowindowexit; // 마커 생성 이후 infowindow를 닫기 위한 변수
 	$(function() {
 		var mapx=[];
 		var mapy=[];
-        
+		
 		$('.routecategory').click(function() {
 			if(days==1 && $(this).val()==32){
 				alert('당일 여행은 숙박지를 선택할수 없습니다.'); 
@@ -797,6 +835,8 @@
 	            success: successPlanmapdata,
 	            error: function(request, status, error){
 					console.log(request, status, error);
+					alert('검색 결과가 없습니다.')
+					changeCategoryClass();
 				}
 			});///ajax
 		});
@@ -804,7 +844,7 @@
 		var successPlanmapdata = function(data){
 			console.log(JSON.stringify(data));
             var order = document.getElementById(currCategory).getAttribute('data-order');
-            console.log("order 순서 확인하자: "+document.getElementById(currCategory).getAttribute('data-order'));
+			console.log("order 순서 확인하자: "+document.getElementById(currCategory).getAttribute('data-order'));
 			$.each(data, function(index, content) {             
 				mapx.push(content['mapx']);
 				mapy.push(content['mapy']);             
@@ -835,8 +875,10 @@
 					planposition = marker.getPosition();
 					console.log('planposition: '+planposition);
 					// 마커 위에 인포윈도우를 표시합니다
-					infowindow.open(map, marker);  
-				});               
+					infowindow.open(map, marker);
+					infowindowexit = infowindow;
+				});
+				
 			});
 		};       
        
@@ -969,3 +1011,173 @@
 	/* ****** route 정보 저장 및 schedule 페이지 이동 ****** */
 </script>
 <!-- ****************************************************루트 상세 정보 계획 자바 스크립트 종료************************************************************ -->
+
+<!-- 모달 팝업 -->
+<div class="modal fade" id="bookmarkmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"> 나의 즐겨 찾기 목록 </h4>
+			</div>
+			<div class="modal-body">
+				<div class="row" style="float: inherit; display: block; text-align: center; padding-top: 10px;">
+					<h4 style="margin-left: 20px; margin-top:-10px; display: inline-block;"><span id="bookmarkarea"> 검색지역 </span></h4>
+					<h4 style="margin-left: 20px; margin-top:-20px; display: inline-block;"><span id="bookmarknum"> 검색결과 </span></h4>
+					<div class="select" style="width: 50%; margin-left: 20px; display: inline-block;">
+						<select name="bookmarklocation" id="bookmarklocation" style="width: 100%">
+							<option value="0" selected>검색 지역 선택 </option>													
+					    	<option value="1">서울 특별시</option>					    	
+					    	<option value="2">인천 광역시</option>
+					    	<option value="3">대전 광역시</option>
+					    	<option value="4">대구 광역시</option>
+					    	<option value="5">광주 광역시</option>
+					    	<option value="6">부산 광역시</option>
+					    	<option value="7">울산 광역시</option>
+					    	<option value="8">세종 특별 자치시</option>
+					    	<option value="31">경기도</option>
+					    	<option value="32">강원도</option>
+					    	<option value="33">충청북도</option>
+					    	<option value="34">충청남도</option>
+					    	<option value="35">경상북도</option>
+					    	<option value="36">경상남도</option>
+					    	<option value="37">전라북도</option>
+					    	<option value="38">전라남도</option>
+					    	<option value="39">제주도</option>
+					    </select>
+				    </div>				    				    
+			    </div>
+			    <hr/>
+			    <div class="row">
+				    <div class="bookmarklist" style="height: 400px; overflow: auto;">
+			    		<!-- <div class="col-md-2 text-center">
+					    	<img alt="사진사진" src="" style="display: inline-block; border: 1px gray solid; width: 80px; height: 80px; text-align: center;">
+				    		<label>타이틀</label>
+			    		</div> -->
+				    </div>
+			    </div>
+			</div>
+			<!-- <div class="modal-footer" style="border: 0">
+				<button type="button" class="btn btn-primary">확인</button>
+				<button type="button" class="btn btn-default" style="flex: unset;" data-dismiss="modal">닫기</button>
+			</div> -->
+		</div>
+	</div>
+</div>
+<!-- ******** 즐겨찾기 모달 페이지 ********* -->
+
+<!-- ************** 즐겨 찾기 자바 스크립트 ************ -->
+<script>
+	$('#bookmark').click(function(){
+		$('#bookmarklocation option:first').prop('selected', 'selected');
+	})
+
+	$('#bookmarklocation').change(function(){
+		//alert($('#bookmarklocation option:selected').attr('value'));
+		bookmarkString=""; 
+		$('.bookmarklist').html(bookmarkString); // 기존 검색 정보 삭제 
+		$.ajax({
+			url:"<c:url value='/planner/ajax/bookmark.it'/> ",
+			data:{areacode:$('#bookmarklocation option:selected').attr('value')},
+			type:'post',
+			dataType:'json',
+			success: successbookmark,
+			error: function(request, error){
+				//console.log(request,error);
+				alert('즐겨 찾기로 추가한 목록이 존재하지 않습니다.');
+			}
+			
+		});		
+		
+		
+		/* <div class="col-md-2 text-center">
+	    	<img alt="사진사진" src="" style="display: inline-block; border: 1px gray solid; width: 80px; height: 80px; text-align: center;">
+			<label>타이틀</label>
+		</div> */
+	});
+	var bookmarkString="";			
+	var successbookmark = function(data){
+		//console.log('1: '+data);		
+		//console.log('2: '+JSON.stringify(data));
+		$.each(data, function(index, bookmark) {
+			//console.log(bookmark.size)
+			bookmarkString += '<div class="col-md-2 text-center">'
+	    					+ '<a class="button" id="bookmarkimgbtn" href="javascript:addbookmark('+index+')"><img alt="이미지 없음" src="'+bookmark['firstimage']+'" style="display: inline-block; border: 1px gray solid; width: 80px; height: 80px; text-align: center;"></a>'
+							+ '<span id="title_'+index+'">'+bookmark['title']+'</span>' // id="titleforNewInfo_'+index+'" title="'+bookmark['title']+'"
+							+ '</div>'
+							+ '<input type="hidden" id="contentid_'+index+'" name="contentid_'+index+'" value="'+bookmark['contentid']+'" >'
+							+ '<input type="hidden" id="contenttype_'+index+'" name="contenttype_'+index+'" value="'+bookmark['contenttype']+'">'
+							+ '<input type="hidden" id="areacode_'+index+'" name="areacode_'+index+'" value="'+bookmark['areacode']+'">'
+							+ '<input type="hidden" id="addr1_'+index+'" name="addr1_'+index+'" value="'+bookmark['addr1']+'">'
+							+ '<input type="hidden" id="mapx_'+index+'" name="mapx_'+index+'" value="'+bookmark['mapx']+'">'
+							+ '<input type="hidden" id="mapy_'+index+'" name="mapy_'+index+'" value="'+bookmark['mapy']+'">'
+							+ '<input type="hidden" id="zipcode_'+index+'" name="zipcode_'+index+'" value="'+bookmark['zipcode']+'">'
+							+ '<input type="hidden" id="tel'+index+'" name="tel_'+index+'" value="'+bookmark['tel']+'">'
+							;
+			
+		});
+		$('.bookmarklist').append(bookmarkString);
+		$('#bookmarknum').text(data.length +'개의 즐겨찾기');
+		$('#bookmarkarea').text($('#bookmarklocation option:selected').text())
+		
+	};
+	function modalexit(){
+		document.getElementById('bookmarkmodal').click();
+	}
+	var bookmarkmarker
+	function addbookmark(index){ 
+		// 모달창 자동으로 닫기
+		//$('#bookmarkmodal')
+		if(bookmarkmarker != null || bookmarkmarker != undefined){
+			bookmarkmarker.setMap(null);
+		}
+		var bookmarkmarkerPosition = new daum.maps.LatLng($('#mapy_'+index).val(), $('#mapx_'+index).val()); // 마커가 표시될 위치입니다
+		console.log('즐겨찾기 마커 위치가 잘못됫다.: '+bookmarkmarkerPosition)
+		
+		bookmarkmarker = new daum.maps.Marker({ 
+			// 지도 중심좌표에 마커를 생성합니다 
+			position: bookmarkmarkerPosition   
+		});
+		function setCenter() {            
+		    // 이동할 위도 경도 위치를 생성합니다 
+		    var moveLatLon = new daum.maps.LatLng($('#mapy_'+index).val(), $('#mapx_'+index).val());		    
+		    // 지도 중심을 이동 시킵니다
+		    map.setCenter(moveLatLon);
+		}
+		bookmarkmarker.setMap(map);      //지도에 마커를 표시합니다
+		setCenter();  // 지도 가운데로 이동 시키기
+		var bookmarkiwContent=""
+		bookmarkiwContent += '<div class="categoryinfo_wrap categoryinfo">'
+			+'<div style="padding:5px;"><span id="titleforNewInfo_'+index+'" title="'+$('#title_'+index).text()+'">'+$('#title_'+index).text() +'</span>'
+			+'<span title="'+ $('#addt1_'+index).val() +'">' + $('#addr1_'+index).val() + '</span><input type="hidden" id="contentid_'+index+'" title="'+$('#contentid_'+index).val()+'" value="'+$('#contentid_'+index).val()+'"> '
+			+'  <span class="jibun" title="' + $('#zipcode_'+index).val() + '">(지번 : ' + $('#zipcode_'+index).val() + ')</span><input type="hidden" id=contenttype value="'+$('#contenttype_'+index).val()+'">';
+			if($('#tel_'+index).val() != null){ bookmarkiwContent += '<span class="tel">' + $('#tel_'+index).val() + '</span>';}
+			bookmarkiwContent += '<a href="javascript:planplusActionplus('+index+')" id="planplus"><img src="/Planit/images/plan/planplus.png" id="planrouteplusimg"></a>'
+			+'</div>'
+			+'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+			bookmarkiwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+			
+		// 인포윈도우를 생성합니다
+		var infowindow = new daum.maps.InfoWindow({
+		content : bookmarkiwContent,
+		removable : bookmarkiwRemoveable
+		});
+					
+					
+		// 마커에 클릭이벤트를 등록합니다
+		daum.maps.event.addListener(bookmarkmarker, 'click', function() {
+		planposition = bookmarkmarker.getPosition();
+		console.log('planposition: '+planposition);
+		// 마커 위에 인포윈도우를 표시합니다
+		infowindow.open(map, bookmarkmarker);
+		infowindowexit = infowindow;
+		});
+		
+		window.onbeforeunload = modalexit();
+	}
+</script>
+<!-- ************** 즐겨 찾기 자바 스크립트 ************ -->
+

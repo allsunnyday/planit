@@ -13,6 +13,8 @@ public interface PlannerService {
 	int insertReview(Map map);
 //	review_content insert
 	int insertReviewContent(Map map);
+//	bookmark select 
+	List<PlannerDTO> selectBookMark(Map map);
 	
 	
 }
