@@ -301,10 +301,10 @@ public class MemberController {
    public String loginProcess(@RequestParam Map map, HttpSession session, Model model) throws Exception {
 	// form 하위 데이터가 잘 온것을 확인! key= input태그의 name속성
 	      System.out.println("id=" + map.get("id") + " pwd=" + map.get("pwd"));
-	      // 기본 이미지 
+	       
 	      boolean isLogin = service.isLogin(map);
 	      System.out.println(isLogin);
-	      System.out.println();
+	     
 	      if (isLogin) { // 회원일경우
 	         // 로그인 처리 - 세션 영역에 저장
 	         session.setAttribute("id", map.get("id"));
