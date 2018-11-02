@@ -71,6 +71,7 @@ public class MemberServiceImpl implements MemberService {
 	      return dao.homeQNAList(map);
 	   }
 
+
 	   @Override
 	   public List<FaqNoticeDTO> memberQnAList(Map map) {
 	      // TODO Auto-generated method stub
@@ -178,7 +179,9 @@ public class MemberServiceImpl implements MemberService {
 			// TODO Auto-generated method stub
 			return dao.starPlannerCount(map);
 		}
+
 	@Override
+
 	public int getColumnCount(Map map) {
 		return dao.getColumnCount(map);
 	}
