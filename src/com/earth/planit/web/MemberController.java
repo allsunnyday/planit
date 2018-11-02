@@ -372,10 +372,13 @@ public class MemberController {
 
    //왜 못찾니..
 		@RequestMapping("/member/qna/view.it")
-		public String gotoQnAView(@RequestParam Map map,Model model) throws Exception {
+		public String gotoQnAView(@RequestParam Map map,Model model,HttpSession session) throws Exception {
 			
 			System.out.println("ask_no"+map.get("ask_no"));
+			map.put("id", session.getAttribute("id"));
 			Map memberQnAView =service.memberQnAView(map);
+			
+			memberQnAView.put("ASKDATE",memberQnAView.get("ASKDATE").toString().substring(0,10));
 			
 			model.addAttribute("memberQnAView", memberQnAView);
 			return "mypage/QnAView.theme";
@@ -401,13 +404,6 @@ public class MemberController {
 	        model.addAttribute("result", apiResult);
 	        System.out.println("result"+apiResult);
 	        /* 네이버 로그인 성공 페이지 View 호출 */
-	        /*
-		       * {"resultcode":"00","message":"success","response":
-		       * {"id":"47126902","nickname":"\ucd08\uc2ec\uc790",
-		       * "gender":"M","email":"wmffkdla@naver.com",
-		       * "name":"\ucd5c\uc131\uc6b1","birthday":"02-28"} }
-		       */
-
 		      JSONParser jsonParser = new JSONParser();
 		      JSONObject jsonObject = (JSONObject) jsonParser.parse(apiResult);
 		      JSONObject jsonResult = (JSONObject) jsonObject.get("response");
@@ -418,20 +414,10 @@ public class MemberController {
 		      map.put("name", jsonResult.get("name").toString());
 		      map.put("age", jsonResult.get("age").toString());
 		      map.put("email", jsonResult.get("email").toString());
-		      System.out.println(map.get("id"));
-		    	System.out.println(map.get("email"));
-		    	System.out.println(map.get("gender"));
-		    	System.out.println(map.get("age"));
-		    	System.out.println(map.get("name"));
-		      System.out.println("===============================");
-		      System.out.println(jsonResult.get("gender").toString());
-		      System.out.println(jsonResult.get("id").toString());
 		      String[] naverID=jsonResult.get("email").toString().split("@");
 		      System.out.println("스플릿한 아이디"+naverID[0]);
 		      map.put("id", naverID[0]);
-		      System.out.println(jsonResult.get("name").toString());
-		      System.out.println(jsonResult.get("age").toString());
-		      System.out.println(jsonResult.get("email").toString());
+	
 		      boolean isNaverLogin = service.isNaverLogin(map);
 				     
 				      
@@ -458,11 +444,6 @@ public class MemberController {
 		    	dto.setAge(map.get("age").toString());
 		    	dto.setGender(map.get("gender").toString());
 		    	dto.setName(map.get("name").toString());
-		    	System.out.println(map.get("id"));
-		    	System.out.println(map.get("email"));
-		    	System.out.println(map.get("gender"));
-		    	System.out.println(map.get("age"));
-		    	System.out.println(map.get("name"));
 		    	int isJoin = service.isJoin(dto);
 		        //
 		        System.out.println(isJoin);
