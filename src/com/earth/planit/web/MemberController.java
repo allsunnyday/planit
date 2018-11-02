@@ -327,37 +327,8 @@ public class MemberController {
 	         model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
 	      }
 
-<<<<<<< HEAD
-      boolean isLogin = service.isLogin(map);
-      System.out.println(isLogin);
-      System.out.println();
-      if (isLogin) { // 회원일경우
-         // 로그인 처리 - 세션 영역에 저장
-         session.setAttribute("id", map.get("id"));
-         MemberDTO memberRecord = service.memberInfo(map);
-         //[선호사항 세션저장]
-         map.put("id", session.getAttribute("id"));
-         List<MemberDTO> memberPreferList=service.memberPreferList(map);
-         session.setAttribute("memberPreferList", memberPreferList);
-         //이미지 세션에 저장하기
-         System.out.println(memberRecord.getProfile());
-         session.setAttribute("memberRecord", memberRecord);
-         System.out.println(map.get("id"));
-         int starcount=(service.starTourCount(map))+(service.starReviewCount(map))+(service.starPlannerCount(map));
-         System.out.println(map.get("id")+"가 좋아요한 갯수:"+starcount);
-         session.setAttribute("startcount", starcount);
-         
-         
-         return "redirect:/";
-      } else { // 비회원일경우
-         model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
-      }
-
-      return "forward:/planit/login/Login.it";
-=======
 	      return "forward:/planit/login/Login.it";
 
->>>>>>> refs/remotes/origin/hyunsun
 
    }
 
