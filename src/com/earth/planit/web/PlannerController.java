@@ -207,22 +207,27 @@ public class PlannerController {
 		String[] routedays = new String[days];
 		String route = (String) map.get("route");
 		System.out.println(route);
-		routedays = route.split("@");
+		routedays = route.split("@"); //1#1:13:1845410:서울에너지드림센터:::0#1:13:1845410:서울에너지드림센터:::0#1:13:1845410:서울에너지드림센터:::0
 		
 		for(int i=0; i<days; i++) {
 			int series = (i+1);
-			String reviewroute = routedays[i];
+			String reviewroute = routedays[i];  //1#1:13:1845410:서울에너지드림센터:::0#1:13:1845410:서울에너지드림센터:::0#1:13:1845410:서울에너지드림센터:::0
 			map.put("series", series);
 			map.put("reviewroute", reviewroute);			
 //			review table data 입력
 			int reviewaffected = service.insertReview(map);
-			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);
+			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);//3#1:13:130961:이한열박물관:::0#1:13:970052:세빛섬:::0
 			String[] routedayscase = null;// = new String[][];
-			routedayscase = routedays[i].split("#");
-			for(int k=0; k<routedayscase.length; k++) {
-				int route_index = k;
+			routedayscase = reviewroute.split("#");  //3   1:13:130961:이한열박물관:::0      
+			
+			for(int k=1; k<routedayscase.length; k++) {
+				String[] item = routedayscase[k].split(":");
+				System.out.println(" routedayscase[k]="+ routedayscase[k]);
+				int route_index = k-1;
 				//System.out.println(k + ": " + routedayscase[k]);
 				map.put("route_index", route_index);
+				map.put("contentid", item[2]); //
+				System.out.println("[contentid] "+item[2]);
 //				review_content table data 입력
 				int reviewcontentaffected = service.insertReviewContent(map);				
 				System.out.println("[1이면 reviewcontent  입력성공]: "+ reviewcontentaffected);

@@ -251,7 +251,6 @@ public class MemberController {
       model.addAttribute("nowPage", nowPage);
       
       
-      
       return "mypage/DetailQnA.theme";
 
    }
@@ -287,7 +286,12 @@ public class MemberController {
    public String gotoPlannerDetail(@RequestParam Map map,HttpSession session,Model model) throws Exception {
       map.put("id", session.getAttribute("id"));
       List<Map> plannerList=service.memberPlannerList(map);
-      
+      for(Map planner: plannerList) {
+    	  int random = (int) (Math.random()*3); //0-3
+    	  planner.put("random_image", "planner_default_"+random+".png");
+    	  planner.put("DEPART", planner.get("DEPART").toString().substring(0,10));
+    	  
+      }
       model.addAttribute("plannerList", plannerList);
       return "mypage/DetailPlanner.theme";
 
@@ -297,7 +301,7 @@ public class MemberController {
    public String loginProcess(@RequestParam Map map, HttpSession session, Model model) throws Exception {
 	// form 하위 데이터가 잘 온것을 확인! key= input태그의 name속성
 	      System.out.println("id=" + map.get("id") + " pwd=" + map.get("pwd"));
-
+	      // 기본 이미지 
 	      boolean isLogin = service.isLogin(map);
 	      System.out.println(isLogin);
 	      System.out.println();
@@ -350,7 +354,7 @@ public class MemberController {
          int insertPrefer = service.insertPreference(map);
          System.out.println("선호도 추가된 행 개수 " + insertPrefer);
       }
-      return "mypage/UserPreference.theme";
+      return "mypage/UserPreference2.theme";
 
       // 선호도 체크페이지 이동
 
@@ -401,15 +405,17 @@ public class MemberController {
 
    //왜 못찾니..
 		@RequestMapping("/member/qna/view.it")
-		public String gotoQnAView(@RequestParam Map map,Model model) throws Exception {
+		public String gotoQnAView(@RequestParam Map map,Model model,HttpSession session) throws Exception {
 			
 			System.out.println("ask_no"+map.get("ask_no"));
+			map.put("id", session.getAttribute("id"));
 			Map memberQnAView =service.memberQnAView(map);
+			
+			memberQnAView.put("ASKDATE",memberQnAView.get("ASKDATE").toString().substring(0,10));
 			
 			model.addAttribute("memberQnAView", memberQnAView);
 			return "mypage/QnAView.theme";
 		}
-	
 	
 	   
 		// 네이버 로그인 성공시 callback호출 메소드

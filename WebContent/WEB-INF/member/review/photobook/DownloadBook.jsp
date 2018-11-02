@@ -50,8 +50,9 @@
         <div class="portfolio-centered">
           <div class="recentitems portfolio">
             <div class="modalforsample"></div><!-- 모달을 동적으로 추가하기 위한 다이브 -->
-            <a href="<c:url value='/download/book.it?filename=${filename}'/> ">download</a>
-            <a href="javascript: history.back(3);">나의 리뷰로 돌아가기 </a>
+            <img alt="" src="<c:url value='/Upload/Review/complete_download.png'/> " >
+            <a href="<c:url value='/download/book.it?filename=${filename}'/> " >download</a>
+            <a href="javascript: history.back(4);">나의 리뷰로 돌아가기 </a>
           </div>
           <!-- portfolio -->
         </div>
@@ -62,4 +63,7 @@
       </div>
   </section>
   <!-- end section -->
-
+<style>
+	/* .footer {position:fixed; bottom:0; width:100%;} */
+	.footer {position:fixed; bottom:0; width:100%;}
+</style>
