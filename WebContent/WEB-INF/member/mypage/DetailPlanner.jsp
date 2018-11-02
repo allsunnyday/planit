@@ -317,7 +317,7 @@ display: inline-block;
 									
 								<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
 									<div class="he-wrap tpl6 market-item">	
-									<div  style="border:1px grey solid;width:280px; height:260px; text-align: center"><h2>서울aaaaa</h2></div>
+									<div  style="border:1px grey solid;width:280px; height:260px; text-align: center"><h2>서울</h2></div>
 										
 										<div class="he-view">
 											<div class="bg a0" data-animate="fadeIn">
@@ -336,7 +336,7 @@ display: inline-block;
 										<!-- he view -->
 									</div>
 									<!-- he wrap -->
-									<h3 class="title"><a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>">${list.POSTDATE}</a></h3>
+									<h3 class="title"><a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>">${list.TITLE}</a></h3>
 									<p>${list.TOURTYPE }</p>
 								
 									
@@ -361,6 +361,8 @@ display: inline-block;
 	</div>
 
 </div> 
-  `
+
 </div>
+</div>
+
 </section>

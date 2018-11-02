@@ -117,51 +117,51 @@ public class MemberController {
       return "mypage/MyPageEditProfile.theme";
    }
 
-   // 프로필 수정처리
-   @RequestMapping(value = "/planit/mypage/editsave.it", method = RequestMethod.POST)
-   public String profileEdit(@RequestParam Map map, //
-         MultipartHttpServletRequest mhsr,
-         HttpSession session) throws Exception {
-      
-      map.put("id", session.getAttribute("id").toString());
-      int profilecheck=service.profilecheck(map);
-      
-      System.out.println("프로필 있니 없니:"+profilecheck);
-      System.out.println(map.get("profile")==null?"프로필 있음":"프로필 없음");
-      if(map.get("isExistProfile") ==null&&map.get("profile")!=null) {
-      // 1]서버의 물리적 경로 얻기
-         String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");
-         // 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
-         // MultipartFile객체 얻기
-         MultipartFile profile = mhsr.getFile("profile");
-         // 2]File객체 생성
-         // 2-1] 파일 중복시 이름 변경
-         
-         String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
-   
-         File file = new File(phicalPath + File.separator + newFilename);
-         // 3]업로드 처리
-         profile.transferTo(file);
-         map.put("profile", newFilename.toString().trim());
-      }
-      else {
-         System.out.println("이미지 값을 이미 가지고 있습니다.");
-         map.put("profile", map.get("isExistProfile"));
-      }
-      
-      
-      
-      
-      System.out.println(map.get("self"));
-      System.out.println(map.get("id"));
-      System.out.println(map.get("email"));
-      System.out.println(map.get("name"));
-      
-      
-      int affected = service.updateProfile(map);
-      System.out.println(affected == 1 ? "입력성공" : "입력실패");
-      return "forward:/planit/mypage/MyPageHome.it";
-   }
+// 프로필 수정처리
+	@RequestMapping(value = "/planit/mypage/editsave.it", method = RequestMethod.POST)
+	public String profileEdit(@RequestParam Map map, //
+			MultipartHttpServletRequest mhsr,
+			HttpSession session) throws Exception {
+		
+		map.put("id", session.getAttribute("id").toString());
+		System.out.println("profile"+mhsr.getFile("profile").toString());
+		System.out.println("profile"+mhsr.getParameter("profile"));
+		System.out.println("isExistProfile"+map.get("map.get(\"isExistProfile\")"));
+		System.out.println(map.get("profile")==null?"프로필 있음":"프로필 없음");
+		if(mhsr.getFile("profile")!=null) {
+		// 1]서버의 물리적 경로 얻기
+			String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");
+			// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
+			// MultipartFile객체 얻기
+			MultipartFile profile = mhsr.getFile("profile");
+			// 2]File객체 생성
+			// 2-1] 파일 중복시 이름 변경
+			
+			String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
+			System.out.println(map.get("profile"));
+			File file = new File(phicalPath + File.separator + newFilename);
+			// 3]업로드 처리
+			profile.transferTo(file);
+			map.put("profile", newFilename.toString().trim());
+		}
+		else {
+			System.out.println("이미지 값을 이미 가지고 있습니다.");
+			map.put("profile", map.get("isExistProfile"));
+		}
+		
+		
+		
+		
+		System.out.println(map.get("self"));
+		System.out.println(map.get("id"));
+		System.out.println(map.get("email"));
+		System.out.println(map.get("name"));
+		
+		
+		int affected = service.updateProfile(map);
+		System.out.println(affected == 1 ? "입력성공" : "입력실패");
+		return "forward:/planit/mypage/MyPageHome.it";
+	}
 
    @RequestMapping("/planit/mypage/MyPageEditPassword.it")
    public String gotoMyPageEditPassword() throws Exception {
@@ -182,7 +182,7 @@ public class MemberController {
    @RequestMapping("/planit/mypage/Preference.it")
    public String gotoPreference() throws Exception {
 
-      return "mypage/UserPreference.theme";
+      return "mypage/UserPreference2.theme";
    }
 
    @RequestMapping("/planit/mypage/Preference2.it")
@@ -295,7 +295,12 @@ public class MemberController {
          //이미지 세션에 저장하기
          System.out.println(memberRecord.getProfile());
          session.setAttribute("memberRecord", memberRecord);
-
+         System.out.println(map.get("id"));
+         int starcount=(service.starTourCount(map))+(service.starReviewCount(map))+(service.starPlannerCount(map));
+         System.out.println(map.get("id")+"가 좋아요한 갯수:"+starcount);
+         session.setAttribute("startcount", starcount);
+         
+         
          return "redirect:/";
       } else { // 비회원일경우
          model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
@@ -327,7 +332,7 @@ public class MemberController {
          int insertPrefer = service.insertPreference(map);
          System.out.println("선호도 추가된 행 개수 " + insertPrefer);
       }
-      return "mypage/UserPreference.theme";
+      return "mypage/UserPreference2.theme";
 
       // 선호도 체크페이지 이동
 
@@ -454,7 +459,7 @@ public class MemberController {
 		           int insertPrefer = service.insertPreference(map);
 		           System.out.println("선호도 추가된 행 개수 " + insertPrefer);
 		        }
-		        return "mypage/UserPreference.theme";
+		        return "mypage/UserPreference2.theme";
 
 		        // 선호도 체크페이지 이동
 

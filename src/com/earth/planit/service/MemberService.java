@@ -69,6 +69,11 @@ public interface MemberService {
 
 	//[문의 view]
 	Map memberQnAView(Map map);
+	
+	//좋아요 카운트
+	int starTourCount(Map map);
+	int starReviewCount(Map map);
+	int starPlannerCount(Map map);
 }
 
 

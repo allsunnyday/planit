@@ -184,4 +184,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    select * from u_ask_planit
 	where id=#{id} and ask_no=#{ask_no}
    </select>
+   <select id="MemberTourStarCount" parameterType="java.util.Map" resultType="int">
+   select count(*) from liked_tour where id=#{id}
+   </select>
+   <select id="MemberReviewStarCount" parameterType="java.util.Map" resultType="int">
+   select count(*) from liked_review where id=#{id}
+   </select>
+   <select id="MemberPlannerStarCount" parameterType="java.util.Map" resultType="int">
+   select count(*) from liked_planner where id=#{id}
+   </select>
 </mapper>

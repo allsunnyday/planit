@@ -141,4 +141,19 @@ public class MemberDAO implements MemberService {
 		int count=template.selectOne("NaverIsLogin",map);
 		return count==1?true:false;
 	}
+	@Override
+	public int starTourCount(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("MemberTourStarCount",map);
+	}
+	@Override
+	public int starReviewCount(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("MemberReviewStarCount",map);
+	}
+	@Override
+	public int starPlannerCount(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("MemberPlannerStarCount",map);
+	}
 }

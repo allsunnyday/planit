@@ -310,7 +310,7 @@ display: inline-block;
 						<div class="portfolio-centered">
 							<div class="recentitems portfolio">
 								<c:if test="${empty reviewList}" var="result">
-									<h2>왜ㅑ 안되냐</h2>
+									<h2>멋진 리뷰를 작성해주세요!</h2>
 								</c:if>
 
 								<c:if test="${not result}">

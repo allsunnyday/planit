@@ -188,27 +188,51 @@
 		</div>
 	</div>
 </section>
-<section>
+<section class="section1">
 	<div class="container">
-		<div class="row">
+		<div class="col-md-12">
 			<!-- 테이블전체 가로폭은 테이블을 감싸는  div에 col-*-*로 조정 -->
-			<div class="col-md-10" style="margin-top: 50px;border-bottom: 1px gray solid;height: 30px;">
-					<!-- 제목과 요청일이 들어갈 다이브 -->
+			<div class="col-md-10 col-md-offset-1"
+				style="margin-top: 50px; border-bottom: 2px gray solid;">
+				<!-- 제목과 요청일이 들어갈 다이브 -->
 
-				<div  style="display: inline-block" >
-					<h4>${memberQnAView.TITLE}</h4>
+				<div style="display: inline-block">
+					<p style="display: inline-block;font-size: 1.8em;font-weight: bold;">${memberQnAView.TITLE}</p>
+					
 				</div>
-				<div class="col-md-10" style="display: inline-block" >
-					<!-- 제목과 요청일이 들어갈 다이브 -->
-					<h6>작성일:${memberQnAView.ASKDATE}</h6>
+				<!-- <div class="col-md-10" style="display: inline-block">
+					제목과 요청일이 들어갈 다이브
+				</div> -->
+			</div>
+			<div class="col-md-10 col-md-offset-1">
+				<!-- 제목과 요청일이 들어갈 다이브 -->
+
+				<div class=" col-md-2" style="display: inline-block">
+					<p style="display: inline-block;text-align: left">${memberQnAView.ID}</p>
+					
 				</div>
-				<div>
+				<div class="col-md-offset-7 col-md-3" style="display: inline-block">
+					<p style="display: inline-block;text-align: left">작성일:${memberQnAView.ASKDATE}</p>
+					
+				</div>
+				<!-- <div class="col-md-10" style="display: inline-block">
+					제목과 요청일이 들어갈 다이브
+				</div> -->
+			</div>
+			
+			<div class="col-md-10 col-md-offset-1"
+				style="height: 400px; padding-top:50px">
 					<!-- 요청내역이 들어갈 다이브 -->
-					<div class="col-md-10" style="height: 100px;border-bottom: 1px gray solid;">
+					<div class="col-md-10" >
 						${memberQnAView.CONTENT}
-					</div>
+					</div>a
 				</div>
-				<%-- <table class="table">
+		
+			</div>
+		</div>
+	
+</section>
+		<%-- <table class="table">
 					
 					<tr style="border-bottom:2px gray solid">
 						<td><h4>${memberQnAView.TITLE}</h4></td>
@@ -245,7 +269,3 @@
 					</tr>
 
 				</table> --%>
-			</div>
-		</div>
-	</div>
-</section>

@@ -161,6 +161,24 @@ public class MemberServiceImpl implements MemberService {
 		return dao.isNaverLogin(map);
 	}
 
+	@Override
+	public int starTourCount(Map map) {
+		// TODO Auto-generated method stub
+		return dao.starTourCount(map);
+	}
+
+	@Override
+	public int starReviewCount(Map map) {
+		// TODO Auto-generated method stub
+		return dao.starReviewCount(map);
+	}
+
+	@Override
+	public int starPlannerCount(Map map) {
+		// TODO Auto-generated method stub
+		return dao.starPlannerCount(map);
+	}
+
    
 
 }
