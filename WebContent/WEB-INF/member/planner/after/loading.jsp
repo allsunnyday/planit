@@ -25,5 +25,5 @@
 
 
 <div id="loading">
-	<img id="loading-image" src="/Planit/images/plan/loading.gif" alt="Loading..." />
+	<img id="loading-image" src="/Planit/images/plan/loading01.gif" alt="Loading..." />
 </div>

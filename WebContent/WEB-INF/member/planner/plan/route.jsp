@@ -59,9 +59,9 @@
 							<!-- *************  루트 시작 일자 선택 시작  ************ -->							
 						</div>
 						<!-- **********************  여행 타입 선택 이미지 박스 시작  ********************* -->
-						<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="width: auto; height: 80px; float: right;">
+						<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="width: auto; height: 90px; float: right;">
 							<div class="btn-group" style="margin-top: 8px;">
-								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" id="tourtype">
+								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" id="tourtype" style="width: 90px;">
 									<img id="tourtypeimage" alt="타입" src="" style=""><span id="caret" class="caret"></span></a>
 								<ul class="dropdown-menu" id="peopletype">
 									<li id="single"><a href="#"><img src="/Planit/images/member/Preference/Preference_alone.JPG" alt="single"></a></li>
