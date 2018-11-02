@@ -75,7 +75,7 @@ max-width: 100%;
 				</select>
 			</div>
 <!-- *************************************** cat2 선택  **************************************** -->
-				<div data-type="multiple" class="form-group" style="display: inline-block;" >
+				<!-- <div data-type="multiple" class="form-group" style="display: inline-block;" >
 					<ul class="jetmenu ">
 						<li><button name="all" value="" class="go-button ov" type="button" >전체</button></li>
 						<li>
@@ -123,7 +123,7 @@ max-width: 100%;
 
 					</ul>
 					
-				</div>
+				</div> -->
 				<div class="form-group" >
 					<button type="submit" class="dmbutton2" value="조회">조회</button>
 					<a class="dmbutton2 ov" href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32'/>" >조회순</a>
@@ -173,7 +173,7 @@ max-width: 100%;
 	<!-- he wrap -->
 	<h3 class="title">${record.title}</h3>
 	<p>${record.addr1}</p>
-	문의: ${record.tel}</p>
+	<p>문의: ${record.tel}</p>
 </div>
 
 </c:forEach>

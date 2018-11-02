@@ -17,7 +17,7 @@
         <!-- title area -->
         <div class="col-lg-9 col-md-12 col-sm-12">
           <div id="nav" class="right">
-            <div class="container clearfix">
+            <div class=" clearfix">
               <ul id="jetmenu" class="jetmenu blue">
                 <li ><a href="<c:url value='/member/tourinfo/listpick/list/ListMain.it'/>">Home</a>
                 </li>

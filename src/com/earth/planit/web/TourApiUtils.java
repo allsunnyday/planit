@@ -57,31 +57,39 @@ public class TourApiUtils {
 		JSONObject jsonobject = (JSONObject) jsonparser.parse(result.toString());
 		JSONObject json = (JSONObject) jsonobject.get("response");
 		json = (JSONObject) json.get("body");
-		json = (JSONObject) json.get("items");
-		// 공통사항 조회는 item이 jsonarray가 아니라 jsonobject형식이다. 따라서 jsonArray로 변환이 안된는 점에 유의하라
-		json = (JSONObject) json.get("item");
-		//System.out.println("============="+json.toJSONString());
-		ContentDTO dto = new ContentDTO();
-		dto.setContentid(json.get("contentid").toString());
-		dto.setContenttype(json.get("contenttypeid").toString());
-		dto.setTitle(json.get("title").toString());
-		dto.setTel(json.get("tel")==null?"":json.get("tel").toString());
-		dto.setAreacode(json.get("areacode")==null?"null":json.get("areacode").toString());
-		dto.setAddr1(json.get("addr1")==null?"":json.get("addr1").toString());
-		dto.setAddr2(json.get("addr2")==null?"":json.get("addr2").toString());
-		dto.setCat1(json.get("cat1")==null?"":json.get("cat1").toString());
-		dto.setCat2(json.get("cat2")==null?"":json.get("cat2").toString());
-		dto.setCat3(json.get("cat3")==null?"":json.get("cat3").toString());
-		dto.setMapx(json.get("mapx")==null?"0":json.get("mapx").toString());
-		dto.setMapy(json.get("mapy")==null?"0":json.get("mapy").toString());
-		dto.setFirstimage(json.get("firstimage")==null?"":json.get("firstimage").toString());
-		dto.setFirstimage2(json.get("firstimage2")==null?"":json.get("firstimage2").toString());
-		dto.setSigungucode(json.get("sigungucode")==null?"":json.get("sigungucode").toString());
-		dto.setZipcode(json.get("zipcode")==null?"":json.get("zipcode").toString());
-		dto.setOverview(json.get("overview")==null?"":json.get("overview").toString());
-
-		return dto;
+		System.out.println("json is null?");
+		System.out.println(json.toJSONString());
 		
+		if(json.get("items").toString().equals("")) return null;
+		
+		json = (JSONObject) json.get("items");
+		System.out.println("여기 여기 "+json.toJSONString());
+		if(json.containsKey("item")) {
+			// 공통사항 조회는 item이 jsonarray가 아니라 jsonobject형식이다. 따라서 jsonArray로 변환이 안된는 점에 유의하라
+			json = (JSONObject) json.get("item");
+			//System.out.println("============="+json.toJSONString());
+			ContentDTO dto = new ContentDTO();
+			dto.setContentid(json.get("contentid").toString());
+			dto.setContenttype(json.get("contenttypeid").toString());
+			dto.setTitle(json.get("title").toString());
+			dto.setTel(json.get("tel")==null?"":json.get("tel").toString());
+			dto.setAreacode(json.get("areacode")==null?"null":json.get("areacode").toString());
+			dto.setAddr1(json.get("addr1")==null?"":json.get("addr1").toString());
+			dto.setAddr2(json.get("addr2")==null?"":json.get("addr2").toString());
+			dto.setCat1(json.get("cat1")==null?"":json.get("cat1").toString());
+			dto.setCat2(json.get("cat2")==null?"":json.get("cat2").toString());
+			dto.setCat3(json.get("cat3")==null?"":json.get("cat3").toString());
+			dto.setMapx(json.get("mapx")==null?"0":json.get("mapx").toString());
+			dto.setMapy(json.get("mapy")==null?"0":json.get("mapy").toString());
+			dto.setFirstimage(json.get("firstimage")==null?"":json.get("firstimage").toString());
+			dto.setFirstimage2(json.get("firstimage2")==null?"":json.get("firstimage2").toString());
+			dto.setSigungucode(json.get("sigungucode")==null?"":json.get("sigungucode").toString());
+			dto.setZipcode(json.get("zipcode")==null?"":json.get("zipcode").toString());
+			dto.setOverview(json.get("overview")==null?"":json.get("overview").toString());
+	
+			return dto;
+		}
+		return null;
 	}
 	
 	public static String getOverView(String contentid, String contenttype) throws Exception {

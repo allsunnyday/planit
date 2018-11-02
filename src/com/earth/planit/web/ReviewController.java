@@ -194,12 +194,8 @@ public class ReviewController {
 			map.put("contentid", items[2]);
 			Map reviewContent = reviewService.selectReviewContent(map);
 			
-			if(! reviewContent.containsKey("CONTENT")) {
-				rmap.put("content", "no-content");
-			}
-			else {
-				rmap.put("content", reviewContent.get("CONTENT"));
-			}                            
+			                   
+			rmap.put("content", reviewContent.get("CONTENT"));
 			// rmap.put("image",
 			// reviewContent.get("IMAGE")==null?"no-image":reviewContent.get("IMAGE").toString().replace("<*>",
 			// "&"));
@@ -213,12 +209,20 @@ public class ReviewController {
 				}
 				rmap.put("image", image);
 			}
+			System.out.println(">>>>>>>>>>>>>>>"+items[1] +"   "+ items[2]);
 			ContentDTO dto = TourApiUtils.getdetailCommon(items[1], items[2]);
 			// 관광데이터 가지고 오기
-			rmap.put("overview",
-					dto.getOverview().length() > 300 ? dto.getOverview().substring(0, 300) + "..." : dto.getOverview());
-			rmap.put("firstimage2", dto.getFirstimage2());
-			rmap.put("addr1", dto.getAddr1());
+			if(dto !=null) {
+				rmap.put("overview",
+						dto.getOverview().length() > 300 ? dto.getOverview().substring(0, 300) + "..." : dto.getOverview());
+				rmap.put("firstimage2", dto.getFirstimage2());
+				rmap.put("addr1", dto.getAddr1());
+			}
+			else {
+				rmap.put("overview","");
+				rmap.put("firstimage2", "");
+				rmap.put("addr1", "");				
+			}
 			// System.out.println(dto.getOverview());
 			oneRoute.add(rmap);
 		}
@@ -379,7 +383,8 @@ public class ReviewController {
 	public String selectbook(@RequestParam Map map, Model model) throws Exception {
 		// 사용자의 리뷰아이디가 넘어온다.
 		System.out.println("디자인 선택하러 가는 리뷰 아이디:" + map.get("review_id"));
-
+		// select의 샘플이 보여야 한다. 
+		// 
 		return "review/photobook/SelectBook.theme";
 	}
 

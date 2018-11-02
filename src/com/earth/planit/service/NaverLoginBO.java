@@ -26,7 +26,7 @@ public class NaverLoginBO {
        //state: 애플리케이션이 생성한 상태 토큰
        private final static String CLIENT_ID = "6AtufGEvXJb27ZRSlBUi";       //네이버API Client ID
        private final static String CLIENT_SECRET = "c_nPZoLr5T";             //네이버API Client Secret           
-       private final static String REDIRECT_URI = "http://localhost:11080/Planit/planit/naver/callback.it";
+       private final static String REDIRECT_URI = "http://localhost:8080/Planit/planit/naver/callback.it";
 
        private final static String SESSION_STATE = "oauth_state";
        /* 프로필 조회 API URL */

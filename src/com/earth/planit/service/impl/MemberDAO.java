@@ -156,4 +156,9 @@ public class MemberDAO implements MemberService {
 		// TODO Auto-generated method stub
 		return template.selectOne("MemberPlannerStarCount",map);
 	}
+	@Override
+	public int getColumnCount(Map map) {
+		return template.selectOne("MemberSelectValueCount", map);
+	}
+
 }

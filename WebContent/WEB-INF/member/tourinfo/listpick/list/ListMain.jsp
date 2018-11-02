@@ -13,7 +13,7 @@
     color:#FFF;
     }
 
-    .text{margin-left: 230px;}
+    .text{margin-left: 3%;}
     
     .tourlist-overlay .text img{
        width:460px;
@@ -30,7 +30,7 @@
 <!-- ****************************************
        가장 핫한거 하나씩 보여줄 캐러셀
 **************************************** -->
-  <section class="marketplace-top">
+  <section class="">
    <div class="row">
             
             <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
