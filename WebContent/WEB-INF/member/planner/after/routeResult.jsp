@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <%@ include file="/WEB-INF/member/planner/after/logincheck.jsp" %>
 <style>
-	.footer {display:flex; position:absolute; bottom:0; width:100%;}
+	.footer {display:none; position:none; bottom:0; width:100%;}
 </style>
 <section class="post-wrapper-top" style="margin-top: 70px;">
 	<div class="container">
@@ -25,7 +25,8 @@
 			<div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 300px; background: #000; opacity: 0.25; 
 				filter: alpha(opacity = 25);">
 			</div>
-
+			<input type="hidden" id="route" name="route" value="${route }">
+			<input type="hidden" id="plancase" name="plancase" value="${plancase }">
 
 
 			<div style="position: absolute; top: 40px; left: 50px; width: 500px; height: 200px; z-index: 9; valign:">
@@ -46,167 +47,141 @@
 			</div>
 
 
-			<div
-				style="position: absolute; top: 40px; right: 50px; width: 500px; height: 400px; z-index: 9;">
-				<div class="rt_left"
-					style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<font style="font-size: 8pt; color: #fff">헬싱키</font>
-					<div
-						style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+			<div style="position: absolute; top: 40px; right: 50px; width: 500px; height: 400px; z-index: 9;">
+				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<font style="font-size: 8pt; color: #fff" id="routetitle_1"></font>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
-				<div class="rt_left"
-					style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<font style="font-size: 8pt; color: #fff">탈린</font>
-					<div
-						style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<font style="font-size: 8pt; color: #fff" id="routetitle_2"></font>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
-				<div class="rt_left"
-					style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<font style="font-size: 8pt; color: #fff">리가</font>
-					<div
-						style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; bottom: 0px; left: 0px; height: 25px; width: 50%; border-right: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<font style="font-size: 8pt; color: #fff" id="routetitle_3"></font>
+					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; bottom: 0px; left: 0px; height: 25px; width: 50%; border-right: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px;">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
 				<div style="clear: both"></div>
-				<div class="rt_left"
-					style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<div style="padding-top: 29px; font-size: 8pt; color: #fff">샤울레이</div>
-					<div
-						style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; top: 0px; left: 0px; height: 24px; width: 50%; border-right: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px; margin-top: -2px;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<div style="padding-top: 29px; font-size: 8pt; color: #fff" id="routetitle_4"></div>
+					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; left: 0px; height: 24px; width: 50%; border-right: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px; margin-top: -2px;">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
-				<div class="rt_left"
-					style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<font style="font-size: 8pt; color: #fff">빌니우스</font>
-					<div
-						style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<font style="font-size: 8pt; color: #fff" id="routetitle_5"></font>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff;">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
-				<div class="rt_left"
-					style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<font style="font-size: 8pt; color: #fff">바르샤바</font>
-					<div
-						style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; bottom: 0px; right: 0px; height: 25px; width: 50%; border-left: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<font style="font-size: 8pt; color: #fff" id="routetitle_6"></font>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; bottom: 0px; right: 0px; height: 25px; width: 50%; border-left: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
 				<div style="clear: both"></div>
-				<div class="rt_left"
-					style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<div style="padding-top: 29px; font-size: 8pt; color: #fff">크라쿠프</div>
-					<div
-						style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; top: 0px; right: 0px; height: 24px; width: 50%; border-left: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px; margin-top: -2px;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<div style="padding-top: 29px; font-size: 8pt; color: #fff" id="routetitle_7"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 24px; width: 50%; border-left: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px; margin-top: -2px;">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
-				<div class="rt_left"
-					style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<font style="font-size: 8pt; color: #fff">부다페스트</font>
-					<div
-						style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<font style="font-size: 8pt; color: #fff" id="routetitle_8"></font>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff;">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
-				<div class="rt_left"
-					style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<font style="font-size: 8pt; color: #fff">류블랴나</font>
-					<div
-						style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; bottom: 0px; left: 0px; height: 25px; width: 50%; border-right: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<font style="font-size: 8pt; color: #fff" id="routetitle_9"></font>
+					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; bottom: 0px; left: 0px; height: 25px; width: 50%; border-right: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
 				<div style="clear: both"></div>
-				<div class="rt_left"
-					style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<div style="padding-top: 29px; font-size: 8pt; color: #fff">블레드</div>
-					<div
-						style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; top: 0px; left: 0px; height: 24px; width: 50%; border-right: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px; margin-top: -2px;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<div style="padding-top: 29px; font-size: 8pt; color: #fff" id="routetitle_10"></div>
+					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; left: 0px; height: 24px; width: 50%; border-right: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px; margin-top: -2px;">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
-				<div class="rt_left"
-					style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<font style="font-size: 8pt; color: #fff">자그레브</font>
-					<div
-						style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<font style="font-size: 8pt; color: #fff" id="routetitle_11"></font>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff;">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
-				<div class="rt_left"
-					style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
-					<font style="font-size: 8pt; color: #fff">플리트비체</font>
-					<div
-						style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div
-						style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px"
-							style="border-radius: 7px;">
+				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
+					<font style="font-size: 8pt; color: #fff" id="routetitle_12"></font>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
+						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
 					</div>
 				</div>
 				<div style="clear: both"></div>
 				<div style="clear: both"></div>
 				<div style="clear: both"></div>
 			</div>
-
 		</div>
-
-
-
 	</div>
 </section>
-
+<div class="text-center" >
+	<div class="row">
+		<a href="<c:url value='/planner/plan/reservation.it'/>" class="button" style="margin-right: 20px;"> 숙박 시설알아보기 </a>
+		<a href="<c:url value='/'/>" class="button" style="margin-left: 20px;"> 메인 화면으로 </a>
+	</div>
+</div>
 <script>
-
+	var route = $('#route').val();
+	var plancase = $('#plancase').val();
+	console.log('route: '+ route);
+	
+	var routeone = route.split('@'); // 일차 별로 자름
+	console.log(routeone) // 일자별로 자른값임
+	
+	var routeoneplan; // 하루일정수 담기
+	
+	var scheduletitle; // 타이틀 찾기
+	var routememocontent ="";
+	var loctitle =[];
+	for(var i=0; i<routeone.length;i++){
+		routeoneplan = routeone[i].split('#');		
+		//console.log(routeoneplan); // 하루 일정 수		
+		for(var k=1; k<routeoneplan.length; k++){			
+			//console.log([k]+"dma. : "+routeoneplan[k]);
+			scheduletitle = routeoneplan[k].split(':');			
+			console.log('scheduletitle: '+ scheduletitle);
+			for(var j=1; j<scheduletitle.length; j++){
+				console.log([j]+'!!?: '+scheduletitle[j]);
+			}
+		loctitle.push(scheduletitle[3]);		
+		}		
+	}
+	console.log("loctitle: "+loctitle);
+	for(var i=0; i <=plancase; i++){
+		$('#routetitle_'+(i+1)).text(loctitle[i])
+	}
 </script>
