@@ -359,7 +359,7 @@
    /* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 	var infowindowarr =[];
 	function planplusActionplus(index){
-		if(bookmarkmarker != null || bookmarkmarker != undefined){
+		if(bookmarkmarker != null || bookmarkmarker != undefined){ //즐겨찾기 마커 제거
 			bookmarkmarker.setMap(null);
 		}
 		console.log("planplusActionplus() : 이상무");      

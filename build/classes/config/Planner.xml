@@ -19,8 +19,8 @@
  		<selectKey order="BEFORE" resultType="int" keyProperty="planner_id">
 			select SEQ_planner_planner_id.nextval FROM DUAL
 		</selectKey>
- 		insert into planner(planner_id, id, route, days, depart, areacode, postdate, tourtype) 
- 		values(#{planner_id}, #{id}, #{route}, #{days}, #{depart}, #{areacode}, sysdate, #{tourtype})
+ 		insert into planner(planner_id, id, route, days, depart, areacode, postdate, tourtype, title) 
+ 		values(#{planner_id}, #{id}, #{route}, #{days}, #{depart}, #{areacode}, sysdate, #{tourtype}, #{reviewtitle})
  	</insert>
  	
  	<!-- review 테이블 저장 -->

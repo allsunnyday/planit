@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <style>
-
 #mypage { display: inline-block; }
 #MY-edit { display: inline-block; float: right; }
 #MY-edit-button { background-colorl:whith; border: 1.5px #aeaeae solid; color: rgb(53, 181, 157); align: right;}
@@ -23,7 +22,7 @@
 #MY-first-informtable td:last-child  { font-weight: lighter; font-size: 1.0em; color: white; text-align:  right;}
 #MY-first-2-Like { margin-top: 20px; }
 #ulLike li:nth-child(n + 2) { padding-top: 5px; font-weight: lighter; font-size: 1.2em;; color: rgb(109, 213, 193); text-indent: 10px;
-   display: inline-block; }
+	display: inline-block; }
 #MY-Second, #MY-Third, #MY-Forth { padding-top: 10px; border-top: 2px #aeaeae solid; margin-bottom: 130px; }
 #MY-First-content div, #MY-Second-content div, #Third-content div, #MY-Forth-content div { height: 170px; }
 #MY-First-name,#MY-Second-name, #MY-Third-name,#MY-Forth-name{ display:inline-block; }
@@ -47,20 +46,8 @@
           <li><a href="index.html">My Page</a></li>
           <li>${id }</li>
         </ul>
-        <h2>MY Page Home </h2>
-        
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <!-- search -->
-        <div class="search-bar">
-          <form action="" method="get">
-            <fieldset>
-              <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
-              <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
-            </fieldset>
-          </form>
-        </div>
-        <!-- / end div .search-bar -->
+        <h2>MY Page Home</h2>        
+      </div>      
       </div>
     </div>
   </section>
@@ -105,7 +92,7 @@
                    <table id="MY-first-informtable" style="width:90%;">
                    <tr>
                       <td>Planner</td>
-                      <td>00</td>
+                      <td>${plannerCount}</td>
                    </tr>
                    <tr>
                    <td>Review</td>
@@ -113,11 +100,11 @@
                    </tr>
                    <tr>
                       <td>Like</td>
-                      <td>00</td>
+                      <td>${likedCount}</td>
                    </tr>
                    <tr>
                       <td>Star Point</td>
-                      <td>0000</td>
+                      <td>${sessionScope.starcount}</td>
                   <!--  </tr>
                 	<tr style="border-top:1px white dashed;">
                 	<td colspan="2"> 선호사항</td>
@@ -172,6 +159,7 @@
                 회원정보수정
                 <span class="caret"></span>
               </button>
+
               <ul id="myedit"class="dropdown-menu" role="menu" aria-labelledby="MY-edit-button" id="myedit">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditProfile.it' />">프로필 수정</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditPassword.it' />">비밀번호 변경</a></li>
@@ -192,7 +180,7 @@
          <div class="MY-More-Button">
              <a class="btn btn-link" href="<c:url value='/planit/mypage/detail/Planner.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a>
             </div>
-         <div id="First-line" style="height:300px;">
+         <div id="First-line" style="height:200px;">
             <div id="MY-First-content" class="col-md-12">
    <!-- **********************************
       최신 플래너 요약보기/마우스 오버 추가
@@ -208,12 +196,13 @@
 	         				<c:forEach var="list" items="${homePlannerList}" varStatus="loop">
 		                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
 		                       <div class="he-wrap tpl6 market-item">
-		                     	<div  style="border:1px grey solid;width:208px; height:170px; text-align: center"><h2>서울</h2></div>
+		                     	<div  style=" text-align: center;margin-top: 40%;"><h4>${list.TITLE}</h4></div>
+		                       <img src="<c:url value='/Upload/Planner/${list.random_image}'/>" alt="" >
 		                         <div class="he-view">
 		                           <div class="bg a0" data-animate="fadeIn">
 		                             <h3 class="a1" data-animate="fadeInDown">${list.POSTDATE}</h3>
-		                             <a data-rel="prettyPhoto" href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-		                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+		                             <a data-rel="prettyPhoto" href="<c:url value='/review/myreview/GoWrite.it?planner_id=${review.planner_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+		                             
 		                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
 		                               <!-- <a href="gallery-portfolio.html#">Item Category</a> -->
 		                             </div>
@@ -231,7 +220,6 @@
 	                  
 	                   <!-- portfolio -->
 	                    </div> 
-                   <!-- portfolio -->
                     </div> 
          
                
@@ -276,7 +264,7 @@
 	                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
 	                       </c:if>
 	                       <c:if test="${not result }">
-							<img src="<c:url value='/Upload/Review/${list.firstimage}'/>" style="height:230px" alt="">
+							<img src="<c:url value='/Upload/Review/${list.firstimage}'/>" style="height:170px" alt="">
 	                       </c:if>
 	                         <div class="he-view">
 	                           <div class="bg a0" data-animate="fadeIn">
@@ -311,12 +299,6 @@
 
 
       </div>
-      <!-- ---------------------- -->
-      <!--       end Second        -->
-      <!-- ---------------------- -->
-      <!-- ------------------------- -->
-      <!--        start Third      -->
-      <!-- ------------------------- -->
       <div class="row" id="MY-Third">
          <!--  내가 작성한 플래너 들어갈 div -->
          <div id="MY-Third-name">My Liked</div>
@@ -390,6 +372,7 @@
 								<td>여행지</td>
 								<td class="text-left">
 								<a style="color: rgb(110,112,118)"href="<c:url value='/planit/search/list/TourView.it?contentid=${list.CONTENTID}'/> "  >${list.TITLE }</a>
+
 								</td>
 								<!-- Modal -->
 								<td>${list.CONTENTID}</td>

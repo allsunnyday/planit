@@ -49,6 +49,9 @@ public class CommonController {
    @Resource(name="searchListService")
    private SearchListService searchListService;
 	
+   
+   
+   
 	/* 서비스 주입 */
 	   @Resource(name = "memberService")
 	   private MemberService memberService;
@@ -334,5 +337,18 @@ public class CommonController {
 		   }
 		   return "fail";
 	   }
+	   
+	   
+	   //=========================== main top쿼리로 베스트 아이템 얻기 ================================//
+	   @ResponseBody
+	   @RequestMapping(value="/Planit/Play/Main.it",produces = "text/plain; charset=UTF-8")
+	   public String getBestItemInPlanit()throws Exception{
+		   //  top쿼리를 이용하여 
+		   // 관광정보를 베스트 3
+		   // 리뷰 베스트 5
+		   // 플래너 최근 작성된 플래너 
+		   return "";
+	   }
+	   
 	
 }

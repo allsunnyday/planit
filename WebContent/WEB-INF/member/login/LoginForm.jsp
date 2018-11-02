@@ -60,16 +60,19 @@
 			                     </label>
 			                  </div>
 			               </div> -->
-			               <div class="form-group">
-			               <div class="row">
-			                  <button type="submit" class="button" style="margin-top: 10px;">Sign in</button><!-- <div id="naver_id_login" style="text-align:center"> -->
-			                  <a href="<c:url value='${url}'/>"><img style="width: 16%; margin-top: -20px" src="<c:url value='/images/member/Log in with NAVER_Short_Green.PNG'/>"/></a>
-			                  </div>
-			                  </div>
-			                  
-						
-			              
-			            </form>
+							<div class="form-group" >
+								<div class="row" style="display: inline;">
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<button type="submit" class="button" style=" display: inline-block; width:90px; height: 34px; float: right;">Sign in</button>
+										<!-- <div id="naver_id_login" style="text-align:center"> -->
+									</div>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<a href="<c:url value='${url}'/>" >
+											<img style="width: 90px;" src="<c:url value='/images/member/Log in with NAVER_Short_Green.PNG'/>" /></a>
+									</div>
+								</div>
+							</div>
+						</form>
 			            
 		              </div>
 	                <!-- 일반회원 가입-->

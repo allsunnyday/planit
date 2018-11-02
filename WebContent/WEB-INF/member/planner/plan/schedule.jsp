@@ -11,7 +11,7 @@
 	#plantable {
 		text-align: center;
 	}
-	.footer {position:none; bottom:0; width:100%;}
+	.footer {position:fixed; bottom:0; width:100%;}
 </style>
 
 <!-- 달력 부트 스트랩 css 적용 시작  -->
@@ -92,8 +92,8 @@
 	            <hr/>	           
 	        </div>
 			<hr/>			
-			<div class="col-md-6 col-sm-6 col-xs-12" style="overflow: auto; float: center; height: 600px;">			
-				<form method="post" action="#" id="plansave" style="height: 500px;">
+			<div class="col-md-6 col-sm-6 col-xs-12">			
+				<form method="post" action="#" id="plansave">
 					<div class="schedulehiddendata">
 						<input type="hidden" id="days" name="days" value="${days }"> <!-- 총 여행일수 저장 -->
 						<input type="hidden" id="depart" name="depart" value="${depart }"> <!-- 여행 출발일자 -->
@@ -108,22 +108,25 @@
 							<input type="text" class="form-control" id="reviewtitle" name="reviewtitle" placeholder="여행기 제목을 입력해주세요" style="font-size: 1em; width: 360px;display: inline-block; float: right;">
 							<h4 class="title" style="margin-bottom: -40px;"> (<span class="routecount">${plancase }</span>)개 일정 </h4>
 							<button type="submit" id="selectplanbtn" name="selectplanbtn" class="btn btn-info" style="float: right;"> 저 장 </button>
-							<ul class="comment-list" >
-								<!-- <li>
-									<article class="comment">
-										<div class="comment-content">
-											<h4 class="comment-author" > 한강 <small class="comment-meta"></small>
-												<span class="comment-reply">
-													<a href="#" class="comment-reply dmbutton2 small">일정 작성</a>
-												</span>												
-											</h4>
-											<input type="text" class="form-control" id="todo" name="todo" placeholder="일정명을 입력해주세요" style="font-size: 1em;">
-											<textarea rows="2" class="form-control" id="todomemo" name="todomemo" placeholder="일정내용을 입력해주세요"></textarea>
-										</div>
-									</article>
-								</li> -->
-							</ul> <!-- End .comment LIst-->
-						</div> <!-- end col-lg 8 -->
+							<div class="" style="overflow: auto; float: center; height: 600px; width: 100%">
+								<ul class="comment-list" >
+									<!-- 내부에 추가될 div의 양식 -->
+									<!-- <li>
+										<article class="comment">
+											<div class="comment-content">
+												<h4 class="comment-author" > 한강 <small class="comment-meta"></small>
+													<span class="comment-reply">
+														<a href="#" class="comment-reply dmbutton2 small">일정 작성</a>
+													</span>												
+												</h4>
+												<input type="text" class="form-control" id="todo" name="todo" placeholder="일정명을 입력해주세요" style="font-size: 1em;">
+												<textarea rows="2" class="form-control" id="todomemo" name="todomemo" placeholder="일정내용을 입력해주세요"></textarea>
+											</div>
+										</article>
+									</li> -->
+								</ul>
+							</div>
+						</div>
 					</div>
 					<!-- <div class="col-sm-12 col-md-12 col-sc-12 text-center">
 						<button type="submit" id="selectplanbtn" name="selectplanbtn" class="btn btn-info"> 저 장 </button>
@@ -137,6 +140,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+	/* ************ 여행 상세 일정 및 일정명 등록 ************* */
 	var plancase = $('#plancase').val();
 	console.log(plancase)/* 총  여행 일정 개수*/	
 	
@@ -186,7 +190,8 @@
 		var content = '<input type="hidden" name="route" id="route" value="'+route+'">';
 		$('#route').val(route);
 		$('.schedulehiddendata').append(content);		
-		$('#plansave').attr("action","<c:url value='/planner/plan/reservation.it'/>");
+		$('#plansave').attr("action","<c:url value='/planner/plan/routeResuleview.it'/>");
 	});
-	
+	/* ************ 여행 상세 일정 및 일정명 등록 ************* */
+	/* ************************** */
 </script>

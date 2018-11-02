@@ -171,5 +171,4 @@ public class PartnerServiceImpl implements PartnerService{
 		return dao.partnerEventRequestList(map);
 	}
 
-
 }

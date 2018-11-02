@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<h4>일반 사용자</h4>
-					<p>쉽고 간편하게 가입하는데 이 말은 나중에 바꿀거임 .</p>
+					<p>수 많은 여행지 정보와 나만의 플래너&리뷰를 쉽고 간편한 회원가입으로 즐겨보세요!</p>
 				</div>
 			</div>
 			<!-- end dmbox -->
@@ -51,3 +51,6 @@
 		</div>
 	</div>
 </section>
+ <style>
+    .footer {position:fixed; bottom:0; width:100%;}
+ </style>

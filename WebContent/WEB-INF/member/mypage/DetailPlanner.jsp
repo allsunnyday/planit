@@ -169,21 +169,9 @@ display: inline-block;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
           <li><a href="index.html">Home</a></li>
-          <li>사용자 아이디</li>
+          <li>${id }</li>
         </ul>
         <h2>Planner</h2>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <!-- search -->
-        <div class="search-bar">
-          <form action="" method="get">
-            <fieldset>
-              <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
-              <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
-            </fieldset>
-          </form>
-        </div>
-        <!-- / end div .search-bar -->
       </div>
     </div>
   </section>
@@ -290,11 +278,11 @@ display: inline-block;
 				<!-- <button type="submit" class="btn btn-default" id="MY-edit-button">회원정보수정</button> -->
 			<%-- 	<a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
 			<div class="dropdown">
-				  <button class="btn btn-link" type="button" id="MY-Planner-gotomypage" >
-				  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">
+				  <!-- <button  type="button" id="MY-Planner-gotomypage" > -->
+				  <a class="btn btn-link" href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">
 				   돌아가기
 				    <span class="glyphicon glyphicon-log-out"></a></span>
-				  </button>
+				  <!-- </button> -->
 				  
 				  
 				</div><!-- dropdown -->
@@ -368,27 +356,11 @@ display: inline-block;
 					<!-- end container -->
 
 		</div>
-		<!-- ---------------------- -->
-		<!--       end First        -->
-		<!-- ---------------------- -->
-		<!-- ------------------------- -->
-		<!--        start Second       -->
-		<!-- ------------------------- -->
-	<!--*************************************
-	페이징 들어갈 영역
-*****************************************  -->
-	
-	
-		<!-- ---------------------- -->
-		<!--       end Second        -->
-		<!-- ---------------------- -->
 		
 
 	</div>
-	<!--  end mypage-content -->
 
-</div>
-<!--  end container --> 
+</div> 
   `
 </div>
 </section>

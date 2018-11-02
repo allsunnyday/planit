@@ -9,9 +9,11 @@
     .item .text{
     position:absolute;
     top:50px;
-    margin-left:50px;
+    /* margin-left:50px; */
     color:#FFF;
     }
+
+    .text{margin-left: 230px;}
     
     .tourlist-overlay .text img{
        width:460px;
@@ -199,7 +201,7 @@
       <div class="general-title text-center">
         <h3>제일 궁금한게~?</h3>
         <p>원하는대로 골라보기</p>
-        <hr>
+        <hr >
       </div>
 
       <div class="col-lg-3 col-md-3 col-sm-12">

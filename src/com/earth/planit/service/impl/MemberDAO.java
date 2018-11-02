@@ -15,7 +15,6 @@ import com.earth.planit.service.ReviewDTO;
 
 @Repository
 public class MemberDAO implements MemberService {
-
 	/*root-context에 등록한 sqlsessiontemplate객체를 통해 데이터 베이스 작업을 한다.
 	 * 
 	 * */
@@ -141,5 +140,24 @@ public class MemberDAO implements MemberService {
 	public boolean isNaverLogin(Map map) {
 		int count=template.selectOne("NaverIsLogin",map);
 		return count==1?true:false;
+	}
+	@Override
+	public int starTourCount(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("MemberTourStarCount",map);
+	}
+	@Override
+	public int starReviewCount(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("MemberReviewStarCount",map);
+	}
+	@Override
+	public int starPlannerCount(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("MemberPlannerStarCount",map);
+	}
+	@Override
+	public int getColumnCount(Map map) {
+		return template.selectOne("MemberSelectValueCount", map);
 	}
 }

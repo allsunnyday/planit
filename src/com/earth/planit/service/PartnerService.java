@@ -19,7 +19,7 @@ public interface PartnerService {
 
 	//[Room 정보 등록]
 	int roomResist(Map map);
-	
+
 	//[RoomView]
 	PartnerRoomDTO partnerRoomView(Map map);
 	//[RoomList]

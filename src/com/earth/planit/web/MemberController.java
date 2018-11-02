@@ -2,6 +2,7 @@ package com.earth.planit.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ import com.earth.planit.service.MemberDTO;
 import com.earth.planit.service.MemberService;
 import com.earth.planit.service.NaverLoginBO;
 import com.earth.planit.service.ReviewDTO;
+import com.earth.planit.service.ReviewService;
 import com.earth.planit.service.impl.FileUtils;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
@@ -46,6 +48,8 @@ public class MemberController {
    /* 서비스 주입 */
    @Resource(name = "memberService")
    private MemberService service;
+   @Resource(name = "reviewService")
+	private ReviewService reviewService;
 
    @RequestMapping("/planit/login/Login.it")
    public String gotoLogin(HttpSession session,Model model) throws Exception {
@@ -97,16 +101,30 @@ public class MemberController {
       List<Map> memberLiked_Planner=service.memberLikedPlanner(map);
       //[홈에 뿌려줄 Planner리스트(5)]
       List<Map> homePlannerList=service.homePlannerList(map);
-         
+      for(Map planner: homePlannerList) {
+    	  int random = (int) (Math.random()*3); //0-3
+    	  planner.put("random_image", "planner_default_"+random+".png");
+      }
+      // 각 아이템 체크 
+      map.put("table", "planner");
+      int plannerCount = service.getColumnCount(map);
+      map.put("table", "review");
+      int reviewCount = service.getColumnCount(map);
+      map.put("table", "liked_tour");
+      int likedCount = service.getColumnCount(map);
+      
+      System.out.println("카운트수 체크! "+plannerCount+","+reviewCount+","+likedCount);
       model.addAttribute("homePlannerList", homePlannerList);
       model.addAttribute("memberLiked_Planner", memberLiked_Planner);
       model.addAttribute("memberLiked_Review", memberLiked_Review);
       model.addAttribute("memberLiked_Tour", memberLiked_Tour);
       model.addAttribute("homeReviewList", homeReviewList);
       model.addAttribute("homeQnAList", homeQnAList);
-      
+      model.addAttribute("plannerCount",plannerCount);
+      model.addAttribute("likedCount",likedCount);
       return "mypage/MyPageHome.theme";
    }
+
 
 
 
@@ -167,6 +185,7 @@ public class MemberController {
 
 
 
+
       return "mypage/MyPageEditPassword.theme";
    }
 
@@ -180,7 +199,7 @@ public class MemberController {
    @RequestMapping("/planit/mypage/Preference.it")
    public String gotoPreference() throws Exception {
 
-      return "mypage/UserPreference.theme";
+      return "mypage/UserPreference2.theme";
    }
 
    @RequestMapping("/planit/mypage/Preference2.it")
@@ -239,6 +258,7 @@ public class MemberController {
 
 
 
+
    @RequestMapping("/planit/mypage/detail/Review.it")
    public String gotoReviewDetail(@RequestParam Map map,HttpSession session,Model model) throws Exception {
       map.put("id", session.getAttribute("id"));
@@ -275,31 +295,36 @@ public class MemberController {
    /* 로그인 처리 method=RequestMethod.POST로 설정하여 get방식 접근을 막는다. */
    @RequestMapping(value = "/member/login/LoginProcess.it", method = RequestMethod.POST)
    public String loginProcess(@RequestParam Map map, HttpSession session, Model model) throws Exception {
-      // form 하위 데이터가 잘 온것을 확인! key= input태그의 name속성
-      System.out.println("id=" + map.get("id") + " pwd=" + map.get("pwd"));
+	// form 하위 데이터가 잘 온것을 확인! key= input태그의 name속성
+	      System.out.println("id=" + map.get("id") + " pwd=" + map.get("pwd"));
 
-      boolean isLogin = service.isLogin(map);
-      System.out.println(isLogin);
-      System.out.println();
-      if (isLogin) { // 회원일경우
-         // 로그인 처리 - 세션 영역에 저장
-         session.setAttribute("id", map.get("id"));
-         MemberDTO memberRecord = service.memberInfo(map);
-         //[선호사항 세션저장]
-         map.put("id", session.getAttribute("id"));
-         List<MemberDTO> memberPreferList=service.memberPreferList(map);
-         session.setAttribute("memberPreferList", memberPreferList);
-         //이미지 세션에 저장하기
-         System.out.println(memberRecord.getProfile());
-         session.setAttribute("memberRecord", memberRecord);
+	      boolean isLogin = service.isLogin(map);
+	      System.out.println(isLogin);
+	      System.out.println();
+	      if (isLogin) { // 회원일경우
+	         // 로그인 처리 - 세션 영역에 저장
+	         session.setAttribute("id", map.get("id"));
+	         MemberDTO memberRecord = service.memberInfo(map);
+	         //[선호사항 세션저장]
+	         map.put("id", session.getAttribute("id"));
+	         List<MemberDTO> memberPreferList=service.memberPreferList(map);
+	         session.setAttribute("memberPreferList", memberPreferList);
+	         //이미지 세션에 저장하기
+	         System.out.println(memberRecord.getProfile());
+	         session.setAttribute("memberRecord", memberRecord);
+	         
+	         int starcount=(service.starTourCount(map))+(service.starReviewCount(map))+(service.starPlannerCount(map));
+	         System.out.println(map.get("id")+"가 좋아요한 갯수:"+starcount);
+	         session.setAttribute("starcount", starcount);
+	         
+	         
+	         return "redirect:/";
+	      } else { // 비회원일경우
+	         model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
+	      }
 
+	      return "forward:/planit/login/Login.it";
 
-         return "redirect:/";
-      } else { // 비회원일경우
-         model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
-      }
-
-      return "forward:/planit/login/Login.it";
 
    }
 
@@ -309,8 +334,6 @@ public class MemberController {
       session.invalidate();
 
       return "redirect:/";
-
-
    }
    // [회원가입 처리]
    @RequestMapping(value = "/member/login/UserJoinFormProcess.it", method = RequestMethod.POST)
@@ -357,7 +380,6 @@ public class MemberController {
       return "redirect:/";
    }
 
-
    @RequestMapping(value = "/planit/member/idcheck.it", method = RequestMethod.POST)
    @ResponseBody
    public String idcheck(@RequestBody String id) {
@@ -370,6 +392,13 @@ public class MemberController {
       return String.valueOf(count);
    }
 
+	//++++++++++++++++++++++++[네이버 아이디로 로그인]+++++++++++++++++++++++++
+		@Resource(name = "naverLoginBO")
+		private NaverLoginBO naverLoginBO;
+		
+		private String apiResult = null;
+
+
    //왜 못찾니..
 		@RequestMapping("/member/qna/view.it")
 		public String gotoQnAView(@RequestParam Map map,Model model) throws Exception {
@@ -381,12 +410,7 @@ public class MemberController {
 			return "mypage/QnAView.theme";
 		}
 	
-	//++++++++++++++++++++++++[네이버 아이디로 로그인]+++++++++++++++++++++++++
-		@Resource(name = "naverLoginBO")
-		private NaverLoginBO naverLoginBO;
-		
-		private String apiResult = null;
-
+	
 	   
 		// 네이버 로그인 성공시 callback호출 메소드
 		@RequestMapping(value = "/planit/naver/callback.it", method = { RequestMethod.GET, RequestMethod.POST })
@@ -482,8 +506,17 @@ public class MemberController {
 	        
 	       
 	    }
-	
 
+		
+		//planner에서 링크 걸기
+		@RequestMapping(value="/review/myreview/GoWrite.it")
+		public String goPlannerFromMyPage(@RequestParam Map map)throws Exception{
+			System.out.println(map.get("planner_id")+"를 조회합니다.");
+			// review아이디를 가지고 온다. 
+			//String review_id = reviewService.get
+			return "";
+		}
 
 		  
+
 }
