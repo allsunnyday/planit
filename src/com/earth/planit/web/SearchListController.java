@@ -182,6 +182,7 @@ public class SearchListController {
 			@RequestParam(required=false,defaultValue="1") int nowPage)throws Exception{
 		
 		
+		
 		if(map.get("areacode")!=null)
 			System.out.println(map.get("areacode"));
 		if(map.get("searchColumn")!= null) {

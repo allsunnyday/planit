@@ -36,7 +36,7 @@
                 </li>
                 <li><a href="#">어디서 잘까</a>
                   <ul class="dropdown">
-                    <li><a href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=36'/>">숙박업소 정보</a></li>
+                    <li><a href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32'/>">숙박업소 정보</a></li>
                     <%-- <li><a href="<c:url value='/tourinfo/tdview/SleepList.it?sleep=sleeprank'/>">숙박업소 랭킹!</a></li> --%>
                   </ul>
                 </li>
