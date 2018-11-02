@@ -939,7 +939,7 @@
 				if(i==0){
 					routeCase += $('.planroute_'+i+' #dayselect').val();
 					routeCase += "#"+$('.planroute_'+i+' .areacode').val()+":"
-					+$('.planroute_'+i+' .sigungucode').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
+					+$('.planroute_'+i+' .contenttype').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
 					+$('.planroute_'+i+' .contentTitle').text()+":todo_0:todomemo_0:";
 					if($('.planroute_'+i+' .contenttype').val()==32){routeCase+='1';}
 					else{routeCase+='0';}					
@@ -947,7 +947,7 @@
 				}
 				else if($('.planroute_'+(i-1)+' #dayselect').val() == $('.planroute_'+i+' #dayselect').val()){					
 					routeCase += "#"+$('.planroute_'+i+' .areacode').val()+":"
-					+$('.planroute_'+i+' .sigungucode').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
+					+$('.planroute_'+i+' .contenttype').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
 					+$('.planroute_'+i+' .contentTitle').text()+":todo_"+i+":todomemo_"+i+":";
 					if($('.planroute_'+i+' .contenttype').val()==32){ routeCase+='1'; }
 					else{ routeCase+='0'; }					
@@ -955,7 +955,7 @@
 				}
 				else if($('.planroute_'+(i-1)+' #dayselect').val() != $('.planroute_'+i+' #dayselect').val()){
 					routeCase +="@"+ $('.planroute_'+i+' #dayselect').val()+"#"+$('.planroute_'+i+' .areacode').val()+":"
-					+$('.planroute_'+i+' .sigungucode').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
+					+$('.planroute_'+i+' .contenttype').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
 					+$('.planroute_'+i+' .contentTitle').text()+":todo_"+i+":todomemo_"+i+":";
 					if($('.planroute_'+i+' .contenttype').val()==32){ routeCase+='1'; }
 					else{routeCase+='0';}						

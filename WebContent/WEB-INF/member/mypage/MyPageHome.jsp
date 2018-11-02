@@ -92,7 +92,7 @@
                    <table id="MY-first-informtable" style="width:90%;">
                    <tr>
                       <td>Planner</td>
-                      <td>00</td>
+                      <td>${plannerCount}</td>
                    </tr>
                    <tr>
                    <td>Review</td>
@@ -100,11 +100,11 @@
                    </tr>
                    <tr>
                       <td>Like</td>
-                      <td>00</td>
+                      <td>${likedCount}</td>
                    </tr>
                    <tr>
                       <td>Star Point</td>
-                      <td>0000</td>
+                      <td>${sessionScope.starcount}</td>
                   <!--  </tr>
                 	<tr style="border-top:1px white dashed;">
                 	<td colspan="2"> 선호사항</td>
@@ -180,7 +180,7 @@
          <div class="MY-More-Button">
              <a class="btn btn-link" href="<c:url value='/planit/mypage/detail/Planner.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a>
             </div>
-         <div id="First-line" style="height:300px;">
+         <div id="First-line" style="height:200px;">
             <div id="MY-First-content" class="col-md-12">
    <!-- **********************************
       최신 플래너 요약보기/마우스 오버 추가
@@ -196,12 +196,13 @@
 	         				<c:forEach var="list" items="${homePlannerList}" varStatus="loop">
 		                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
 		                       <div class="he-wrap tpl6 market-item">
-		                     	<div  style="border:1px grey solid;width:208px; height:170px; text-align: center"><h2>서울</h2></div>
+		                     	<div  style=" text-align: center;margin-top: 40%;"><h4>${list.TITLE}</h4></div>
+		                       <img src="<c:url value='/Upload/Planner/${list.random_image}'/>" alt="" >
 		                         <div class="he-view">
 		                           <div class="bg a0" data-animate="fadeIn">
 		                             <h3 class="a1" data-animate="fadeInDown">${list.POSTDATE}</h3>
-		                             <a data-rel="prettyPhoto" href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-		                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+		                             <a data-rel="prettyPhoto" href="<c:url value='/review/myreview/GoWrite.it?planner_id=${review.planner_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+		                             
 		                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
 		                               <!-- <a href="gallery-portfolio.html#">Item Category</a> -->
 		                             </div>
@@ -263,7 +264,7 @@
 	                         <img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
 	                       </c:if>
 	                       <c:if test="${not result }">
-							<img src="<c:url value='/Upload/Review/${list.firstimage}'/>" style="height:230px" alt="">
+							<img src="<c:url value='/Upload/Review/${list.firstimage}'/>" style="height:170px" alt="">
 	                       </c:if>
 	                         <div class="he-view">
 	                           <div class="bg a0" data-animate="fadeIn">

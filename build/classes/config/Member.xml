@@ -17,7 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 회원가입처리 -->
 
    <insert id="MemberIsJoin" parameterType="MemberDTO">
-      INSERT INTO member(id, email,pwd,verified,regidate,gender,age,star,name) values(#{id},#{email},#{pwd},'Y',SYSDATE,#{gender},#{age},0,#{name})
+      INSERT INTO member(id, email,pwd,verified,regidate,gender,age,star,name,profile) 
+      values(#{id},#{email},#{pwd},'Y',SYSDATE,#{gender},#{age},0,#{name}, 'default-member-profile.png')
    </insert>
 
    <select id="MemberIsDuplicate" parameterType="java.util.Map" resultType="int">
@@ -179,5 +180,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="NaverIsLogin" parameterType="java.util.Map" resultType="int">
       SELECT COUNT(*) FROM member WHERE id=#{id}
 
+   </select>
+   <select id="MemberQnAView" parameterType="java.util.Map" resultType="java.util.Map">
+   select * from u_ask_planit
+	where id=#{id} and ask_no=#{ask_no}
+   </select>
+   <select id="MemberTourStarCount" parameterType="java.util.Map" resultType="int">
+   select count(*) from liked_tour where id=#{id}
+   </select>
+   <select id="MemberReviewStarCount" parameterType="java.util.Map" resultType="int">
+   select count(*) from liked_review where id=#{id}
+   </select>
+   <select id="MemberPlannerStarCount" parameterType="java.util.Map" resultType="int">
+   select count(*) from liked_planner where id=#{id}
+   </select>
+
+
+
+   <select id="MemberSelectValueCount" parameterType="java.util.Map" resultType="int" >
+   
+   	select count(*) from ${table} t 
+   	<if test="table.equals('review')">
+   		inner join planner p on t.planner_id=t.planner_id
+   		where p.id=#{id}
+   	</if>
+   <if test="!table.equals('review')">
+   		where t.id=#{id}
+   </if>
    </select>
 </mapper>
