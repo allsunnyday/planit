@@ -160,11 +160,9 @@ public class MemberController {
 			// 3]업로드 처리
 			profile.transferTo(file);
 			map.put("profile", newFilename.toString().trim());
+			
 		}
-		else {
-			System.out.println("이미지 값을 이미 가지고 있습니다.");
-			map.put("profile", map.get("isExistProfile"));
-		}
+	
 		
 		
 		
@@ -177,6 +175,13 @@ public class MemberController {
 		
 		int affected = service.updateProfile(map);
 		System.out.println(affected == 1 ? "입력성공" : "입력실패");
+		if(affected==1) {
+			MemberDTO memberRecord = service.memberInfo(map);
+	         //[선호사항 세션저장]
+	         //이미지 세션에 저장하기
+	         System.out.println("memberRecord.getProfile()"+memberRecord.getProfile());
+	         session.setAttribute("memberRecord", memberRecord);
+		}
 		return "forward:/planit/mypage/MyPageHome.it";
 	}
 
