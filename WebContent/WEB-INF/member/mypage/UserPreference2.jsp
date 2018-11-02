@@ -37,8 +37,6 @@ h4{
 }
 </style>
 <section class="section1">
-<<<<<<< HEAD
-   <div class="containerrr">
       <div class="container">
          <div>
             <h2>선호도조사<small>나에게 꼭맞는 여행선택하기</small></h2>
@@ -227,7 +225,6 @@ h4{
       
    </section>
       
-=======
 	<div class="containerrr">
 		<div class="container">
 			<div>
