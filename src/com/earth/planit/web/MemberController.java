@@ -110,6 +110,7 @@ public class MemberController {
 
 
 
+
    @RequestMapping("/planit/mypage/MyPageEditProfile.it")
    public String gotoMyPageEditProfile() throws Exception {
 
@@ -164,6 +165,7 @@ public class MemberController {
 
    @RequestMapping("/planit/mypage/MyPageEditPassword.it")
    public String gotoMyPageEditPassword() throws Exception {
+
 
 
 
@@ -239,6 +241,7 @@ public class MemberController {
 
 
 
+
    @RequestMapping("/planit/mypage/detail/Review.it")
    public String gotoReviewDetail(@RequestParam Map map,HttpSession session,Model model) throws Exception {
       map.put("id", session.getAttribute("id"));
@@ -293,7 +296,6 @@ public class MemberController {
          System.out.println(memberRecord.getProfile());
          session.setAttribute("memberRecord", memberRecord);
 
-
          return "redirect:/";
       } else { // 비회원일경우
          model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
@@ -309,8 +311,6 @@ public class MemberController {
       session.invalidate();
 
       return "redirect:/";
-
-
    }
    // [회원가입 처리]
    @RequestMapping(value = "/member/login/UserJoinFormProcess.it", method = RequestMethod.POST)
@@ -357,7 +357,6 @@ public class MemberController {
       return "redirect:/";
    }
 
-
    @RequestMapping(value = "/planit/member/idcheck.it", method = RequestMethod.POST)
    @ResponseBody
    public String idcheck(@RequestBody String id) {
@@ -369,6 +368,13 @@ public class MemberController {
 
       return String.valueOf(count);
    }
+
+	//++++++++++++++++++++++++[네이버 아이디로 로그인]+++++++++++++++++++++++++
+		@Resource(name = "naverLoginBO")
+		private NaverLoginBO naverLoginBO;
+		
+		private String apiResult = null;
+
 
    //왜 못찾니..
 		@RequestMapping("/member/qna/view.it")
@@ -384,12 +390,7 @@ public class MemberController {
 			return "mypage/QnAView.theme";
 		}
 	
-	//++++++++++++++++++++++++[네이버 아이디로 로그인]+++++++++++++++++++++++++
-		@Resource(name = "naverLoginBO")
-		private NaverLoginBO naverLoginBO;
-		
-		private String apiResult = null;
-
+	
 	   
 		// 네이버 로그인 성공시 callback호출 메소드
 		@RequestMapping(value = "/planit/naver/callback.it", method = { RequestMethod.GET, RequestMethod.POST })
@@ -464,7 +465,4 @@ public class MemberController {
 	       
 	    }
 	
-
-
-		  
 }

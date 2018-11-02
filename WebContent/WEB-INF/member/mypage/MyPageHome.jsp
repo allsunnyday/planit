@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <style>
-
 #mypage { display: inline-block; }
 #MY-edit { display: inline-block; float: right; }
 #MY-edit-button { background-colorl:whith; border: 1.5px #aeaeae solid; color: rgb(53, 181, 157); align: right;}
@@ -23,7 +22,7 @@
 #MY-first-informtable td:last-child  { font-weight: lighter; font-size: 1.0em; color: white; text-align:  right;}
 #MY-first-2-Like { margin-top: 20px; }
 #ulLike li:nth-child(n + 2) { padding-top: 5px; font-weight: lighter; font-size: 1.2em;; color: rgb(109, 213, 193); text-indent: 10px;
-   display: inline-block; }
+	display: inline-block; }
 #MY-Second, #MY-Third, #MY-Forth { padding-top: 10px; border-top: 2px #aeaeae solid; margin-bottom: 130px; }
 #MY-First-content div, #MY-Second-content div, #Third-content div, #MY-Forth-content div { height: 170px; }
 #MY-First-name,#MY-Second-name, #MY-Third-name,#MY-Forth-name{ display:inline-block; }
@@ -47,20 +46,8 @@
           <li><a href="index.html">My Page</a></li>
           <li>${id }</li>
         </ul>
-        <h2>MY Page Home </h2>
-        
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <!-- search -->
-        <div class="search-bar">
-          <form action="" method="get">  
-            <fieldset>
-              <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
-              <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
-            </fieldset>
-          </form>
-        </div>
-        <!-- / end div .search-bar -->
+        <h2>MY Page Home</h2>        
+      </div>      
       </div>
     </div>
   </section>
@@ -172,6 +159,7 @@
                 회원정보수정
                 <span class="caret"></span>
               </button>
+
               <ul id="myedit"class="dropdown-menu" role="menu" aria-labelledby="MY-edit-button" id="myedit">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditProfile.it' />">프로필 수정</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditPassword.it' />">비밀번호 변경</a></li>
@@ -231,7 +219,6 @@
 	                  
 	                   <!-- portfolio -->
 	                    </div> 
-                   <!-- portfolio -->
                     </div> 
          
                
@@ -311,12 +298,6 @@
 
 
       </div>
-      <!-- ---------------------- -->
-      <!--       end Second        -->
-      <!-- ---------------------- -->
-      <!-- ------------------------- -->
-      <!--        start Third      -->
-      <!-- ------------------------- -->
       <div class="row" id="MY-Third">
          <!--  내가 작성한 플래너 들어갈 div -->
          <div id="MY-Third-name">My Liked</div>
@@ -390,6 +371,7 @@
 								<td>여행지</td>
 								<td class="text-left">
 								<a style="color: rgb(110,112,118)"href="<c:url value='/planit/search/list/TourView.it?contentid=${list.CONTENTID}'/> "  >${list.TITLE }</a>
+
 								</td>
 								<!-- Modal -->
 								<td>${list.CONTENTID}</td>

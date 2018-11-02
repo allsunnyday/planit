@@ -193,14 +193,14 @@ public class PlannerController {
 		map.put("id", session.getAttribute("id"));
 		
 		if(map.get("reviewtitle") == null || map.get("reviewtitle") =="") {
-//			String reviewtitle = "user1님의 여행기";
+			//String reviewtitle = "user1님의 여행기";
 			String reviewtitle = map.get("id")+"님의 여행기";
 			map.remove("reviewtitle");
 			map.put("reviewtitle", reviewtitle);
 		}
 //		planner table data 입력
-//		int affected = service.insertPlanner(map);
-//		System.out.println("[1이면 planner입력성공] : "+ affected);
+		int affected = service.insertPlanner(map);
+		System.out.println("[1이면 planner입력성공] : "+ affected);
 		
 		int days = Integer.valueOf((String) map.get("days"));
 		String routedays[] = new String[days];
@@ -213,8 +213,8 @@ public class PlannerController {
 			map.put("series", series);
 			map.put("reviewroute", reviewroute);			
 //			review table data 입력
-//			int reviewaffected = service.insertReview(map);
-//			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);
+			int reviewaffected = service.insertReview(map);
+			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);
 			String[] routedayscase = null;// = new String[][];
 			routedayscase = routedays[i].split("#");
 			for(int k=0; k<routedayscase.length; k++) {
@@ -222,8 +222,8 @@ public class PlannerController {
 				//System.out.println(k + ": " + routedayscase[k]);
 				map.put("route_index", route_index);
 //				review_content table data 입력
-//				int reviewcontentaffected = service.insertReviewContent(map);				
-//				System.out.println("[1이면 reviewcontent  입력성공]: "+ reviewcontentaffected);
+				int reviewcontentaffected = service.insertReviewContent(map);				
+				System.out.println("[1이면 reviewcontent  입력성공]: "+ reviewcontentaffected);
 			}
 		}
 		
@@ -231,7 +231,26 @@ public class PlannerController {
 	}
 	
 	@RequestMapping(value="/planner/plan/routeResuleview.it")
-	public String routeResultview() throws Exception {
+	public String routeResultview(@RequestParam Map map, Model model) throws Exception {
+		System.out.println("route: "+ map.get("route"));
+		
+//		필요한 데이터 전달
+		model.addAttribute("days", map.get("days"));
+		model.addAttribute("reviewtitle", map.get("reviewtitle"));
+		String route = (String) map.get("route");
+		int days = Integer.valueOf((String)map.get("days"));
+		String[] routeone = new String[days];
+		routeone = route.split("@");
+		for(int i=0; i<days; i++) {
+			System.out.println(routeone[i].length());
+			String[] routetwo = null;
+			routetwo = routeone[i].split("#");
+			for(int k=0; k <(routeone[i].length()-1) ; k++) {
+				System.out.println("routetwo: "+routetwo[k]);
+			}
+				
+		}
+		
 		
 		return "planner/after/routeResult.theme";
 	}
