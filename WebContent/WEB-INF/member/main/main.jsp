@@ -136,20 +136,20 @@ Features: 플랜잇의 서비스 요약
 			<div class="col-sm-4 features-box wow fadeInLeft">
 					<div class="features-box-icon">
 						<!-- 그림을 누르면 플래너 페이지로 이동  -->
-						<a href="<c:url value='/Planit/Before/Location.it'/> "><img alt="" src="<c:url value='/images/main/map-folded.png'/> "></a>
+						<a href="<c:url value='/Planit/Before/LocationMain.it'/> "><img alt="" src="<c:url value='/images/main/map-folded.png'/> "></a>
 					</div>
 					<!-- 글씨를 누르면 플래너 페이지로 이동  -->
-						<h3><a href="<c:url value='/Planit/Before/Location.it'/> ">Planner</a></h3>
+						<h3><a href="<c:url value='/Planit/Before/LocationMain.it'/> ">Planner</a></h3>
 						<p>노트 , 엑셀로만 정리하는 시대는 갔다! 이제 여행 계획은 플랜잇으로 쉽고 간편하게 완성하세요</p>
 			</div>
 			<!-- review 링크 걸기 -->
 			<div class="col-sm-4 features-box wow fadeInLeft">
 					<div class=" features-box-icon">
 						<!-- 그림을 누르면 리뷰 페이지(리뷰 리스트)로 이동 -->
-						<a href="<c:url value='/tourinfo/reviewpick/reviewpick.it'/> "><img alt="" src="<c:url value='/images/main/astronaut.png'/> " ></a>
+						<a href="<c:url value='/planit/review/ReviewList.it'/> "><img alt="" src="<c:url value='/images/main/astronaut.png'/> " ></a>
 					</div>
 					<!-- 그림을 누르면 리뷰 페이지(리뷰 리스트)로 이동 -->
-					<h3><a href="<c:url value='/tourinfo/reviewpick/reviewpick.it'/> ">Blog</a></h3>
+					<h3><a href="<c:url value='/planit/review/ReviewList.it'/> ">Blog</a></h3>
 					<p>여행 순간, 순간을 기록하세요. 여행 후에는 자동으로 포보북을 만들 수 있습니다.</p>
 			</div>
 		</div>
@@ -507,5 +507,22 @@ jQuery(window).load(function() {
 		}
 	});
 	
+	// 관광 정보 불러오기  
+	console.log('메인 페이지의 관광정보를 불러오기 시작합니다..');
+	getBestItemInPlanit();
+	
 });
+
+	var getBestItemInPlanit = function(){
+		console.log('getBestItemInPlanit()함수를 시작');
+		$.ajax({
+			url:"<c:url value='/Planit/Play/Main.it'/> ",
+			dataType:'json',
+			type:'post',
+			success:function(data){
+				console.log(data);
+			}
+			
+		});
+	};
 </script>
