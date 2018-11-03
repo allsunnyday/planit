@@ -488,7 +488,6 @@ public class MemberController {
 		        return "mypage/UserPreference2.theme";
 
 		        // 선호도 체크페이지 이동
-
 		    }
 		
 
