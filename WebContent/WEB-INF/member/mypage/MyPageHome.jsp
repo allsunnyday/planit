@@ -34,6 +34,8 @@
 #myedit li{background: #fff}
 #myedit li:hover{background: #3498DB }
 #myedit li:focus{background: #3498DB }
+
+
 </style>
 
 <!-- *******************************************
@@ -44,172 +46,70 @@
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
           <li><a href="index.html">My Page</a></li>
-          <li>${id }</li>
+          <li>${memberRecord.id}</li>
         </ul>
         <h2>MY Page Home</h2>        
       </div>      
-      </div>
     </div>
-  </section>
+</section>
   <!-- end post-wrapper-top -->
-<!--*************************************
-   왼쪽에 달린 프로필 사진 및 기타등등 
-*****************************************  -->
-  <section class="section1">
-        <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
-        <div>
-          <div class="teammembers">
-            <div class="he-wrap tpl2">
-            	<c:if test="${not empty memberRecord.profile}" var="result">
-            	<img src="<c:url value='/Upload/Member/${memberRecord.profile}'/>" alt="프로필 사진">
-            	</c:if>
-            	<c:if test="${not result}">
-              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
-              </c:if>
-              <div class="he-view">
-            
-              </div>
-            </div>
-            <!-- he wrap -->
-            <div class="teammembers-meta">
-              <h4>${sessionScope.id}</h4>
-            </div>
-            <div id="MY-first-1-self-detail">
-                     <p>
-                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
-                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
-                           님의&nbsp자기소개입니다</span>
-                     <p>${memberRecord.self}
-                     </p>
-
-
-         </div>
-
-            
-            <div class="teamskills" >
-            <div id="MY-First-TotalContent" style="width:90%;">
-                   <table id="MY-first-informtable" style="width:90%;">
-                   <tr>
-                      <td>Planner</td>
-                      <td>${plannerCount}</td>
-                   </tr>
-                   <tr>
-                   <td>Review</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                      <td>Like</td>
-                      <td>${likedCount}</td>
-                   </tr>
-                   <tr>
-                      <td>Star Point</td>
-
-                      <td>${sessionScope.starcount}</td>
-<!--  </tr>
-                	<tr style="border-top:1px white dashed;">
-                	<td colspan="2"> 선호사항</td>
-                	</tr>
-                       -->
-                   </table>
-                
-                </div>
-              
-            </div>
-            <!-- ***********************8
-            선호도 조사 들어갈 부분
-            *****************************8 -->
-            <div id="MY-First-Preference" style="width:90%;" >
-            	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
-            		<tr>
-            		<c:if test="${empty sessionScope.memberPreferList }" var="result">
-            			<td>플래닛을 즐겨주세요</td>
-            		</c:if>	
-            		<c:if test="${not result }">
-            			<c:forEach var="list" items="${sessionScope.memberPreferList}" varStatus="loop">
-            				<td>${list.kor }</td><!-- 왜 안나오지 -->
-            			
-            			</c:forEach>
-            		</c:if>
-            		</tr>
-            	
-            	</table>
-            
-            </div>
-          </div>
-          <!-- end teammembers -->
-        </div>
-</div>
-<!-- ************************************
-   마이페이지 홈 내용
-   -수정폼이동,플래너 및 리뷰 요약, 기타 등등
-***************************************** -->
+<!--*****************************왼쪽에 달린 프로필 사진 및 기타등등*************************************  -->
+<section class="section1">
+	<jsp:include page="MyPageLeftSubMenu.jsp" flush="false" />
+<!-- ************************************ 마이페이지 홈 내용 -수정폼이동,플래너 및 리뷰 요약, 기타 등등 ***************************************** -->
 <div class="container-fluid ">
-      <div class="content col-md-7">
-   <div class="mypage-content">
-      <div class="mypagemenu">
-         <div id="mypage">
-         <!--    <h2>MY PAGE</h2> -->
-         </div>
-         <div id="MY-edit">
-            <!-- 회원정보 수정폼으로 이동 -->
-            <!-- <button type="submit" class="btn btn-default" id="MY-edit-button">회원정보수정</button> -->
-         <%--    <a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
-         <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="MY-edit-button" data-toggle="dropdown" aria-expanded="true">
-                회원정보수정
-                <span class="caret"></span>
-              </button>
-
-              <ul id="myedit"class="dropdown-menu" role="menu" aria-labelledby="MY-edit-button" id="myedit">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditProfile.it' />">프로필 수정</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditPassword.it' />">비밀번호 변경</a></li>
-                <%-- <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPagePassCheck.it' />">비밀번호 확인 페이지(임시)</a></li> --%>
-                
-              </ul>
-              
-            </div><!-- dropdown -->
-         </div><!-- MY-edit -->
-      </div><!-- mypagemenu -->
-      
-      <!-- ------------------------- -->
-      <!--        start First       -->
-      <!-- ------------------------- -->
-      <div class="row" id="MY-First">
-         <!--  내가 작성한 플래너 들어갈 div -->
-         <div id="MY-First-name">My Planer</div>
-         <div class="MY-More-Button">
-             <a style="color: rgb(110,112,118)" class="btn btn-link" href="<c:url value='/planit/mypage/detail/Planner.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a>
+	<div class="content col-md-7">
+		<div class="mypage-content">
+			
+			<div class="row">
+  		       <div id="MY-edit">
+	            	<!-- 회원정보 수정폼으로 이동 -->
+	         		<div class="dropdown">
+	              		<button class="btn btn-default dropdown-toggle" type="button" id="MY-edit-button" data-toggle="dropdown" aria-expanded="true">회원정보수정<span class="caret"></span></button>
+			            <ul id="myedit"class="dropdown-menu" role="menu" aria-labelledby="MY-edit-button" id="myedit">
+			                <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditProfile.it' />">프로필 수정</a></li>
+			                <li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/planit/mypage/MyPageEditPassword.it' />">비밀번호 변경</a></li>
+			            </ul>
+	            	</div><!-- dropdown -->
+        	 	</div><!-- MY-edit -->
+      		</div><!-- mypagemenu -->
+      	<div class="row" id="MY-First">
+        	<!--  내가 작성한 플래너 들어갈 div -->
+        	<div id="MY-First-name">My Planer</div>
+         	<div class="MY-More-Button">
+             	<a style="color: rgb(110,112,118)" class="btn btn-link" href="<c:url value='/planit/mypage/detail/Planner.it'/>"><span class="glyphicon glyphicon-plus">더보기 </span></a>
             </div>
-         <div id="First-line" style="height:200px;">
+         	<div id="First-line" style="height:200px;">
             <div id="MY-First-content" class="col-md-12">
-   <!-- **********************************
-      최신 플래너 요약보기/마우스 오버 추가
-   **************************************** -->
-                 <div class="portfolio-centered">
-	                <div class="recentitems portfolio">
-	         			<c:if test="${empty homePlannerList }">
+   			<!-- ********************    최신 플래너 요약보기/마우스 오버 추가  **************************************** -->
+
+	         			 <c:if test="${empty homePlannerList }">
 	         				<div>
 	         					<h4 style="text-align: center">당신만의 여행플래너를 작성해주세요</h4>
 	         				</div>
 	         			</c:if>
 	         			<c:if test="${not empty homePlannerList }">
 	         				<c:forEach var="list" items="${homePlannerList}" varStatus="loop">
-		                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mockups">
-		                       <div class="he-wrap tpl6 market-item">
-
-		                     	<div  style=" text-align: center;margin-top: 40%;"><h4>${list.TITLE}</h4></div>
-		                       <img src="<c:url value='/Upload/Planner/${list.random_image}'/>" alt="" >
-
+		                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mockups">
+		                     <div class="he-wrap tpl6 market-item">
+		                     	<c:if test="${empty list.status}" var="isComplete">
+		                     	<div style="z-index: 5;position:relative;height: 60px;width:60px;top:-10px"  >
+		                     		<img src="<c:url value='/Upload/Member/event_c.png'/>" alt="" >
+		                     	 </div>
+		                     	</c:if>
+		                     	<c:if test="${not isComplete }">
+		                     	 <div style="z-index: 5;position:relative;height: 60px;width:60px;top:-10px"  >
+		                     		<img src="<c:url value='/Upload/Member/calendar_b.png'/>" alt="" >
+		                     		<span style="position:relative;height: 50px;left:5px;width:60px;top:20px;color:#fff;font-size: 1.8em">D-${list.status} </span>
+		                     	 </div>
+		                     	</c:if>
+		                     	 
+		                       	<img src="<c:url value='/Upload/Planner/${list.random_image}'/>" alt="" >
 		                         <div class="he-view">
 		                           <div class="bg a0" data-animate="fadeIn">
-
-		                             <h3 class="a1" data-animate="fadeInDown">${list.POSTDATE}</h3>
-		                             <a data-rel="prettyPhoto" href="<c:url value='/review/myreview/GoWrite.it?planner_id=${review.planner_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-
-		                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
-		                               <!-- <a href="gallery-portfolio.html#">Item Category</a> -->
-		                             </div>
+		                             <h3 class="a1" data-animate="fadeInDown">${list.TITLE}</h3>
+		                             
+		                             <a href="<c:url value='/review/myreview/Write.it?planner_id=${list.PLANNER_ID}&review_id=${list.REVIEW_ID}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
 		                             <!-- portfolio_category -->
 		                           </div>
 		                           <!-- he bg -->
@@ -220,20 +120,9 @@
 		                     </div>
 		                     <!-- end col-12 -->
 	                     </c:forEach>
-	         			</c:if>
-	                  
-	                   <!-- portfolio -->
-	                    </div> 
-                    </div> 
-         
-               
-   
+	         			</c:if> 
                </div>
-   
-
          </div>
-
-
       </div>
       <!-- ---------------------- -->
       <!--       end First        -->
@@ -250,9 +139,7 @@
             </div>
          <div id="Second-line" style="height:300px;">
             <div id="MY-Second-content" class="col-md-12" style="height:300px;">
-   <!-- **********************************
-      최신 플래너 요약보기/마우스 오버 추가
-   **************************************** -->
+   			<!-- **************************** 최신 플래너 요약보기/마우스 오버 추가   **************************************** -->
                  <div class="portfolio-centered">
                    <div class="recentitems portfolio">
          			<c:if test="${empty homeReviewList }">
@@ -274,7 +161,7 @@
 	                           <div class="bg a0" data-animate="fadeIn">
 	                             <h3 class="a1" data-animate="fadeInDown">${list.title}(${list.series })</h3>
 	                             <a data-rel="prettyPhoto" href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-	                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+	                             
 	                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
 	                               <!-- <a href="gallery-portfolio.html#">Item Category</a> -->
 	                             </div>
@@ -289,19 +176,10 @@
 	                     <!-- end col-12 -->
                      </c:forEach>
          			</c:if>
-                  
                    <!-- portfolio -->
                     </div> 
-         
-               
-   
                </div>
-   
-
-
          </div>
-
-
       </div>
       <div class="row" id="MY-Third">
          <!--  내가 작성한 플래너 들어갈 div -->
@@ -313,173 +191,81 @@
             <div id="Third-content" class="col-md-12">
                <!-- 찜해제버튼 추가 -->
                <div id="MY-Third-ZZim-table">
-                  <!-- <table class="table">
-                     <tr>
-                        <td class="col-md-2 ">ZZim No.</td>
-                       
-                        <td class="col-md-1 ">분류</td>
-                        <td class="col-md-3 col-md-offset-1">제목</td>
-                        <td class="col-md-2 col-md-offset-2">작성자</td>
-                        <td class="col-md-2 col-md-offset-2">ZZim날짜</td>
-
-                     </tr>
-                     <tr>
-                        <td>00</td>
-                        찜번호
-                        <td><span class="glyphicon glyphicon-edit"></span></td>
-                        <td>리뷰 ZZim</td>
-                        <td>Plan:It</td>
-                        <td>2018.01.01</td>
-
-                     </tr>
-                     <tr>
-                        <td>00</td>
-                        찜번호
-                        <td><span class="glyphicon glyphicon-calendar"></span></td>
-                        <td>플래너 ZZim</td>
-                        <td>Plan:It</td>
-                        <td>2018.01.01</td>
-
-                     </tr>
-                
-                  </table> -->
                    <div class="tabbable servicetab tabs-left">
-          <ul id="liked_ul"class=" col-md-offset-4">
-            <li><a style="color: rgb(110,112,118)" href="services.html#webdesign" data-toggle="tab"><i class="glyphicon glyphicon-queen"></i>Tour</a></li>
-            <li><a style="color: rgb(110,112,118)" href="services.html#webdevelopment" data-toggle="tab"><i class="glyphicon glyphicon-calendar"></i> Planner</a></li>
-            <li><a style="color: rgb(110,112,118)" href="services.html#webdevelopment2" data-toggle="tab"><i class="glyphicon glyphicon-edit"></i> Review</a></li>
-          </ul>
-          <div class="tab-content" style="">
-            <div class="tab-pane active" id="webdesign">
-              <!-- <h5 class="title"><i class="fa fa-laptop"></i> Web Design Services</h5> -->
-              <div class="row">
-                
-                 <table class="table">
-                     <tr style="text-align: center">
-                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
-                       
-                        <td class="col-md-1 " >분류</td>
-                        <td class="col-md-3 col-md-offset-2">이름</td>
-                        <td class="col-md-2 col-md-offset-2">관광지번호</td>
-                        <td class="col-md-4 col-md-offset-2">주소</td>
-                     </tr>
-                     <c:if test="${empty requestScope.memberLiked_Tour }" var="isEmpty">
-					<tr>
-						<td colspan="5" style="text-align: center">등록된 좋아요가 없습니다:)</td>
-					</tr>
-					</c:if>
-					<c:if test="${not isEmpty }">
-						<c:forEach var="list" items="${memberLiked_Tour}" varStatus="loop">
-							<tr style="text-align: center">
-								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
-								<td>${list.LIKED_T_ID}</td>
-								<td>여행지</td>
-								<td class="text-left">
-								<a style="color: rgb(110,112,118)"href="<c:url value='/planit/search/list/TourView.it?contentid=${list.CONTENTID}'/> "  >${list.TITLE }</a>
-
-								</td>
-								<!-- Modal -->
-								<td>${list.CONTENTID}</td>
-								<td>${list.ADDR1}</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-				</table>
-                 
-
-                <div class="col-lg-6">
-                  <img class="img-responsive" src="img/slider_01.png" alt="">
-                </div>
-              </div>
-            </div>
-            
-            <!-- 두번째 탭 -->
-            <div class="tab-pane" id="webdevelopment">
-           <!--    <h5 class="title"><i class="fa fa-cogs"></i> Web Development Services</h5> -->
-              <div class="row">
-               <table class="table">
-                     <tr style="text-align: center">
-                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
-                       
-                        <td class="col-md-1 " >분류</td>
-                        <td class="col-md-2 col-md-offset-1">이름</td>
-                        <td class="col-md-3 col-md-offset-1">해쉬태그</td>
-                        <td class="col-md-1 col-md-offset-1">시리즈</td>
-                        <td class="col-md-1 col-md-offset-1">작성일</td>
-                       
-                     </tr>
-                     <c:if test="${empty requestScope.memberLiked_Planner }" var="isEmpty">
-					<tr>
-						<td colspan="6" style="text-align: center">등록된 좋아요가 없습니다:)</td>
-					</tr>
-					</c:if>
-					<c:if test="${not isEmpty }">
-						<c:forEach var="list" items="${memberLiked_Planner}" varStatus="loop">
-							<tr style="text-align: center">
-								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
-								<td>${list.LIKED_R_NO}</td>
-								<td>리뷰</td>
-								<td class="text-left"  data-toggle="modal" data-target="#myModal">
-								<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
-								</td>
-								<!-- Modal -->
-								<td>${list.HASHTAG}</td>
-								<td>${list.SERIES}</td>
-								<td>${list.POSTDATE}</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-				</table>
-
-                <div class="col-lg-6">
-                  
-                </div>
-              </div>
-            </div>
-              <div class="tab-pane" id="webdevelopment2">
-           <!--    <h5 class="title"><i class="fa fa-cogs"></i> Web Development Services</h5> -->
-              <div class="row">
-	          <table class="table">
-	                     <tr style="text-align: center">
-	                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
-	                       
-	                        <td class="col-md-1 " >분류</td>
-	                        <td class="col-md-2 col-md-offset-1">이름</td>
-	                        <td class="col-md-3 col-md-offset-1">해쉬태그</td>
-	                        <td class="col-md-1 col-md-offset-1">시리즈</td>
-	                        <td class="col-md-1 col-md-offset-1">작성일</td>
-	                       
-	                     </tr>
-	                     <c:if test="${empty requestScope.memberLiked_Review }" var="isEmpty">
-						<tr>
-							<td colspan="6" style="text-align: center">등록된 좋아요가 없습니다:)</td>
-						</tr>
-						</c:if>
-						<c:if test="${not isEmpty }">
-							<c:forEach var="list" items="${memberLiked_Review}" varStatus="loop">
-								<tr style="text-align: center">
-									<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
-									<td>${list.LIKED_R_NO}</td>
-									<td>리뷰</td>
-									<td class="text-left"  data-toggle="modal" data-target="#myModal">
-									<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
-									</td>
-									<!-- Modal -->
-									<td>${list.HASHTAG}</td>
-									<td>${list.SERIES}</td>
-									<td>${list.POSTDATE}</td>
-								</tr>
-							</c:forEach>
-						</c:if>
-					</table>
-
-         <!-- 내용 -->
-          </div>
-          </div>
-          </div>
+			          <ul id="liked_ul"class=" col-md-offset-4">
+			            <li><a style="color: rgb(110,112,118)" href="services.html#webdesign" data-toggle="tab"><i class="glyphicon glyphicon-queen"></i>Tour</a></li>
+			            <li><a style="color: rgb(110,112,118)" href="services.html#webdevelopment" data-toggle="tab"><i class="glyphicon glyphicon-calendar"></i> Planner</a></li>
+			            <li><a style="color: rgb(110,112,118)" href="services.html#webdevelopment2" data-toggle="tab"><i class="glyphicon glyphicon-edit"></i> Review</a></li>
+			          </ul>
+			          <div class="tab-content" style="">
+			            <div class="tab-pane active" id="webdesign">
+			              <!-- <h5 class="title"><i class="fa fa-laptop"></i> Web Design Services</h5> -->
+			              <div class="row">
+			              	<c:if test="${empty requestScope.memberLiked_Tour }" var="isEmpty">
+								<h4 style="text-align: center">등록된 좋아요가 없습니다:)</h4>
+							</c:if>
+							<c:if test="${not isEmpty}">
+				                <c:forEach var="list" items="${memberLiked_Tour}" varStatus="loop">
+				                	<div class="col-sm-4" style="position: relative;overflow: hidden;padding: 10px">
+				                		<img alt="관광이미지" src="${list.FIRSTIMAGE}" width="100%" height="100%">
+				                		<div style="position:absolute;color:#fff; top:60%; background-color: #444;height: auto;padding: 5px">
+				                			<h6>
+				                				<a href="<c:url value='/planit/search/list/TourView.it?contentid=${list.CONTENTID}'/>" style="color:#fff"> ${list.TITLE}</a>
+				                				<small>${list.KOR}</small>
+				                				</h6>
+				                		</div>
+				                	</div>
+				                </c:forEach>
+			                </c:if>
+			              </div>
+			            </div>     
+			                
+			            <!-- ======================memberLiked_Planner======================== -->
+			            <div class="tab-pane" id="webdevelopment">       
+			              <div class="row">
+							<c:if test="${empty requestScope.memberLiked_Planner }" var="isEmptyPlan">
+								<h4 style="text-align: center">등록된 좋아요가 없습니다:)</h4>
+							</c:if>
+							<c:if test="${not isEmptyPlan}">
+				                <c:forEach var="list" items="${memberLiked_Planner}" varStatus="loop">
+				                	<div class="col-sm-4" style="position: relative;overflow: hidden;padding: 10px">
+				                		<img alt="관광이미지" src="<c:url value='/Upload/Planner/planner_default_3.png'/> " width="100%" height="100%">
+				                		<div style="position:absolute;color:#fff; top:60%; background-color: #444;height: auto;padding: 5px">
+				                			<h6>
+				                				<a href="<c:url value='/planit/search/list/TourView.it?contentid=${list.CONTENTID}'/>" style="color:#fff" > ${list.TITLE}</a>
+				                				<small>${list.KOR}</small>
+				                				</h6>
+				                		</div>
+				                	</div>
+				                </c:forEach>
+			                </c:if>
+			              </div>
+			            </div>
+			              <div class="tab-pane" id="webdevelopment2">
+			           <!--    <h5 class="title"><i class="fa fa-cogs"></i> Web Development Services</h5> -->
+			              <div class="row">
+			              	<c:if test="${empty requestScope.memberLiked_Review }" var="isEmptyPlan">
+								<h4 style="text-align: center">등록된 좋아요가 없습니다:)</h4>
+							</c:if>
+							<c:if test="${not isEmptyPlan}">
+				                <c:forEach var="list" items="${memberLiked_Review}" varStatus="loop">
+				                	<div class="col-sm-4" style="position: relative;overflow: hidden;padding: 10px">
+				                		<img alt="관광이미지" src="<c:url value='/Upload/Review/${list.FIRSTIMAGE}'/> " width="100%" height="100%">
+				                		<div style="position:absolute;color:#fff; top:60%; background-color: #444;height: auto;padding: 5px">
+				                			<h6>
+				                				<a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.REVIEW_ID}'/>" style="color:#fff" > ${list.TITLE}(${list.SERIES})</a>
+				                				<small>${list.KOR}</small>
+				                				</h6>
+				                		</div>
+				                	</div>
+				                </c:forEach>
+			                </c:if>
+			         <!-- 내용 -->
+			          </div>
+			          </div>
+			          </div>
         </div>
      
-
         <div class="clearfix"></div>
                </div>
             </div>

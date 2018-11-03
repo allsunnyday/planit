@@ -90,7 +90,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberDTO> memberPreferList(Map map) {
+	public List<Map> memberPreferList(Map map) {
 		// TODO Auto-generated method stub
 		return dao.memberPreferList(map);
 	}

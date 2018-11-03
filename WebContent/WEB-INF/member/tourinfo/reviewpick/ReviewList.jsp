@@ -18,15 +18,9 @@
 			console.log('here!!'+$(this).html());
 			
 		});
-		
-<<<<<<< HEAD
 	});
-=======
-	});
->>>>>>> refs/remotes/origin/sunki
+
 </script>
-
-
 
 <div style="padding-top: 70px"></div>
  <section class="post-wrapper-top">

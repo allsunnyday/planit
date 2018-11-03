@@ -48,6 +48,23 @@
 		else{
 			$('.no-image').css('display', 'none');
 		}
+		// 글을 클릭하면 summernote를 활성화시킨다. 
+		$('.summernote').click(function(){
+			var content=$('.summernote').html().trim(); 
+			console.log('content'+content);
+			if(content=='소중한 순간을 기록해 보세요'){
+				$('.summernote').html('');
+			}
+			edit();
+			$('.text-wrap').css('border', '1px solid #cecece');
+			$('.text_block p').html('<a href="javascript:" onclick="save()" class="dmbutton2">완료</a>');
+			
+			isChangeContent = true;
+			
+		});
+		
+		
+		
 	});
 	
 	//[사진 추가]버튼 클릭시 이벤트 처리
@@ -123,7 +140,7 @@
 			 success: function(data){
 				 console.log(data);
 				 if(confirm('성공적으로 저장되었습니다.')){
-					 location.href(success_action);
+					 location.replace(success_action);
 				 }
 			 },
 			 error:function(data){
@@ -157,6 +174,55 @@
 		console.log(image);
 		$('#preimage'+index).remove();
 	};
+	
+	
+	var isChangeContent = false;
+	
+	var exit = function(){
+		if(isChangeContent && confirm('저장하지 않으면 내용이 날아갑니다. ')){
+			location.replace(success_action);
+			
+		}else{
+			location.replace(success_action);
+		}
+		
+	};
+
+	var edit = function() {
+	  $('.summernote').summernote({
+		  focus: true,
+		  airMode: true,
+		  placeholder: '소중한 순간을 기록해보세요!'
+		 /*  popover: {
+			    air: [
+			      ['color', ['color']],
+			      ['font', ['bold', 'underline', 'clear']]
+			    ]
+			  } */
+		  });
+	};
+
+	var save = function() {
+	  var markup = $('.summernote').summernote('code');
+	  $('.summernote').summernote('destroy');
+	  $('.text_block p').html('글을 클릭하시면 수정할 수 있어요!');
+	  $('.text-wrap').css('border', 'none');
+	 
+	  console.log('content'+$('.summernote').html());
+	  console.log('content1'+markup);
+	  if($('.summernote').html()=='<p><br></p>'  ||
+			  $('.summernote').html()=='<p></p>'  ||
+			  $('.summernote').html()=='<br>' ||
+			  $('.summernote').html()==''){
+		  $('.summernote').html('소중한 순간을 기록해 보세요');
+		  isChangeContent = false;
+	  }
+	};
+	
+	
+	$(function(){
+		
+	});
 </script>
 
 <!--**********************************************************
@@ -242,7 +308,9 @@
 						</div>
 						<div class="col-sm-offset-1 col-sm-10 ">
 							<div class="text-wrap" >
-								<div class="summernote"><c:if test="${empty  reviewContent.CONTENT}">소중한 순간을 기록해 보세요</c:if>
+								<div class="summernote">
+								- - -
+								<c:if test="${empty  reviewContent.CONTENT or reviewContent.CONTENT eq''}">소중한 순간을 기록해 보세요</c:if>
 								${reviewContent.CONTENT}
 								</div>
 							</div>
@@ -256,68 +324,7 @@
 </section>
 
 <script>
-	var isChangeContent = false;
-	
-	var exit = function(){
-		if(isChangeContent && confirm('저장하지 않으면 내용이 날아갑니다. ')){
-			location.replace(success_action);
-			
-		}else{
-			location.replace(success_action);
-		}
-		
-	};
 
-	var edit = function() {
-	  $('.summernote').summernote({
-		  focus: true,
-		  airMode: true,
-		  placeholder: '소중한 순간을 기록해보세요!'
-		 /*  popover: {
-			    air: [
-			      ['color', ['color']],
-			      ['font', ['bold', 'underline', 'clear']]
-			    ]
-			  } */
-		  });
-	};
-
-	var save = function() {
-	  var markup = $('.summernote').summernote('code');
-	  $('.summernote').summernote('destroy');
-	  $('.text_block p').html('글을 클릭하시면 수정할 수 있어요!');
-	  $('.text-wrap').css('border', 'none');
-	 
-	  console.log('content'+$('.summernote').html());
-	  console.log('content1'+markup);
-	  if($('.summernote').html()=='<p><br></p>'  ||
-			  $('.summernote').html()=='<p></p>'  ||
-			  $('.summernote').html()=='<br>' ||
-			  $('.summernote').html()==''){
-		  $('.summernote').html('소중한 순간을 기록해 보세요');
-		  isChangeContent = false;
-	  }
-	};
-	
-	
-	$(function(){
-		// 글을 클릭하면 summernote를 활성화시킨다. 
-		$('.summernote').click(function(){
-			var content=$('.summernote').html().trim(); 
-			console.log('content'+content);
-			if(content=='소중한 순간을 기록해 보세요'){
-				$('.summernote').html('');
-			}
-			edit();
-			$('.text-wrap').css('border', '1px solid #cecece');
-			$('.text_block p').html('<a href="javascript:" onclick="save()" class="dmbutton2">완료</a>');
-			
-			isChangeContent = true;
-			
-		});
-		
-		
-	});
 </script>
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>

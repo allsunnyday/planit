@@ -81,7 +81,7 @@ public class MemberDAO implements MemberService {
 		return template.selectList("MemberLikedTour",map);
 	}
 	@Override
-	public List<MemberDTO> memberPreferList(Map map) {
+	public List<Map> memberPreferList(Map map) {
 		// TODO Auto-generated method stub
 		return template.selectList("MemberPreferList",map);
 	}

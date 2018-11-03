@@ -179,91 +179,9 @@ display: inline-block;
 <!--*************************************
 	왼쪽에 달린 프로필 사진 및 기타등등 
 *****************************************  -->
-  <section class="section1">
-        <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
-        <div>
-          <div class="teammembers">
-            <div class="he-wrap tpl2">
-            	<c:if test="${not empty memberRecord.profile}" var="result">
-            	<img src="<c:url value='/Upload/Member/${memberRecord.profile}'/>" alt="프로필 사진">
-            	</c:if>
-            	<c:if test="${not result}">
-              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
-              </c:if>
-              <div class="he-view">
-            
-              </div>
-            </div>
-            <!-- he wrap -->
-            <div class="teammembers-meta">
-              <h4>${sessionScope.id}</h4>
-            </div>
-            <div id="MY-first-1-self-detail">
-                     <p>
-                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
-                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
-                           님의&nbsp자기소개입니다</span>
-                     <p>${memberRecord.self}
-                     </p>
-
-
-         </div>
-
-            
-            <div class="teamskills" >
-            <div id="MY-First-TotalContent" style="width:90%;">
-                   <table id="MY-first-informtable" style="width:90%;">
-                   <tr>
-                      <td>Planner</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                   <td>Review</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                      <td>Like</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                      <td>Star Point</td>
-                      <td>0000</td>
-                  <!--  </tr>
-                	<tr style="border-top:1px white dashed;">
-                	<td colspan="2"> 선호사항</td>
-                	</tr>
-                       -->
-                   </table>
-                
-                </div>
-              
-            </div>
-            <!-- ***********************8
-            선호도 조사 들어갈 부분
-            *****************************8 -->
-            <div id="MY-First-Preference" style="width:90%;" >
-            	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
-            		<tr>
-            		<c:if test="${empty sessionScope.memberPreferList }" var="result">
-            			<td>플래닛을 즐겨주세요</td>
-            		</c:if>	
-            		<c:if test="${not result }">
-            			<c:forEach var="list" items="${sessionScope.memberPreferList}" varStatus="loop">
-            				<td>${list.kor }</td><!-- 왜 안나오지 -->
-            			
-            			</c:forEach>
-            		</c:if>
-            		</tr>
-            	
-            	</table>
-            
-            </div>
-          </div>
-          <!-- end teammembers -->
-        </div>
-</div>
-  
+ <section class="section1">
+ <%-- <%@ include file="/WEB-INF/member/mypage/MyPageLeftSubMenu.jsp" %>  --%>
+ <jsp:include page="MyPageLeftSubMenu.jsp" flush="false" />
 <!--*************************************
 	마이페이지 이동버튼
 *****************************************  -->
@@ -272,34 +190,22 @@ display: inline-block;
 	<div class="mypage-content">
 		<div class="mypagemenu">
 			<div id="mypage">
-				<!-- <h2>MY PAGE</h2> -->
 			</div>
 			<div id="MY-edit">
 				<!-- 회원정보 수정폼으로 이동 -->
-				<!-- <button type="submit" class="btn btn-default" id="MY-edit-button">회원정보수정</button> -->
-			<%-- 	<a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
 			<div class="dropdown">
-				  
+			  
 				  <a class="btn btn-link" href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">
 				   돌아가기
-				    <span class="glyphicon glyphicon-log-out"></a></span>
-				
-				  
-				  
+				    <span class="glyphicon glyphicon-log-out"></span></a>
+	  
 				</div><!-- dropdown -->
 			</div><!-- MY-edit -->
 		</div><!-- mypagemenu -->
+
 		
-		
-		
-		
-		
-<!--*************************************
-	플래너 모아보기 뿌려주는 영역
-*****************************************  -->		
-		<!-- ------------------------- -->
-		<!--        start First       -->
-		<!-- ------------------------- -->
+<!--************************플래너 모아보기 뿌려주는 영역*****************************************  -->		
+
 		<div class="row" id="MY-First">
 			<div class="container-fluid">
 					<div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
@@ -318,19 +224,12 @@ display: inline-block;
 									
 								<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
 									<div class="he-wrap tpl6 market-item">
-										<c:if test="${empty list.firstimage }" var="yesimg">
-										<img src="<c:url value='/images/main/slide2.jpg'/>" alt="">
-										</c:if>
-										<c:if test="${yesimg}">
-
 											<img src="<c:url value='/Upload/Review/${list.firstimage}'/>" style="height:230px" alt="">
-
-										  </c:if>
 										<div class="he-view">
 											<div class="bg a0" data-animate="fadeIn">
 												<h3 class="big a1" data-animate="fadeInDown">${list.title }(${list.series })</h3>
 												<a data-rel="prettyPhoto"
-													href="<c:url value='/images/main/slide2.jpg'/>"
+													href="<c:url value='/Upload/Review/${list.firstimage}'/>"
 													class="dmbutton a2" data-animate="bounceInLeft"><i
 													class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
 													data-animate="bounceInRight"><i class="fa fa-link"></i></a>
@@ -363,28 +262,12 @@ display: inline-block;
 					<!-- end container -->
 
 		</div>
-		<!-- ---------------------- -->
-		<!--       end First        -->
-		<!-- ---------------------- -->
-		<!-- ------------------------- -->
-		<!--        start Second       -->
-		<!-- ------------------------- -->
-	<!--*************************************
-	페이징 들어갈 영역
-*****************************************  -->
-	
-	
-		<!-- ---------------------- -->
-		<!--       end Second        -->
-		<!-- ---------------------- -->
-		
 
+<!--**************************	페이징 들어갈 영역 *****************************************  -->
 	</div>
 	<!--  end mypage-content -->
-
 </div>
 <!--  end container --> 
-  `
 </div>
 </div>
 
