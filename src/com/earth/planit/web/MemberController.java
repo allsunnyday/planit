@@ -340,6 +340,7 @@ public class MemberController {
    // [로그아웃 처리]
    @RequestMapping("/member/login/Logout.it")
    public String logoutProcess(HttpSession session) throws Exception {
+	  session.removeAttribute("id");
       session.invalidate();
 
       return "redirect:/";

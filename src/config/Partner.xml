@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <insert id="PartnerIsJoin" parameterType="PartnerDTO">
       <!--insert into partner(p_id,business_no,pwd,firstimage,regidate,tel,address) values  -->
-      insert into partner(p_id,business_no,pwd,email,firstimage,regidate,tel,address) values(#{p_id},#{business_no},#{pwd},#{email},'NOIMAGE',SYSDATE,#{tel},#{address})
+      insert into partner(p_id,business_no,pwd,email,firstimage,regidate,tel,address,p_name,name) values(#{p_id},#{business_no},#{pwd},#{email},'NOIMAGE',SYSDATE,#{tel},#{address},#{p_name},#{name})
    
    </insert>
 <!-- Room등록용 -->
@@ -312,13 +312,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    delete from p_product where roomcode=#{roomcode}
    </delete>
    <select id="PartnerReservation" parameterType="java.util.Map" resultType="java.util.Map" >
-  	select R.* ,P.*
+  	select R.* ,P.*,P2.id
 	from reservation R join p_product P on R.roomcode=P.roomcode
+ 	join planner P2 on R.planner_id=P2.planner_id
 	where rownum <![CDATA[<=]]> 5 and p_id=#{p_id}
    </select>
    <select id="PartnerEventRequest" parameterType="java.util.Map" resultType="java.util.Map" >
   	select * from event_request
 	where rownum <![CDATA[<=]]> 5 and p_id=#{p_id}
+   </select>
+   <select id="PartnerRoomCount" parameterType="java.util.Map" resultType="int" >
+  	select count(*) from p_product where p_id=#{p_id}
    </select>
 
 </mapper>

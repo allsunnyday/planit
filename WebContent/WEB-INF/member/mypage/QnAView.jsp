@@ -225,47 +225,11 @@
 					<!-- 요청내역이 들어갈 다이브 -->
 					<div class="col-md-10" >
 						${memberQnAView.CONTENT}
-					</div>a
+					</div>
 				</div>
 		
 			</div>
 		</div>
 	
 </section>
-		<%-- <table class="table">
-					
-					<tr style="border-bottom:2px gray solid">
-						<td><h4>${memberQnAView.TITLE}</h4></td>
-						<td class="col-md-4"style="text-align:left;">작성일:${memberQnAView.ASKDATE}</td>
-					</tr>
-					<tr>
-						<td style="height:300px; ">${memberQnAView.CONTENT}</td>
-					</tr>
-					
-					
-					
-					<tr>
-						<th class="col-md-2 text-center" >번호</th>
-						<td>${memberQnAView.ASK_NO}</td>
-					</tr>
-					<tr>
-						<th class="col-md-2 text-center">제목</th>
-						<td>${memberQnAView.TITLE}</td>
-					</tr>
-					<tr>
-						<th class="col-md-2 text-center">작성자</th>
-						<td>${memberQnAView.ID}</td>
-					</tr>
-
-					<tr>
-						<th class="col-md-2 text-center">등록일aaa</th>
-						<td>${memberQnAView.ASKDATE}</td>
-					</tr>
-					<tr>
-						<th colspan="2" class="text-center" >내용</th>
-					</tr>
-					<tr>
-						<td colspan="2" style="height:300px; ">${memberQnAView.CONTENT}</td>
-					</tr>
-
-				</table> --%>
+		

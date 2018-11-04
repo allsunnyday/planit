@@ -158,6 +158,7 @@ height: 100%; */
 .Partner-More-Button button {
 	color: rgb(53, 181, 157);
 }
+.footer {position:absolute;bottom:0; width:100%;}
 </style>
 <!-- *******************************************
 	베이지색 검색창 달린 거
@@ -174,13 +175,7 @@ height: 100%; */
 	<div class="container-fluid ">
 		<div class="content col-md-7">
 			<div class="mypage-content">
-				<div class="general-title text-center">
-          <h3>${param.title }</h3>
-          <!-- <p>ÜBER PREMIUM VEGETABLE TANNED ITALIAN LEATHER</p> -->
-          <hr>
-        </div>
-
-
+		
 
 <!--*************************************
 	플래너 모아보기 뿌려주는 영역
@@ -189,7 +184,7 @@ height: 100%; */
 				<!--        start First       -->
 				<!-- ------------------------- -->
 				<div class="row" id="MY-First">
-					<div class="container clearfix">
+					<div class="container ">
 						<div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
 
 							<div class="divider"></div>

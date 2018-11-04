@@ -67,5 +67,7 @@ public interface PartnerService {
 	//[Partner MyPage ReservationList]
 	List<Map> partnerEventRequestList(Map map);
 
+	//[Partner RoomCount]
+	int roomtotalcount(Map map);
 }
 

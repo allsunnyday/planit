@@ -25,8 +25,8 @@
 			      
 			  },messages:{
 				  business_no:{required:'사업자 번호를 입력하세요'},
-				  p_name:{required:'회사명을 입력하세요'},
-				  name:{required:'대표자이름을 입력하세요'},
+				  name:{required:'회사명을 입력하세요'},
+				  p_name:{required:'대표자이름을 입력하세요'},
 				  p_id:{required:'아이디를 입력해주세요'},
 				  checkcomplite:{required:'아이디 중복검사가 필요합니다'},
 				  pwd:{required:'비밀번호를 입력하세요',minlength:'비밀번호는 최소 4자 이상 입력해주세요'},
@@ -117,7 +117,7 @@ $(function() {
 		     </div>
 		     <div>
 	          <label for="email">Company Name<span class="required">*</span></label>
-	          <input type="text" name="p_name" id="p_name" class="form-control" placeholder="Company Name">
+	          <input type="text" name="name" id="name" class="form-control" placeholder="Company Name">
 	          </div>
 		     <div>
 	          <label for="fname">Name <span class="required">*</span></label>

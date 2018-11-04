@@ -19,16 +19,14 @@
 	var isDelete = function(){
 		
 		if(confirm("정말로 삭제 하시겠습니까?"))
-			location.replace("<c:url value='/partner/product/view/DeleteProduct?roomcode=${productRecord.roomcode}'/>");
+			location.replace("<c:url value='/partner/product/view/DeleteProduct.it?roomcode=${productRecord.roomcode}'/>");
 	};  	
 </script>
 
 
   <section class="marketplace-top">
     <div id="market-wrapper">
-    <%--   <div class="item_image">
-       	 <img data-effect="fade" class="aligncenter" width="1260" height="400" src="<c:url value='/Upload/Partner/Product/${productRecord.roomimg1}'/>" alt="">
-      </div> --%>
+
       <!-- end item_image -->
     </div>
   </section>
@@ -56,15 +54,24 @@
 				<!--페이지-->
 				<ol class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<c:if test="${not empty productRecord.roomimg2}">
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+					</c:if>
+					<c:if test="${not empty productRecord.roomimg3}">
 					<li data-target="#myCarousel" data-slide-to="2"></li>
+					 </c:if>
 				</ol>
 				<!--페이지-->
 			
 				<div class="carousel-inner">
 					<!--슬라이드1-->
 					<div class="item active"> 
+					<c:if test="${empty productRecord.roomimg1}" var="isEmpty">
+						<img src="<c:url value='/Upload/Tour/tempimage.png'/>" style="width:100%;height: 600px" height="450px" alt="First slide">
+					</c:if>
+					<c:if test="${not isEmpty}">
 						<img src="<c:url value='/Upload/Partner/Product/${productRecord.roomimg1}'/> " style="width:100%;height: 600px" height="450px" alt="First slide">
+					</c:if>
 						<div class="container">
 							<div class="carousel-caption">
 								<h1 class="carousel-h1"></h1>
@@ -73,29 +80,32 @@
 						</div>
 					</div>
 					<!--슬라이드1-->
-			
 					<!--슬라이드2-->
-					<div class="item"> 
-						<img src="<c:url value='/Upload/Partner/Product/${productRecord.roomimg2}'/>" style="width:100%;height: 600px" height="450px" data-src="" alt="Second slide">
-						<div class="container">
-							<div class="carousel-caption">
-								<h1 class="carousel-h1"></h1>
-							
-							</div>
-						</div>
-					</div>
-					<!--슬라이드2-->
-					
-					<!--슬라이드3-->
-					<div class="item"> 
-						<img src="<c:url value='/Upload/Partner/Product/${productRecord.roomimg3}'/>" style="width:100%;height: 600px" height="450px" data-src=""  alt="Third slide">
-						<div class="container">
-							<div class="carousel-caption">
-								<h1 class="carousel-h1"></h1>
+					<c:if test="${not empty productRecord.roomimg2}">
+						<div class="item"> 
+							<img src="<c:url value='/Upload/Partner/Product/${productRecord.roomimg2}'/>" style="width:100%;height: 600px" height="450px" data-src="" alt="Second slide">
+							<div class="container">
+								<div class="carousel-caption">
+									<h1 class="carousel-h1"></h1>
 								
+								</div>
 							</div>
 						</div>
-					</div>
+					</c:if>	
+					<!--슬라이드2-->
+					<!--슬라이드3-->
+					<c:if test="${not empty productRecord.roomimg3}">
+						<div class="item"> 
+							<img src="<c:url value='/Upload/Partner/Product/${productRecord.roomimg3}'/>" style="width:100%;height: 600px" height="450px" data-src=""  alt="Third slide">
+							<div class="container">
+								<div class="carousel-caption">
+									<h1 class="carousel-h1"></h1>
+									
+								</div>
+							</div>
+						</div>
+					</c:if> 
+					 
 					<!--슬라이드3-->
 				</div>
 				
@@ -151,7 +161,7 @@
                             	<h4><span><small>$</small>${productRecord.roomoffseasonminfee2 }</span></h4>
                             	<h4><span><small>$</small>${productRecord.roompeakseasonminfee1 }</span></h4>
                             	<h4><span><small>$</small>${productRecord.roompeakseasonminfee2 }</span></h4>
-                            <a class="button large btn-block" href="<c:url value='/partner/product/Reservation.it?contentid=${productRecord.roomcode}'/>"> <i class="fa fa-pencil"></i>객실정보</a> 
+                            <a class="button large btn-block" href="<c:url value='/partner/product/Reservation.it?contentid=${productRecord.roomcode}'/>"> <i class="fa fa-pencil"></i>예약하기</a> 
                            		
                             </div>
               </div>
@@ -255,7 +265,7 @@
       
         </div>
         <!-- theme / Products overview -->
-		<c:if test="${sessionScope.id==partnerRecord.p_id }">
+		<c:if test="${sessionScope.p_id eq partnerRecord.p_id}">
 			<%-- 	<a href="<c:url value='/ReplyBBS/BBS/Edit.bbs?no=${record.no}'/>"
 					class="btn btn-success">수정</a> --%>
 					

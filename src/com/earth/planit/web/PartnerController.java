@@ -60,9 +60,9 @@ public class PartnerController {
          session.setAttribute("business_no", map.get("id"));
 
          PartnerDTO partnerRecord = service.partnerInfo(map);
-         System.out.println(partnerRecord.getP_id());
-         System.out.println(partnerRecord.getBusiness_no());
-         // model.addAttribute("record", partnerRecord);
+         int roomTotalCount=service.roomtotalcount(map);
+         System.out.println(map.get("p_id")+"가 등록한 방의 갯수:"+roomTotalCount);
+         session.setAttribute("roomTotalCount", roomTotalCount);
          session.setAttribute("partnerRecord", partnerRecord);
 
          return "forward:/planit/mypage/partner/PartnerMyPageHome.it";
@@ -218,7 +218,8 @@ public class PartnerController {
 	   
 	   int isDelete=service.productDelte(map);
 	   
-	   return "mypage/partner/ProductReservation.theme";
+	   return "forward:/planit/member/partner/ProductList.it";
    }
 
+   
 }

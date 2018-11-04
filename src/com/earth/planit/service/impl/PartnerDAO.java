@@ -177,6 +177,12 @@ public class PartnerDAO implements PartnerService{
 		return template.selectList("PartnerEventRequest",map);
 	}
 
+	@Override
+	public int roomtotalcount(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("PartnerRoomCount",map);
+	}
+
 
 	
 	

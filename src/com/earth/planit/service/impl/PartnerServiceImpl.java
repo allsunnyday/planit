@@ -171,4 +171,10 @@ public class PartnerServiceImpl implements PartnerService{
 		return dao.partnerEventRequestList(map);
 	}
 
+	@Override
+	public int roomtotalcount(Map map) {
+		// TODO Auto-generated method stub
+		return dao.roomtotalcount(map);
+	}
+
 }

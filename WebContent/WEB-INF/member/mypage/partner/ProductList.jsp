@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <style>
+.footer {position:absolute;bottom:0; width:100%;}
+</style>
+<style>
 .Partnerpage-content {
 	/* margin-top: 100px; */
 	/* border: 3px black solid; */
@@ -204,7 +207,7 @@ height: 100%; */
 				<div id="Partner-First-1-self-detail">
 					<p>
 						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-							(주)회사이름추가하기</span>
+							${partnerRecord.name}</span>
 					<div class="Partner-First-PartnerInform">
 
 						<table id="Partner-First-informtable" style="width: 110%;">
@@ -214,7 +217,7 @@ height: 100%; */
 							</tr>
 							<tr>
 								<td>대표자</td>
-								<td>${partnerRecord.name }</td>
+								<td>${partnerRecord.p_name }</td>
 							</tr>
 							<tr>
 								<td>주소</td>
@@ -249,7 +252,7 @@ height: 100%; */
 								</tr>
 								<tr>
 									<td>Star Point</td>
-									<td>00</td>
+									<td>${sessionScope.roomTotalCount}</td>
 								</tr>
 
 
@@ -330,13 +333,9 @@ height: 100%; */
 										<div class="he-view">
 												<div class="bg a0" data-animate="fadeIn">
 													<h3 class="big a1" data-animate="fadeInDown"> ${list.roomtitle}</h3>
-													<a data-rel="prettyPhoto"
-														href="#"
-														class="dmbutton a2" data-animate="bounceInLeft" ><i
-														class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
-														data-animate="bounceInRight"><i class="fa fa-link"></i></a>
-													<div class="portfolio_category text-center a2"
-														data-animate="fadeIn"></div>
+													<a data-rel="prettyPhoto" href="<c:url value='/planit/member/partner/ProductView.it?roomcode=${list.roomcode}'/>" class="dmbutton a2" data-animate="bounceInLeft" >자세히보기</a> 
+														<!-- <a href="#" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a> -->
+													<div class="portfolio_category text-center a2" data-animate="fadeIn"></div>
 													<!-- portfolio_category -->
 												</div>
 												<!-- he bg -->
@@ -345,9 +344,9 @@ height: 100%; */
 										</div>
 										
 										<!-- he wrap -->
-										<h3 class="title"><a href="<c:url value='/planit/member/partner/ProductView.it?roomcode=${list.roomcode}'/>">${list.roomcode},${list.roomtitle}<a></a></h3>
+										<h3 class="title"><a href="<c:url value='/planit/member/partner/ProductView.it?roomcode=${list.roomcode}'/>">${list.roomcode},${list.roomtitle}</a></h3>
 									<!-- 	<p>Lorem Ipsum is simply dummy text of the printing and
-											typesetting industry. Lorem Ipsum has been the industry"s
+											typesetting industry. Lorem Ipsum has been the industry"sz
 											standad dummy..</p> -->
 									</div>
 								</c:forEach>

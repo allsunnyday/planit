@@ -236,7 +236,7 @@ height: 100%; */
 							<table id="Partner-First-Roomtable" style="width: 100%;">
 								<tr>
 									<td>Total Room</td>
-									<td>00</td>
+									<td>${sessionScope.roomTotalCount}</td>
 								</tr>
 								<tr>
 									<td>Resting room</td>
@@ -286,13 +286,9 @@ height: 100%; */
 								aria-labelledby="Partner-edit-button">
 								<li role="presentation"><a role="menuitem" tabindex="-1"
 									href="<c:url value='/plantit/mypage/partner/productResist.it' />">상품등록</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1"
-									href="<c:url value='#' />">프로필 수정</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1"
-									href="<c:url value='#' />">비밀번호 변경</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1"
-									href="<c:url value='#' />">비밀번호 확인 페이지(임시)</a></li>
-
+							<%-- 	<li role="presentation"><a role="menuitem" tabindex="-1"
+									href="<c:url value='/plantit/mypage/partner/PartnerEditProfile.it' />">프로필 수정</a></li> --%>
+								
 							</ul>
 
 						</div>
@@ -312,7 +308,7 @@ height: 100%; */
 	**************************************** -->
 					<div id="Partner-First-name">Room Information</div>
 					<div class="Partner-More-Button">
-						<a href="<c:url value='/planit/member/partner/ProductList.it'/>"  class="btn btn-link"><span class="glyphicon glyphicon-plus">더보기 </span></a>
+						<a style="color: rgb(110,112,118)" href="<c:url value='/planit/member/partner/ProductList.it'/>"  class="btn btn-link"><span class="glyphicon glyphicon-plus">더보기 </span></a>
 					</div>
 					<div id="First-line">
 						<div id="Partner-First-content" class="col-md-12">
@@ -335,8 +331,8 @@ height: 100%; */
 	                         <div class="he-view">
 	                           <div class="bg a0" data-animate="fadeIn">
 	                             <h3 class="a1" data-animate="fadeInDown">${list.roomtitle}</h3>
-	                             <a data-rel="prettyPhoto" href="<c:url value='/planit/member/partner/ProductView.it?roomcode=${list.roomcode}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-	                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+	                             <a data-rel="prettyPhoto" href="<c:url value='/planit/member/partner/ProductView.it?roomcode=${list.roomcode}'/>" class="dmbutton a2" data-animate="bounceInLeft">자세히보기</a>
+	                             <!-- <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a> -->
 	                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
 	                               <!-- <a href="gallery-portfolio.html#">Item Category</a> -->
 	                             </div>
@@ -373,7 +369,7 @@ height: 100%; */
 					<!--  내가 작성한 플래너 들어갈 div -->
 					<div id="Partner-Second-name">Event Request</div>
 					<div class="Partner-More-Button">
-							<a href="<c:url value='/mypage/partner/RequestEvent_P.it'/>"  class="btn btn-link"><span
+							<a style="color: rgb(110,112,118)" href="<c:url value='/mypage/partner/RequestEvent_P.it'/>"  class="btn btn-link"><span
 								class="glyphicon glyphicon-plus">더보기 </span></a>
 					</div>
 					<div id="Third-line">
@@ -402,7 +398,7 @@ height: 100%; */
 										<td>${list.REQ_NO}</td>
 										
 										<td class="text-left" >
-										<a style="color: rgb(110,112,118)" href="#"  >${list.TITLE }</a>
+										<a style="color: rgb(110,112,118)" href="<c:url value='/mypage/partner/ReqeustEvent_detail.it?req_no=${list.REQ_NO}'/>"  >${list.TITLE }</a>
 										</td>
 										<!-- Modal -->
 										<td>${list.PERIOD}</td>
@@ -433,7 +429,7 @@ height: 100%; */
 					<!--  내가 작성한 플래너 들어갈 div -->
 					<div id="Partner-Third-name">Reservation details</div>
 					<div class="Partner-More-Button">
-							<a href="<c:url value='/mypage/partner/Reservation_P.it'/>" class="btn btn-link">  <span
+							<a style="color: rgb(110,112,118)" href="<c:url value='/mypage/partner/Reservation_P.it'/>" class="btn btn-link">  <span
 								class="glyphicon glyphicon-plus">더보기 </span></a>
 					</div>
 					<div id="Forth-line">
@@ -465,7 +461,7 @@ height: 100%; */
 								<td>${list.RESERVATION_ID}</td>
 								<td>${list.ID}</td>
 								<td class="text-left" >
-								<a style="color: rgb(110,112,118)" href="#"  >${list.ROOMTITLE }</a>
+								<a style="color: rgb(110,112,118)" href="<c:url value='/mypage/partner/Reservation_detail.it?reservation_id=${list.RESERVATION_ID}'/>"  >${list.ROOMTITLE}</a>
 								</td>
 								<!-- Modal -->
 								<td>${list.BOOKDATE}</td>
@@ -497,7 +493,7 @@ height: 100%; */
 					<!--  내가 작성한 플래너 들어갈 div -->
 					<div id="Partner-Forth-name">Partner Q&A</div>
 					<div class="Partner-More-Button">
-							<a href="<c:url value='/mypage/partner/Request_P.it'/>" class="btn btn-link">
+							<a style="color: rgb(110,112,118)" href="<c:url value='/mypage/partner/Request_P.it'/>" class="btn btn-link">
 							<span class="glyphicon glyphicon-plus">더보기 </span></a>
 					</div>
 					<div id="Forth-line" style="height:300px;">
@@ -527,7 +523,7 @@ height: 100%; */
 								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
 								<td>${list.ASK_NO}</td>
 								<td class="text-left" >
-								<a style="color: rgb(110,112,118)" href="#"  >${list.TITLE }</a>
+								<a style="color: rgb(110,112,118)" href="<c:url value='/mypage/partner/Request_detail.it?ask_no=${list.ASK_NO}'/>"  >${list.TITLE }</a>
 								</td>
 								<!-- Modal -->
 								<td>${list.ID}</td>
@@ -558,6 +554,6 @@ height: 100%; */
 
 		</div>
 		<!--  end container -->
-		`
+		
 	</div>
 </section>

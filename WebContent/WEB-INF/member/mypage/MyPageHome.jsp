@@ -104,13 +104,12 @@
                    </tr>
                    <tr>
                       <td>Star Point</td>
-
+					<c:if test="${empty sessionScope.starcount}" var="isEmpty">
+                      <td>0</td>
+					</c:if>
+					<c:if test="${not isEmpty}">
                       <td>${sessionScope.starcount}</td>
-<!--  </tr>
-                	<tr style="border-top:1px white dashed;">
-                	<td colspan="2"> 선호사항</td>
-                	</tr>
-                       -->
+					</c:if>
                    </table>
                 
                 </div>
@@ -313,36 +312,7 @@
             <div id="Third-content" class="col-md-12">
                <!-- 찜해제버튼 추가 -->
                <div id="MY-Third-ZZim-table">
-                  <!-- <table class="table">
-                     <tr>
-                        <td class="col-md-2 ">ZZim No.</td>
-                       
-                        <td class="col-md-1 ">분류</td>
-                        <td class="col-md-3 col-md-offset-1">제목</td>
-                        <td class="col-md-2 col-md-offset-2">작성자</td>
-                        <td class="col-md-2 col-md-offset-2">ZZim날짜</td>
-
-                     </tr>
-                     <tr>
-                        <td>00</td>
-                        찜번호
-                        <td><span class="glyphicon glyphicon-edit"></span></td>
-                        <td>리뷰 ZZim</td>
-                        <td>Plan:It</td>
-                        <td>2018.01.01</td>
-
-                     </tr>
-                     <tr>
-                        <td>00</td>
-                        찜번호
-                        <td><span class="glyphicon glyphicon-calendar"></span></td>
-                        <td>플래너 ZZim</td>
-                        <td>Plan:It</td>
-                        <td>2018.01.01</td>
-
-                     </tr>
-                
-                  </table> -->
+               
                    <div class="tabbable servicetab tabs-left">
           <ul id="liked_ul"class=" col-md-offset-4">
             <li><a style="color: rgb(110,112,118)" href="services.html#webdesign" data-toggle="tab"><i class="glyphicon glyphicon-queen"></i>Tour</a></li>
@@ -416,11 +386,10 @@
 					<c:if test="${not isEmpty }">
 						<c:forEach var="list" items="${memberLiked_Planner}" varStatus="loop">
 							<tr style="text-align: center">
-								<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
 								<td>${list.LIKED_R_NO}</td>
 								<td>리뷰</td>
 								<td class="text-left"  data-toggle="modal" data-target="#myModal">
-								<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
+								<a style="color: rgb(110,112,118)" href="<c:url value='#'/>">${list.TITLE }</a>
 								</td>
 								<!-- Modal -->
 								<td>${list.HASHTAG}</td>
@@ -462,7 +431,7 @@
 									<td>${list.LIKED_R_NO}</td>
 									<td>리뷰</td>
 									<td class="text-left"  data-toggle="modal" data-target="#myModal">
-									<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
+									<a style="color: rgb(110,112,118)"href="<c:url value='/planit/review/ReviewView.it?review_id=${list.REVIEW_ID}'/>" >${list.TITLE }</a>
 									</td>
 									<!-- Modal -->
 									<td>${list.HASHTAG}</td>
@@ -535,22 +504,7 @@
 							</tr>
 						</c:forEach>
 					</c:if>
-           <!--           <tr>
-                        <td>00</td>
-                        <td>정보수정</td>
-                        <td>관광지 정보수정 문의</td>
-                        <td>2018.01.01</td>
-                        <td>문의 접수</td>
 
-                     </tr>
-                     <tr>
-                        <td>00</td>
-                        <td>그냥문의</td>
-                        <td>제목뭘루하지</td>
-                        <td>2018.01.01</td>
-                        <td>처리 중</td>
-
-                     </tr> -->
                   </table>
                </div>
 
