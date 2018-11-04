@@ -322,30 +322,18 @@ height: 100%; */
 <!-- *******************************************
 	베이지색 검색창 달린 거
 ************************************************ -->
-<section class="post-wrapper-top" style="margin-top: 65px;">
-	<div class="container">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<ul class="breadcrumb">
-				<li><a href="index.html">Partner Page</a></li>
-				<li>${partnerRecord.p_id }</li>
-			</ul>
-			<h2>Partner Page Home</h2>
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<!-- search -->
-			<div class="search-bar">
-				<form action="" method="get">
-					<fieldset>
-						<input type="image" src="img/pixel.gif" class="searchsubmit"
-							alt="" /> <input type="text" class="search_text showtextback"
-							name="s" id="s" value="Search..." />
-					</fieldset>
-				</form>
-			</div>
-			<!-- / end div .search-bar -->
-		</div>
-	</div>
-</section>
+ <section class="post-wrapper-top" style="margin-top:65px;">
+    <div class="container">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <ul class="breadcrumb">
+          <li><a href="index.html">My Page</a></li>
+          <li>${p_id }</li>
+        </ul>
+        <h2>MY Page Home</h2>        
+      </div>      
+      </div>
+    
+  </section>
 <!-- end post-wrapper-top -->
 <!--*************************************
 	왼쪽에 달린 프로필 사진 및 기타등등 
@@ -361,12 +349,12 @@ height: 100%; */
 				</div>
 				<!-- he wrap -->
 				<div class="teammembers-meta">
-					<h4>Plan:It</h4>
+					<h4>Product List</h4>
 				</div>
 				<div id="Partner-First-1-self-detail">
 					<p>
 						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-							(주)회사이름추가하기</span>
+							${partnerRecord.name}</span>
 					<div class="Partner-First-PartnerInform">
 
 						<table id="Partner-First-informtable" style="width: 110%;">
@@ -376,7 +364,7 @@ height: 100%; */
 							</tr>
 							<tr>
 								<td>대표자</td>
-								<td>${partnerRecord.name }</td>
+								<td>${partnerRecord.p_name }</td>
 							</tr>
 							<tr>
 								<td>주소</td>
@@ -411,7 +399,7 @@ height: 100%; */
 								</tr>
 								<tr>
 									<td>Star Point</td>
-									<td>00</td>
+									<td>${sessionScope.roomTotalCount}</td>
 								</tr>
 
 

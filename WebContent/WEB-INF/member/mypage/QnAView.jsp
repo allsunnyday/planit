@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp"%>
 <style>
+<style>
+.footer {position:absolute;bottom:0; width:100%;}
+
 #mypage {
 	display: inline-block;
 }

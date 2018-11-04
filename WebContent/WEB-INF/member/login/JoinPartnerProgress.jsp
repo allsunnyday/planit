@@ -27,7 +27,7 @@
 				  business_no:{required:'사업자 번호를 입력하세요'},
 				  name:{required:'회사명을 입력하세요'},
 				  p_name:{required:'대표자이름을 입력하세요'},
-				  p_id:{required:'아이디를 입력해주세요'},
+				  p_id:{required:'아이디를 입력해주세요',minlength:'아이디는 최소 4자 이상 입력해주세요'},
 				  checkcomplite:{required:'아이디 중복검사가 필요합니다'},
 				  pwd:{required:'비밀번호를 입력하세요',minlength:'비밀번호는 최소 4자 이상 입력해주세요'},
 				  partnerpwdcheck:{required:'비밀번호확인을 입력하세요',minlength:'비밀번호는 최소 4자 이상 입력해주세요',equalTo:'비밀번호가 일치하지 않습니다'},

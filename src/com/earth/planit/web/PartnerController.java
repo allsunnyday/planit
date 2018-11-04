@@ -111,6 +111,13 @@ public class PartnerController {
 	   List<Map> partnerReservation=service.partnerReservationList(map);
 	   List<Map> partnerEventRequest=service.partnerEventRequestList(map);
 	   
+	   for(Map list:userAskPartner) 
+	    	  list.put("ASKDATE",list.get("ASKDATE").toString().substring(0,10));
+	   for(Map list:partnerReservation) 
+	    	  list.put("BOOKDATE",list.get("BOOKDATE").toString().substring(0,10));
+	   for(Map list:partnerEventRequest) 
+	    	  list.put("REQDATE",list.get("REQDATE").toString().substring(0,10));
+	   
 	   model.addAttribute("partnerEventRequest", partnerEventRequest);
 	   model.addAttribute("partnerReservation", partnerReservation);
 	   model.addAttribute("partnerRoom", partnerRoom);
@@ -133,6 +140,7 @@ public class PartnerController {
          MultipartHttpServletRequest mhsr) throws Exception {
       String p_id = (String) session.getAttribute("p_id");
       System.out.println("p_id"+p_id);
+     // System.out.println("첨부된 파일:"+mhsr.getFile(""));
       map.put("p_id", p_id);
       System.out.println("map.get(\"p_id\").toString()"+map.get("p_id").toString());
       //////

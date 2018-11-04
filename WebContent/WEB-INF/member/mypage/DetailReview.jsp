@@ -165,22 +165,7 @@ display: inline-block;
 	베이지색 검색창 달린 거
 ************************************************ -->
  <section class="post-wrapper-top" style="margin-top:65px;">
-    <div class="container">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-         <ul class="breadcrumb">
-          <li><a href="index.html">Home</a></li>
-          <li>${id }</li>
-        </ul>
-        <h2>Review</h2>
-      </div>      
-    </div>
-  </section>
-  <!-- end post-wrapper-top -->
-<!--*************************************
-	왼쪽에 달린 프로필 사진 및 기타등등 
-*****************************************  -->
-  <section class="section1">
-        <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
+   <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
         <div>
           <div class="teammembers">
             <div class="he-wrap tpl2">
@@ -199,15 +184,8 @@ display: inline-block;
               <h4>${sessionScope.id}</h4>
             </div>
             <div id="MY-first-1-self-detail">
-                     <p>
-                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
-                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
-                           님의&nbsp자기소개입니다</span>
-                     <p>${memberRecord.self}
-                     </p>
-
-
+                   
+              <p>${memberRecord.self}</p>
          </div>
 
             
@@ -216,24 +194,24 @@ display: inline-block;
                    <table id="MY-first-informtable" style="width:90%;">
                    <tr>
                       <td>Planner</td>
-                      <td>00</td>
+                      <td>${plannerCount}</td>
                    </tr>
                    <tr>
                    <td>Review</td>
-                      <td>00</td>
+                      <td>${reviewCount}</td>
                    </tr>
                    <tr>
                       <td>Like</td>
-                      <td>00</td>
+                      <td>${likedCount}</td>
                    </tr>
                    <tr>
                       <td>Star Point</td>
-                      <td>0000</td>
-                  <!--  </tr>
-                	<tr style="border-top:1px white dashed;">
-                	<td colspan="2"> 선호사항</td>
-                	</tr>
-                       -->
+					<c:if test="${empty sessionScope.starcount}" var="isEmpty">
+                      <td>0</td>
+					</c:if>
+					<c:if test="${not isEmpty}">
+                      <td>${sessionScope.starcount}</td>
+					</c:if>
                    </table>
                 
                 </div>
@@ -280,9 +258,9 @@ display: inline-block;
 			<%-- 	<a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
 			<div class="dropdown">
 				  
-				  <a class="btn btn-link" href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">
+				  <a style="color: rgb(110,112,118)" class="btn btn-link" href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">
 				   돌아가기
-				    <span class="glyphicon glyphicon-log-out"></a></span>
+				    <span class="glyphicon glyphicon-log-out"></span></a>
 				
 				  
 				  

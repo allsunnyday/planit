@@ -49,7 +49,7 @@
         <h2>MY Page Home</h2>        
       </div>      
       </div>
-    </div>
+    
   </section>
   <!-- end post-wrapper-top -->
 <!--*************************************
@@ -75,15 +75,8 @@
               <h4>${sessionScope.id}</h4>
             </div>
             <div id="MY-first-1-self-detail">
-                     <p>
-                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
-                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
-                           님의&nbsp자기소개입니다</span>
-                     <p>${memberRecord.self}
-                     </p>
-
-
+                   
+              <p>${memberRecord.self}</p>
          </div>
 
             
@@ -96,7 +89,7 @@
                    </tr>
                    <tr>
                    <td>Review</td>
-                      <td>00</td>
+                      <td>${reviewCount}</td>
                    </tr>
                    <tr>
                       <td>Like</td>
@@ -203,8 +196,8 @@
 		                         <div class="he-view">
 		                           <div class="bg a0" data-animate="fadeIn">
 
-		                             <h3 class="a1" data-animate="fadeInDown">${list.POSTDATE}</h3>
-		                             <a data-rel="prettyPhoto" href="<c:url value='/review/myreview/GoWrite.it?planner_id=${review.planner_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
+		                             <h3 class="a1" data-animate="fadeInDown">${list.TITLE}</h3>
+		                             <a data-rel="prettyPhoto" href="<c:url value='/review/myreview/GoWrite.it?planner_id=${review.planner_id}'/>" class="dmbutton a2" data-animate="bounceInLeft">플래너보기</a>
 
 		                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
 		                               <!-- <a href="gallery-portfolio.html#">Item Category</a> -->
@@ -272,8 +265,8 @@
 	                         <div class="he-view">
 	                           <div class="bg a0" data-animate="fadeIn">
 	                             <h3 class="a1" data-animate="fadeInDown">${list.title}(${list.series })</h3>
-	                             <a data-rel="prettyPhoto" href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>" class="dmbutton a2" data-animate="bounceInLeft"><i class="fa fa-search"></i></a>
-	                             <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a>
+	                             <a data-rel="prettyPhoto" href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>" class="dmbutton a2" data-animate="bounceInLeft">리뷰보기</a>
+	                             <!-- <a href="single-portfolio-2.html" class="dmbutton a2" data-animate="bounceInRight"><i class="fa fa-link"></i></a> -->
 	                             <div class="portfolio_category text-center a2" data-animate="fadeIn">
 	                               <!-- <a href="gallery-portfolio.html#">Item Category</a> -->
 	                             </div>
@@ -326,7 +319,7 @@
                 
                  <table class="table">
                      <tr style="text-align: center">
-                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
+                        <td class="col-md-1 " style="text-align: center"> No.</td>
                        
                         <td class="col-md-1 " >분류</td>
                         <td class="col-md-3 col-md-offset-2">이름</td>
@@ -369,7 +362,7 @@
               <div class="row">
                <table class="table">
                      <tr style="text-align: center">
-                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
+                        <td class="col-md-1 " style="text-align: center">No.</td>
                        
                         <td class="col-md-1 " >분류</td>
                         <td class="col-md-2 col-md-offset-1">이름</td>
@@ -410,7 +403,7 @@
               <div class="row">
 	          <table class="table">
 	                     <tr style="text-align: center">
-	                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
+	                        <td class="col-md-1 " style="text-align: center">No.</td>
 	                       
 	                        <td class="col-md-1 " >분류</td>
 	                        <td class="col-md-2 col-md-offset-1">이름</td>

@@ -160,27 +160,15 @@ height: 100%;
 <!-- *******************************************
 	베이지색 검색창 달린 거
 ************************************************ -->
- <section class="post-wrapper-top" style="margin-top:65px;">
+  <section class="post-wrapper-top" style="margin-top:65px;">
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
          <ul class="breadcrumb">
           <li><a href="index.html">Home</a></li>
-          <li>사용자 아이디</li>
+          <li>${id }</li>
         </ul>
         <h2>Q&A</h2>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <!-- search -->
-        <div class="search-bar">
-          <form action="" method="get">
-            <fieldset>
-              <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
-              <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
-            </fieldset>
-          </form>
-        </div>
-        <!-- / end div .search-bar -->
-      </div>
+      </div>      
     </div>
   </section>
   <!-- end post-wrapper-top -->
@@ -188,7 +176,7 @@ height: 100%;
 	왼쪽에 달린 프로필 사진 및 기타등등 
 *****************************************  -->
   <section class="section1">
-     <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
+    <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
         <div>
           <div class="teammembers">
             <div class="he-wrap tpl2">
@@ -207,15 +195,8 @@ height: 100%;
               <h4>${sessionScope.id}</h4>
             </div>
             <div id="MY-first-1-self-detail">
-                     <p>
-                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
-                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
-                           님의&nbsp자기소개입니다</span>
-                     <p>${memberRecord.self}
-                     </p>
-
-
+                   
+              <p>${memberRecord.self}</p>
          </div>
 
             
@@ -224,24 +205,24 @@ height: 100%;
                    <table id="MY-first-informtable" style="width:90%;">
                    <tr>
                       <td>Planner</td>
-                      <td>00</td>
+                      <td>${plannerCount}</td>
                    </tr>
                    <tr>
                    <td>Review</td>
-                      <td>00</td>
+                      <td>${reviewCount}</td>
                    </tr>
                    <tr>
                       <td>Like</td>
-                      <td>00</td>
+                      <td>${likedCount}</td>
                    </tr>
                    <tr>
                       <td>Star Point</td>
-                      <td>0000</td>
-                  <!--  </tr>
-                	<tr style="border-top:1px white dashed;">
-                	<td colspan="2"> 선호사항</td>
-                	</tr>
-                       -->
+					<c:if test="${empty sessionScope.starcount}" var="isEmpty">
+                      <td>0</td>
+					</c:if>
+					<c:if test="${not isEmpty}">
+                      <td>${sessionScope.starcount}</td>
+					</c:if>
                    </table>
                 
                 </div>
@@ -253,11 +234,11 @@ height: 100%;
             <div id="MY-First-Preference" style="width:90%;" >
             	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
             		<tr>
-            		<c:if test="${empty memberPreferList }" var="result">
+            		<c:if test="${empty sessionScope.memberPreferList }" var="result">
             			<td>플래닛을 즐겨주세요</td>
             		</c:if>	
             		<c:if test="${not result }">
-            			<c:forEach var="list" items="${memberPreferList}" varStatus="loop">
+            			<c:forEach var="list" items="${sessionScope.memberPreferList}" varStatus="loop">
             				<td>${list.kor }</td><!-- 왜 안나오지 -->
             			
             			</c:forEach>
@@ -287,9 +268,9 @@ height: 100%;
 			<%-- 	<a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
 			<div class="dropdown">
 				  
-				  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" class="btn btn-link">
+				  <a style="color: rgb(110,112,118)" href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" class="btn btn-link">
 				   돌아가기
-				    <span class="glyphicon glyphicon-log-out"></a></span>
+				    <span class="glyphicon glyphicon-log-out"></span></a>
 				
 				  
 				  
@@ -333,7 +314,7 @@ height: 100%;
 									<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td>  --%>
 									<td>${list.ask_no}</td>
 									<td class="text-left">
-									<a href="#">${list.title }</a>
+									<a style="color: rgb(110,112,118)" href="<c:url value='/member/qna/view.it?ask_no=${list.ask_no}'/>">${list.title }</a>
 									</td>
 									<td>${list.askdate}</td>
 									<td>${list.status}</td>

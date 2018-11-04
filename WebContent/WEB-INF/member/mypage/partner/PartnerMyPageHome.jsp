@@ -3,186 +3,59 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <style>
-.Partnerpage-content {
-	/* margin-top: 100px; */
-	/* border: 3px black solid; */
-}
+.Partnerpage-content {}
+#Partnerpage {display: inline-block;}
+#Partner-edit {display: inline-block;float: right;}
+#Partner-edit-button {background-color: whith;border: 1.5px black solid;color: black;align: right;}
+#Partner-First {margin-top: 20px;padding-top: 10px;border-top: 2px black solid;margin-bottom: 100px;}
+#Partner-First-1, #Partner-First-2 {margin-top: 10px;}
+#Partner-First-1-pictur, #Partner-First-1-self {font-size: 1.5em;height: 150%;}
+#Partner-user-picture img {max-width: 100%;max-height: 100%;margin: auto;display: block;}
+#Partner-First-content img, #Partner-Second-content img {position: absolute;top: 0;left: 0;width: 100%;height: 100%;}
+#Partner-user-picture {width: 150px;height: 150px;border-radius: 50%;border: 2px gray solid;}
+#Partner-First-Parter-RoomStatus {display: inline-block;border-radius: 10px;background-color: darkgray;}
+#Partner-First-2-Like {display: inline-block;border-radius: 10px;background-color: rgb(109, 213, 193);}
+#Partner-First-informtable td:first-child {font-size: 0.8em;color: darkgray;text-align: left;align: left;}
+#Partner-First-informtable td:last-child {font-weight: lighter;font-size: 0.8em;color: black;text-align: left;align: left;}
+.Partner-First-2-zzim {display: inline-block;}
+#Partner-First-Roomtable td:First-child {font-size: 1.0em;font-weight: bold;color: white;text-indent: 10px;text-align: left;}
+#Partner-First-Roomtable td:nth-child(2n) {font-weight: lighter;font-size: 1.0em;color: white;text-indent: 10px;}
+#Partner-First-2-Like {margin-top: 20px;}
 
-#Partnerpage {
-	display: inline-block;
-	/*  border: 3px black solid;  */
-}
+#Partner-Second, 
+#Partner-Forth, 
+#Partner-Third {padding-top: 10px;border-top: 2px black solid;margin-bottom: 130px;}
 
-#Partner-edit {
-	display: inline-block;
-	/*  border: 3px black solid;  */
-	float: right;
-	/* padding-top: 30px; */
-}
+#Partner-First-content div, 
+#Partner-Second-content div,
+#Third-content div,
+#Partner-Third-content div {height: 170px;}
 
-#Partner-edit-button {
-	background-color: whith;
-	border: 1.5px black solid;
-	/*  background-color: lightgray; */
-	color: black;
-	align: right;
-}
+#Partner-First-name, 
+#Partner-Second-name, 
+#Partner-Forth-name,
+#Partner-Third-name {display: inline-block;}
 
-#Partner-First {
-	margin-top: 20px;
-	padding-top: 10px;
-	border-top: 2px black solid;
-	margin-bottom: 100px;
-}
-
-#Partner-First-1, #Partner-First-2 {
-	/* 	//height:15%; */
-	/* border: 1px purple solid; */
-	margin-top: 10px;
-}
-
-#Partner-First-1-pictur, #Partner-First-1-self {
-	/* border: 1px pink solid; */
-	font-size: 1.5em;
-	height: 150%;
-}
-
-#Partner-user-picture img {
-	/* position: absolute; top:0; left: 0;
-width: 100%;
-height: 100%; */
-	max-width: 100%;
-	max-height: 100%;
-	margin: auto;
-	display: block;
-}
-
-#Partner-First-content img, #Partner-Second-content img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-
-#Partner-user-picture {
-	width: 150px;
-	height: 150px;
-	border-radius: 50%;
-	border: 2px gray solid;
-}
-
-#Partner-First-Parter-RoomStatus {
-	display: inline-block;
-	border-radius: 10px;
-	/* 	border: 3px gray dotted; */
-	background-color: darkgray;
-}
-
-#Partner-First-2-Like {
-	display: inline-block;
-	border-radius: 10px;
-	/* 	border: 3px gray dotted; */
-	background-color: rgb(109, 213, 193);
-}
-
-#Partner-First-informtable td:first-child {
-	font-size: 0.8em;
-	/* font-weight: bold; */
-	color: darkgray;
-	text-align: left;
-	align: left;
-}
-
-#Partner-First-informtable td:last-child {
-	font-weight: lighter;
-	font-size: 0.8em;
-	color: black;
-	text-align: left;
-	/* 	align:right; */
-	align: left;
-}
-
-.Partner-First-2-zzim {
-	display: inline-block;
-}
-
-#Partner-First-Roomtable td:First-child {
-	font-size: 1.0em;
-	font-weight: bold;
-	color: white;
-	text-indent: 10px;
-	text-align: left;
-}
-
-#Partner-First-Roomtable td:nth-child(2n) {
-	font-weight: lighter;
-	font-size: 1.0em;;
-	color: white;
-	/* 	align:right; */
-	text-indent: 10px;
-}
-
-#Partner-First-2-Like {
-	/* background-color:white; */
-	margin-top: 20px;
-}
-
-#Partner-Second, #Partner-Forth, #Partner-Third {
-	/* margin-top: 60px; */
-	padding-top: 10px;
-	border-top: 2px black solid;
-	margin-bottom: 130px;
-}
-
-#Partner-First-content div, #Partner-Second-content div, #Third-content div,
-	#Partner-Third-content div {
-	/* 	margin-top: 20px; */
-	height: 170px;
-}
-
-#Partner-First-name, #Partner-Second-name, #Partner-Forth-name,
-	#Partner-Third-name {
-	display: inline-block;
-}
-
-.Partner-More-Button {
-	display: inline-block;
-	float: right;
-	margin-top: -5px;
-}
-
-.Partner-More-Button button {
-	color: rgb(53, 181, 157);
-}
+.Partner-More-Button {display: inline-block;float: right;margin-top: -5px;}
+.Partner-More-Button button {color: rgb(53, 181, 157);}
+.MY-More-Button{ display:inline-block; float: right; margin-top:-5px; }
+.MY-More-Button button {color:rgb(53, 181, 157); }
 </style>
 <!-- *******************************************
 	베이지색 검색창 달린 거
 ************************************************ -->
-<section class="post-wrapper-top" style="margin-top: 65px;">
-	<div class="container">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<ul class="breadcrumb">
-				<li><a href="index.html">Partner Page</a></li>
-				<li>${partnerRecord.p_id }</li>
-			</ul>
-			<h2>Partner Page Home</h2>
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<!-- search -->
-			<div class="search-bar">
-				<form action="" method="get">
-					<fieldset>
-						<input type="image" src="img/pixel.gif" class="searchsubmit"
-							alt="" /> <input type="text" class="search_text showtextback"
-							name="s" id="s" value="Search..." />
-					</fieldset>
-				</form>
-			</div>
-			<!-- / end div .search-bar -->
-		</div>
-	</div>
-</section>
+ <section class="post-wrapper-top" style="margin-top:65px;">
+    <div class="container">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <ul class="breadcrumb">
+          <li><a href="index.html">My Page</a></li>
+          <li>${p_id }</li>
+        </ul>
+        <h2>MY Page Home</h2>        
+      </div>      
+      </div>
+    
+  </section>
 <!-- end post-wrapper-top -->
 <!--*************************************
 	왼쪽에 달린 프로필 사진 및 기타등등 
@@ -198,12 +71,10 @@ height: 100%; */
 				</div>
 				<!-- he wrap -->
 				<div class="teammembers-meta">
-					<h4>Plan:It</h4>
+					<h4>${partnerRecord.name}</h4>
 				</div>
 				<div id="Partner-First-1-self-detail">
-					<p>
-						<span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-							${partnerRecord.p_name }</span>
+				
 					<div class="Partner-First-PartnerInform">
 
 						<table id="Partner-First-informtable" style="width: 110%;">
@@ -213,7 +84,7 @@ height: 100%; */
 							</tr>
 							<tr>
 								<td>대표자</td>
-								<td>${partnerRecord.name }</td>
+								<td>${partnerRecord.p_name }</td>
 							</tr>
 							<tr>
 								<td>주소</td>

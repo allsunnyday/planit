@@ -99,6 +99,13 @@ public class MemberController {
       List<Map> memberLiked_Tour=service.memberLikedTour(map);
       List<Map> memberLiked_Review=service.memberLikedReview(map);
       List<Map> memberLiked_Planner=service.memberLikedPlanner(map);
+      
+      for(Map list:memberLiked_Review) 
+    	  list.put("POSTDATE",list.get("POSTDATE").toString().substring(0,10));
+      
+      for(Map list:memberLiked_Planner) 
+    	  list.put("POSTDATE",list.get("POSTDATE").toString().substring(0,10));
+      
       //[홈에 뿌려줄 Planner리스트(5)]
       List<Map> homePlannerList=service.homePlannerList(map);
       for(Map planner: homePlannerList) {
@@ -121,6 +128,7 @@ public class MemberController {
       model.addAttribute("homeReviewList", homeReviewList);
       model.addAttribute("homeQnAList", homeQnAList);
       model.addAttribute("plannerCount",plannerCount);
+      model.addAttribute("reviewCount",reviewCount);
       model.addAttribute("likedCount",likedCount);
       return "mypage/MyPageHome.theme";
    }
@@ -194,12 +202,7 @@ public class MemberController {
       return "mypage/MyPageEditPassword.theme";
    }
 
-   /// ******임시
-   @RequestMapping("/planit/mypage/MyPagePassCheck.it")
-   public String gotoMyPagePassCheck() throws Exception {
-
-      return "mypage/MyPagePassCheck.theme";
-   }
+ 
 
    @RequestMapping("/planit/mypage/Preference.it")
    public String gotoPreference() throws Exception {
@@ -213,18 +216,6 @@ public class MemberController {
       return "/mypage/UserPreference2.theme";
       /// planit/WebContent/WEB-INF/member/mypage/UserPreference2.jsp
    }
-   // 마이페이지에서 회원정보 및 비밀번호 변경시 기존 비밀번호 체크를 위한 프로세스
-   // 아직은 체크없이 바로 해당페이지로 이동합니다 :)
-   /*
-    * @RequestMapping("/planit/mypage/MyPageEditProfile.it") public String
-    * gotoMyPageEditProfile()throws Exception{ return
-    * "mypage/MyPagePassCheck.theme"; }
-    * 
-    * @RequestMapping("/planit/mypage/MyPageEditPassword.it") public String
-    * gotoMyPageEditPassword()throws Exception{ return
-    * "mypage/MyPagePassCheck.theme"; }
-    */
-   // ***************마이페이지 상세페이지 이동(일반회원)
 
    @RequestMapping("/planit/mypage/detail/Q&A.it")
    public String gotoQnADetail(Model model,//리퀘스트 영역 저장용
@@ -279,6 +270,11 @@ public class MemberController {
       List<Map> likedPlannerAll=service.memberLikedPlannerDetail(map);
       List<Map> likeReviewAll=service.memberLikedReviewDetail(map);
       List<Map> likedTourAll=service.memberLikedTourDetail(map);
+      for(Map list:likeReviewAll) 
+    	  list.put("POSTDATE",list.get("POSTDATE").toString().substring(0,10));
+      
+      for(Map list:likedPlannerAll) 
+    	  list.put("POSTDATE",list.get("POSTDATE").toString().substring(0,10));
       
       model.addAttribute("likedPlannerAll",likedPlannerAll);
       model.addAttribute("likeReviewAll",likeReviewAll);

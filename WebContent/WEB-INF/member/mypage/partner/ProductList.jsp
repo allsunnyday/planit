@@ -9,7 +9,12 @@
 .Partnerpage-content {
 	/* margin-top: 100px; */
 	/* border: 3px black solid; */
-	
+}
+#MY-edit {
+	display: inline-block;
+	/*  border: 3px black solid;  */
+	float: right;
+	/* padding-top: 30px; */
 }
  
 #Partnerpage {
@@ -163,30 +168,18 @@ height: 100%; */
 <!-- *******************************************
 	베이지색 검색창 달린 거
 ************************************************ -->
-<section class="post-wrapper-top" style="margin-top: 65px;">
-	<div class="container">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<ul class="breadcrumb">
-				<li><a href="index.html">Product</a></li>
-				<li>${partnerRecord.p_id }</li>
-			</ul>
-			<h2>Product List</h2>
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<!-- search -->
-			<div class="search-bar">
-				<form action="" method="get">
-					<fieldset>
-						<input type="image" src="img/pixel.gif" class="searchsubmit"
-							alt="" /> <input type="text" class="search_text showtextback"
-							name="s" id="s" value="Search..." />
-					</fieldset>
-				</form>
-			</div>
-			<!-- / end div .search-bar -->
-		</div>
-	</div>
-</section>
+ <section class="post-wrapper-top" style="margin-top:65px;">
+    <div class="container">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <ul class="breadcrumb">
+          <li><a href="index.html">My Page</a></li>
+          <li>${p_id }</li>
+        </ul>
+        <h2>Product List</h2>        
+      </div>      
+      </div>
+    
+  </section>
 <!-- end post-wrapper-top -->
 <!--*************************************
 	왼쪽에 달린 프로필 사진 및 기타등등 
@@ -281,7 +274,7 @@ height: 100%; */
 						<%-- 	<a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
 						<div class="dropdown">
 							
-								<a class="btn btn-link"
+								<a style="color: rgb(110,112,118)" class="btn btn-link"
 									href="<c:url value='/planit/mypage/partner/PartnerMyPageHome.it'></c:url>">
 									돌아가기 <span class="glyphicon glyphicon-log-out"> </span>
 								</a>
