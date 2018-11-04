@@ -249,8 +249,8 @@
 		                     <tr>
 		                        <td class="col-md-1 ">No.</td>
 								
-								<td class="col-md-1 col-md-offset-1">이름</td>
-								<td class="col-md-1 col-md-offset-1">기간</td>
+								<td class="col-md-2 ">제목</td>
+								<td class="col-md-1 col-md-offset-2">기간</td>
 								<td class="col-md-1 col-md-offset-1">상태</td>
 								<td class="col-md-1 col-md-offset-1">요청일자</td>
 								
@@ -312,7 +312,7 @@
                      <tr>
                         <td class="col-md-1 ">No.</td>
 						<td class="col-md-1 ">이름</td>
-						<td class="col-md-1 col-md-offset-1">객실</td>
+						<td class="col-md-2 ">객실</td>
 						<td class="col-md-1 col-md-offset-1">예약일자</td>
 						<td class="col-md-1 col-md-offset-1">Check-Out</td>
 						<td class="col-md-1 col-md-offset-1">Check-Out</td>

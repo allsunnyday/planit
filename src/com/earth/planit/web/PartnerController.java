@@ -111,10 +111,15 @@ public class PartnerController {
 	   List<Map> partnerReservation=service.partnerReservationList(map);
 	   List<Map> partnerEventRequest=service.partnerEventRequestList(map);
 	   
-	   for(Map list:userAskPartner) 
+	   for(Map list:userAskPartner) {
 	    	  list.put("ASKDATE",list.get("ASKDATE").toString().substring(0,10));
-	   for(Map list:partnerReservation) 
+	    	  list.put("REPLYDATE",list.get("REPLYDATE").toString().substring(0,10));
+	   }
+	   for(Map list:partnerReservation) { 
 	    	  list.put("BOOKDATE",list.get("BOOKDATE").toString().substring(0,10));
+	    	  list.put("CHECKIN",list.get("CHECKIN").toString().substring(0,10));	    	  
+	    	  list.put("CHECKOUT",list.get("CHECKOUT").toString().substring(0,10));	    	  
+	   }
 	   for(Map list:partnerEventRequest) 
 	    	  list.put("REQDATE",list.get("REQDATE").toString().substring(0,10));
 	   
