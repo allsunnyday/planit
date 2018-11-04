@@ -201,7 +201,7 @@ public class SearchListController {
 							pageSize, 
 							blockPage, 
 							nowPage, 
-							req.getContextPath()+"/tourinfo/tdview/SleepList.it?contenttype=32");
+							req.getContextPath()+"/tourinfo/tdview/SleepList.it?contenttype=32&");
 		
 		model.addAttribute("list", sleepList);
 		model.addAttribute("pagingString", pagingString);
@@ -240,6 +240,7 @@ public class SearchListController {
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
 		int totalCount = service.getTotalCount(map);
+		System.out.println("totalCount ??: "+ totalCount);
 		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
 		int start = (nowPage-1)*pageSize+1;
 		int end  = nowPage*pageSize;
@@ -251,17 +252,16 @@ public class SearchListController {
 							pageSize, 
 							blockPage, 
 							nowPage, 
-							req.getContextPath()+"/tourinfo/tdview/FoodList.it?contenttype=39");
+							req.getContextPath()+"/tourinfo/tdview/FoodList.it?contenttype=39&");
 		
 		model.addAttribute("list", Foodlist);
 		model.addAttribute("pagingString", pagingString);
 		model.addAttribute("totalRecordCount", totalCount);
 		model.addAttribute("pageSize", pageSize);
-		model.addAttribute("nowPage", nowPage);
-		
+		model.addAttribute("nowPage", nowPage);		
 		model.addAttribute("areacode",map.get("areacode"));
 		model.addAttribute("food",Foodlist);
-		
+		System.out.println("pagingString ????: "+ pagingString + "\r\n Foodlist : ???" + Foodlist);
 		return "tourinfo/tdview/FoodList.theme";
 	}
 	

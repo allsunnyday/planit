@@ -3,13 +3,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script>
+<script>	
 /**************************/   
+	// 지도의 중심좌표를 얻어옵니다
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 		center: new daum.maps.LatLng(37.47868488487008, 126.87946377805068), //지도의 중심좌표.
+		//center: new daum.maps.LatLng(latlng), //지도의 중심좌표.
 		level: 6 //지도의 레벨(확대, 축소 정도)
 	};            
+	
 	var map = new daum.maps.Map(container, options);//지도를 생성합니다
 	//container.style.height = '800px';/* map 의 레이아웃 설정 */
 	map.relayout();/* map 의 레이아웃 설정 */
@@ -245,13 +248,13 @@
 			position: position, // 마커의 위치
 			image: markerImage 
 		});       
-		if(currCategory){         
-			var imageSrc = '/Planit/images/plan/css_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다 // http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png
-				imageSize = new daum.maps.Size(31, 31),  // 마커 이미지의 크기
+		if(currCategory){         // /Planit/images/plan/css_category.png
+			var imageSrc = '/Planit/images/plan/cate.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다 // http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png
+				imageSize = new daum.maps.Size(30, 42),  // 마커 이미지의 크기  / (31, 31)
 				imgOptions =  {
-					spriteSize : new daum.maps.Size(70, 197), // 스프라이트 이미지의 크기
-					spriteOrigin : new daum.maps.Point(38, (order*33)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-					offset: new daum.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+					spriteSize : new daum.maps.Size(100, 188), // 스프라이트 이미지의 크기 / (70, 197)
+					spriteOrigin : new daum.maps.Point(60, (order*42)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표 / (38, (order*33)
+					offset: new daum.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표 / (11, 28)
 				},
               markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imgOptions),
                   marker = new daum.maps.Marker({
@@ -288,6 +291,7 @@
       
 	// 각 카테고리에 클릭 이벤트를 등록합니다
 	function addCategoryClickEvent() {
+		
 		var category = document.getElementById('category'),
 			children = category.children;
 
@@ -298,6 +302,9 @@
    
 	// 카테고리를 클릭했을 때 호출되는 함수입니다
 	function onClickCategory() {
+		if(bookmarkmarker != null || bookmarkmarker != undefined){ //즐겨찾기 마커 제거
+			bookmarkmarker.setMap(null);
+		}
 		var id = this.id,
 			className = this.className;
 		placeOverlay.setMap(null);
@@ -377,7 +384,7 @@
 		polyline = new daum.maps.Polyline({
 			path: linePath, // 선을 구성하는 좌표배열 입니다
 			strokeWeight: 5, // 선의 두께 입니다
-			strokeColor: '#FF5E00', // 선의 색깔입니다
+			strokeColor: '#CA6EED', // 선의 색깔입니다
 			strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 			strokeStyle: 'solid', // 선의 스타일입니다
 			endArrow:true
@@ -421,7 +428,7 @@
 		
 		/* **************** 사용자가 추가한 마커 이미지 생성  ***************** */
 		function planmarkingsave(){
-			var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";           
+			var imageSrc = "/Planit/images/plan/planmarker.png"; //"http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";           
 			for (var i = 0; i < positions.length; i ++) {          
 				// 마커 이미지의 이미지 크기 입니다
 				var imageSize = new daum.maps.Size(24, 35);           
@@ -686,9 +693,10 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- ********************************* 상세 일정 페이지 달력 출력 종료 *************************************** -->
-<script>   
+<script>  
 	$(function() {
 		/* **************** location 의 도시 정보 검색  **************** */
+		
 		searchaction();   
 		function searchaction(){
 			ps = new daum.maps.services.Places();
@@ -699,13 +707,12 @@
 			/* ******************* location 에서 사용자가 선택한 지역으로 자동 서치 ****************** */      
 			// 주소-좌표 변환 객체를 생성합니다
 			var geocoder = new daum.maps.services.Geocoder();
-			console.log(keyword);
+			//console.log(keyword);
 			// 주소로 좌표를 검색합니다
 			geocoder.addressSearch(keyword, function(result, status) {   
 				// 정상적으로 검색이 완료됐으면 
 				if (status === daum.maps.services.Status.OK) {   
 					var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-                
 					// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 					map.setCenter(coords);
 				} 
@@ -734,7 +741,8 @@
 		$('#peopletype li > a > img').on('click', function(){
 			//alert($(this).attr('alt'));//오 읽어온다.
 			//ui 태그 id: peopletype, 표시할 image태그 id: tourtypeimage 
-			$('#tourtypeimage').attr('src',$(this).attr('src')).attr('alt',$(this).attr('alt')).css('height',80);
+			$('#tourtypeimage').attr('src',$(this).attr('src')).attr('alt',$(this).attr('alt')).css('height',60).css('width',60);
+			$('#tourtype').css('width',60);
 			$('#caret').attr('class','');
 			$('#tourtype').css('padding',0).css( 'height' ,'auto');
 		});
@@ -744,17 +752,14 @@
 		/* ********** 동적할당으로 생성된 div에 이벤트 할당하기 ********* */		
 		$(document).on('change','#dayselect',function(){
 			//console.log("읽음..?"+plancase) //전체 plancase의 개 수 읽었음.			
+			//console.log($(this).parents(''))
 			for(var i=0; i< plancase; i++){
 				if($('.planroute_'+(i-1)+' #dayselect').val() > $('.planroute_'+i+' #dayselect').val()){ 
 					alert('후일정보다 높은 일차수를 선택할수없습니다.');
 					$(this).val($('.planroute_'+i+' #dayselect').val());
 					return false;
 				}
-				/* if($('.planroute_'+i+' #dayselect').val() > $('.planroute_'+(i+1)+' #dayselect').val()){
-					alert('선일정보다 낮은 차수를 선택할수없습니다.');
-					$(this).val($('.planroute_'+i+' #dayselect').val());
-					return false;
-				} */
+				
 			}
 		});
 		/* ********** 동적할당으로 생성된 div에 이벤트 할당하기 ********* */
@@ -912,12 +917,35 @@
 	function movescheduleAction() {	
 		//var formdata = new FormData();
 		//여행 타입 및 여행 일정 작성 미진행시 팝업창 출력
+		var isplanday = false;
+		var temp = false;
+		var checkdays=1;
+ 		for(var i=0; i<plancase; i++){ // dayselect
+ 			//alert("dayselect: "+ $('.planroute_'+i+' #dayselect').val()); 		
+ 			if($('.planroute_'+i+' #dayselect').val() == checkdays && days != 1){
+	 			checkdays++;
+ 			}
+ 			else if($('.planroute_'+i+' #dayselect').val() != checkdays && i != (plancase-1)){
+ 				//isplanday = true;
+				continue;
+ 	 		}
+ 			else if($('.planroute_'+i+' #dayselect').val() != checkdays && i == (plancase-1)){
+ 				isplanday = true;
+ 	 		}
+ 			if(plancase == 1 && days!=1){
+ 				isplanday = true;
+ 			}
+ 		}
 		if(($('#thedate').val() == null || $('#thedate').val()=='') && $('#tourtypeimage').attr('alt') =='타입'){
 			alert('여행 출발일과 여행인원 타입이 선택되지 않았습니다. ')
 		}
 		else if($('#thedate').val() == null || $('#thedate').val()==''){ alert('여행 출발일을 선택해주세요') }
 		else if($('#tourtypeimage').attr('alt') =='타입'){ alert('여행 인원 타입을 선택해주세요') }
 		else if(plancase ==0){alert('작성된 여행 일정이 없습니다.')}
+		else if(isplanday){
+			alert("작성되지 않은 여행 일차수가 있습니다 ");
+			isplanday = false;
+		}
 		//일정 페이지로 이동 + 데이터 전달할것 작성
 		else{	
 			//날짜 변환
@@ -1134,12 +1162,18 @@
 		if(bookmarkmarker != null || bookmarkmarker != undefined){
 			bookmarkmarker.setMap(null);
 		}
-		var bookmarkmarkerPosition = new daum.maps.LatLng($('#mapy_'+index).val(), $('#mapx_'+index).val()); // 마커가 표시될 위치입니다
-		console.log('즐겨찾기 마커 위치가 잘못됫다.: '+bookmarkmarkerPosition)
+		var imageSrc = "/Planit/images/plan/marker/bookmarkmarker.png",  // 북마크 마커 이미지    
+		    imageSize = new daum.maps.Size(30, 42), // 마커이미지의 크기입니다
+		    imageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	    
+		var bookmarkmarkerPosition = new daum.maps.LatLng($('#mapy_'+index).val(), $('#mapx_'+index).val()),
+			markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption); // 마커가 표시될 위치입니다
+		//console.log('즐겨찾기 마커 위치가 잘못됫다.: '+bookmarkmarkerPosition)
 		
 		bookmarkmarker = new daum.maps.Marker({ 
 			// 지도 중심좌표에 마커를 생성합니다 
-			position: bookmarkmarkerPosition   
+			position: bookmarkmarkerPosition,
+			image: markerImage // 마커이미지 설정 
 		});
 		function setCenter() {            
 		    // 이동할 위도 경도 위치를 생성합니다 
