@@ -13,13 +13,17 @@
     color:#FFF;
     }
 
-    .text{margin-left: 3%;}
-    
     .tourlist-overlay .text img{
-       width:460px;
-       height: 300px;
+       /* width:460px;
+       height: 300px; */
     }
     
+    
+    .tourlist-overlay{ margin: 10%; }
+    .text{margin-left: 3%; padding: 1%; width: 74%;}
+    .carousel-indicators{bottom: 232px;}
+    .caroimg img{  background: #fff; height: 95%; width: 100%}
+    .caroimg{ width:32%; height: 310px; }
  </style>
 
  <!-- ****************************************
@@ -30,91 +34,94 @@
 <!-- ****************************************
        가장 핫한거 하나씩 보여줄 캐러셀
 **************************************** -->
-  <section class="">
-   <div class="row">
-            
-            <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
-               <ol class="carousel-indicators">
-                   <li data-target="#myCarousel" data-slide-to="0" class="active" ></li>
-                   <li data-target="#myCarousel" data-slide-to="1"  ></li>
-                   <li data-target="#myCarousel" data-slide-to="2"  ></li>
-                 </ol>
-               <div class="carousel-inner" >
-                  <!--슬라이드1-->
-                     <!-- ------------------------------관광지-------------------------- -->
-                        <div class="item active" id="listmain-tour"  > 
-                           <!--  아래 이미지는 배경이 된다. -->
-                           
-                           <img src="<c:url value='/Upload/Tour/listmain_tour.jpg'/> " 
-                                    style="width:100%;height: 550px" height="300px" alt="First slide">
-                           <div class="tourlist-overlay"  style="margin-left: 30px; ">
-                                  <div class="text" style="background-color: rgba(0, 0, 0, 0.5); padding: 0 10px 50px 10px">
-                                  <div class="general-title text-center">
-                              <h3 style=""><span class="clickedArea"></span> 지금 가장 인기 있는  관광지</h3>
-                              <a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
-                           </div>
-                                  <c:forEach var="record" items="${tour}" >
-                                     <div class="" style="display: inline-block;">
-                                     <img id="iii2" src="${record.firstimage}">
-                                     </div>
-                                  </c:forEach>
-
-                                 </div>
-                           </div>
-                           <div class="container">
-                        </div>
-                     </div>
-                   <!-- ---------------------------음식점-------------------------- -->
-                     <div class="item" id="listmain-food" > 
-                           <!--  아래 이미지는 배경이 된다. -->
-                           
-                           <img src="<c:url value='/Upload/Tour/listmain_food.jpg'/>" 
-                                    style="width:100%; height: 550px" height="300px" alt="First slide">
-                           <div class="tourlist-overlay"  style="margin-left: 30px;">
-                                  <div class="text" style="background-color: rgba(0, 0, 0, 0.5); padding: 0 10px 50px 10px" >
-                           <div class="general-title text-center">
-                              <h3 style=""><span class="clickedArea"></span> 지금 가장 인기 있는  음식점</h3>
-                              <a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
-                           </div>
-                                  <c:forEach var="record" items="${food}">
-                                  <div class="" style="display: inline-block;">
-                                  <img id="iii2" src="${record.firstimage}">
-                                  </div>
-                                  </c:forEach>
-
-                                  
-                                 </div>
-                           </div>
-                           <div class="container">
-                        </div>
-                     </div>
-                     
-                      <!-- ---------------------------축제행사-------------------------- -->
-                     <div class="item" id="listmain-festival" > 
-                           <!--  아래 이미지는 배경이 된다. -->
-                          
-                           <img src="<c:url value='/Upload/Tour/listmain_sleep.jpg'/> " 
-                                    style="width:100%;height: 550px" height="300px" alt="First slide">
-                           <div class="tourlist-overlay"  style="margin-left: 30px;">
-                                  <div class="text" style="background-color: rgba(0, 0, 0, 0.5); padding: 0 10px 50px 10px" >
-                            <div class="general-title text-center">
-                              <h3 style=""><span class="clickedArea"></span>지금 가장 인기 있는  축제/행사</h3>
-                              <a href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>" style="text-align: right;">더보기</a>
-                           </div>
-                               <c:forEach var="record" items="${sleep}">
-                                  <div class="" style="display: inline-block;">
-                                  <img id="iii2" src="${record.firstimage}">
-                                  </div>
-                               </c:forEach>
-                                  
-                                 </div>
-                           </div>
-                           <div class="container">
-                        </div>
-                     </div>
-                     
-                     
-                     <!-- a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+<section class="">
+	<div class="row">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<!--슬라이드1-->
+				<!-- ------------------------------관광지-------------------------- -->
+				<div class="item active" id="listmain-tour">
+					<!--  아래 이미지는 배경이 된다. -->
+					<img src="<c:url value='/Upload/Tour/listmain_tour.jpg'/> "
+						style="width: 100%; height: 550px" height="300px"
+						alt="First slide">
+					<div class="tourlist-overlay">
+						<div class="text"
+							style="background-color: rgba(0, 0, 0, 0.5);">
+							<div class="general-title text-center">
+								<h3 style="">
+									<span class="clickedArea"></span> 지금 가장 인기 있는 관광지
+								</h3>
+								<a
+									href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>"
+									style="text-align: right;">더보기</a>
+							</div>
+							<c:forEach var="record" items="${tour}">
+								<div class="caroimg" style="display: inline-block;">
+									<img id="iii2" src="${record.firstimage}">
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+					<div class="container"></div>
+				</div>
+				<!-- ---------------------------음식점-------------------------- -->
+				<div class="item" id="listmain-food">
+					<!--  아래 이미지는 배경이 된다. -->
+					<img src="<c:url value='/Upload/Tour/listmain_food.jpg'/>"
+						style="width: 100%; height: 550px" height="300px"
+						alt="First slide">
+					<div class="tourlist-overlay">
+						<div class="text"
+							style="background-color: rgba(0, 0, 0, 0.5); ">
+							<div class="general-title text-center">
+								<h3 style="">
+									<span class="clickedArea"></span> 지금 가장 인기 있는 음식점
+								</h3>
+								<a
+									href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>"
+									style="text-align: right;">더보기</a>
+							</div>
+							<c:forEach var="record" items="${food}">
+								<div class="caroimg" style="display: inline-block;">
+									<img id="iii2" src="${record.firstimage}">
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+					<div class="container"></div>
+				</div>
+				<!-- ---------------------------축제행사-------------------------- -->
+				<div class="item" id="listmain-festival">
+					<!--  아래 이미지는 배경이 된다. -->
+					<img src="<c:url value='/Upload/Tour/listmain_sleep.jpg'/> "
+						style="width: 100%; height: 550px" height="300px"
+						alt="First slide">
+					<div class="tourlist-overlay">
+						<div class="text" style="background-color: rgba(0, 0, 0, 0.5);">
+							<div class="general-title text-center">
+								<h3 style="">
+									<span class="clickedArea"></span>지금 가장 인기 있는 축제/행사
+								</h3>
+								<a
+									href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>"
+									style="text-align: right;">더보기</a>
+							</div>
+							<c:forEach var="record" items="${sleep}">
+								<div class="caroimg" style="display: inline-block;">
+									<img id="iii2" src="${record.firstimage}">
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+					<div class="container"></div>
+				</div>
+				<!-- a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                    <span class="sr-only">Previous</span>
                  </a>
@@ -122,12 +129,11 @@
                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                    <span class="sr-only">Next</span>
                  </a> -->
-                  <!--슬라이드1-->
-               </div>
-               
-            </div>
-         </div>
-  </section>
+				<!--슬라이드1-->
+			</div>
+		</div>
+	</div>
+</section>
 
 <!-- ****************************************
        인기여행지들 보여주는 캐러셀
@@ -208,13 +214,13 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-left">
-              <a href="<c:url value='/tourinfo/tdview/TourList.it'/>" class=""> <i class="dm-icon fa fa-money fa-3x"></i> </a>
+              <a href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12'/>" class=""> <i class="dm-icon fa fa-money fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>관광지</h4>
               <hr>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since..</p>
+            <p>대한 민국 관광지 어디까지 가봤니? Plan: It에 등록된 관광지 정보를 확인하시고 여행을 계획해보세요~!</p>
           </div>
           <!-- service-icon -->
         </div>
@@ -226,13 +232,13 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-bottom">
-              <a href="<c:url value='/tourinfo/tdview/FoodList.it'/>" class=""> <i class="dm-icon fa fa-trophy fa-3x"></i> </a>
+              <a href="<c:url value='/tourinfo/tdview/FoodList.it?contenttype=39'/>" class=""> <i class="dm-icon fa fa-trophy fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>음식점 정보</h4>
               <hr>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since..</p>
+            <p>냠냠 쩝쩝.. 대한민국의 맛있는 음식점이 많아요! Plan: It에 등록된  음식점 정보 확인하시고 맛있는 음식 먹으며 여행 가요~</p>
           </div>
           <!-- service-icon -->
         </div>
@@ -244,13 +250,13 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-bottom">
-              <a href="<c:url value='/tourinfo/tdview/SleepList.it'/>" class=""> <i class="dm-icon fa fa-heart-o fa-3x"></i> </a>
+              <a href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32'/>" class=""> <i class="dm-icon fa fa-heart-o fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>숙박 정보</h4>
               <hr>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since..</p>
+            <p> 불친절한 서비스, 불편한 시설 싫어요! Plan: It에 등록된 숙박정보 확인하시고 여행의 계획해요! </p>
           </div>
           <!-- service-icon -->
         </div>
@@ -262,13 +268,13 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-right">
-              <a href="#" class=""> <i class="dm-icon fa fa-book fa-3x"></i> </a>
+              <a href="<c:url value='/planit/review/ReviewList.it'/>" class=""> <i class="dm-icon fa fa-book fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>리뷰</h4>
               <hr>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since..</p>
+            <p> 나의 소중한 여행기.. 남들의 색다른 여행기.. 리뷰를 통해 공유해봐요~ </p>
           </div>
           <!-- service-icon -->
         </div>

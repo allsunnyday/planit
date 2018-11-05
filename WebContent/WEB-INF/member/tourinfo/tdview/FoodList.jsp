@@ -21,12 +21,12 @@ max-width: 100%;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
         <li>
-          <c:choose>
+          <%-- <c:choose>
             <c:when test="${food=='foodinfo'}">맛있게 식사를!</c:when>
             <c:when test="${food=='foodrank'}">음식점 순위를 알아보자!</c:when>
             <c:when test="${food=='foodstreet'}">맛집 파헤치기!</c:when>
             <c:otherwise>조건을 만족하지 않는 경우</c:otherwise>
-	     </c:choose>
+	     </c:choose> --%>
         
         </li>
         </ul>

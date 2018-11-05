@@ -109,8 +109,8 @@
 }
 
 .icon16 { /* 제주 */
-	left: 18%;
-	top: 90%;
+	left: 22%;
+	top: 92%;
 }
  
  /* 
@@ -258,7 +258,7 @@
 				<form>
 					<div class="lcate" style="overflow: hidden; background-color: #47698c;"> 
 						<div class="mapIllust" style="position:relative">
-							<ul id="setHiddenButtons1" style="position:relative">
+							<ul id="setHiddenButtons1" style="position:relative; margin-left: 15px;">
 								<li class="icon1"><button value="2" name="areacode" type="button" class="go-button">인천</button></li>
 								<li class="icon2"><button value="1" name="areacode" type="button" class="go-button">서울</button></li>
 								<li class="icon3"><button value="31" name="areacode" type="button" class="go-button">경기</button></li>
