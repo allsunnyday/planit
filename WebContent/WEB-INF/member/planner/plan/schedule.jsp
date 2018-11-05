@@ -203,7 +203,7 @@
 	var calenmonth = $('#monthfontsize').text().substr(7,2);
 	var plancalendar = (parseInt(departcalen[2]));
 	var plancalendarmonth = departcalen[1];
-	var temp=0;
+	var temp=1;
 	
 	console.log(calenmonth)
 	
@@ -237,7 +237,7 @@
 			for(var i=0; i < 6; i++){
 				for(var k=0; k<7; k++){
 					$('.calenrow_'+i+' .tomonth_'+k).css('background','#fff');
-					temp=0;
+					temp=1;
 				}
 			}
 		}
