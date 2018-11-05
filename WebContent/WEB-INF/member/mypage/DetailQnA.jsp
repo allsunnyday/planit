@@ -1,30 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
+<%@ include file="/WEB-INF/member/planner/after/loading.jsp"%>
 <style>
-.mypage-content {
-
-	/* margin-top: 100px; */
-	/* border: 3px black solid; */
-}
+<style>
+.footer {position:absolute;bottom:0; width:100%;}
 
 #mypage {
 	display: inline-block;
-	/*  border: 3px black solid;  */
 }
 
 #MY-edit {
 	display: inline-block;
-	/*  border: 3px black solid;  */
 	float: right;
-	/* padding-top: 30px; */
 }
 
 #MY-edit-button {
-	background-colorl:whith;
-	border: 1.5px rgb(53, 181, 157) solid;
-	/*  background-color: lightgray; */
+	background-colorl: whith;
+	border: 1.5px #aeaeae solid;
 	color: rgb(53, 181, 157);
 	align: right;
 }
@@ -32,37 +25,34 @@
 #MY-First {
 	margin-top: 20px;
 	padding-top: 10px;
-	border-top: 2px rgb(53, 181, 157) solid;
+	border-top: 2px #aeaeae solid;
 	margin-bottom: 100px;
 }
 
 #MY-first-1, #MY-first-2 {
-	/* 	//height:15%; */
-	/* border: 1px purple solid; */
 	margin-top: 10px;
 }
 
 #MY-first-1-pictur, #MY-first-1-self {
-	/* border: 1px pink solid; */
 	font-size: 1.5em;
 	height: 150%;
 }
 
-
 #MY-user-picture img {
-	/* position: absolute; top:0; left: 0;
-width: 100%;
-height: 100%; */
 	max-width: 100%;
 	max-height: 100%;
 	margin: auto;
 	display: block;
 }
-#MY-First-content img,#MY-Second-content img{
-position: absolute; top:0; left: 0;
-width: 100%;
-height: 100%;
+
+#MY-First-content img, #MY-Second-content img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
+
 #MY-user-picture {
 	width: 150px;
 	height: 150px;
@@ -70,17 +60,21 @@ height: 100%;
 	border: 2px gray solid;
 }
 
-#MY-First-TotalContent{
-		display: inline-block;
+#MY-First-TotalContent {
+	display: inline-block;
 	border-radius: 10px;
-/* 	border: 3px gray dotted; */
 	background-color: rgb(109, 213, 193);
+}
+
+#MY-First-Preference {
+	display: inline-block;
+	border-radius: 10px;
+	border: #aeaeae dashed;
 }
 
 #MY-first-2-Like {
 	display: inline-block;
 	border-radius: 10px;
-/* 	border: 3px gray dotted; */
 	background-color: rgb(109, 213, 193);
 }
 
@@ -90,7 +84,6 @@ height: 100%;
 }
 
 #MY-first-2-planer, #MY-first-2-review {
-	/* border: 1px pink solid; */
 	border-right: 1px lightgray solid;
 	display: inline-block;
 }
@@ -104,19 +97,17 @@ height: 100%;
 	font-weight: bold;
 	color: white;
 	text-indent: 10px;
-	text-align:left;
+	text-align: left;
 }
 
-#MY-first-informtable td:last-child  {
+#MY-first-informtable td:last-child {
 	font-weight: lighter;
-	font-size: 1.0em;;
+	font-size: 1.0em;
 	color: white;
-	text-align:  right;
-	
+	text-align: right;
 }
 
 #MY-first-2-Like {
-	/* background-color:white; */
 	margin-top: 20px;
 }
 
@@ -128,173 +119,118 @@ height: 100%;
 	text-indent: 10px;
 	display: inline-block;
 }
-/* 수정됨 */
- #MY-Second, #MY-Third, #MY-Forth {
-	 margin-top: 20px; 
+
+#MY-Second, #MY-Third, #MY-Forth {
 	padding-top: 10px;
-	border-top: 2px rgb(53, 181, 157) solid;
+	border-top: 2px #aeaeae solid;
 	margin-bottom: 130px;
 }
-/* 수정됨 */
+
 #MY-First-content div, #MY-Second-content div, #Third-content div,
 	#MY-Forth-content div {
- /* 	margin-top: 20px; */
-	padding-top: 10px;
 	height: 170px;
 }
-#MY-First-name,#MY-Second-name,
-/* #MY-Third-name,#MY-Forth-name{
-	display:inline-block;
-} */
-.MY-More-Button{
-	display:inline-block;
-	float: right;
-	margin-top:-5px;
+
+#MY-First-name, #MY-Second-name, #MY-Third-name, #MY-Forth-name {
+	display: inline-block;
 }
+
+.MY-More-Button {
+	display: inline-block;
+	float: right;
+	margin-top: -5px;
+}
+
 .MY-More-Button button {
-	color:rgb(53, 181, 157);
-	
+	color: rgb(53, 181, 157);
+}
+
+#liked_ul {
+	margin-left: 40%;
+	margin-right: auto;
+}
+
+#liked_ul li {
+	border: none;
+	display: inline;
+	color: rgb(110, 112, 118);
+	margin-right: 20px;
+	font-size: 1.2em;
+}
+
+#myedit li {
+	background: #fff
+}
+
+#myedit li:hover {
+	background: #3498DB
+}
+
+#myedit li:focus {
+	background: #3498DB
 }
 </style>
 
 <!-- *******************************************
-	베이지색 검색창 달린 거
+   베이지색 검색창 달린 거
 ************************************************ -->
- <section class="post-wrapper-top" style="margin-top:65px;">
-    <div class="container">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-         <ul class="breadcrumb">
-          <li><a href="index.html">Home</a></li>
-          <li>${id}</li>
-        </ul>
-        <h2>Q&A</h2>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <!-- search -->
-        <div class="search-bar">
-          <form action="" method="get">
-            <fieldset>
-              <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
-              <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
-            </fieldset>
-          </form>
-        </div>
-        <!-- / end div .search-bar -->
-      </div>
-    </div>
-  </section>
-  <!-- end post-wrapper-top -->
-<!--*************************************
-	왼쪽에 달린 프로필 사진 및 기타등등 
-*****************************************  -->
-  <section class="section1">
-  <%-- <%@ include file="/WEB-INF/member/mypage/MyPageLeftSubMenu.jsp" %> --%>
-  <jsp:include page="MyPageLeftSubMenu.jsp" flush="false" />
-<!--*************************************
-	마이페이지 이동버튼
-*****************************************  -->
-<!-- <div class="container-fluid "> -->
-     <!--  <div class="content col-md-7"> -->
-	<div class="mypage-content col-md-7">
-		<div class="mypagemenu col ">
-			<div id="mypage">
-				<!-- <h2>MY PAGE</h2> -->
+<section class="post-wrapper-top" style="margin-top: 65px;">
+	<div class="container">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<ul class="breadcrumb">
+				<li><a href="index.html">My Page</a></li>
+				<li>${id }</li>
+			</ul>
+			<h2>ASK VIEW</h2>
+
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<!-- search -->
+
+			<!-- / end div .search-bar -->
+		</div>
+	</div>
+</section>
+<section class="section1">
+	<div class="container">
+		<div class="col-md-12">
+			<!-- 테이블전체 가로폭은 테이블을 감싸는  div에 col-*-*로 조정 -->
+			<div class="col-md-10 col-md-offset-1"
+				style="margin-top: 50px; border-bottom: 2px gray solid;">
+				<!-- 제목과 요청일이 들어갈 다이브 -->
+
+				<div style="display: inline-block">
+					<p style="display: inline-block;font-size: 1.8em;font-weight: bold;">${memberQnAView.TITLE}</p>
+					
+				</div>
+				<!-- <div class="col-md-10" style="display: inline-block">
+					제목과 요청일이 들어갈 다이브
+				</div> -->
 			</div>
-			<div id="MY-edit">
-				<!-- 회원정보 수정폼으로 이동 -->
-				<!-- <button type="submit" class="btn btn-default" id="MY-edit-button">회원정보수정</button> -->
-			<%-- 	<a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
-			<div class="dropdown">
-				  
-				  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" class="btn btn-link">
-				   돌아가기
-				    <span class="glyphicon glyphicon-log-out"></span></a>
-			  
-				</div><!-- dropdown -->
-			</div><!-- MY-edit -->
-		</div><!-- mypagemenu -->
-		
-		
-		
-		
-		
-<!--*************************************
-	Q&A 모아보기 뿌려주는 영역
-*****************************************  -->		
-		<div class="col-sm-12" id="MY-Third">
-			<!--  내가 작성한 플래너 들어갈 div -->
-			<div id="MY-Third-name">My ZZim</div>
+			<div class="col-md-10 col-md-offset-1">
+				<!-- 제목과 요청일이 들어갈 다이브 -->
+
+				<div class=" col-md-2" style="display: inline-block">
+					<p style="display: inline-block;text-align: left">${memberQnAView.ID}</p>
+					
+				</div>
+				<div class="col-md-offset-7 col-md-3" style="display: inline-block">
+					<p style="display: inline-block;text-align: left">작성일:${memberQnAView.ASKDATE}</p>
+					
+				</div>
+				<!-- <div class="col-md-10" style="display: inline-block">
+					제목과 요청일이 들어갈 다이브
+				</div> -->
+			</div>
 			
-			
-					<!-- 찜해제버튼 추가 -->
-					<div id="col-sm-12" >
-						<table class="table" style="text-align: center">
-	                     <tr>
-	                        <td class="col-md-1 " >번호</td>
-	                        <!-- 찜번호 -->
-	                        <!-- <td class="col-md-1 ">분류</td> -->
-	                        <td class="col-md-3 col-md-offset-2" >제목</td>
-	                        <td class="col-md-2 col-md-offset-2" >날짜</td>
-	                        <td class="col-md-2 col-md-offset-2">진행여부</td>
-	                        
-	
-	                     </tr>
-	                     <c:if test="${empty requestScope.QnAListDetail }" var="isEmpty">
-						<tr>
-							<td colspan="4" style="text-align: center">등록된 게시물이 없어요</td>
-						</tr>
-						</c:if>
-						<c:if test="${not isEmpty }">
-							<c:forEach var="list" items="${QnAListDetail}" varStatus="loop">
-								<tr>
-									<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td>  --%>
-									<td>${list.ask_no}</td>
-									<td class="text-left">
-									<a href="#">${list.title }</a>
-									</td>
-									<td>${list.askdate}</td>
-									<td>${list.status}</td>
-								</tr>
-							</c:forEach>
-						</c:if>
-	        
-                  		</table>
+			<div class="col-md-10 col-md-offset-1"
+				style="height: 400px; padding-top:50px">
+					<!-- 요청내역이 들어갈 다이브 -->
+					<div class="col-md-10" >
+						${memberQnAView.CONTENT}
 					</div>
 				</div>
-			 <div class="col-sm-12">
-				 <div class="row">
-					<div>${pagingString}</div>
-				</div>
-	</div>	
-				
-
 			</div>
-
-
-
-		
-	<!--****************************** *******
-	페이징 들어갈 영역
-************************************ *****  -->
-		<!-- ------------------------- -->
-		<!--        start Second       -->
-		<!-- ------------------------- -->
-	
-	
-	
-		<!-- ---------------------- -->
-		<!--       end Second        -->
-		<!-- ---------------------- -->
-		
-
-
-
-	<!--  end mypage-content -->
-
-<!-- </div> -->
-<!--  end container --> 
-<!-- </div> -->
-
-
+		</div>
 </section>
-
+		

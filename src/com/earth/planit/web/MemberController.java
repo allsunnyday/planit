@@ -49,7 +49,7 @@ public class MemberController {
 	@Resource(name = "reviewService")
 	private ReviewService reviewService;
 
-	//========================로그인페이지로 이동==============================//
+	// ========================로그인페이지로 이동==============================//
 	@RequestMapping("/planit/login/Login.it")
 	public String gotoLogin(HttpSession session, Model model) throws Exception {
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
@@ -63,6 +63,7 @@ public class MemberController {
 		model.addAttribute("url", naverAuthUrl);
 
 		/* 생성한 인증 URL을 View로 전달 */
+
 		return "login/LoginForm.theme";
 	}
 
@@ -82,7 +83,7 @@ public class MemberController {
 		return "login/JoinUserProgress.theme";
 	}
 
-	//====================== 마이페이지 이동(일반회원) ======================/  
+	// ====================== 마이페이지 이동(일반회원) ======================/
 	@RequestMapping("/planit/mypage/MyPageHome.it")
 	public String gotoMyPageHome(@RequestParam Map map, HttpSession session, Model model) throws Exception {
 		// [세션에서 아이디 얻어서 map에 저장]
@@ -97,16 +98,16 @@ public class MemberController {
 		List<Map> memberLiked_Planner = service.memberLikedPlanner(map);
 		// [홈에 뿌려줄 Planner리스트(5)]
 		List<Map> homePlannerList = service.homePlannerList(map);
-		// planner 이미지를 랜덤으로 보여준다. 
+		// planner 이미지를 랜덤으로 보여준다.
 		for (Map planner : homePlannerList) {
 			int random = (int) (Math.random() * 3); // 0-3
 			planner.put("random_image", "planner_default_" + random + ".png");
-			System.out.println(planner.get("DEPART").toString().substring(0,10));
-			LocalDate dapart = LocalDate.parse(planner.get("DEPART").toString().substring(0,10));
+			System.out.println(planner.get("DEPART").toString().substring(0, 10));
+			LocalDate dapart = LocalDate.parse(planner.get("DEPART").toString().substring(0, 10));
 			System.out.println(Period.between(LocalDate.now(), dapart).getDays());
-			
-			if( (Period.between(LocalDate.now(), dapart).getDays()>0))  // 음수일 경우 이미 지남을 의미한다. 
-				planner.put("status",Period.between(LocalDate.now(), dapart).getDays());
+
+			if ((Period.between(LocalDate.now(), dapart).getDays() > 0)) // 음수일 경우 이미 지남을 의미한다.
+				planner.put("status", Period.between(LocalDate.now(), dapart).getDays());
 		}
 		// 각 아이템 체크
 		map.put("table", "planner");
@@ -144,7 +145,7 @@ public class MemberController {
 		System.out.println("profile" + mhsr.getParameter("profile"));
 		System.out.println("isExistProfile==" + map.get("isExistProfile"));
 		System.out.println(map.get("profile") == null ? "프로필 있음" : "프로필 없음");
-		if (map.get("isExistProfile")== null && mhsr.getFile("profile") != null) {
+		if (map.get("isExistProfile") == null && mhsr.getFile("profile") != null) {
 			// 1]서버의 물리적 경로 얻기
 			String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");
 			// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
@@ -213,9 +214,9 @@ public class MemberController {
 	 * gotoMyPageEditPassword()throws Exception{ return
 	 * "mypage/MyPagePassCheck.theme"; }
 	 */
-	
+
 	// ***************마이페이지 상세페이지 이동(일반회원)
-	//=====================나의 문의 더보기 ===========================//
+	// =====================나의 문의 더보기 ===========================//
 	@RequestMapping("/planit/mypage/detail/Q&A.it")
 	public String gotoQnADetail(Model model, // 리퀘스트 영역 저장용
 			HttpServletRequest req, // 페이징용 메소드에 전달
@@ -243,7 +244,8 @@ public class MemberController {
 		return "mypage/DetailQnA.theme";
 
 	}
-	//=====================리뷰   더보기 ===========================//
+
+	// =====================리뷰 더보기 ===========================//
 	@RequestMapping("/planit/mypage/detail/Review.it")
 	public String gotoReviewDetail(@RequestParam Map map, HttpSession session, Model model) throws Exception {
 		map.put("id", session.getAttribute("id"));
@@ -253,12 +255,13 @@ public class MemberController {
 		return "mypage/DetailReview.theme";
 
 	}
-	//=====================좋아요  더보기 ===========================//
+
+	// =====================좋아요 더보기 ===========================//
 	@RequestMapping("/planit/mypage/detail/Liked.it")
 	public String gotoLikedDetail(@RequestParam Map map, HttpSession session, Model model) throws Exception {
 		map.put("id", session.getAttribute("id"));
 		map.put("mode", "all");
-		
+
 		List<Map> likedTourAll = service.memberLikedTour(map);
 		List<Map> likeReviewAll = service.memberLikedReview(map);
 		List<Map> likedPlannerAll = service.memberLikedPlanner(map);
@@ -268,7 +271,8 @@ public class MemberController {
 		return "mypage/DetailLiked.theme";
 
 	}
-	//=====================planner 더보기 ===========================//
+
+	// =====================planner 더보기 ===========================//
 	@RequestMapping("/planit/mypage/detail/Planner.it")
 	public String gotoPlannerDetail(@RequestParam Map map, HttpSession session, Model model) throws Exception {
 		map.put("id", session.getAttribute("id"));
@@ -304,11 +308,12 @@ public class MemberController {
 			// 이미지 세션에 저장하기
 			// System.out.println(memberRecord.getProfile());
 			session.setAttribute("memberRecord", memberRecord);
-			
-			/*int starcount = (service.starTourCount(map)) + (service.starReviewCount(map))
-					+ (service.starPlannerCount(map));
-			System.out.println(map.get("id") + "가 좋아요한 갯수:" + starcount);
-			session.setAttribute("starcount", starcount);*/
+
+			/*
+			 * int starcount = (service.starTourCount(map)) + (service.starReviewCount(map))
+			 * + (service.starPlannerCount(map)); System.out.println(map.get("id") +
+			 * "가 좋아요한 갯수:" + starcount); session.setAttribute("starcount", starcount);
+			 */
 			return "redirect:/";
 		} else { // 비회원일경우
 			model.addAttribute("loginError", "아이디와 비밀번호가 틀립니다.");
@@ -453,18 +458,26 @@ public class MemberController {
 			dto.setAge(map.get("age").toString());
 			dto.setGender(map.get("gender").toString());
 			dto.setName(map.get("name").toString());
+			dto.setProfile("default-member-profile.png");
+			dto.setSelf(" ");
 			int isJoin = service.isJoin(dto);
 			//
 			System.out.println(isJoin);
 			if (isJoin == 1) {
+				System.out.println("여기로 들어오냐나아아아아아ㅏ");
+				MemberDTO memberRecord = service.memberInfo(map);
 				session.setAttribute("id", map.get("id"));
+				List<Map> memberPreferList = service.memberPreferList(map);
+				session.setAttribute("memberPreferList", memberPreferList);
 				// 시용자 선호도를 하기 위한 preference 테이블에 추가 (총 23개가 insert되야한다)
 				int insertPrefer = service.insertPreference(map);
 				System.out.println("선호도 추가된 행 개수 " + insertPrefer);
+				session.setAttribute("memberRecord", memberRecord);
 			}
 			return "mypage/UserPreference2.theme";
 
 			// 선호도 체크페이지 이동
+
 		}
 
 	}
