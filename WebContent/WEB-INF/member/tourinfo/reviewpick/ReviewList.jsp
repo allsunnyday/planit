@@ -32,7 +32,7 @@
         <li>여행 블로그 </li>
         </ul>
         <h2>전국을 유랑하는 플러너들의 생생한 이야기</h2>
-      </div>
+      </div>      
     </div>
   </section>
   <!-- end post-wrapper-top -->
