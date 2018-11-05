@@ -9,12 +9,11 @@
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 		center: new daum.maps.LatLng(37.47868488487008, 126.87946377805068), //지도의 중심좌표.
-		//center: new daum.maps.LatLng(latlng), //지도의 중심좌표.
-		level: 6 //지도의 레벨(확대, 축소 정도)
+		level: 6 //지도의 레벨(확대, 축소 정도)  6
 	};            
 	
 	var map = new daum.maps.Map(container, options);//지도를 생성합니다
-	//container.style.height = '800px';/* map 의 레이아웃 설정 */
+	
 	map.relayout();/* map 의 레이아웃 설정 */
    
 	//지도를 클릭한 위치에 표출할 마커입니다
@@ -23,9 +22,10 @@
 		//position: map.getCenter()       
 		//displayPlaceInfo(place);   
 	}); 
-	//marker.setMap(map);      //지도에 마커를 표시합니다
+	
 	marker.setDraggable(true); // 마커 드래그 가능하도록 설정   
    
+	 
 	//지도에 클릭 이벤트를 등록합니다
 	//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 	daum.maps.event.addListener(map, 'click', function(mouseEvent) {
@@ -158,13 +158,7 @@
 			if(currCategory){             
 			/* ******************************************* 카테 고리 검색 ***************************************** */
 				// 마커를 생성하고 지도에 표시합니다             
-				//var marker = addMarker(new daum.maps.LatLng(places[i].y, places[i].x), order, null);
-             /* $.each(data, function(index, content) {
-                //console.log(content['mapx']+'//'+content['mapy']);
-                console.log()
-                mapx.push(content['mapx']);
-                mapy.push(content['mapy']);                
-             }); */
+				
 				var marker = addMarker(new daum.maps.LatLng(mapy[i], mapx[i]), order, null);
 				//console.log('planmapinfo///'+mapy +'//'+mapx);
 				// 마커와 검색결과 항목을 클릭 했을 때
@@ -184,8 +178,8 @@
 				})(marker, places[i]);
 				/* ******************************************* 카테 고리 검색 ***************************************** */
 			}
-		}          
-	}   
+		}//for          
+	}//displayPlaces()   
    
 	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
 	function removeMarker() {
@@ -357,7 +351,7 @@
 	var planmarking= []; // 사용자가 플랜으로 등록한 마커를 삭제하기 위한 함수   
 	var days = document.getElementById("days").value; // location 에서 지정한 여행 일자 얻기   
 	var polyline ; // 라인정보 담는 변수
-   
+   	var global_day_statAt = 1;
    
 	if(document.getElementById("days").value == ""){
 		alert('세션정보가 만료 되었습니다.');
@@ -384,7 +378,7 @@
 		polyline = new daum.maps.Polyline({
 			path: linePath, // 선을 구성하는 좌표배열 입니다
 			strokeWeight: 5, // 선의 두께 입니다
-			strokeColor: '#CA6EED', // 선의 색깔입니다
+			strokeColor: '#ff0000', // 선의 색깔입니다
 			strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 			strokeStyle: 'solid', // 선의 스타일입니다
 			endArrow:true
@@ -419,10 +413,9 @@
 		polyline.setMap(map);		
 		infowindowexit.close();//인포윈도우 닫기		
 		//removeMarker(); // 계획 일정 추가시 지도에 표시된 카테고리 마커 삭제
-		//displayPlaceInfo(""); //계획 일정 추가후 상세보기 닫기
 		currCategory = keyword; // 사용자가 선택한 지역유지를 위한 변수 설정
-		//changeCategoryClass(); // on 상태인 카테고리 마크를 off 설정
-	}
+	}//planplusActionplus() 
+	
 		/* ******************** 여행 계획 추가 하기 관련 함수  ******************** */
 		
 		
@@ -483,54 +476,40 @@
 		function routeInfoPlusAction(index,diveplus){
 		console.log('○○○○○○○○○○○○○○○○○○○○○○ routeInfoPlusAction 시작 ○○○○○○○○○○○○○○○○○○○○○')
 		var content;
-		//console.log('routeInfoPlusAtion 463] plancase]'+plancase+'   diveplus]'+diveplus);
-		/* if(plancase == 0){
-			//diveplus=0; // 여행계획 추가 다이브 번호 생성
-			content ='';
-			content +=  '<div id="nocityrute" style="background-color: cyan; ">';
-			   content += '<br><br><font style="font-size:9pt" color="#c0c0c0"><b>입력된 도시가 없습니다.</b></font><br><br><br>';
-			content +='</div>';
-         
-      	}  */     
+		  
 		if(plancase != 0){      
 			$('#nocityrute').remove();
 			content ='';
-			content +='<div id="" class="planroute_'+diveplus+'" style="height: 105px; width:100%;">';
-				content +='<div class="row" style="margin-left:5px;">';
-					content += '<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="margin-top:15px; height:auto">';               
-					/* content += '<div class="btn-group" style="height: auto; border: 4px solid #3ad195; padding: 4px;">';
-					if(days==1){ 
-						content += '<a href="#" id="planselect" class="dmbutton" style="color:black;"> 당일치기 </a>';				  
-						//content += '<select id="planselect" class="dmbutton"><option value="1">당일치기</option></select>';
-					}
-					else {
-						content += '<a href="#" id="planselect" class="dmbutton dropdown-toggle" data-toggle="dropdown" style="color:black;"> 1일차 </a>';               
-						content += '<ul class="dropdown-menu" id="planselectday">';
-						for(var i=2; i<=days; i++){                     
-							content += '<li>'+i+'일차</li>';
+			content +='<div id="" class="col-sm-12 planroute_'+diveplus+'" style="height: 105px; width:100%;">';
+				content +='<div class="row" style="">';
+					content += '<div class="col-md-2 col-sm-2 col-xs-2 text-center" style=" height:auto;">';               
+					content += '<div style="background-color:#16f8d6; height:30px;width:5px;margin-left:45%"></div><div class="dayselect text-center">';	               
+						content +='<select class="dayselect-select dayselect_'+diveplus+'" name="dayselect" id="" >';
+						for(var i=1; i<=days; i++){ 
+							content += '<option value="'+i+'" ';
+							if(global_day_statAt==i) content+=' selected ';
+							content+=' title="'+i+'일차">'+i+'</option>'; 
 						}
-						content += '<li> 숙박</li>';
-						content += '</ul>';
-					}
-					content +='</div>'; */
-					content += '<div class="dayselect text-center" style="height: 75px; border: 4px solid #3ad195; padding: 4px; ">';	               
-						content +='<select name="dayselect" id="dayselect" class="dmbutton">';
-						for(var i=1; i<=days; i++){ content += '<option value="'+i+'">♬ '+i+'일차</option>'; }
-						//if(days!=1){ content += '<option value="">숙 박</option>'; }
 						content +='</select>';	               
 					content += '</div>';
-				content += '</div>';
-				content += '<div class="col-md-8 col-sm-8 col-xs-12">';
-					content += '<div style="float:left; width: auto; display:block; margin-top: 8px;">';
+				content += '<div style="background-color:#16f8d6; height:30px;width:5px;margin-left:45%"></div></div>';
+				content += '<div class="col-md-9 col-sm-9 col-xs-9">';
+					content += '<div style="float:left; display:block;">';
 						content += '<div class="text-left">';
-							content += '<label>지역:</label>&nbsp;<font>'+keyword+'</font><input type="hidden" class="areacode" value="'+$('#paldoNcity').val()+'"><input type="hidden" class="sigungucode" value="'+$('#paldoNcityColumn').val()+'"><br/>';
+							content += '<input type="hidden" class="areacode" value="'+$('#paldoNcity').val()+'"><input type="hidden" class="sigungucode" value="'+$('#paldoNcityColumn').val()+'"><br/>';
 							content += '<input type="hidden" class="contentnumber" value="'+document.getElementById('contentid_'+index).value+'">';
-							content += '<label>관광지: </label><font class="contentTitle">'+ document.getElementById('titleforNewInfo_'+index).title+'</font>&nbsp;<a class="btnDel deletePlanRoute_'+diveplus+'" href="javascript:deletePlanRoute('+diveplus+')" id=""  title="'+diveplus+'" >'; // <a class="btnDel deletePlanRoute_'+diveplus+'" href="javascript:" onclick="deletePlanRoute('+diveplus+')" id=""  title="'+diveplus+'" >';
+							content += '<label class="glyphicon glyphicon-map-marker"></label>&nbsp; <h5 style="display:inline-block"><font class="contentTitle">'+ document.getElementById('titleforNewInfo_'+index).title+'</font></h5>&nbsp;<a class="btnDel deletePlanRoute_'+diveplus+'" href="javascript:deletePlanRoute('+diveplus+')" id=""  title="'+diveplus+'" >'; // <a class="btnDel deletePlanRoute_'+diveplus+'" href="javascript:" onclick="deletePlanRoute('+diveplus+')" id=""  title="'+diveplus+'" >';
 							content += '<font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a><br/>';//<input type="hidden" id="deleteplanroute">
-							content += '<label> 거리: </label>&nbsp;<font class="planroadtext">'+distance+'m</font><input type="hidden" class=contenttype value="'+document.getElementById('contenttype').value+'">';
-							if(walkkTime > 60) {content += '&nbsp;<label> 도보: </label>&nbsp;<font class="planwalktime"> 1시간이상 </font> <br/>';} // 도보 한시간 이상일떄                     
-							else {content += '&nbsp;<label> 도보: </label>&nbsp;<font class="planwalktime"> '+ walkkTime +' 분</font> <br/>';} // 도보가 한시간 미만 일때
-							if(carTime <= 0){content += '&nbsp;<label> 승용차: </label>&nbsp;<font class="plancartime"> 0분 </font>';}
+							content += '<label> 거리 </label>&nbsp;<font class="planroadtext">'+distance+'m</font><input type="hidden" class=contenttype value="'+document.getElementById('contenttype').value+'"><br/>';
+							if(walkkTime > 60) {
+								content += '&nbsp;<label>도보 </label>&nbsp;<font class="planwalktime"> 1시간이상 </font>';
+							} // 도보 한시간 이상일떄                     
+							else {
+								content += '&nbsp;<label>도보 </label>&nbsp;<font class="planwalktime"> '+ walkkTime +' 분</font>';
+							} // 도보가 한시간 미만 일때
+							if(carTime <= 0){
+								content += '&nbsp;<label> 승용차 </label>&nbsp;<font class="plancartime"> 0분 </font>';
+							}
 							else if(carTime >= 60){
 								carhourTime = Math.floor(carTime/60);
 								carTime = carTime %60;
@@ -648,7 +627,7 @@
 		/* *************** 여행 계획 리스트가 없을시 여행계획 정보가 없다는 div 추가 *************** */      
 	}
    
-	/* ************** 중간의 div 삭제후 div id 재지정 함수 ************** */
+	/* ************************************* 중간의 div 삭제후 div id 재지정 함수**************************** ************** */
 	function plandivCountdown(diveplus, diveplusFortitle){
 		console.log('○○○○○○○○○○○○○○○○○○○○○○ plandivCountdown 시작 ○○○○○○○○○○○○○○○○○○○○○')      
 		console.log('plandivCountdown//plancase(3)== '+ plancase +'//diveplusFortitle!! '+diveplusFortitle+"diveplus"+diveplus);
@@ -673,7 +652,10 @@
 				$('.deletePlanRoute_'+i).removeClass('deletePlanRoute_'+next);
 				$('a.deletePlanRoute_'+i).prop('title',i);
 				$('a.deletePlanRoute_'+i).prop('href', 'javascript:deletePlanRoute('+i+');');
-				console.log('■ ■ ■ ■ ■ deletePlanRoute의 href ]'+$('a.deletePlanRoute_'+i).prop('href')+"■ ■ ■ ■ ■");
+				// select box
+				$('.dayselect_'+next).addClass('dayselect_'+i);
+				$('.dayselect_'+i).removeClass('dayselect_'+next);
+				console.log('■ ■ ■ ■ ■ deletePlanRoute의 href ]'+$('a.deletePlanRoute_'+i).prop('href')+"■ ■ ■ ■ ■" +$('.dayselect_'+i).attr('class') );
 			}
 			else {
 				continue;
@@ -750,17 +732,29 @@
       
 		
 		/* ********** 동적할당으로 생성된 div에 이벤트 할당하기 ********* */		
-		$(document).on('change','#dayselect',function(){
-			//console.log("읽음..?"+plancase) //전체 plancase의 개 수 읽었음.			
-			//console.log($(this).parents(''))
+		$(document).on('change','.dayselect-select',function(){
+			console.log('일차수 select box를 선택했습니다.['+plancase+"]");
+			/* global_day_statAt = $(this).val(); */
+			// 현재 선택한 일차수의 값과 글로벌의 값을 비교!
+			if($(this).val() > global_day_statAt){
+				global_day_statAt = $(this).val(); 
+			}
 			for(var i=0; i< plancase; i++){
-				if($('.planroute_'+(i-1)+' #dayselect').val() > $('.planroute_'+i+' #dayselect').val()){ 
+				if( $('.planroute_'+i+' .dayselect_'+i).val()>$('.planroute_'+(i+1)+' .dayselect_'+(i+1)).val()){ 
 					alert('후일정보다 높은 일차수를 선택할수없습니다.');
-					$(this).val($('.planroute_'+i+' #dayselect').val());
+					if(i==0){ 
+						$(this).val('1');
+					}
+					else{
+						$(this).val($('.planroute_'+(i-1)+' .dayselect_'+(i-1)).val());						
+					}
+					
 					return false;
 				}
 				
 			}
+			
+			console.log(global_day_statAt+"부터 시작을 합니다.");
 		});
 		/* ********** 동적할당으로 생성된 div에 이벤트 할당하기 ********* */
 		
@@ -820,7 +814,7 @@
 				/* ******************* location 에서 사용자가 선택한 지역으로 자동 서치 ****************** */      
 				// 주소-좌표 변환 객체를 생성합니다
 				var geocoder = new daum.maps.services.Geocoder();
-				console.log(keyword);
+				console.log("keyword!!>>>>>>>>>"+keyword);  //서울 특별시 강남구
 				// 주소로 좌표를 검색합니다
 				geocoder.addressSearch(keyword, function(result, status) {   
                 // 정상적으로 검색이 완료됐으면 
@@ -844,7 +838,7 @@
 					changeCategoryClass();
 				}
 			});///ajax
-		});
+		});  // 카테고리를 선택시 콜백함수 
        
 		var successPlanmapdata = function(data){
 			console.log(JSON.stringify(data));
@@ -921,21 +915,27 @@
 		var temp = false;
 		var checkdays=1;
  		for(var i=0; i<plancase; i++){ // dayselect
- 			//alert("dayselect: "+ $('.planroute_'+i+' #dayselect').val()); 		
- 			if($('.planroute_'+i+' #dayselect').val() == checkdays && days != 1){
+ 			console.log("dayselect: "+ $('.planroute_'+i+' .dayselect_'+i).val()+",   checkdays["+checkdays+"]     , days["+days+"]" ); 		
+ 			if($('.planroute_'+i+' .dayselect_'+i).val() == checkdays && checkdays < days ){
 	 			checkdays++;
  			}
- 			else if($('.planroute_'+i+' #dayselect').val() != checkdays && i != (plancase-1)){
+ 			else if($('.planroute_'+i+' .dayselect_'+i).val() != checkdays && i != (plancase-1)){
  				//isplanday = true;
 				continue;
  	 		}
- 			else if($('.planroute_'+i+' #dayselect').val() != checkdays && i == (plancase-1)){
+ 			else if($('.planroute_'+i+' .dayselect_'+i).val() != checkdays && i == (plancase-1)){
  				isplanday = true;
+ 				console.log(i+"번째 ");
+ 				break;
  	 		}
  			if(plancase == 1 && days!=1){
- 				isplanday = true;
+ 				isplanday = true; 				
+ 				console.log(i+"번째 ");
+ 				break;
  			}
  		}
+ 		
+ 		
 		if(($('#thedate').val() == null || $('#thedate').val()=='') && $('#tourtypeimage').attr('alt') =='타입'){
 			alert('여행 출발일과 여행인원 타입이 선택되지 않았습니다. ')
 		}
@@ -965,7 +965,7 @@
 				var routeCase='';
 				//console.log('일수들어오나?: '+days);
 				if(i==0){
-					routeCase += $('.planroute_'+i+' #dayselect').val();
+					routeCase += $('.planroute_'+i+' .dayselect_'+i).val();
 					routeCase += "#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .contenttype').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
 					+$('.planroute_'+i+' .contentTitle').text()+":todo_0:todomemo_0:";
@@ -973,7 +973,7 @@
 					else{routeCase+='0';}					
 					console.log(routeCase);
 				}
-				else if($('.planroute_'+(i-1)+' #dayselect').val() == $('.planroute_'+i+' #dayselect').val()){					
+				else if($('.planroute_'+(i-1)+' .dayselect_'+i).val() == $('.planroute_'+i+' .dayselect_'+i).val()){					
 					routeCase += "#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .contenttype').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
 					+$('.planroute_'+i+' .contentTitle').text()+":todo_"+i+":todomemo_"+i+":";
@@ -981,8 +981,8 @@
 					else{ routeCase+='0'; }					
 					console.log(routeCase);
 				}
-				else if($('.planroute_'+(i-1)+' #dayselect').val() != $('.planroute_'+i+' #dayselect').val()){
-					routeCase +="@"+ $('.planroute_'+i+' #dayselect').val()+"#"+$('.planroute_'+i+' .areacode').val()+":"
+				else if($('.planroute_'+(i-1)+' .dayselect_'+i).val() != $('.planroute_'+i+' .dayselect_'+i).val()){
+					routeCase +="@"+ $('.planroute_'+i+' .dayselect_'+i).val()+"#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .contenttype').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
 					+$('.planroute_'+i+' .contentTitle').text()+":todo_"+i+":todomemo_"+i+":";
 					if($('.planroute_'+i+' .contenttype').val()==32){ routeCase+='1'; }
@@ -995,12 +995,6 @@
 			}
 			
 			
-			/* formdata.append("days", days); 			
-			formdata.append("depart",depart); 
-			formdata.append("tourtype", tourtype);
-			formdata.append("plancase", plancase); 
-			formdata.append("areacode", areacode); */
-			
 			//스케줄 페이지로 데이터 전달
 			schedulecontent +='<input type="hidden" id="days" name="days" value="'+days+'">'; // 여행 총 일수  저장
 			schedulecontent +='<input type="hidden" id="depart" name="depart" value="'+depart+'">';// 사용자가 선택한 여행 출발 일자 저장
@@ -1010,28 +1004,7 @@
 			
 			$('#scheduleData').append(schedulecontent);
 			$('#scheduleData').attr("action", "<c:url value='/planner/plan/schedule.it'/>");
-			//alert('저장 되엇습니다.')
-			//console.log($('#scheduleData').html());
-			/* $.ajax({
-				url:"<c:url value='/planner/plan/scheduleUpload.it'/>",
-	            data:formdata,
-	            type:'post',
-	            processData: false,
-	            contentType: false,
-	            dataType:'text',
-	            success:function(data){	            
-	            	console.log(data);
-	                   if(confirm('성공적으로 저장되었습니다.')){
-	                      //location.replace('<c:url value="/planner/plan/schedule.it"/>');
-	                      $('#scheduleData').attr("action", "<c:url value='/planner/plan/schedule.it'/>");
-	                      $('#scheduleData').submit();
-	                   }
-	            },
-	            error:function(error, request){
-	               console.log(error);
-	            }
-	            
-	         }); */
+			
 			$('#scheduleData').submit();
 		}
 		
@@ -1120,11 +1093,6 @@
 			
 		});		
 		
-		
-		/* <div class="col-md-2 text-center">
-	    	<img alt="사진사진" src="" style="display: inline-block; border: 1px gray solid; width: 80px; height: 80px; text-align: center;">
-			<label>타이틀</label>
-		</div> */
 	});
 	var bookmarkString="";			
 	var successbookmark = function(data){

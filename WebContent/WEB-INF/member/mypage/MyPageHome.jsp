@@ -90,8 +90,9 @@
 	         			</c:if>
 	         			<c:if test="${not empty homePlannerList }">
 	         				<c:forEach var="list" items="${homePlannerList}" varStatus="loop">
-		                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mockups">
-		                     <div class="he-wrap tpl6 market-item">
+		                     
+		                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mockups" style="margin-bottom: 50px">
+		                     <div class="he-wrap tpl6 market-item" >
 		                     	<c:if test="${empty list.status}" var="isComplete">
 		                     	<div style="z-index: 5;position:relative;height: 60px;width:60px;top:-10px"  >
 		                     		<img src="<c:url value='/Upload/Member/event_c.png'/>" alt="" >

@@ -38,7 +38,7 @@
 
 				<div style="float: left; width: 400px;">
 					<div
-						style="margin-top: 0px; padding-top: 0px; padding-right: 15px;">
+						style="margin-top: 0px; padding-top: 0px; padding-right: 25px;">
 						<font style="color: #fff; font-size: 18pt; font-weight: 600;">${id } 님의 여행계획~!</font>
 					</div>
 					<font style="color: #fff; font-size: 13pt; font-weight: 500;"> ♬ ${reviewtitle } ♬</font>
@@ -48,97 +48,98 @@
 
 
 			<div style="position: absolute; top: 40px; right: 50px; width: 500px; height: 400px; z-index: 9;">
+				
 				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<font style="font-size: 8pt; color: #fff" id="routetitle_1"></font>
-					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<font style="font-size: 8pt; color: #fff" id="routetitle_2"></font>
-					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<font style="font-size: 8pt; color: #fff" id="routetitle_3"></font>
-					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div style="position: absolute; bottom: 0px; left: 0px; height: 25px; width: 50%; border-right: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 5px solid #fff;"></div>
+					<div style="position: absolute; bottom: 0px; left: 0px; height: 25px; width: 50%; border-right: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div style="clear: both"></div>
 				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<div style="padding-top: 29px; font-size: 8pt; color: #fff" id="routetitle_4"></div>
-					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div style="position: absolute; top: 0px; left: 0px; height: 24px; width: 50%; border-right: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 5px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; left: 0px; height: 24px; width: 50%; border-right: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px; margin-top: -2px;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<font style="font-size: 8pt; color: #fff" id="routetitle_5"></font>
-					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<font style="font-size: 8pt; color: #fff" id="routetitle_6"></font>
-					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div style="position: absolute; bottom: 0px; right: 0px; height: 25px; width: 50%; border-left: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 5px solid #fff;"></div>
+					<div style="position: absolute; bottom: 0px; right: 0px; height: 25px; width: 50%; border-left: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div style="clear: both"></div>
 				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<div style="padding-top: 29px; font-size: 8pt; color: #fff" id="routetitle_7"></div>
-					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div style="position: absolute; top: 0px; right: 0px; height: 24px; width: 50%; border-left: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 5px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 24px; width: 50%; border-left: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px; margin-top: -2px;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<font style="font-size: 8pt; color: #fff" id="routetitle_8"></font>
-					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div class="rt_left" style="float: left; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<font style="font-size: 8pt; color: #fff" id="routetitle_9"></font>
-					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div style="position: absolute; bottom: 0px; left: 0px; height: 25px; width: 50%; border-right: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 5px solid #fff;"></div>
+					<div style="position: absolute; bottom: 0px; left: 0px; height: 25px; width: 50%; border-right: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div style="clear: both"></div>
 				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<div style="padding-top: 29px; font-size: 8pt; color: #fff" id="routetitle_10"></div>
-					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
-					<div style="position: absolute; top: 0px; left: 0px; height: 24px; width: 50%; border-right: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; left: 0px; height: 25px; width: 50%; border-bottom: 5px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; left: 0px; height: 24px; width: 50%; border-right: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff; margin-right: 2px; margin-top: -2px;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<font style="font-size: 8pt; color: #fff" id="routetitle_11"></font>
-					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 100%; border-bottom: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff;">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div class="rt_left" style="float: right; width: 33.33%; height: 54px; text-align: center; position: relative">
 					<font style="font-size: 8pt; color: #fff" id="routetitle_12"></font>
-					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 3px solid #fff;"></div>
+					<div style="position: absolute; top: 0px; right: 0px; height: 25px; width: 50%; border-bottom: 5px solid #fff;"></div>
 					<div style="position: absolute; width: 100%; text-align: center; top: 14px; color: #fff">
-						<img src="/Planit/images/plan/KoreanFlag.png" width="15px" style="border-radius: 7px;">
+						<img src="<c:url value='/Upload/Planner/map-marker.png'/>" width="25" height="25" style="border-radius: 50%;">
 					</div>
 				</div>
 				<div style="clear: both"></div>
