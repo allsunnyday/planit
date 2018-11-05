@@ -221,4 +221,8 @@ max-width: 100%;
       </c:if>
       
    });
+   
+   $('#areacode').change(function(){
+	   $('#areacode option:selected')
+   });
 </script>

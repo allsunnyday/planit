@@ -214,13 +214,13 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-left">
-              <a href="<c:url value='/tourinfo/tdview/TourList.it'/>" class=""> <i class="dm-icon fa fa-money fa-3x"></i> </a>
+              <a href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12'/>" class=""> <i class="dm-icon fa fa-money fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>관광지</h4>
               <hr>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since..</p>
+            <p>대한 민국 관광지 어디까지 가봤니? Plan: It에 등록된 관광지 정보를 확인하시고 여행을 계획해보세요~!</p>
           </div>
           <!-- service-icon -->
         </div>
@@ -232,13 +232,13 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-bottom">
-              <a href="<c:url value='/tourinfo/tdview/FoodList.it'/>" class=""> <i class="dm-icon fa fa-trophy fa-3x"></i> </a>
+              <a href="<c:url value='/tourinfo/tdview/FoodList.it?contenttype=39'/>" class=""> <i class="dm-icon fa fa-trophy fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>음식점 정보</h4>
               <hr>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since..</p>
+            <p>냠냠 쩝쩝.. 대한민국의 맛있는 음식점이 많아요! Plan: It에 등록된  음식점 정보 확인하시고 맛있는 음식 먹으며 여행 가요~</p>
           </div>
           <!-- service-icon -->
         </div>
@@ -250,13 +250,13 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-bottom">
-              <a href="<c:url value='/tourinfo/tdview/SleepList.it'/>" class=""> <i class="dm-icon fa fa-heart-o fa-3x"></i> </a>
+              <a href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32'/>" class=""> <i class="dm-icon fa fa-heart-o fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>숙박 정보</h4>
               <hr>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since..</p>
+            <p> 불친절한 서비스, 불편한 시설 싫어요! Plan: It에 등록된 숙박정보 확인하시고 여행의 계획해요! </p>
           </div>
           <!-- service-icon -->
         </div>
@@ -268,13 +268,13 @@
         <div class="servicebox text-center">
           <div class="service-icon">
             <div class="dm-icon-effect-1" data-effect="slide-right">
-              <a href="#" class=""> <i class="dm-icon fa fa-book fa-3x"></i> </a>
+              <a href="<c:url value='/planit/review/ReviewList.it'/>" class=""> <i class="dm-icon fa fa-book fa-3x"></i> </a>
             </div>
             <div class="servicetitle">
               <h4>리뷰</h4>
               <hr>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since..</p>
+            <p> 나의 소중한 여행기.. 남들의 색다른 여행기.. 리뷰를 통해 공유해봐요~ </p>
           </div>
           <!-- service-icon -->
         </div>

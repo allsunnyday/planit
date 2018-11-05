@@ -27,11 +27,11 @@ max-width: 100%;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
         <li>
-         <c:choose>
+         <%-- <c:choose>
             <c:when test="${sleep=='sleepinfo'}">한번자는곳 좋은곳에서!</c:when>
             <c:when test="${sleep=='sleeprank'}">인기 많은 숙소 확인</c:when>
             <c:otherwise>조건을 만족하지 않는 경우</c:otherwise>
-		</c:choose>
+		</c:choose> --%>
         </li>
         </ul>
         <h2>PLAN-IT에 등록되어 있는 숙소들(총 ${totalRecordCount}개)</h2>

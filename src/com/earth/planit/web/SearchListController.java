@@ -76,8 +76,8 @@ public class SearchListController {
 								)throws Exception{
 		
 		// 사용자 areacode를 선택한 경우
-		if(map.get("areacode")!= null) {
-			System.out.println("areacode값이있습니다."+map.get("areacode"));  // 1 2 3 
+		if(map.get("areacode")!= null && map.get("areacode") !="") {
+			System.out.println("areacode값이있습니다."+map.get("areacode"));  // 1 2 3
 			
 		}
 		else {
@@ -108,12 +108,24 @@ public class SearchListController {
 		// 3] 검색어를 넣을 경우에는 searchColumn / searchWord
 		// 페이징을 위한start end 값을 넣어준다.ㄴ
 		List<ContentDTO> tourlist = service.selectTourList(map);
-		String pagingString = CommonUtil.pagingBootStrapStyle(
-							totalCount,
-							pageSize, 
-							blockPage, 
-							nowPage, 
-							req.getContextPath()+"/tourinfo/tdview/TourList.it?contenttype=12&");
+		
+		String pagingString;
+		if(map.get("areacode")!= null && map.get("areacode") !="") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/TourList.it?contenttype=12&areacode="+map.get("areacode")+"&");
+		}
+		else {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+						totalCount,
+						pageSize, 
+						blockPage, 
+						nowPage, 
+						req.getContextPath()+"/tourinfo/tdview/TourList.it?contenttype=12&");
+		}
 		
 		model.addAttribute("list", tourlist);
 		model.addAttribute("pagingString", pagingString);
@@ -125,6 +137,9 @@ public class SearchListController {
 		model.addAttribute("areacode",map.get("areacode"));
 		model.addAttribute("tour",tourlist);
 		
+		
+		System.out.println("test 중이다: "+pagingString);
+		System.out.println("///: "+req.getContextPath());
 		
 		
 		
@@ -139,7 +154,7 @@ public class SearchListController {
 			@RequestParam(required=false,defaultValue="1") int nowPage)throws Exception{
 		
 		
-		if(map.get("areacode")!=null)
+		if(map.get("areacode")!=null || map.get("areacode") !="")
 			System.out.println(map.get("areacode"));
 		if(map.get("searchColumn")!= null) {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
@@ -152,12 +167,25 @@ public class SearchListController {
 		map.put("start", start);
 		map.put("end", end);
 		List<ContentDTO> festivalList = service.selectFestivalList(map);
-		String pagingString = CommonUtil.pagingBootStrapStyle(
-							totalCount,
-							pageSize, 
-							blockPage, 
-							nowPage, 
-							req.getContextPath()+"/tourinfo/tdview/FestivalList.it?contenttype=15&");
+		
+		String pagingString;
+		if(map.get("areacode")!=null && map.get("areacode") !="") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/FestivalList.it?contenttype=15&areacode="+map.get("areacode")+"&");			
+		}
+		else {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/FestivalList.it?contenttype=15&");	
+		}
+		
 		
 		model.addAttribute("list", festivalList);
 		model.addAttribute("pagingString", pagingString);
@@ -185,6 +213,7 @@ public class SearchListController {
 		
 		if(map.get("areacode")!=null)
 			System.out.println(map.get("areacode"));
+			
 		if(map.get("searchColumn")!= null) {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
 			model.addAttribute("searchWord",map.get("searchWord"));
@@ -196,12 +225,24 @@ public class SearchListController {
 		map.put("start", start);
 		map.put("end", end);
 		List<ContentDTO> sleepList = service.selectSleepList(map);
-		String pagingString = CommonUtil.pagingBootStrapStyle(
+		
+		String pagingString;
+		if(map.get("areacode")!=null && map.get("areacode") !="") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
 							totalCount,
 							pageSize, 
 							blockPage, 
 							nowPage, 
-							req.getContextPath()+"/tourinfo/tdview/SleepList.it?contenttype=32&");
+							req.getContextPath()+"/tourinfo/tdview/SleepList.it?contenttype=32&areacode="+map.get("areacode")+"&");
+		}
+		else {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/SleepList.it?contenttype=32&");
+		}
 		
 		model.addAttribute("list", sleepList);
 		model.addAttribute("pagingString", pagingString);
@@ -247,12 +288,24 @@ public class SearchListController {
 		map.put("start", start);
 		map.put("end", end);
 		List<ContentDTO> Foodlist = service.selectFoodList(map);
-		String pagingString = CommonUtil.pagingBootStrapStyle(
-							totalCount,
-							pageSize, 
-							blockPage, 
-							nowPage, 
-							req.getContextPath()+"/tourinfo/tdview/FoodList.it?contenttype=39&");
+		
+		String pagingString;		
+		if(map.get("areacode")!=null && map.get("areacode") !="") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/FoodList.it?contenttype=39&areacode="+map.get("areacode")+"&");
+		}
+		else {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/FoodList.it?contenttype=39&");
+		}
 		
 		model.addAttribute("list", Foodlist);
 		model.addAttribute("pagingString", pagingString);
