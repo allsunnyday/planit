@@ -169,103 +169,18 @@ display: inline-block;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
           <li><a href="index.html">Home</a></li>
-          <li>${id }</li>
+          <li>${id}</li>
         </ul>
         <h2>Planner</h2>
       </div>
     </div>
   </section>
   <!-- end post-wrapper-top -->
-<!--*************************************
-	왼쪽에 달린 프로필 사진 및 기타등등 
-*****************************************  -->
-  <section class="section1">
-          <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
-        <div>
-          <div class="teammembers">
-            <div class="he-wrap tpl2">
-            	<c:if test="${not empty memberRecord.profile}" var="result">
-            	<img src="<c:url value='/Upload/Member/${memberRecord.profile}'/>" alt="프로필 사진">
-            	</c:if>
-            	<c:if test="${not result}">
-              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
-              </c:if>
-              <div class="he-view">
-            
-              </div>
-            </div>
-            <!-- he wrap -->
-            <div class="teammembers-meta">
-              <h4>${sessionScope.id}</h4>
-            </div>
-            <div id="MY-first-1-self-detail">
-                     <p>
-                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
-                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
-                           님의&nbsp자기소개입니다</span>
-                     <p>${memberRecord.self}
-                     </p>
-
-
-         </div>
-
-            
-            <div class="teamskills" >
-            <div id="MY-First-TotalContent" style="width:90%;">
-                   <table id="MY-first-informtable" style="width:90%;">
-                   <tr>
-                      <td>Planner</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                   <td>Review</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                      <td>Like</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                      <td>Star Point</td>
-                      <td>0000</td>
-                  <!--  </tr>
-                	<tr style="border-top:1px white dashed;">
-                	<td colspan="2"> 선호사항</td>
-                	</tr>
-                       -->
-                   </table>
-                
-                </div>
-              
-            </div>
-            <!-- ***********************8
-            선호도 조사 들어갈 부분
-            *****************************8 -->
-            <div id="MY-First-Preference" style="width:90%;" >
-            	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
-            		<tr>
-            		<c:if test="${empty sessionScope.memberPreferList }" var="result">
-            			<td>플래닛을 즐겨주세요</td>
-            		</c:if>	
-            		<c:if test="${not result }">
-            			<c:forEach var="list" items="${sessionScope.memberPreferList}" varStatus="loop">
-            				<td>${list.kor }</td><!-- 왜 안나오지 -->
-            			
-            			</c:forEach>
-            		</c:if>
-            		</tr>
-            	
-            	</table>
-            
-            </div>
-          </div>
-          <!-- end teammembers -->
-        </div>
-</div>
-<!--*************************************
-	마이페이지 이동버튼
-*****************************************  -->
+<section class="section1">
+<!--*************************************왼쪽에 달린 프로필 사진 및 기타등등 *****************************************  -->
+<%--   <%@ include file="/WEB-INF/member/mypage/MyPageLeftSubMenu.jsp" %> --%>
+<jsp:include page="MyPageLeftSubMenu.jsp" flush="false" />
+<!--*******************************마이페이지 이동버튼*****************************************  -->
 <div class="container-fluid ">
       <div class="content col-md-7">
 	<div class="mypage-content">
@@ -288,11 +203,6 @@ display: inline-block;
 				</div><!-- dropdown -->
 			</div><!-- MY-edit -->
 		</div><!-- mypagemenu -->
-		
-		
-		
-		
-		
 <!--*************************************
 	플래너 모아보기 뿌려주는 영역
 *****************************************  -->		
@@ -317,8 +227,10 @@ display: inline-block;
 									
 								<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
 									<div class="he-wrap tpl6 market-item">	
+
 									<div  style="text-align: center"></div>
 										<img src="<c:url value='/Upload/Planner/${list.random_image}'/>" alt="" style="height:250px" >
+
 										<div class="he-view">
 											<div class="bg a0" data-animate="fadeIn">
 												<h3 class="big a1" data-animate="fadeInDown">${list.TITLE}</h3>
@@ -335,11 +247,13 @@ display: inline-block;
 										<!-- he view -->
 									</div>
 									<!-- he wrap -->
+
 									<h3 class="title"><a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>">${list.TITLE}</a>
 									
 									</h3>
 									
 									<p>${list.TOURTYPE } / 시작일 (${list.DEPART})</p>
+
 								
 									
 								</div>
@@ -363,6 +277,8 @@ display: inline-block;
 	</div>
 
 </div> 
-  `
+
 </div>
+</div>
+
 </section>

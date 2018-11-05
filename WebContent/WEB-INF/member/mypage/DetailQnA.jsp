@@ -165,7 +165,7 @@ height: 100%;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
          <ul class="breadcrumb">
           <li><a href="index.html">Home</a></li>
-          <li>사용자 아이디</li>
+          <li>${id}</li>
         </ul>
         <h2>Q&A</h2>
       </div>
@@ -188,89 +188,8 @@ height: 100%;
 	왼쪽에 달린 프로필 사진 및 기타등등 
 *****************************************  -->
   <section class="section1">
-     <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
-        <div>
-          <div class="teammembers">
-            <div class="he-wrap tpl2">
-            	<c:if test="${not empty memberRecord.profile}" var="result">
-            	<img src="<c:url value='/Upload/Member/${memberRecord.profile}'/>" alt="프로필 사진">
-            	</c:if>
-            	<c:if test="${not result}">
-              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
-              </c:if>
-              <div class="he-view">
-            
-              </div>
-            </div>
-            <!-- he wrap -->
-            <div class="teammembers-meta">
-              <h4>${sessionScope.id}</h4>
-            </div>
-            <div id="MY-first-1-self-detail">
-                     <p>
-                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
-                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
-                           님의&nbsp자기소개입니다</span>
-                     <p>${memberRecord.self}
-                     </p>
-
-
-         </div>
-
-            
-            <div class="teamskills" >
-            <div id="MY-First-TotalContent" style="width:90%;">
-                   <table id="MY-first-informtable" style="width:90%;">
-                   <tr>
-                      <td>Planner</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                   <td>Review</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                      <td>Like</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                      <td>Star Point</td>
-                      <td>0000</td>
-                  <!--  </tr>
-                	<tr style="border-top:1px white dashed;">
-                	<td colspan="2"> 선호사항</td>
-                	</tr>
-                       -->
-                   </table>
-                
-                </div>
-              
-            </div>
-            <!-- ***********************8
-            선호도 조사 들어갈 부분
-            *****************************8 -->
-            <div id="MY-First-Preference" style="width:90%;" >
-            	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
-            		<tr>
-            		<c:if test="${empty memberPreferList }" var="result">
-            			<td>플래닛을 즐겨주세요</td>
-            		</c:if>	
-            		<c:if test="${not result }">
-            			<c:forEach var="list" items="${memberPreferList}" varStatus="loop">
-            				<td>${list.kor }</td><!-- 왜 안나오지 -->
-            			
-            			</c:forEach>
-            		</c:if>
-            		</tr>
-            	
-            	</table>
-            
-            </div>
-          </div>
-          <!-- end teammembers -->
-        </div>
-</div>
+  <%-- <%@ include file="/WEB-INF/member/mypage/MyPageLeftSubMenu.jsp" %> --%>
+  <jsp:include page="MyPageLeftSubMenu.jsp" flush="false" />
 <!--*************************************
 	마이페이지 이동버튼
 *****************************************  -->
@@ -289,10 +208,8 @@ height: 100%;
 				  
 				  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>" class="btn btn-link">
 				   돌아가기
-				    <span class="glyphicon glyphicon-log-out"></a></span>
-				
-				  
-				  
+				    <span class="glyphicon glyphicon-log-out"></span></a>
+			  
 				</div><!-- dropdown -->
 			</div><!-- MY-edit -->
 		</div><!-- mypagemenu -->

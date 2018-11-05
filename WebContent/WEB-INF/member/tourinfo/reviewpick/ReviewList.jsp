@@ -17,12 +17,12 @@
 		$('.list-order').click(function(){
 			console.log('here!!'+$(this).html());
 			
+
 		});
-		
+
 	});
+
 </script>
-
-
 
 <div style="padding-top: 70px"></div>
  <section class="post-wrapper-top">

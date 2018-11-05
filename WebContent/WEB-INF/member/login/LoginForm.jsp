@@ -18,7 +18,7 @@
 				<p>It has survived not only five centuries, but also the leap
 					into electronic typesetting, remaining essentially unchanged.</p>
 				<p class="withpadding">
-					플랜잇이 처음이신가요? 지금 바로 <a href="#">Planit</a>에서 놀라운 경험을 해보세요.
+					플랜잇이 처음이신가요? 지금 바로 <a href="<c:url value='/member/login/Join.it'/>">Planit</a>에서 놀라운 경험을 해보세요.
 				</p>
 				</div>
 			</div>

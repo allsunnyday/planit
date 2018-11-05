@@ -10,21 +10,21 @@
 <div class="container-fluid" style="height: 100%">
 	<section class="section1" style="margin-top: -30px; height: 100%">
 	<!--**************************** 오른쪽 맵 과 상단 네비 게이션 바 구성 시작********************************-->
-		<header class="header" style="background-color: #62c1f0; margin-top: 20px;" >
+		<header class="header" style="background-color: #16f8d6; margin-top: 20px;" >
 			<div class="container-fluid">
 				<div class="site-header" >
 					<!-- title area -->
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div id="nav" class="right" style=" float: right;">						
+						<div id="nav" class="right" style=" float: right;height: 50px;padding: 5px">						
 							<!-- <div class="text-right" > -->
-								<ul id="jetmenu" class="jetmenu blue" style="text-align: right;">
+								<ul id="" class="" style="list-style: none;" >
 									<!-- <li style="display: block;"><a href=""> 저 장 </a></li> -->
-									<li style="display: block; "><a class="dmbutton" href="javascript:" onclick="movescheduleAction();"> Next </a></li>									
+									<li style="float: left; margin-right: 15px"><a class="" href="javascript:" onclick="movescheduleAction();"><img alt="" src="<c:url value='/Upload/Planner/download-button.png'/> " height="30" width="30"> </a></li>									
 									<%-- <li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li> --%>
 									<%-- <li class="active" style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li> --%>
 									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li> --%>
 									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li> --%>
-									<li style="display: block;"><a class="dmbutton" id="bookmark" href="#" data-toggle="modal" data-target="#bookmarkmodal"> 즐겨 찾기 </a></li>									
+									<li style="float: left; margin-right: 15px"><a class="" id="bookmark" href="#" data-toggle="modal" data-target="#bookmarkmodal"> <img alt="" src="<c:url value='/Upload/Planner/add-bookmarks.png'/> " height="30" width="30">  </a></li>									
 								</ul>
 								<form id="scheduleData" name="scheduleData" method="post" ></form> <!-- action="<c:url value='/planner/plan/schedule.it'/>" -->
 							<!-- </div> -->
@@ -38,7 +38,8 @@
 		<div class="container-fluid" style="height: 100%;"> 
 			<!--********************************왼쪽 여행 상세정보 출력 정보 시작**********************************-->
 			 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" id="leftrute" >
-				<div id="planroutetop" style="background: #62c1f0; text-align: center; height: auto" >
+				<!-- -----------planroutetop--------------   -->
+				<div id="planroutetop" style="background: #16f8d6; text-align: center; height: auto" >
 					<div class="row" style="display: inline; margin-top: -40px;">						
 						<div class="col-md-8 col-sm-8 col-xs-12" id="plandate" style="width: auto; display:block; margin: 0 auto;">
 							<!-- *************  루트 작성 당일 일자 출력 시작 ************ -->
@@ -77,7 +78,7 @@
 						<!-- **********************  여행 타입 선택 이미지 박스 종료  ********************* -->
 					</div>
 					<div style="clear: both"></div>
-				</div>	
+				</div><!-- -----------planroutetop (end) --------------   -->
 				<div id="cityroute">					
 						<!-- 사용자가 추가한 여행정보가 없을때 -->
 						<div id="nocityrute">
@@ -123,7 +124,7 @@
 							<select name="paldoNcity" id="paldoNcity" style="width: 100%">
 								<option value="${areacode}" selected >${areacodename} </option>
 								<optgroup  LABEL="* * * * * *" style="background-color: #4A5C78">							
-							    	<option value="1">서울 특별시</option>
+							    	<option value="1" >서울 특별시</option>
 							    	<option value="2">인천 광역시</option>
 							    	<option value="3">대전 광역시</option>
 							    	<option value="4">대구 광역시</option>

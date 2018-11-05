@@ -53,12 +53,10 @@ height: 100%; */
 
 		</div>
 		<!-- mypagemenu -->
-
 		<!-- ------------------------------- -->
 		<!--        start Edit first         -->
 		<!-- ------------------------------- -->
 		<form class="form-horizontal" action="<c:url value='/planit/mypage/editsave.it'/>" method="post" enctype="multipart/form-data">
-
 			<div class="row" id="ME-first">
 				<!--  프로필 들어갈 div -->
 				<div id="ME-first-name">Edit My Information</div>
@@ -68,12 +66,12 @@ height: 100%; */
 							value="${memberRecord.id }" disabled>
 					</div>
 					<div class="col-md-10 col-md-offset-1">
-						<input type="text" class="form-control" id="name" name="name"
+						<input type="text" class="form-control" value="${memberRecord.name }" id="name" name="name"
 							placeholder="이름을 입력해주세요" value="">
 					</div>
 					<div class="col-md-10 col-md-offset-1">
 						<input type="email" class="form-control" id="email" name="email"
-							placeholder="이메일을 입력해주세요" value="">
+							value="${memberRecord.email}"placeholder="이메일을 입력해주세요" value="">
 					</div>
 
 				</div>
@@ -89,14 +87,11 @@ height: 100%; */
 				<div id="ME-second-EditForm" class="col-md-8 col-md-offset-2">
 					<div class="col-md-10 col-md-offset-1">
 						<!-- 사진 업로드 할 부분 -->
-						
 						<input type="file" name="profile" id="profile" >
 						<input type="hidden" name="isExistProfile" value="${memberRecord.profile}">
 					</div>
 					<div class="col-md-10 col-md-offset-1">${memberRecord.profile}</div>
-					<div class="col-md-10 col-md-offset-1">
-<textarea class="form-control" name="self" id="self" value="${memberRecord.self }" rows="3" placeholder="자기소개를 입력해주세요"></textarea>
-
+					<div class="col-md-10 col-md-offset-1"><textarea class="form-control" name="self" id="self" rows="3" placeholder="자기소개를 입력해주세요">${memberRecord.self }</textarea>
 					</div>
 				</div>
 
@@ -125,10 +120,10 @@ height: 100%; */
 			<!-- -------------------------------  -->
 
 			<div class="submitButton">
-				<input id="ME-Submit-Button" type="submit" class="btn btn-default"
-					value="Edit">
+				<button class="dmbutton2" type="button" onclick="history.back();">취소</button>
+				<input id="ME-Submit-Button" type="submit" class="dmbutton2" value="Edit">				
 			</div>
-
+			
 		</form>
 
 	</div>

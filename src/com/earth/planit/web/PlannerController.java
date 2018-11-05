@@ -62,7 +62,6 @@ public class PlannerController {
 		System.out.println("areacodesub: " + map.get("areacodesub")+"/ areacodesubname : "+ map.get("areacodesubname")); // 사용자가 선택한 여행 지역 얻어오기2
 		System.out.println("days: " + map.get("days")); // 사용자가 선택한 여행 일수 얻기
 		
-		
 		model.addAttribute("areacode", map.get("areacode")); // 사용자가 선택한 여행 지역 얻어오기
 		model.addAttribute("areacodename", map.get("areacodename"));
 		model.addAttribute("areacodesub", map.get("areacodesub")); // 사용자가 선택한 여행 지역 얻어오기2

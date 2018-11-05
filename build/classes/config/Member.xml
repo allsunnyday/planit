@@ -89,8 +89,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       order by R.postdate desc
    </select>
    <select id="MemberPlannerList"  parameterType="java.util.Map" resultType="java.util.Map">
-      select * from planner
-      where id=#{id} 
+      select p.*,r.review_id  
+      from planner p,review r
+      where id=#{id}  and p.planner_id=r.planner_id and series=1
    </select>
 
    <select id="MemberHomeReviewList"  parameterType="java.util.Map" resultType="reviewDTO">
@@ -100,10 +101,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       where rownum<![CDATA[<=]]>4 and id=#{id}
       order by R.postdate desc
    </select>
+   
    <select id="MemberHomePlannerList"  parameterType="java.util.Map" resultType="java.util.Map">
-      
-      select * from planner
-      where id=#{id} and rownum<![CDATA[<=]]>4
+      select p.*,r.review_id  
+      from planner p,review r
+      where id=#{id}  and p.planner_id=r.planner_id and series=1
+      and rownum<![CDATA[<=]]>6
    </select>
 
    <select id="MemberAskPlanit"  parameterType="java.util.Map" resultType="FaqNoticeDTO">
@@ -127,36 +130,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             and ${searhColumn} LIKE '%' || #{searchWord} || '%'
       </if>
    </select>
+   
+   
    <select id="MemberLikedTour" parameterType="java.util.Map" resultType="java.util.Map">
-      select T.*,C.*
-      from liked_tour T INNER JOIN  content c on T.contentid=C.contentid
-      where rownum<![CDATA[<=]]>5 and id=#{id}
+      select T.*, C.*
+      from liked_tour T INNER JOIN  
+      (select c0.*, c2.kor from content c0, cat2 c2 
+      where c0.cat2=c2.cat2)
+      c on T.contentid=C.contentid
+      where id=#{id}
+      <if test="mode == null">
+       and rownum<![CDATA[<=]]>5
+      </if>
       order by LIKED_T_ID desc
    </select>
+   
+   
    <select id="MemberLikedReview" parameterType="java.util.Map" resultType="java.util.Map">
       select L.*,R.*
-      from review R INNER JOIN liked_review L on R.review_id=L.review_id
-      where rownum<![CDATA[<=]]>5 and id=#{id}
+      from review R INNER JOIN 
+      (select li.*, m.profile from liked_review li, member m where li.id=m.id)
+      L on R.review_id=L.review_id
+      where id=#{id}
+      <if test="mode == null">
+       and rownum<![CDATA[<=]]>5
+      </if>
    </select>
+   
+   
    <select id="MemberLikedPlanner" parameterType="java.util.Map" resultType="java.util.Map">
       select * from liked_planner
-      where rownum<![CDATA[<=]]>5 and id=#{id}
+      where id=#{id} 
+      <if test="mode == null">
+       and rownum<![CDATA[<=]]>5
+      </if>
    </select>
-   <select id="MemberLikedTourDetail" parameterType="java.util.Map" resultType="java.util.Map">
-      select T.*,C.title,C.addr1
-      from liked_tour T INNER JOIN  content c on T.contentid=C.contentid
-      where id=#{id}
-      order by LIKED_T_ID desc
-   </select>
-   <select id="MemberLikedReviewDetail" parameterType="java.util.Map" resultType="java.util.Map">
-      select L.*,R.*
-      from review R INNER JOIN liked_review L on R.review_id=L.review_id
-      where id=#{id}
-   </select>
-   <select id="MemberLikedPlannerDetail" parameterType="java.util.Map" resultType="java.util.Map">
-      select * from liked_planner
-      where id=#{id}
-   </select>
+   
    
    <select id="profilecheck" parameterType="java.util.Map" resultType="int">
       select profile
@@ -164,9 +173,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       where id=#{id}
    </select>
 
-   <select id="MemberPreferList" parameterType="java.util.Map" resultType="memberDTO">
-      select T.id,T.kor
-      from (select *
+   <select id="MemberPreferList" parameterType="java.util.Map" resultType="java.util.Map">
+      select T.cat2, T.kor
+      from (select p.*, c.kor
       from preference P inner join cat2 C on P.cat2=C.cat2
       where id=#{id}
       order by rating desc)T
@@ -195,8 +204,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    select count(*) from liked_planner where id=#{id}
    </select>
 
-
-
    <select id="MemberSelectValueCount" parameterType="java.util.Map" resultType="int" >
    
    	select count(*) from ${table} t 
@@ -207,5 +214,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <if test="!table.equals('review')">
    		where t.id=#{id}
    </if>
+
    </select>
 </mapper>

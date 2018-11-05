@@ -49,7 +49,7 @@
 <section class="section1">
 	<div class="container" style="margin-bottom: 50px;">
 		<div class="row">
-			<div class="col-md-6 col-sm-6 col-xs-12" style="float: left; height: 600px;">
+			<div class="col-md-4 col-sm-4 col-xs-12" style="float: left; height: 400px;">
 				<div class="col-sm-12 col-md-12 col-xs-12 portfolio  wow fadeIn text-center">
 		        	<h3> 여행 일정 달력 </h3>
 		        	<hr/>	        	       
@@ -75,7 +75,8 @@
 				  _gaq.push(['_trackPageview']);
 				
 				  (function() {
-				    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				    var ga = document.createElement('script'); 
+				    ga.type = 'text/javascript'; ga.async = true;
 				    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 				    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 				  })();
@@ -84,12 +85,12 @@
 				<!-- 달력 출력 종료 -->
 			</div>
 			<!--  -->
-			<div class="col-md-6 col-sm-6 col-xs-12 portfolio wow fadeIn text-center">
-	        	<h3> 일자별 여행 일정 입력 </h3>
+			<div class="col-md-8 col-sm-8 col-xs-12 portfolio wow fadeIn text-center">
+	        	<h3> 여행 일정 </h3>
 	            <hr/>	           
 	        </div>
 			<hr/>			
-			<div class="col-md-6 col-sm-6 col-xs-12">			
+			<div class="col-md-8 col-sm-8 col-xs-12">			
 				<form method="post" action="#" id="plansave">
 					<div class="schedulehiddendata">
 						<input type="hidden" id="days" name="days" value="${days }"> <!-- 총 여행일수 저장 -->

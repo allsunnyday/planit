@@ -6,7 +6,7 @@
 포토북 디자인을 고르는 페이지   
 ************************************************************** -->
 <style>
-.footer {position:none; position:absolute; bottom:0; width:100%;}
+.footer {position:none; bottom:0; width:100%;}
 .reviewdesign{margin-bottom: 120px;}
 .grid {
 	background: silver;
@@ -235,6 +235,53 @@ section{margin-bottom: 120px;} */
 
 		</div>
 	</div>
+	
+	<div class="container-photobook clearfix">
+      <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
+         <div class="divider"></div>
+         <div class="preview-wrapper">
+            
+            <!-- 포토북 페이지 디자인1  -->
+            <c:forEach var="item" items="${listMap}" varStatus="loop">
+
+               <!-- 디자인 1 - 텍스트  -->
+               <div class="preview-item-text" id="text_${loop.index}">
+                  <div class="col-xs-12">
+                     <div class="col-xs-12 text-center" style="margin-top: 90px;">
+                        <h2>${item.TITLE}</h2>
+                        <h2>
+                           <small>${item.ADDR1}</small>
+                        </h2>
+                        <!-- 관광지에 관한 이미지. 다른 사이트에 있는 이미지는 저장되지 않는다.  -->
+                       <%--  <img alt="이미지" src="${item.FIRSTIMAGE}"
+                           style="width: 200px; height: 180px"> --%>
+                     </div>
+                     <br>
+                     <div class="col-sm-offset-2 col-sm-8">${item.CONTENT}</div>
+
+                  </div>
+               </div>
+               <c:if test="${not empty item.IMAGE }">
+                  <!-- 디자인 1 - 이미지  -->
+                  <div class="preview-item" id="image_${loop.index}">
+                     <div class="col-xs-12">${item.IMAGE}</div>
+                  </div>
+               </c:if>
+
+               
+            </c:forEach>
+            
+               <img alt="이미지" src="<c:url value='/Upload/Review/P20150430_155712109_5B5FAF3B-0F67-4FC0-AF5B-D1B2DFF42676.JPG'/>">
+            </div>
+         </div>
+         <form name="imgForm" id="imgForm">
+         </form>
+            <div>
+
+         
+
+      </div>
+   </div>
 	
 </section>
 
