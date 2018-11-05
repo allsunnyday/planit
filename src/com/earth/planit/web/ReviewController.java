@@ -57,12 +57,16 @@ public class ReviewController {
 							HttpServletResponse resp,
 							@RequestParam(required = false, defaultValue = "1") int nowPage) throws Exception {
 
-		if(map.get("areacode")!=null) {
+		String param="";
+		if(map.get("areacode")!=null && !map.get("areacode").equals("0")) {
 			System.out.println(map.get("areacode")+" 지역을 선택했습니다."+map.get("areacodeKor"));
-			System.out.println(map.get("keyword")+" 키워드를 입력했습니다."+map.get("keyword").toString().length());
 			model.addAttribute("areacode", map.get("areacode"));
-			model.addAttribute("keyword", map.get("keyword"));
 			model.addAttribute("areacodeKor", map.get("areacodeKor"));
+			param+="areacode="+map.get("areacode")+"&";
+		}
+		if(map.get("areacode")!=null && map.get("areacode").equals("all")) {
+			map.remove("areacode");
+			map.remove("keyword");
 		}
 		
 		// 페이징 로직 시작
@@ -78,7 +82,11 @@ public class ReviewController {
 
 		// 리뷰 리스트를 가지고 온다.
 		List<Map> list = reviewService.selectReviewList(map);
-
+		// 평점 반올림하기
+		for(Map review : list) {
+			map.put("RATING", Math.round(Double.parseDouble(review.get("RATING").toString())));
+		}
+		
 		// 페이징 스트링
 		String pagingString = CommonUtil.pagingBootStrapStyle(totalReviewCount, pageSize, blockPage, nowPage,
 				req.getContextPath() + "/planit/review/ReviewList.it?");

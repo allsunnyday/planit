@@ -16,11 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select r.*, m.id, m.PROFILE   
 		from review r, planner p,member m
 		where r.planner_id=p.planner_id and p.id=m.id 
-		<if test="areacode != null">
+		<if test="areacode != null and !areacode.equals('all')">
 		and p.areacode=#{areacode}
 		</if>
 		<if test="keyword != null and !keyword.equals('')">
-		and r.hashtag LIKE '%' || #{keyword} || '%'
+		and r.title LIKE '%' || #{keyword} || '%'
 		</if>
 		order by 
 		<if test="order != null">
@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and p.areacode=#{areacode}
 		</if>
 		<if test="keyword != null and title != ''">
-		and r.hashtag LIKE '%' || #{keyword} || '%'
+		and r.title LIKE '%' || #{keyword} || '%'
 		</if>
 		order by r.postdate desc
 	</select>
