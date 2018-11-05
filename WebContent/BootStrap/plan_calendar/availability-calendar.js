@@ -1,6 +1,6 @@
 (function ($) {
 	var weekdays = ['월', '화', '수', '목', '금', '토', '일'];
-	var months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+	var months = ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월'];
 
 
 	function AvailabilityCalendar(container, bookedDates) {
@@ -26,9 +26,9 @@
 			this.$monthLabel = $('<span id="monthfontsize"></span>').appendTo($toolbar);
 			var $inputContainer = $('<span></span>').appendTo($toolbar);
 
-			$inputContainer.append('<input type="button" title="This month" value="This Month" >');
-			$inputContainer.append('<input type="button" title="Previous month" value="&#10094;" >');
-			$inputContainer.append('<input type="button" title="Next month" value="&#10095;" >');
+			$inputContainer.append('<input class="calenbtn" type="button" title="This month" value="This Month" >');
+			$inputContainer.append('<input class="calenbtn" type="button" title="Previous month" value="&#10094;" >');
+			$inputContainer.append('<input class="calenbtn" type="button" title="Next month" value="&#10095;" >');
 
 			var $inputs = $inputContainer.children('input');
 			var self = this;
@@ -62,9 +62,11 @@
 
 			// Day cells
 			for (var i = 0; i < 6; ++i) {
-				$tr = $('<tr></tr>').appendTo($table);
-				$tr.append('<td></td><td></td><td></td><td></td><td></td><td></td><td></td>');
+				$tr = $('<tr class="calenrow_'+i+'"></tr>').appendTo($table);				
+				$tr.append('<td class="tomonth_'+(0)+'"></td><td class="tomonth_'+(1)+'"></td><td class="tomonth_'+(2)+'"></td><td class="tomonth_'+(3)+'"></td><td class="tomonth_'+(4)+'"></td><td class="tomonth_'+(5)+'"></td><td class="tomonth_'+(6)+'"></td>');
+				
 			}
+			
 
 			this.$cells = $table.find('td');
 		},
@@ -165,7 +167,7 @@
 			var date = new Date(year, month, 1);
 
 			this.$monthLabel.html(year + '년  ' + months[month]+ ' ');
-			this.$cells.removeClass('ex-month');
+			this.$cells.removeClass('ex-month ');
 			this.$cells.filter('.unavailable').removeClass('unavailable').children().remove();
 
 			this.__addPreviousMonthDays(date, cellIndexes, dates);
@@ -175,8 +177,7 @@
 			this.__addEvents(cellIndexes, dates);
 		}
 	};
-
-
+	
 	$.fn.availabilityCalendar = function (bookedDates) {
 		var dates = [];
 

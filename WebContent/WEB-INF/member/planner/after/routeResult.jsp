@@ -150,7 +150,7 @@
 </section>
 <div class="text-center" >
 	<div class="row">
-		<a href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=36'/>" class="button" style="margin-right: 20px;"> 숙박 시설알아보기 </a>
+		<a href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=36&areacode=${areacode}' />" class="button" style="margin-right: 20px;"> 숙박 시설알아보기 </a>
 		<a href="<c:url value='/'/>" class="button" style="margin-left: 20px;"> 메인 화면으로 </a>
 	</div>
 </div>

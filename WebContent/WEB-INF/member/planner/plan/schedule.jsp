@@ -47,9 +47,6 @@
 
 
 <section class="section1">
-<!-- 상단 내부 네비게이션바 시작 -->
-	<%-- <jsp:include page="plantop.jsp"></jsp:include> --%>
-<!-- 상단 내부 네비게이션바 종료 -->
 	<div class="container" style="margin-bottom: 50px;">
 		<div class="row">
 			<div class="col-md-6 col-sm-6 col-xs-12" style="float: left; height: 600px;">
@@ -57,8 +54,8 @@
 		        	<h3> 여행 일정 달력 </h3>
 		        	<hr/>	        	       
 		        </div>
-				<!-- 달력 출력 시작 -->			
-				<div id="calendar"></div>                                       
+				<!-- 달력 출력 시작 -->
+				<div id="calendar" ></div>                                       
 				<script src="<c:url value='/BootStrap/plan_calendar/availability-calendar.js'/>"></script>			
 				<script>
 				var unavailableDates = [
@@ -128,9 +125,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div class="col-sm-12 col-md-12 col-sc-12 text-center">
-						<button type="submit" id="selectplanbtn" name="selectplanbtn" class="btn btn-info"> 저 장 </button>
-					</div> -->
 				</form>
 			</div>
 			<!-- 우측 일정 입력 종료 -->
@@ -194,4 +188,68 @@
 	});
 	/* ************ 여행 상세 일정 및 일정명 등록 ************* */
 	/* ************************** */
+	var depart = '${depart}';
+	var days = '${days}';
+	var departcalen = [];
+	departcalen = depart.split("/")
+	for(var i=0; i < departcalen.length; i++){ // 달력 출력 확인
+		console.log('departcalen: '+ departcalen[i])		
+	}
+	
+		
+	console.log('depart: '+depart)
+	console.log('days: ' + days)
+	
+	var calenmonth = $('#monthfontsize').text().substr(7,2);
+	var plancalendar = (parseInt(departcalen[2]));
+	var plancalendarmonth = departcalen[1];
+	var temp=0;
+	
+	console.log(calenmonth)
+	
+	if(calenmonth == plancalendarmonth){
+		for(var i=0; i < 6; i++){
+			for(var k=0; k<7; k++){
+				if(calenmonth == plancalendarmonth && $('.calenrow_'+i+' .tomonth_'+k).text() == (plancalendar + temp)){
+					$('.calenrow_'+i+' .tomonth_'+k).css('background','#62c1f0');
+					if(temp != days){
+						temp ++;					
+					}
+				}
+			}
+		}
+	}
+	$('.calenbtn').click(function() {
+		calenmonth = $('#monthfontsize').text().substr(7,2);
+		if(calenmonth == plancalendarmonth){
+			for(var i=0; i < 6; i++){
+				for(var k=0; k<7; k++){
+					if(calenmonth == plancalendarmonth && $('.calenrow_'+i+' .tomonth_'+k).text() == (plancalendar + temp)){
+						$('.calenrow_'+i+' .tomonth_'+k).css('background','#62c1f0');
+						if(temp != days){
+							temp ++;					
+						}
+					}
+				}
+			}
+		}
+		else {
+			for(var i=0; i < 6; i++){
+				for(var k=0; k<7; k++){
+					$('.calenrow_'+i+' .tomonth_'+k).css('background','#fff');
+					temp=0;
+				}
+			}
+		}
+	})
+	 
+	/* else {
+		for(var i=0; i < 6; i++){
+			for(var k=0; k<6; k++){
+				$('.calenrow_'+i+' .tomonth_'+k).css('background','#fff');
+			}
+		}
+	} */
+
+	
 </script>

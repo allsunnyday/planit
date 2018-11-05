@@ -412,6 +412,8 @@
                             content : content 
                         });
                         infowindow.open(map, marker);
+                   		// 마우스 휠로 지도 확대,축소 가능여부를 설정합니다
+                        map.setZoomable(false); 
                   </script>
                <!-- 다음 map 종료 -->
                </div> <!-- </div> -->

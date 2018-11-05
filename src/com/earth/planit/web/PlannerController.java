@@ -237,6 +237,7 @@ public class PlannerController {
 		model.addAttribute("reviewtitle", map.get("reviewtitle"));
 		model.addAttribute("route", map.get("route"));
 		model.addAttribute("plancase", map.get("plancase"));
+		model.addAttribute("areacode", map.get("areacode"));
 		
 		return "planner/after/routeResult.theme";
 		

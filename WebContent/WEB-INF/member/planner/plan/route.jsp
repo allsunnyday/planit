@@ -10,7 +10,7 @@
 <div class="container-fluid" style="height: 100%">
 	<section class="section1" style="margin-top: -30px; height: 100%">
 	<!--**************************** 오른쪽 맵 과 상단 네비 게이션 바 구성 시작********************************-->
-		<header class="header" style="background-color: #1abc9c; margin-top: 20px;" >
+		<header class="header" style="background-color: #62c1f0; margin-top: 20px;" >
 			<div class="container-fluid">
 				<div class="site-header" >
 					<!-- title area -->
@@ -38,7 +38,7 @@
 		<div class="container-fluid" style="height: 100%;"> 
 			<!--********************************왼쪽 여행 상세정보 출력 정보 시작**********************************-->
 			 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" id="leftrute" >
-				<div id="planroutetop" style="background: #1abc9c; text-align: center; height: auto" >
+				<div id="planroutetop" style="background: #62c1f0; text-align: center; height: auto" >
 					<div class="row" style="display: inline; margin-top: -40px;">						
 						<div class="col-md-8 col-sm-8 col-xs-12" id="plandate" style="width: auto; display:block; margin: 0 auto;">
 							<!-- *************  루트 작성 당일 일자 출력 시작 ************ -->
@@ -59,9 +59,10 @@
 							<!-- *************  루트 시작 일자 선택 시작  ************ -->							
 						</div>
 						<!-- **********************  여행 타입 선택 이미지 박스 시작  ********************* -->
-						<div class="col-md-4 col-sm-4 col-xs-12 text-center" style="width: auto; height: 80px; float: right;">
-							<div class="btn-group" style="margin-top: 8px;">
-								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" id="tourtype">
+						<!-- <div class="col-md-4 col-sm-4 col-xs-12" style="width: auto; height: 90px;"> -->
+						<div style="display: inline-block;">
+							<div class="btn-group" style="margin-top: 8px; display: block;">
+								<a class="dmbutton dropdown-toggle" data-toggle="dropdown" href="#" id="tourtype" style="width: 90px;">
 									<img id="tourtypeimage" alt="타입" src="" style=""><span id="caret" class="caret"></span></a>
 								<ul class="dropdown-menu" id="peopletype">
 									<li id="single"><a href="#"><img src="/Planit/images/member/Preference/Preference_alone.JPG" alt="single"></a></li>
@@ -70,8 +71,9 @@
 									<li id="family"><a href="#"><img src="/Planit/images/member/Preference/Preference_family.JPG" alt="family"></a></li>
 									<li id="club"><a href="#" ><img src="/Planit/images/plan/club1.png" alt="club" ></a></li>
 								</ul>
-							</div>												
+							</div>
 						</div>
+						<!-- </div> -->
 						<!-- **********************  여행 타입 선택 이미지 박스 종료  ********************* -->
 					</div>
 					<div style="clear: both"></div>
