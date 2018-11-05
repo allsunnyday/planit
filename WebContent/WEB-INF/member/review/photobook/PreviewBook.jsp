@@ -205,8 +205,6 @@ section{margin-bottom: 120px;} */
                         <h2>
                            <small>${item.ADDR1}</small>
                         </h2>
-                        <!--  -->
-                        <!--  -->
                         <!-- 관광지에 관한 이미지. 다른 사이트에 있는 이미지는 저장되지 않는다.  -->
                        <%--  <img alt="이미지" src="${item.FIRSTIMAGE}"
                            style="width: 200px; height: 180px"> --%>
