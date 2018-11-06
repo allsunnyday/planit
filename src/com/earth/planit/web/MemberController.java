@@ -67,11 +67,7 @@ public class MemberController {
 		return "login/LoginForm.theme";
 	}
 
-	@RequestMapping("/Plait/Planit.it")
-	public String gotoMain() throws Exception {
-		return "main/main.tiles";// main은 반드시 tiles로 이동해야 함
-	}
-
+	
 	@RequestMapping("/member/login/Join.it")
 	public String gotoJoin() throws Exception {
 		return "login/JoinMain.theme";
@@ -105,7 +101,7 @@ public class MemberController {
 			System.out.println(planner.get("DEPART").toString().substring(0, 10));
 			LocalDate dapart = LocalDate.parse(planner.get("DEPART").toString().substring(0, 10));
 			System.out.println(Period.between(LocalDate.now(), dapart).getDays());
-
+			System.out.println(LocalDate.now());
 			if ((Period.between(LocalDate.now(), dapart).getDays() > 0)) // 음수일 경우 이미 지남을 의미한다.
 				planner.put("status", Period.between(LocalDate.now(), dapart).getDays());
 		}

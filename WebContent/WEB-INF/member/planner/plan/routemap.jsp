@@ -993,6 +993,10 @@
 				//formdata.append("route_"+i,routeCase);
 				schedulecontent +='<input type="hidden" id="route_'+i+'" name="route_'+i+'" value="'+routeCase+'">';
 			}
+			// DIV CAPTURE
+			
+			
+			
 			
 			
 			//스케줄 페이지로 데이터 전달
@@ -1001,14 +1005,41 @@
 			schedulecontent +='<input type="hidden" id="tourtype" name="tourtype" value="'+tourtype+'">'; //사용자가 선택한 여행 타입 저장
 			schedulecontent +='<input type="hidden" id="plancase" name="plancase" value="'+plancase+'">';// 총일정 개수
 			schedulecontent +='<input type="hidden" id="areacode" name="areacode" value="'+areacode+'">';// 사용자가 선택한 지역코드저장
+			schedulecontent +='<input type="hidden" name="mapimage" id="mapimage"/>';// 지도저장
 			
 			$('#scheduleData').append(schedulecontent);
 			$('#scheduleData').attr("action", "<c:url value='/planner/plan/schedule.it'/>");
+			$('#scheduleData').attr("enctype", "multipart/form-data");
+			
+			// capture image
+			//captureMapImageAndSend();
 			
 			$('#scheduleData').submit();
 		}
 		
 	}
+	
+	/* function captureMapImageAndSend(){
+		//이미지를 캡처하고 성공할 시에 send
+		console.log("이미지를 캡처하는 메소드 시작---");
+		
+		html2canvas($('#map'), {
+			useCORS: true,
+			proxy: "./server.js",
+			onrendered : function(canvas) {
+				
+				if (typeof FlashCanvas != "undefined") {
+					FlashCanvas.initElement(canvas);
+				}
+				var image = canvas.toDataURL("image/png");
+				// 이미지 데이터를 hidden값으로 설정
+				 $("#mapimage").val(image);
+				 console.log("값이 잘 만들어 졌으며, form 태그를 제출합니다.");
+				 $('#scheduleData').submit();
+			}
+		});
+		console.log("이미지를 캡처하는 메소드 end---");
+	} */
 	/* ****** route 정보 저장 및 schedule 페이지 이동 ****** */
 </script>
 <!-- ****************************************************루트 상세 정보 계획 자바 스크립트 종료************************************************************ -->
@@ -1182,4 +1213,5 @@
 	}
 </script>
 <!-- ************** 즐겨 찾기 자바 스크립트 ************ -->
-
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>

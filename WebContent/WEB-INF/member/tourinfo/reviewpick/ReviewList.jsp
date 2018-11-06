@@ -43,8 +43,8 @@
         	<div class="widget">
           		<h4 class="title"><span>검색</span></h4>
            		<div class="text-center">
-          			<form id="subscribe" class="form-inline" action="<c:url value='/planit/review/ReviewList.it'/> " >
-			          	<select name="areacode" id="areacode" class="dmbutton2" title="조회지역" style="display: inline-block;">
+          			<form id="subscribe" class="form-inline" action="<c:url value='/planit/review/ReviewList.it'/> ">
+			          	<select name="areacode" id="areacode" class="dmbutton2" title="조회지역" style="display: inline-block;" >
 			                  <option value="all">전체</option>
 			                  <option value="1" >서울</option>
 			                  <option value="2" >인천</option>

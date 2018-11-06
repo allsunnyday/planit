@@ -57,4 +57,19 @@ public class ContentServiceImpl implements ContentService {
 		return dao.isAlreadyLiked(map);
 	}
 
+	@Override
+	public List<Map> mainPlannerList() {
+		return dao.mainPlannerList();
+	}
+
+	@Override
+	public List<Map> mainReviewList() {
+		return dao.mainReviewList();
+	}
+
+	@Override
+	public List<Map> mainContentList() {
+		return dao.mainContentList();
+	}
+
 }
