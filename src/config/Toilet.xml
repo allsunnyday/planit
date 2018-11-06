@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.Toilet">
+	<select id="toiletList" parameterType="java.util.Map" resultType="toiletDTO">
+		select * 
+		from(
+			select a.*, rownum r 
+			from (  
+				select toilet_type, toilet_nm, rdnmadr, OPEN_TIME, LATITUDE, LONGITUDE 
+				from PUBLIC_TOILET p 
+				where #{latitude}-0.01 <![CDATA[<=]]> p.latitude and p.latitude <![CDATA[<=]]>  #{latitude}+0.01 
+				and #{longitude}-0.01 <![CDATA[<=]]> p.longitude and p.longitude  <![CDATA[<=]]>  #{longitude}+0.01 
+			) a
+		) where r between #{start} and #{end}
+	</select>
+</mapper>

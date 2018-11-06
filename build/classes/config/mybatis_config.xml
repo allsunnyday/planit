@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="contentDTO" type="com.earth.planit.service.ContentDTO"/>
 		<typeAlias alias="faqNoticeDTO" type="com.earth.planit.service.FaqNoticeDTO"/>
 		<typeAlias alias="plannerDTO" type="com.earth.planit.service.PlannerDTO"/>
+		<typeAlias alias="toiletDTO" type="com.earth.planit.service.ToiletDTO"/>
 	</typeAliases>
 	
 	
@@ -56,6 +57,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="config/Content.xml" />
 		<mapper resource="config/FaqNotice.xml" />
 		<mapper resource="config/Planner.xml"/>
+		<mapper resource="config/Toilet.xml"/>
 	</mappers>
 	
 	
