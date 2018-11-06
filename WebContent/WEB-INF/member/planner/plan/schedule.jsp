@@ -89,7 +89,8 @@
 	        	<h3> 여행 일정 </h3>
 	            <hr/>	           
 	        </div>
-			<hr/>			
+			<hr/>
+			<img alt="" src="<c:url value='/Upload/Planner/${mapimage}'/> ">
 			<div class="col-md-8 col-sm-8 col-xs-12">			
 				<form method="post" action="#" id="plansave">
 					<div class="schedulehiddendata">

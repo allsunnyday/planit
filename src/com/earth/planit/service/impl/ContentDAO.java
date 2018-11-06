@@ -58,4 +58,19 @@ public class ContentDAO implements ContentService {
 		return template.selectOne("contentIsAlreadyLiked",map);
 	}
 
+	@Override
+	public List<Map> mainPlannerList() {
+		return template.selectList("mainPlannerList");
+	}
+
+	@Override
+	public List<Map> mainReviewList() {
+		return template.selectList("mainReviewList");
+	}
+
+	@Override
+	public List<Map> mainContentList() {
+		return template.selectList("mainContentList");
+	}
+
 }

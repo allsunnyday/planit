@@ -1,11 +1,14 @@
 package com.earth.planit.web;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -29,6 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.earth.planit.service.PlannerDTO;
 import com.earth.planit.service.PlannerService;
+import com.earth.planit.service.impl.FileUtils;
 
 @Controller
 public class PlannerController {
@@ -156,12 +161,37 @@ public class PlannerController {
 	}
 	
 	@RequestMapping(value = "/planner/plan/schedule.it", method = { RequestMethod.POST })
-	public String scheduleUpload(@RequestParam Map map, Model model, HttpServletRequest req ) throws Exception {
+	public String scheduleUpload(@RequestParam Map map,
+								Model model,
+								HttpSession session,
+								HttpServletRequest req ) throws Exception {
 //		System.out.println("days: " + map.get("days"));
 //		System.out.println("depart: " + map.get("depart"));
 //		System.out.println("areacode: " + map.get("areacode"));
 //		System.out.println("plancase: " + map.get("plancase"));
 //		System.out.println("tourtype: " + map.get("tourtype"));
+		
+		/*System.out.println("routemap - > schedule");
+		String binaryData = map.get("mapimage").toString();
+		String phisicalPath = req.getServletContext().getRealPath("/Upload/Planner");
+		String fileName="";
+		if (binaryData != null || binaryData != "") {
+			
+			FileOutputStream stream = null;
+			
+			//System.out.println("binary file " + binaryData);
+			
+			binaryData = binaryData.replaceAll("data:image/png;base64,", "");
+			byte[] file = Base64.decodeBase64(binaryData);
+			System.out.println("file :::::::: " + file + " || " + file.length);
+			
+			fileName = FileUtils.getNewFileName(phisicalPath, session.getAttribute("id")+LocalDate.now().toString());
+			
+			stream = new FileOutputStream(phisicalPath+File.separator + fileName + ".png");
+			
+			stream.write(file);
+			stream.close();
+		}*/
 		
 		int plancase = Integer.valueOf((String) map.get("plancase")); // 일정 갯수
 		System.out.println("plancase: "+ plancase);
@@ -177,6 +207,7 @@ public class PlannerController {
 		model.addAttribute("tourtype", map.get("tourtype"));
 		model.addAttribute("areacode",map.get("areacode"));
 		model.addAttribute("plancase", map.get("plancase"));
+		//model.addAttribute("mapimage",fileName);
 		return "planner/plan/schedule.theme";
 	}
 	

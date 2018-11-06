@@ -19,4 +19,9 @@ public interface ContentService {
 	int insertLikedTour(Map map);
 	// 이미 즐겨찾기에 추가했는지 검사
 	int isAlreadyLiked(Map map);
+	
+	// ==== main list ========== //
+	List<Map> mainPlannerList();
+	List<Map> mainReviewList();
+	List<Map> mainContentList();
 }

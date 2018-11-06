@@ -53,10 +53,12 @@ height: 100%; */
 
 		</div>
 		<!-- mypagemenu -->
+
 		<!-- ------------------------------- -->
 		<!--        start Edit first         -->
 		<!-- ------------------------------- -->
 		<form class="form-horizontal" action="<c:url value='/planit/mypage/editsave.it'/>" method="post" enctype="multipart/form-data">
+
 			<div class="row" id="ME-first">
 				<!--  프로필 들어갈 div -->
 				<div id="ME-first-name">Edit My Information</div>
@@ -87,11 +89,17 @@ height: 100%; */
 				<div id="ME-second-EditForm" class="col-md-8 col-md-offset-2">
 					<div class="col-md-10 col-md-offset-1">
 						<!-- 사진 업로드 할 부분 -->
+						
 						<input type="file" name="profile" id="profile" >
 						<input type="hidden" name="isExistProfile" value="${memberRecord.profile}">
 					</div>
 					<div class="col-md-10 col-md-offset-1">${memberRecord.profile}</div>
-					<div class="col-md-10 col-md-offset-1"><textarea class="form-control" name="self" id="self" rows="3" placeholder="자기소개를 입력해주세요">${memberRecord.self }</textarea>
+					<div class="col-md-10 col-md-offset-1">
+<textarea class="form-control" name="self" id="self" rows="3" placeholder="자기소개를 입력해주세요">
+
+${memberRecord.self }
+</textarea>
+
 					</div>
 				</div>
 
@@ -120,10 +128,10 @@ height: 100%; */
 			<!-- -------------------------------  -->
 
 			<div class="submitButton">
-				<button class="dmbutton2" type="button" onclick="history.back();">취소</button>
-				<input id="ME-Submit-Button" type="submit" class="dmbutton2" value="Edit">				
+				<input id="ME-Submit-Button" type="submit" class="btn btn-default"
+					value="Edit">
 			</div>
-			
+
 		</form>
 
 	</div>
