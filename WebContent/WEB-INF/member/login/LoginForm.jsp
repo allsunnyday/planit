@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 
 <div style="padding-top: 70px;"></div>
-<section class="section1">
+<section class="section1" style="margin-top: 80px;">
 	<div class="container clearfix">
 		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 			<div class="col-lg-6 col-md-6 col-sm-12">
@@ -30,7 +30,7 @@
 				<div class="tabbable">
 		            <ul class="nav nav-tabs">
 		              <li class="active"><a href="#user-login" data-toggle="tab">일반회원</a></li>
-		              <li><a href="#partner-login" data-toggle="tab">기업회원</a></li>
+		              <!-- <li><a href="#partner-login" data-toggle="tab">기업회원</a></li> -->
 		            </ul>
 		            <div class="tab-content">
 		               
@@ -125,4 +125,5 @@
 <!-- end section -->
  <style>
     .footer {position:fixed; bottom:0; width:100%;}
+    body{background: #fff}
  </style>

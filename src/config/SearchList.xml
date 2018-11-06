@@ -113,6 +113,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where  r between #{start} and #{end}
 	</select>
 
+	<select id="selectpreference" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.* from (select * from preference order by rating desc)s where id=#{id} and rownum between #{start} and #{end}
+	</select>
 
 	
 	

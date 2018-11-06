@@ -362,6 +362,11 @@
 		input[value="6"]:checked ~ .a_1_1 .carousel img:nth-child(6) { -webkit-transform: rotateY(225deg) translateZ(540px) scale(1); opacity: 1; }
 		input[value="7"]:checked ~ .a_1_1 .carousel img:nth-child(7) { -webkit-transform: rotateY(270deg) translateZ(540px) scale(1); opacity: 1; }
 		input[value="8"]:checked ~ .a_1_1 .carousel img:nth-child(8) { -webkit-transform: rotateY(315deg) translateZ(540px) scale(1); opacity: 1; } */
+		
+	.custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:2;background-color:#f5f5f5;} 
+	.custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer; padding-top: 10px;}     
+	.custom_zoomcontrol span img {width:15px;height:15px;padding:auto; margin:0;border:none;}             
+	.custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}
 </style>
 
 
@@ -380,7 +385,16 @@
          <div  id="one">
             <div class="text-center" style="width: 100%; height:570px;">
                <!-- <div class="container-fluid" style="margin-top: 60px; width: 100%; height: 40px; float: right;"> -->
-               <div id="planmap"  style="background-color:cyan; width:100%; height:570px; float: inherit; text-align: center; display: inline-block;">
+               <!-- <div id="planmap"  style="background-color:cyan; width:100%; height:570px; float: inherit; text-align: center; display: inline-block;"> -->
+               <div class="map_wrap">
+				    <!-- <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> -->
+				    <div id="planmap"  style="background-color:cyan; width:100%; height:570px; float: inherit; text-align: center; display: inline-block; position:relative;">
+				    <!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+				    <div class="custom_zoomcontrol radius_border"><!-- 지도 확대, 축소 컨트롤 div 입니다 --> 
+				        <span onclick="zoomIn()"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></span>  
+				        <span onclick="zoomOut()"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>
+				    </div>
+				</div>
                <!-- 다음 map 시작 -->
                   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437"></script>
                   <script>
@@ -390,7 +404,15 @@
                         level: 5 //지도의 레벨(확대, 축소 정도)
                      };            
                      var map = new daum.maps.Map(container, options);
-                     
+					// 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+					function zoomIn() {
+						map.setLevel(map.getLevel() - 1);
+					}
+					
+					// 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+					function zoomOut() {
+						map.setLevel(map.getLevel() + 1);
+					}
                      var imageSrc = '/Planit/images/plan/marker/pointmarker.png',//'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
                       imageSize = new daum.maps.Size(48, 67), // 마커이미지의 크기입니다
                       imageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -409,16 +431,18 @@
                                    '지명: <span> ${content.title} </span><br/>'+
                                       '위치: <span> ${content.addr1} </span><br/>' +
                                    '</div>';
-                     
-                        var iwPosition = new daum.maps.LatLng(${mapy}, ${mapx}); //인포윈도우 표시 위치입니다
-                     // 인포윈도우를 생성합니다
-                        var infowindow = new daum.maps.InfoWindow({
-                            position : iwPosition, 
-                            content : content 
-                        });
-                        infowindow.open(map, marker);
-                   		// 마우스 휠로 지도 확대,축소 가능여부를 설정합니다
-                        map.setZoomable(false); 
+					                     
+					var iwPosition = new daum.maps.LatLng(${mapy}, ${mapx}); //인포윈도우 표시 위치입니다
+					// 인포윈도우를 생성합니다
+					var infowindow = new daum.maps.InfoWindow({
+						position : iwPosition, 
+						content : content 
+					});
+					infowindow.open(map, marker);
+					// 마우스 휠로 지도 확대,축소 가능여부를 설정합니다
+					map.setZoomable(false); 
+					
+					
                   </script>
                <!-- 다음 map 종료 -->
                </div> <!-- </div> -->

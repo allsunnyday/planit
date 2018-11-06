@@ -25,8 +25,15 @@ public class SearchListDTO {
 		private String originimgurl;
 		private String serialnum;
 		private String smallimageurl;
+		private String rating;
 		
 		
+		public String getRating() {
+			return rating;
+		}
+		public void setRating(String rating) {
+			this.rating = rating;
+		}
 		public String getContentid() {
 			return contentid;
 		}

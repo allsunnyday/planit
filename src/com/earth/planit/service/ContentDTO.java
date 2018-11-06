@@ -29,8 +29,15 @@ public class ContentDTO {
 	private String cat1kor;
 	private String cat2kor;
 	private String cat3kor;
+	private String rating;
 	
 	
+	public String getRating() {
+		return rating;
+	}
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
 	public String getCat1kor() {
 		return cat1kor;
 	}
@@ -189,4 +196,5 @@ public class ContentDTO {
 	}
 	private String  serialnum ;
 	private String  smallimageurl;
+
 }

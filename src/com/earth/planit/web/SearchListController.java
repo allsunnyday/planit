@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.ContentService;
+import com.earth.planit.service.PreferenceDTO;
 import com.earth.planit.service.SearchListDTO;
 import com.earth.planit.service.SearchListService;
 
@@ -42,7 +44,8 @@ public class SearchListController {
 	
 	//리스트 픽하는 페이지
 	@RequestMapping("/member/tourinfo/listpick/list/ListMain.it")
-	public String listMain(@RequestParam Map map,Model model)throws Exception{
+	public String listMain(@RequestParam Map map,Model model, HttpSession session)throws Exception{
+		System.out.println("id-여기로 왔니? "+ session.getAttribute("id")); // 사용자가 로그인 했을때
 		
 		int start = 1;
 		int end = 3;
@@ -55,15 +58,37 @@ public class SearchListController {
 		List<ContentDTO> sleeplist = service.selectSleepList(map);
 		List<ContentDTO> foodlist = service.selectFoodList(map);
 		
-		map.put("start", 1);
-		map.put("end", 6);
-		
-		List<ContentDTO> besttourlist = service.selectTourList(map);
 		
 		model.addAttribute("tour",tourlist);
 		model.addAttribute("sleep",sleeplist);
 		model.addAttribute("food",foodlist);
+
+	
+		map.put("start", 1);
+		map.put("end", 6);
+		List<ContentDTO> besttourlist = service.selectTourList(map);
+		
 		model.addAttribute("besttourlist",besttourlist);
+		
+		if(session.getAttribute("id") != null) {
+			map.put("id", session.getAttribute("id"));
+			map.put("start", 1);
+			map.put("end", 4);
+			
+			List<PreferenceDTO> selectpreferencetype = service.selectpreferencetype(map);
+			System.out.println("selectpreferencetype 의 사이즈: "+selectpreferencetype.size());
+			for(int i=0; i< selectpreferencetype.size(); i++) {
+				//System.out.println("selectpreferencetype - rating: "+selectpreferencetype.get(i).getRating());
+				System.out.println("selectpreferencetype - cat2: "+selectpreferencetype.get(i).getCat2());
+			}
+			
+//			map.put("start", 1);
+//			map.put("end", 9);
+//			List<ContentDTO> preferencetourlist = service.selectpreferenceTourList(map); // 12
+//			List<ContentDTO> preferencefestvallist = service.selectpreferencefestvalList(map); // 15
+//			List<ContentDTO> preferencefoodlist = service.selectTourList(map); // 39
+//			List<ContentDTO> preferencesleeplist = service.selectTourList(map); // 32
+		}
 		return "tourinfo/listpick/list/ListMain.theme";
 	}
 	
