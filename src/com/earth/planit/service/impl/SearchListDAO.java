@@ -55,6 +55,11 @@ public class SearchListDAO implements SearchListService {
 		return template.selectList("selectpreference", map);
 	}
 
+	@Override
+	public List<PreferenceDTO> selectpreferencerecom(Map map) {
+		return template.selectList("preferlikebest",map);
+	}
+
 
 	
 

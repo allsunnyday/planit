@@ -50,6 +50,10 @@ public class SearchListServiceImpl implements SearchListService{
 	public List<PreferenceDTO> selectpreferencetype(Map map) {
 		return dao.selectpreferencetype(map);
 	}
+	@Override
+	public List<PreferenceDTO> selectpreferencerecom(Map map) {
+		return dao.selectpreferencerecom(map);
+	}
 	
 	
 

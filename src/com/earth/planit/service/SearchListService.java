@@ -12,6 +12,7 @@ public interface SearchListService {
 	int getTotalCount(Map map);
 	List<ContentDTO> selectList(Map map);
 	List<PreferenceDTO> selectpreferencetype(Map map);
+	List<PreferenceDTO> selectpreferencerecom(Map map);
 	
 	
 	
