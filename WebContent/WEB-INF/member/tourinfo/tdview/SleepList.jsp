@@ -128,7 +128,7 @@ max-width: 100%;
 					<button type="submit" class="dmbutton2" value="조회">조회</button>
 					<a class="dmbutton2 ov" href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32'/>" >조회순</a>
 			   <c:if test="${not empty areacode}">
-               <a class="dmbutton2" href="<c:url value='/tourinfo/tdview/SleepLsit.it?contenttype=32&areacode=${areacode}&orderColumn=title'/>" >제목순</a>
+               <a class="dmbutton2" href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32&areacode=${areacode}&orderColumn=title'/>" >제목순</a>
                </c:if>
                <c:if test="${empty areacode }">
                <a class="dmbutton2" href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32&orderColumn=title'/>" >제목순</a>
@@ -201,9 +201,9 @@ max-width: 100%;
          <input type="hidden" name="tel">
          <div class="form-group">
             <select name="searchColumn" class="form-control">
-               <option value="all">전체검색</option>
+               <!-- <option value="all">전체검색</option> -->
                <option value="title">숙박업소명</option>
-               <option value="tel">전화번호</option>
+               <!-- <option value="tel">전화번호</option> -->
             </select>
          </div>
          <div class="form-group" >
@@ -214,3 +214,7 @@ max-width: 100%;
       </form>
 	</div>
 </div>
+
+<script>
+	
+</script>

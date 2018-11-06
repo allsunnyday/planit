@@ -90,6 +90,7 @@ public class SearchListController {
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
 		
+		System.out.println(map.get("searchColumn")+"//"+map.get("searchWord"));
 		
 		// orderColumn가 있는지 확인
 		if(map.get("orderColumn") != null) {
@@ -118,6 +119,14 @@ public class SearchListController {
 					nowPage, 
 					req.getContextPath()+"/tourinfo/tdview/TourList.it?contenttype=12&areacode="+map.get("areacode")+"&");
 		}
+		else if(map.get("orderColumn")!= null && map.get("orderColumn")!= "") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/TourList.it?contenttype=12&orderColumn="+map.get("orderColumn")+"&");
+		}
 		else {
 			pagingString = CommonUtil.pagingBootStrapStyle(
 						totalCount,
@@ -127,7 +136,7 @@ public class SearchListController {
 						req.getContextPath()+"/tourinfo/tdview/TourList.it?contenttype=12&");
 		}
 		
-		model.addAttribute("list", tourlist);
+		//model.addAttribute("list", tourlist);
 		model.addAttribute("pagingString", pagingString);
 		model.addAttribute("totalRecordCount", totalCount);
 		model.addAttribute("pageSize", pageSize);
@@ -139,7 +148,6 @@ public class SearchListController {
 		
 		
 		System.out.println("test 중이다: "+pagingString);
-		System.out.println("///: "+req.getContextPath());
 		
 		
 		
@@ -160,6 +168,10 @@ public class SearchListController {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
+		// orderColumn가 있는지 확인
+		if(map.get("orderColumn") != null) {
+			System.out.println("orderColumn is not null::"+map.get("orderColumn"));
+		}
 		int totalCount = service.getTotalCount(map);
 		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
 		int start = (nowPage-1)*pageSize+1;
@@ -176,6 +188,14 @@ public class SearchListController {
 					blockPage, 
 					nowPage, 
 					req.getContextPath()+"/tourinfo/tdview/FestivalList.it?contenttype=15&areacode="+map.get("areacode")+"&");			
+		}
+		else if(map.get("orderColumn")!=null && map.get("orderColumn") !="") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/FestivalList.it?contenttype=15&orderColumn="+map.get("orderColumn")+"&");
 		}
 		else {
 			pagingString = CommonUtil.pagingBootStrapStyle(
@@ -218,6 +238,12 @@ public class SearchListController {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
+		// orderColumn가 있는지 확인
+		if(map.get("orderColumn") != null) {
+			System.out.println("orderColumn is not null::"+map.get("orderColumn"));
+		}
+		System.out.println(map.get("searchColumn")+"//"+map.get("searchWord"));
+		
 		int totalCount = service.getTotalCount(map);
 		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
 		int start = (nowPage-1)*pageSize+1;
@@ -234,6 +260,14 @@ public class SearchListController {
 							blockPage, 
 							nowPage, 
 							req.getContextPath()+"/tourinfo/tdview/SleepList.it?contenttype=32&areacode="+map.get("areacode")+"&");
+		}
+		else if(map.get("orderColumn")!=null && map.get("orderColumn") !="") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/SleepList.it?contenttype=32&orderColumn="+map.get("orderColumn")+"&");
 		}
 		else {
 			pagingString = CommonUtil.pagingBootStrapStyle(
@@ -280,6 +314,10 @@ public class SearchListController {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
+		// orderColumn가 있는지 확인
+		if(map.get("orderColumn") != null) {
+			System.out.println("orderColumn is not null::"+map.get("orderColumn"));
+		}
 		int totalCount = service.getTotalCount(map);
 		System.out.println("totalCount ??: "+ totalCount);
 		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
@@ -297,6 +335,14 @@ public class SearchListController {
 					blockPage, 
 					nowPage, 
 					req.getContextPath()+"/tourinfo/tdview/FoodList.it?contenttype=39&areacode="+map.get("areacode")+"&");
+		}
+		else if(map.get("orderColumn")!=null && map.get("orderColumn") !="") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/FoodList.it?contenttype=39&orderColumn="+map.get("orderColumn")+"&");
 		}
 		else {
 			pagingString = CommonUtil.pagingBootStrapStyle(

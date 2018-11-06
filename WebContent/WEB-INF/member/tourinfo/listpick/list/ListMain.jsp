@@ -23,7 +23,7 @@
     .text{margin-left: 3%; padding: 1%; width: 74%;}
     .carousel-indicators{bottom: 232px;}
     .caroimg img{  background: #fff; height: 95%; width: 100%}
-    .caroimg{ width:32%; height: 310px; }
+    .caroimg{ width:33%; height: 310px; }
  </style>
 
  <!-- ****************************************
@@ -63,7 +63,12 @@
 							</div>
 							<c:forEach var="record" items="${tour}">
 								<div class="caroimg" style="display: inline-block;">
-									<img id="iii2" src="${record.firstimage}">
+									<c:if test="${not empty record.firstimage}" var="result">
+										<img id="iii2" src="${record.firstimage}">
+									</c:if>
+									<c:if test="${empty record.firstimage}">
+										<img id='iii2' src="/Planit/images/plan/imageready.png" >
+									</c:if>
 								</div>
 							</c:forEach>
 						</div>
@@ -88,8 +93,13 @@
 									style="text-align: right;">더보기</a>
 							</div>
 							<c:forEach var="record" items="${food}">
-								<div class="caroimg" style="display: inline-block;">
-									<img id="iii2" src="${record.firstimage}">
+								<div class="caroimg" style="display: inline-block;">	
+									<c:if test="${not empty record.firstimage}" var="result">
+										<img id="iii2" src="${record.firstimage}">
+									</c:if>
+									<c:if test="${empty record.firstimage}">
+										<img id='iii2' src="/Planit/images/plan/imageready.png" >
+									</c:if>
 								</div>
 							</c:forEach>
 						</div>
@@ -106,15 +116,20 @@
 						<div class="text" style="background-color: rgba(0, 0, 0, 0.5);">
 							<div class="general-title text-center">
 								<h3 style="">
-									<span class="clickedArea"></span>지금 가장 인기 있는 축제/행사
+									<span class="clickedArea"></span>지금 가장 인기 있는 숙박시설
 								</h3>
 								<a
 									href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>"
 									style="text-align: right;">더보기</a>
 							</div>
 							<c:forEach var="record" items="${sleep}">
-								<div class="caroimg" style="display: inline-block;">
-									<img id="iii2" src="${record.firstimage}">
+								<div class="caroimg" style="display: inline-block;">								
+									<c:if test="${not empty record.firstimage}" var="result">
+										<img id="iii2" src="${record.firstimage}">
+									</c:if>
+									<c:if test="${empty record.firstimage}">
+										<img id='iii2' src="/Planit/images/plan/imageready.png" >
+									</c:if>	
 								</div>
 							</c:forEach>
 						</div>
