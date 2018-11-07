@@ -4,6 +4,32 @@
 <%@ include file="/WEB-INF/member/planner/after/logincheck.jsp" %>
 <!-- *****************************map 관련 css 및 map api 호출  시작 *********************************-->
 <link href="<c:url value='/BootStrap/planmap/css/planmaprute.css'/>" rel="stylesheet" type="text/css">
+<script>
+$(function(){	
+		$.ajax({
+			url:'<c:url value="/planner/ajax/location.it"/>',
+			type:'post',
+			data:{paldoNcity: $('#paldoNcity').val()},
+			dataType:'json',
+			success:function(data){
+				var optionString ="";
+				//{d01:'C#', d02:'ASP.NET',d03:'WPF4'}
+				optionString+="<option value=${areacodesub}'>${areacodesubname}</option>";
+				optionString +='<optgroup  LABEL="* * * * * * *" style="background: #4A5C78;">';
+				$.each(data, function(key, value){                  
+					optionString +="<option value='"+key+"'>"+value+"</option>";
+				});
+				optionString +='</optgroup>';
+				$('#paldoNcityColumn').html(optionString);
+			},
+			error:function(request, error){
+				console.log('상태코드: ',request.status);
+				console.log('서버로 부터 받은 데이터: ',request.responseText);
+				console.log('에러: ',error);
+			}
+		});	
+});
+</script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=162c4fb804e14ced48e576137f9e9437&libraries=services,clusterer,drawing"></script>
 <!-- ****************************map 관련 css 및 map api 호출 종료 ***********************************-->
 <!-- ******************************루트 페이지 바디 영역 시작****************************************-->
@@ -202,5 +228,4 @@
 <!-- ********************************** map script 호출 시작 *************************************** -->
 <%@ include file="routemap.jsp" %>
 <!-- ********************************** map script 호출 종료 *************************************** -->
-
 
