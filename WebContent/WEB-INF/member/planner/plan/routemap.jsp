@@ -817,15 +817,16 @@
 	$(function() {
 		var mapx=[];
 		var mapy=[];
-		
-		
-		
+		var ordernum;
+				
 		$('.routecategory').click(function() {
 			if(days==1 && $(this).val()==32){
 				alert('당일 여행은 숙박지를 선택할수 없습니다.'); 
 				changeCategoryClass(); 
 				return false; 
 			}
+			//console.log('testtest: '+$(this).attr('data-order'))
+			ordernum = $(this).attr('data-order');
 			console.log('들어옴1: '+$(this).val());
 			var areacode = $('#paldoNcity option:selected').val(); // 여행 지역 코드 저장
 			var sigungucode = $('#paldoNcityColumn option:selected').val(); // 여행 시군구 코드 저장
@@ -850,8 +851,12 @@
 					} 
 				});
 				/* ******************* location 에서 사용자가 선택한 지역으로 자동 서치 ****************** */
+				
 			}
-         
+         	
+			console.log('$(this).val(): '+$(this).val())
+			
+			if(ordernum != null){
 			$.ajax({
 	            url: "<c:url value='/planner/plan/routecategory.it?areacode="+areacode+"&sigungucode="+sigungucode+"&areacodename="+areacodename+"&sigungucodename="+sigungucodename+"'/>",            
 	            dataType: 'json',
@@ -861,15 +866,31 @@
 					console.log(request, status, error);
 					alert('검색 결과가 없습니다.')
 					changeCategoryClass();
-				}
+				}			
 			});///ajax
+			}
+			
+			/* $.ajax({
+	            url: "<c:url value='/planner/plan/routecategory.it?areacode="+areacode+"&sigungucode="+sigungucode+"&areacodename="+areacodename+"&sigungucodename="+sigungucodename+"'/>",            
+	            dataType: 'json',
+	            data:{contenttype:$(this).val()},
+	            success: successPlanmapdata,
+	            error: function(request, status, error){
+					console.log(request, status, error);
+					alert('검색 결과가 없습니다.')
+					changeCategoryClass();
+				}
+			});///ajax */
 		});  // 카테고리를 선택시 콜백함수 
        
 		
 		
 		var successPlanmapdata = function(data){
+			
+			
 			console.log(JSON.stringify(data));
             var order = document.getElementById(currCategory).getAttribute('data-order');
+            //var order = ordernum;
 			console.log("order 순서 확인하자: "+document.getElementById(currCategory).getAttribute('data-order'));
 			$.each(data, function(index, content) {             
 				mapx.push(content['mapx']);
