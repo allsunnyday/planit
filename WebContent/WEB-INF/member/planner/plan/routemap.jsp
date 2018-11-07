@@ -903,9 +903,32 @@
 				}
 			});
 		});
-		/* ********** 카테고리 범위 영역 선택을 위한 ajax ********** */
+		/* ********** 카테고리 범위 영역 선택을 위한 ajax ********** */		
 	});     
-
+	$(function(){		
+		$.ajax({
+			url:'<c:url value="/planner/ajax/location.it"/>',
+			type:'post',
+			data:{paldoNcity: $('#paldoNcity').val()},
+			dataType:'json',
+			success:function(data){
+				var optionString ="";
+				//{d01:'C#', d02:'ASP.NET',d03:'WPF4'}
+				optionString+="<option value=${areacodesub}'>${areacodesubname}</option>";
+				optionString +='<optgroup  LABEL="* * * * * * *" style="background: #4A5C78;">';
+				$.each(data, function(key, value){                  
+					optionString +="<option value='"+key+"'>"+value+"</option>";
+				});
+				optionString +='</optgroup>';
+				$('#paldoNcityColumn').html(optionString);
+			},
+			error:function(request, error){
+				console.log('상태코드: ',request.status);
+				console.log('서버로 부터 받은 데이터: ',request.responseText);
+				console.log('에러: ',error);
+			}
+		});
+	});
 	
 	/* ****** route 정보 저장 및 schedule 페이지 이동 ****** */		
 	function movescheduleAction() {	
