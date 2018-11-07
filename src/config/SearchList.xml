@@ -113,7 +113,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where  r between #{start} and #{end}
 	</select>
 
-
+	<select id="selectpreference" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.*, s.kor cat2kor from (select * from preference p join cat2 ca on ca.cat2=p.cat2 order by rating desc)s 
+		where id=#{id} and rownum between #{start} and #{end}
+	</select>
+<!-- 		select s.* from (select * from preference order by rating desc)s where id=#{id} and rownum between #{start} and #{end} -->
 	
+	<select id="selectpreferenceone" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.* from (select * from content c join preference p on c.cat2 = p.cat2 where id=#{id} 
+		and c.cat2 = #{liketype1} order by rating desc, viewcount desc)s where rownum between #{start} and #{end}
+	</select>
+	<select id="selectpreferencetwo" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.* from (select * from content c join preference p on c.cat2 = p.cat2 where id=#{id} 
+		and c.cat2 = #{liketype2} order by rating desc, viewcount desc)s where rownum between #{start} and #{end}
+	</select>
+	<select id="selectpreferencethr" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.* from (select * from content c join preference p on c.cat2 = p.cat2 where id=#{id} 
+		and c.cat2 = #{liketype3} order by rating desc, viewcount desc)s where rownum between #{start} and #{end}
+	</select>
+	<select id="selectpreferencefour" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.* from (select * from content c join preference p on c.cat2 = p.cat2 where id=#{id} 
+		and c.cat2 = #{liketype4} order by rating desc, viewcount desc)s where rownum between #{start} and #{end}
+	</select>
 	
 </mapper>

@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.ContentService;
+import com.earth.planit.service.PreferenceDTO;
 import com.earth.planit.service.SearchListDTO;
 import com.earth.planit.service.SearchListService;
 
@@ -42,7 +44,8 @@ public class SearchListController {
 	
 	//리스트 픽하는 페이지
 	@RequestMapping("/member/tourinfo/listpick/list/ListMain.it")
-	public String listMain(@RequestParam Map map,Model model)throws Exception{
+	public String listMain(@RequestParam Map map,Model model, HttpSession session)throws Exception{
+		System.out.println("id-여기로 왔니? "+ session.getAttribute("id")); // 사용자가 로그인 했을때
 		
 		int start = 1;
 		int end = 3;
@@ -55,15 +58,58 @@ public class SearchListController {
 		List<ContentDTO> sleeplist = service.selectSleepList(map);
 		List<ContentDTO> foodlist = service.selectFoodList(map);
 		
-		map.put("start", 1);
-		map.put("end", 6);
-		
-		List<ContentDTO> besttourlist = service.selectTourList(map);
 		
 		model.addAttribute("tour",tourlist);
 		model.addAttribute("sleep",sleeplist);
 		model.addAttribute("food",foodlist);
+
+	
+		map.put("start", 1);
+		map.put("end", 6);
+		List<ContentDTO> besttourlist = service.selectTourList(map);
+		
 		model.addAttribute("besttourlist",besttourlist);
+		
+		
+		
+		if(session.getAttribute("id") != null) {
+			map.put("id", session.getAttribute("id"));
+			map.put("start", 1);
+			map.put("end", 4);
+			
+			List<PreferenceDTO> selectpreferencetype = service.selectpreferencetype(map);
+			System.out.println("selectpreferencetype 의 사이즈: "+selectpreferencetype.size());
+			
+			
+			
+			for(int i=0; i< selectpreferencetype.size(); i++) {
+				System.out.println("selectpreferencetype - getCat2kor: "+selectpreferencetype.get(i).getCat2kor());
+				System.out.println("selectpreferencetype - cat2: "+selectpreferencetype.get(i).getCat2());				
+			}
+			
+			map.put("start", 1);
+			map.put("end", 3);
+			
+			map.put("liketype1", selectpreferencetype.get(0).getCat2());
+			map.put("liketype2", selectpreferencetype.get(1).getCat2());
+			map.put("liketype3", selectpreferencetype.get(2).getCat2());
+			map.put("liketype4", selectpreferencetype.get(3).getCat2());			
+			List<PreferenceDTO> preferencetourlist1 = service.selectpreferenceone(map); //사용자가 선호하는 분류1
+			List<PreferenceDTO> preferencetourlist2 = service.selectpreferencetwo(map); //사용자가 선호하는 분류2
+			List<PreferenceDTO> preferencetourlist3 = service.selectpreferencethr(map); //사용자가 선호하는 분류3
+			List<PreferenceDTO> preferencetourlist4 = service.selectpreferencefour(map); //사용자가 선호하는 분류4
+			
+			System.out.println(preferencetourlist1.size()+"//"+preferencetourlist2.size()+"//"+preferencetourlist3.size()+"//"+preferencetourlist4.size());
+			model.addAttribute("preferencetourlist1", preferencetourlist1);
+			model.addAttribute("preferencetourlist2", preferencetourlist2);
+			model.addAttribute("preferencetourlist3", preferencetourlist3);
+			model.addAttribute("preferencetourlist4", preferencetourlist4);
+			
+			model.addAttribute("likecate1", selectpreferencetype.get(0).getCat2kor());
+			model.addAttribute("likecate2", selectpreferencetype.get(1).getCat2kor());
+			model.addAttribute("likecate3", selectpreferencetype.get(2).getCat2kor());
+			model.addAttribute("likecate4", selectpreferencetype.get(3).getCat2kor());
+		}
 		return "tourinfo/listpick/list/ListMain.theme";
 	}
 	
@@ -90,6 +136,7 @@ public class SearchListController {
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
 		
+		System.out.println(map.get("searchColumn")+"//"+map.get("searchWord"));
 		
 		// orderColumn가 있는지 확인
 		if(map.get("orderColumn") != null) {
@@ -118,6 +165,14 @@ public class SearchListController {
 					nowPage, 
 					req.getContextPath()+"/tourinfo/tdview/TourList.it?contenttype=12&areacode="+map.get("areacode")+"&");
 		}
+		else if(map.get("orderColumn")!= null && map.get("orderColumn")!= "") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/TourList.it?contenttype=12&orderColumn="+map.get("orderColumn")+"&");
+		}
 		else {
 			pagingString = CommonUtil.pagingBootStrapStyle(
 						totalCount,
@@ -127,7 +182,7 @@ public class SearchListController {
 						req.getContextPath()+"/tourinfo/tdview/TourList.it?contenttype=12&");
 		}
 		
-		model.addAttribute("list", tourlist);
+		//model.addAttribute("list", tourlist);
 		model.addAttribute("pagingString", pagingString);
 		model.addAttribute("totalRecordCount", totalCount);
 		model.addAttribute("pageSize", pageSize);
@@ -139,7 +194,6 @@ public class SearchListController {
 		
 		
 		System.out.println("test 중이다: "+pagingString);
-		System.out.println("///: "+req.getContextPath());
 		
 		
 		
@@ -160,6 +214,10 @@ public class SearchListController {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
+		// orderColumn가 있는지 확인
+		if(map.get("orderColumn") != null) {
+			System.out.println("orderColumn is not null::"+map.get("orderColumn"));
+		}
 		int totalCount = service.getTotalCount(map);
 		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
 		int start = (nowPage-1)*pageSize+1;
@@ -176,6 +234,14 @@ public class SearchListController {
 					blockPage, 
 					nowPage, 
 					req.getContextPath()+"/tourinfo/tdview/FestivalList.it?contenttype=15&areacode="+map.get("areacode")+"&");			
+		}
+		else if(map.get("orderColumn")!=null && map.get("orderColumn") !="") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/FestivalList.it?contenttype=15&orderColumn="+map.get("orderColumn")+"&");
 		}
 		else {
 			pagingString = CommonUtil.pagingBootStrapStyle(
@@ -218,6 +284,12 @@ public class SearchListController {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
+		// orderColumn가 있는지 확인
+		if(map.get("orderColumn") != null) {
+			System.out.println("orderColumn is not null::"+map.get("orderColumn"));
+		}
+		System.out.println(map.get("searchColumn")+"//"+map.get("searchWord"));
+		
 		int totalCount = service.getTotalCount(map);
 		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
 		int start = (nowPage-1)*pageSize+1;
@@ -234,6 +306,14 @@ public class SearchListController {
 							blockPage, 
 							nowPage, 
 							req.getContextPath()+"/tourinfo/tdview/SleepList.it?contenttype=32&areacode="+map.get("areacode")+"&");
+		}
+		else if(map.get("orderColumn")!=null && map.get("orderColumn") !="") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/SleepList.it?contenttype=32&orderColumn="+map.get("orderColumn")+"&");
 		}
 		else {
 			pagingString = CommonUtil.pagingBootStrapStyle(
@@ -280,6 +360,10 @@ public class SearchListController {
 			model.addAttribute("searchColumn",map.get("searchColumn"));
 			model.addAttribute("searchWord",map.get("searchWord"));
 		}
+		// orderColumn가 있는지 확인
+		if(map.get("orderColumn") != null) {
+			System.out.println("orderColumn is not null::"+map.get("orderColumn"));
+		}
 		int totalCount = service.getTotalCount(map);
 		System.out.println("totalCount ??: "+ totalCount);
 		int totalPage = (int)Math.ceil(((double)totalCount/pageSize));
@@ -297,6 +381,14 @@ public class SearchListController {
 					blockPage, 
 					nowPage, 
 					req.getContextPath()+"/tourinfo/tdview/FoodList.it?contenttype=39&areacode="+map.get("areacode")+"&");
+		}
+		else if(map.get("orderColumn")!=null && map.get("orderColumn") !="") {
+			pagingString = CommonUtil.pagingBootStrapStyle(
+					totalCount,
+					pageSize, 
+					blockPage, 
+					nowPage, 
+					req.getContextPath()+"/tourinfo/tdview/FoodList.it?contenttype=39&orderColumn="+map.get("orderColumn")+"&");
 		}
 		else {
 			pagingString = CommonUtil.pagingBootStrapStyle(

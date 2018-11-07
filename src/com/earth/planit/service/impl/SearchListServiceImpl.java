@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.earth.planit.service.ContentDTO;
+import com.earth.planit.service.PreferenceDTO;
 import com.earth.planit.service.SearchListDTO;
 import com.earth.planit.service.SearchListService;
 
@@ -45,6 +46,30 @@ public class SearchListServiceImpl implements SearchListService{
 	public List<ContentDTO> selectList(Map map) {
 		return dao.selectList(map);
 	}
+	@Override
+	public List<PreferenceDTO> selectpreferencetype(Map map) {
+		return dao.selectpreferencetype(map);
+	}
+	@Override
+	public List<PreferenceDTO> selectpreferenceone(Map map) {
+		return dao.selectpreferenceone(map);
+	}
+	@Override
+	public List<PreferenceDTO> selectpreferencetwo(Map map) {
+		return dao.selectpreferencetwo(map);
+	}
+	@Override
+	public List<PreferenceDTO> selectpreferencethr(Map map) {
+		return dao.selectpreferencethr(map);
+	}
+	@Override
+	public List<PreferenceDTO> selectpreferencefour(Map map) {
+		return dao.selectpreferencefour(map);
+	}
+
+	
+	
+	
 
 	
 }

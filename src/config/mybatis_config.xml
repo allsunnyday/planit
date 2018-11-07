@@ -21,6 +21,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="faqNoticeDTO" type="com.earth.planit.service.FaqNoticeDTO"/>
 		<typeAlias alias="plannerDTO" type="com.earth.planit.service.PlannerDTO"/>
 		<typeAlias alias="toiletDTO" type="com.earth.planit.service.ToiletDTO"/>
+		<typeAlias alias="preferenceDTO" type="com.earth.planit.service.PreferenceDTO"/>
+
 	</typeAliases>
 	
 	

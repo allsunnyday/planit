@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.earth.planit.service.ContentDTO;
+import com.earth.planit.service.PreferenceDTO;
 import com.earth.planit.service.SearchListDTO;
 import com.earth.planit.service.SearchListService;
 
@@ -49,7 +50,32 @@ public class SearchListDAO implements SearchListService {
 		return template.selectList("searchSelectList",map);
 	}
 
+	@Override
+	public List<PreferenceDTO> selectpreferencetype(Map map) {
+		return template.selectList("selectpreference", map);
+	}
 
+	@Override
+	public List<PreferenceDTO> selectpreferenceone(Map map) {
+		return template.selectList("selectpreferenceone", map);
+	}
+
+	@Override
+	public List<PreferenceDTO> selectpreferencetwo(Map map) {
+		return template.selectList("selectpreferencetwo", map);
+	}
+
+	@Override
+	public List<PreferenceDTO> selectpreferencethr(Map map) {
+		return template.selectList("selectpreferencethr", map);
+	}
+
+	@Override
+	public List<PreferenceDTO> selectpreferencefour(Map map) {
+		return template.selectList("selectpreferencefour", map);
+	}
+
+	
 
 
 	

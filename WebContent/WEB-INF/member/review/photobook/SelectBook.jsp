@@ -3,7 +3,8 @@
 <%@  taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <style>
-	.footer{position:absolute; bottom:0; width:100%;}
+	.footer {display:none;bottom:0; width:100%;}
+	body{background: #fff}
 </style>
 <script>
 	$(function(){

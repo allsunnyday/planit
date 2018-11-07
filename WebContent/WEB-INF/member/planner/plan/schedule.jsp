@@ -107,7 +107,7 @@
 							<input type="text" class="form-control" id="reviewtitle" name="reviewtitle" placeholder="여행기 제목을 입력해주세요" style="font-size: 1em; width: 360px;display: inline-block; float: right;">
 							<h4 class="title" style="margin-bottom: -40px;"> (<span class="routecount">${plancase }</span>)개 일정 </h4>
 							<button type="submit" id="selectplanbtn" name="selectplanbtn" class="btn btn-info" style="float: right;"> 저 장 </button>
-							<div class="" style="overflow: auto; float: center; height: 600px; width: 100%">
+							<div class="comment-days" style="overflow: auto; float: center; height: 600px; width: 100%">
 								<ul class="comment-list" >
 									<!-- 내부에 추가될 div의 양식 -->
 									<!-- <li>
@@ -147,22 +147,23 @@
 	
 	var scheduledaysplan; // 하루일정수 담기
 	
-	var scheduletitle; // 타이틀 찾기
+	var scheduletitle; // 타이틀 찾기	
 	for(var i=0; i<scheduledays.length;i++){
 		scheduledaysplan = scheduledays[i].split('#');		
-		//console.log(scheduledaysplan); // 하루 일정 수		
-		for(var k=1; k<scheduledaysplan.length; k++){			
+		//console.log(scheduledaysplan); // 하루 일정 수
+		for(var k=1; k<scheduledaysplan.length; k++){
 			//console.log([k]+"dma. : "+scheduledaysplan[k]);
-			scheduletitle = scheduledaysplan[k].split(':');
-			
+			scheduletitle = scheduledaysplan[k].split(':');			
 			console.log('scheduletitle: '+ scheduletitle);
+			//var dayscomments='';
+			//dayscomments += '<h3> '+i+'일 차의 일정 </h3>';
 			for(var j=1; j<scheduletitle.length; j++){
 				console.log([j]+': '+scheduletitle[j]);
-				var routememocontent ='';
+				var routememocontent='';
 				routememocontent+= '<li>'
 					+ '<article class="comment">'
 						+'<div class="comment-content">'
-							+'<h4 class="comment-author" > '+scheduletitle[3]+'<small class="comment-meta"></small>'
+							+'<h4 class="comment-author" > '+scheduletitle[3]+'<small class="comment-meta">'+scheduledaysplan[0]+'일차 일정</small>'
 								//+'<span class="comment-reply">'
 									//+'<a href="#" class="comment-reply dmbutton2 small">일정 작성</a>'
 								//+'</span>'												
@@ -173,7 +174,7 @@
 					+'</article>'
 				+'</li>';
 			}
-			$('.comment-list').append(routememocontent);
+			$('.comment-list').append(routememocontent);			
 		}		
 	}
 	
@@ -214,6 +215,8 @@
 			for(var k=0; k<7; k++){
 				if(calenmonth == plancalendarmonth && $('.calenrow_'+i+' .tomonth_'+k).text() == (plancalendar + temp)){
 					$('.calenrow_'+i+' .tomonth_'+k).css('background','#62c1f0');
+					$('.ex-month').css('background','#fff');
+					//$('.calenrow_'+i+' .ex-month .tomonth_'+k).css('background','#fff');
 					if(temp != days){
 						temp ++;					
 					}
@@ -228,6 +231,7 @@
 				for(var k=0; k<7; k++){
 					if(calenmonth == plancalendarmonth && $('.calenrow_'+i+' .tomonth_'+k).text() == (plancalendar + temp)){
 						$('.calenrow_'+i+' .tomonth_'+k).css('background','#62c1f0');
+						$('.ex-month').css('background','#fff');
 						if(temp != days){
 							temp ++;					
 						}

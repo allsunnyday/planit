@@ -6,7 +6,8 @@
 포토북 디자인을 고르는 페이지   
 ************************************************************** -->
 <style>
-.footer {position:none; bottom:0; width:100%;}
+.footer {display:none;bottom:0; width:100%;}
+body{background: #fff}
 .reviewdesign{margin-bottom: 120px;}
 .grid {
 	background: silver;

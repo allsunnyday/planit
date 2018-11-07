@@ -331,7 +331,7 @@ public class MemberController {
 	public String userJoinFormProcess(MemberDTO dto, @RequestParam Map map, HttpSession session) throws Exception {
 		System.out.println("비밀번호:" + map.get("pwd"));
 		System.out.println("비밀번호:" + dto.getPwd());
-
+		System.out.println("성별 확인: "+ map.get("gender"));
 		int isJoin = service.isJoin(dto);
 		//
 		System.out.println(isJoin);

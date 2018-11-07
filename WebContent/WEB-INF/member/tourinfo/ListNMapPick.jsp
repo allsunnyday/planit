@@ -14,7 +14,7 @@
 <div class="container-fluid" style="padding-top: 100px; " >
     <div class="container clearfix">
     
-      <div class="content col-lg-12 col-md-12 col-sm-12 clearfix" style="margin-top: 123px;">
+      <div class="content col-lg-12 col-md-12 col-sm-12 clearfix" style="margin-top: 3%;">
       <!--
 ***************************************************************************************
 List 메뉴
