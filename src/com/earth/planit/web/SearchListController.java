@@ -70,6 +70,8 @@ public class SearchListController {
 		
 		model.addAttribute("besttourlist",besttourlist);
 		
+		
+		
 		if(session.getAttribute("id") != null) {
 			map.put("id", session.getAttribute("id"));
 			map.put("start", 1);
@@ -79,27 +81,34 @@ public class SearchListController {
 			System.out.println("selectpreferencetype 의 사이즈: "+selectpreferencetype.size());
 			
 			
-			map.put("start", 1);
-			map.put("end", 9);
-			List<PreferenceDTO> preferencetourlist=null;
+			
 			for(int i=0; i< selectpreferencetype.size(); i++) {
-				//System.out.println("selectpreferencetype - rating: "+selectpreferencetype.get(i).getRating());
-				System.out.println("selectpreferencetype - cat2: "+selectpreferencetype.get(i).getCat2());
-				map.put("preferliketype", selectpreferencetype.get(i).getCat2());
-				preferencetourlist.add((PreferenceDTO) service.selectpreferencerecom(map));
+				System.out.println("selectpreferencetype - getCat2kor: "+selectpreferencetype.get(i).getCat2kor());
+				System.out.println("selectpreferencetype - cat2: "+selectpreferencetype.get(i).getCat2());				
 			}
 			
-			System.out.println(preferencetourlist.size());
-			System.out.println(preferencetourlist);
+			map.put("start", 1);
+			map.put("end", 3);
 			
-//			map.put("liketype1", selectpreferencetype.get(0).getCat2());
-//			map.put("liketype2", selectpreferencetype.get(1).getCat2());
-//			map.put("liketype3", selectpreferencetype.get(2).getCat2());
-//			map.put("liketype4", selectpreferencetype.get(3).getCat2());
-//			List<PreferenceDTO> preferencetourlist = service.selectpreferencerecom(map); 
-//			List<PreferenceDTO> preferencefestvallist = service.selectpreferencefestvalList(map); // 15
-//			List<PreferenceDTO> preferencefoodlist = service.selectTourList(map); // 39
-//			List<PreferenceDTO> preferencesleeplist = service.selectTourList(map); // 32
+			map.put("liketype1", selectpreferencetype.get(0).getCat2());
+			map.put("liketype2", selectpreferencetype.get(1).getCat2());
+			map.put("liketype3", selectpreferencetype.get(2).getCat2());
+			map.put("liketype4", selectpreferencetype.get(3).getCat2());			
+			List<PreferenceDTO> preferencetourlist1 = service.selectpreferenceone(map); //사용자가 선호하는 분류1
+			List<PreferenceDTO> preferencetourlist2 = service.selectpreferencetwo(map); //사용자가 선호하는 분류2
+			List<PreferenceDTO> preferencetourlist3 = service.selectpreferencethr(map); //사용자가 선호하는 분류3
+			List<PreferenceDTO> preferencetourlist4 = service.selectpreferencefour(map); //사용자가 선호하는 분류4
+			
+			System.out.println(preferencetourlist1.size()+"//"+preferencetourlist2.size()+"//"+preferencetourlist3.size()+"//"+preferencetourlist4.size());
+			model.addAttribute("preferencetourlist1", preferencetourlist1);
+			model.addAttribute("preferencetourlist2", preferencetourlist2);
+			model.addAttribute("preferencetourlist3", preferencetourlist3);
+			model.addAttribute("preferencetourlist4", preferencetourlist4);
+			
+			model.addAttribute("likecate1", selectpreferencetype.get(0).getCat2kor());
+			model.addAttribute("likecate2", selectpreferencetype.get(1).getCat2kor());
+			model.addAttribute("likecate3", selectpreferencetype.get(2).getCat2kor());
+			model.addAttribute("likecate4", selectpreferencetype.get(3).getCat2kor());
 		}
 		return "tourinfo/listpick/list/ListMain.theme";
 	}

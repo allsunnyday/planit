@@ -24,6 +24,7 @@
     .carousel-indicators{bottom: 232px;}
     .caroimg img{  background: #fff; height: 95%; width: 100%}
     .caroimg{ width:33%; height: 310px; }
+    .lazyOwl{height: 230px; width: 100%}
  </style>
 
  <!-- ****************************************
@@ -206,27 +207,101 @@
 <c:if test="${not empty sessionScope.id}">
 	<section class="section1">
 		<div class="container clearfix">
-		<!--  -->
 			<div class="general-title text-center">
-				<h3>${sessionScope.id } 님의 선호  Best3 지역 추천 </h3>
+				<h3 id="liketitle">${sessionScope.id }님에게 추천하는 ${likecate1 } 지역 </h3>
 				<p>best</p>
 				<hr>
 			</div>
-		<!--  -->
+			
 			<div class="content col-lg-12 col-md-12 col-sm-12 clearfix"></div>
 			<div class="divider"></div>
-		<!--  -->
-			<div id="popularitems" class="owl-carousel">
-				<c:forEach var="record" items="${besttourlist}">
-					<div class="col-lg-12">
-						<div class="he-wrap tpl6 market-item">
+			<div id="popularitems" class="owl-carousel">			
+				<c:forEach var="record" items="${preferencetourlist1}">
+					<div class="col-lg-12">	
+						<div class="he-wrap tpl6 market-item">	
 							<div class="hot-tour">
 								<c:if test="${empty record.firstimage }">
-									<img class="lazyOwl" data-src='<c:url value='/Planit/images/plan/imageready.png'/>' alt="">
+									<img class="lazyOwl"
+										data-src='<c:url value='/Upload/Tour/tempimage.png'/>' alt="">
+								</c:if>
+								<c:if test="${not empty record.firstimage }">
+									<img class="lazyOwl" data-src='${record.firstimage }' alt="">
+								</c:if>	
+								<div class="he-view">
+									<div class="bg a0" data-animate="fadeIn">
+										<h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
+										<a href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}'/>" 
+											class="dmbutton a2" data-animate="fadeIn">Details</a>
+										<!-- <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>				
+				<c:forEach var="record" items="${preferencetourlist2}">
+					<div class="col-lg-12">	
+						<div class="he-wrap tpl6 market-item2">	
+							<div class="hot-tour">
+								<c:if test="${empty record.firstimage }">
+									<img class="lazyOwl"
+										data-src='<c:url value='/Upload/Tour/tempimage.png'/>' alt="">
 								</c:if>
 								<c:if test="${not empty record.firstimage }">
 									<img class="lazyOwl" data-src='${record.firstimage }' alt="">
 								</c:if>
+	
+								<div class="he-view">
+									<div class="bg a0" data-animate="fadeIn">
+										<h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
+										<a href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}'/>" 
+											class="dmbutton a2" data-animate="fadeIn">Details</a>
+										<!-- <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+				<c:forEach var="record" items="${preferencetourlist3}">
+					<div class="col-lg-12">	
+						<div class="he-wrap tpl6 market-item2">
+	
+							<div class="hot-tour">
+								<c:if test="${empty record.firstimage }">
+									<img class="lazyOwl"
+										data-src='<c:url value='/Upload/Tour/tempimage.png'/>' alt="">
+								</c:if>
+								<c:if test="${not empty record.firstimage }">
+									<img class="lazyOwl" data-src='${record.firstimage }' alt="">
+								</c:if>
+	
+								<div class="he-view">
+									<div class="bg a0" data-animate="fadeIn">
+										<h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
+										<a href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}'/>" 
+											class="dmbutton a2" data-animate="fadeIn">Details</a>
+										<!-- <a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+				<c:forEach var="record" items="${preferencetourlist4}">
+					
+					<div class="col-lg-12">	
+						<div class="he-wrap tpl6 market-item2">
+	
+							<div class="hot-tour">
+								<c:if test="${empty record.firstimage }">
+									<img class="lazyOwl"
+										data-src='<c:url value='/Upload/Tour/tempimage.png'/>' alt="">
+								</c:if>
+								<c:if test="${not empty record.firstimage }">
+									<img class="lazyOwl" data-src='${record.firstimage }' alt="">
+								</c:if>
+	
 								<div class="he-view">
 									<div class="bg a0" data-animate="fadeIn">
 										<h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
@@ -240,7 +315,7 @@
 					</div>
 				</c:forEach>
 			</div>
-		</div>
+		</div>		
 	</section>
 </c:if>
 <!-- ****************************************
@@ -329,3 +404,36 @@
     <!-- end container -->
   </section>
   <!-- end section -->
+
+
+<script>
+	//var index = $(".owl-page").index(this);
+	//console.log(index); // 처음엔 -1
+	
+	$(document).on('click','.owl-page',function(){
+		console.log('들어옵니꽈?')
+		var index = $(".owl-page").index(this);
+		console.log(index); 
+		switch (index) {
+		case 0:			
+			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate1 } 지역')
+			break;
+		case 1:			
+			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate2 } 지역')
+			break;
+		case 2:			
+			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate3 } 지역')
+			break;
+		case 3:			
+			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate4 } 지역')
+			break;
+		}
+		//$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate1 } 지역')
+	});
+	
+	/* $(".owl-page span").on('click',function(){
+		console.log('들어옵니꽈?')
+		var index = $(".owl-page:active").index(this);
+		console.log(index); // 처음엔 -1
+	}); */
+</script>

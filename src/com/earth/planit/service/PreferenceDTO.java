@@ -2,6 +2,12 @@ package com.earth.planit.service;
 
 public class PreferenceDTO {
 	
+	public String getCat2kor() {
+		return cat2kor;
+	}
+	public void setCat2kor(String cat2kor) {
+		this.cat2kor = cat2kor;
+	}
 	private String id;
 	private String rating;
 	private String cat2;
@@ -18,7 +24,9 @@ public class PreferenceDTO {
 	private String mapx;
 	private String mapy;
 	private String viewcount;
+	private String cat2kor;
 
+	
 	public String getId() {
 		return id;
 	}
