@@ -65,5 +65,6 @@
   <!-- end section -->
 <style>
 	/* .footer {position:fixed; bottom:0; width:100%;} */
-	.footer {position:fixed; bottom:0; width:100%;}
+	.footer {display:none;bottom:0; width:100%;}
+	body{background: #fff}
 </style>

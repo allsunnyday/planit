@@ -483,7 +483,7 @@
 			content +='<div id="" class="col-sm-12 planroute_'+diveplus+'" style="height: 105px; width:100%;">';
 				content +='<div class="row" style="">';
 					content += '<div class="col-md-2 col-sm-2 col-xs-2 text-center" style=" height:auto;">';               
-					content += '<div style="background-color:#16f8d6; height:30px;width:5px;margin-left:45%"></div><div class="dayselect text-center">';	               
+					content += '<div style="background-color:#16f8d6; height:30px;width:5px;margin-left:25px"></div><div class="dayselect text-center">';	               
 						content +='<select class="dayselect-select dayselect_'+diveplus+'" name="dayselect" id="" >';
 						for(var i=1; i<=days; i++){ 
 							content += '<option value="'+i+'" ';
@@ -492,7 +492,7 @@
 						}
 						content +='</select>';	               
 					content += '</div>';
-				content += '<div style="background-color:#16f8d6; height:30px;width:5px;margin-left:45%"></div></div>';
+				content += '<div style="background-color:#16f8d6; height:30px;width:5px;margin-left:25px"></div></div>';
 				content += '<div class="col-md-9 col-sm-9 col-xs-9">';
 					content += '<div style="float:left; display:block;">';
 						content += '<div class="text-left">';
@@ -903,9 +903,32 @@
 				}
 			});
 		});
-		/* ********** 카테고리 범위 영역 선택을 위한 ajax ********** */
+		/* ********** 카테고리 범위 영역 선택을 위한 ajax ********** */		
 	});     
-
+	$(function(){		
+		$.ajax({
+			url:'<c:url value="/planner/ajax/location.it"/>',
+			type:'post',
+			data:{paldoNcity: $('#paldoNcity').val()},
+			dataType:'json',
+			success:function(data){
+				var optionString ="";
+				//{d01:'C#', d02:'ASP.NET',d03:'WPF4'}
+				optionString+="<option value=${areacodesub}'>${areacodesubname}</option>";
+				optionString +='<optgroup  LABEL="* * * * * * *" style="background: #4A5C78;">';
+				$.each(data, function(key, value){                  
+					optionString +="<option value='"+key+"'>"+value+"</option>";
+				});
+				optionString +='</optgroup>';
+				$('#paldoNcityColumn').html(optionString);
+			},
+			error:function(request, error){
+				console.log('상태코드: ',request.status);
+				console.log('서버로 부터 받은 데이터: ',request.responseText);
+				console.log('에러: ',error);
+			}
+		});
+	});
 	
 	/* ****** route 정보 저장 및 schedule 페이지 이동 ****** */		
 	function movescheduleAction() {	

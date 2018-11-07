@@ -6,7 +6,8 @@
 포토북 디자인을 고르는 페이지   
 ************************************************************** -->
 <style>
-.footer {position:none; bottom:0; width:100%;}
+.footer {display:none;bottom:0; width:100%;}
+body{background: #fff}
 .reviewdesign{margin-bottom: 120px;}
 .grid {
 	background: silver;
@@ -84,10 +85,9 @@ p {
 <section class="section1">
 	<div class="container clearfix">
 		<div class=" col-lg-12 col-md-12 col-sm-12 clearfix reviewdesign">
-
 			<h3>포토북만들기 3 step</h3>
 
-			<div class="f1-steps text-center">
+			<!-- <div class="f1-steps text-center">
 				<div class="f1-progress">
 					<div class="f1-progress-line" data-now-value="16.66"
 						data-number-of-steps="3" style="width: 16.66%;"></div>
@@ -110,45 +110,9 @@ p {
 					</div>
 					<h4>내보내기</h4>
 				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<style>
-/* .footer { display:none; bottom:0; width:100%;}
-section{margin-bottom: 120px;} */
-.preview-wrapper {
-	/* margin: 24px 0 0 105px;
-		height: 480px; */
-	padding-left: 5px;
-}
-
-.preview-item {
-	/* float: left; */
-	/* margin-left: 14px;
-		margin-bottom: 14px; */
-	margin: 0;
-	width: 750px;
-	height: 760px;
-	background-color: #fff;
-	border: 1px pink dotted;
-	display: inline-block;
-}
-
-.preview-item-text {
-	display: inline-block;
-	width: 730px;
-	height: 760px;
-	background-color: #fff;
-	border: 1px pink dotted;
-}
-</style>
-
-
-<section class="section1">
-	<div class="container clearfix">
-		<div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
+			</div> -->
+			
+			
 			<div class="col-lg-4 col-md-4 col-sm-12">
 				<div class="widget" data-effect="slide-left">
 					<h3 class="title">어떻게 편집하나요?</h3>
@@ -185,21 +149,58 @@ section{margin-bottom: 120px;} */
 				<!-- end widget -->
 			</div>
 			<!-- large-6 -->
-
 		</div>
 	</div>
-	<div class="container-photobook clearfix">
-      <div class=" col-lg-12 col-md-12 col-sm-12 clearfix">
-         <div class="divider"></div>
+</section>
+
+<style>
+/* .footer { display:none; bottom:0; width:100%;}
+section{margin-bottom: 120px;} */
+.preview-wrapper {
+	/* margin: 24px 0 0 105px;
+		height: 480px; */
+	padding-left: 5px;
+}
+
+.preview-item {
+	/* float: left; */
+	/* margin-left: 14px;
+		margin-bottom: 14px; */
+	/* margin: 0; */
+	width: 750px;
+	height: 760px;
+	background-color: #fff;
+	border: 1px pink dotted;
+	display: inline-block;
+}
+
+.preview-item-text {
+	display: inline-block;
+	width: 730px;
+	height: 760px;
+	background-color: #fff;
+	border: 1px pink dotted;
+}
+
+div{
+overflow: hidden;
+}
+</style>
+
+
+<section class="section1">
+	
+	<div class="container-photobook ">
+      <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-10 col-md-10 col-sm-10 ">
          <div class="preview-wrapper">
             
             <!-- 포토북 페이지 디자인1  -->
             <c:forEach var="item" items="${listMap}" varStatus="loop">
 
                <!-- 디자인 1 - 텍스트  -->
-               <div class="preview-item-text" id="text_${loop.index}">
+               <div class="preview-item-text" id="text_${loop.index}" style="background: url(<c:url value='/Upload/Review/${item.SAMPLEIMAGE}'/> ) no-repeat;background-size: 100% 100%" >
                   <div class="col-xs-12">
-                     <div class="col-xs-12 text-center" style="margin-top: 90px;">
+                     <div class="col-xs-12 text-center" style="margin-top: 90px">
                         <h2>${item.TITLE}</h2>
                         <h2>
                            <small>${item.ADDR1}</small>
@@ -209,21 +210,19 @@ section{margin-bottom: 120px;} */
                            style="width: 200px; height: 180px"> --%>
                      </div>
                      <br>
-                     <div class="col-sm-offset-2 col-sm-8">${item.CONTENT}</div>
+                     <div class="col-sm-offset-2 col-sm-8" style="background-color: #fff; padding: 30px">${item.CONTENT}</div>
 
                   </div>
                </div>
                <c:if test="${not empty item.IMAGE }">
                   <!-- 디자인 1 - 이미지  -->
-                  <div class="preview-item" id="image_${loop.index}">
+                  <div class="preview-item" id="image_${loop.index}" style="background: url(<c:url value='/Upload/Review/${item.SAMPLEIMAGE}'/> ) no-repeat;background-size: 100% 100%">
+                     <%-- <img alt="" src="<c:url value='/Upload/Review/${item.SAMPLEIMAGE}'/> "> --%>
                      <div class="col-xs-12">${item.IMAGE}</div>
                   </div>
                </c:if>
-
-               
             </c:forEach>
-            
-               <img alt="이미지" src="<c:url value='/Upload/Review/P20150430_155712109_5B5FAF3B-0F67-4FC0-AF5B-D1B2DFF42676.JPG'/>">
+               <img alt="" src="">
             </div>
          </div>
          <form name="imgForm" id="imgForm">
