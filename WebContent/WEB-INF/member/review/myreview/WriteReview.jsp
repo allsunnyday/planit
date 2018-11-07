@@ -46,7 +46,8 @@ oneRoute
 						// 새로 바뀐 이름을 가지고 배경화면을 설정한다.
 						var newbg = "<c:url value='/Upload/Review/"+data+"'/> ";
 						jQuery('#intro').css({"background":"url("+newbg+")",'background-repeat' : 'no-repeat', 'background-position':'center center','background-size':'cover'});
-						//location.replace("<c:url value='/review/myreview/Write.it?review_id=${review.review_id}&planner_id=${review.planner_id}'/> ");
+						//현재 페이지 새로고침
+						location.reload(true);
 					},
 					error: function(request, error){
 						console.log(request.error);

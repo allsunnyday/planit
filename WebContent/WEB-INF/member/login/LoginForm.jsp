@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 
 <div style="padding-top: 70px;"></div>
-<section class="section1">
+<section class="section1" style="margin-top: 80px;">
 	<div class="container clearfix">
 		<div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
 			<div class="col-lg-6 col-md-6 col-sm-12">
@@ -18,7 +18,7 @@
 				<p>It has survived not only five centuries, but also the leap
 					into electronic typesetting, remaining essentially unchanged.</p>
 				<p class="withpadding">
-					플랜잇이 처음이신가요? 지금 바로 <a href="#">Planit</a>에서 놀라운 경험을 해보세요.
+					플랜잇이 처음이신가요? 지금 바로 <a href="<c:url value='/member/login/Join.it'/>">Planit</a>에서 놀라운 경험을 해보세요.
 				</p>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 				<div class="tabbable">
 		            <ul class="nav nav-tabs">
 		              <li class="active"><a href="#user-login" data-toggle="tab">일반회원</a></li>
-		              <li><a href="#partner-login" data-toggle="tab">기업회원</a></li>
+		              <!-- <li><a href="#partner-login" data-toggle="tab">기업회원</a></li> -->
 		            </ul>
 		            <div class="tab-content">
 		               
@@ -125,4 +125,5 @@
 <!-- end section -->
  <style>
     .footer {position:fixed; bottom:0; width:100%;}
+    body{background: #fff}
  </style>

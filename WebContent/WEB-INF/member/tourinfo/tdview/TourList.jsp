@@ -82,9 +82,8 @@ max-width: 100%;
          <input type="hidden" name="contenttype" value="12"> 
          <div class="form-group" >
             <select name="areacode" id="areacode" class="dmbutton2" title="조회지역" style="display: inline-block;">
-                  <option value="">지역선택</option>
+                  <!-- <option value="">지역선택</option> -->
                   <option value="">전체</option>
-
                   <option value="1" >서울</option>
                   <option value="2" >인천</option>
                   <option value="3" >대전</option>
@@ -118,14 +117,16 @@ max-width: 100%;
 <!--                </ul> -->
 <!--             </div> -->
             <div class="form-group" >
-               <button type="submit" class="dmbutton2" value="조회">조회</button>
-               <a class="dmbutton2 " id="aaa" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12'/>" >조회순</a>
-               <c:if test="${not empty areacode}">
-               <a class="dmbutton2" id="bbb" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12&areacode=${areacode}&orderColumn=title'/>" >제목순</a>
-               </c:if>
-               <c:if test="${empty areacode }">
-               <a class="dmbutton2" id="bbb" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12&orderColumn=title'/>" >제목순</a>
-               </c:if>
+				<button type="submit" class="dmbutton2" value="조회">조회</button> <!-- 확인 완료 -->
+				<a class="dmbutton2 " id="aaa" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12'/>" >조회순</a>
+               
+				<c:if test="${not empty areacode}">
+					<a class="dmbutton2" id="bbb" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12&areacode=${areacode}&orderColumn=title'/>" >제목순</a>
+				</c:if>
+				<c:if test="${empty areacode }">
+					<a class="dmbutton2" id="bbb" href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12&orderColumn=title'/>" >제목순</a>
+				</c:if>
+               
             </div>
             
             <!-- <input type="hidden" name="gotoPage" value=""/>
@@ -192,10 +193,10 @@ max-width: 100%;
          <input type="hidden" name="title">
          <input type="hidden" name="tel">
          <div class="form-group">
-            <select name="searchColumn" class="form-control">
-               <option value="all">전체검색</option>
+            <select id="searchColumn" name="searchColumn" class="form-control">
+               <!-- <option value="all">전체검색</option> -->
                <option value="title">관광지명</option>
-               <option value="tel">전화번호</option>
+               <!-- <option value="tel">전화번호</option> -->
             </select>
          </div>
          <div class="form-group" >
@@ -222,4 +223,6 @@ max-width: 100%;
       </c:if>
       
    });
+
+	
 </script>

@@ -57,12 +57,16 @@ public class ReviewController {
 							HttpServletResponse resp,
 							@RequestParam(required = false, defaultValue = "1") int nowPage) throws Exception {
 
-		if(map.get("areacode")!=null) {
+		String param="";
+		if(map.get("areacode")!=null && !map.get("areacode").equals("0")) {
 			System.out.println(map.get("areacode")+" 지역을 선택했습니다."+map.get("areacodeKor"));
-			System.out.println(map.get("keyword")+" 키워드를 입력했습니다."+map.get("keyword").toString().length());
 			model.addAttribute("areacode", map.get("areacode"));
-			model.addAttribute("keyword", map.get("keyword"));
 			model.addAttribute("areacodeKor", map.get("areacodeKor"));
+			param+="areacode="+map.get("areacode")+"&";
+		}
+		if(map.get("areacode")!=null && map.get("areacode").equals("all")) {
+			map.remove("areacode");
+			map.remove("keyword");
 		}
 		
 		// 페이징 로직 시작
@@ -78,7 +82,11 @@ public class ReviewController {
 
 		// 리뷰 리스트를 가지고 온다.
 		List<Map> list = reviewService.selectReviewList(map);
-
+		// 평점 반올림하기
+		for(Map review : list) {
+			map.put("RATING", Math.round(Double.parseDouble(review.get("RATING").toString())));
+		}
+		
 		// 페이징 스트링
 		String pagingString = CommonUtil.pagingBootStrapStyle(totalReviewCount, pageSize, blockPage, nowPage,
 				req.getContextPath() + "/planit/review/ReviewList.it?");
@@ -194,12 +202,8 @@ public class ReviewController {
 			map.put("contentid", items[2]);
 			Map reviewContent = reviewService.selectReviewContent(map);
 			
-			if(! reviewContent.containsKey("CONTENT")) {
-				rmap.put("content", "no-content");
-			}
-			else {
-				rmap.put("content", reviewContent.get("CONTENT"));
-			}                            
+			                   
+			rmap.put("content", reviewContent.get("CONTENT"));
 			// rmap.put("image",
 			// reviewContent.get("IMAGE")==null?"no-image":reviewContent.get("IMAGE").toString().replace("<*>",
 			// "&"));
@@ -213,12 +217,20 @@ public class ReviewController {
 				}
 				rmap.put("image", image);
 			}
+			System.out.println(">>>>>>>>>>>>>>>"+items[1] +"   "+ items[2]);
 			ContentDTO dto = TourApiUtils.getdetailCommon(items[1], items[2]);
 			// 관광데이터 가지고 오기
-			rmap.put("overview",
-					dto.getOverview().length() > 300 ? dto.getOverview().substring(0, 300) + "..." : dto.getOverview());
-			rmap.put("firstimage2", dto.getFirstimage2());
-			rmap.put("addr1", dto.getAddr1());
+			if(dto !=null) {
+				rmap.put("overview",
+						dto.getOverview().length() > 300 ? dto.getOverview().substring(0, 300) + "..." : dto.getOverview());
+				rmap.put("firstimage2", dto.getFirstimage2());
+				rmap.put("addr1", dto.getAddr1());
+			}
+			else {
+				rmap.put("overview","");
+				rmap.put("firstimage2", "");
+				rmap.put("addr1", "");				
+			}
 			// System.out.println(dto.getOverview());
 			oneRoute.add(rmap);
 		}
@@ -379,7 +391,8 @@ public class ReviewController {
 	public String selectbook(@RequestParam Map map, Model model) throws Exception {
 		// 사용자의 리뷰아이디가 넘어온다.
 		System.out.println("디자인 선택하러 가는 리뷰 아이디:" + map.get("review_id"));
-
+		// select의 샘플이 보여야 한다. 
+		// 
 		return "review/photobook/SelectBook.theme";
 	}
 

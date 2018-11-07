@@ -27,11 +27,11 @@ max-width: 100%;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
         <li>
-         <c:choose>
+         <%-- <c:choose>
             <c:when test="${sleep=='sleepinfo'}">한번자는곳 좋은곳에서!</c:when>
             <c:when test="${sleep=='sleeprank'}">인기 많은 숙소 확인</c:when>
             <c:otherwise>조건을 만족하지 않는 경우</c:otherwise>
-		</c:choose>
+		</c:choose> --%>
         </li>
         </ul>
         <h2>PLAN-IT에 등록되어 있는 숙소들(총 ${totalRecordCount}개)</h2>
@@ -53,7 +53,7 @@ max-width: 100%;
 			<input type="hidden" name="contenttype" value="32">
 			<div class="form-group" >
 				<select name="areacode" id="areacode" class="dmbutton2" title="조회지역" style="display: inline-block;">
-						<option value="">지역선택</option>
+						<!-- <option value="">지역선택</option> -->
 						<option value="">전체</option>
 						<option value="1" >서울</option>
 						<option value="2" >인천</option>
@@ -75,7 +75,7 @@ max-width: 100%;
 				</select>
 			</div>
 <!-- *************************************** cat2 선택  **************************************** -->
-				<div data-type="multiple" class="form-group" style="display: inline-block;" >
+				<!-- <div data-type="multiple" class="form-group" style="display: inline-block;" >
 					<ul class="jetmenu ">
 						<li><button name="all" value="" class="go-button ov" type="button" >전체</button></li>
 						<li>
@@ -123,12 +123,12 @@ max-width: 100%;
 
 					</ul>
 					
-				</div>
+				</div> -->
 				<div class="form-group" >
 					<button type="submit" class="dmbutton2" value="조회">조회</button>
 					<a class="dmbutton2 ov" href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32'/>" >조회순</a>
 			   <c:if test="${not empty areacode}">
-               <a class="dmbutton2" href="<c:url value='/tourinfo/tdview/SleepLsit.it?contenttype=32&areacode=${areacode}&orderColumn=title'/>" >제목순</a>
+               <a class="dmbutton2" href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32&areacode=${areacode}&orderColumn=title'/>" >제목순</a>
                </c:if>
                <c:if test="${empty areacode }">
                <a class="dmbutton2" href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32&orderColumn=title'/>" >제목순</a>
@@ -173,7 +173,7 @@ max-width: 100%;
 	<!-- he wrap -->
 	<h3 class="title">${record.title}</h3>
 	<p>${record.addr1}</p>
-	문의: ${record.tel}</p>
+	<p>문의: ${record.tel}</p>
 </div>
 
 </c:forEach>
@@ -201,9 +201,9 @@ max-width: 100%;
          <input type="hidden" name="tel">
          <div class="form-group">
             <select name="searchColumn" class="form-control">
-               <option value="all">전체검색</option>
+               <!-- <option value="all">전체검색</option> -->
                <option value="title">숙박업소명</option>
-               <option value="tel">전화번호</option>
+               <!-- <option value="tel">전화번호</option> -->
             </select>
          </div>
          <div class="form-group" >
@@ -214,3 +214,7 @@ max-width: 100%;
       </form>
 	</div>
 </div>
+
+<script>
+	
+</script>

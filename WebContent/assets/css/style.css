@@ -393,13 +393,20 @@ h1.carousel-h1 {
 	color: #eee;
 }
 
-/* 플래너 모아 보기 */
+/* 플래너 모아 보기
+
+ margin-top: 8px;
+  vertical-align: middle;
+  position: relative;
+  
+   */
 .portfolio-item {
   display: block;
   position: relative;
   overflow: hidden;
+   margin-top: 8px;
   max-width: 530px;
-  margin: auto auto 1rem;
+  /* margin: auto auto 1rem; */
 }
 
 .portfolio-item .caption {
@@ -408,7 +415,7 @@ h1.carousel-h1 {
   display: flex;
   height: 100%;
   width: 100%;
-  background-color: rgba(33, 37, 41, 0.2);
+  background-color: rgba(44,44,44,0.5);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -422,7 +429,7 @@ h1.carousel-h1 {
 }
 
 .portfolio-item .caption .caption-content h2 {
-  font-size: 0.8rem;
+  font-size: 1.8rem;
   text-transform: uppercase;
 }
 
@@ -458,7 +465,8 @@ h1.carousel-h1 {
     clip-path: inset(2rem);
   }
   .portfolio-item:hover .caption {
-    background-color: rgba(2, 247, 216, 0.9);
+    background-color: rgba(44,44,44, 0.9);
+    color:#3498DB;
     -webkit-clip-path: inset(2rem);
     clip-path: inset(2rem);
   }

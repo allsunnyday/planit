@@ -22,4 +22,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="contentIsAlreadyLiked"  parameterType="java.util.Map" resultType="int">
 		select count(*) from liked_tour where id=#{id} and contentid=#{contentid}
 	</select>
+	
+	<!--  메인에서 사용하는 tour list -->
+	<select id="mainContentList" resultType="java.util.Map">
+		select C.*, R.FEQ
+		from content c, (select contentid, count(*) as feq from review_content group by contentid order by feq desc) r
+		where c.contentid = r.contentid and rownum <![CDATA[<=]]> 6
+		order by c.viewcount desc
+	</select>
+	<!-- 메인에서 사용하는 review list  -->
+	<select id="mainReviewList" resultType="java.util.Map">
+		select * 
+		from (select * from review order by rating desc, liked desc, view_count desc ) t
+		where rownum <![CDATA[<=]]> 6
+	</select>
+	<select id="mainPlannerList" resultType="java.util.Map">
+		select * 
+		from (select * 
+		from planner 
+		order by postdate desc, depart desc) t
+		where rownum <![CDATA[<=]]> 6
+	</select>
 </mapper>

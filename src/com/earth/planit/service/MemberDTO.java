@@ -19,10 +19,7 @@ public class MemberDTO {
    
    //[선호도]
    private String kor ;
-   
-   
-   
-   
+  
    
    public String getKor() {
       return kor;

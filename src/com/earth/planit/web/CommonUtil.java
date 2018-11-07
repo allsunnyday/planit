@@ -127,8 +127,7 @@ public class CommonUtil {
 											int nowPage,
 											String page,
 											String cotenttype,
-											String areacode){
-		
+											String areacode){		
 		String pagingStr="<nav class='text-center'><ul class=\"pagination\" >";
 		
 		//1.전체 페이지 구하기
