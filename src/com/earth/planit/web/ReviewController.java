@@ -410,12 +410,19 @@ public class ReviewController {
 				// 이미지 개수에 해당하는 포토북을 가지고 온다.
 
 				// 총 이미지 개수와 포토북이 표현할 수 있는 사진 레이아웃의 개수를 비교하여 maximum을 정한다.
-				map.put("imagecount", images.length);
+				int totalNum =images.length;
+				if(totalNum>6) {
+					System.out.println("이미지가 너무  많아서 6개로 조정하였다...");
+					totalNum=6; 
+				}
+				map.put("imagecount", totalNum);
 				Map layouts = reviewService.getPhotobookLayouts(map);
-				for (int i = 0; i < images.length; i++) {
+				
+				for (int i = 0; i <totalNum; i++) {
 					layouts.put("LAYOUTS", layouts.get("LAYOUTS").toString().replace("BASIC" + i + ".jpg", images[i]));
 				}
 				oneReview.put("IMAGE", layouts.get("LAYOUTS"));
+				oneReview.put("SAMPLEIMAGE", layouts.get("SAMPLEIMAGE"));
 				System.out.println("변경한 후에 oneReview-IMAGE키에 저장된 값:" + oneReview.get("IMAGE"));
 			} else {
 				System.out.println("해당 일정에는 이미지가 없습니다.");

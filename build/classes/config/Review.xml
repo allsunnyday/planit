@@ -161,5 +161,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from planner where planner_id=#{planner_id}
 	</select>
 	
+	<update id="reviewUpdateViewCount" parameterType="java.util.Map">
+		update review set view_count= view_count+1 where review_id=#{review_id}
+	</update>
 
 </mapper>

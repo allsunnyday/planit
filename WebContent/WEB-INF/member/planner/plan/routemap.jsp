@@ -483,7 +483,7 @@
 			content +='<div id="" class="col-sm-12 planroute_'+diveplus+'" style="height: 105px; width:100%;">';
 				content +='<div class="row" style="">';
 					content += '<div class="col-md-2 col-sm-2 col-xs-2 text-center" style=" height:auto;">';               
-					content += '<div style="background-color:#16f8d6; height:30px;width:5px;margin-left:45%"></div><div class="dayselect text-center">';	               
+					content += '<div style="background-color:#16f8d6; height:30px;width:5px;margin-left:25px"></div><div class="dayselect text-center">';	               
 						content +='<select class="dayselect-select dayselect_'+diveplus+'" name="dayselect" id="" >';
 						for(var i=1; i<=days; i++){ 
 							content += '<option value="'+i+'" ';
@@ -492,7 +492,7 @@
 						}
 						content +='</select>';	               
 					content += '</div>';
-				content += '<div style="background-color:#16f8d6; height:30px;width:5px;margin-left:45%"></div></div>';
+				content += '<div style="background-color:#16f8d6; height:30px;width:5px;margin-left:25px"></div></div>';
 				content += '<div class="col-md-9 col-sm-9 col-xs-9">';
 					content += '<div style="float:left; display:block;">';
 						content += '<div class="text-left">';
