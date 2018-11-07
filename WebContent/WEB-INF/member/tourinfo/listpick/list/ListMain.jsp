@@ -208,7 +208,7 @@
 	<section class="section1">
 		<div class="container clearfix">
 			<div class="general-title text-center">
-				<h3 id="liketitle">${sessionScope.id }님에게 추천하는 ${likecate1 } 지역 </h3>
+				<h3 id="liketitle">${sessionScope.id }님에게 추천하는 ${likecate1 } </h3>
 				<p>best</p>
 				<hr>
 			</div>
@@ -416,16 +416,16 @@
 		console.log(index); 
 		switch (index) {
 		case 0:			
-			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate1 } 지역')
+			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate1 } ')
 			break;
 		case 1:			
-			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate2 } 지역')
+			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate2 } ')
 			break;
 		case 2:			
-			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate3 } 지역')
+			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate3 } ')
 			break;
 		case 3:			
-			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate4 } 지역')
+			$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate4 } ')
 			break;
 		}
 		//$('#liketitle').text('${sessionScope.id }님에게 추천하는 ${likecate1 } 지역')
