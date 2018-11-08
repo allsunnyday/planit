@@ -141,7 +141,7 @@ public class MemberController {
 	      System.out.println("profile" + mhsr.getParameter("profile"));
 	      System.out.println("isExistProfile==" + map.get("isExistProfile"));
 	      System.out.println(map.get("profile") == null ? "프로필 있음" : "프로필 없음");
-	      if (mhsr.getFile("profile") != null && mhsr.getFile("profile").getName().equals("")) {
+	      if (mhsr.getFile("profile") != null ) {//&& mhsr.getFile("profile").getName().equals("")
 	         System.out.println(mhsr.getFile("profile").getSize()+","+mhsr.getFile("profile").getName());
 	         // 1]서버의 물리적 경로 얻기
 	         String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");

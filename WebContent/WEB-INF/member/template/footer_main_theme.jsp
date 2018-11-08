@@ -8,7 +8,7 @@ footer {position:absolute;bottom:0; width:100%;}
  <footer class="footer">
     <div class="copyrights">
       <div class="container">
-        <div class="col-lg-6 col-md-6 col-sm-12 columns footer-left">
+        <div class="col-lg-12 col-md-12 col-sm-12 columns footer-left" style="text-align: center;">
           <p>Copyright © 2018 - All rights reserved.</p>
           <div class="credits">
             <!--
@@ -21,7 +21,7 @@ footer {position:absolute;bottom:0; width:100%;}
           </div>
         </div>
         <!-- end widget -->
-        <div class="col-lg-6 col-md-6 col-sm-12 columns text-right">
+       <%--  <div class="col-lg-6 col-md-6 col-sm-12 columns text-right">
           <div class="footer-menu right">
             <ul class="menu">
               <li><a href="index.html">Home</a></li>
@@ -31,7 +31,7 @@ footer {position:absolute;bottom:0; width:100%;}
               <li><a href="<c:url value='/planit/search/tourinfo/Qna.it'/>">QnA</a></li>
             </ul>
           </div>
-        </div>
+        </div> --%>
         <!-- end large-6 -->
       </div>
       <!-- end container -->
