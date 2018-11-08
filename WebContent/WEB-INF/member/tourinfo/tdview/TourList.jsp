@@ -18,7 +18,7 @@ max-width: 100%;
    }
    
 #aaa{
-	background-color:red;
+	background-color:blue;
 	font-weight: bold;
 	color:white;
 }
@@ -26,21 +26,21 @@ max-width: 100%;
 	background-color:yellow;
 }
 #aaa{
-	-webkit-animation:blink 1.0s ease-in-out infinite alternate;
-    -moz-animation:blink 1.0s ease-in-out infinite alternate;
-    animation:blink 0.5s ease-in-out infinite alternate;
+	-webkit-animation:blink 0.01s ease-in-out infinite alternate;
+    -moz-animation:blink 0.01s ease-in-out infinite alternate;
+    animation:blink 0.01s ease-in-out infinite alternate;
 }
 @-webkit-keyframes blink{
     0% {opacity:0;}
-    40% {opacity:1;}
+    50% {opacity:1;}
 }
 @-moz-keyframes blink{
     0% {opacity:0;}
-   40% {opacity:1;}
+   50% {opacity:1;}
 }
 @keyframes blink{
     0% {opacity:0;}
-    10% {opacity:1;}
+    50% {opacity:1;}
 }
 
 

@@ -58,7 +58,7 @@ tbody{
 		<!-- 게시판 페이지 정보 및 버튼 시작 { -->
 		<div id="bo_btn_top">
 			<div id="bo_list_total">
-				<span style="font-size:1.1em">Total : &nbsp${totalEventCount}개 </span>
+				<span style="font-size:1.1em">Total : &nbsp${totalRecordCount}개 </span>
 
 			</div>
 				<br/>
