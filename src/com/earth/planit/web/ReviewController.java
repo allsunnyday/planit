@@ -4,6 +4,11 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -121,9 +126,13 @@ public class ReviewController {
 		
 		ReviewDTO record = reviewService.selectReviewOne(map);
 		day = Integer.parseInt(record.getSeries().toString()) - 1;
+		
 		model.addAttribute("review", record);
-
-		/* } */
+		LocalDate startdate = LocalDate.parse(record.getDepart().substring(0, 10));
+		LocalDate enddate = LocalDate.of(startdate.getYear(), startdate.getMonth(), startdate.getDayOfMonth()+Integer.parseInt(record.getDays()));
+		System.out.println(startdate.toString() + "-" +enddate.toString());
+		//model.addAttribute("startdate",startdate );
+		model.addAttribute("enddate",enddate );
 		// dayRoute[day]=
 		// 1
 		//#1:12:126508:경복궁:한복대여:한복대여2만원:0
@@ -166,6 +175,10 @@ public class ReviewController {
 		return "review/myreview/WriteReview.theme";
 	}
 
+
+
+
+
 	// 리뷰 보기 페이지
 	@RequestMapping("/planit/review/ReviewView.it")
 	public String reviewView(@RequestParam Map map, // review_id=값
@@ -175,7 +188,15 @@ public class ReviewController {
 		ReviewDTO review = reviewService.selectReviewOne(map);
 		// 시리즈로 접근했을 시에 review_id가 없기 때문에 
 		map.put("review_id", review.getReview_id());
-		
+		LocalDate startdate = LocalDate.parse(review.getDepart().substring(0, 10));
+		LocalDate enddate = LocalDate.of(startdate.getYear(), 
+										startdate.getMonth(), 
+										Integer.parseInt(review.getDays())!=1 ?
+										startdate.getDayOfMonth()+Integer.parseInt(review.getDays())
+										: startdate.getDayOfMonth());
+		System.out.println(startdate.toString() + "-" +enddate.toString());
+		//model.addAttribute("startdate",startdate );
+		model.addAttribute("enddate",enddate );
 		// --- route 분석 로직 ----//
 		// 1:12:126508:경복궁:한복대여:한복대여2만원:0#1:12:126512:광화문:교보문고:책사기:0#1:32:2504463:L7명동:::1
 		String beforeParsing = review.getRoute();

@@ -1,7 +1,7 @@
 package com.earth.planit.service;
 
 public class ReviewDTO {
-
+	
 	private String review_id;
 	private String planner_id;
 	private String series;
@@ -13,7 +13,23 @@ public class ReviewDTO {
 	private String rating;
 	private String firstimage;
 	private String route;
+	private String depart;
+	private String days;
 	
+	public String getDays() {
+		return days;
+	}
+
+	public void setDays(String days) {
+		this.days = days;
+	}
+	public String getDepart() {
+		return depart;
+	}
+
+	public void setDepart(String depart) {
+		this.depart = depart;
+	}
 	private String id;  //작성한 아이디
 
 	public String getReview_id() {

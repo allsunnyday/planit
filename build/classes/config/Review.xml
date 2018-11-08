@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="order != null">
 		r.${order} desc,
 		</if>
-		r.postdate desc) t ) where r between #{start} and #{end}
+		r.view_count desc) t ) where r between #{start} and #{end}
 	</select>
 	
 	<select id="reviewGetReviewlistTotal" parameterType="java.util.Map" resultType="int">
@@ -39,12 +39,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="keyword != null and title != ''">
 		and r.title LIKE '%' || #{keyword} || '%'
 		</if>
-		order by r.postdate desc
+		order by r.view_count desc
 	</select>
 	
 	<!-- (1) reviewlist >review_id>reviewview     (2) reveiwview-series > planner_id / series > reviewview  -->
 	<select id="reviewSelectOne"  parameterType="java.util.Map" resultType="reviewDTO" >
-		select r.*, id from review r join planner p on r.planner_id=p.planner_id
+		select r.*, id, depart, days from review r join planner p on r.planner_id=p.planner_id
 		<if test="review_id != null">
 		where r.review_id=#{review_id}
 		</if>
