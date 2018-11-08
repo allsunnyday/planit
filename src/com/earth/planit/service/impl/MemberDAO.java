@@ -160,5 +160,10 @@ public class MemberDAO implements MemberService {
 	public int getColumnCount(Map map) {
 		return template.selectOne("MemberSelectValueCount", map);
 	}
+	@Override
+	public Map androidUserInfo(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("AndroidSelectInfo", map);
+	}
 
 }

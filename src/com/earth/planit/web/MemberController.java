@@ -141,7 +141,8 @@ public class MemberController {
 		System.out.println("profile" + mhsr.getParameter("profile"));
 		System.out.println("isExistProfile==" + map.get("isExistProfile"));
 		System.out.println(map.get("profile") == null ? "프로필 있음" : "프로필 없음");
-		if (map.get("isExistProfile") == null && mhsr.getFile("profile") != null) {
+		if (mhsr.getFile("profile") != null && mhsr.getFile("profile").getName().equals("")) {
+			System.out.println(mhsr.getFile("profile").getSize()+","+mhsr.getFile("profile").getName());
 			// 1]서버의 물리적 경로 얻기
 			String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");
 			// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
@@ -156,12 +157,14 @@ public class MemberController {
 			profile.transferTo(file);
 			map.put("profile", newFilename.toString().trim());
 		}
-
+		else {
+			map.put("profile", map.get("isExistProfile"));
+		}
 		System.out.println(map.get("self"));
 		System.out.println(map.get("id"));
 		System.out.println(map.get("email"));
 		System.out.println(map.get("name"));
-
+		System.out.println(map.get("profile"));
 		int affected = service.updateProfile(map);
 		System.out.println(affected == 1 ? "입력성공" : "입력실패");
 		if (affected == 1) {
