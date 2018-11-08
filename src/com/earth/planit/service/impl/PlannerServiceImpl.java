@@ -23,6 +23,7 @@ public class PlannerServiceImpl implements PlannerService {
 
 	@Override
 	public int insertPlanner(Map map) {
+		System.out.println("서비스 임플 방문");
 		return dao.insertPlanner(map);
 	}
 

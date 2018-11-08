@@ -23,7 +23,8 @@ public class PlannerDAO implements PlannerService {
 	}
 
 	@Override
-	public int insertPlanner(Map map) {		
+	public int insertPlanner(Map map) {
+		System.out.println("dao 방문");
 		return template.insert("insertPlanSave", map);
 	}
 

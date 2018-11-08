@@ -230,7 +230,9 @@ public class PlannerController {
 			map.put("reviewtitle", reviewtitle);
 		}
 //		planner table data 입력
+		System.out.println("자 xml들엉가자");
 		int affected = service.insertPlanner(map);
+		System.out.println("자 xml갔다왓다");
 		System.out.println("[1이면 planner입력성공] : "+ affected);
 		model.addAttribute("plancase", map.get("plancase"));
 		int days = Integer.valueOf((String) map.get("days"));

@@ -1019,7 +1019,7 @@
 					routeCase += $('.planroute_'+i+' .dayselect_'+i).val();
 					routeCase += "#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .contenttype').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
-					+$('.planroute_'+i+' .contentTitle').text()+":todo_0:todomemo_0:";
+					+$('.planroute_'+i+' .contentTitle').text()+":todo_"+i+":todomemo_"+i+":";
 					if($('.planroute_'+i+' .contenttype').val()==32){routeCase+='1';}
 					else{routeCase+='0';}					
 					console.log(routeCase);
@@ -1044,7 +1044,7 @@
 				else{
 					routeCase += "#"+$('.planroute_'+i+' .areacode').val()+":"
 					+$('.planroute_'+i+' .contenttype').val()+':'+$('.planroute_'+i+' .contentnumber').val()+":"
-					+$('.planroute_'+i+' .contentTitle').text()+":todo_0:todomemo_0:";
+					+$('.planroute_'+i+' .contentTitle').text()+":todo_"+i+":todomemo_"+i+":";
 					if($('.planroute_'+i+' .contenttype').val()==32){routeCase+='1';}
 					else{routeCase+='0';}					
 					console.log(routeCase);
