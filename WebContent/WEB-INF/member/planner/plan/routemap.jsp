@@ -677,8 +677,7 @@
 <!-- ********************************* 상세 일정 페이지 달력 출력 종료 *************************************** -->
 <script>  
 	$(function() {
-		/* **************** location 의 도시 정보 검색  **************** */
-		
+		/* **************** location 의 도시 정보 검색  **************** */		
 		searchaction();   
 		function searchaction(){
 			ps = new daum.maps.services.Places();
@@ -792,20 +791,32 @@
 	var jsonforTourInfo;
 	var infowindowexit; // 마커 생성 이후 infowindow를 닫기 위한 변수
 	$(function() {
+		
+		//console.log('누구냐 2');
+		//catefun()	
+		
 		var mapx=[];
 		var mapy=[];
-		
-		$('.routecategory').click(function() {
+		var ordernum;
+		var areacode;
+		var sigungucode;
+		var areacodename;
+		var sigungucodename;
+		var areacodenum;
+		console.log("누구나1")
+		$('.routecategory').on('click', function() {
 			if(days==1 && $(this).val()==32){
 				alert('당일 여행은 숙박지를 선택할수 없습니다.'); 
 				changeCategoryClass(); 
 				return false; 
 			}
+			//console.log('testtest: '+$(this).attr('data-order'))
+			ordernum = $(this).attr('data-order');
 			console.log('들어옴1: '+$(this).val());
-			var areacode = $('#paldoNcity option:selected').val(); // 여행 지역 코드 저장
-			var sigungucode = $('#paldoNcityColumn option:selected').val(); // 여행 시군구 코드 저장
-			var areacodename = $('#paldoNcity option:selected').html(); // 여행 지역 이름 저장
-			var sigungucodename = $('#paldoNcityColumn option:selected').html(); // 여행 지역 시군구 이름 저장
+			areacode = $('#paldoNcity option:selected').val(); // 여행 지역 코드 저장
+			sigungucode = $('#paldoNcityColumn option:selected').val(); // 여행 시군구 코드 저장
+			areacodename = $('#paldoNcity option:selected').html(); // 여행 지역 이름 저장
+			sigungucodename = $('#paldoNcityColumn option:selected').html(); // 여행 지역 시군구 이름 저장 
 			categoryaction();
 			function categoryaction(){
 				ps = new daum.maps.services.Places();
@@ -822,11 +833,18 @@
 						var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 						// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 						map.setCenter(coords);
+						map.setLevel(6);
 					} 
 				});
 				/* ******************* location 에서 사용자가 선택한 지역으로 자동 서치 ****************** */
+				
 			}
-         
+         	
+			console.log('$(this).val(): '+$(this).val())
+			//areacodenum = $(this).val();
+			//catefun()
+				
+			
 			$.ajax({
 	            url: "<c:url value='/planner/plan/routecategory.it?areacode="+areacode+"&sigungucode="+sigungucode+"&areacodename="+areacodename+"&sigungucodename="+sigungucodename+"'/>",            
 	            dataType: 'json',
@@ -840,9 +858,42 @@
 			});///ajax
 		});  // 카테고리를 선택시 콜백함수 
        
-		var successPlanmapdata = function(data){
+		
+		function catefun(){
+			$.ajax({
+				url:'<c:url value="/planner/ajax/location.it"/>',
+				type:'post',
+				data:{paldoNcity: $('#paldoNcity').val()},
+				dataType:'json',
+				success:function(data){
+					
+					console.log('함수시작~~~~~')
+					var optionString ="";
+					//{d01:'C#', d02:'ASP.NET',d03:'WPF4'}
+					optionString+="<option value=${areacodesub}'>${areacodesubname}</option>";
+					optionString +='<optgroup  LABEL="* * * * * * *" style="background: #4A5C78;">';
+					$.each(data, function(key, value){                  
+						optionString +="<option value='"+key+"'>"+value+"</option>";
+					});
+					optionString +='</optgroup>';
+					$('#paldoNcityColumn').html(optionString);				
+					//catefun();
+					console.log('함수 종료 ~~~~~')
+				},
+				error:function(request, error){
+					console.log('상태코드: ',request.status);
+					console.log('서버로 부터 받은 데이터: ',request.responseText);
+					console.log('에러: ',error);
+				}
+			});	
+		}
+		
+		
+		var successPlanmapdata = function(data){			
+			
 			console.log(JSON.stringify(data));
             var order = document.getElementById(currCategory).getAttribute('data-order');
+            //var order = ordernum;
 			console.log("order 순서 확인하자: "+document.getElementById(currCategory).getAttribute('data-order'));
 			$.each(data, function(index, content) {             
 				mapx.push(content['mapx']);
@@ -905,30 +956,7 @@
 		});
 		/* ********** 카테고리 범위 영역 선택을 위한 ajax ********** */		
 	});     
-	$(function(){		
-		$.ajax({
-			url:'<c:url value="/planner/ajax/location.it"/>',
-			type:'post',
-			data:{paldoNcity: $('#paldoNcity').val()},
-			dataType:'json',
-			success:function(data){
-				var optionString ="";
-				//{d01:'C#', d02:'ASP.NET',d03:'WPF4'}
-				optionString+="<option value=${areacodesub}'>${areacodesubname}</option>";
-				optionString +='<optgroup  LABEL="* * * * * * *" style="background: #4A5C78;">';
-				$.each(data, function(key, value){                  
-					optionString +="<option value='"+key+"'>"+value+"</option>";
-				});
-				optionString +='</optgroup>';
-				$('#paldoNcityColumn').html(optionString);
-			},
-			error:function(request, error){
-				console.log('상태코드: ',request.status);
-				console.log('서버로 부터 받은 데이터: ',request.responseText);
-				console.log('에러: ',error);
-			}
-		});
-	});
+	
 	
 	/* ****** route 정보 저장 및 schedule 페이지 이동 ****** */		
 	function movescheduleAction() {	
