@@ -11,7 +11,7 @@
 #ME-user-picture { 	width: 200px; 	height: 200px; 	border-radius: 50%; 	border: 2px gray solid; }
  #ME-first-EditForm, #ME-second-EditForm, #ME-third-EditForm { 	margin-top: 20px; }
 .submitButton { 	display: inline-block; 	float: right; }
-.footer{ position:fixed; bottom:0; width: 100%;}
+.footer{ position:inherit; bottom:0; width: 100%;}
 </style>
 <div class="container">
 
@@ -93,9 +93,8 @@
 			<!--           서브밋 버튼                      -->
 			<!-- -------------------------------  -->
 
-			<div class="submitButton">
-				<input id="ME-Submit-Button" type="submit" class="btn btn-default"
-					value="Edit">
+			<div class="submitButton" style="margin-bottom: 50px;">
+				<input id="ME-Submit-Button" type="submit" class="btn btn-default"	value="Edit">
 			</div>
 
 		</form>
