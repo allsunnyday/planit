@@ -5,45 +5,12 @@
 <!--************************************
 네비게이터가 필요
 *************************************** -->
-
 <style>
-img{
-max-width: 100%;
-   width: 600px;
-   max-height: 100%;
-   height : 280px;
-}
-.ov{
-   filter:grayscale(100%) 
-   }
-   
-#aaa{
-	background-color:blue;
-	font-weight: bold;
-	color:white;
-}
-#bbb{
-	background-color:yellow;
-}
-#aaa{
-	-webkit-animation:blink 0.01s ease-in-out infinite alternate;
-    -moz-animation:blink 0.01s ease-in-out infinite alternate;
-    animation:blink 0.01s ease-in-out infinite alternate;
-}
-@-webkit-keyframes blink{
-    0% {opacity:0;}
-    50% {opacity:1;}
-}
-@-moz-keyframes blink{
-    0% {opacity:0;}
-   50% {opacity:1;}
-}
-@keyframes blink{
-    0% {opacity:0;}
-    50% {opacity:1;}
-}
-
-
+img{ max-width: 100%;    width: 600px;    max-height: 100%;    height : 280px; }
+.ov{    filter:grayscale(100%)  }    
+@-webkit-keyframes blink{     0% {opacity:0;}     50% {opacity:1;} }
+@-moz-keyframes blink{     0% {opacity:0;}    50% {opacity:1;} }
+@keyframes blink{     0% {opacity:0;}     50% {opacity:1;} }
 </style>
 
 
