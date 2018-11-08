@@ -37,6 +37,8 @@ div.item .item-image{
   max-height: 100%;
     margin: auto;  /* Magic! */
 }
+
+.big-title {color:yellow;}
 </style>
 <script>
 
