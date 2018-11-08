@@ -212,7 +212,9 @@ div.item .item-image{
             	commentString+='<a class="btnDel " href="javascript:" id=""  title="" ><font style="font-size: 9pt; color: #c0c0c0"><i class="fa fa-times-circle"></i></font></a>'
             }
             
-            commentString+='     <span class="comment-reply"><a href="javascript:" class="comment-reply button" onclick="commentShowReply();" title="'+comment['COMMENT_NO']+'" >reply</a></span>'
+            /* commentString+='     <span class="comment-reply"><a href="javascript:" class="comment-reply button" onclick="commentShowReply();" title="'
+            +comment['COMMENT_NO']+'" >reply</a></span>' */
+            commentString+='<span class="comment-reply"></span>'
             +' </h4>'+comment['CONTENT']
             +'</div></article></li>';
 		});

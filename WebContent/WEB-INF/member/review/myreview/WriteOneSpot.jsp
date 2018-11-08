@@ -236,8 +236,8 @@
 		<div class="ror">
 			<div class="col-md-8 col-md-offset-2">
 			<!-- review title 클릭시 변경할 수있는 모달 만들기(미 변경시 플래너와 동일한 이름)  -->
-				<h1 class="review-title">사진작가의 서울 유랑기</h1>
-				<p>2018.05.09 - 2018.11.15</p>
+				<h1 class="review-title">${reviewContent.TITLE}</h1>
+				<!-- <p>2018.05.09 - 2018.11.15</p> -->
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -267,12 +267,12 @@
 					<img data-effect="slide-bottom" class="alignleft img-circle"
 						src="${reviewContent.FIRSTIMAGE2}"
 						alt="">
-					<p>${reviewContent.CAT1} / ${reviewContent.CAT2} / ${reviewContent.CAT3}</p>
+					<p>${reviewContent.TITLE}</p>
 					<p>${reviewContent.ADDR2}</p>
-					<p>${reviewContent.HOMEPAGE}</p>
+					<%-- <p>${reviewContent.HOMEPAGE}</p> --%>
 					<div class="testimonial-meta">
 						<h4>
-							${reviewContent.TITLE}<small><a href="#">자세히 보기</a></small>
+							<small><a href="#">자세히 보기</a></small>
 						</h4>
 					</div>
 				</div>
@@ -294,7 +294,8 @@
 							<div class="imgs_wrap">
 								<c:forEach var="imgs"  items="${imageMap}"  varStatus="loop">
 									<a href="javascript:" onclick="deletePreImage('${imgs.value}', ${loop.index});" id="preimage${loop.index}" >
-										<img alt="${imgs.value}" src="<c:url value='/Upload/Review/${imgs.value}'/> " class="selProductFile" title="click to remove" style='width:150px; height:180px; margin:0 10px 10px 0; border:1px dotted #444'></a>
+									<img alt="${imgs.value}" src="<c:url value='/Upload/Review/${imgs.value}'/>" class="selProductFile" title="click to remove" style='width:150px; height:180px; margin:0 10px 10px 0; border:1px dotted #444'>
+									</a>
 								</c:forEach>
 								<img id="img" />
 							</div>
@@ -309,7 +310,6 @@
 						<div class="col-sm-offset-1 col-sm-10 ">
 							<div class="text-wrap" >
 								<div class="summernote">
-								- - -
 								<c:if test="${empty  reviewContent.CONTENT or reviewContent.CONTENT eq''}">소중한 순간을 기록해 보세요</c:if>
 								${reviewContent.CONTENT}
 								</div>

@@ -73,7 +73,7 @@
         	<div class="widget">
 	          	<h4 class="title"><span>카테고리</span></h4>
 		        <ul class="categories">
-		            <li><a href="<c:url value='/planit/review/ReviewList.it'/>" class="list-order">최신 리뷰</a></li>
+		            <li><a href="<c:url value='/planit/review/ReviewList.it?order=postdate'/>" class="list-order">최신 리뷰</a></li>
 		            <li><a href="<c:url value='/planit/review/ReviewList.it?order=liked'/>" class="list-order"> 베스트 리뷰</a></li>
 		        </ul>
         	</div>

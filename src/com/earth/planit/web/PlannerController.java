@@ -612,8 +612,8 @@ public class PlannerController {
 			json.put("24", "화순군");
 			break;
 		case "39": //제주도
-			json.put("1", "남제주군");
-			json.put("2", "북제주군");
+			/*json.put("1", "남제주군");
+			json.put("2", "북제주군");*/
 			json.put("3", "서귀포시");
 			json.put("4", "제주시");
 			break;
