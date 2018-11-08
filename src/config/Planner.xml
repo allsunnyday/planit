@@ -34,12 +34,15 @@
  	
  	<!-- revies_content table 저장 -->
  	<insert id="insertReviewContent" parameterType="java.util.Map">
- 		insert into review_content(re_co_id, review_id, route_index, contentid, content)
- 		values(SEQ_review_content_re_co_id.nextval,#{review_id}, #{route_index}, #{contentid}, ' ')
+ 		insert into review_content(re_co_id, review_id, route_index, contentid)
+ 		values(SEQ_review_content_re_co_id.nextval,#{review_id}, #{route_index}, #{contentid})
  	</insert>
  	
  	<!-- liked_tour table select -->
  	<select id="selectBookMarkList" parameterType="java.util.Map" resultType="PlannerDTO">
  		select * from liked_tour l join content c on l.contentid=c.contentid where id=#{id} and areacode=#{areacode}
  	</select>
+ 	
+ 	
+ 	
  </mapper>

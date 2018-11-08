@@ -1,84 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
+
 <style>
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
-  text-align: center;
-
-}
-
+.row {   display: flex;   flex-wrap: wrap;   padding: 0 4px;   text-align: center; }
 /* Create four equal columns that sits next to each other */
-.column {
-  flex: 50%;
-  max-width: 50%;
-  padding: 0 4px;
-}
-
-.column .review {
-  margin-top: 8px;
-  vertical-align: middle;
-  position: relative;
-}
-.column .review img{
-	display:block;
-  width: 100%;
-  height: auto;
-}
-
-.review-overlay{
- position: absolute;
-   top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%; 
-  opacity: 1;
-  transition: .5s ease;
-/*   background-color: #000000; */
- 
-}
-
-
-.review:hover .review-overlay {
-  opacity: 0.5;
-  color:#444;
-}
-
-.column .review .text {
-   color: white; 
-  font-size:30px;
-  position: absolute;
-  top: 50%;
-  left: 45%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-  line-height: 50px;
-  
-}
-
+.column {   flex: 50%;   max-width: 50%;   padding: 0 4px; }
+.column .review {   margin-top: 8px;   vertical-align: middle;   position: relative; }
+.column .review img{ display:block;   width: 100%;   height: auto; }
 /* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 800px) {
-  .column {
-    flex: 50%;
-    max-width: 50%;
-  }
-}
-
+@media screen and (max-width: 800px) { .column { flex: 50%;  max-width: 50%; }}
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column {
-    flex: 100%;
-    max-width: 100%;
-  }
-}
-
+@media screen and (max-width: 600px) {   .column {     flex: 100%;     max-width: 100%;   } }
 </style>
 <!-- Top content -->
 <div class="top-content">
@@ -180,45 +113,33 @@ hot place: 즐겨찾기에 가장 많이 저장되어 있는 관광지를 보여
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 					<li data-target="#myCarousel" data-slide-to="1"></li>
 					<li data-target="#myCarousel" data-slide-to="2"></li>
+					<li data-target="#myCarousel" data-slide-to="4"></li>
+					<li data-target="#myCarousel" data-slide-to="5"></li>
+					<li data-target="#myCarousel" data-slide-to="6"></li>
 				</ol>
 				<!--페이지-->
 			
 				<div class="carousel-inner">
+					<!-----------------------tour list-------------------- -->
+					<c:forEach var="tourlist" items="${contentlist}" varStatus="loop">
 					<!--슬라이드1-->
+					<c:if test="${loop.first }" var="isFirst">
 					<div class="item active"> 
-						<img src="<c:url value='/images/main/slide5.jpg'/> " style="width:100%;height: 450px" height="300px" alt="First slide">
+					</c:if>
+					<c:if test="${not isFirst}">
+					<div class="item"> 
+					</c:if>
+						<img src="${tourlist.FIRSTIMAGE}" style="width:100%;height: 450px" height="300px" alt="First slide">
 						<div class="container">
 							<div class="carousel-caption">
-								<h1 class="carousel-h1">대관령 양떼목장</h1>
-								<p>푸르른 들판에서 양과 함께 인생샷</p>
+								<h1 class="carousel-h1">${tourlist.TITLE}</h1>
+								<p>${tourlist.ADDR2} ${tourlist.FEQ}명의 플래너가 다녀갔어요 </p>
 							</div>
 						</div>
 					</div>
 					<!--슬라이드1-->
-			
-					<!--슬라이드2-->
-					<div class="item"> 
-						<img src="<c:url value='/images/main/slide2.jpg'/>" style="width:100%;height: 450px" data-src="" alt="Second slide">
-						<div class="container">
-							<div class="carousel-caption">
-								<h1 class="carousel-h1">서울</h1>
-								<p>익숙한듯 당연한 서울 놀거리</p>
-							</div>
-						</div>
-					</div>
-					<!--슬라이드2-->
-					
-					<!--슬라이드3-->
-					<div class="item"> 
-						<img src="<c:url value='/images/main/slide3.jpg'/>" style="width:100%;height: 450px" data-src=""  alt="Third slide">
-						<div class="container">
-							<div class="carousel-caption">
-								<h1 class="carousel-h1">한옥체험</h1>
-								<p>숙소에서 즐기는 전통문화체험 </p>
-							</div>
-						</div>
-					</div>
-					<!--슬라이드3-->
+					</c:forEach>
+				
 				</div>
 				
 				<!--이전, 다음 버튼-->
@@ -250,42 +171,77 @@ real story: 인기있는 리뷰 모아보기
 	            <!--  -->
 	            <div class="row">
 	            	<div class="column">
-	            		<div class="review">
-	            			<img alt="" src="https://images.unsplash.com/photo-1536221563919-37c841f1f945?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=388e358d549a414a2adb8daabdd9d822&auto=format&fit=crop&w=500&q=60" >
-	            			<div class="review-overlay">
-							    <div class="text"><p>사진작가의 서울유랑기</p></div>
-							</div>
+	            		 <div class="review">
+		            		<a class="portfolio-item" href="<c:url value='/planit/review/ReviewView.it?review_id=${reviewlist[0].REVIEW_ID}'/>">
+				              <span class="caption">
+				                <span class="caption-content">
+				                  <h1 style="color:white">${reviewlist[0].TITLE}(${reviewlist[0].SERIES}) </h1>
+				                  <p class="mb-0">${reviewlist[0].HASHTAG}</p>
+				                </span>
+				              </span>
+				              <img class="img-fluid" src="<c:url value='/Upload/Review/${reviewlist[0].FIRSTIMAGE}'/> " alt="">
+				            </a>
 	            		</div>
-	            		<div class="review">
-	            			<img alt="" src="https://images.unsplash.com/photo-1535189043414-47a3c49a0bed?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bcaa443d3be0ebc65b8f9291ea0e19fb&auto=format&fit=crop&w=500&q=60" >
-	            			<div class="review-overlay">
-							    <div class="text"><p>고궁투어를해보자</p></div>
-							</div>
+	            		 <div class="review">
+		            		<a class="portfolio-item" href="<c:url value='/planit/review/ReviewView.it?review_id=${reviewlist[1].REVIEW_ID}'/>">
+				              <span class="caption">
+				                <span class="caption-content">
+				                  <h1 style="color:white">${reviewlist[1].TITLE}(${reviewlist[1].SERIES}) </h1>
+				                  <p class="mb-0">${reviewlist[1].HASHTAG}</p>
+				                </span>
+				              </span>
+				              <img class="img-fluid" src="<c:url value='/Upload/Review/${reviewlist[1].FIRSTIMAGE}'/> " alt="">
+				            </a>
 	            		</div>
+	            		 <div class="review">
+		            		<a class="portfolio-item" href="<c:url value='/planit/review/ReviewView.it?review_id=${reviewlist[2].REVIEW_ID}'/>">
+				              <span class="caption">
+				                <span class="caption-content">
+				                  <h1 style="color:white">${reviewlist[2].TITLE}(${reviewlist[2].SERIES}) </h1>
+				                  <p class="mb-0">${reviewlist[2].HASHTAG}</p>
+				                </span>
+				              </span>
+				              <img class="img-fluid" src="<c:url value='/Upload/Review/${reviewlist[2].FIRSTIMAGE}'/> " alt="">
+				            </a>
+	            		</div>
+	            		
 	            	</div>
 	            	<div class="column">
-	            	<div class="review">
-	            			<img alt="" src="<c:url value='/images/main/slide1.jpg'/>" >
-	            			<div class="review-overlay">
-							    <div class="text"><p>사진작가의 서울유랑기</p></div>
-							</div>
-	            		</div>
 	            		<div class="review">
-	            			<img alt="" src="https://images.unsplash.com/photo-1533577116850-9cc66cad8a9b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=40a35c6cb327dbb176d20ff6bd34bbab&auto=format&fit=crop&w=500&q=60" >
-	            			<div class="review-overlay">
-							    <div class="text"><p>리뷰제목1</p></div>
-							</div>
+		            		<a class="portfolio-item" href="<c:url value='/planit/review/ReviewView.it?review_id=${reviewlist[3].REVIEW_ID}'/>">
+				              <span class="caption">
+				                <span class="caption-content">
+				                  <h1 style="color:white">${reviewlist[3].TITLE}(${reviewlist[3].SERIES}) </h1>
+				                  <p class="mb-0">${reviewlist[3].HASHTAG}</p>
+				                </span>
+				              </span>
+				              <img class="img-fluid" src="<c:url value='/Upload/Review/${reviewlist[3].FIRSTIMAGE}'/> " alt="">
+				            </a>
 	            		</div>
-	            		<div class="review">
-	            			<img alt="" src="https://images.unsplash.com/photo-1532649097480-b67d52743b69?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8bc9e7a65c3e8e9049d621c3e88ffc9a&auto=format&fit=crop&w=500&q=60" >
-	            			<div class="review-overlay">
-							    <div class="text"><p>리뷰제목2</p></div>
-							</div>
+	            		 <div class="review">
+		            		<a class="portfolio-item" href="<c:url value='/planit/review/ReviewView.it?review_id=${reviewlist[4].REVIEW_ID}'/>">
+				              <span class="caption">
+				                <span class="caption-content">
+				                  <h1 style="color:white">${reviewlist[4].TITLE}(${reviewlist[4].SERIES}) </h1>
+				                  <p class="mb-0">${reviewlist[4].HASHTAG}</p>
+				                </span>
+				              </span>
+				              <img class="img-fluid" src="<c:url value='/Upload/Review/${reviewlist[4].FIRSTIMAGE}'/> " alt="">
+				            </a>
+	            		</div>
+	            		 <div class="review">
+		            		<a class="portfolio-item" href="<c:url value='/planit/review/ReviewView.it?review_id=${reviewlist[5].REVIEW_ID}'/>">
+				              <span class="caption">
+				                <span class="caption-content">
+				                  <h1 style="color:white">${reviewlist[5].TITLE}(${reviewlist[5].SERIES}) </h1>
+				                  <p class="mb-0">${reviewlist[5].HASHTAG}</p>
+				                </span>
+				              </span>
+				              <img class="img-fluid" src="<c:url value='/Upload/Review/${reviewlist[5].FIRSTIMAGE}'/> " alt="">
+				            </a>
 	            		</div>
 	            	</div>
-	            	
 	            </div>
-	            
 	        </div>
 	        <!-- container -->
         </div>
@@ -295,7 +251,7 @@ real story: 인기있는 리뷰 모아보기
 planner : 평점이 높은 리뷰를 모아보기 
 **************************************************************
  -->
- <section class="content-section" id="portfolio">
+<!--  <section class="content-section" id="portfolio">
       <div class="container">
          <div class="row">
               <div class="col-sm-12 portfolio section-description wow fadeIn">
@@ -308,14 +264,14 @@ planner : 평점이 높은 리뷰를 모아보기
           </div>
         <div class="row no-gutters">
           <div class="col-lg-6">
-            <a class="portfolio-item" href="#">
+            <a class="portfolio-item" href="">
               <span class="caption">
                 <span class="caption-content">
                   <h1 style="color:white">속초 2박 3일 </h1>
                   <p class="mb-0">올해 하태하태던 속초</p>
                 </span>
               </span>
-              <img class="img-fluid" src="https://images.unsplash.com/photo-1534321238895-da3ab632df3e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3499f38cd1d86acc109c00b7ff86578a&auto=format&fit=crop&w=1050&q=80" alt="">
+              <img class="img-fluid" src="" alt="">
             </a>
           </div>
           <div class="col-lg-6">
@@ -326,7 +282,7 @@ planner : 평점이 높은 리뷰를 모아보기
                   <p class="mb-0">제주도 가고싶다.</p>
                 </span>
               </span>
-              <img class="img-fluid" src="https://images.unsplash.com/photo-1527824786100-2787b7fdc674?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=745331d1c437cac317e7bc2bee7a6f0b&auto=format&fit=crop&w=1050&q=80" alt="">
+              <img class="img-fluid" src="" alt="">
             </a>
           </div>
           <div class="col-lg-6">
@@ -353,8 +309,8 @@ planner : 평점이 높은 리뷰를 모아보기
           </div>
         </div>
       </div>
-    </section>
- <section class="content-section" id="portfolio">
+    </section> -->
+ <!-- <section class="content-section" id="portfolio">
       <div class="container">
          <div class="row">
               <div class="col-sm-12 portfolio section-description wow fadeIn">
@@ -386,7 +342,7 @@ planner : 평점이 높은 리뷰를 모아보기
           
           
     </div>
- </section>
+ </section> -->
       
  <script type="text/javascript">
 	$('.navbar').css('background', 'none');
@@ -509,11 +465,11 @@ jQuery(window).load(function() {
 	
 	// 관광 정보 불러오기  
 	console.log('메인 페이지의 관광정보를 불러오기 시작합니다..');
-	getBestItemInPlanit();
+	//getBestItemInPlanit();
 	
 });
 
-	var getBestItemInPlanit = function(){
+	/* var getBestItemInPlanit = function(){
 		console.log('getBestItemInPlanit()함수를 시작');
 		$.ajax({
 			url:"<c:url value='/Planit/Play/Main.it'/> ",
@@ -523,6 +479,6 @@ jQuery(window).load(function() {
 				console.log(data);
 			}
 			
-		});
+		}); */
 	};
 </script>

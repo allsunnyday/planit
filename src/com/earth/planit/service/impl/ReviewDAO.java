@@ -25,6 +25,8 @@ public class ReviewDAO implements ReviewService {
 
 	@Override
 	public ReviewDTO selectReviewOne(Map map) {
+		template.update("reviewUpdateViewCount",map);
+		System.out.println("리뷰 viewcount를 증가했습니다.");
 		return template.selectOne("reviewSelectOne",map);
 	}
 
@@ -139,6 +141,11 @@ public class ReviewDAO implements ReviewService {
 	@Override
 	public int updateReviewContentFromAndroid(Map map) {
 		return template.update("reviewUpdateReviewContent",map);
+	}
+
+	@Override
+	public int reviewGetReviewID(Map map) {
+		return template.selectOne("reviewGetReviewID",map);
 	}
 
 }

@@ -135,6 +135,12 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.updateReviewContentFromAndroid(map);
 	}
 
+	@Override
+	public int reviewGetReviewID(Map map) {
+		// TODO Auto-generated method stub
+		return dao.reviewGetReviewID(map);
+	}
+
 	
 
 }

@@ -90,7 +90,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberDTO> memberPreferList(Map map) {
+	public List<Map> memberPreferList(Map map) {
 		// TODO Auto-generated method stub
 		return dao.memberPreferList(map);
 	}
@@ -183,6 +183,11 @@ public class MemberServiceImpl implements MemberService {
 
 	public int getColumnCount(Map map) {
 		return dao.getColumnCount(map);
+	}
+
+	@Override
+	public Map androidUserInfo(Map map) {
+		return dao.androidUserInfo(map);
 	}
 
 }

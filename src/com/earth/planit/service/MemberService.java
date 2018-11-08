@@ -60,7 +60,7 @@ public interface MemberService {
 	   List<Map> memberLikedPlanner(Map map);
 	   
 	   //[선호도 노출]
-	   List<MemberDTO> memberPreferList(Map map);
+	   List<Map> memberPreferList(Map map);
 	   
 	   //[회원가입 후 선호도 업데이트]
 	   int updateProference(Map map);
@@ -79,6 +79,7 @@ public interface MemberService {
 	// get count
 	int getColumnCount(Map map);
 
+	Map androidUserInfo(Map map);
 }
 
 

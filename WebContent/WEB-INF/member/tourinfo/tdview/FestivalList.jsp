@@ -6,43 +6,11 @@
 *************************************** -->
 
 <style>
-img{
-max-width: 100%;
-   width: 600px;
-   max-height: 100%;
-   height : 280px;
-}
-.ov{
-   filter:grayscale(100%) 
-   }
-   
-#aaa{
-	background-color:red;
-	font-weight: bold;
-	color:white;
-}
-#bbb{
-	background-color:yellow;
-}
-#aaa{
-	-webkit-animation:blink 1.0s ease-in-out infinite alternate;
-    -moz-animation:blink 1.0s ease-in-out infinite alternate;
-    animation:blink 0.5s ease-in-out infinite alternate;
-}
-@-webkit-keyframes blink{
-    0% {opacity:0;}
-    40% {opacity:1;}
-}
-@-moz-keyframes blink{
-    0% {opacity:0;}
-   40% {opacity:1;}
-}
-@keyframes blink{
-    0% {opacity:0;}
-    10% {opacity:1;}
-}
-
-
+img { max-width: 100%;    width: 600px;    max-height: 100%;    height : 280px; }
+.ov{    filter:grayscale(100%) }   
+@-webkit-keyframes blink{     0% {opacity:0;}     40% {opacity:1;} }
+@-moz-keyframes blink{     0% {opacity:0;}    40% {opacity:1;} }
+@keyframes blink{     0% {opacity:0;}     10% {opacity:1;} }
 </style>
 
 
@@ -81,9 +49,8 @@ max-width: 100%;
          <input type="hidden" name="contenttype" value="15"> 
          <div class="form-group" >
             <select name="areacode" id="areacode" class="dmbutton2" title="조회지역" style="display: inline-block;">
-                  <option value="">지역선택</option>
+                  <!-- <option value="">지역선택</option> -->
                   <option value="">전체</option>
-
                   <option value="1" >서울</option>
                   <option value="2" >인천</option>
                   <option value="3" >대전</option>
@@ -192,9 +159,9 @@ max-width: 100%;
          <input type="hidden" name="tel">
          <div class="form-group">
             <select name="searchColumn" class="form-control">
-               <option value="all">전체검색</option>
-               <option value="title">관광지명</option>
-               <option value="tel">전화번호</option>
+               <!-- <option value="all">전체검색</option> -->
+               <option value="title">축제명</option>
+               <!-- <option value="tel">전화번호</option> -->
             </select>
          </div>
          <div class="form-group" >

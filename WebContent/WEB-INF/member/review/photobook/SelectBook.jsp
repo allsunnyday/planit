@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@  taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
+<style>
+	.footer {display:none;bottom:0; width:100%;}
+	body{background: #fff}
+</style>
 <script>
 	$(function(){
 		$('.sample').click(function(e){
@@ -88,6 +92,30 @@
                     <!-- 버튼의 타이틀은 img의 클래스명과 동일하게 작성한다 (모달에서 샘플을 띄워주기 위해서)   -->
                     <button title="basic" class="dmbutton a2 sample" data-animate="bounceInLeft"><i class="fa fa-search"></i></button>
                     <a href="<c:url value='/photobook/step2/Preview.it?review_id=${param.review_id}&name=BASIC'/> " class="dmbutton a2" data-animate="bounceInRight" ><i class="fa fa-link"></i>선택하기</a>
+                    <div class="portfolio_category text-center a2" data-animate="fadeIn">
+                      <a href="#">free</a>
+                    </div>
+                    <!-- portfolio_category -->
+                  </div>
+                  <!-- he bg -->
+                </div>
+                <!-- he view -->
+              </div>
+              <!-- he wrap -->
+            </div>
+            <!-- end col-12 -->
+            
+            <!-- 포토북 아이템 1  -->
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 free">
+              <div class="he-wrap tpl6 market-item">
+              <!-- img의 클래스명은 book테이블에서 가져온 book의 name값을 넣어준다.   -->
+                <img class="basic" src="<c:url value='/Upload/Review/basic_sample.jpg'/> " alt="">
+                <div class="he-view">
+                  <div class="bg a0" data-animate="fadeIn">
+                    <h3 class="a1" data-animate="fadeInDown">galaxy</h3>
+                    <!-- 버튼의 타이틀은 img의 클래스명과 동일하게 작성한다 (모달에서 샘플을 띄워주기 위해서)   -->
+                    <button title="basic" class="dmbutton a2 sample" data-animate="bounceInLeft"><i class="fa fa-search"></i></button>
+                    <a href="<c:url value='/photobook/step2/Preview.it?review_id=${param.review_id}&name=GALAXY'/> " class="dmbutton a2" data-animate="bounceInRight" ><i class="fa fa-link"></i>선택하기</a>
                     <div class="portfolio_category text-center a2" data-animate="fadeIn">
                       <a href="#">free</a>
                     </div>

@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div style="padding-top: 60px;" ></div>
 
 <!--*********************************
@@ -264,7 +266,8 @@ div.item .item-image{
 		<div class="ror">
 			<div class="col-md-8 col-md-offset-2">
 				<h1>${review['title']} (${review['series']})</h1>
-				<p>2018.05.09 - 2018.11.15</p>
+				
+				<p>${fn:substring(review.depart, 0, 10) } - ${enddate}</p>
 				 <h2 class="big-title">
 
 		         </h2>
@@ -301,7 +304,7 @@ div.item .item-image{
 				            <li>
 				              <article class="comment">
 				                <div class="comment-content">
-				                  <h4 class="comment-author">사진작가의 서울 유랑기 
+				                  <h4 class="comment-author">${review.title}
 				                       <span class="comment-reply"><a href="<c:url value='/planit/review/ReviewView.it?planner_id=${planner_id}&series=${loop.index}'/> " class="comment-reply dmbutton2" >${loop.index}</a></span>
 				                   </h4>  
 				                </div>

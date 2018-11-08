@@ -81,7 +81,7 @@ public class MemberDAO implements MemberService {
 		return template.selectList("MemberLikedTour",map);
 	}
 	@Override
-	public List<MemberDTO> memberPreferList(Map map) {
+	public List<Map> memberPreferList(Map map) {
 		// TODO Auto-generated method stub
 		return template.selectList("MemberPreferList",map);
 	}
@@ -159,6 +159,11 @@ public class MemberDAO implements MemberService {
 	@Override
 	public int getColumnCount(Map map) {
 		return template.selectOne("MemberSelectValueCount", map);
+	}
+	@Override
+	public Map androidUserInfo(Map map) {
+		// TODO Auto-generated method stub
+		return template.selectOne("AndroidSelectInfo", map);
 	}
 
 }

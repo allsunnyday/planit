@@ -47,18 +47,15 @@
 
 
 <section class="section1">
-<!-- 상단 내부 네비게이션바 시작 -->
-	<%-- <jsp:include page="plantop.jsp"></jsp:include> --%>
-<!-- 상단 내부 네비게이션바 종료 -->
 	<div class="container" style="margin-bottom: 50px;">
 		<div class="row">
-			<div class="col-md-6 col-sm-6 col-xs-12" style="float: left; height: 600px;">
+			<div class="col-md-4 col-sm-4 col-xs-12" style="float: left; height: 400px;">
 				<div class="col-sm-12 col-md-12 col-xs-12 portfolio  wow fadeIn text-center">
 		        	<h3> 여행 일정 달력 </h3>
 		        	<hr/>	        	       
 		        </div>
-				<!-- 달력 출력 시작 -->			
-				<div id="calendar"></div>                                       
+				<!-- 달력 출력 시작 -->
+				<div id="calendar" ></div>                                       
 				<script src="<c:url value='/BootStrap/plan_calendar/availability-calendar.js'/>"></script>			
 				<script>
 				var unavailableDates = [
@@ -78,7 +75,8 @@
 				  _gaq.push(['_trackPageview']);
 				
 				  (function() {
-				    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				    var ga = document.createElement('script'); 
+				    ga.type = 'text/javascript'; ga.async = true;
 				    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 				    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 				  })();
@@ -87,12 +85,13 @@
 				<!-- 달력 출력 종료 -->
 			</div>
 			<!--  -->
-			<div class="col-md-6 col-sm-6 col-xs-12 portfolio wow fadeIn text-center">
-	        	<h3> 일자별 여행 일정 입력 </h3>
+			<div class="col-md-8 col-sm-8 col-xs-12 portfolio wow fadeIn text-center">
+	        	<h3> 여행 일정 </h3>
 	            <hr/>	           
 	        </div>
-			<hr/>			
-			<div class="col-md-6 col-sm-6 col-xs-12">			
+			<hr/>
+			<img alt="" src="<c:url value='/Upload/Planner/${mapimage}'/> ">
+			<div class="col-md-8 col-sm-8 col-xs-12">			
 				<form method="post" action="#" id="plansave">
 					<div class="schedulehiddendata">
 						<input type="hidden" id="days" name="days" value="${days }"> <!-- 총 여행일수 저장 -->
@@ -108,7 +107,7 @@
 							<input type="text" class="form-control" id="reviewtitle" name="reviewtitle" placeholder="여행기 제목을 입력해주세요" style="font-size: 1em; width: 360px;display: inline-block; float: right;">
 							<h4 class="title" style="margin-bottom: -40px;"> (<span class="routecount">${plancase }</span>)개 일정 </h4>
 							<button type="submit" id="selectplanbtn" name="selectplanbtn" class="btn btn-info" style="float: right;"> 저 장 </button>
-							<div class="" style="overflow: auto; float: center; height: 600px; width: 100%">
+							<div class="comment-days" style="overflow: auto; float: center; height: 600px; width: 100%">
 								<ul class="comment-list" >
 									<!-- 내부에 추가될 div의 양식 -->
 									<!-- <li>
@@ -128,9 +127,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div class="col-sm-12 col-md-12 col-sc-12 text-center">
-						<button type="submit" id="selectplanbtn" name="selectplanbtn" class="btn btn-info"> 저 장 </button>
-					</div> -->
 				</form>
 			</div>
 			<!-- 우측 일정 입력 종료 -->
@@ -151,22 +147,23 @@
 	
 	var scheduledaysplan; // 하루일정수 담기
 	
-	var scheduletitle; // 타이틀 찾기
+	var scheduletitle; // 타이틀 찾기	
 	for(var i=0; i<scheduledays.length;i++){
 		scheduledaysplan = scheduledays[i].split('#');		
-		//console.log(scheduledaysplan); // 하루 일정 수		
-		for(var k=1; k<scheduledaysplan.length; k++){			
+		//console.log(scheduledaysplan); // 하루 일정 수
+		for(var k=1; k<scheduledaysplan.length; k++){
 			//console.log([k]+"dma. : "+scheduledaysplan[k]);
-			scheduletitle = scheduledaysplan[k].split(':');
-			
+			scheduletitle = scheduledaysplan[k].split(':');			
 			console.log('scheduletitle: '+ scheduletitle);
+			//var dayscomments='';
+			//dayscomments += '<h3> '+i+'일 차의 일정 </h3>';
 			for(var j=1; j<scheduletitle.length; j++){
 				console.log([j]+': '+scheduletitle[j]);
-				var routememocontent ='';
+				var routememocontent='';
 				routememocontent+= '<li>'
 					+ '<article class="comment">'
 						+'<div class="comment-content">'
-							+'<h4 class="comment-author" > '+scheduletitle[3]+'<small class="comment-meta"></small>'
+							+'<h4 class="comment-author" > '+scheduletitle[3]+'<small class="comment-meta">'+scheduledaysplan[0]+'일차 일정</small>'
 								//+'<span class="comment-reply">'
 									//+'<a href="#" class="comment-reply dmbutton2 small">일정 작성</a>'
 								//+'</span>'												
@@ -177,7 +174,7 @@
 					+'</article>'
 				+'</li>';
 			}
-			$('.comment-list').append(routememocontent);
+			$('.comment-list').append(routememocontent);			
 		}		
 	}
 	
@@ -194,4 +191,82 @@
 	});
 	/* ************ 여행 상세 일정 및 일정명 등록 ************* */
 	/* ************************** */
+	var depart = '${depart}';
+	var days = '${days}';
+	var departcalen = [];
+	departcalen = depart.split("/")
+	for(var i=0; i < departcalen.length; i++){ // 달력 출력 확인
+		console.log('departcalen: '+ departcalen[i])		
+	}
+	
+		
+	console.log('depart: '+depart)
+	console.log('days: ' + days)
+	var caleyear = $('#monthfontsize').text().substr(2,2);
+	var calenmonth = $('#monthfontsize').text().substr(7,2);
+	var planyear = (parseInt(departcalen[0]));
+	var plancalendar = (parseInt(departcalen[2]));
+	var plancalendarmonth = departcalen[1];	
+	var temp=0;
+	
+	
+	console.log($('#monthfontsize').text().substr(2,2));
+	console.log('calenmonth: '+ calenmonth)
+	console.log('plancalendar: '+ plancalendar)
+	if(planyear == caleyear && calenmonth == plancalendarmonth){
+		for(var i=0; i < 6; i++){
+			for(var k=0; k<7; k++){
+				if(planyear == caleyear && calenmonth == plancalendarmonth && $('.calenrow_'+i+' .tomonth_'+k).text() == (plancalendar + temp)){					
+					$('.calenrow_'+i+' .tomonth_'+k).css('background','#62c1f0');
+					$('.ex-month').css('background','#fff');
+					//console.log('plancalendar + temp: '+ (plancalendar + temp))
+					//$('.calenrow_'+i+' .ex-month .tomonth_'+k).css('background','#fff');
+					if(temp != (days-1)){
+						temp ++;					
+					}
+				}
+				else{
+					$('.calenrow_'+i+' .tomonth_'+k).css('background','#fff');
+				}
+			}
+		}
+	}
+	$('.calenbtn').click(function() {
+		temp=0;
+		caleyear = $('#monthfontsize').text().substr(2,2);
+		calenmonth = $('#monthfontsize').text().substr(7,2);		
+		console.log(caleyear+'///'+calenmonth)
+		if(planyear == caleyear && calenmonth == plancalendarmonth){
+			for(var i=0; i < 6; i++){
+				for(var k=0; k<7; k++){
+					if(planyear == caleyear && calenmonth == plancalendarmonth && $('.calenrow_'+i+' .tomonth_'+k).text() == (plancalendar + temp)){						
+						$('.calenrow_'+i+' .tomonth_'+k).css('background','#62c1f0');
+						$('.ex-month').css('background','#fff');
+						if(temp != (days-1)){
+							temp ++;					
+						}
+					}
+				}
+			}
+		}
+		else {
+			for(var i=0; i < 6; i++){
+				for(var k=0; k<7; k++){
+					$('.calenrow_'+i+' .tomonth_'+k).css('background','#fff');
+					$('.ex-month').css('background','#fff');
+					temp=0;
+				}
+			}
+		}
+	})
+	 
+	/* else {
+		for(var i=0; i < 6; i++){
+			for(var k=0; k<6; k++){
+				$('.calenrow_'+i+' .tomonth_'+k).css('background','#fff');
+			}
+		}
+	} */
+
+	
 </script>

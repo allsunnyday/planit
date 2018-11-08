@@ -4,6 +4,11 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -57,12 +62,16 @@ public class ReviewController {
 							HttpServletResponse resp,
 							@RequestParam(required = false, defaultValue = "1") int nowPage) throws Exception {
 
-		if(map.get("areacode")!=null) {
+		String param="";
+		if(map.get("areacode")!=null && !map.get("areacode").equals("0")) {
 			System.out.println(map.get("areacode")+" 지역을 선택했습니다."+map.get("areacodeKor"));
-			System.out.println(map.get("keyword")+" 키워드를 입력했습니다."+map.get("keyword").toString().length());
 			model.addAttribute("areacode", map.get("areacode"));
-			model.addAttribute("keyword", map.get("keyword"));
 			model.addAttribute("areacodeKor", map.get("areacodeKor"));
+			param+="areacode="+map.get("areacode")+"&";
+		}
+		if(map.get("areacode")!=null && map.get("areacode").equals("all")) {
+			map.remove("areacode");
+			map.remove("keyword");
 		}
 		
 		// 페이징 로직 시작
@@ -78,7 +87,11 @@ public class ReviewController {
 
 		// 리뷰 리스트를 가지고 온다.
 		List<Map> list = reviewService.selectReviewList(map);
-
+		// 평점 반올림하기
+		for(Map review : list) {
+			map.put("RATING", Math.round(Double.parseDouble(review.get("RATING").toString())));
+		}
+		
 		// 페이징 스트링
 		String pagingString = CommonUtil.pagingBootStrapStyle(totalReviewCount, pageSize, blockPage, nowPage,
 				req.getContextPath() + "/planit/review/ReviewList.it?");
@@ -113,9 +126,13 @@ public class ReviewController {
 		
 		ReviewDTO record = reviewService.selectReviewOne(map);
 		day = Integer.parseInt(record.getSeries().toString()) - 1;
+		
 		model.addAttribute("review", record);
-
-		/* } */
+		LocalDate startdate = LocalDate.parse(record.getDepart().substring(0, 10));
+		LocalDate enddate = LocalDate.of(startdate.getYear(), startdate.getMonth(), startdate.getDayOfMonth()+Integer.parseInt(record.getDays()));
+		System.out.println(startdate.toString() + "-" +enddate.toString());
+		//model.addAttribute("startdate",startdate );
+		model.addAttribute("enddate",enddate );
 		// dayRoute[day]=
 		// 1
 		//#1:12:126508:경복궁:한복대여:한복대여2만원:0
@@ -158,16 +175,38 @@ public class ReviewController {
 		return "review/myreview/WriteReview.theme";
 	}
 
+
+
+
+
 	// 리뷰 보기 페이지
 	@RequestMapping("/planit/review/ReviewView.it")
 	public String reviewView(@RequestParam Map map, // review_id=값
 			Model model) throws Exception {
-
+		
+		if(map.get("planner_id")!= null) {
+			System.out.println("시리즈로 접근합니다.");
+			System.out.println(map.get("review_id"));
+			map.put("review_id", reviewService.reviewGetReviewID(map));
+		}
+		else {
+			System.out.println("planner_id is null");
+		}
+		
+		
 		// 하나의 리뷰를 화면에 보여준다.
 		ReviewDTO review = reviewService.selectReviewOne(map);
 		// 시리즈로 접근했을 시에 review_id가 없기 때문에 
 		map.put("review_id", review.getReview_id());
-		
+		LocalDate startdate = LocalDate.parse(review.getDepart().substring(0, 10));
+		LocalDate enddate = LocalDate.of(startdate.getYear(), 
+										startdate.getMonth(), 
+										Integer.parseInt(review.getDays())!=1 ?
+										startdate.getDayOfMonth()+Integer.parseInt(review.getDays())
+										: startdate.getDayOfMonth());
+		System.out.println(startdate.toString() + "-" +enddate.toString());
+		//model.addAttribute("startdate",startdate );
+		model.addAttribute("enddate",enddate );
 		// --- route 분석 로직 ----//
 		// 1:12:126508:경복궁:한복대여:한복대여2만원:0#1:12:126512:광화문:교보문고:책사기:0#1:32:2504463:L7명동:::1
 		String beforeParsing = review.getRoute();
@@ -402,12 +441,19 @@ public class ReviewController {
 				// 이미지 개수에 해당하는 포토북을 가지고 온다.
 
 				// 총 이미지 개수와 포토북이 표현할 수 있는 사진 레이아웃의 개수를 비교하여 maximum을 정한다.
-				map.put("imagecount", images.length);
+				int totalNum =images.length;
+				if(totalNum>6) {
+					System.out.println("이미지가 너무  많아서 6개로 조정하였다...");
+					totalNum=6; 
+				}
+				map.put("imagecount", totalNum);
 				Map layouts = reviewService.getPhotobookLayouts(map);
-				for (int i = 0; i < images.length; i++) {
+				
+				for (int i = 0; i <totalNum; i++) {
 					layouts.put("LAYOUTS", layouts.get("LAYOUTS").toString().replace("BASIC" + i + ".jpg", images[i]));
 				}
 				oneReview.put("IMAGE", layouts.get("LAYOUTS"));
+				oneReview.put("SAMPLEIMAGE", layouts.get("SAMPLEIMAGE"));
 				System.out.println("변경한 후에 oneReview-IMAGE키에 저장된 값:" + oneReview.get("IMAGE"));
 			} else {
 				System.out.println("해당 일정에는 이미지가 없습니다.");

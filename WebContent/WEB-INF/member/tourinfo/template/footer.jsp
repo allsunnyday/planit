@@ -6,7 +6,7 @@
     <div class="copyrights">
       <div class="container">
         <div class="col-lg-6 col-md-6 col-sm-12 columns footer-left">
-          <p>Copyright © 2014 - All rights reserved.</p>
+          <p>Copyright © 2018 - All rights reserved.</p>
           <div class="credits">
             <!--
               You are NOT allowed to delete the credit link to TemplateMag with free version.
@@ -14,7 +14,7 @@
               Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/maxibiz-bootstrap-business-template/
               Licensing information: https://templatemag.com/license/
             -->
-            Created with MaxiBiz template by <a href="https://templatemag.com/">PLANIT</a>
+            Created with MaxiBiz template by PLANIT <!-- <a href="https://templatemag.com/">PLANIT</a> -->
           </div>
         </div>
         <!-- end widget -->

@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor 
           	  from content c, cat2 c2, cat3 c3  
            	where  c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=12 
-           		 <if test="areacode != null ">
+           		 <if test="areacode != null and areacode !=''">
            		 and areacode = #{areacode}
            		 </if>
            		 <if test="searchColumn !=null">
@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor 
           	  from content c, cat2 c2, cat3 c3  
            	where  c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=15
-           		 <if test="areacode != null ">
+           		 <if test="areacode != null and areacode !='' ">
            		 and areacode = #{areacode}
            		 </if>
            		 <if test="searchColumn !=null">
@@ -53,11 +53,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectFoodList" parameterType="java.util.Map" resultType="contentDTO">
 		select * from
-		(select a.*,rownum r from
+		(select a.*, rownum r from
           	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor from content c, cat2 c2, cat3 c3  
            		 where c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=39
-           		 <if test="areacode != null ">
-           		 and areacode = #{areacode}
+           		 <if test="areacode != null and areacode !=''">
+           		 	and areacode = #{areacode}
            		 </if>
            		
            		  <if test="searchColumn !=null">
@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
            		 	  title asc,
            		 </if>
            		
-           		 viewcount desc)   a )
+           		 viewcount desc)  a )
 		where r  between #{start} and #{end}
 	</select>
 	
@@ -77,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(select a.*,rownum r from
           	  (select c.*, c2.kor as cat2kor , c3.kor as cat3kor from content c, cat2 c2, cat3 c3  
            		 where c.cat2=c2.cat2 and c.cat3 = c3.cat3 and contenttype=32
-           		 <if test="areacode != null ">
+           		 <if test="areacode != null and areacode !=''">
            		 and areacode = #{areacode}
            		 </if>
            		  <if test="searchColumn !=null">
@@ -96,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="searchWord != null">
 				and ${searchColumn} LIKE '%' || #{searchWord} || '%'
 		</if>
-		<if test="areacode != null">
+		<if test="areacode != null and areacode !=''">
            		 and areacode=#{areacode}
         </if>
         order by
@@ -113,7 +113,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where  r between #{start} and #{end}
 	</select>
 
-
+	<select id="selectpreference" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.*, s.kor cat2kor from (select * from preference p join cat2 ca on ca.cat2=p.cat2 order by rating desc)s 
+		where id=#{id} and rownum between #{start} and #{end}
+	</select>
+<!-- 		select s.* from (select * from preference order by rating desc)s where id=#{id} and rownum between #{start} and #{end} -->
 	
+	<select id="selectpreferenceone" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.* from (select * from content c join preference p on c.cat2 = p.cat2 where id=#{id} 
+		and c.cat2 = #{liketype1} order by rating desc, viewcount desc)s where rownum between #{start} and #{end}
+	</select>
+	<select id="selectpreferencetwo" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.* from (select * from content c join preference p on c.cat2 = p.cat2 where id=#{id} 
+		and c.cat2 = #{liketype2} order by rating desc, viewcount desc)s where rownum between #{start} and #{end}
+	</select>
+	<select id="selectpreferencethr" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.* from (select * from content c join preference p on c.cat2 = p.cat2 where id=#{id} 
+		and c.cat2 = #{liketype3} order by rating desc, viewcount desc)s where rownum between #{start} and #{end}
+	</select>
+	<select id="selectpreferencefour" parameterType="java.util.Map" resultType="preferenceDTO">
+		select s.* from (select * from content c join preference p on c.cat2 = p.cat2 where id=#{id} 
+		and c.cat2 = #{liketype4} order by rating desc, viewcount desc)s where rownum between #{start} and #{end}
+	</select>
 	
 </mapper>
