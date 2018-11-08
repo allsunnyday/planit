@@ -3,49 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
-  text-align: center;
-
-}
-
+.row {   display: flex;   flex-wrap: wrap;   padding: 0 4px;   text-align: center; }
 /* Create four equal columns that sits next to each other */
-.column {
-  flex: 50%;
-  max-width: 50%;
-  padding: 0 4px;
-}
-
-.column .review {
-  margin-top: 8px;
-  vertical-align: middle;
-  position: relative;
-}
-.column .review img{
-	display:block;
-  width: 100%;
-  height: auto;
-}
-
-
+.column {   flex: 50%;   max-width: 50%;   padding: 0 4px; }
+.column .review {   margin-top: 8px;   vertical-align: middle;   position: relative; }
+.column .review img{ display:block;   width: 100%;   height: auto; }
 /* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 800px) {
-  .column {
-    flex: 50%;
-    max-width: 50%;
-  }
-}
-
+@media screen and (max-width: 800px) { .column { flex: 50%;  max-width: 50%; }}
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column {
-    flex: 100%;
-    max-width: 100%;
-  }
-}
-
+@media screen and (max-width: 600px) {   .column {     flex: 100%;     max-width: 100%;   } }
 </style>
 <!-- Top content -->
 <div class="top-content">
@@ -285,7 +251,7 @@ real story: 인기있는 리뷰 모아보기
 planner : 평점이 높은 리뷰를 모아보기 
 **************************************************************
  -->
- <section class="content-section" id="portfolio">
+<!--  <section class="content-section" id="portfolio">
       <div class="container">
          <div class="row">
               <div class="col-sm-12 portfolio section-description wow fadeIn">
@@ -343,8 +309,8 @@ planner : 평점이 높은 리뷰를 모아보기
           </div>
         </div>
       </div>
-    </section>
- <section class="content-section" id="portfolio">
+    </section> -->
+ <!-- <section class="content-section" id="portfolio">
       <div class="container">
          <div class="row">
               <div class="col-sm-12 portfolio section-description wow fadeIn">
@@ -376,7 +342,7 @@ planner : 평점이 높은 리뷰를 모아보기
           
           
     </div>
- </section>
+ </section> -->
       
  <script type="text/javascript">
 	$('.navbar').css('background', 'none');

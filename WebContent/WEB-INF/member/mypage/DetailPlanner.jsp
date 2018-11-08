@@ -234,10 +234,10 @@ display: inline-block;
 										<div class="he-view">
 											<div class="bg a0" data-animate="fadeIn">
 												<h3 class="big a1" data-animate="fadeInDown">${list.TITLE}</h3>
-												<a data-rel="prettyPhoto"
-													href="<c:url value='/images/main/slide2.jpg'/>"
+												<!-- <a data-rel="prettyPhoto"
+													href="#"
 													class="dmbutton a2" data-animate="bounceInLeft"><i
-													class="fa fa-search"></i></a> 
+													class="fa fa-search"></i></a>  -->
 												<div class="portfolio_category text-center a2"
 													data-animate="fadeIn"></div>
 												<!-- portfolio_category -->
@@ -248,13 +248,11 @@ display: inline-block;
 									</div>
 									<!-- he wrap -->
 
-									<h3 class="title"><a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>">${list.TITLE}</a>
+									<h3 class="title"><a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.REVIEW_ID}'/>">${list.TITLE}</a>
 									
 									</h3>
 									
-									<p>${list.TOURTYPE } / 시작일 (${list.DEPART})</p>
-
-								
+									<p>${list.TOURTYPE } / 시작일 (${list.DEPART})</p>								
 									
 								</div>
 									</c:forEach>

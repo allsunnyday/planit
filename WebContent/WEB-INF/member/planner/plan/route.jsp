@@ -19,12 +19,12 @@
 							<!-- <div class="text-right" > -->
 								<ul id="" class="" style="list-style: none;" >
 									<!-- <li style="display: block;"><a href=""> 저 장 </a></li> -->
-									<li style="float: left; margin-right: 15px"><a class="" href="javascript:" onclick="movescheduleAction();"><img alt="" src="<c:url value='/Upload/Planner/download-button.png'/> " height="30" width="30"> </a></li>									
+									<li style="float: left; margin-right: 15px"><a class="" href="javascript:" onclick="movescheduleAction();"><img alt="" src="<c:url value='/Upload/Planner/Next.png'/> " height="30" width="30"> </a></li>									
 									<%-- <li style="display: block;"><a href="<c:url value='/Planit/Before/Location.it'/>"> 지역 선택 </a></li> --%>
 									<%-- <li class="active" style="display: block;"><a href="<c:url value='/planner/plan/route.it'/>"> 루 트 </a></li> --%>
 									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/schedule.it'/>"> 일 정 </a></li> --%>
 									<%-- <li style="display: block;"><a href="<c:url value='/planner/plan/reservation.it'/>"> 예 약 </a></li> --%>
-									<li style="float: left; margin-right: 15px"><a class="" id="bookmark" href="#" data-toggle="modal" data-target="#bookmarkmodal"> <img alt="" src="<c:url value='/Upload/Planner/add-bookmarks.png'/> " height="30" width="30">  </a></li>									
+									<li style="float: left; margin-right: 15px"><a class="" id="bookmark" href="#" data-toggle="modal" data-target="#bookmarkmodal"> <img alt="" src="<c:url value='/Upload/Planner/bookmark.png'/> " height="30" width="30">  </a></li>									
 								</ul>
 								<form id="scheduleData" name="scheduleData" method="post" ></form> <!-- action="<c:url value='/planner/plan/schedule.it'/>" -->
 							<!-- </div> -->

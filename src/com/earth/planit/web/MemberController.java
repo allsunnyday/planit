@@ -137,47 +137,46 @@ public class MemberController {
 	         MultipartHttpServletRequest mhsr, HttpSession session) throws Exception {
 
 
-		map.put("id", session.getAttribute("id").toString());
-		System.out.println("profile" + mhsr.getFile("profile").toString());
-		System.out.println("profile" + mhsr.getParameter("profile"));
-		System.out.println("isExistProfile==" + map.get("isExistProfile"));
-		System.out.println(map.get("profile") == null ? "프로필 있음" : "프로필 없음");
-		if (mhsr.getFile("profile") != null && mhsr.getFile("profile").getName().equals("")) {
-			System.out.println(mhsr.getFile("profile").getSize()+","+mhsr.getFile("profile").getName());
-			// 1]서버의 물리적 경로 얻기
-			String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");
-			// 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
-			// MultipartFile객체 얻기
-			MultipartFile profile = mhsr.getFile("profile");
-			// 2]File객체 생성
-			// 2-1] 파일 중복시 이름 변경
-			String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
-			System.out.println(map.get("profile"));
-			File file = new File(phicalPath + File.separator + newFilename);
-			// 3]업로드 처리
-			profile.transferTo(file);
-			map.put("profile", newFilename.toString().trim());
-		}
-		else {
-			map.put("profile", map.get("isExistProfile"));
-		}
-		System.out.println(map.get("self"));
-		System.out.println(map.get("id"));
-		System.out.println(map.get("email"));
-		System.out.println(map.get("name"));
-		System.out.println(map.get("profile"));
-		int affected = service.updateProfile(map);
-		System.out.println(affected == 1 ? "입력성공" : "입력실패");
-		if (affected == 1) {
-			MemberDTO memberRecord = service.memberInfo(map);
-			// [선호사항 세션저장]
-			// 이미지 세션에 저장하기
-			System.out.println("memberRecord.getProfile()" + memberRecord.getProfile());
-			session.setAttribute("memberRecord", memberRecord);
-		}
-		return "forward:/planit/mypage/MyPageHome.it";
-	}
-
+	      map.put("id", session.getAttribute("id").toString());
+	      System.out.println("profile" + mhsr.getFile("profile").toString());
+	      System.out.println("profile" + mhsr.getParameter("profile"));
+	      System.out.println("isExistProfile==" + map.get("isExistProfile"));
+	      System.out.println(map.get("profile") == null ? "프로필 있음" : "프로필 없음");
+	      if (mhsr.getFile("profile") != null ) {//&& mhsr.getFile("profile").getName().equals("")
+	         System.out.println(mhsr.getFile("profile").getSize()+","+mhsr.getFile("profile").getName());
+	         // 1]서버의 물리적 경로 얻기
+	         String phicalPath = mhsr.getServletContext().getRealPath("/Upload/Member");
+	         // 1-1]MultipartHttpServletRequest객체의 getFile("파라미터명")메소드로
+	         // MultipartFile객체 얻기
+	         MultipartFile profile = mhsr.getFile("profile");
+	         // 2]File객체 생성
+	         // 2-1] 파일 중복시 이름 변경
+	         String newFilename = FileUtils.getNewFileName(phicalPath, profile.getOriginalFilename());
+	         System.out.println(map.get("profile"));
+	         File file = new File(phicalPath + File.separator + newFilename);
+	         // 3]업로드 처리
+	         profile.transferTo(file);
+	         map.put("profile", newFilename.toString().trim());
+	      }
+	      else {
+	         map.put("profile", map.get("isExistProfile"));
+	      }
+	      System.out.println(map.get("self"));
+	      System.out.println(map.get("id"));
+	      System.out.println(map.get("email"));
+	      System.out.println(map.get("name"));
+	      System.out.println(map.get("profile"));
+	      int affected = service.updateProfile(map);
+	      System.out.println(affected == 1 ? "입력성공" : "입력실패");
+	      if (affected == 1) {
+	         MemberDTO memberRecord = service.memberInfo(map);
+	         // [선호사항 세션저장]
+	         // 이미지 세션에 저장하기
+	         System.out.println("memberRecord.getProfile()" + memberRecord.getProfile());
+	         session.setAttribute("memberRecord", memberRecord);
+	      }
+	      return "forward:/planit/mypage/MyPageHome.it";
+	   }
 
 	@RequestMapping("/planit/mypage/MyPageEditPassword.it")
 	public String gotoMyPageEditPassword() throws Exception {
@@ -290,7 +289,8 @@ public class MemberController {
 		return "mypage/DetailPlanner.theme";
 
 	}
-
+	
+	
 	/* 로그인 처리 method=RequestMethod.POST로 설정하여 get방식 접근을 막는다. */
 	@RequestMapping(value = "/member/login/LoginProcess.it", method = RequestMethod.POST)
 	public String loginProcess(@RequestParam Map map, HttpSession session, Model model) throws Exception {
