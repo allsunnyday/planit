@@ -178,6 +178,7 @@ public class MemberController {
 	      return "forward:/planit/mypage/MyPageHome.it";
 	   }
 
+
 	@RequestMapping("/planit/mypage/MyPageEditPassword.it")
 	public String gotoMyPageEditPassword() throws Exception {
 
