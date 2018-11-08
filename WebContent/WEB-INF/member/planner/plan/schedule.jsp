@@ -209,13 +209,14 @@
 	var temp=1;
 	
 	console.log(calenmonth)
-	
+	console.log('plancalendar: '+ plancalendar)
 	if(calenmonth == plancalendarmonth){
 		for(var i=0; i < 6; i++){
 			for(var k=0; k<7; k++){
 				if(calenmonth == plancalendarmonth && $('.calenrow_'+i+' .tomonth_'+k).text() == (plancalendar + temp)){
 					$('.calenrow_'+i+' .tomonth_'+k).css('background','#62c1f0');
 					$('.ex-month').css('background','#fff');
+					console.log('plancalendar + temp: '+ plancalendar + temp)
 					//$('.calenrow_'+i+' .ex-month .tomonth_'+k).css('background','#fff');
 					if(temp != days){
 						temp ++;					
@@ -225,7 +226,8 @@
 		}
 	}
 	$('.calenbtn').click(function() {
-		calenmonth = $('#monthfontsize').text().substr(7,2);
+		temp=1;
+		calenmonth = $('#monthfontsize').text().substr(7,2);		
 		if(calenmonth == plancalendarmonth){
 			for(var i=0; i < 6; i++){
 				for(var k=0; k<7; k++){
@@ -243,6 +245,7 @@
 			for(var i=0; i < 6; i++){
 				for(var k=0; k<7; k++){
 					$('.calenrow_'+i+' .tomonth_'+k).css('background','#fff');
+					$('.ex-month').css('background','#fff');
 					temp=1;
 				}
 			}

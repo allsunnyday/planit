@@ -234,10 +234,10 @@ display: inline-block;
 										<div class="he-view">
 											<div class="bg a0" data-animate="fadeIn">
 												<h3 class="big a1" data-animate="fadeInDown">${list.TITLE}</h3>
-												<a data-rel="prettyPhoto"
-													href="<c:url value='/images/main/slide2.jpg'/>"
+												<!-- <a data-rel="prettyPhoto"
+													href="#"
 													class="dmbutton a2" data-animate="bounceInLeft"><i
-													class="fa fa-search"></i></a> 
+													class="fa fa-search"></i></a>  -->
 												<div class="portfolio_category text-center a2"
 													data-animate="fadeIn"></div>
 												<!-- portfolio_category -->

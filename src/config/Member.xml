@@ -198,7 +198,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    select count(*) from liked_tour where id=#{id}
    </select>
    <select id="MemberReviewStarCount" parameterType="java.util.Map" resultType="int">
-   select count(*) from liked_review where id=#{id}
+   	select count(*) from review r join planner p on r.planner_id=p.planner_id where id=#{id}
    </select>
    <select id="MemberPlannerStarCount" parameterType="java.util.Map" resultType="int">
    select count(*) from liked_planner where id=#{id}
