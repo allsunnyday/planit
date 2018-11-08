@@ -81,6 +81,7 @@ public interface MemberService {
 
 	Map androidUserInfo(Map map);
 
+
 }
 
 

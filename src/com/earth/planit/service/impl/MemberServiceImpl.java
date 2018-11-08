@@ -24,10 +24,6 @@ public class MemberServiceImpl implements MemberService {
 		return dao.isLogin(map);
 	}
 
-	@Override
-	public Map androidUserInfo(Map map) {
-		return dao.androidUserInfo(map);
-	}
    
 	public int isJoin(MemberDTO dto) {
 		// [회원가입]
@@ -187,6 +183,11 @@ public class MemberServiceImpl implements MemberService {
 
 	public int getColumnCount(Map map) {
 		return dao.getColumnCount(map);
+	}
+
+	@Override
+	public Map androidUserInfo(Map map) {
+		return dao.androidUserInfo(map);
 	}
 
 }

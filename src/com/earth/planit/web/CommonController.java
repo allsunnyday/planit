@@ -320,71 +320,73 @@ public class CommonController {
 		return JSONArray.toJSONString(list);
 	}
 
-	   @ResponseBody
-	   @RequestMapping(value="/Ajax/android/UploadImage.it",produces = "text/plain; charset=UTF-8")
-	   public String androidUploadImage(@RequestParam Map<String,String> map, HttpServletRequest req )throws Exception{
-		   System.out.println(map.get("filename"));
-		   System.out.println("androidUploadImage() 서버에 이미지 전송 시작");
-		   
-		   String imgData = req.getParameter("image");
-		   //imgData = imgData.replace("data:image/png;base64,", "");
-		   byte[] file = Base64.decodeBase64(imgData);
-		   
-		   ByteArrayInputStream is = new ByteArrayInputStream(file);
-		   String filename = req.getParameter("filename")+".png";
-		   String phisicalPath = req.getServletContext().getRealPath("/Upload/Review");
-		   File targetFile = new File(phisicalPath+File.separator+filename);
-		   OutputStream out = new FileOutputStream(targetFile);
-		   out.write(file);
-		   out.flush();
-		   out.close();
-		   is.close();
-		   System.out.println("성공!");
-		  
-		  // int affected = reviewService.updateReviewContentFromAndroid(map);
-		   
-		   return filename;
-	   }
-	   
-	   @ResponseBody
-	   @RequestMapping(value="/Ajax/android/UpdatereviewConetent.it",produces = "text/plain; charset=UTF-8")
-	   public String androidUpdateReviewContent(@RequestParam Map map) throws Exception{
-		   System.out.println("리뷰컨테트 업데이트 하러 왔습니다.");
-		   System.out.println("review_id=" + map.get("review_id") 
-		   + " route_index=" + map.get("route_index") + " filenamne="+map.get("filename")
-					);
-		   int affected = reviewService.updateReviewContentFromAndroid(map);
-		   if (affected == 1) {
-			   return "success";
-		   }
-		   return "fail";
-	   }
-	   
-	   
-	   //=========================== main top쿼리로 베스트 아이템 얻기 ================================//
-	   @ResponseBody
-	   @RequestMapping(value="/Planit/Play/Main.it",produces = "text/plain; charset=UTF-8")
-	   public String getBestItemInPlanit()throws Exception{
-		   //  top쿼리를 이용하여 
-		   // 관광정보를 베스트 3
-		   // 리뷰 베스트 5
-		   // 플래너 최근 작성된 플래너 
-		   return "";
-	   }
-	   
-	   @ResponseBody
-	   @RequestMapping(value="/Ajax/android/myPage.it",produces = "text/plain; charset=UTF-8")
-	   public String getUserInfo(@RequestParam Map map) throws Exception{
-		   System.out.println("mypage용 안드로이드 호출합니다~"+map.get("id"));
-		   
-		   Map userInfoMap= memberService.androidUserInfo(map);
-		   userInfoMap.put("REGIDATE", userInfoMap.get("REGIDATE").toString().substring(0,10));
-		   List<Map> collections = new Vector<Map>();
-		   collections.add(userInfoMap);
-		   System.out.println("mypage호출 결과압니다: "+JSONArray.toJSONString(collections));
-		   	
-		    return JSONArray.toJSONString(collections);
-	   }
+
+	@ResponseBody
+	@RequestMapping(value = "/Ajax/android/UploadImage.it", produces = "text/plain; charset=UTF-8")
+	public String androidUploadImage(@RequestParam Map<String, String> map, HttpServletRequest req) throws Exception {
+		System.out.println(map.get("filename"));
+		System.out.println("androidUploadImage() 서버에 이미지 전송 시작");
+
+		String imgData = req.getParameter("image");
+		// imgData = imgData.replace("data:image/png;base64,", "");
+		byte[] file = Base64.decodeBase64(imgData);
+
+		ByteArrayInputStream is = new ByteArrayInputStream(file);
+		String filename = req.getParameter("filename") + ".png";
+		String phisicalPath = req.getServletContext().getRealPath("/Upload/Review");
+		File targetFile = new File(phisicalPath + File.separator + filename);
+		OutputStream out = new FileOutputStream(targetFile);
+		out.write(file);
+		out.flush();
+		out.close();
+		is.close();
+		System.out.println("성공!");
+
+		// int affected = reviewService.updateReviewContentFromAndroid(map);
+
+		return filename;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/Ajax/android/UpdatereviewConetent.it", produces = "text/plain; charset=UTF-8")
+	public String androidUpdateReviewContent(@RequestParam Map map) throws Exception {
+		System.out.println("리뷰컨테트 업데이트 하러 왔습니다.");
+		System.out.println("review_id=" + map.get("review_id") + " route_index=" + map.get("route_index")
+				+ " filenamne=" + map.get("filename"));
+		int affected = reviewService.updateReviewContentFromAndroid(map);
+		if (affected == 1) {
+			return "success";
+		}
+		return "fail";
+	}
+
+	// =========================== main top쿼리로 베스트 아이템 얻기
+	// ================================//
+	@ResponseBody
+	@RequestMapping(value = "/Planit/Play/Main.it", produces = "text/plain; charset=UTF-8")
+	public String getBestItemInPlanit() throws Exception {
+		// top쿼리를 이용하여
+		// 관광정보를 베스트 3
+		// 리뷰 베스트 5
+		// 플래너 최근 작성된 플래너
+		return "";
+	}
+	
+	 @ResponseBody
+     @RequestMapping(value="/Ajax/android/myPage.it",produces = "text/plain; charset=UTF-8")
+     public String getUserInfo(@RequestParam Map map) throws Exception{
+        System.out.println("mypage용 안드로이드 호출합니다~"+map.get("id"));
+        
+        Map userInfoMap= memberService.androidUserInfo(map);
+        userInfoMap.put("REGIDATE", userInfoMap.get("REGIDATE").toString().substring(0,10));
+        List<Map> collections = new Vector<Map>();
+        collections.add(userInfoMap);
+        System.out.println("mypage호출 결과압니다: "+JSONArray.toJSONString(collections));
+           
+         return JSONArray.toJSONString(collections);
+     }
+	
+	
 
 
 }

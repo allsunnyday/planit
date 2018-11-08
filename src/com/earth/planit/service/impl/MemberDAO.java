@@ -162,6 +162,8 @@ public class MemberDAO implements MemberService {
 	}
 	@Override
 	public Map androidUserInfo(Map map) {
+
 		return template.selectOne("AndroidSelectInfo", map);
 	}
+
 }

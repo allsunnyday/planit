@@ -214,8 +214,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <if test="!table.equals('review')">
    		where t.id=#{id}
    </if>
+
+
    </select>
-   <select id="AndroidSelectInfo" parameterType="java.util.Map" resultType="java.util.Map">
-   		SELECT m.*, (select COUNT(*) from planner where id=#{id}) as totalplanner , (select count(*) from REVIEW r join PLANNER p on r.planner_id =p.PLANNER_ID where p.id=#{id}) as totalreview FROM member m where id=#{id} 
+   
+    <select id="AndroidSelectInfo" parameterType="java.util.Map" resultType="java.util.Map">
+         SELECT m.*, (select COUNT(*) from planner where id=#{id}) as totalplanner , (select count(*) 
+         	from REVIEW r join PLANNER p on r.planner_id =p.PLANNER_ID where p.id=#{id}) as totalreview
+         FROM member m where id=#{id} 
    </select>
+
 </mapper>
