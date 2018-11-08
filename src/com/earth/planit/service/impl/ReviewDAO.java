@@ -143,4 +143,9 @@ public class ReviewDAO implements ReviewService {
 		return template.update("reviewUpdateReviewContent",map);
 	}
 
+	@Override
+	public int reviewGetReviewID(Map map) {
+		return template.selectOne("reviewGetReviewID",map);
+	}
+
 }

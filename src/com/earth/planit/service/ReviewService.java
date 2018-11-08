@@ -62,4 +62,6 @@ public interface ReviewService {
 	List<Map> selectListForAndroid(Map map);
 	// android에서 리뷰 컨텐트를 업데이트 한다. 
 	int updateReviewContentFromAndroid(Map map);
+	
+	int reviewGetReviewID(Map map);
 }

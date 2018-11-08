@@ -45,18 +45,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- (1) reviewlist >review_id>reviewview     (2) reveiwview-series > planner_id / series > reviewview  -->
 	<select id="reviewSelectOne"  parameterType="java.util.Map" resultType="reviewDTO" >
 		select r.*, id, depart, days from review r join planner p on r.planner_id=p.planner_id
-		<if test="review_id != null">
-		where r.review_id=#{review_id}
-		</if>
-		<if test="planner_id != null">
-		and r.planner_id=#{planner_id} 		
-		</if>
-		<if test="series != null">
-		and SERIES=#{series}
-		</if>
-		order by series	
+				where r.review_id=#{review_id}
 	</select>
-		<!-- 	 -->
+	
+	<select id="reviewGetReviewID" parameterType="java.util.Map" resultType="int">
+		select review_id from review where planner_id=#{planner_id} and SERIES=#{series}	
+	</select>
 	
 	<select id="reviewSelectContent" parameterType="java.util.Map" resultType="contentDTO">
 		select * from content where contentid=#{contentid}

@@ -183,7 +183,17 @@ public class ReviewController {
 	@RequestMapping("/planit/review/ReviewView.it")
 	public String reviewView(@RequestParam Map map, // review_id=값
 			Model model) throws Exception {
-
+		
+		if(map.get("planner_id")!= null) {
+			System.out.println("시리즈로 접근합니다.");
+			System.out.println(map.get("review_id"));
+			map.put("review_id", reviewService.reviewGetReviewID(map));
+		}
+		else {
+			System.out.println("planner_id is null");
+		}
+		
+		
 		// 하나의 리뷰를 화면에 보여준다.
 		ReviewDTO review = reviewService.selectReviewOne(map);
 		// 시리즈로 접근했을 시에 review_id가 없기 때문에 

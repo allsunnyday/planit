@@ -304,7 +304,7 @@ div.item .item-image{
 				            <li>
 				              <article class="comment">
 				                <div class="comment-content">
-				                  <h4 class="comment-author">사진작가의 서울 유랑기 
+				                  <h4 class="comment-author">${review.title}
 				                       <span class="comment-reply"><a href="<c:url value='/planit/review/ReviewView.it?planner_id=${planner_id}&series=${loop.index}'/> " class="comment-reply dmbutton2" >${loop.index}</a></span>
 				                   </h4>  
 				                </div>
