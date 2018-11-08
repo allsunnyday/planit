@@ -234,7 +234,7 @@ public class ReviewController {
 			Map reviewContent = reviewService.selectReviewContent(map);
 			
 			                   
-			rmap.put("content", reviewContent.get("CONTENT"));
+			rmap.put("content", reviewContent.get("CONTENT")==null?"":reviewContent.get("CONTENT"));
 			// rmap.put("image",
 			// reviewContent.get("IMAGE")==null?"no-image":reviewContent.get("IMAGE").toString().replace("<*>",
 			// "&"));
