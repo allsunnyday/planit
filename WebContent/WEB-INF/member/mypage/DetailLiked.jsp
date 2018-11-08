@@ -181,129 +181,29 @@ display: inline-block;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
          <ul class="breadcrumb">
           <li><a href="index.html">Home</a></li>
-          <li>${id }</li>
+          <li>${id}</li>
         </ul>
         <h2>Liked</h2>
       </div>      
     </div>
   </section>
   <!-- end post-wrapper-top -->
-<!--*************************************
-	왼쪽에 달린 프로필 사진 및 기타등등 
-*****************************************  -->
   <section class="section1">
-          <div class="col-md-2 col-md-offset-1" style="margin-top:25px;">
-        <div>
-          <div class="teammembers">
-            <div class="he-wrap tpl2">
-            	<c:if test="${not empty memberRecord.profile}" var="result">
-            	<img src="<c:url value='/Upload/Member/${memberRecord.profile}'/>" alt="프로필 사진">
-            	</c:if>
-            	<c:if test="${not result}">
-              <img src="<c:url value='/images/mypage/default-profille.jpg'/>" alt="프로필 사진">
-              </c:if>
-              <div class="he-view">
-            
-              </div>
-            </div>
-            <!-- he wrap -->
-            <div class="teammembers-meta">
-              <h4>${sessionScope.id}</h4>
-            </div>
-            <div id="MY-first-1-self-detail">
-                     <p>
-                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                        <c:if test="${not empty sessionScope.userid}">${sessionScope.userid}</c:if>
-                        <c:if test="${empty sessionScope.userid}">Plan:It</c:if>
-                           님의&nbsp자기소개입니다</span>
-                     <p>${memberRecord.self}
-                     </p>
-
-
-         </div>
-
-            
-            <div class="teamskills" >
-            <div id="MY-First-TotalContent" style="width:90%;">
-                   <table id="MY-first-informtable" style="width:90%;">
-                   <tr>
-                      <td>Planner</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                   <td>Review</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                      <td>Like</td>
-                      <td>00</td>
-                   </tr>
-                   <tr>
-                      <td>Star Point</td>
-                      <td>0000</td>
-                  <!--  </tr>
-                	<tr style="border-top:1px white dashed;">
-                	<td colspan="2"> 선호사항</td>
-                	</tr>
-                       -->
-                   </table>
-                
-                </div>
-              
-            </div>
-            <!-- ***********************8
-            선호도 조사 들어갈 부분
-            *****************************8 -->
-            <div id="MY-First-Preference" style="width:90%;" >
-            	<table id="MY-first-prefertable" style="width:90%; padding:10px;">
-            		<tr>
-            		<c:if test="${empty sessionScope.memberPreferList }" var="result">
-            			<td>플래닛을 즐겨주세요</td>
-            		</c:if>	
-            		<c:if test="${not result }">
-            			<c:forEach var="list" items="${sessionScope.memberPreferList}" varStatus="loop">
-            				<td>${list.kor }</td><!-- 왜 안나오지 -->
-            			
-            			</c:forEach>
-            		</c:if>
-            		</tr>
-            	
-            	</table>
-            
-            </div>
-          </div>
-          <!-- end teammembers -->
-        </div>
-</div>
-<!--*************************************
-	마이페이지 이동버튼
-*****************************************  -->
+<!--***************************왼쪽에 달린 프로필 사진 및 기타등등***************************************  -->
+  <%-- <%@ include file="/WEB-INF/member/mypage/MyPageLeftSubMenu.jsp" %> --%>
+  <jsp:include page="MyPageLeftSubMenu.jsp" flush="false" />
+<!--***************************마이페이지 이동버튼**************************************  -->
 <div class="container-fluid ">
       <div class="content col-md-7">
 	<div class="mypage-content">
 		<div class="mypagemenu">
-			<div id="mypage">
-				<!-- <h2>MY PAGE</h2> -->
-			</div>
 			<div id="MY-edit">
 				<!-- 회원정보 수정폼으로 이동 -->
 				<!-- <button type="submit" class="btn btn-default" id="MY-edit-button">회원정보수정</button> -->
-			<%-- 	<a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
-			<div class="dropdown">
-				  <button class="btn btn-link" type="button" id="MY-Planner-gotomypage" >
-				  <a href="<c:url value='/planit/mypage/MyPageHome.it'></c:url>">
-				   돌아가기
-				    <span class="glyphicon glyphicon-log-out"></a></span>
-				  </button>
-				  
-				  
-				</div><!-- dropdown -->
+			<%--<a href="<c:url value='/planit/mypage/MyPageEditProfile.it' />" class="btn btn-default" id="MY-edit-button">회원정보수정</a> --%>
+				  <a href="<c:url value='/planit/mypage/MyPageHome.it'/> ">돌아가기 <span class="glyphicon glyphicon-log-out"></span></a>
 			</div><!-- MY-edit -->
 		</div><!-- mypagemenu -->
-		
-		
-		
-		
 		
 <!--*************************************
 	좋아요 모아보기 뿌려주는 영역
@@ -327,41 +227,24 @@ display: inline-block;
 					              <!-- <h5 class="title"><i class="fa fa-laptop"></i> Web Design Services</h5> -->
 					              <div class="row">
 					                
-					                 <table class="table">
-					                     <tr style="text-align: center">
-					                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
-					                       
-					                        <td class="col-md-1 " >분류</td>
-					                        <td class="col-md-3 col-md-offset-2">이름</td>
-					                        <td class="col-md-2 col-md-offset-2">관광지번호</td>
-					                        <td class="col-md-4 col-md-offset-2">주소</td>
-					                     </tr>
-					                     <c:if test="${empty requestScope.likedTourAll }" var="isEmpty">
-										<tr>
-											<td colspan="5" style="text-align: center">등록된 좋아요가 없습니다:)</td>
-										</tr>
-										</c:if>
-										<c:if test="${not isEmpty }">
-											<c:forEach var="list" items="${likedTourAll}" varStatus="loop">
-												<tr style="text-align: center">
-													<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
-													<td>${list.LIKED_T_ID}</td>
-													<td>여행지</td>
-													<td class="text-left"  data-toggle="modal" data-target="#myModal">
-													<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
-													</td>
-													<!-- Modal -->
-													<td>${list.CONTENTID}</td>
-													<td>${list.ADDR1}</td>
-												</tr>
-											</c:forEach>
-										</c:if>
-									</table>
-					                 
-					
-					                <div class="col-lg-6">
-					                  <img class="img-responsive" src="img/slider_01.png" alt="">
-					                </div>
+					                 <c:if test="${empty requestScope.likedTourAll }" var="isEmpty">
+										<h4 style="text-align: center">등록된 좋아요가 없습니다:)</h4>
+									</c:if>
+									<c:if test="${not isEmpty}">
+						                <c:forEach var="list" items="${likedTourAll}" varStatus="loop">
+						                	<div class="col-sm-4" style="position: relative;overflow: hidden;padding: 10px">
+						                		<img alt="관광이미지" src="${list.FIRSTIMAGE}" width="100%" height="100%">
+						                		<div style="position:absolute;color:#fff; top:60%; background-color: #444;height: auto;padding: 5px">
+						                			<h6>
+						                				<a href="<c:url value='/planit/search/list/TourView.it?contentid=${list.CONTENTID}'/>" style="color:#fff"> ${list.TITLE}</a>
+						                				<small>${list.KOR}</small>
+						                				</h6>
+						                		</div>
+						                	</div>
+						                </c:forEach>
+					                </c:if>
+										
+					                
 					              </div>
 					            </div>
 					            
@@ -369,82 +252,46 @@ display: inline-block;
 					            <div class="tab-pane" id="webdevelopment">
 					           <!--    <h5 class="title"><i class="fa fa-cogs"></i> Web Development Services</h5> -->
 					              <div class="row">
-					               <table class="table">
-					                     <tr style="text-align: center">
-					                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
-					                       
-					                        <td class="col-md-1 " >분류</td>
-					                        <td class="col-md-2 col-md-offset-1">이름</td>
-					                        <td class="col-md-3 col-md-offset-1">해쉬태그</td>
-					                        <td class="col-md-1 col-md-offset-1">시리즈</td>
-					                        <td class="col-md-1 col-md-offset-1">작성일</td>
-					                       
-					                     </tr>
-					                     <c:if test="${empty requestScope.likedPlannerAll }" var="isEmpty">
-										<tr>
-											<td colspan="6" style="text-align: center">등록된 좋아요가 없습니다:)</td>
-										</tr>
-										</c:if>
-										<c:if test="${not isEmpty }">
-											<c:forEach var="list" items="${likedPlannerAll}" varStatus="loop">
-												<tr style="text-align: center">
-													<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
-													<td>${list.LIKED_R_NO}</td>
-													<td>플래너</td>
-													<td class="text-left"  data-toggle="modal" data-target="#myModal">
-													<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
-													</td>
-													<!-- Modal -->
-													<td>${list.HASHTAG}</td>
-													<td>${list.SERIES}</td>
-													<td>${list.POSTDATE}</td>
-												</tr>
-											</c:forEach>
-										</c:if>
-									</table>
-					
-					                <div class="col-lg-6">
-					                  
-					                </div>
+					             
+					 				<c:if test="${empty requestScope.likedPlannerAll }" var="isEmptyPlan">
+										<h4 style="text-align: center">등록된 좋아요가 없습니다:)</h4>
+									</c:if>
+									<c:if test="${not isEmptyPlan}">
+						                <c:forEach var="list" items="${likedPlannerAll}" varStatus="loop">
+						                	<div class="col-sm-4" style="position: relative;overflow: hidden;padding: 10px">
+						                		<img alt="관광이미지" src="<c:url value='/Upload/Planner/planner_default_3.png'/> " width="100%" height="100%">
+						                		<div style="position:absolute;color:#fff; top:60%; background-color: #444;height: auto;padding: 5px">
+						                			<h6>
+						                				<a href="<c:url value='/planit/search/list/TourView.it?contentid=${list.CONTENTID}'/>" style="color:#fff" > ${list.TITLE}</a>
+						                				<small>${list.KOR}</small>
+						                				</h6>
+						                		</div>
+						                	</div>
+						                </c:forEach>
+					                </c:if>
+					                
 					              </div>
 					            </div>
 					              <div class="tab-pane" id="webdevelopment2">
 					           <!--    <h5 class="title"><i class="fa fa-cogs"></i> Web Development Services</h5> -->
 					              <div class="row">
-						          <table class="table">
-						                     <tr style="text-align: center">
-						                        <td class="col-md-1 " style="text-align: center">Liked No.</td>
-						                       
-						                        <td class="col-md-1 " >분류</td>
-						                        <td class="col-md-2 col-md-offset-1">이름</td>
-						                        <td class="col-md-3 col-md-offset-1">해쉬태그</td>
-						                        <td class="col-md-1 col-md-offset-1">시리즈</td>
-						                        <td class="col-md-1 col-md-offset-1">작성일</td>
-						                       
-						                     </tr>
-						                     <c:if test="${empty requestScope.likeReviewAll }" var="isEmpty">
-											<tr>
-												<td colspan="6" style="text-align: center">등록된 좋아요가 없습니다:)</td>
-											</tr>
-											</c:if>
-											<c:if test="${not isEmpty }">
-												<c:forEach var="list" items="${likeReviewAll}" varStatus="loop">
-													<tr style="text-align: center">
-														<%-- <td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td> --%>
-														<td>${list.LIKED_R_NO}</td>
-														<td>리뷰</td>
-														<td class="text-left"  data-toggle="modal" data-target="#myModal">
-														<a style="color: rgb(110,112,118)"href="#"  >${list.TITLE }</a>
-														</td>
-														<!-- Modal -->
-														<td>${list.HASHTAG}</td>
-														<td>${list.SERIES}</td>
-														<td>${list.POSTDATE}</td>
-													</tr>
-												</c:forEach>
-											</c:if>
-										</table>
-
+						         
+										<c:if test="${empty requestScope.likeReviewAll }" var="isEmptyPlan">
+											<h4 style="text-align: center">등록된 좋아요가 없습니다:)</h4>
+										</c:if>
+										<c:if test="${not isEmptyPlan}">
+							                <c:forEach var="list" items="${likeReviewAll}" varStatus="loop">
+							                	<div class="col-sm-4" style="position: relative;overflow: hidden;padding: 10px">
+							                		<img alt="관광이미지" src="<c:url value='/Upload/Review/${list.FIRSTIMAGE}'/> " width="100%" height="100%">
+							                		<div style="position:absolute;color:#fff; top:60%; background-color: #444;height: auto;padding: 5px">
+							                			<h6>
+							                				<a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.REVIEW_ID}'/>" style="color:#fff" > ${list.TITLE}(${list.SERIES})</a>
+							                				<small>${list.KOR}</small>
+							                				</h6>
+							                		</div>
+							                	</div>
+							                </c:forEach>
+						                </c:if>
          <!-- 내용 -->
           </div>
           </div>

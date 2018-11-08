@@ -21,12 +21,12 @@ max-width: 100%;
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
         <li>
-          <c:choose>
+          <%-- <c:choose>
             <c:when test="${food=='foodinfo'}">맛있게 식사를!</c:when>
             <c:when test="${food=='foodrank'}">음식점 순위를 알아보자!</c:when>
             <c:when test="${food=='foodstreet'}">맛집 파헤치기!</c:when>
             <c:otherwise>조건을 만족하지 않는 경우</c:otherwise>
-	     </c:choose>
+	     </c:choose> --%>
         
         </li>
         </ul>
@@ -51,7 +51,7 @@ max-width: 100%;
 			<input type="hidden" name="contenttype" value="39">
 			<div class="form-group" >
 				<select name="areacode" id="areacode" class="dmbutton2" title="조회지역" style="display: inline-block;">
-						<option value="">지역선택</option>
+						<!-- <option value="">지역선택</option> -->
 						<option value="">전체</option>
 						<option value="1" >서울</option>
 						<option value="2" >인천</option>
@@ -73,7 +73,7 @@ max-width: 100%;
 				</select>
 				</div>
 <!-- *************************************** cat2 선택  **************************************** -->
-				<div data-type="multiple" class="form-group" style="display: inline-block;" >
+				<!-- <div data-type="multiple" class="form-group" style="display: inline-block;" >
 					<ul class="jetmenu ">
 						<li><button name="all" value="" class="button ov" type="button">전체</button></li>
 						<li>
@@ -99,7 +99,7 @@ max-width: 100%;
 						</li>
 					</ul>
 					
-				</div>
+				</div> -->
 				<div class="form-group" >
 					<button type="submit" class="dmbutton2" value="조회">조회</button>
 					<a class="dmbutton2 ov" href="<c:url value='/tourinfo/tdview/FoodList.it?contenttype=39'/>" >조회순</a>
@@ -193,9 +193,9 @@ max-width: 100%;
          <input type="hidden" name="tel">
          <div class="form-group">
             <select name="searchColumn" class="form-control">
-               <option value="all">전체검색</option>
+               <!-- <option value="all">전체검색</option> -->
                <option value="title">식당명</option>
-               <option value="tel">전화번호</option>
+               <!-- <option value="tel">전화번호</option> -->
             </select>
          </div>
          <div class="form-group" >

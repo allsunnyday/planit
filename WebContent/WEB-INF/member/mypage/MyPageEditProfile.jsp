@@ -68,12 +68,12 @@ height: 100%; */
 							value="${memberRecord.id }" disabled>
 					</div>
 					<div class="col-md-10 col-md-offset-1">
-						<input type="text" class="form-control" id="name" name="name"
+						<input type="text" class="form-control" value="${memberRecord.name }" id="name" name="name"
 							placeholder="이름을 입력해주세요" value="">
 					</div>
 					<div class="col-md-10 col-md-offset-1">
 						<input type="email" class="form-control" id="email" name="email"
-							placeholder="이메일을 입력해주세요" value="">
+							value="${memberRecord.email}"placeholder="이메일을 입력해주세요" value="">
 					</div>
 
 				</div>
@@ -95,7 +95,10 @@ height: 100%; */
 					</div>
 					<div class="col-md-10 col-md-offset-1">${memberRecord.profile}</div>
 					<div class="col-md-10 col-md-offset-1">
-<textarea class="form-control" name="self" id="self" value="${memberRecord.self }" rows="3" placeholder="자기소개를 입력해주세요"></textarea>
+<textarea class="form-control" name="self" id="self" rows="3" placeholder="자기소개를 입력해주세요">
+
+${memberRecord.self }
+</textarea>
 
 					</div>
 				</div>
