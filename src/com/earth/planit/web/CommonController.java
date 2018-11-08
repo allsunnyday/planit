@@ -35,11 +35,19 @@ import com.earth.planit.service.SearchListService;
 
 /**
  * 
+<<<<<<< HEAD
  * @author JHS content 상세 보기 컨트롤러
+=======
+<<<<<<< HEAD
+ * @author JHS
+ *   content 상세 보기 컨트롤러 
+=======
+ * @author JHS content 상세 보기 컨트롤러
+>>>>>>> refs/remotes/origin/sunki
+>>>>>>> refs/remotes/origin/Gilhyoung
  */
 @Controller
 public class CommonController {
-
 	// api 키값
 
 	@Resource(name = "reviewService")
@@ -304,7 +312,6 @@ public class CommonController {
 				// ring name = (phisicalPath+File.separator+img);
 				imageMap.put("" + imageCount++, img);
 			}
-
 		}
 		imageMap.put("imagecount", imageCount);
 		List<Map> list = new Vector();
@@ -378,5 +385,6 @@ public class CommonController {
 		   	
 		    return JSONArray.toJSONString(collections);
 	   }
+
 
 }
