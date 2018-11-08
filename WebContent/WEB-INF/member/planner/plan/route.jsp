@@ -148,7 +148,7 @@
 					    <div class="select">						
 							<select name="paldoNcityColumn" id="paldoNcityColumn" style="width: 100%">
 						    	<option value="${areacodesub }" selected >${areacodesubname } </option>
-						    	<optgroup  LABEL="* * * * * * *" style="background: #4A5C78;">
+						    	<!-- <optgroup  LABEL="* * * * * * *" style="background: #4A5C78;">
 							    	<option value="1">강남구</option>
 							    	<option value="2">강동구</option>
 							    	<option value="3">강북구</option>
@@ -174,7 +174,7 @@
 							    	<option value="23">종로구</option>
 							    	<option value="24">중구</option>
 							    	<option value="25">중랑구</option>
-						    	</optgroup>
+						    	</optgroup> -->
 						    </select>
 					    </div>
 				    </div>
@@ -197,10 +197,53 @@
 		</div>
 	</section>
 </div>
-
+<script>
+$(function(){
+	/* function catefun(){
+		$.ajax({
+            url: "<c:url value='/planner/plan/routecategory.it?areacode="+areacode+"&sigungucode="+sigungucode+"&areacodename="+areacodename+"&sigungucodename="+sigungucodename+"'/>",            
+            dataType: 'json',
+            data:{contenttype:$(this).val()},
+            success: successPlanmapdata,
+            error: function(request, status, error){
+				console.log(request, status, error);
+				alert('검색 결과가 없습니다.')
+				changeCategoryClass();
+			}			
+		});///ajax
+	}
+	
+	console.log('누구냐 2');
+	$.ajax({
+		url:'<c:url value="/planner/ajax/location.it"/>',
+		type:'post',
+		data:{paldoNcity: $('#paldoNcity').val()},
+		dataType:'json',
+		success:function(data){
+			
+			console.log('함수시작~~~~~')
+			var optionString ="";
+			//{d01:'C#', d02:'ASP.NET',d03:'WPF4'}
+			optionString+="<option value=${areacodesub}'>${areacodesubname}</option>";
+			optionString +='<optgroup  LABEL="* * * * * * *" style="background: #4A5C78;">';
+			$.each(data, function(key, value){                  
+				optionString +="<option value='"+key+"'>"+value+"</option>";
+			});
+			optionString +='</optgroup>';
+			$('#paldoNcityColumn').html(optionString);				
+			catefun();
+			console.log('함수 종료 ~~~~~')
+		},
+		error:function(request, error){
+			console.log('상태코드: ',request.status);
+			console.log('서버로 부터 받은 데이터: ',request.responseText);
+			console.log('에러: ',error);
+		}
+	});	 */
+});
+</script>
 <!-- ******************************루트 페이지 바디 영역 종료****************************************-->
 <!-- ********************************** map script 호출 시작 *************************************** -->
 <%@ include file="routemap.jsp" %>
 <!-- ********************************** map script 호출 종료 *************************************** -->
-
 

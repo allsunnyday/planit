@@ -11,6 +11,7 @@
 				<h4 class="title">
 					<span>Welcome PLAN:IT!</span>
 				</h4>
+				
 				<div>
 				<p>Lorem Ipsum is simply dummy text of the printing and
 					typesetting industry. Lorem Ipsum has been the industry"s standard
