@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.tribes.membership.MemberImpl;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.earth.planit.service.ContentDTO;
 import com.earth.planit.service.ContentDetailIntroDTO;
 import com.earth.planit.service.ContentService;
+import com.earth.planit.service.MemberDTO;
 import com.earth.planit.service.MemberService;
 import com.earth.planit.service.ReviewDTO;
 import com.earth.planit.service.ReviewService;
@@ -33,19 +35,19 @@ import com.earth.planit.service.SearchListService;
 /**
  * 
  * @author JHS
- *   content 상세 보기 컨트롤러 
+ *	content 상세 보기 컨트롤러 
  */
 @Controller
 public class CommonController {
 
-   //api 키값
-   
-   @Resource(name="reviewService")
-   private ReviewService reviewService;
-   
-   @Resource(name="contentService")
-   private ContentService contentService;
-   
+	//api 키값
+	
+	@Resource(name="reviewService")
+	private ReviewService reviewService;
+	
+	@Resource(name="contentService")
+	private ContentService contentService;
+	
    @Resource(name="searchListService")
    private SearchListService searchListService;
 	
@@ -171,7 +173,6 @@ public class CommonController {
 			// System.out.println(dto.getOverview());
 			// 주소읽어오기
 
-
 			ContentDTO dto = reviewService.selectContent(rmap);
 			rmap.put("addr1", dto.getAddr1());
 			rmap.put("firstimage2", dto.getFirstimage2());
@@ -185,10 +186,11 @@ public class CommonController {
 			oneRoute.add(rmap);
 		}
 
-      int totalReview = reviewService.getTotalReviewCount(map);
-      return JSONArray.toJSONString(oneRoute);
-   }
-  
+		int totalReview = reviewService.getTotalReviewCount(map);
+		return JSONArray.toJSONString(oneRoute);
+	}
+	
+
 	   @ResponseBody
 	   @RequestMapping(value = "/Ajax/android/TourList.it", produces = "text/plain; charset=UTF-8")
 	   public String androidTourList(@RequestParam Map map) throws Exception {
@@ -349,6 +351,21 @@ public class CommonController {
 		   // 플래너 최근 작성된 플래너 
 		   return "";
 	   }
+	   
+	   @ResponseBody
+	   @RequestMapping(value="/Ajax/android/myPage.it",produces = "text/plain; charset=UTF-8")
+	   public String getUserInfo(@RequestParam Map map) throws Exception{
+		   System.out.println("mypage용 안드로이드 호출합니다~"+map.get("id"));
+		   
+		   Map userInfoMap= memberService.androidUserInfo(map);
+		   userInfoMap.put("REGIDATE", userInfoMap.get("REGIDATE").toString().substring(0,10));
+		   List<Map> collections = new Vector<Map>();
+		   collections.add(userInfoMap);
+		   System.out.println("mypage호출 결과압니다: "+JSONArray.toJSONString(collections));
+		   	
+		    return JSONArray.toJSONString(collections);
+	   }
+	   
 	   
 	
 }

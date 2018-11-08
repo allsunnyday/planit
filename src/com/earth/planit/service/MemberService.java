@@ -78,6 +78,9 @@ public interface MemberService {
 	
 	// get count
 	int getColumnCount(Map map);
+
+	Map androidUserInfo(Map map);
+
 }
 
 

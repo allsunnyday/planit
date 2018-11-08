@@ -20,7 +20,9 @@ public class MemberDTO {
    //[선호도]
    private String kor ;
    
-   
+   //안드로이드 마이페이지용
+   private int totalplanner;
+   private int totalreview;
    
    
    
@@ -97,6 +99,18 @@ public class MemberDTO {
    public void setStar(String star) {
       this.star = star;
    }
+public int getTotalreview() {
+	return totalreview;
+}
+public void setTotalreview(int totalreview) {
+	this.totalreview = totalreview;
+}
+public int getTotalplanner() {
+	return totalplanner;
+}
+public void setTotalplanner(int totalplanner) {
+	this.totalplanner = totalplanner;
+}
 
 
    
