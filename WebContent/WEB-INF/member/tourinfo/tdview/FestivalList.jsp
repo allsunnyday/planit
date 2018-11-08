@@ -192,7 +192,7 @@ max-width: 100%;
          <div class="form-group">
             <select name="searchColumn" class="form-control">
                <!-- <option value="all">전체검색</option> -->
-               <option value="title">관광지명</option>
+               <option value="title">축제명</option>
                <!-- <option value="tel">전화번호</option> -->
             </select>
          </div>

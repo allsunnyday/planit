@@ -59,7 +59,7 @@
 									<span class="clickedArea"></span> 지금 가장 인기 있는 관광지
 								</h3>
 								<a
-									href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>"
+									href="<c:url value='/tourinfo/tdview/TourList.it?contenttype=12'/>"
 									style="text-align: right;">더보기</a>
 							</div>
 							<c:forEach var="record" items="${tour}">
@@ -90,7 +90,7 @@
 									<span class="clickedArea"></span> 지금 가장 인기 있는 음식점
 								</h3>
 								<a
-									href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>"
+									href="<c:url value='/tourinfo/tdview/FoodList.it?contenttype=39'/>"
 									style="text-align: right;">더보기</a>
 							</div>
 							<c:forEach var="record" items="${food}">
@@ -107,7 +107,7 @@
 					</div>
 					<div class="container"></div>
 				</div>
-				<!-- ---------------------------축제행사-------------------------- -->
+				<!-- ---------------------------숙박-------------------------- -->
 				<div class="item" id="listmain-festival">
 					<!--  아래 이미지는 배경이 된다. -->
 					<img src="<c:url value='/Upload/Tour/listmain_sleep.jpg'/> "
@@ -120,7 +120,7 @@
 									<span class="clickedArea"></span>지금 가장 인기 있는 숙박시설
 								</h3>
 								<a
-									href="<c:url value='/tourinfo/tdview/TourList.it?cat1=total'/>"
+									href="<c:url value='/tourinfo/tdview/SleepList.it?contenttype=32'/>"
 									style="text-align: right;">더보기</a>
 							</div>
 							<c:forEach var="record" items="${sleep}">
@@ -185,7 +185,7 @@
 										<h3 class="a1" data-animate="fadeInDown">${record.title}</h3>
 										<a href="<c:url value='/planit/search/list/TourView.it?contentid=${record.contentid}'/>" 
 											class="dmbutton a2" data-animate="fadeIn">Details</a>
-										<a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a>
+<!-- 										<a href="checkout.html" class="dmbutton a2" data-animate="fadeIn">찜하기★</a> -->
 	
 										<!-- <div class="rating text-center a2" data-animate="fadeIn">
 											<i class="fa fa-star"></i>

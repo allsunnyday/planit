@@ -33,7 +33,12 @@ import com.earth.planit.service.SearchListService;
 
 /**
  * 
+<<<<<<< HEAD
+ * @author JHS
+ *   content 상세 보기 컨트롤러 
+=======
  * @author JHS content 상세 보기 컨트롤러
+>>>>>>> refs/remotes/origin/sunki
  */
 @Controller
 public class CommonController {
@@ -183,6 +188,7 @@ public class CommonController {
 			// rmap.put("overview", dto.getOverview());
 			// System.out.println(dto.getOverview());
 			// 주소읽어오기
+
 
 			ContentDTO dto = reviewService.selectContent(rmap);
 			rmap.put("addr1", dto.getAddr1());
