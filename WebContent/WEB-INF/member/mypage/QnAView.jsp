@@ -225,7 +225,7 @@
 					<!-- 요청내역이 들어갈 다이브 -->
 					<div class="col-md-10" >
 						${memberQnAView.CONTENT}
-					</div>a
+					</div>
 				</div>
 		
 			</div>
