@@ -248,13 +248,11 @@ display: inline-block;
 									</div>
 									<!-- he wrap -->
 
-									<h3 class="title"><a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>">${list.TITLE}</a>
+									<h3 class="title"><a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.REVIEW_ID}'/>">${list.TITLE}</a>
 									
 									</h3>
 									
-									<p>${list.TOURTYPE } / 시작일 (${list.DEPART})</p>
-
-								
+									<p>${list.TOURTYPE } / 시작일 (${list.DEPART})</p>								
 									
 								</div>
 									</c:forEach>

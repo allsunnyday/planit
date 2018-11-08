@@ -288,7 +288,8 @@ public class MemberController {
 		return "mypage/DetailPlanner.theme";
 
 	}
-
+	
+	
 	/* 로그인 처리 method=RequestMethod.POST로 설정하여 get방식 접근을 막는다. */
 	@RequestMapping(value = "/member/login/LoginProcess.it", method = RequestMethod.POST)
 	public String loginProcess(@RequestParam Map map, HttpSession session, Model model) throws Exception {
