@@ -32,7 +32,8 @@
 	                   </tr>
 	                   <tr>
 	                      <td>Star Point</td>
-                      <td>${sessionScope.starcount}</td>
+                      <%-- <td>${sessionScope.starcount}</td> --%>
+                      <td>${memberRecord.star}</td>
                    </table>
                 </div>
             </div>
