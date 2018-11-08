@@ -106,7 +106,7 @@
 	            <h3 class="general-title">등록된 글이 없습니다.</h3>
 	            <div class="post-meta">
 	              <p>
-	              지금 바로 여행의 추억을 기록해보세요! 
+	              지금 바로 여행의 추억을 기록해보세요!  
 	              </p>
 	            </div>
 	          </header>
