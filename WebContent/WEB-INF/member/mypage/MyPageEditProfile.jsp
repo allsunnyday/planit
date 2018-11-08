@@ -4,44 +4,14 @@
 <%@ include file="/WEB-INF/member/planner/after/loading.jsp" %>
 <!-- 마이페이지-회원정보 수정폼 -->
 <style>
-.mypage-content {
-	margin-top: 100px;
-	padding-bottom: 100px;
-	/* border: 3px black solid; */
-}
-
-#ME-first, #ME-second, #ME-third {
-	margin-top: 20px;
-	padding-top: 10px;
-	border-top: 2px rgb(53, 181, 157) solid;
-	margin-bottom: 100px;
-}
-
-#ME-user-picture img {
-	/* position: absolute; top:0; left: 0;
-width: 100%;
-height: 100%; */
-	max-width: 100%;
-	max-height: 100%;
-	margin: auto;
-	display: block;
-}
-
-#ME-user-picture {
-	width: 200px;
-	height: 200px;
-	border-radius: 50%;
-	border: 2px gray solid;
-}
-
-#ME-first-EditForm, #ME-second-EditForm, #ME-third-EditForm {
-	margin-top: 20px;
-}
-
-.submitButton {
-	display: inline-block;
-	float: right;
-}
+.mypage-content { margin-top: 100px; 	padding-bottom: 100px; 	/* border: 3px black solid; */ }
+#ME-first, #ME-second, #ME-third { 	margin-top: 20px; 	padding-top: 10px; 	border-top: 2px rgb(53, 181, 157) solid; margin-bottom: 100px; }
+#ME-user-picture img { 	/* position: absolute; top:0; left: 0; width: 100%; height: 100%; */ 
+	max-width: 100%; 	max-height: 100%; 	margin: auto; 	display: block; }
+#ME-user-picture { 	width: 200px; 	height: 200px; 	border-radius: 50%; 	border: 2px gray solid; }
+ #ME-first-EditForm, #ME-second-EditForm, #ME-third-EditForm { 	margin-top: 20px; }
+.submitButton { 	display: inline-block; 	float: right; }
+.footer{ position:fixed; bottom:0; width: 100%;}
 </style>
 <div class="container">
 
@@ -95,11 +65,7 @@ height: 100%; */
 					</div>
 					<div class="col-md-10 col-md-offset-1">${memberRecord.profile}</div>
 					<div class="col-md-10 col-md-offset-1">
-<textarea class="form-control" name="self" id="self" rows="3" placeholder="자기소개를 입력해주세요">
-
-${memberRecord.self }
-</textarea>
-
+						<textarea class="form-control" name="self" id="self" rows="3" placeholder="자기소개를 입력해주세요">${memberRecord.self }</textarea>
 					</div>
 				</div>
 

@@ -37,7 +37,9 @@
 
 
 </style>
-
+<script>
+	console.log('${sessionScopr.id}')
+</script>
 <!-- *******************************************
    베이지색 검색창 달린 거
 ************************************************ -->
@@ -45,8 +47,13 @@
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <ul class="breadcrumb">
-          <li><a href="index.html">My Page</a></li>
-          <li>${memberRecord.id}</li>
+          <li style="color: #3498DB;">My Page</li>
+          <c:if test="${not empty memberRecord.id}">
+          	<li>${memberRecord.id}</li>
+          </c:if>
+          <c:if test="${empty memberRecord.id}">
+          	<li>${sessionScope.id }</li>
+          </c:if>
         </ul>
         <h2>MY Page Home</h2>        
       </div>      

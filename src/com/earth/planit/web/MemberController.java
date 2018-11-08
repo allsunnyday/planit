@@ -132,9 +132,10 @@ public class MemberController {
 	}
 
 	// 프로필 수정처리
-	@RequestMapping(value = "/planit/mypage/editsave.it", method = RequestMethod.POST)
-	public String profileEdit(@RequestParam Map map, //
-			MultipartHttpServletRequest mhsr, HttpSession session) throws Exception {
+	   @RequestMapping(value = "/planit/mypage/editsave.it", method = RequestMethod.POST)
+	   public String profileEdit(@RequestParam Map map, //
+	         MultipartHttpServletRequest mhsr, HttpSession session) throws Exception {
+
 
 		map.put("id", session.getAttribute("id").toString());
 		System.out.println("profile" + mhsr.getFile("profile").toString());
@@ -176,6 +177,7 @@ public class MemberController {
 		}
 		return "forward:/planit/mypage/MyPageHome.it";
 	}
+
 
 	@RequestMapping("/planit/mypage/MyPageEditPassword.it")
 	public String gotoMyPageEditPassword() throws Exception {
@@ -234,6 +236,8 @@ public class MemberController {
 		String pagingString = CommonUtil.pagingBootStrapStyle(totalCount, pageSize, blockPage, nowPage,
 				req.getContextPath() + "/planit/mypage/detail/Q&A.it?");
 
+		
+		
 		model.addAttribute("QnAListDetail", QnAListDetail);
 		model.addAttribute("pagingString", pagingString);
 		model.addAttribute("totalRecordCount", totalCount);
@@ -343,7 +347,19 @@ public class MemberController {
 			// 시용자 선호도를 하기 위한 preference 테이블에 추가 (총 23개가 insert되야한다)
 			int insertPrefer = service.insertPreference(map);
 			System.out.println("선호도 추가된 행 개수 " + insertPrefer);
+			
+			session.setAttribute("id", map.get("id"));
+			MemberDTO memberRecord = service.memberInfo(map);
+			// [선호사항 세션저장]
+			map.put("id", session.getAttribute("id"));
+			List<Map> memberPreferList = service.memberPreferList(map);
+			session.setAttribute("memberPreferList", memberPreferList);
+			// 이미지 세션에 저장하기
+			// System.out.println(memberRecord.getProfile());
+			session.setAttribute("memberRecord", memberRecord);
 		}
+		
+		
 		return "mypage/UserPreference2.theme";
 
 		// 선호도 체크페이지 이동
@@ -372,7 +388,7 @@ public class MemberController {
 		}
 		count = 0;
 
-		return "redirect:/";
+		return "mypage/MyPageHome.theme";
 	}
 
 	@RequestMapping(value = "/planit/member/idcheck.it", method = RequestMethod.POST)

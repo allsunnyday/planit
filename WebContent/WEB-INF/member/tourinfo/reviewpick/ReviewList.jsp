@@ -40,7 +40,7 @@
 	<div class="container clearfix">
     <!-- BEGIN SIDEBAR -->
     	<div id="sidebar" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        	<div class="widget">
+        	<%-- <div class="widget">
           		<h4 class="title"><span>검색</span></h4>
            		<div class="text-center">
           			<form id="subscribe" class="form-inline" action="<c:url value='/planit/review/ReviewList.it'/> ">
@@ -69,7 +69,7 @@
 			            <input type="submit" value="찾기" id="submit" class="button">
           			</form>
         		</div>    
-        	</div>
+        	</div> --%>
         	<div class="widget">
 	          	<h4 class="title"><span>카테고리</span></h4>
 		        <ul class="categories">

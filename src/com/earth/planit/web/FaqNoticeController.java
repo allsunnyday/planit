@@ -97,14 +97,11 @@ public class FaqNoticeController {
 							blockPage, 
 							nowPage, 
 							req.getContextPath()+"/planit/search/tourinfo/Notice.it?");
-		
 		model.addAttribute("list", pagenotice);
 		model.addAttribute("pagingString", pagingString);
 		model.addAttribute("totalRecordCount", totalCount);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("nowPage", nowPage);
-		
-		
 		
 		
 		
