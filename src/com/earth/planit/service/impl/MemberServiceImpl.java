@@ -185,4 +185,9 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getColumnCount(map);
 	}
 
+	@Override
+	public Map androidUserInfo(Map map) {
+		return dao.androidUserInfo(map);
+	}
+
 }

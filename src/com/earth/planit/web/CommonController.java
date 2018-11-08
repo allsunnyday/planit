@@ -366,5 +366,21 @@ public class CommonController {
 		// 플래너 최근 작성된 플래너
 		return "";
 	}
+	
+	 @ResponseBody
+     @RequestMapping(value="/Ajax/android/myPage.it",produces = "text/plain; charset=UTF-8")
+     public String getUserInfo(@RequestParam Map map) throws Exception{
+        System.out.println("mypage용 안드로이드 호출합니다~"+map.get("id"));
+        
+        Map userInfoMap= memberService.androidUserInfo(map);
+        userInfoMap.put("REGIDATE", userInfoMap.get("REGIDATE").toString().substring(0,10));
+        List<Map> collections = new Vector<Map>();
+        collections.add(userInfoMap);
+        System.out.println("mypage호출 결과압니다: "+JSONArray.toJSONString(collections));
+           
+         return JSONArray.toJSONString(collections);
+     }
+	
+	
 
 }

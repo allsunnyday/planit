@@ -136,6 +136,7 @@ public class MemberController {
 	   public String profileEdit(@RequestParam Map map, //
 	         MultipartHttpServletRequest mhsr, HttpSession session) throws Exception {
 
+
 	      map.put("id", session.getAttribute("id").toString());
 	      System.out.println("profile" + mhsr.getFile("profile").toString());
 	      System.out.println("profile" + mhsr.getParameter("profile"));
@@ -176,6 +177,7 @@ public class MemberController {
 	      }
 	      return "forward:/planit/mypage/MyPageHome.it";
 	   }
+
 
 	@RequestMapping("/planit/mypage/MyPageEditPassword.it")
 	public String gotoMyPageEditPassword() throws Exception {
