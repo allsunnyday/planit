@@ -51,7 +51,8 @@
           <div class="recentitems portfolio">
             <div class="modalforsample"></div><!-- 모달을 동적으로 추가하기 위한 다이브 -->
             <img alt="" src="<c:url value='/Upload/Review/complete_download.png'/> " >
-            <a href="<c:url value='/download/book.it?filename=${filename}'/> " >download</a>
+            <hr/>
+            <a href="<c:url value='/download/book.it?filename=${filename}'/> " ><img alt="" src="<c:url value='/Upload/Review/downloadimg.png'/> " style="margin-left: 30%;" ></a>
             <a href="javascript: history.back(4);">나의 리뷰로 돌아가기 </a>
           </div>
           <!-- portfolio -->
