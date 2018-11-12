@@ -112,7 +112,7 @@ img{ max-width: 100%;    width: 600px;    max-height: 100%;    height : 280px; }
                <div id="choice_" class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
                   <div class="he-wrap tpl6 market-item">
                      <c:if test="${empty record.firstimage }">
-                         <img src="<c:url value='/Upload/Tour/tempimage.png'/>" alt="">
+                         <img src="<c:url value='/Upload/Tour/imageready.png'/>" alt="">
                          </c:if>
                          <c:if test="${not empty record.firstimage }">
                          <img src='${record.firstimage}' alt="">

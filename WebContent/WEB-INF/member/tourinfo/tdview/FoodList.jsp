@@ -141,7 +141,7 @@ max-width: 100%;
               <div class="he-wrap tpl6 market-item">
                 <!-- empty image일 경우에는 서버의 임시 이미지와 연결한다.  -->
                 <c:if test="${empty record.firstimage }">
-                <img src="<c:url value='/Upload/Tour/tempimage.png'/>" alt="">
+                <img src="<c:url value='/Upload/Tour/imageready.png'/>" alt="">
                 </c:if>
                 <c:if test="${not empty record.firstimage }">
                 <img src='${record.firstimage}' alt="">
