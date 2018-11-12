@@ -74,7 +74,13 @@ oneRoute
 			}
 			routestr+='<li>';
 			routestr+='<article class="comment">';
-			routestr+='<img src="' +element['firstimage2']+ '" alt="avatar" class="comment-avatar" onclick="showMemo(' +index+ ');">';
+			if(element['firstimage2'] != null && element['firstimage2'] != ''){
+				routestr+='<img src="' +element['firstimage2']+ '" alt="avatar" class="comment-avatar" onclick="showMemo(' +index+ ');">';
+			}
+			else{
+				var url = "<c:url value='/Upload/landscape.png'/>";
+				routestr+='<img src="' +url+ '" alt="avatar" class="comment-avatar" onclick="showMemo(' +index+ ');">';
+			}
 			routestr+='<div class="comment-content" >';
 			routestr+='<h4 class="comment-author">'+element['title']+'<small class="comment-meta"></small><span class="comment-reply">';
 			routestr+='<a href="#" class="comment-reply dmbutton2 small review-write"  title="'+element['contentid']+'-'+index+'">리뷰작성</a></span>';

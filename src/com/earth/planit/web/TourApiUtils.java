@@ -185,7 +185,7 @@ public class TourApiUtils {
 				+ "&contentTypeId="+contenttype
 				+ "&MobileOS=ETC"
 				+ "&_type=json"
-				+ "&MobileApp=AppTest";
+				+ "&MobileApp=Plnait";
 		// url 객체 생성
 		URL url = new URL(addr);
 		//URL로부터 자바로 데이터 읽어오도록 URL객체로 스트림열기
@@ -211,7 +211,8 @@ public class TourApiUtils {
 		json = (JSONObject) json.get("item");
 		
 		ContentDetailIntroDTO dto = new ContentDetailIntroDTO();
-		if("12".equals(contenttype)) {  //관광지 
+		if("12".equals(json.get("contenttypeid").toString())) {  //관광지
+			System.out.println("12들어왔습니다.");
 			dto.setAccomcount(json.get("accomcount")==null ?  "" : json.get("accomcount").toString());
 			dto.setChkbabycarriage(json.get("chkbabycarriage")==null ?  "" : json.get("chkbabycarriage").toString());
 			dto.setChkcreditcard( json.get("chkcreditcard")==null ?  "" : json.get("chkcreditcard").toString());
@@ -227,8 +228,11 @@ public class TourApiUtils {
 			dto.setRestdate(json.get("restdate")==null ?  "" : json.get("restdate").toString());
 			dto.setUseseason(json.get("useseason")==null ?  "" : json.get("useseason").toString());
 			dto.setUsetime(json.get("usetime")==null ?  "" : json.get("usetime").toString());
+			System.out.println(dto.getAccomcount());
+			System.out.println(dto.getChkbabycarriage());
+			System.out.println(dto.getChkcreditcard());
 		}
-		else if("14".equals(contenttype)) { //문화시설
+		else if("14".equals(json.get("contenttypeid").toString())) { //문화시설
 			dto.setAccomcountculture(json.get("accomcountculture")==null? "" : json.get("accomcountculture").toString());
 			dto.setChkbabycarriageculture(json.get("chkbabycarriageculture")==null? "" : json.get("chkbabycarriageculture").toString());
 			dto.setChkcreditcardculture(json.get("chkcreditcardculture")==null? "" : json.get("chkcreditcardculture").toString());
@@ -266,14 +270,14 @@ public class TourApiUtils {
 			
 			
 		}
-		else if("25".equals(contenttype)) { //여행코스
+		else if("25".equals(json.get("contenttypeid").toString())) { //여행코스
 			dto.setDistance(json.get("distance")==null? "" : json.get("distance").toString());
 			dto.setInfocentertourcourse(json.get("infocentertourcourse")==null? "" : json.get("infocentertourcourse").toString());
 			dto.setSchedule(json.get("schedule")==null? "" : json.get("schedule").toString());
 			dto.setTaketime(json.get("taketime")==null? "" : json.get("taketime").toString());
 			dto.setTheme(json.get("theme")==null? "" : json.get("theme").toString());
 		}
-		else if("28".equals(contenttype)) { //레포츠
+		else if("28".equals(json.get("contenttypeid").toString())) { //레포츠
 			dto.setAccomcountleports(json.get("accomcountleports")==null? "" : json.get("accomcountleports").toString());
 			dto.setChkbabycarriageleports(json.get("chkbabycarriageleports")==null? "" : json.get("chkbabycarriageleports").toString());
 			dto.setChkcreditcardleports(json.get("chkcreditcardleports")==null? "" : json.get("chkcreditcardleports").toString());
@@ -289,7 +293,7 @@ public class TourApiUtils {
 			dto.setUsefeeleports(json.get("usefeeleports")==null? "" : json.get("usefeeleports").toString());
 			dto.setUsetimeleports(json.get("usetimeleports")==null? "" : json.get("usetimeleports").toString());
 		}
-		else if("32".equals(contenttype)) { //숙박
+		else if("32".equals(json.get("contenttypeid").toString())) { //숙박
 			dto.setAccomcountlodging(json.get("accomcountlodging")==null? "" : json.get("accomcountlodging").toString());
 			dto.setBenikia(json.get("benikia")==null? "" : json.get("benikia").toString());
 			dto.setCheckintime(json.get("checkintime")==null? "" : json.get("checkintime").toString());
@@ -320,7 +324,7 @@ public class TourApiUtils {
 			dto.setSports(json.get("sports")==null? "" : json.get("sports").toString());
 			dto.setBicycle(json.get("bicycle")==null? "" : json.get("bicycle").toString());
 		}
-		else if("38".equals(contenttype)) { //쇼핑
+		else if("38".equals(json.get("contenttypeid").toString())) { //쇼핑
 			dto.setChkbabycarriageshopping(json.get("chkbabycarriageshopping")==null? "" : json.get("chkbabycarriageshopping").toString());
 			dto.setChkcreditcardshopping(json.get("chkcreditcardshopping")==null? "" : json.get("chkcreditcardshopping").toString());
 			dto.setChkpetshopping(json.get("chkpetshopping")==null? "" : json.get("chkpetshopping").toString());
@@ -337,7 +341,7 @@ public class TourApiUtils {
 			dto.setScaleshopping(json.get("scaleshopping")==null? "" : json.get("scaleshopping").toString());
 			dto.setShopguide(json.get("shopguide")==null? "" : json.get("shopguide").toString());
 		}
-		else if("39".equals(contenttype)) { //음식점
+		else if("39".equals(json.get("contenttypeid").toString())) { //음식점
 			dto.setChkcreditcardfood(json.get("chkcreditcardfood")==null? "" : json.get("chkcreditcardfood").toString());
 			dto.setDiscountinfofood(json.get("discountinfofood")==null? "" : json.get("discountinfofood").toString());
 			dto.setFirstmenu(json.get("firstmenu")==null? "" : json.get("firstmenu").toString());

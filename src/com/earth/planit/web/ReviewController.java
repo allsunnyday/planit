@@ -151,7 +151,9 @@ public class ReviewController {
 			rmap.put("contentid", items[2]);
 			rmap.put("title", items[3]); // 관광지이름
 			rmap.put("todo", items[4]); // 할일
-			rmap.put("todomemo", items[5]); // 할일 메모
+			String todomemo = items[5].replace("\r\n", "\\n");
+			rmap.put("todomemo", todomemo); // 할일 메모 
+			
 			rmap.put("stayNY", items[6]); // 숙박인지 여부
 			// ContentDTO dto = TourApiUtils.getdetailCommon(items[1], items[2]);
 			// 관광데이터 가지고 오기

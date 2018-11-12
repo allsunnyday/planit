@@ -97,18 +97,21 @@ public class CommonController {
 		model.addAttribute("mapy", dto.getMapy());
 		model.addAttribute("mapx", dto.getMapx());
 		// dto객체를 map으로 변경하는 로직
-		Map mMap = new HashMap();
-		Field[] fields = detailIntro.getClass().getDeclaredFields();
+		Map mMap = new HashMap<>();
+		Field[] fields = ((Object)detailIntro).getClass().getDeclaredFields();
 		for (int i = 0; i < fields.length; i++) {
 			fields[i].setAccessible(true);
 			if (fields[i].get(detailIntro) != null && // 숙박상세보기를 눌렀을 경우에 nullpoint에러를 방지하기 위해서
 					fields[i].get(detailIntro).toString().length() == 0) {
 				String korName = CommonUtil.getTourDetailIntroKorean(fields[i].getName());
 				System.out.println("변경한 이름:" + korName);
+				Object fObject = fields[i].get(detailIntro);
+				System.out.println("저장한 값: "+fObject.toString());
 				// mMap.put(fields[i].getName(), fields[i].get(detailIntro));
 				mMap.put(korName, fields[i].get(detailIntro));
 			}
 		}
+		
 
 		//
 		model.addAttribute("mMap", mMap);
@@ -183,11 +186,6 @@ public class CommonController {
 			rmap.put("todo", items[4]); // 할일
 			rmap.put("todomemo", items[5]); // 할일 메모
 			rmap.put("stayNY", items[6]); // 숙박인지 여부
-			// ContentDTO dto = TourApiUtils.getdetailCommon(items[1], items[2]);
-			// 관광데이터 가지고 오기
-			// rmap.put("overview", dto.getOverview());
-			// System.out.println(dto.getOverview());
-			// 주소읽어오기
 
 
 			ContentDTO dto = reviewService.selectContent(rmap);

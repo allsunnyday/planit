@@ -74,17 +74,7 @@ public class PlannerController {
 		
 		model.addAttribute("days", map.get("days")); // 사용자가 선택한 여행일수 넘기기
 		
-//		if(map.get("days") == null || map.get("days") == "") {
-//			
-//			println("<script> alert('계정이 등록 되었습니다'); location.href='이동주소'; </script>");
-//			return "planner/before/Location.theme"; 
-//		}
-		
-//		map 에 표시할 카테고리 정보들 얻어오기
-		//List<PlannerDTO> planmapinfo = service.selectMapDataList(map);		
-		//System.out.println("값 넘어오나요?: " + planmapinfo.size());
-		//model.addAttribute("planmapinfo", planmapinfo);
-		
+
 		return "planner/plan/route.theme";
 	}
 	
@@ -165,33 +155,7 @@ public class PlannerController {
 								Model model,
 								HttpSession session,
 								HttpServletRequest req ) throws Exception {
-//		System.out.println("days: " + map.get("days"));
-//		System.out.println("depart: " + map.get("depart"));
-//		System.out.println("areacode: " + map.get("areacode"));
-//		System.out.println("plancase: " + map.get("plancase"));
-//		System.out.println("tourtype: " + map.get("tourtype"));
-		
-		/*System.out.println("routemap - > schedule");
-		String binaryData = map.get("mapimage").toString();
-		String phisicalPath = req.getServletContext().getRealPath("/Upload/Planner");
-		String fileName="";
-		if (binaryData != null || binaryData != "") {
-			
-			FileOutputStream stream = null;
-			
-			//System.out.println("binary file " + binaryData);
-			
-			binaryData = binaryData.replaceAll("data:image/png;base64,", "");
-			byte[] file = Base64.decodeBase64(binaryData);
-			System.out.println("file :::::::: " + file + " || " + file.length);
-			
-			fileName = FileUtils.getNewFileName(phisicalPath, session.getAttribute("id")+LocalDate.now().toString());
-			
-			stream = new FileOutputStream(phisicalPath+File.separator + fileName + ".png");
-			
-			stream.write(file);
-			stream.close();
-		}*/
+
 		
 		int plancase = Integer.valueOf((String) map.get("plancase")); // 일정 갯수
 		System.out.println("plancase: "+ plancase);
@@ -245,7 +209,9 @@ public class PlannerController {
 			int series = (i+1);
 			String reviewroute = routedays[i];  //1#1:13:1845410:서울에너지드림센터:::0#1:13:1845410:서울에너지드림센터:::0#1:13:1845410:서울에너지드림센터:::0
 			map.put("series", series);
-			map.put("reviewroute", reviewroute);			
+			map.put("reviewroute", reviewroute);
+			map.put("firstimage", "review-default-"+(int)(Math.random()*11)+".jpg");
+			System.out.println(map.get("firstimage"));
 //			review table data 입력
 			int reviewaffected = service.insertReview(map);
 			System.out.println("[1이면 review  입력성공]: "+ reviewaffected);//3#1:13:130961:이한열박물관:::0#1:13:970052:세빛섬:::0

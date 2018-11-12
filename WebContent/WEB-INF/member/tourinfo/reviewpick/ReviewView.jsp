@@ -27,9 +27,9 @@ review :
 
 div.item {
 	display: flex;
-    height: 300px; /* Or whatever */
+    height: 400px; /* Or whatever */
     background-color: #fff;
-   
+   overflow: hidden;
 }
 
 div.item .item-image{
@@ -57,11 +57,7 @@ div.item .item-image{
 		
 		//코멘트 리스트 불러오기 
 		showComments();
-		
-		
-		
-		
-		
+
 		
 	});
 	
@@ -303,7 +299,7 @@ div.item .item-image{
 		        	<!--*****series_wrapper******  -->
 		        	<div id="series_wrapper">
 						<h4 class="title">여행 시리즈</h4>
-				          <ul class="series-list">
+				          <ul class="series-list" style="list-style: none">
 				            <c:forEach begin="1" end="${series}" varStatus="loop">
 				            <li>
 				              <article class="comment">
@@ -356,12 +352,20 @@ div.item .item-image{
 		<div class="container clearfix">
 					<div class=" col-sm-12 first">
 						<div class="testimonial">
+							<c:if test="${not empty review.firstimage2}" var="hasFirstimage">
 							<img data-effect="slide-bottom" class="alignleft img-circle"
 								src="${review.firstimage2}"
 								alt="">
+							</c:if>
+							<c:if test="${not hasFirstimage}">
+							<img data-effect="slide-bottom" class="alignleft img-circle"
+								src="<c:url value='/Upload/landscape.png'/> "
+								alt="">
+							</c:if>
+								
 							<h4>${review.title}</h4>
 							${review.overview}
-							<p>${review.addr1}</p><small><a href="<c:url value='/planit/search/list/TourView.it?contentid=${review.contentid}'/> ">자세히 보기</a></small>							
+							<p>${review.addr1}</p><small><a href="<c:url value='/planit/search/list/TourView.it?contentid=${review.contentid}'/> " >자세히 보기</a></small>							
 							<div class="testimonial-meta">
 								<h4>
 									
@@ -379,7 +383,7 @@ div.item .item-image{
 					
 					<!-- carousel container -->
 					<div class="container clearfix">
-						<div class="content col-sm-12 clearfix">
+						<div class="content col-sm-offset-2 col-sm-8 clearfix">
 							<!-- carousel start -->
 							<div id="mycarousel${outerloop.index}" class="carousel slide" data-ride="carousel">
 								<!-- wrapper for slides -->
