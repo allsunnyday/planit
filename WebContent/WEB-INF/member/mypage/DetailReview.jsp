@@ -224,14 +224,11 @@ display: inline-block;
 									
 								<div class="portfolio-item col-lg-4 col-md-4 col-sm-4 col-xs-12 mockups">
 									<div class="he-wrap tpl6 market-item">
-											<img src="<c:url value='/Upload/Review/${list.firstimage}'/>" style="height:230px" alt="">
+											<img src="<c:url value='/Upload/Review/${list.firstimage}'/>" style="height:230px;width:100%" alt="">
 										<div class="he-view">
 											<div class="bg a0" data-animate="fadeIn">
-												<h3 class="big a1" data-animate="fadeInDown">${list.title }(${list.series })</h3>
-												<a data-rel="prettyPhoto"
-													href="<c:url value='/Upload/Review/${list.firstimage}'/>"
-													class="dmbutton a2" data-animate="bounceInLeft"><i
-													class="fa fa-search"></i></a> <a href="#" class="dmbutton a2"
+												<h3 class="big a1" data-animate="fadeInDown">${list.title}(${list.series })</h3>
+												<a href="#" class="dmbutton a2"
 													data-animate="bounceInRight"><i class="fa fa-link"></i></a>
 												<div class="portfolio_category text-center a2"
 													data-animate="fadeIn"></div>
@@ -245,7 +242,6 @@ display: inline-block;
 									<h3 class="title"><a href="<c:url value='/planit/review/ReviewView.it?review_id=${list.review_id}'/>">${list.title }(${list.series })</a></h3>
 									<p>${list.hashtag }</p>
 								
-									
 								</div>
 									</c:forEach>
 								</c:if>

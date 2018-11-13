@@ -78,9 +78,9 @@
 		        </ul>
         	</div>
         	<div class="widget">
-          		<h4 class="title"><span>인기 Tags</span></h4>
+          		
           		<div class="tagcloud">
-            		<a href="#" class="" title="12 topics">advice</a>
+            		<img alt="" src="<c:url value='/Upload/Review/ad1.png'/> " style="width: 100%; height: auto">
           		</div>
         	</div>
       	</div>
